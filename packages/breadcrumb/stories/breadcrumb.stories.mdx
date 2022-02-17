@@ -1,0 +1,63 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import { Breadcrumb } from "../src";
+
+<Meta title="Komponenter/Brödsmulor" />
+
+export const Template = (args) => <Breadcrumb {...args }>
+        <Breadcrumb.Item>
+        <Breadcrumb.Link href="#">Start</Breadcrumb.Link>
+      </Breadcrumb.Item>
+      <Breadcrumb.Item>
+        <Breadcrumb.Link href="#">Inlägg</Breadcrumb.Link>
+      </Breadcrumb.Item>
+      <Breadcrumb.Item currentPage>
+        <Breadcrumb.Link href="#">Amet minim mollit non</Breadcrumb.Link>
+      </Breadcrumb.Item>
+</Breadcrumb>
+
+# Brödsmulor 
+
+Brödsmulor ska inte vara den enda vägen för en användare att navigera utan brödsmulor kompletterar alltid ett annat navigeringssätt. Om du använder någon annan typ av navigering som exempelvis en sidebar överväg då om användaren också behöver brödsmulor.
+
+<div className="p-4" style={{ backgroundColor: '#F4F4F4' }}>
+
+### Med bakgrund
+
+<div className="p-24 flex flex-auto flex-col items-center" style={{ backgroundColor: '#ffffff' }}>
+  <Template />
+</div>
+
+### Utan bakgrund
+
+<div className="p-24 flex flex-auto flex-col items-center">
+  <Template />
+</div>
+
+</div>
+
+
+# Separator
+
+Det går att använda andra element som separator också istället för textsträngar.
+
+export const svgIcon = <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 16 16"
+    width="16"
+    height="16"
+    className="fill-current"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M6.22 3.22a.75.75 0 011.06 0l4.25 4.25a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 010-1.06z"
+    ></path>
+  </svg>;
+
+<Story
+  name="Separator"
+  args={{
+    separator: svgIcon,
+  }}>
+    {Template.bind({})}
+</Story>

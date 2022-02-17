@@ -1,0 +1,63 @@
+{
+  "name": "@sk-web-gui/react",
+  "version": "0.1.0",
+  "sideEffects": false,
+  "license": "MIT",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "typings": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/esm/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "start": "nodemon --watch src --exec yarn build -e ts,tsx",
+    "build": "concurrently yarn:build:*",
+    "test": "jest --env=jsdom --passWithNoTests",
+    "lint": "concurrently yarn:lint:*",
+    "version": "yarn build",
+    "build:esm": "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/esm --source-maps",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist/cjs --source-maps",
+    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types",
+    "test:cov": "yarn test --coverage",
+    "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
+    "lint:types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "dependencies": {
+    "@sk-web-gui/alert": "0.1.0",
+    "@sk-web-gui/breadcrumb": "0.1.0",
+    "@sk-web-gui/button": "0.1.0",
+    "@sk-web-gui/checkbox": "0.1.0",
+    "@sk-web-gui/dot": "0.1.0",
+    "@sk-web-gui/forms": "0.1.0",
+    "@sk-web-gui/icon": "0.1.0",
+    "@sk-web-gui/image": "0.1.0",
+    "@sk-web-gui/link": "0.1.0",
+    "@sk-web-gui/message": "0.1.0",
+    "@sk-web-gui/notification": "0.1.0",
+    "@sk-web-gui/radio": "0.1.0",
+    "@sk-web-gui/spinner": "0.1.0",
+    "@sk-web-gui/switch": "0.1.0",
+    "@sk-web-gui/theme": "0.1.0",
+    "@sk-web-gui/utils": "^0.1.0",
+    "@sk-web-gui/accordion": "^0.1.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.6",
+    "react-dom": ">=16.8.6"
+  }
+}
