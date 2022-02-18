@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.1 (2022-02-18)
+
+**Note:** Version bump only for package @sk-web-gui/react
+
+
+
+
+
+
 ## [0.1.12](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/react@0.1.11...@sk-web-gui/react@0.1.12) (2021-08-28)
 
 **Note:** Version bump only for package @sk-web-gui/react
