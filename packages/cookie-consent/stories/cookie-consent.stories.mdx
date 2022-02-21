@@ -1,0 +1,46 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import {CookieConsent, resetConsent} from "../src/cookie-consent.tsx";
+
+<Meta title="Komponenter/Kakor" />
+
+export const Template = (args) => <CookieConsent
+    {...args }
+    title="Kakor på example.sundsvall.se"
+    body={<p>Vi använder kakor, cookies, för att ge dig en förbättrad upplevelse, sammanställa statistik och för att viss nödvändig funktionalitet ska fungera på webbplatsen. <NextLink href="/kakor" passHref><Link>Läs mer om hur vi använder kakor</Link></NextLink></p>}
+    cookies={[
+        {
+            optional: false,
+            displayName: 'Nödvändiga kakor',
+            description: 'Dessa kakor är nödvändiga för att webbplatsen ska fungera och kan inte stängas av i våra system.',
+            cookieName: 'nessecary',
+        },
+        {
+            optional: true,
+            displayName: 'Funktionella kakor',
+            description: ' Dessa kakor ger förbättrade funktioner på webbplatsen.',
+            cookieName: 'func',
+        },
+        {
+            optional: true,
+            displayName: 'Kakor för statistik',
+            description: 'Dessa kakor tillåter oss att räkna besök och trafikkällor, så att vi kan mäta och förbättra prestanda på vår webbplats.',
+            cookieName: 'stats',
+        }
+    ]}
+    resetConsentOnInit={true}
+    onConsent={(cookies) => {
+        // Do stuff with the cookies
+        alert(JSON.stringify(cookies));
+    }}
+/>
+
+# Samtyckte till kakor
+
+WIP
+
+<Story
+  name="Kakor"
+  args={{}}>
+    {Template.bind({})}
+</Story>
