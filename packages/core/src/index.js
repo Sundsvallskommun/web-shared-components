@@ -20,11 +20,13 @@ const Switch = require("./components/switch");
 
 const Button = require("./components/button");
 const Accordion = require("./components/accordion");
-const Card = require('./components/card');
-const Table = require('./components/table');
+const Card = require("./components/card");
+const Table = require("./components/table");
 
-const Modal = require('./components/modal');
-const CookieConsent = require('./components/cookie-consent');
+const Modal = require("./components/modal");
+const CookieConsent = require("./components/cookie-consent");
+
+const UserMenu = require("./components/user-menu");
 
 const components = [
   Alert,
@@ -48,13 +50,15 @@ const components = [
 
   Accordion,
   Card,
+
+  UserMenu,
 ];
 
 const defaultColors = ["primary", "secondary"];
 
 module.exports = plugin.withOptions(
-  function(options = { colors: [], cssBase: true }) {
-    return function({
+  function (options = { colors: [], cssBase: true }) {
+    return function ({
       addComponents,
       addVariant,
       addBase,
@@ -106,20 +110,20 @@ module.exports = plugin.withOptions(
       }
     };
   },
-  function() {
+  function () {
     return {
       theme: {
         fontSize: {
-          'tiny': '1rem',
-          'xs': '1.2rem',
-          'sm': '1.4rem',
-          'base': '1.6rem',
-          'lg': '1.8rem',
-          'xl': '2.0rem',
-          '2xl': '2.4rem',
-          '3xl': '3.2rem',
-          '4xl': '4.0rem',
-          '5xl': '5.2rem',
+          tiny: "1rem",
+          xs: "1.2rem",
+          sm: "1.4rem",
+          base: "1.6rem",
+          lg: "1.8rem",
+          xl: "2.0rem",
+          "2xl": "2.4rem",
+          "3xl": "3.2rem",
+          "4xl": "4.0rem",
+          "5xl": "5.2rem",
         },
         extend: {
           colors: {
@@ -138,22 +142,22 @@ module.exports = plugin.withOptions(
             base: "var(--vc-cursor)",
           },
           spacing: {
-            sm: '8px',
-            md: '16px',
-            lg: '24px',
-            xl: '48px',
+            sm: "8px",
+            md: "16px",
+            lg: "24px",
+            xl: "48px",
           },
           lineHeight: {
-            'tiny': '1.4rem',
-            'xs': '1.6rem',
-            'sm': '2rem',
-            'base': '2.4rem',
-            'lg': '2.4rem',
-            'xl': '3.2rem',
-            '2xl': '3.2rem',
-            '3xl': '4rem',
-            '4xl': '4.8rem',
-            '5xl': '5.8rem',
+            tiny: "1.4rem",
+            xs: "1.6rem",
+            sm: "2rem",
+            base: "2.4rem",
+            lg: "2.4rem",
+            xl: "3.2rem",
+            "2xl": "3.2rem",
+            "3xl": "4rem",
+            "4xl": "4.8rem",
+            "5xl": "5.8rem",
           },
           opacity: {
             15: "0.15",

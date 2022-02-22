@@ -17,4 +17,4 @@ export * from "@sk-web-gui/utils";
 
 export * from "@sk-web-gui/accordion";
 
-
+export * from "@sk-web-gui/user-menu";
