@@ -17,5 +17,6 @@ export * from "@sk-web-gui/utils";
 
 export * from "@sk-web-gui/accordion";
 export * from "@sk-web-gui/cookie-consent";
+export * from "@sk-web-gui/card";
 
 
