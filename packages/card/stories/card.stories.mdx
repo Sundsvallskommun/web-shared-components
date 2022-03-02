@@ -1,0 +1,80 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import { Card, CardList, CardBody, CardImage, CardLink } from "../src/card.tsx";
+import { Link } from "../../link/src/link.tsx";
+
+<Meta title="Komponenter/Kort" />
+
+export const Template = (args) => <Card {...args }>
+        <p>lorem ipsum</p>
+</Card>
+
+# Kort
+
+WIP
+
+<Canvas>
+    <Story
+    name="Kort"
+    args={{
+    }}>
+    <CardList>
+        <Card borderTop={true} className="text-center">
+            <CardBody>
+                <span className="avatar material-icons">person</span>
+                <h6 className="my-6">1. Skapa ett konto</h6>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora necessitatibus illum doloremque nihil consequatur totam.</p>
+            </CardBody>
+        </Card>
+        <Card borderTop={true} className="text-center">
+            <CardBody>
+                <span className="avatar material-icons-outlined">assignment</span>
+                <h6 className="my-6">2. API-dokumentation</h6>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora necessitatibus illum doloremque nihil consequatur totam.</p>
+            </CardBody>
+        </Card>
+        <Card borderTop={true} className="text-center">
+            <CardBody>
+                <span className="avatar material-icons">phonelink</span>
+                <h6 className="my-6">3. Kom igång</h6>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora necessitatibus illum doloremque nihil consequatur totam.</p>
+            </CardBody>
+        </Card>
+        <Card borderTop={true} className="text-center">
+            <CardBody>
+                <span className="avatar material-icons">person</span>
+                <h6 className="my-6">4. Lorem ipsum</h6>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora necessitatibus illum doloremque nihil consequatur totam.</p>
+            </CardBody>
+        </Card>
+    </CardList>
+    </Story>  
+</Canvas>
+
+<Canvas>
+    <Story
+    name="Kort alt"
+    args={{
+    }}>
+    <CardList>
+        <Card borderTop={true}>
+            <CardBody>
+                <p>Lorem ipsum</p>
+            </CardBody>
+        </Card>
+        <Card>
+            <CardImage src="http://placekitten.com/g/200/300" alt="placeholder"/>
+            <CardBody>
+                <p>Lorem ipsum</p>
+            </CardBody>
+        </Card>
+        <Card outlined={true}>
+            <CardImage src="http://placekitten.com/g/600/300" alt="placeholder"/>
+            <CardBody>
+                <h4><CardLink href="https://example.com" external={true}>Fin länk</CardLink></h4>
+                <p>Lorem ipsum</p>
+            </CardBody>
+        </Card>
+    </CardList>
+    </Story>  
+</Canvas>

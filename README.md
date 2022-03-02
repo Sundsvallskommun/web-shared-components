@@ -20,7 +20,7 @@ yarn add @sk-web-gui/core @sk-web-gui/react @tailwindcss/forms
 
 Efter du installerad paketen så måste du lägga till `sk-web-gui/core` och `tailwindcss/forms` i din Tailwindcss-configfil.
 
-```JavaScript
+```TypeScript
 // tailwind.config.js
 module.exports = {
   mode: "jit",
@@ -40,6 +40,20 @@ module.exports = {
     require("@sk-web-gui/core"),
   ],
 };
+```
+Wrappa din React-app med `GuiProvider` för att få stylingen.
+
+```TypeScript
+import * as React from "react";
+import { GuiProvider, Button } from "@sk-web-gui/react";
+​
+function App() {
+  return (
+    <GuiProvider>
+      <Button>Hello World</Button>
+    </GuiProvider>
+  );
+}
 ```
 
 ## Development
