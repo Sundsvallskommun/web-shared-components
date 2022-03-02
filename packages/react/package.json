@@ -41,6 +41,7 @@
     "@sk-web-gui/accordion": "0.1.1",
     "@sk-web-gui/alert": "0.1.1",
     "@sk-web-gui/card": "0.1.1",
+    "@sk-web-gui/cookie-consent": "0.1.1",
     "@sk-web-gui/breadcrumb": "0.1.1",
     "@sk-web-gui/button": "0.1.1",
     "@sk-web-gui/checkbox": "0.1.1",
