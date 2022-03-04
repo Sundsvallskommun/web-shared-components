@@ -105,7 +105,7 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
                   {({ active }) => (
                     <a
                       className={`usermenu-item px-md py-sm ${
-                        active && "bg-blue-500"
+                        active && "bg-hover text-white"
                       } flex`}
                       href={item.url}
                     >
