@@ -57,7 +57,7 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
         {({ open }) => (
           <div
             className={cx(
-              "w-96 mx-sm relative usermenu",
+              "w-96 mx-sm relative usermenu drop-shadow-none before:drop-shadow-none after:drop-shadow-none before:filter-none",
               open ? `usermenu-is-open` : undefined
             )}
           >
