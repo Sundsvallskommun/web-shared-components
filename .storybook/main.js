@@ -2,8 +2,8 @@
 
 module.exports = {
   stories: [
-    './stories/**/[^.ignore]*.stories.@(tsx|mdx)',
-    '../packages/**/stories/[^.ignore]*.stories.@(tsx|mdx)'
+    './stories/**/*.stories.@(tsx|mdx)',
+    '../packages/**/stories/*.stories.@(tsx|mdx)'
   ],
   addons: [
     '@storybook/addon-a11y',
