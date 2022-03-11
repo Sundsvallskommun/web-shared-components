@@ -22,4 +22,5 @@ module.exports = {
   typescript: {
     reactDocgen: false,
   },
+  staticDirs: ['./public'],
 };

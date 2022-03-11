@@ -5,6 +5,7 @@
 node_modules/
 # dist
 packages/*/dist
+storybook-static
 
 docs/.next
 

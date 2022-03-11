@@ -7,6 +7,7 @@ import { withPerformance } from "storybook-addon-performance";
 import "./styles.css";
 
 export const parameters = {
+  viewMode: 'docs',
   actions: { argTypesRegex: "^on[A-Z].*" },
   options: {
     storySort: {
