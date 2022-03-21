@@ -142,47 +142,14 @@ export const basic = ({ text, ...args }: any) => (
         </div>
 
         <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-          <div className="text-lg lg:flex-grow lg:flex lg:items-center lg:justify-center hidden">
-            {/*<Link href={'/'}>
-                                    <a className={cx('block mt-4 lg:inline-block lg:mt-0 text-black border-b-2 hover:border-b-2 hover:border-primary mr-12', {
-                                        'border-b-2 border-primary': (router.pathname === '/'),
-                                        'border-transparent': (router.pathname !== '/'),
-                                    })}>
-                                        Start
-                                    </a>
-                                </Link>
-                                <Link href={'/apier'}>
-                                    <a className={cx('block mt-4 lg:inline-block lg:mt-0 text-black border-b-2 hover:border-b-2 hover:border-primary mr-12', {
-                                        'border-b-2 border-primary': (router.pathname === '/apier'),
-                                        'border-transparent': (router.pathname !== '/apier'),
-                                    })}>
-                                        API
-                                    </a>
-                                </Link>
-                                <Link href={'/kom-igang'}>
-                                    <a className={cx('block mt-4 lg:inline-block lg:mt-0 text-black border-b-2 hover:border-b-2 hover:border-primary mr-12', {
-                                        'border-b-2 border-primary': (router.pathname === '/kom-igang'),
-                                        'border-transparent': (router.pathname !== '/kom-igang'),
-                                    })}>
-                                        Kom igång
-                                    </a>
-                                </Link>*/}
-            {/*<Link href={'/konsol'}>
-                                    <a className={cx('block mt-4 lg:inline-block lg:mt-0 text-black border-b-2 hover:border-b-2 hover:border-primary mr-12', {
-                                        'border-b-2 border-primary': (router.pathname === '/konsol'),
-                                        'border-transparent': (router.pathname !== '/konsol'),
-                                    })}>
-                                        Konsol
-                                    </a>
-                                </Link>*/}
-          </div>
+          {/* <div className="text-lg lg:flex-grow lg:flex lg:items-center lg:justify-center hidden"></div> */}
 
-          <div className="hidden lg:block">
-            <UserMenu
-              menuTitle="Företagsbolaget AB"
-              menuSubTitle="Förnamn Efternamn"
-            ></UserMenu>
-          </div>
+          {/* <div className="block lg:block"> */}
+          <UserMenu
+            menuTitle="Företagsbolaget AB"
+            menuSubTitle="Förnamn Efternamn"
+          ></UserMenu>
+          {/* </div> */}
         </div>
       </div>
     </div>
