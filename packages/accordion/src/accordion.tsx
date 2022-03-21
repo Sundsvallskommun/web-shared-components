@@ -34,9 +34,9 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
     } = props;
 
     const disabled = _disabled;
-    /*const classes = useAccordionClass({
+    const classes = useAccordionClass({
       disabled,
-    });*/
+    });
 
     const [accordionOpen, setAccordionOpen] = React.useState(initalOpen ?? false);
 
@@ -47,6 +47,7 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
         className={cx(
           'accordion',
           accordionOpen ? `accordion-is-open` : undefined,
+          classes,
         )}
         {...rest}
       >

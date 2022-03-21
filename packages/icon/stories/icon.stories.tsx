@@ -1,7 +1,7 @@
 import { Icon, InfoIcon, XCricleIcon, CheckCircleIcon, ExclamationIcon } from "../src";
 
 export default {
-  title: "Komponenter/Ikoner",
+  title: "Design System/komponenter/WIP/Ikoner",
   component: Icon,
   parameters: {
     controls: { hideNoControlsWarning: true },

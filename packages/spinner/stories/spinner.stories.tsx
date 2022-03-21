@@ -1,7 +1,7 @@
 import { Spinner } from "../src";
 
 export default {
-  title: "Komponenter/Spinner",
+  title: "Design System/komponenter/WIP/Spinner",
   component: Spinner,
   parameters: {
     controls: { hideNoControlsWarning: true },

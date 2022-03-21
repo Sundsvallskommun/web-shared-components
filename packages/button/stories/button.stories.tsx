@@ -4,7 +4,7 @@ import { Button } from "../src";
 import { Announcement } from "./announcement";
 
 export default {
-  title: "Komponenter/Knappar",
+  title: "Design System/komponenter/WIP/Knappar",
   component: Button,
   argTypes: {
     text: { control: 'text', defaultValue: 'Knapptext' },

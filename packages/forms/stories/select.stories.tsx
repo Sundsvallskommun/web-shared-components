@@ -1,7 +1,7 @@
 import { Select } from "../src";
 
 export default {
-  title: "Komponenter/Select",
+  title: "Design System/komponenter/WIP/Select",
   component: Select,
   parameters: {
     controls: { hideNoControlsWarning: true },

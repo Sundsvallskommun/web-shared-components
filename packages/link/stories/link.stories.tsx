@@ -1,7 +1,7 @@
 import { Link } from "../src";
 
 export default {
-  title: "Komponenter/Länkar",
+  title: "Design System/komponenter/WIP/Länkar",
   component: Link,
   parameters: {
     controls: { hideNoControlsWarning: true },
