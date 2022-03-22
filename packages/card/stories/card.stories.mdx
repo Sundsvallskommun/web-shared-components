@@ -7,7 +7,28 @@ import PlaceholderImage from '../../../.storybook/public/placeholder_2.png';
 
 <Meta title="Design System/Komponenter/Kort/Översikt" />
 
-export const Template = () => <CardList>
+# Navigationskort
+
+<p>Använd kort när du vill göra det enklare för att användaren att få en överblick av innehållet genom att dela upp information i olika kategorier.</p>
+
+### Innehåll
+
+<p>Beroende på vilket behov som ska uppfyllas kan korten innehålla olika typer av information.</p>
+
+#### Korten måste innehålla
+- En huvudrubrik
+- En kort beskrivande text
+
+#### Annan information som korten kan innehålla
+- Bild, illustration eller annat grafiska element
+- Knappar
+- Externa länkar
+- Interna länkar
+- Etiketter/taggar
+- Datum tid och plats (Nyheter/Evenemang)
+
+<Preview>
+    <CardList>
         <Card clickable>
             <CardImage className="h-80" src={PlaceholderImage} alt="placeholder" />
             <CardBody>
@@ -30,51 +51,4 @@ export const Template = () => <CardList>
             </CardBody>
         </Card>
     </CardList>
-
-# Navigationskort
-
-<p>Använd kort när du vill göra det enklare för att användaren att få en överblick av innehållet genom att dela upp information i olika kategorier.</p>
-
-### Innehåll
-
-<p>Beroende på vilket behov som ska uppfyllas kan korten innehålla olika typer av information.</p>
-
-#### Korten måste innehålla
-- En huvudrubrik
-- En kort beskrivande text
-
-#### Annan information som korten kan innehålla
-- Bild, illustration eller annat grafiska element
-- Knappar
-- Externa länkar
-- Interna länkar
-- Etiketter/taggar
-- Datum tid och plats (Nyheter/Evenemang)
-
-<Preview>
-    <Story name="Översikt">
-        <CardList>
-            <Card clickable>
-                <CardImage className="h-80" src={PlaceholderImage} alt="placeholder" />
-                <CardBody>
-                    <h4><CardLink href="https://example.com" external={true}>Lorem ipsum dolor sit.</CardLink></h4>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos soluta eligendi libero? Illo odio, sint accusamus deserunt distinctio commodi suscipit.</p>
-                </CardBody>
-            </Card>
-            <Card clickable>
-                <CardImage className="h-80" src={PlaceholderImage} alt="placeholder" />
-                <CardBody>
-                    <h4><CardLink href="https://example.com" external={true}>Lorem ipsum dolor sit.</CardLink></h4>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos soluta eligendi libero? Illo odio, sint accusamus deserunt distinctio commodi suscipit.</p>
-                </CardBody>
-            </Card>
-            <Card clickable>
-                <CardImage className="h-80" src={PlaceholderImage} alt="placeholder" />
-                <CardBody>
-                    <h4><CardLink href="https://example.com" external={true}>Lorem ipsum dolor sit.</CardLink></h4>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos soluta eligendi libero? Illo odio, sint accusamus deserunt distinctio commodi suscipit.</p>
-                </CardBody>
-            </Card>
-        </CardList>
-    </Story>
 </Preview>

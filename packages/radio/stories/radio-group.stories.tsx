@@ -2,81 +2,65 @@ import { FormControl, FormHelperText, FormLabel } from "@sk-web-gui/forms";
 import { Radio, RadioGroupProps, RadioProps } from "../src";
 
 export default {
-  title: "Design System/Komponenter/Radioknappar",
-  component: Radio,
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
+    title: "Design System/Komponenter/Radioknappar/Grupp",
+    component: Radio,
+    parameters: {
+        controls: { hideNoControlsWarning: true },
+    },
 };
 
-export const Template = (args: RadioProps) => (
-  <>
-    <Radio {...args} className="m-2" name="example">Exempel 1</Radio>
-    <Radio {...args} className="m-2" name="example">Exempel 2</Radio>
-    <Radio {...args} className="m-2" name="example">Exempel 2</Radio>
-  </>
+export const Template = (args: RadioGroupProps) => (
+    <div className="flex flex-col space-y-4">
+        <Radio.Group {...args}>
+            <Radio value="1">Exempel 1</Radio>
+            <Radio value="2">Exempel 2</Radio>
+            <Radio value="3">Exempel 3</Radio>
+        </Radio.Group>
+    </div>
 );
 
 Template.argTypes = {
-  required: {
-    type: { name: 'boolean', required: false },
-    description: 'Sets required',
-    table: {
-      defaultValue: { summary: 'false' },
+    defaultValue: {
+        type: { name: 'text', required: false },
+        description: 'Sets default value',
+        table: {
+            defaultValue: { summary: 'undefined' },
+        },
+        control: 'text',
+        //defaultValue: 'md',
     },
-    control: 'boolean',
-    defaultValue: false,
-  },  
-  invalid: {
-    type: { name: 'boolean', required: false },
-    description: 'Sets invalid',
-    table: {
-      defaultValue: { summary: 'false' },
+    inline: {
+        type: { name: 'boolean', required: false },
+        description: 'Sets inline',
+        table: {
+            defaultValue: { summary: 'false' },
+        },
+        control: 'boolean',
+        defaultValue: false,
     },
-    control: 'boolean',
-    defaultValue: false,
-  },
-  disabled: {
-    type: { name: 'boolean', required: false },
-    description: 'Sets disabled',
-    table: {
-      defaultValue: { summary: 'false' },
+    size: {
+        type: { name: 'string', required: false },
+        description: 'Sets size',
+        table: {
+            defaultValue: { summary: 'md' },
+        },
+        options: ['sm', 'md', 'lg'],
+        control: 'select',
+        defaultValue: 'md',
     },
-    control: 'boolean',
-    defaultValue: false,
-  },
-  defaultChecked: {
-    type: { name: 'boolean', required: false },
-    description: 'Sets default checked',
-    table: {
-      defaultValue: { summary: 'false' },
+    color: {
+        type: { name: 'string', required: false },
+        description: 'Sets color',
+        table: {
+            defaultValue: { summary: 'primary' },
+        },
+        options: ['primary', 'secondary'],
+        control: 'select',
+        defaultValue: 'primary',
     },
-    control: 'boolean',
-    defaultValue: false,
-  },
-  size: {
-    type: { name: 'string', required: false },
-    description: 'Sets size',
-    table: {
-      defaultValue: { summary: 'md' },
-    },
-    options: ['sm', 'md', 'lg'],
-    control: 'select',
-    defaultValue: 'md',
-  },
-  color: {
-    type: { name: 'string', required: false },
-    description: 'Sets color',
-    table: {
-      defaultValue: { summary: 'primary' },
-    },
-    options: ['primary', 'secondary'],
-    control: 'select',
-    defaultValue: 'primary',
-  },
-};
+}
 
-Template.storyName = 'Komponent';
+Template.storyName = 'Grupp';
 
 /*
 export const basic = () => (

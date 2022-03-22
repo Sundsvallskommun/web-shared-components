@@ -1,0 +1,45 @@
+import { Canvas, Meta, Preview } from '@storybook/addon-docs';
+import { FormControl, FormLabel } from "@sk-web-gui/forms";
+
+import { Radio } from "../src";
+
+<Meta title="Design System/Komponenter/Radioknappar/Översikt" />
+
+# Radioknappar
+
+<p>Använd radioknappar när användaren enbart ska kunna välja ett alternativ.</p>
+
+<Preview>
+    <div className="grid grid-cols-4 gap-4 py-2 max-w-3xl">
+        <strong>Vald</strong>
+        <Radio size="lg" name="vald1" defaultChecked>
+            Large
+        </Radio>
+        <Radio size="md" name="vald2" defaultChecked>
+            Medium
+        </Radio>
+        <Radio size="sm" name="vald3" defaultChecked>
+            Small
+        </Radio>
+        <strong>Ej Vald</strong>
+        <Radio size="lg" name="ejvald1">
+            Large
+        </Radio>
+        <Radio size="md" name="ejvald2">
+            Medium
+        </Radio>
+        <Radio size="sm" name="ejvald3">
+            Small
+        </Radio>
+        <strong>Inaktiverad</strong>
+        <Radio size="lg" name="inaktiverad1" disabled>
+            Large
+        </Radio>
+        <Radio size="md" name="inaktiverad2" disabled>
+            Medium
+        </Radio>
+        <Radio size="sm" name="inaktiverad3" disabled>
+            Small
+        </Radio>
+    </div>
+</Preview>
