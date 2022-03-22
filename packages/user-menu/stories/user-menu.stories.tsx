@@ -4,6 +4,7 @@ import { UserMenu } from "../src";
 import { Announcement } from "./announcement";
 import { cx } from "@sk-web-gui/utils";
 import { Link } from "../../react";
+import { MenuItemGroup } from "../src/user-menu";
 
 export default {
   title: "Komponenter/UserMenu",
@@ -15,6 +16,82 @@ export default {
 } as Meta;
 
 const isMobileMenuOpen = false;
+
+const menuGroups: MenuItemGroup[] = [
+  {
+    label: "Main",
+    showLabel: false,
+    items: [
+      {
+        icon: null,
+        label: "Start",
+        url: "/",
+      },
+      {
+        icon: null,
+        label: "Pågående ärenden",
+        url: "/ongoing",
+      },
+      {
+        icon: null,
+        label: "Beslutade ärenden",
+        url: "/closed",
+      },
+      {
+        icon: null,
+        label: "Handlingsplan",
+        url: "/actionplan",
+      },
+      {
+        icon: null,
+        label: "Företagsuppgifter",
+        url: "/orginfo",
+      },
+    ],
+  },
+  {
+    label: "Relaterade webbplatser",
+    showLabel: true,
+    items: [
+      {
+        icon: null,
+        label: "E-tjänster",
+        url: "www.sundsvall.se/",
+      },
+      {
+        icon: null,
+        label: "Företagscenter Sundsvall",
+        url: "www.sundsvall.se/",
+      },
+    ],
+  },
+  {
+    label: "Inställningar",
+    showLabel: true,
+    items: [
+      {
+        icon: "account_circle",
+        label: "Mina uppgifter",
+        url: "/my-account",
+      },
+      {
+        icon: "settings",
+        label: "Inställningar som har en riktigt lång text",
+        url: "/account-settings",
+      },
+      {
+        icon: "email",
+        label: "Meddelanden",
+        url: "/messages",
+      },
+      {
+        icon: "logout",
+        label: "Logga ut",
+        url: "/logout",
+      },
+    ],
+  },
+];
 
 export const basic = ({ text, ...args }: any) => (
   <nav
@@ -141,48 +218,16 @@ export const basic = ({ text, ...args }: any) => (
           </Link>
         </div>
 
-        <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-          <div className="text-lg lg:flex-grow lg:flex lg:items-center lg:justify-center hidden">
-            {/*<Link href={'/'}>
-                                    <a className={cx('block mt-4 lg:inline-block lg:mt-0 text-black border-b-2 hover:border-b-2 hover:border-primary mr-12', {
-                                        'border-b-2 border-primary': (router.pathname === '/'),
-                                        'border-transparent': (router.pathname !== '/'),
-                                    })}>
-                                        Start
-                                    </a>
-                                </Link>
-                                <Link href={'/apier'}>
-                                    <a className={cx('block mt-4 lg:inline-block lg:mt-0 text-black border-b-2 hover:border-b-2 hover:border-primary mr-12', {
-                                        'border-b-2 border-primary': (router.pathname === '/apier'),
-                                        'border-transparent': (router.pathname !== '/apier'),
-                                    })}>
-                                        API
-                                    </a>
-                                </Link>
-                                <Link href={'/kom-igang'}>
-                                    <a className={cx('block mt-4 lg:inline-block lg:mt-0 text-black border-b-2 hover:border-b-2 hover:border-primary mr-12', {
-                                        'border-b-2 border-primary': (router.pathname === '/kom-igang'),
-                                        'border-transparent': (router.pathname !== '/kom-igang'),
-                                    })}>
-                                        Kom igång
-                                    </a>
-                                </Link>*/}
-            {/*<Link href={'/konsol'}>
-                                    <a className={cx('block mt-4 lg:inline-block lg:mt-0 text-black border-b-2 hover:border-b-2 hover:border-primary mr-12', {
-                                        'border-b-2 border-primary': (router.pathname === '/konsol'),
-                                        'border-transparent': (router.pathname !== '/konsol'),
-                                    })}>
-                                        Konsol
-                                    </a>
-                                </Link>*/}
-          </div>
+        <div className="w-full block flex-grow lg:flex justify-end lg:items-center lg:w-auto">
+          {/* <div className="text-lg lg:flex-grow lg:flex lg:items-center lg:justify-center hidden"></div> */}
 
-          <div className="hidden lg:block">
-            <UserMenu
-              menuTitle="Företagsbolaget AB"
-              menuSubTitle="Förnamn Efternamn"
-            ></UserMenu>
-          </div>
+          {/* <div className="block lg:block"> */}
+          <UserMenu
+            menuTitle="Företagsbolaget AB"
+            menuSubTitle="Förnamn Efternamn"
+            menuGroups={menuGroups}
+          ></UserMenu>
+          {/* </div> */}
         </div>
       </div>
     </div>
