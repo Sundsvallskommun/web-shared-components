@@ -8,7 +8,7 @@ interface MenuItem {
   url: string;
 }
 
-interface MenuItemGroup {
+export interface MenuItemGroup {
   label: string;
   showLabel: boolean;
   items: MenuItem[];
@@ -23,90 +23,23 @@ interface IUserMenuProps extends DefaultProps {
 
 export interface UserMenuProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    IUserMenuProps {}
+    IUserMenuProps {
+  menuGroups: MenuItemGroup[];
+}
 
 export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
   (props, ref) => {
-    const { children, className, menuTitle, menuSubTitle, color, ...rest } =
-      props;
+    const {
+      children,
+      className,
+      menuTitle,
+      menuSubTitle,
+      menuGroups,
+      color,
+      ...rest
+    } = props;
 
     const [menuOpen, setMenuOpen] = React.useState(false);
-
-    const menuGroups: MenuItemGroup[] = [
-      {
-        label: "Main",
-        showLabel: false,
-        items: [
-          {
-            icon: null,
-            label: "Start",
-            url: "/",
-          },
-          {
-            icon: null,
-            label: "Pågående ärenden",
-            url: "/ongoing",
-          },
-          {
-            icon: null,
-            label: "Beslutade ärenden",
-            url: "/closed",
-          },
-          {
-            icon: null,
-            label: "Handlingsplan",
-            url: "/actionplan",
-          },
-          {
-            icon: null,
-            label: "Företagsuppgifter",
-            url: "/orginfo",
-          },
-        ],
-      },
-      {
-        label: "Relaterade webbplatser",
-        showLabel: true,
-        items: [
-          {
-            icon: null,
-            label: "E-tjänster",
-            url: "www.sundsvall.se/",
-          },
-          {
-            icon: null,
-            label: "Företagscenter Sundsvall",
-            url: "www.sundsvall.se/",
-          },
-        ],
-      },
-      {
-        label: "Inställningar",
-        showLabel: true,
-        items: [
-          {
-            icon: "account_circle",
-            label: "Mina uppgifter",
-            url: "/my-account",
-          },
-          {
-            icon: "settings",
-            label: "Inställningar som har en riktigt lång text",
-            url: "/account-settings",
-          },
-          {
-            icon: "email",
-            label: "Meddelanden",
-            url: "/messages",
-          },
-          {
-            icon: "logout",
-            label: "Logga ut",
-            url: "/logout",
-          },
-        ],
-      },
-    ];
 
     return (
       <>
