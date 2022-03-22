@@ -218,7 +218,7 @@ export const basic = ({ text, ...args }: any) => (
           </Link>
         </div>
 
-        <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+        <div className="w-full block flex-grow lg:flex justify-end lg:items-center lg:w-auto">
           {/* <div className="text-lg lg:flex-grow lg:flex lg:items-center lg:justify-center hidden"></div> */}
 
           {/* <div className="block lg:block"> */}

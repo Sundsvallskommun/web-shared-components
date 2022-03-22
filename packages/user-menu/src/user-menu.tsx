@@ -53,7 +53,7 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
             >
               <Menu.Button
                 className={cx(
-                  "usermenu-header w-44 absolute right-16 top-1 px-md py-sm bg-white border-none rounded"
+                  "usermenu-header w-44 absolute right-4 top-1 px-md py-sm bg-white border-none rounded"
                 )}
               >
                 <div className="block lg:hidden">
