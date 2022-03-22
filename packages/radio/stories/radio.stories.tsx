@@ -2,7 +2,7 @@ import { FormControl, FormHelperText, FormLabel } from "@sk-web-gui/forms";
 import { Radio } from "../src";
 
 export default {
-  title: "Design System/komponenter/WIP/Radio",
+  title: "Design System/Komponenter/WIP/Radio",
   component: Radio,
   parameters: {
     controls: { hideNoControlsWarning: true },

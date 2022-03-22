@@ -7,7 +7,7 @@ import { Link } from "../../react";
 import { MenuItemGroup } from "../src/user-menu";
 
 export default {
-  title: "Design System/komponenter/WIP/UserMenu",
+  title: "Design System/Komponenter/WIP/UserMenu",
   component: UserMenu,
   argTypes: {
     menuTitle: { control: "text", defaultValue: "Menytext" },

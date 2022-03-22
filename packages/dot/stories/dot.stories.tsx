@@ -1,7 +1,7 @@
 import { Dot } from "../src";
 
 export default {
-  title: "Design System/komponenter/WIP/Punkt",
+  title: "Design System/Komponenter/WIP/Punkt",
   component: Dot,
   parameters: {
     controls: { hideNoControlsWarning: true },

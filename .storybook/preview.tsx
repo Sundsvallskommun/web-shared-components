@@ -36,6 +36,7 @@ export const parameters = {
         'Komponenter/Länkar',
         'Komponenter/Filtering',
         'Komponenter/Tabeller',
+        'Komponenter/WIP',
         'Guider',
         '*',
         'WIP'

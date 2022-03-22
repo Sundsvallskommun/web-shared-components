@@ -1,80 +1,80 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Canvas, Meta, Story, Preview } from '@storybook/addon-docs';
 
 import { Card, CardList, CardBody, CardImage, CardLink } from "../src/card.tsx";
 import { Link } from "../../link/src/link.tsx";
+import PlaceholderImage from '../../../.storybook/public/placeholder_2.png';
 
-<Meta title="Design System/komponenter/WIP/Kort" />
 
-export const Template = (args) => <Card {...args }>
-        <p>lorem ipsum</p>
-</Card>
+<Meta title="Design System/Komponenter/Kort/Översikt" />
 
-# Kort
-
-WIP
-
-<Canvas>
-    <Story
-    name="Kort"
-    args={{
-    }}>
-    <CardList>
-        <Card borderTop={true} className="text-center">
+export const Template = () => <CardList>
+        <Card clickable>
+            <CardImage className="h-80" src={PlaceholderImage} alt="placeholder" />
             <CardBody>
-                <span className="avatar material-icons">person</span>
-                <h6 className="my-6">1. Skapa ett konto</h6>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora necessitatibus illum doloremque nihil consequatur totam.</p>
+                <h4><CardLink href="https://example.com" external={true}>Lorem ipsum dolor sit.</CardLink></h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos soluta eligendi libero? Illo odio, sint accusamus deserunt distinctio commodi suscipit.</p>
             </CardBody>
         </Card>
-        <Card borderTop={true} className="text-center">
+        <Card clickable>
+            <CardImage className="h-80" src={PlaceholderImage} alt="placeholder" />
             <CardBody>
-                <span className="avatar material-icons-outlined">assignment</span>
-                <h6 className="my-6">2. API-dokumentation</h6>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora necessitatibus illum doloremque nihil consequatur totam.</p>
+                <h4><CardLink href="https://example.com" external={true}>Lorem ipsum dolor sit.</CardLink></h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos soluta eligendi libero? Illo odio, sint accusamus deserunt distinctio commodi suscipit.</p>
             </CardBody>
         </Card>
-        <Card borderTop={true} className="text-center">
+        <Card clickable>
+            <CardImage className="h-80" src={PlaceholderImage} alt="placeholder" />
             <CardBody>
-                <span className="avatar material-icons">phonelink</span>
-                <h6 className="my-6">3. Kom igång</h6>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora necessitatibus illum doloremque nihil consequatur totam.</p>
-            </CardBody>
-        </Card>
-        <Card borderTop={true} className="text-center">
-            <CardBody>
-                <span className="avatar material-icons">person</span>
-                <h6 className="my-6">4. Lorem ipsum</h6>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora necessitatibus illum doloremque nihil consequatur totam.</p>
+                <h4><CardLink href="https://example.com" external={true}>Lorem ipsum dolor sit.</CardLink></h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos soluta eligendi libero? Illo odio, sint accusamus deserunt distinctio commodi suscipit.</p>
             </CardBody>
         </Card>
     </CardList>
-    </Story>  
-</Canvas>
 
-<Canvas>
-    <Story
-    name="Kort alt"
-    args={{
-    }}>
-    <CardList>
-        <Card borderTop={true}>
-            <CardBody>
-                <p>Lorem ipsum</p>
-            </CardBody>
-        </Card>
-        <Card>
-            <CardImage src="http://placekitten.com/g/200/300" alt="placeholder"/>
-            <CardBody>
-                <p>Lorem ipsum</p>
-            </CardBody>
-        </Card>
-        <Card outlined={true}>
-            <CardImage src="http://placekitten.com/g/600/300" alt="placeholder"/>
-            <CardBody>
-                <h4><CardLink href="https://example.com" external={true}>Fin länk</CardLink></h4>
-                <p>Lorem ipsum</p>
-            </CardBody>
-        </Card>
-    </CardList>
-    </Story>  
-</Canvas>
+# Navigationskort
+
+<p>Använd kort när du vill göra det enklare för att användaren att få en överblick av innehållet genom att dela upp information i olika kategorier.</p>
+
+### Innehåll
+
+<p>Beroende på vilket behov som ska uppfyllas kan korten innehålla olika typer av information.</p>
+
+#### Korten måste innehålla
+- En huvudrubrik
+- En kort beskrivande text
+
+#### Annan information som korten kan innehålla
+- Bild, illustration eller annat grafiska element
+- Knappar
+- Externa länkar
+- Interna länkar
+- Etiketter/taggar
+- Datum tid och plats (Nyheter/Evenemang)
+
+<Preview>
+    <Story name="Översikt">
+        <CardList>
+            <Card clickable>
+                <CardImage className="h-80" src={PlaceholderImage} alt="placeholder" />
+                <CardBody>
+                    <h4><CardLink href="https://example.com" external={true}>Lorem ipsum dolor sit.</CardLink></h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos soluta eligendi libero? Illo odio, sint accusamus deserunt distinctio commodi suscipit.</p>
+                </CardBody>
+            </Card>
+            <Card clickable>
+                <CardImage className="h-80" src={PlaceholderImage} alt="placeholder" />
+                <CardBody>
+                    <h4><CardLink href="https://example.com" external={true}>Lorem ipsum dolor sit.</CardLink></h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos soluta eligendi libero? Illo odio, sint accusamus deserunt distinctio commodi suscipit.</p>
+                </CardBody>
+            </Card>
+            <Card clickable>
+                <CardImage className="h-80" src={PlaceholderImage} alt="placeholder" />
+                <CardBody>
+                    <h4><CardLink href="https://example.com" external={true}>Lorem ipsum dolor sit.</CardLink></h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos soluta eligendi libero? Illo odio, sint accusamus deserunt distinctio commodi suscipit.</p>
+                </CardBody>
+            </Card>
+        </CardList>
+    </Story>
+</Preview>

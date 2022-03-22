@@ -1,7 +1,7 @@
 import { Image } from "../src";
 
 export default {
-  title: "Design System/komponenter/WIP/Bild",
+  title: "Design System/Komponenter/WIP/Bild",
   component: Image,
   parameters: {
     controls: { hideNoControlsWarning: true },

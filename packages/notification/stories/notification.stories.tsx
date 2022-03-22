@@ -2,7 +2,7 @@ import { Button } from "@sk-web-gui/button";
 import { useNotification } from "../src";
 
 export default {
-  title: "Design System/komponenter/WIP/Notification",
+  title: "Design System/Komponenter/WIP/Notification",
   parameters: {
     controls: { hideNoControlsWarning: true },
   },

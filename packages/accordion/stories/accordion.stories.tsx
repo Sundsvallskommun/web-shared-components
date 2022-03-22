@@ -3,7 +3,7 @@ import { Meta } from '@storybook/react';
 import { Accordion, AccordionProps} from "../src";
 
 export default {
-  title: "Design System/komponenter/Accordions/Komponent",
+  title: "Design System/Komponenter/Accordions/Komponent",
   component: Accordion,
   parameters: {
     controls: { hideNoControlsWarning: true },
