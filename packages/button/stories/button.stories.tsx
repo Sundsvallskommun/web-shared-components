@@ -4,7 +4,7 @@ import { Button } from "../src";
 import { Announcement } from "./announcement";
 
 export default {
-  title: "Design System/Komponenter/WIP/Knappar",
+  title: "Design System/Komponenter/Knappar/Komponent",
   component: Button,
   argTypes: {
     text: { control: 'text', defaultValue: 'Knapptext' },
@@ -24,10 +24,10 @@ export default {
   parameters: { controls: { hideNoControlsWarning: true } },
 } as Meta;
 
-export const Knappar = ({ text, ...args }: any) => (
+export const Template = ({ text, ...args }: any) => (
   <div className="flex flex-col items-start space-y-2">
-    <Button {...args} variant="solid">{text}</Button>
-    <Button {...args} variant="solid" color="primary">
+    <Button {...args}>{text}</Button>
+    {/*<Button {...args} variant="solid" color="primary">
       {text}
     </Button>
     <Button {...args} variant="solid" color="secondary">
@@ -64,9 +64,81 @@ export const Knappar = ({ text, ...args }: any) => (
     </Button>
     <Button {...args} variant="solid" color="primary" loading loadingText="Loading...">
       {text}
-    </Button>
+</Button>*/}
   </div>
 );
+
+Template.storyName = 'Komponent';
+
+Template.argTypes = {
+  disabled: {
+    type: { name: 'string', required: false },
+    description: 'Sets disabled',
+    table: {
+      defaultValue: { summary: 'false' },
+    },
+    control: 'boolean',
+    defaultValue: false,
+  },
+  size: {
+    type: { name: 'string', required: false },
+    description: 'Sets size',
+    table: {
+      defaultValue: { summary: 'md' },
+    },
+    options: ['sm', 'md', 'lg'],
+    control: 'select',
+    defaultValue: 'md',
+  },
+  loading: {
+    type: { name: 'string', required: false },
+    description: 'Sets loading spinner',
+    table: {
+      defaultValue: { summary: 'false' },
+    },
+    control: 'boolean',
+    defaultValue: false,
+  },
+  loadingText: {
+    type: { name: 'string', required: false },
+    description: 'Sets loading text',
+    table: {
+      defaultValue: { summary: '' },
+    },
+    control: 'text',
+    defaultValue: '',
+  },
+  variant: {
+    type: { name: 'string', required: false },
+    description: 'Sets variant',
+    table: {
+      defaultValue: { summary: 'outline' },
+    },
+    options: ["link", "solid", "outline", "light", "ghost"],
+    control: 'select',
+    defaultValue: 'outline',
+  },
+  type: {
+    type: { name: 'string', required: false },
+    description: 'Sets type',
+    table: {
+      defaultValue: { summary: 'button' },
+    },
+    options: ['reset', 'button', 'submit'],
+    control: 'select',
+    defaultValue: 'button',
+  },
+  color: {
+    type: { name: 'string', required: false },
+    description: 'Sets color',
+    table: {
+      defaultValue: { summary: 'primary' },
+    },
+    options: ['primary', 'secondary'],
+    control: 'select',
+    defaultValue: 'primary',
+  },
+};
 
 /*
 export const outline = ({ text, ...args }: any) =>
@@ -207,6 +279,7 @@ export const light = ({ text, ...args }: any) => (
   </div>
 );*/
 
+/*
 export const Inaktiverad = ({ text, ...args }: any) => (
   <div className="flex flex-col items-start space-y-2">
     <Button {...args} size="md" variant="solid" color="primary" disabled>
@@ -236,3 +309,4 @@ export const Storlekar = ({ text, ...args }: any) => (
     </Button>
   </div>
 );
+*/
