@@ -2,7 +2,7 @@ import { IconButton } from "../src";
 import { Announcement } from "./announcement";
 
 export default {
-  title: "Design System/Komponenter/WIP/IconButton",
+  title: "WIP/IconButton",
   component: IconButton,
   parameters: {
     controls: { hideNoControlsWarning: true },

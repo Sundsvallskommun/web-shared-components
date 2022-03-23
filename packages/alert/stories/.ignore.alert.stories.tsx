@@ -1,7 +1,7 @@
 import { Alert } from "../src";
 
 export default {
-  title: "Design System/Komponenter/WIP/Alert",
+  title: "WIP/Alert",
   component: Alert,
   parameters: {
     controls: { hideNoControlsWarning: true },

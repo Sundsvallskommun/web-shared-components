@@ -2,7 +2,7 @@ import { Button, IconButton } from "../src";
 import { Announcement } from "./announcement";
 
 export default {
-  title: "Design System/Komponenter/WIP/Knappgrupp",
+  title: "WIP/Knappgrupp",
   component: Button,
   parameters: {
     controls: { hideNoControlsWarning: true },
