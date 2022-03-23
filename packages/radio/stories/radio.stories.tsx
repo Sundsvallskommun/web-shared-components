@@ -2,7 +2,7 @@ import { FormControl, FormHelperText, FormLabel } from "@sk-web-gui/forms";
 import { Radio, RadioGroupProps, RadioProps } from "../src";
 
 export default {
-  title: "Design System/Komponenter/Radioknappar",
+  title: "Design System/Komponenter/Radioknappar/Komponent",
   component: Radio,
   parameters: {
     controls: { hideNoControlsWarning: true },
