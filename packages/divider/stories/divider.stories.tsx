@@ -1,7 +1,7 @@
 import { Divider, DividerProps } from "../src";
 
 export default {
-  title: "Design System/Komponenter/Avdelare/Komponent",
+  title: "Komponenter/Avdelare/Komponent",
   component: Divider,
   parameters: {
     controls: { hideNoControlsWarning: true },

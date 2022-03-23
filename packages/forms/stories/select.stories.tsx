@@ -1,7 +1,7 @@
 import { InputProps, Select } from "../src";
 
 export default {
-  title: "Design System/Komponenter/Dropdown/Komponent",
+  title: "Komponenter/Dropdown/Komponent",
   component: Select,
   parameters: {
     controls: { hideNoControlsWarning: true },

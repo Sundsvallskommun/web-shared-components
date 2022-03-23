@@ -1,7 +1,7 @@
 import { Link, LinkProps } from "../src";
 
 export default {
-  title: "Design System/Komponenter/Länkar/Komponent",
+  title: "Komponenter/Länkar/Komponent",
   component: Link,
   parameters: {
     controls: { hideNoControlsWarning: true },

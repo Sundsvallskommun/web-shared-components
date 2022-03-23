@@ -2,7 +2,7 @@ import { FormControl, FormHelperText, FormLabel } from "@sk-web-gui/forms";
 import { Checkbox, CheckboxProps } from "../src";
 
 export default {
-  title: "Design System/Komponenter/Kryssrutor/Komponent",
+  title: "Komponenter/Kryssrutor/Komponent",
   component: Checkbox,
   parameters: {
     controls: { hideNoControlsWarning: true },

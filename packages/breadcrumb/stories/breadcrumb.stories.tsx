@@ -1,7 +1,7 @@
 import { Breadcrumb, BreadcrumbProps } from "../src";
 
 export default {
-  title: "Design System/Komponenter/Brödsmulor/Komponent",
+  title: "Komponenter/Brödsmulor/Komponent",
   component: Breadcrumb,
   parameters: {
     // controls: { hideNoControlsWarning: true },

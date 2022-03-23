@@ -2,7 +2,7 @@ import { Input } from "../src";
 import { Check } from "./check";
 
 export default {
-  title: "Design System/Komponenter/Textfält/Komponent/Inputs",
+  title: "Komponenter/Textfält/Komponent/Inputs",
   component: Input,
   parameters: {
     controls: { hideNoControlsWarning: true },

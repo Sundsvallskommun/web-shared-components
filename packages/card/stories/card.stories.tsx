@@ -3,7 +3,7 @@ import { Card, CardList, CardBody, CardImage, CardLink, CardProps } from "../src
 import PlaceholderImage from '../../../.storybook/public/placeholder_2.png';
 
 export default {
-    title: "Design System/Komponenter/Kort/Komponent",
+    title: "Komponenter/Kort/Komponent",
     component: Card,
     parameters: {
         // controls: { hideNoControlsWarning: true },
