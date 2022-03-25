@@ -2,7 +2,7 @@ import { Input } from "../src";
 import { Check } from "./check";
 
 export default {
-  title: "Komponenter/Textfält",
+  title: "Komponenter/Textfält/Komponent/Inputs",
   component: Input,
   parameters: {
     controls: { hideNoControlsWarning: true },
@@ -10,7 +10,7 @@ export default {
 };
 
 export const basic = () => <Input placeholder="jon@gmail.com" />;
-basic.storyName = 'Textfält';
+basic.storyName = 'Komponent';
 
 export const colored = () => (
   <Input color="orange" placeholder="jon@gmail.com" />
@@ -128,12 +128,6 @@ export const addon = () => (
     </Input.Group>
 
     <Input.Group size="lg" className="mb-2 mr-2">
-      <Input.LeftAddon children="https://" />
-      <Input placeholder="mysite" />
-      <Input.RightAddon children=".com" />
-    </Input.Group>
-
-    <Input.Group size="xl">
       <Input.LeftAddon children="https://" />
       <Input placeholder="mysite" />
       <Input.RightAddon children=".com" />

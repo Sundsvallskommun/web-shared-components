@@ -1,14 +1,84 @@
 import { FormControl, FormHelperText, FormLabel } from "@sk-web-gui/forms";
-import { Radio } from "../src";
+import { Radio, RadioGroupProps, RadioProps } from "../src";
 
 export default {
-  title: "Komponenter/Radio",
+  title: "Komponenter/Radioknappar/Komponent",
   component: Radio,
   parameters: {
     controls: { hideNoControlsWarning: true },
   },
 };
 
+export const Template = (args: RadioProps) => (
+  <>
+    <Radio {...args} className="m-2" name="example">Exempel 1</Radio>
+    <Radio {...args} className="m-2" name="example">Exempel 2</Radio>
+    <Radio {...args} className="m-2" name="example">Exempel 2</Radio>
+  </>
+);
+
+Template.argTypes = {
+  required: {
+    type: { name: 'boolean', required: false },
+    description: 'Sets required',
+    table: {
+      defaultValue: { summary: 'false' },
+    },
+    control: 'boolean',
+    defaultValue: false,
+  },  
+  invalid: {
+    type: { name: 'boolean', required: false },
+    description: 'Sets invalid',
+    table: {
+      defaultValue: { summary: 'false' },
+    },
+    control: 'boolean',
+    defaultValue: false,
+  },
+  disabled: {
+    type: { name: 'boolean', required: false },
+    description: 'Sets disabled',
+    table: {
+      defaultValue: { summary: 'false' },
+    },
+    control: 'boolean',
+    defaultValue: false,
+  },
+  defaultChecked: {
+    type: { name: 'boolean', required: false },
+    description: 'Sets default checked',
+    table: {
+      defaultValue: { summary: 'false' },
+    },
+    control: 'boolean',
+    defaultValue: false,
+  },
+  size: {
+    type: { name: 'string', required: false },
+    description: 'Sets size',
+    table: {
+      defaultValue: { summary: 'md' },
+    },
+    options: ['sm', 'md', 'lg'],
+    control: 'select',
+    defaultValue: 'md',
+  },
+  color: {
+    type: { name: 'string', required: false },
+    description: 'Sets color',
+    table: {
+      defaultValue: { summary: 'primary' },
+    },
+    options: ['primary', 'secondary'],
+    control: 'select',
+    defaultValue: 'primary',
+  },
+};
+
+Template.storyName = 'Komponent';
+
+/*
 export const basic = () => (
   <div className="space-x-2">
     <Radio name="basic">First</Radio>
@@ -102,3 +172,4 @@ export const formControl = () => (
     <FormHelperText>Select only if you're a fan.</FormHelperText>
   </FormControl>
 );
+*/

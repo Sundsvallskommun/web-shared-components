@@ -1,30 +1,41 @@
-import { Link } from "../src";
+import { Link, LinkProps } from "../src";
 
 export default {
-  title: "Komponenter/Länkar",
+  title: "Komponenter/Länkar/Komponent",
   component: Link,
   parameters: {
     controls: { hideNoControlsWarning: true },
   },
 };
 
-export const Standard = () => (
+export const Template = (args: LinkProps) => (
   <div className="flex flex-col space-y-2">
-    <Link href="#">Lorem ipsum dolor sit amet.</Link>
+    <Link {...args} href="#">Lorem ipsum dolor sit amet.</Link>
     <p>
-      <Link href="#">Lorem, ipsum dolor.</Link> Lorem ipsum dolor sit amet consectetur adipisicing.
+      <Link {...args} href="#">Lorem, ipsum dolor.</Link> Lorem ipsum dolor sit amet consectetur adipisicing.
     </p>
   </div>
 );
 
-Standard.storyName = 'Länkar';
+Template.storyName = 'Komponent';
 
-export const Inaktiva = () => (
-  <div className="flex flex-col space-y-2">
-    <Link href="#" disabled>Lorem ipsum dolor sit amet.</Link>
-    <p>
-      <Link href="#" disabled>Lorem, ipsum dolor.</Link> Lorem ipsum dolor sit amet consectetur adipisicing.
-    </p>
-    <Link disabled>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</Link>
-  </div>
-);
+Template.argTypes = {
+  disabled: {
+    type: { name: 'string', required: false },
+    description: 'Sets disabled',
+    table: {
+      defaultValue: { summary: 'false' },
+    },
+    control: 'boolean',
+    defaultValue: false,
+  },
+  external: {
+    type: { name: 'string', required: false },
+    description: 'Sets external',
+    table: {
+      defaultValue: { summary: 'false' },
+    },
+    control: 'boolean',
+    defaultValue: false,
+  },
+};

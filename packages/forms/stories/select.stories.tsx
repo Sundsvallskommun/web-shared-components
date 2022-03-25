@@ -1,20 +1,72 @@
-import { Select } from "../src";
+import { InputProps, Select } from "../src";
 
 export default {
-  title: "Komponenter/Select",
+  title: "Komponenter/Dropdown/Komponent",
   component: Select,
   parameters: {
     controls: { hideNoControlsWarning: true },
   },
 };
 
-export const basic = () => (
-  <Select placeholder="Outline">
+export const Template = (args: any) => (
+  <Select {...args} placeholder="Outline">
     <option>Option 1</option>
     <option>Option 2</option>
     <option>Option 3</option>
   </Select>
 );
+
+Template.argTypes = {
+  required: {
+    type: { name: 'boolean', required: false },
+    description: 'Sets required',
+    table: {
+      defaultValue: { summary: 'false' },
+    },
+    control: 'boolean',
+    defaultValue: false,
+  },  
+  invalid: {
+    type: { name: 'boolean', required: false },
+    description: 'Sets invalid',
+    table: {
+      defaultValue: { summary: 'false' },
+    },
+    control: 'boolean',
+    defaultValue: false,
+  },
+  disabled: {
+    type: { name: 'boolean', required: false },
+    description: 'Sets disabled',
+    table: {
+      defaultValue: { summary: 'false' },
+    },
+    control: 'boolean',
+    defaultValue: false,
+  },
+  variant: {
+    type: { name: 'string', required: false },
+    description: 'Sets variant',
+    table: {
+      defaultValue: { summary: 'outline' },
+    },
+    options: ['outline', 'solid'],
+    control: 'select',
+    defaultValue: 'outline',
+  },
+  size: {
+    type: { name: 'string', required: false },
+    description: 'Sets size',
+    table: {
+      defaultValue: { summary: 'md' },
+    },
+    options: ['sm', 'md', 'lg'],
+    control: 'select',
+    defaultValue: 'md',
+  },
+};
+
+Template.storyName = 'Komponent';
 
 export const disabled = () => (
   <Select disabled placeholder="Outline">

@@ -43,6 +43,7 @@
     "@sk-web-gui/breadcrumb": "0.1.1",
     "@sk-web-gui/button": "0.1.1",
     "@sk-web-gui/card": "0.1.2",
+    "@sk-web-gui/divider": "0.1.0",
     "@sk-web-gui/checkbox": "0.1.1",
     "@sk-web-gui/cookie-consent": "0.1.1",
     "@sk-web-gui/dot": "0.1.1",
