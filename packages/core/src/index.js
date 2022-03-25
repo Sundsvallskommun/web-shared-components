@@ -25,6 +25,7 @@ const Table = require("./components/table");
 
 const Modal = require("./components/modal");
 const CookieConsent = require("./components/cookie-consent");
+const Divider = require("./components/divider");
 
 const UserMenu = require("./components/user-menu");
 
@@ -50,6 +51,7 @@ const components = [
 
   Accordion,
   Card,
+  Divider,
 
   UserMenu,
 ];

@@ -18,5 +18,6 @@ export * from "@sk-web-gui/utils";
 export * from "@sk-web-gui/accordion";
 export * from "@sk-web-gui/cookie-consent";
 export * from "@sk-web-gui/card";
+export * from "@sk-web-gui/divider";
 
 export * from "@sk-web-gui/user-menu";

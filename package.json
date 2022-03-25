@@ -17,7 +17,7 @@
     "prestart": "yarn && yarn bootstrap",
     "boot": "yarn prestart && yarn build",
     "start": "yarn build && yarn storybook",
-    "start:all": "yarn build && concurrently \"yarn sk-arch-test dev\"  \"yarn storybook\" ",
+    "start:all": "yarn build && concurrently \"yarn storybook\" ",
     "build": "lerna run build --no-private --stream",
     "bootstrap": "yarn install && lerna bootstrap --use-workspaces",
     "test": "echo \"Error: no test specified\" && exit 1",

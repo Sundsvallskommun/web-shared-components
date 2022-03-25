@@ -1,7 +1,7 @@
 import { useMessage } from "../src";
 
 export default {
-  title: "Komponenter/Message",
+  title: "WIP/Komponenter/Message",
   parameters: {
     controls: { hideNoControlsWarning: true },
   },

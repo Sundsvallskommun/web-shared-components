@@ -1,7 +1,7 @@
 import { FormControl, FormLabel, Input, FormHelperText, FormErrorMessage } from "../src";
 
 export default {
-  title: "Komponenter/Textfält",
+  title: "Komponenter/Textfält/Komponent",
   component: FormControl,
   parameters: {
     controls: { hideNoControlsWarning: true },

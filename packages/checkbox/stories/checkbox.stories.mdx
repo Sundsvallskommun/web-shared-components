@@ -1,0 +1,26 @@
+import { Canvas, Meta, Preview } from '@storybook/addon-docs';
+import { FormControl, FormLabel } from "@sk-web-gui/forms";
+import { Checkbox } from "../src";
+
+<Meta title="Komponenter/Kryssrutor/Översikt" />
+
+# Kryssrutor
+
+<p>Använd checkboxar när användaren ska kunna välja ett eller fler alternativ</p>
+
+<Preview>
+    <div className="grid grid-cols-4 gap-4 py-2 max-w-3xl">
+        <strong>Vald</strong>
+        <Checkbox defaultChecked size="lg">Large</Checkbox>
+        <Checkbox defaultChecked>Medium</Checkbox>
+        <Checkbox defaultChecked size="sm">Small</Checkbox>
+        <strong>Ej Vald</strong>
+        <Checkbox size="lg">Large</Checkbox>
+        <Checkbox>Medium</Checkbox>
+        <Checkbox size="sm">Small</Checkbox>
+        <strong>Inaktiverad</strong>
+        <Checkbox disabled size="lg">Large</Checkbox>
+        <Checkbox disabled>Medium</Checkbox>
+        <Checkbox disabled size="sm">Small</Checkbox>
+    </div>
+</Preview>

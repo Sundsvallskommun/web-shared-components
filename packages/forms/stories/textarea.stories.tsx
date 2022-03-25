@@ -1,7 +1,7 @@
 import { Textarea } from "../src";
 
 export default {
-  title: "Komponenter/Textarea",
+  title: "WIP/Komponenter/Textarea",
   component: Textarea,
   parameters: {
     controls: { hideNoControlsWarning: true },
