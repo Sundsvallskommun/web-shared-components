@@ -1,4 +1,4 @@
-import { Meta } from "@storybook/addon-docs";
+import { Meta, Story, Preview, ColorPalette, ColorItem, Typeset } from "@storybook/addon-docs";
 import { Image } from "../../components/image.component.tsx";
 
 import TypographyRalewayRegular from "./assets/typography_raleway_regular.jpg";
@@ -18,26 +18,25 @@ import TypographyExternalLinks from "./assets/typography_external_links.jpg";
 
 ## Rubriker
 
-### Raleway - Regulara
-
-<Image src={TypographyRalewayRegular} />
+### Raleway - Regular
+<Typeset fontFamily="Raleway" fontSizes={[52,40,32,24,20,18]} fontWeight="400" sampleText="The alternative to good design is bad design" />
 
 ### Raleway - Bold
-<Image src={TypographyRalewayBold} />
+<Typeset fontFamily="Raleway" fontSizes={[52,40,32,24,20,18]} fontWeight="700" sampleText="The alternative to good design is bad design" />
 
 ## Brödtext
 
 ### Arial - Bold
-<Image src={TypographyArialRegular} />
+<Typeset fontFamily="Arial" fontSizes={[24, 20, 18, 16, 14, 12, 10]} fontWeight="400" sampleText="The alternative to good design is bad design" />
 
 ### Arial - Regular
-<Image src={TypographyArialBold} />
+<Typeset fontFamily="Arial" fontSizes={[24, 20, 18, 16, 14, 12, 10]} fontWeight="700" sampleText="The alternative to good design is bad design" />
 
 ### Knapptext
-<Image src={TypographyButtonText} />
+<Typeset fontFamily="Raleway" fontSizes={[16, 14, 12]} fontWeight="700" sampleText="The alternative to good design is bad design" />
 
 ### Interna länkar
-<Image src={TypographyInternalLinks} />
+<Typeset fontFamily="Arial" fontSizes={[16]} fontWeight="400" sampleText="The alternative to good design is bad design" />
 
 ### Externa länkar
-<Image src={TypographyExternalLinks} />
+<Typeset fontFamily="Arial" fontSizes={[16]} fontWeight="400" sampleText="The alternative to good design is bad design" />
