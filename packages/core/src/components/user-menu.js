@@ -18,7 +18,16 @@ module.exports = UserMenu = (colors) => ({
       // "@apply p-0 m-0 py-sm bg-white": {},
     },
     "&-item": {
-      // "@apply block -mx-md px-md py-sm": {},
+      "@apply lg:text-black cursor-pointer": {},
+      "a.link": {
+        "@apply text-black": {},
+      },
+      "&.hovered": {
+        "@apply bg-hover text-white no-underline": {},
+        "a.link": {
+          "@apply text-white no-underline": {},
+        },
+      },
     },
   },
 });

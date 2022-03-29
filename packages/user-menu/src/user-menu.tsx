@@ -2,16 +2,10 @@ import { colors, DefaultProps } from "@sk-web-gui/theme";
 import { cx, __DEV__ } from "@sk-web-gui/utils";
 import * as React from "react";
 import { Menu } from "@headlessui/react";
-interface MenuItem {
-  icon: string | null;
-  label: string;
-  url: string;
-}
-
 export interface MenuItemGroup {
   label: string;
   showLabel: boolean;
-  items: MenuItem[];
+  elements: JSX.Element[];
 }
 
 interface IUserMenuProps extends DefaultProps {
@@ -83,7 +77,7 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
               </Menu.Button>
               <Menu.Items
                 className={cx(
-                  "usermenu-body -mt-2 py-sm absolute top-40 right-0 left-0 bg-white border-none rounded border-t-0"
+                  "usermenu-body -mt-2 py-sm absolute top-40 right-0 left-0 bg-white border-none rounded border-t-0 shadow-lg"
                 )}
               >
                 <Menu.Item>
@@ -107,27 +101,16 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
                         </div>
                       </Menu.Item>
                     ),
-                    ...g.items.map((item, idx) => (
+                    ...g.elements.map((element, idx) => (
                       <Menu.Item as="div" key={`icon${idx}`}>
                         {({ active }) => (
-                          <a
-                            className={`usermenu-item px-lg py-md ${
-                              active && "bg-hover text-white"
+                          <div
+                            className={`usermenu-item px-lg py-md  ${
+                              active ? "hovered" : ""
                             } flex`}
-                            href={item.url}
                           >
-                            {item.icon && (
-                              <span
-                                className="material-icons-outlined align-middle mr-sm"
-                                aria-hidden="true"
-                              >
-                                {item.icon}
-                              </span>
-                            )}
-                            <span className="inline" aria-hidden="true">
-                              {item.label}
-                            </span>
-                          </a>
+                            {element}
+                          </div>
                         )}
                       </Menu.Item>
                     )),
@@ -199,27 +182,16 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
                         </div>
                       </Menu.Item>
                     ),
-                    ...g.items.map((item, idx) => (
+                    ...g.elements.map((element, idx) => (
                       <Menu.Item key={`icon${idx}`}>
                         {({ active }) => (
-                          <a
+                          <div
                             className={`usermenu-item px-md py-sm ${
-                              active && "bg-hover text-white"
+                              active ? "hovered" : ""
                             } flex`}
-                            href={item.url}
                           >
-                            {item.icon && (
-                              <span
-                                className="material-icons-outlined align-middle mr-sm"
-                                aria-hidden="true"
-                              >
-                                {item.icon}
-                              </span>
-                            )}
-                            <span className="inline" aria-hidden="true">
-                              {item.label}
-                            </span>
-                          </a>
+                            {element}
+                          </div>
                         )}
                       </Menu.Item>
                     )),

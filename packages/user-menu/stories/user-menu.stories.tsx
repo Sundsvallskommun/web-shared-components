@@ -21,74 +21,83 @@ const menuGroups: MenuItemGroup[] = [
   {
     label: "Main",
     showLabel: false,
-    items: [
-      {
-        icon: null,
-        label: "Start",
-        url: "/",
-      },
-      {
-        icon: null,
-        label: "Pågående ärenden",
-        url: "/ongoing",
-      },
-      {
-        icon: null,
-        label: "Beslutade ärenden",
-        url: "/closed",
-      },
-      {
-        icon: null,
-        label: "Handlingsplan",
-        url: "/actionplan",
-      },
-      {
-        icon: null,
-        label: "Företagsuppgifter",
-        url: "/orginfo",
-      },
+    elements: [
+      <Link href="/">
+        <span className="inline" aria-hidden="true">
+          Start
+        </span>
+      </Link>,
+      <Link href="/pagaende">
+        <span className="inline" aria-hidden="true">
+          Pågående
+        </span>
+      </Link>,
+      <Link href="/beslutade">Beslutade</Link>,
+      <Link href="/handlingsplan">Handlingsplan</Link>,
+      <Link href="/foretagsuppgifter">Företagsuppgifter</Link>,
     ],
   },
   {
     label: "Relaterade webbplatser",
     showLabel: true,
-    items: [
-      {
-        icon: null,
-        label: "E-tjänster",
-        url: "www.sundsvall.se/",
-      },
-      {
-        icon: null,
-        label: "Företagscenter Sundsvall",
-        url: "www.sundsvall.se/",
-      },
+    elements: [
+      <a href="https://www.sundsvall.se/">E-tjänster</a>,
+
+      <a href="https://www.sundsvall.se/">Företagscenter Sundsvall</a>,
     ],
   },
   {
     label: "Inställningar",
     showLabel: true,
-    items: [
-      {
-        icon: "account_circle",
-        label: "Mina uppgifter",
-        url: "/my-account",
-      },
-      {
-        icon: "settings",
-        label: "Inställningar som har en riktigt lång text",
-        url: "/account-settings",
-      },
-      {
-        icon: "email",
-        label: "Meddelanden",
-        url: "/messages",
-      },
-      {
-        icon: "logout",
-        label: "Logga ut",
-        url: "/logout",
-      },
+    elements: [
+      <Link href="/myaccount">
+        <span
+          className="material-icons-outlined align-middle mr-sm"
+          aria-hidden="true"
+        >
+          account_circle
+        </span>
+
+        <span className="inline" aria-hidden="true">
+          Mina uppgifter
+        </span>
+      </Link>,
+      <Link href="/myaccount">
+        <span
+          className="material-icons-outlined align-middle mr-sm"
+          aria-hidden="true"
+        >
+          settings
+        </span>
+
+        <span className="inline" aria-hidden="true">
+          Inställningar som har en riktigt lång text
+        </span>
+      </Link>,
+      <Link href="/messages">
+        <span
+          className="material-icons-outlined align-middle mr-sm"
+          aria-hidden="true"
+        >
+          email
+        </span>
+
+        <span className="inline" aria-hidden="true">
+          Meddelanden
+        </span>
+      </Link>,
+      <Link href="/logout">
+        <span
+          className="material-icons-outlined align-middle mr-sm"
+          aria-hidden="true"
+        >
+          logout
+        </span>
+
+        <span className="inline" aria-hidden="true">
+          Logga ut
+        </span>
+      </Link>,
     ],
   },
 ];
