@@ -16,7 +16,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 RUN yarn run boot
-# RUN yarn build
+RUN yarn build-storybook
 
 # Production image, copy all the files and run next
 FROM node:16-alpine AS runner
