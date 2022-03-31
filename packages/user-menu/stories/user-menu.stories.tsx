@@ -22,35 +22,56 @@ const menuGroups: MenuItemGroup[] = [
     label: "Main",
     showLabel: false,
     elements: [
-      <Link href="/">
-        <span className="inline" aria-hidden="true">
-          Start
-        </span>
+      <Link href="/pagaende" className="usermenu-item block px-md py-sm w-full">
+        Pågående
       </Link>,
-      <Link href="/pagaende">
-        <span className="inline" aria-hidden="true">
-          Pågående
-        </span>
+      <Link
+        href="/beslutade"
+        className="usermenu-item block px-md py-sm w-full"
+      >
+        Beslutade
       </Link>,
-      <Link href="/beslutade">Beslutade</Link>,
-      <Link href="/handlingsplan">Handlingsplan</Link>,
-      <Link href="/foretagsuppgifter">Företagsuppgifter</Link>,
+      <Link
+        href="/handlingsplan"
+        className="usermenu-item block px-md py-sm w-full"
+      >
+        Handlingsplan
+      </Link>,
+      <Link
+        href="/foretagsuppgifter"
+        className="usermenu-item block px-md py-sm w-full"
+      >
+        Företagsuppgifter
+      </Link>,
     ],
   },
   {
     label: "Relaterade webbplatser",
     showLabel: true,
     elements: [
-      <a href="https://www.sundsvall.se/">E-tjänster</a>,
+      <a
+        href="https://www.sundsvall.se/"
+        className="usermenu-item block px-md py-sm w-full"
+      >
+        E-tjänster
+      </a>,
 
-      <a href="https://www.sundsvall.se/">Företagscenter Sundsvall</a>,
+      <a
+        href="https://www.sundsvall.se/"
+        className="usermenu-item block px-md py-sm w-full"
+      >
+        Företagscenter Sundsvall
+      </a>,
     ],
   },
   {
     label: "Inställningar",
     showLabel: true,
     elements: [
-      <Link href="/myaccount">
+      <Link
+        href="/myaccount"
+        className="usermenu-item block px-md py-sm w-full"
+      >
         <span
           className="material-icons-outlined align-middle mr-sm"
           aria-hidden="true"
@@ -62,7 +83,10 @@ const menuGroups: MenuItemGroup[] = [
           Mina uppgifter
         </span>
       </Link>,
-      <Link href="/myaccount">
+      <Link
+        href="/myaccount"
+        className="usermenu-item block px-md py-sm w-full"
+      >
         <span
           className="material-icons-outlined align-middle mr-sm"
           aria-hidden="true"
@@ -74,7 +98,7 @@ const menuGroups: MenuItemGroup[] = [
           Inställningar som har en riktigt lång text
         </span>
       </Link>,
-      <Link href="/messages">
+      <Link href="/messages" className="usermenu-item block px-md py-sm w-full">
         <span
           className="material-icons-outlined align-middle mr-sm"
           aria-hidden="true"
@@ -86,7 +110,7 @@ const menuGroups: MenuItemGroup[] = [
           Meddelanden
         </span>
       </Link>,
-      <Link href="/logout">
+      <Link href="/logout" className="usermenu-item block px-md py-sm w-full">
         <span
           className="material-icons-outlined align-middle mr-sm"
           aria-hidden="true"
@@ -114,7 +138,7 @@ export const basic = ({ text, ...args }: any) => (
         style={{ maxWidth: "120rem", paddingLeft: "0", paddingRight: "0" }}
       >
         <div className="flex items-center flex-shrink-0 text-black mr-6">
-          <Link href={"/"} passHref>
+          <Link href={"/"}>
             <a className="flex items-center">
               <svg
                 className="lg:hidden"

@@ -89,10 +89,11 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
                       <Menu.Item
                         as="div"
                         key={`group${idx}`}
+                        disabled={true}
                         className="flex align-middle mt-md"
                       >
                         <div
-                          className={`usermenu-item inline-block pl-lg pr-md py-sm text-sm font-semibold uppercase small whitespace-nowrap`}
+                          className={`inline-block pl-md pr-md py-sm text-sm font-semibold uppercase small whitespace-nowrap`}
                         >
                           {g.label}
                         </div>
@@ -102,16 +103,14 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
                       </Menu.Item>
                     ),
                     ...g.elements.map((element, idx) => (
-                      <Menu.Item as="div" key={`icon${idx}`}>
-                        {({ active }) => (
-                          <div
-                            className={`usermenu-item px-lg py-md  ${
-                              active ? "hovered" : ""
-                            } flex`}
-                          >
-                            {element}
-                          </div>
-                        )}
+                      <Menu.Item key={`icon${idx}`}>
+                        {({ active }) =>
+                          active ? (
+                            element
+                          ) : (
+                            <div className={`inactive`}>{element}</div>
+                          )
+                        }
                       </Menu.Item>
                     )),
                   ];
@@ -171,12 +170,13 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
                   return [
                     g.showLabel && (
                       <Menu.Item
+                        disabled
                         as="div"
                         key={`group${idx}`}
-                        className="flex align-middle mt-md"
+                        className="flex align-middle mt-md mb-xs"
                       >
                         <div
-                          className={`usermenu-item inline-block pl-md pr-md py-sm text-sm font-semibold uppercase small whitespace-nowrap`}
+                          className={`inline-block pl-md pr-md py-sm text-sm font-semibold uppercase small whitespace-nowrap`}
                         >
                           {g.label}
                         </div>
@@ -184,15 +184,13 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
                     ),
                     ...g.elements.map((element, idx) => (
                       <Menu.Item key={`icon${idx}`}>
-                        {({ active }) => (
-                          <div
-                            className={`usermenu-item px-md py-sm ${
-                              active ? "hovered" : ""
-                            } flex`}
-                          >
-                            {element}
-                          </div>
-                        )}
+                        {({ active }) =>
+                          active ? (
+                            element
+                          ) : (
+                            <div className={`inactive`}>{element}</div>
+                          )
+                        }
                       </Menu.Item>
                     )),
                   ];
