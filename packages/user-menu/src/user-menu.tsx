@@ -5,6 +5,8 @@ import { Menu } from "@headlessui/react";
 export interface MenuItemGroup {
   label: string;
   showLabel: boolean;
+  showOnDesktop: boolean;
+  showOnMobile: boolean;
   elements: JSX.Element[];
 }
 
@@ -84,36 +86,38 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
                   <div className="hidden bg-white border-t-2 px-md pb-sm -mt-0 mx-md"></div>
                 </Menu.Item>
                 {menuGroups.map((g: MenuItemGroup, idx: number) => {
-                  return [
-                    g.showLabel && (
-                      <Menu.Item
-                        as="div"
-                        key={`group${idx}`}
-                        disabled={true}
-                        className="flex align-middle mt-md"
-                      >
-                        <div
-                          className={`inline-block pl-md pr-md py-sm text-sm font-semibold uppercase small whitespace-nowrap`}
-                        >
-                          {g.label}
-                        </div>
-                        <div className="inline-block w-full h-px border-gray-300 border-t-2 mt-7">
-                          &nbsp;
-                        </div>
-                      </Menu.Item>
-                    ),
-                    ...g.elements.map((element, idx) => (
-                      <Menu.Item key={`icon${idx}`}>
-                        {({ active }) =>
-                          active ? (
-                            element
-                          ) : (
-                            <div className={`inactive`}>{element}</div>
-                          )
-                        }
-                      </Menu.Item>
-                    )),
-                  ];
+                  return g.showOnMobile
+                    ? [
+                        g.showLabel && (
+                          <Menu.Item
+                            as="div"
+                            key={`group${idx}`}
+                            disabled={true}
+                            className="flex align-middle mt-md"
+                          >
+                            <div
+                              className={`inline-block pl-md pr-md py-sm text-sm font-semibold uppercase small whitespace-nowrap`}
+                            >
+                              {g.label}
+                            </div>
+                            <div className="inline-block w-full h-px border-gray-300 border-t-2 mt-7">
+                              &nbsp;
+                            </div>
+                          </Menu.Item>
+                        ),
+                        ...g.elements.map((element, idx) => (
+                          <Menu.Item key={`icon${idx}`}>
+                            {({ active }) =>
+                              active ? (
+                                element
+                              ) : (
+                                <div className={`inactive`}>{element}</div>
+                              )
+                            }
+                          </Menu.Item>
+                        )),
+                      ]
+                    : [];
                 })}
               </Menu.Items>
             </div>
@@ -167,33 +171,35 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
                   <div className="bg-white border-t-2 pb-sm -mt-0 mx-md"></div>
                 </Menu.Item>
                 {menuGroups.map((g: MenuItemGroup, idx: number) => {
-                  return [
-                    g.showLabel && (
-                      <Menu.Item
-                        disabled
-                        as="div"
-                        key={`group${idx}`}
-                        className="flex align-middle mt-md mb-xs"
-                      >
-                        <div
-                          className={`inline-block pl-md pr-md py-sm text-sm font-semibold uppercase small whitespace-nowrap`}
-                        >
-                          {g.label}
-                        </div>
-                      </Menu.Item>
-                    ),
-                    ...g.elements.map((element, idx) => (
-                      <Menu.Item key={`icon${idx}`}>
-                        {({ active }) =>
-                          active ? (
-                            element
-                          ) : (
-                            <div className={`inactive`}>{element}</div>
-                          )
-                        }
-                      </Menu.Item>
-                    )),
-                  ];
+                  return g.showOnDesktop
+                    ? [
+                        g.showLabel && (
+                          <Menu.Item
+                            disabled
+                            as="div"
+                            key={`group${idx}`}
+                            className="flex align-middle mt-md mb-xs"
+                          >
+                            <div
+                              className={`inline-block pl-md pr-md py-sm text-sm font-semibold uppercase small whitespace-nowrap`}
+                            >
+                              {g.label}
+                            </div>
+                          </Menu.Item>
+                        ),
+                        ...g.elements.map((element, idx) => (
+                          <Menu.Item key={`icon${idx}`}>
+                            {({ active }) =>
+                              active ? (
+                                element
+                              ) : (
+                                <div className={`inactive`}>{element}</div>
+                              )
+                            }
+                          </Menu.Item>
+                        )),
+                      ]
+                    : [];
                 })}
               </Menu.Items>
             </div>
