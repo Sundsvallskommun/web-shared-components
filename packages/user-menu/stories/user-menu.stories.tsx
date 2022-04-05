@@ -21,6 +21,8 @@ const menuGroups: MenuItemGroup[] = [
   {
     label: "Main",
     showLabel: false,
+    showOnDesktop: false,
+    showOnMobile: true,
     elements: [
       <Link href="/pagaende" className="usermenu-item block px-md py-sm w-full">
         Pågående
@@ -48,6 +50,8 @@ const menuGroups: MenuItemGroup[] = [
   {
     label: "Relaterade webbplatser",
     showLabel: true,
+    showOnDesktop: true,
+    showOnMobile: true,
     elements: [
       <a
         href="https://www.sundsvall.se/"
@@ -67,6 +71,8 @@ const menuGroups: MenuItemGroup[] = [
   {
     label: "Inställningar",
     showLabel: true,
+    showOnDesktop: true,
+    showOnMobile: true,
     elements: [
       <Link
         href="/myaccount"
