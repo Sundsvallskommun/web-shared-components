@@ -11,6 +11,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @sk-web-gui/divider
 
+## 0.1.1 (2022-03-29)
+
+**Note:** Version bump only for package @sk-web-gui/divider
+
 ## 0.1.0 (2022-02-18)
 
 **Note:** Version bump only for package @sk-web-gui/divider
