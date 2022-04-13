@@ -29,6 +29,8 @@ const Divider = require("./components/divider");
 
 const UserMenu = require("./components/user-menu");
 
+const Tag = require("./components/tag");
+
 const components = [
   Alert,
   Breadcrumb,
@@ -54,6 +56,8 @@ const components = [
   Divider,
 
   UserMenu,
+
+  Tag,
 ];
 
 const defaultColors = ["primary", "secondary"];

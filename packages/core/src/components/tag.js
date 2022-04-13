@@ -1,22 +1,13 @@
 function tagOutline(colors) {
   return {
     ".tag-outline": {
-      "@apply border bg-transparent border-neutral-200 text-neutral-900": {},
-      // dark
-      "@apply dark:border-neutral-600 dark:text-neutral-100": {},
+      "@apply border bg-transparent border-gray-stroke text-neutral-900": {},
 
-      ...colors.reduce(
-        (styles, color) => ({
-          ...styles,
-          [`&[data-color="${color}"]`]: {
-            [`@apply border-${color}-600 text-${color}-600`]: {},
-            // dark
-            [`@apply dark:border-${color}-400 dark:text-${color}-400`]: {},
-            "@apply dark:border-opacity-40": {},
-          },
-        }),
-        {}
-      ),
+      "&[href]": {
+        [`@apply hover:border-hover hover:text-white hover:bg-hover`]: {},
+        [`@apply active:text-white active:bg-hover`]: {},
+        [`@apply focus-visible:text-white focus-visible:ring-4 focus-visible:ring-black focus-visible:bg-hover`]: {},
+      },
     },
   };
 }
@@ -24,23 +15,17 @@ function tagOutline(colors) {
 function tagSolid(colors) {
   return {
     ".tag-solid": {
-      "@apply border bg-neutral-500 border-transparent text-white": {},
-      // dark
-      "@apply dark:border-neutral-600 dark:text-neutral-100 dark:bg-neutral-700": {},
+      "@apply border bg-gray-stroke border-transparent text-white": {},
 
-      ...colors.reduce(
-        (styles, color) => ({
-          ...styles,
-          [`&[data-color="${color}"]`]: {
-            [`@apply bg-${color}-500`]: {},
-            // dark
-            [`@apply dark:text-${color}-400 dark:border-${color}-500 dark:bg-${color}-500`]: {},
-            "@apply dark:bg-opacity-15": {},
-            "@apply dark:border-opacity-40": {},
-          },
-        }),
-        {}
-      ),
+      "&[href]": {
+        [`@apply hover:text-white hover:bg-hover`]: {},
+        [`@apply active:text-white active:bg-hover`]: {},
+        [`@apply focus-visible:text-white focus-visible:ring-4 focus-visible:ring-black focus-visible:bg-hover`]: {},
+      },
+
+      ".tag-close-button": {
+        "@apply text-white": {}
+      },
     },
   };
 }
@@ -48,48 +33,42 @@ function tagSolid(colors) {
 function tagLight(colors) {
   return {
     ".tag-light": {
-      "@apply text-neutral-900 bg-neutral-100": {},
-      // dark
-      "@apply dark:text-neutral-100 dark:bg-neutral-700": {},
+      "@apply border border-transparent text-neutral-900": {},
 
-      ...colors.reduce(
-        (styles, color) => ({
-          ...styles,
-          [`&[data-color="${color}"]`]: {
-            [`@apply text-${color}-800 bg-${color}-100`]: {},
-            // dark
-            [`@apply dark:text-${color}-400 dark:bg-${color}-500`]: {},
-            "@apply dark:bg-opacity-15": {},
-          },
-        }),
-        {}
-      ),
+      "&[href]": {
+        [`@apply hover:border-hover`]: {},
+        [`@apply active:border-hover`]: {},
+        [`@apply focus-visible:border-hover focus-visible:ring-4 focus-visible:ring-black`]: {},
+      },
     },
   };
 }
 
 module.exports = Tag = (colors) => ({
   ".tag": {
-    "@apply inline-flex items-center max-h-full rounded-full font-medium outline-none cursor-base whitespace-nowrap": {},
+    "@apply leading-none inline-flex items-center content-center max-h-full rounded-full font-normal outline-none whitespace-nowrap": {},
+    width: "fit-content",
+    height: "fit-content",
+    padding: "0 1.145em 0 1.145em",
+    borderRadius: "3.2rem",
+
+    "&-text": {
+      padding: "0.4285em 0"
+    },
 
     "&-sm": {
-      "@apply px-2 h-5 text-xs": {},
+      "@apply text-xs": {},
       minWidth: "1.25rem",
     },
 
     "&-md": {
-      "@apply px-2 h-6 text-xs": {},
+      "@apply text-sm": {},
       minWidth: "1.5rem",
     },
 
     "&-lg": {
-      "@apply px-2.5 h-7 text-sm": {},
+      "@apply text-base": {},
       minWidth: "1.75rem",
-    },
-
-    "&-xl": {
-      "@apply px-3 h-8 text-base": {},
-      minWidth: "2rem",
     },
   },
 
@@ -99,8 +78,15 @@ module.exports = Tag = (colors) => ({
   ...tagLight(colors),
 
   ".tag-close-button": {
-    "@apply flex items-center justify-center transition-all duration-150 rounded-full outline-none ml-1 -mr-1 opacity-50 cursor-base": {},
-    "@apply hover:opacity-80 focus-visible:outline-none active:opacity-100": {},
+    "@apply border-transparent flex items-center justify-center transition-all duration-150 rounded-full outline-none cursor-base": {},
+    fontSize: "1em",
+    padding: "0.36em",
+    marginLeft: "0.25em",
+    marginRight: "-0.55em",
+
+    "&-icon": {
+      fontSize: "1em"
+    },
 
     "&-disabled": {
       "@apply disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none": {},
