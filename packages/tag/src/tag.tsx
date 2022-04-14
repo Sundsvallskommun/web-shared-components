@@ -5,11 +5,11 @@ import * as React from "react";
 
 import { useTagClass } from "./styles";
 
-interface ITagProps extends DefaultProps {
+export interface TagProps extends DefaultProps {
   /** Controls tag appearance */
   variant?: "outline" | "solid" | "light";
   /* href for tag as a button */
-  "href"?: string;
+  href?: string;
   /* useDeleteButton boolean */
   useDeleteButton?: boolean;
   /* Aria-label for remove button */
@@ -17,75 +17,56 @@ interface ITagProps extends DefaultProps {
   /* Size of the button */
   size?: "sm" | "md" | "lg";
   /* Delete callback */
-  deleteCallback?: ()=>{};
+  deleteCallback?: () => void;
   /* React node */
   children?: React.ReactNode;
 }
 
-type ATagProps = React.AnchorHTMLAttributes<HTMLAnchorElement>;
-type DivTagProps = React.HTMLAttributes<HTMLDivElement>;
+export const Tag = React.forwardRef<any, TagProps>((props, ref) => {
+  const {
+    children,
+    variant = "outline",
+    size = "md",
+    href: href = "",
+    useDeleteButton,
+    deleteAriaLabel,
+    deleteCallback,
+    ...rest
+  } = props;
 
-type ElementType = ATagProps & DivTagProps;
+  const classes = useTagClass({
+    variant,
+    size,
+  });
 
-export type TagProps = ITagProps & ElementType;
-
-// export type ElementType = React.HTMLAttributes<HTMLAnchorElement> | React.HTMLAttributes<HTMLDivElement>
-
-export const Tag = React.forwardRef<ElementType, TagProps>(
-  (props, ref) => {
-    const {
-      children,
-      variant = "outline",
-      size = "md",
-      "href": href = "",
-      useDeleteButton,
-      deleteAriaLabel,
-      deleteCallback,
-      ...rest
-    } = props;
-
-    const classes = useTagClass({
-      variant,
-      size,
-    });
-
-    if (href) {
-      return (
-        <a
-          href={href}
-          className={cx(
-            classes,
-          )}
-          {...rest}
-        >
-          <span className="tag-text">{children}</span>
-        </a>
-      )
-    }
-
+  if (href) {
     return (
-        <div
-          className={cx(
-            classes,
-          )}
-          {...rest}
-        >
-          <span className="tag-text">{children}</span>
-          {useDeleteButton &&
-            <Button
-              onClick={deleteCallback}
-              className="tag-close-button"
-              aria-label={deleteAriaLabel}
-            >
-              <span className="tag-close-button-icon material-icons-outlined" aria-hidden="true">
-                close
-                </span>
-            </Button>
-          }
-        </div>
+      <a href={href} className={cx(classes)} {...rest}>
+        <span className="tag-text">{children}</span>
+      </a>
     );
   }
-);
+
+  return (
+    <div className={cx(classes)} {...rest}>
+      <span className="tag-text">{children}</span>
+      {useDeleteButton && (
+        <Button
+          onClick={deleteCallback}
+          className="tag-close-button"
+          aria-label={deleteAriaLabel}
+        >
+          <span
+            className="tag-close-button-icon material-icons-outlined"
+            aria-hidden="true"
+          >
+            close
+          </span>
+        </Button>
+      )}
+    </div>
+  );
+});
 
 if (__DEV__) {
   Tag.displayName = "Tag";
