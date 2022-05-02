@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/tag",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
