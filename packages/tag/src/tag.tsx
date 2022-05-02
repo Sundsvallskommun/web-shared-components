@@ -17,7 +17,7 @@ export interface TagProps extends DefaultProps {
   /* Size of the button */
   size?: "sm" | "md" | "lg";
   /* Delete callback */
-  deleteCallback?: () => void;
+  deleteCallback?: (e:  React.MouseEvent<HTMLButtonElement>) => void;
   /* React node */
   children?: React.ReactNode;
 }
@@ -52,6 +52,7 @@ export const Tag = React.forwardRef<any, TagProps>((props, ref) => {
       <span className="tag-text">{children}</span>
       {useDeleteButton && (
         <Button
+          type="button"
           onClick={deleteCallback}
           className="tag-close-button"
           aria-label={deleteAriaLabel}

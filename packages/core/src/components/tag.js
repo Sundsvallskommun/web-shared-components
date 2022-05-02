@@ -53,7 +53,7 @@ module.exports = Tag = (colors) => ({
     borderRadius: "3.2rem",
 
     "&-text": {
-      padding: "0.4285em 0"
+      padding: "0.5em 0"
     },
 
     "&-sm": {
