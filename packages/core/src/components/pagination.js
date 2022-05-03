@@ -19,7 +19,7 @@ module.exports = Pagination = () => ({
     },
 
     "&-list": {
-      "@apply flex items-center": {},
+      "@apply flex items-baseline": {},
     },
 
     "&-pageLabel": {

@@ -6,4 +6,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## 0.1.0 (2022-02-18)
 
-**Note:** Version bump only for package @sk-web-gui/switch
+**Note:** Version bump only for package @sk-web-gui/pagination
