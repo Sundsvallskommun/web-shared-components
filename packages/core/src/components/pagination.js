@@ -11,11 +11,11 @@ module.exports = Pagination = () => ({
     },
 
     "&-md": {
-      "@apply text-sm": {},
+      "@apply text-lg": {},
     },
 
     "&-lg": {
-      "@apply text-base": {},
+      "@apply text-xl": {},
     },
 
     "&-list": {
@@ -23,24 +23,25 @@ module.exports = Pagination = () => ({
     },
 
     "&-pageLabel": {
-      "@apply px-sm py-sm cursor-pointer rounded-xl": {},
-      width: "2.75em",
-      height: "2.75em",
+      "@apply cursor-pointer m-sm": {},
+      width: "1.5em",
+      height: "1.8em",
 
       "&[aria-disabled='true']": {
-        "@apply bg-gray-200 cursor-default": {},
+        "@apply border-primary border-b cursor-default text-primary": {},
       },
     },
 
     "&-prevNextButton": {
-      "@apply inline-flex items-center  sm:w-auto inline-flex flex-row leading-none": {},
+      "@apply inline-flex items-center  sm:w-auto inline-flex flex-row leading-none":
+        {},
 
       "&[data-reverse=true]": {
         "@apply flex-row-reverse": {},
 
         ".pagination-prevNextButton-label": {
           "@apply mr-sm ml-0": {},
-        }
+        },
       },
 
       "&[disabled]": {
@@ -48,11 +49,9 @@ module.exports = Pagination = () => ({
       },
 
       "&[disabled='false']": {
-
         "&-label, &-icon": {
           "@apply cursor-pointer": {},
-        }
-        
+        },
       },
 
       "&-label": {
@@ -61,13 +60,11 @@ module.exports = Pagination = () => ({
 
       "&-icon": {
         "@apply align-text-bottom leading-none flex items-center": {},
-        
 
-        '.material-icons-outlined': {
-          fontSize: '1.675em',
-        }
+        ".material-icons-outlined": {
+          fontSize: "1em",
+        },
       },
-
     },
 
     "&-ellipsis": {
