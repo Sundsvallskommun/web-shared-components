@@ -12,7 +12,7 @@ export default {
 
 const ongoingCaseLabels: any = [
   { label: 'Ärende', screenReaderOnly: false, sortable: true },
-  { label: 'id', screenReaderOnly: false, sortable: true },
+  { label: 'ID', screenReaderOnly: false, sortable: true },
   { label: 'Status', screenReaderOnly: false, sortable: true },
   { label: 'Ärendeknapp', screenReaderOnly: true, sortable: false },
 ];
@@ -48,12 +48,12 @@ const headers: ZebraTableHeader[] = ongoingCaseLabels.map((l:any, idx: number) =
 const rows: ZebraTableColumn[][] = ongoingCases.data.map((r:any, idx: number) => [
   {
     element: (
-      <Fragment key={`mr${idx}`}>
+      <div key={`mr${idx}`} className="w-80">
         <span className="inline lg:hidden">Ärendetyp: </span>
         <div>
           <strong>{r.caseType}</strong>
         </div>
-      </Fragment>
+      </div>
     ),
     isShown: true,
   },

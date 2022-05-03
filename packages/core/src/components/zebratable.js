@@ -49,7 +49,7 @@ module.exports = ZebraTable = () => ({
             },
 
             "&-td": {
-                "@apply empty:hidden py-sm lg:first-of-type:w-1/3 px-sm lg:px-0 first-of-type:pl-sm lg:first-of-type:pl-lg last-of-type:px-0 lg:last-of-type:pr-lg last-of-type:flex last-of-type:justify-center lg:last-of-type:justify-end block lg:table-cell even:bg-white odd:bg-gray-100 last-of-type:bg-transparent lg:even:bg-transparent lg:odd:bg-transparent": {},
+                "@apply empty:hidden py-sm px-sm lg:px-0 first-of-type:pl-sm lg:first-of-type:pl-lg last-of-type:px-0 lg:last-of-type:pr-lg last-of-type:flex last-of-type:justify-center lg:last-of-type:justify-end block lg:table-cell even:bg-white odd:bg-gray-100 last-of-type:bg-transparent lg:even:bg-transparent lg:odd:bg-transparent": {},
             },
         },
 
