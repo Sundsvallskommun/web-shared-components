@@ -10,33 +10,57 @@ export default {
   },
 };
 
-const handleChange = (page: number) => {
-  let pageNumber = 1;
-  return pageNumber += 1;
-}
+export const Template = ({ ...args }: any) => {
+  const [paginationPage, setPaginationPage] = useState<number>(1);
+  return (
+    <div>
+      <div>paginationPage: {paginationPage}</div>
+      <div>
+        <button
+          className="p-sm my-md border rounded-lg text-white bg-primary"
+          onClick={() => setPaginationPage(3)}
+        >
+          Go to page 3 from parent
+        </button>
+      </div>
+      <Pagination
+        {...args}
+        activePage={paginationPage}
+        changePage={setPaginationPage}
+      />
+    </div>
+  );
+};
 
-export const Template = ({ ...args }: any) => <Pagination {...args} handleChange={handleChange} />;
-
-Template.storyName = 'Komponent';
+Template.storyName = "Komponent";
 
 Template.argTypes = {
   pages: {
-    type: { name: 'string', required: true },
-    description: 'Sets total pages',
+    type: { name: "string", required: true },
+    description: "Sets total pages",
     table: {
-      defaultValue: { summary: 'false' },
+      defaultValue: { summary: "false" },
     },
-    control: 'number',
+    control: "number",
     defaultValue: 11,
   },
-  handleChange: {
-    type: { name: 'function', required: true },
-    description: 'Sets page number from parent',
+  activePage: {
+    type: { name: "string", required: true },
+    description: "Sets active page",
     table: {
-      defaultValue: { summary: 'false' },
+      defaultValue: { summary: "1" },
     },
-    control: 'function',
-    defaultValue: false,
+    control: "number",
+    defaultValue: 1,
+  },
+  changePage: {
+    type: { name: "function", required: true },
+    description: "Sends page number to parent",
+    table: {
+      defaultValue: { summary: "() => {}" },
+    },
+    control: "function",
+    defaultValue: () => {},
   },
   size: {
     type: { name: "string", required: false },
