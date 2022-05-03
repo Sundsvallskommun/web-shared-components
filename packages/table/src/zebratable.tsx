@@ -76,15 +76,9 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
                 return h.isShown ? (
                   <th
                     scope="col"
-                    // aria-label={h.element.props.children}
-                    // tabIndex={h.isColumnSortable ? 0 : -1}
                     key={`header${idx}`}
                     data-iscolumnsortable={h.isColumnSortable}
-                    className={cx(`zebratable-thead-th`)}
-
-                    // onKeyPress={(e) => {
-                    //   tableSortable && h.isColumnSortable && internalSortHandler(idx);
-                    // }}
+                    className="zebratable-thead-th"
                   >
                     <span aria-label={h.element.props.children} className={cx(`${h.screenReaderOnly ? `sr-only` : ``}`)}></span>
                     {h.isColumnSortable ?
