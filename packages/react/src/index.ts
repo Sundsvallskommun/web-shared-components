@@ -23,3 +23,5 @@ export * from "@sk-web-gui/divider";
 export * from "@sk-web-gui/user-menu";
 
 export * from "@sk-web-gui/tag";
+
+export * from "@sk-web-gui/pagination";
