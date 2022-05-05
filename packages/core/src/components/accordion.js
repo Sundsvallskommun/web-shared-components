@@ -19,9 +19,10 @@ module.exports = Accordion = () => ({
         },
 
         "&-toggle": {
-            "@apply flex text-left text-lg m-4 inline-block": {},
+            "@apply flex inline-block text-lg leading-lg text-left text-lg mx-lg my-md": {},
+            fontWeight: "bold",
             //"@apply focus-visible:shadow shadow-lg": {},
-            "&:focus-visible, &:focus": {
+            "&:focus-visible": {
                 boxShadow: "0 0 0 0.4rem #fff!important",
                 outline: "0",
                 //"@apply border-4": {},

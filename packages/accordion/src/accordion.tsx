@@ -45,7 +45,6 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
         data-color={color ? color : undefined}
         //className={cx(classes, className)}
         className={cx(
-          'accordion',
           accordionOpen ? `accordion-is-open` : undefined,
           classes,
         )}
