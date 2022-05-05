@@ -55,13 +55,12 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
                 <div className="block lg:hidden">
                   <div className="font-bold">
                     <span
-                      className={cx(`ml-auto mr-2 align-top material-icons`)}
-                      style={{ color: `rgba(${colors.vattjom.dark})` }}
+                      className={cx(`ml-auto mr-2 align-top text-primary material-icons`)}
                       aria-hidden="true"
                     >
                       {open ? "close" : "menu"}
                     </span>
-                    <span className="leading-10">Meny</span>
+                    <span className="leading-10 text-lg font-semibold">Meny</span>
                   </div>
                 </div>
                 <div className="hidden lg:block text-left">
