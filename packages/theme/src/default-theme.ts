@@ -7,16 +7,20 @@ export const lightScheme: ColorScheme = {
   type: "light",
   colors: {
     bg: {
-      base: '#ffffff',
+      base: "#ffffff",
       fill: colors.background.one,
     },
     text: {
-      foreground: '#000000',
-      muted: '#E4E4E5',
+      foreground: "#000000",
+      muted: "#E4E4E5",
     },
     primary: colors.vattjom,
     secondary: colors.gronsta,
     neutral: colors.svartvik,
+    success: colors.gronsta,
+    info: colors.vattjom,
+    warning: colors.warning,
+    error: colors.error,
   },
 };
 
@@ -36,6 +40,10 @@ export const darkScheme: ColorScheme = {
     primary: colors.vattjom,
     secondary: colors.gronsta,
     neutral: colors.svartvik,
+    success: colors.gronsta,
+    info: colors.vattjom,
+    warning: colors.warning,
+    error: colors.error,
   },
 };
 

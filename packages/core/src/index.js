@@ -30,6 +30,9 @@ const Divider = require("./components/divider");
 
 const UserMenu = require("./components/user-menu");
 
+const Tag = require("./components/tag");
+const Pagination = require("./components/pagination");
+
 const components = [
   Alert,
   Breadcrumb,
@@ -56,6 +59,9 @@ const components = [
   Divider,
 
   UserMenu,
+
+  Tag,
+  Pagination,
 ];
 
 const defaultColors = ["primary", "secondary"];
@@ -146,6 +152,7 @@ module.exports = plugin.withOptions(
             base: "var(--vc-cursor)",
           },
           spacing: {
+            xs: "4px",
             sm: "8px",
             md: "16px",
             lg: "24px",

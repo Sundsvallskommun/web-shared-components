@@ -149,10 +149,10 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
                   </div>
                 </div>
                 <div className="hidden md:block text-left">
-                  <div className="font-bold">
+                  <div className="font-bold flex flex-between">
                     <span>{menuTitle}</span>
                     <span
-                      className="ml-auto mb-sm align-top material-icons"
+                      className="ml-auto align-top material-icons"
                       aria-hidden="true"
                     >
                       {open ? "expand_less" : "expand_more"}

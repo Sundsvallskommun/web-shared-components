@@ -93,7 +93,9 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref)
     <label
       className={cx(
         "inline-flex align-top items-center",
-        disabled && "cursor-not-allowed"
+        disabled && "cursor-not-allowed",
+        radioLabelClasses,
+        disabled ? "opacity-40" : "opacity-100"
       )}
     >
       <input
@@ -119,16 +121,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref)
         )}
         {...rest}
       />
-      {children && (
-        <span
-          className={cx(
-            radioLabelClasses,
-            disabled ? "opacity-40" : "opacity-100"
-          )}
-        >
-          {children}
-        </span>
-      )}
+      {children}
     </label>
   );
 });
