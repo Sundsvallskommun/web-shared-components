@@ -13,6 +13,8 @@ interface IAccordionProps extends DefaultProps {
   disabled?: boolean;
   /* Set the accordion color */
   color?: string;
+  /* the element or component to use in place of `h2` */
+  as?: React.ElementType;
   /* React node */
   children?: React.ReactNode;
 }
@@ -30,6 +32,7 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       children,
       className,
       color,
+      as: Comp = 'h2',
       ...rest
     } = props;
 
@@ -47,12 +50,13 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
         className={cx(
           accordionOpen ? `accordion-is-open` : undefined,
           classes,
+          className,
         )}
         {...rest}
       >
         <div className="accordion-header">
           <button className="accordion-toggle" aria-expanded={accordionOpen} onClick={() => setAccordionOpen(!accordionOpen)}>
-            <span>{accordionTitle}</span>
+            <Comp className="text-lg leading-lg">{accordionTitle}</Comp>
             <span className="ml-auto material-icons" aria-hidden="true">{ accordionOpen ? 'remove' : 'add'}</span>
           </button>
         </div>
