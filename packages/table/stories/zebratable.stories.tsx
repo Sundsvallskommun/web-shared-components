@@ -118,10 +118,46 @@ rows={[
 ]}
 tableSortable={true}
 sortHandler={()=> console.log('sort')}
+{...args}
 />;
 
 Template.argTypes = {
-
+  captionTitle: {
+    type: { name: "string", required: false },
+    description: "Sets caption title for screen readers",
+    table: {
+      defaultValue: { summary: "" },
+    },
+    control: "text",
+    defaultValue: "",
+  },
+  captionBody: {
+    type: { name: "string", required: false },
+    description: "Sets caption body for screen readers",
+    table: {
+      defaultValue: { summary: "" },
+    },
+    control: "text",
+    defaultValue: "",
+  },
+  summary: {
+    type: { name: "string", required: false },
+    description: "Sets summary attribute on table for screen readers",
+    table: {
+      defaultValue: { summary: "" },
+    },
+    control: "text",
+    defaultValue: "",
+  },
+  tableSortable: {
+    type: { name: "string", required: false },
+    description: "Sets table to be sortable",
+    table: {
+      defaultValue: { summary: "true" },
+    },
+    control: "boolean",
+    defaultValue: "true",
+  }
 };
 
 Template.story = { name: 'ZebraTable' };
