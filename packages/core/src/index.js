@@ -22,6 +22,7 @@ const Button = require("./components/button");
 const Accordion = require("./components/accordion");
 const Card = require("./components/card");
 const Table = require("./components/table");
+const ZebraTable = require("./components/zebratable");
 
 const Modal = require("./components/modal");
 const CookieConsent = require("./components/cookie-consent");
@@ -49,6 +50,7 @@ const components = [
   Switch,
 
   Table,
+  ZebraTable,
   CookieConsent,
   Modal,
 
