@@ -38,7 +38,8 @@
   },
   "dependencies": {
     "@sk-web-gui/theme": "0.1.1",
-    "@sk-web-gui/utils": "0.1.2"
+    "@sk-web-gui/utils": "0.1.2",
+    "@sk-web-gui/pagination": "0.1.1"
   },
   "peerDependencies": {
     "react": ">=16.8.6"

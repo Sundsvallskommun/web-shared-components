@@ -2,6 +2,7 @@ import { cx, __DEV__ } from "@sk-web-gui/utils";
 import { useEffect, useState } from "react";
 import * as React from "react";
 import { useZebraTableClass } from "./styles";
+import { Pagination } from "@sk-web-gui/pagination";
 
 export interface ZebraTableHeader {
   element: JSX.Element;
@@ -20,6 +21,9 @@ export interface IZebraTableProps {
   tableSortable?: boolean;
   sortHandler?: (idx: number, sortMode: boolean) => void;
   pageSize?: number;
+  captionTitle?: string;
+  captionBody?: string;
+  summary?: string;
 }
 
 export type ZebraTableProps = IZebraTableProps &
@@ -33,6 +37,9 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>(
       tableSortable = true,
       sortHandler = () => {},
       pageSize = 5,
+      captionTitle,
+      captionBody,
+      summary,
       ...rest
     } = props;
 
@@ -75,15 +82,23 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>(
             className={zebraTableClasses}
             aria-label={`${rows.length} rader på ${pages} sidor`}
             tabIndex={0}
+            summary={summary ?? summary}
           >
-            <caption className="sr-only">
-              Pågående Ärende
-              <br />
-              <span>
-                Kolumn ett har ärendenamnet och sista kolumnen har en knapp för
-                att gå till ärendet.
-              </span>
-            </caption>
+            {captionTitle && 
+              <caption className="sr-only">
+                {captionTitle}
+                
+                {captionBody &&
+                  <>
+                    <br />
+                    <span>
+                      {captionBody}
+                    </span>
+                  </>
+                }
+              </caption>
+            }
+            
             <thead className="zebratable-thead">
               <tr className={cx(`zebratable-thead-tr`)}>
                 {headers.map((h, idx) => {
@@ -151,8 +166,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>(
         )}
         {pages > 1 && (
           <div className="zebratable-paginationwrapper">
-            {/* <CustomPagination pages={pages} handleChange={(page: number) => setCurrentPage(page)} /> */}
-            {/* <Pagination count={10} /> */}
+            <Pagination pages={pages} activePage={currentPage} changePage={(page: number) => setCurrentPage(page)} />
           </div>
         )}
       </>
