@@ -1,9 +1,5 @@
 module.exports = Accordion = () => ({
-
     ".accordion": {
-        //"@apply": {},
-        //padding: "2.4rem",
-        
         "@apply border border-gray-stroke": {},
 
         "&-header": {
@@ -30,13 +26,17 @@ module.exports = Accordion = () => ({
         },
 
         "&-body": {
-            "@apply transition-all h-0 hidden overflow-hidden": {},
-            transitionProperty: "height",
+            "@apply h-0 overflow-hidden m-lg": {},
+            transitionProperty: "height, padding, margin",
             transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
-            transitionDuration: "150m",
+            transitionDuration: "180ms",
+
+            "&[aria-hidden=\"true\"], &[data-hidden=\"true\"]": {
+                "@apply my-0": {},
+            },
 
             "&[aria-hidden=\"false\"], &[data-hidden=\"false\"]": {
-                "@apply block h-auto p-lg": {},
+                "@apply block h-auto": {},
             },
         },
     },
