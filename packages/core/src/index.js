@@ -109,12 +109,15 @@ module.exports = plugin.withOptions(
           "h1,h2,h3,h4,h5,h6": {
             "@apply font-bold": {},
           },
-          h1: { "@apply text-5xl leading-5xl": {} },
-          h2: { "@apply text-4xl leading-4xl": {} },
-          h3: { "@apply text-3xl leading-3xl": {} },
-          h4: { "@apply text-2xl leading-2xl": {} },
-          h5: { "@apply text-xl leading-xl": {} },
-          h6: { "@apply text-lg leading-lg": {} },
+          small: {
+            fontSize: "1.4rem",
+          },
+          h1: { "@apply text-3xl leading-3xl": {} },
+          h2: { "@apply text-2xl leading-2xl": {} },
+          h3: { "@apply text-xl leading-xl": {} },
+          h4: { "@apply text-lg leading-lg": {} },
+          h5: { "@apply text-base leading-base": {} },
+          h6: { "@apply text-sm leading-sm": {} },
           p: { "@apply my-4": {} },
         });
       }
@@ -141,6 +144,7 @@ module.exports = plugin.withOptions(
             gray: {
               DEFAULT: "#4b4b4b",
               stroke: "#939393",
+              middle: "#ECECEC",
               light: "#F4F4F4",
               lighter: "#F9F9F9",
             },
