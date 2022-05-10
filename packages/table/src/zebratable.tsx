@@ -106,44 +106,51 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>(
                     <th
                       scope="col"
                       key={`header${idx}`}
+                      aria-sort={`${sortIndex == idx ? (sortModeAscending ? "descending" : "ascending") : 'none'}`}
                       data-iscolumnsortable={h.isColumnSortable}
                       className="zebratable-thead-th"
                     >
-                      <span
-                        aria-label={h.element.props.children}
-                        className={cx(`${h.screenReaderOnly ? `sr-only` : ``}`)}
-                      ></span>
+                      
                       {h.isColumnSortable ? (
-                        <button
-                          className="zebratable-sortbutton"
-                          aria-label={`Sortera efter ${
-                            h.element.props.children
-                          } i ${
-                            sortModeAscending ? "fallande" : "stigande"
-                          } ordning`}
-                          onClick={(e) => {
-                            tableSortable &&
+                        <>
+                          <span className="sr-only" aria-label={h.element.props.children}>
+                            {h.element.props.children}
+                          </span>
+                          <button
+                            className="zebratable-sortbutton"
+                            aria-label={`Sortera efter ${
+                              h.element.props.children
+                            } i ${
+                              sortModeAscending ? "fallande" : "stigande"
+                            } ordning`}
+                            onClick={(e) => {
+                              tableSortable &&
+                                h.isColumnSortable &&
+                                internalSortHandler(idx);
+                            }}
+                          >
+                            {h.element}
+                            {tableSortable &&
                               h.isColumnSortable &&
-                              internalSortHandler(idx);
-                          }}
-                        >
-                          {h.element}
-                          {tableSortable &&
-                            h.isColumnSortable &&
-                            (idx === sortIndex ? (
-                              <span
-                                data-sortmodeascending={sortModeAscending}
-                                className="zebratable-icon-sort material-icons-outlined"
-                              >
-                                chevron_right
-                              </span>
-                            ) : (
-                              <span className="zebratable-icon-more material-icons-outlined">
-                                unfold_more
-                              </span>
-                            ))}
-                        </button>
-                      ) : null}
+                              (idx === sortIndex ? (
+                                <span
+                                  data-sortmodeascending={sortModeAscending}
+                                  className="zebratable-icon-sort material-icons-outlined"
+                                >
+                                  chevron_right
+                                </span>
+                              ) : (
+                                <span className="zebratable-icon-more material-icons-outlined">
+                                  unfold_more
+                                </span>
+                              ))}
+                          </button>
+                        </>
+                      ) : 
+                        <span
+                        className={cx(`${h.screenReaderOnly ? `sr-only` : ``}`)}
+                      >{h.element.props.children}</span>
+                      }
                     </th>
                   ) : null;
                 })}

@@ -111,6 +111,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
           data-color={color ? color : undefined}
         >
           <div className={cx(switchBoxClasses)} />
+          <span className={`sr-only bg-white text-black`}>{ariaLabel}</span>
         </div>
       </label>
     );
