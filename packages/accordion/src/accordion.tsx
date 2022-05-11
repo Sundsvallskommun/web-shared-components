@@ -57,7 +57,7 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       >
         <div className="accordion-header">
           <button type="button" className="accordion-toggle" aria-expanded={accordionOpen} onClick={() => setAccordionOpen(!accordionOpen)}>
-            <Comp className="text-lg leading-lg">{accordionTitle}</Comp>
+            <Comp className="text-base leading-base md:text-lg md:leading-lg">{accordionTitle}</Comp>
             <span className="ml-auto material-icons" aria-hidden="true">{ accordionOpen ? 'remove' : 'add'}</span>
           </button>
         </div>
