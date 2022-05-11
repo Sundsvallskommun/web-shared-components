@@ -2,6 +2,7 @@ import { Spinner } from "@sk-web-gui/spinner";
 import { DefaultProps } from "@sk-web-gui/theme";
 import { cx, __DEV__ } from "@sk-web-gui/utils";
 import * as React from "react";
+import { useRef } from "react";
 
 import { useAccordionClass } from "./styles";
 
@@ -13,6 +14,8 @@ interface IAccordionProps extends DefaultProps {
   disabled?: boolean;
   /* Set the accordion color */
   color?: string;
+  /* the element or component to use in place of `h2` */
+  as?: React.ElementType;
   /* React node */
   children?: React.ReactNode;
 }
@@ -30,6 +33,7 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       children,
       className,
       color,
+      as: Comp = 'h2',
       ...rest
     } = props;
 
@@ -39,25 +43,29 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
     });
 
     const [accordionOpen, setAccordionOpen] = React.useState(initalOpen ?? false);
+    const contentEl = useRef<HTMLDivElement>(null);
 
     return (
       <div
         data-color={color ? color : undefined}
-        //className={cx(classes, className)}
         className={cx(
-          'accordion',
           accordionOpen ? `accordion-is-open` : undefined,
           classes,
+          className,
         )}
         {...rest}
       >
         <div className="accordion-header">
-          <button className="accordion-toggle" aria-expanded={accordionOpen} onClick={() => setAccordionOpen(!accordionOpen)}>
-            <span>{accordionTitle}</span>
+          <button type="button" className="accordion-toggle" aria-expanded={accordionOpen} onClick={() => setAccordionOpen(!accordionOpen)}>
+            <Comp className="text-base leading-base md:text-lg md:leading-lg">{accordionTitle}</Comp>
             <span className="ml-auto material-icons" aria-hidden="true">{ accordionOpen ? 'remove' : 'add'}</span>
           </button>
         </div>
-        <div className="accordion-body" aria-hidden={!accordionOpen}>
+        <div className="accordion-body" aria-hidden={!accordionOpen} ref={contentEl} style={
+          (accordionOpen)
+            ? { height: contentEl?.current?.scrollHeight }
+            : { height: "0" }
+        }>
           {children}
         </div>
       </div>

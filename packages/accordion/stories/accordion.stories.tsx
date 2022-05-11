@@ -11,7 +11,8 @@ export default {
 } as Meta;
 
 export const Template = (args: AccordionProps) => <Accordion {...args}>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero placeat eveniet quas nulla saepe minus recusandae quis obcaecati necessitatibus. Quidem.</p>
+  <h4>Lorem Ipsum</h4>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero placeat eveniet quas nulla saepe minus recusandae quis obcaecati necessitatibus. Quidem.</p>
   </Accordion>;
 
 Template.argTypes = {
