@@ -6,6 +6,18 @@ module.exports = Link = () => ({
 
     "@apply hover:text-primary-active": {},
 
+    "&[target='_blank']": {
+      "&::after": {
+        fontFamily: "Material Icons Outlined",
+        display: "inline-block",
+        position: "relative",
+        content: "'launch'",
+        lineHeight: "1",
+        marginLeft: ".25em",
+        verticalAlign: "text-top",
+      },
+    },
+
     "&-disabled": {
       "@apply disabled:opacity-60 disabled:cursor-not-allowed disabled:no-underline": {},
     },
