@@ -95,7 +95,9 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
                           <Menu.Item
                             as="div"
                             key={`group${idx}`}
-                            disabled={true}
+                            disabled
+                            aria-hidden={true}
+                            aria-label={g.label}
                             className="flex align-middle mt-md"
                           >
                             <div
