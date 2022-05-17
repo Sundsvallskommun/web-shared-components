@@ -2768,6 +2768,14 @@
     "@react-spring/shared" "~9.4.4"
     "@react-spring/types" "~9.4.4"
 
+"@sk-web-gui/theme@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@sk-web-gui/theme/-/theme-0.1.1.tgz#d17cbf8ec2d1c85d99855d86e7dafc06b353c4e2"
+  integrity sha512-XQHnHHuPk0jR/sEGR5EREke5qCfv5zXXBshbkm8y8Wj/6rq61jyIueBRmo16ve5GfabHC64+z3kp4BAticsG7A==
+  dependencies:
+    "@sk-web-gui/utils" "0.1.2"
+    lodash.set "^4.3.2"
+
 "@storybook/addon-a11y@^6.4.13":
   version "6.4.19"
   resolved "https://registry.npmjs.org/@storybook/addon-a11y/-/addon-a11y-6.4.19.tgz"

@@ -7,7 +7,7 @@ export interface MenuItemGroup {
   showLabel: boolean;
   showOnDesktop: boolean;
   showOnMobile: boolean;
-  elements: JSX.Element[];
+  elements: { label: string; element: (active: boolean) => JSX.Element }[];
 }
 
 interface IUserMenuProps extends DefaultProps {
@@ -109,12 +109,17 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
                           </Menu.Item>
                         ),
                         ...g.elements.map((element, idx) => (
-                          <Menu.Item key={`icon${idx}`}>
+                          <Menu.Item
+                            key={`icon${idx}`}
+                            aria-label={element.label}
+                          >
                             {({ active }) =>
                               active ? (
-                                element
+                                element.element
                               ) : (
-                                <div className={`inactive`}>{element}</div>
+                                <div className={`inactive`}>
+                                  {element.element}
+                                </div>
                               )
                             }
                           </Menu.Item>
@@ -173,42 +178,191 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
                 {/* <Menu.Item> */}
                 <div className="bg-white border-t-2 pb-sm -mt-0 mx-md"></div>
                 {/* </Menu.Item> */}
-                {menuGroups.map((g: MenuItemGroup, idx: number) => {
+                {/* {menuGroups.map((g: MenuItemGroup, idx: number) => {
                   return g.showOnDesktop
                     ? [
                         g.showLabel && (
-                          // <Menu.Item
-                          //   disabled
-                          //   as="div"
-                          //   key={`group${idx}`}
-                          //   className="flex align-middle mt-md mb-xs"
-                          // >
-                          //   <div
-                          //     className={`inline-block pl-md pr-md py-sm text-sm font-semibold uppercase small whitespace-nowrap`}
-                          //   >
-                          //     {g.label}
-                          //   </div>
-                          // </Menu.Item>
-                          <div
-                            className={`inline-block mt-md mb-xs pl-md pr-md py-sm text-sm font-semibold uppercase small whitespace-nowrap`}
+                          <Menu.Item
+                            disabled
+                            aria-hidden={true}
+                            aria-label={g.label}
+                            as="div"
+                            key={`group${idx}`}
+                            className="flex align-middle mt-md mb-xs"
                           >
-                            {g.label}
-                          </div>
+                            <div
+                              className={`inline-block pl-md pr-md py-sm text-sm font-semibold uppercase small whitespace-nowrap`}
+                            >
+                              {g.label}
+                            </div>
+                          </Menu.Item>
+                          // <div
+                          //   className={`inline-block mt-md mb-xs pl-md pr-md py-sm text-sm font-semibold uppercase small whitespace-nowrap`}
+                          // >
+                          //   {g.label}
+                          // </div>
                         ),
                         ...g.elements.map((element, idx) => (
-                          <Menu.Item key={`icon${idx}`}>
+                          <Menu.Item
+                            key={`icon${idx}`}
+                            aria-label="Etikett här"
+                          >
                             {({ active }) =>
                               active ? (
-                                element
+                                <div>{element.element}</div>
                               ) : (
-                                <div className={`inactive`}>{element}</div>
+                                <div className={`inactive`}>
+                                  {element.element}
+                                </div>
                               )
                             }
                           </Menu.Item>
                         )),
                       ]
                     : [];
+                })} */}
+                {menuGroups.map((g: MenuItemGroup, idx: number) => {
+                  return g.showOnDesktop
+                    ? [
+                        g.showLabel && (
+                          <Menu.Item
+                            disabled
+                            aria-hidden={true}
+                            aria-label={g.label}
+                            as="div"
+                            key={`group${idx}`}
+                            className="flex align-middle mt-md mb-xs"
+                          >
+                            <div
+                              className={`inline-block pl-md pr-md py-sm text-sm font-semibold uppercase small whitespace-nowrap`}
+                            >
+                              {g.label}
+                            </div>
+                          </Menu.Item>
+                          // <div
+                          //   className={`inline-block mt-md mb-xs pl-md pr-md py-sm text-sm font-semibold uppercase small whitespace-nowrap`}
+                          // >
+                          //   {g.label}
+                          // </div>
+                        ),
+                        ...g.elements.map((element, idx) => (
+                          <Menu.Item
+                            key={`icon${idx}`}
+                            aria-label={element.label}
+                          >
+                            {({ active }) => element.element(active)}
+                          </Menu.Item>
+                        )),
+                      ]
+                    : [];
                 })}
+                {/* <Menu.Item
+                  disabled
+                  aria-disabled={true}
+                  aria-label={"Hård aria-rubrik 1"}
+                  as="div"
+                  className="flex align-middle mt-md mb-xs"
+                >
+                  <div
+                    className={`inline-block pl-md pr-md py-sm text-sm font-semibold uppercase small whitespace-nowrap`}
+                  >
+                    Hård rubrik 1
+                  </div>
+                </Menu.Item>
+
+                <Menu.Item>
+                  {({ active }) => (
+                    <a
+                      href="https://www.sundsvall.se/"
+                      className={`${
+                        active
+                          ? "bg-purple-500 text-white"
+                          : "bg-white text-gray-900"
+                      } usermenu-item block px-md py-sm w-full`}
+                    >
+                      Menylänk 1
+                    </a>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <a
+                      href="https://www.sundsvall.se/"
+                      className={`${
+                        active
+                          ? "bg-purple-500 text-white"
+                          : "bg-white text-gray-900"
+                      } usermenu-item block px-md py-sm w-full`}
+                    >
+                      Menylänk 2
+                    </a>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className={`${
+                        active ? "bg-purple-500 text-white" : "text-gray-900"
+                      } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                    >
+                      Duplicate
+                    </button>
+                  )}
+                </Menu.Item>
+
+                <Menu.Item
+                  disabled
+                  aria-hidden={true}
+                  aria-label={"Hård aria-rubrik 1"}
+                  as="div"
+                  className="flex align-middle mt-md mb-xs"
+                >
+                  <div
+                    className={`inline-block pl-md pr-md py-sm text-sm font-semibold uppercase small whitespace-nowrap`}
+                  >
+                    Hård rubrik 2
+                  </div>
+                </Menu.Item>
+
+                <Menu.Item>
+                  {({ active }) => (
+                    <a
+                      href="https://www.sundsvall.se/"
+                      className={`${
+                        active
+                          ? "bg-purple-500 text-white"
+                          : "bg-white text-gray-900"
+                      } usermenu-item block px-md py-sm w-full`}
+                    >
+                      Menylänk 2:1
+                    </a>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <a
+                      href="https://www.sundsvall.se/"
+                      className={`${
+                        active
+                          ? "bg-purple-500 text-white"
+                          : "bg-white text-gray-900"
+                      } usermenu-item block px-md py-sm w-full`}
+                    >
+                      Menylänk 2:2
+                    </a>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className={`${
+                        active ? "bg-purple-500 text-white" : "text-gray-900"
+                      } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                    >
+                      Duplicate
+                    </button>
+                  )}
+                </Menu.Item> */}
               </Menu.Items>
             </div>
           )}
