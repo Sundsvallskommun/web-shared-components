@@ -55,12 +55,16 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
                 <div className="block lg:hidden">
                   <div className="font-bold">
                     <span
-                      className={cx(`ml-auto mr-2 align-top text-primary material-icons`)}
+                      className={cx(
+                        `ml-auto mr-2 align-top text-primary material-icons`
+                      )}
                       aria-hidden="true"
                     >
                       {open ? "close" : "menu"}
                     </span>
-                    <span className="leading-10 text-lg font-semibold">Meny</span>
+                    <span className="leading-10 text-lg font-semibold">
+                      Meny
+                    </span>
                   </div>
                 </div>
                 <div className="hidden lg:block text-left">
@@ -166,25 +170,30 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
                   open ? `border-gray-300 shadow-t-0 shadow-lg` : `border-white`
                 )}
               >
-                <Menu.Item>
-                  <div className="bg-white border-t-2 pb-sm -mt-0 mx-md"></div>
-                </Menu.Item>
+                {/* <Menu.Item> */}
+                <div className="bg-white border-t-2 pb-sm -mt-0 mx-md"></div>
+                {/* </Menu.Item> */}
                 {menuGroups.map((g: MenuItemGroup, idx: number) => {
                   return g.showOnDesktop
                     ? [
                         g.showLabel && (
-                          <Menu.Item
-                            disabled
-                            as="div"
-                            key={`group${idx}`}
-                            className="flex align-middle mt-md mb-xs"
+                          // <Menu.Item
+                          //   disabled
+                          //   as="div"
+                          //   key={`group${idx}`}
+                          //   className="flex align-middle mt-md mb-xs"
+                          // >
+                          //   <div
+                          //     className={`inline-block pl-md pr-md py-sm text-sm font-semibold uppercase small whitespace-nowrap`}
+                          //   >
+                          //     {g.label}
+                          //   </div>
+                          // </Menu.Item>
+                          <div
+                            className={`inline-block mt-md mb-xs pl-md pr-md py-sm text-sm font-semibold uppercase small whitespace-nowrap`}
                           >
-                            <div
-                              className={`inline-block pl-md pr-md py-sm text-sm font-semibold uppercase small whitespace-nowrap`}
-                            >
-                              {g.label}
-                            </div>
-                          </Menu.Item>
+                            {g.label}
+                          </div>
                         ),
                         ...g.elements.map((element, idx) => (
                           <Menu.Item key={`icon${idx}`}>
