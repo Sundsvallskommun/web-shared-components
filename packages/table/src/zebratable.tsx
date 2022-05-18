@@ -46,7 +46,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>(
     const zebraTableClasses = useZebraTableClass();
 
     const [managedRows, setManagedRows] = useState(rows);
-    const [sortModeAscending, setSortModeAscending] = useState(false);
+    const [sortModeAscending, setSortModeAscending] = useState(true);
     const [sortIndex, setSortIndex] = useState<number>(0);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [paginationPage, setPaginationPage] = useState<number>(1);
