@@ -24,27 +24,50 @@ const menuGroups: MenuItemGroup[] = [
     showOnDesktop: false,
     showOnMobile: true,
     elements: [
-      <Link href="/pagaende" className="usermenu-item block px-md py-sm w-full">
-        Pågående
-      </Link>,
-      <Link
-        href="/beslutade"
-        className="usermenu-item block px-md py-sm w-full"
-      >
-        Beslutade
-      </Link>,
-      <Link
-        href="/handlingsplan"
-        className="usermenu-item block px-md py-sm w-full"
-      >
-        Handlingsplan
-      </Link>,
-      <Link
-        href="/foretagsuppgifter"
-        className="usermenu-item block px-md py-sm w-full"
-      >
-        Företagsuppgifter
-      </Link>,
+      {
+        label: "Pågående",
+        element: (active: boolean) => (
+          <Link
+            href="/pagaende"
+            className={`usermenu-item ${active ? "active" : ""}`}
+          >
+            Pågående
+          </Link>
+        ),
+      },
+      {
+        label: "Beslutade",
+        element: (active: boolean) => (
+          <Link
+            href="/beslutade"
+            className={`usermenu-item ${active ? "active" : ""}`}
+          >
+            Beslutade
+          </Link>
+        ),
+      },
+      {
+        label: "Handlingsplan",
+        element: (active: boolean) => (
+          <Link
+            href="/handlingsplan"
+            className={`usermenu-item ${active ? "active" : ""}`}
+          >
+            Handlingsplan
+          </Link>
+        ),
+      },
+      {
+        label: "Företagsuppgifter",
+        element: (active: boolean) => (
+          <Link
+            href="/foretagsuppgifter"
+            className={`usermenu-item ${active ? "active" : ""}`}
+          >
+            Företagsuppgifter
+          </Link>
+        ),
+      },
     ],
   },
   {
@@ -53,19 +76,29 @@ const menuGroups: MenuItemGroup[] = [
     showOnDesktop: true,
     showOnMobile: true,
     elements: [
-      <a
-        href="https://www.sundsvall.se/"
-        className="usermenu-item block px-md py-sm w-full"
-      >
-        E-tjänster
-      </a>,
+      {
+        label: "E-tjänster",
+        element: (active: boolean) => (
+          <a
+            href="https://www.sundsvall.se/"
+            className={`usermenu-item ${active ? "active" : ""}`}
+          >
+            E-tjänster
+          </a>
+        ),
+      },
 
-      <a
-        href="https://www.sundsvall.se/"
-        className="usermenu-item block px-md py-sm w-full"
-      >
-        Företagscenter Sundsvall
-      </a>,
+      {
+        label: "Företagscenter Sundsvall",
+        element: (active: boolean) => (
+          <a
+            href="https://www.sundsvall.se/"
+            className={`usermenu-item ${active ? "active" : ""}`}
+          >
+            Företagscenter Sundsvall
+          </a>
+        ),
+      },
     ],
   },
   {
@@ -74,60 +107,86 @@ const menuGroups: MenuItemGroup[] = [
     showOnDesktop: true,
     showOnMobile: true,
     elements: [
-      <Link
-        href="/myaccount"
-        className="usermenu-item block px-md py-sm w-full"
-      >
-        <span
-          className="material-icons-outlined align-middle mr-sm"
-          aria-hidden="true"
-        >
-          account_circle
-        </span>
+      {
+        label: "Mina uppgifter",
+        element: (active: boolean) => (
+          <Link
+            href="/myaccount"
+            className={`usermenu-item ${active ? "active" : ""}`}
+          >
+            <span
+              className="material-icons-outlined align-middle mr-sm"
+              aria-hidden="true"
+            >
+              account_circle
+            </span>
 
-        <span className="inline" aria-hidden="true">
-          Mina uppgifter
-        </span>
-      </Link>,
-      <Link
-        href="/myaccount"
-        className="usermenu-item block px-md py-sm w-full"
-      >
-        <span
-          className="material-icons-outlined align-middle mr-sm"
-          aria-hidden="true"
-        >
-          settings
-        </span>
+            <span className="inline" aria-hidden="true">
+              Mina uppgifter
+            </span>
+          </Link>
+        ),
+      },
+      {
+        label: "Inställningar som har en riktigt lång text",
+        element: (active: boolean) => (
+          <Link
+            href="/myaccount"
+            className={`usermenu-item ${active ? "active" : ""}`}
+          >
+            <span
+              className="material-icons-outlined align-middle mr-sm"
+              aria-hidden="true"
+            >
+              settings
+            </span>
 
-        <span className="inline" aria-hidden="true">
-          Inställningar som har en riktigt lång text
-        </span>
-      </Link>,
-      <Link href="/messages" className="usermenu-item block px-md py-sm w-full">
-        <span
-          className="material-icons-outlined align-middle mr-sm"
-          aria-hidden="true"
-        >
-          email
-        </span>
+            <span className="inline" aria-hidden="true">
+              Inställningar som har en riktigt lång text
+            </span>
+          </Link>
+        ),
+      },
+      {
+        label: "Meddelanden",
+        element: (active: boolean) => (
+          <Link
+            href="/messages"
+            className={`usermenu-item ${active ? "active" : ""}`}
+          >
+            <span
+              className="material-icons-outlined align-middle mr-sm"
+              aria-hidden="true"
+            >
+              email
+            </span>
 
-        <span className="inline" aria-hidden="true">
-          Meddelanden
-        </span>
-      </Link>,
-      <Link href="/logout" className="usermenu-item block px-md py-sm w-full">
-        <span
-          className="material-icons-outlined align-middle mr-sm"
-          aria-hidden="true"
-        >
-          logout
-        </span>
+            <span className="inline" aria-hidden="true">
+              Meddelanden
+            </span>
+          </Link>
+        ),
+      },
+      {
+        label: "Logga ut",
+        element: (active: boolean) => (
+          <Link
+            href="/logout"
+            className={`usermenu-item ${active ? "active" : ""}`}
+          >
+            <span
+              className="material-icons-outlined align-middle mr-sm"
+              aria-hidden="true"
+            >
+              logout
+            </span>
 
-        <span className="inline" aria-hidden="true">
-          Logga ut
-        </span>
-      </Link>,
+            <span className="inline" aria-hidden="true">
+              Logga ut
+            </span>
+          </Link>
+        ),
+      },
     ],
   },
 ];

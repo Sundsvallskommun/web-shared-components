@@ -9,31 +9,14 @@ module.exports = UserMenu = (colors) => ({
     },
 
     "&-header": {
-      // "@apply flex flex-col text-left m-0 px-0 py-sm": {},
       '[aria-expanded="true"] &': {
         "@apply bg-hover": {},
       },
     },
-    "&-body": {
-      // "@apply p-0 m-0 py-sm bg-white": {},
-    },
     "&-item": {
-      "&.link": {
-        "@apply text-white no-underline": {},
-      },
-      "@apply text-white cursor-pointer bg-hover": {
-        a: {
-          "@apply text-white px-md py-sm w-full": {},
-        },
-        "a.link": {
-          "@apply text-white px-md py-sm w-full": {},
-        },
-      },
-    },
-    ".inactive > &-item": {
-      "@apply bg-white text-black no-underline": {},
-      "a.link": {
-        "@apply text-black no-underline": {},
+      "@apply block px-lg py-md lg:px-md lg:py-sm w-full cursor-pointer text-black no-underline": {},
+      "&.active": {
+        "@apply bg-hover text-white no-underline": {},
       },
     },
   },
