@@ -18,22 +18,29 @@ module.exports = ZebraTable = () => ({
             },
         },
 
-        "&-icon": {
-            "&-sort": {
-                "@apply ml-2 text-black transform rotate-90": {},
-    
-                "&[data-sortmodeascending='false']": {
-                    "@apply -rotate-90": {},
-                },
-            },
-
-            "&-more": {
-                "@apply pl-sm text-gray-300": {},
-            },
-        },
-
         "&-sortbutton": {
             "@apply flex items-center": {},
+
+            "&-icon": {
+                "@apply inline-flex pl-sm": {},
+    
+    
+                "&-sort": {
+                    "@apply text-black transform": {},
+        
+                    "&[data-sortmodeascending='true']": {
+                        "@apply -rotate-90": {},
+                    },
+                    
+                    "&[data-sortmodeascending='false']": {
+                        "@apply rotate-90": {},
+                    },
+                },
+    
+                "&-more": {
+                    "@apply text-gray-300": {},
+                },
+            },
         },
 
         ".material-icons-outlined": {

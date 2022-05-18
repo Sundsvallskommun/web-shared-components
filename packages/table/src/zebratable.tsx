@@ -106,7 +106,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>(
                     <th
                       scope="col"
                       key={`header${idx}`}
-                      aria-sort={`${sortIndex == idx ? (sortModeAscending ? "descending" : "ascending") : 'none'}`}
+                      aria-sort={`${sortIndex == idx ? (sortModeAscending ? "ascending" : "descending") : 'none'}`}
                       data-iscolumnsortable={h.isColumnSortable}
                       className="zebratable-thead-th"
                     >
@@ -121,7 +121,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>(
                             aria-label={`Sortera efter ${
                               h.element.props.children
                             } i ${
-                              sortModeAscending ? "fallande" : "stigande"
+                              sortModeAscending ? "stigande" : "fallande"
                             } ordning`}
                             onClick={(e) => {
                               tableSortable &&
@@ -130,20 +130,24 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>(
                             }}
                           >
                             {h.element}
-                            {tableSortable &&
-                              h.isColumnSortable &&
-                              (idx === sortIndex ? (
-                                <span
-                                  data-sortmodeascending={sortModeAscending}
-                                  className="zebratable-icon-sort material-icons-outlined"
-                                >
-                                  chevron_right
-                                </span>
-                              ) : (
-                                <span className="zebratable-icon-more material-icons-outlined">
-                                  unfold_more
-                                </span>
+                            <div className="zebratable-sortbutton-icon">
+                              {tableSortable &&
+                                h.isColumnSortable &&
+                                (idx === sortIndex ? (
+                                  <span
+                                    data-sortmodeascending={sortModeAscending}
+                                    className="zebratable-sortbutton-icon-sort material-icons-outlined"
+                                  >
+                                    chevron_right
+                                  </span>
+                                ) : (
+                                  <span className="zebratable-sortbutton-icon-more material-icons-outlined">
+                                    unfold_more
+                                  </span>
                               ))}
+
+                            </div>
+                            
                           </button>
                         </>
                       ) : 
