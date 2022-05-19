@@ -24,3 +24,13 @@ export const variant = () => (
 export const colored = () => (
   <Textarea placeholder="name@example.com" color="secondary" />
 );
+
+export const counter = () => (
+  <Textarea
+    placeholder="name@example.com"
+    color="secondary"
+    showCount={true}
+    maxLength={50}
+    maxLengthWarningText="Some text"
+  />
+);

@@ -235,6 +235,10 @@ module.exports = Forms = (colors) => ({
   ".form-textarea": {
     //"@apply leading-tight": {},
     minHeight: "5rem",
+
+    "&-counter": {
+      "@apply mt-xs text-right": {},
+    },
   },
 
   ".form-select": {
