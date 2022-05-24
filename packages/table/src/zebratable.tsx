@@ -20,7 +20,10 @@ export interface IZebraTableProps {
   rows: ZebraTableColumn[][];
   tableSortable?: boolean;
   sortHandler?: (idx: number, sortMode: boolean) => void;
+  sortAscending?: boolean;
   pageSize?: number;
+  page?: number;
+  pages?: number;
   captionTitle?: string;
   captionBody?: string;
   summary?: string;
@@ -36,7 +39,10 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>(
       rows,
       tableSortable = true,
       sortHandler = () => {},
+      sortAscending = true,
       pageSize = 5,
+      page = 1,
+      pages = 1,
       captionTitle,
       captionBody,
       summary,
@@ -46,41 +52,35 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>(
     const zebraTableClasses = useZebraTableClass();
 
     const [managedRows, setManagedRows] = useState(rows);
-    const [sortModeAscending, setSortModeAscending] = useState(true);
+    const [sortModeAscending, setSortModeAscending] = useState(sortAscending);
     const [sortIndex, setSortIndex] = useState<number>(0);
-    const [currentPage, setCurrentPage] = useState<number>(1);
-    const [paginationPage, setPaginationPage] = useState<number>(1);
+    const [currentPage, setCurrentPage] = useState<number>(page);
+    const [currentPages, setPages] = useState<number>(pages);
     const internalSortHandler = (idx: number) => {
-      setSortModeAscending(sortIndex === idx ? !sortModeAscending : true);
+      setSortModeAscending(sortIndex === idx ? !sortModeAscending : sortAscending);
       setSortIndex(idx);
     };
-
-    const pages = Math.ceil(rows.length / pageSize);
 
     useEffect(() => {
       sortHandler(sortIndex, sortModeAscending);
     }, [sortIndex, sortModeAscending, sortHandler]);
 
     useEffect(() => {
-      setCurrentPage(1);
-      setPaginationPage(1);
-    }, [rows]);
+      setCurrentPage(page);
+    }, [page]);
 
     useEffect(() => {
-      setCurrentPage(paginationPage);
-    }, [paginationPage]);
-
-    useEffect(() => {
-      const startIndex = (currentPage - 1) * pageSize;
+      setPages(Math.ceil(rows.length / pageSize))
+      let startIndex = (currentPage * pageSize) - pageSize;
       setManagedRows(rows.slice(startIndex, startIndex + pageSize));
-    }, [currentPage, rows, pageSize, sortIndex, sortModeAscending]);
-
+    }, [pageSize, currentPage, rows, sortIndex, sortModeAscending]);
+  
     return (
       <>
         {managedRows.length > 0 && (
           <table
             className={zebraTableClasses}
-            aria-label={`${rows.length} rader på ${pages} sidor`}
+            aria-label={`${rows.length} rader på ${currentPages} sidor`}
             tabIndex={0}
             summary={summary ?? summary}
           >
@@ -177,7 +177,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>(
         )}
         {pages > 1 && (
           <div className="zebratable-paginationwrapper">
-            <Pagination pages={pages} activePage={currentPage} changePage={(page: number) => setCurrentPage(page)} />
+            <Pagination pages={currentPages} activePage={currentPage} changePage={(page: number) => setCurrentPage(page)} />
           </div>
         )}
       </>
