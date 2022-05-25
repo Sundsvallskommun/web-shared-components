@@ -73,19 +73,18 @@ export const Message = ({
     config: { mass: 1, tension: 185, friction: 26 },
     from: {
       opacity: 1,
-      height: 0,
-      transform: `translateY(${isFromTop ? "-100%" : 0}) scale(1)`,
+      height: 'auto',
+      transform: `scale(1.1)`,
     },
-    enter: () => (next: any) =>
-      next({
-        opacity: 1,
-        height: container.current!.getBoundingClientRect().height,
-        transform: `translateY(0) scale(1)`,
-      }),
+    enter: {
+      opacity: 1,
+      height: 'auto',
+      transform: `scale(1)`,
+    },
     leave: {
       opacity: 0,
       height: 0,
-      transform: `translateY(0 scale(0.9)`,
+      transform: `scale(0.9)`,
     },
     onRest,
   } as any;
