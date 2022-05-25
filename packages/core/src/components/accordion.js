@@ -27,16 +27,16 @@ module.exports = Accordion = () => ({
 
         "&-body": {
             "@apply h-0 overflow-hidden m-lg": {},
-            transitionProperty: "height, padding, margin",
+            transitionProperty: "visibility, height, padding, margin",
             transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
             transitionDuration: "180ms",
 
             "&[aria-hidden=\"true\"], &[data-hidden=\"true\"]": {
-                "@apply my-0": {},
+                "@apply my-0 invisible": {},
             },
 
             "&[aria-hidden=\"false\"], &[data-hidden=\"false\"]": {
-                "@apply block h-auto": {},
+                "@apply block h-auto visible": {},
             },
         },
     },
