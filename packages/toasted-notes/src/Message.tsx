@@ -79,7 +79,7 @@ export const Message = ({
     enter: () => (next: any) =>
       next({
         opacity: 1,
-        height: 'auto',
+        height: container.current!.getBoundingClientRect().height,
         transform: `translateY(0) scale(1)`,
       }),
     leave: {
