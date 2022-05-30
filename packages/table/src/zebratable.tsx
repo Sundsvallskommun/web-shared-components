@@ -27,6 +27,8 @@ export interface IZebraTableProps {
   captionTitle?: string;
   captionBody?: string;
   summary?: string;
+  highlightedItemIndex?: any;
+  changePage?: (page: number) => void;
 }
 
 export type ZebraTableProps = IZebraTableProps &
@@ -46,6 +48,8 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>(
       captionTitle,
       captionBody,
       summary,
+      highlightedItemIndex,
+      changePage,
       ...rest
     } = props;
 
@@ -60,6 +64,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>(
       setSortModeAscending(sortIndex === idx ? !sortModeAscending : sortAscending);
       setSortIndex(idx);
     };
+    const [highlightedPage, setHighlightedPage] = useState<number>(0);
 
     useEffect(() => {
       sortHandler(sortIndex, sortModeAscending);
@@ -68,6 +73,18 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>(
     useEffect(() => {
       setCurrentPage(page);
     }, [page]);
+
+    useEffect(() => {
+      changePage && changePage(currentPage);
+    }, [currentPage]);
+
+    useEffect(() => {
+      if (highlightedItemIndex !== undefined) {
+        let itemPage = Math.floor((highlightedItemIndex / pageSize) + 1);
+        setHighlightedPage(itemPage);
+        setCurrentPage(itemPage);
+      }
+    }, [highlightedItemIndex])
 
     useEffect(() => {
       setPages(Math.ceil(rows.length / pageSize))
@@ -162,7 +179,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>(
             </thead>
             <tbody className="zebratable-tbody">
               {managedRows.map((cols, idx) => (
-                <tr key={`row${idx}`} className="zebratable-tbody-tr">
+                <tr key={`row${idx}`} className={`zebratable-tbody-tr ${highlightedItemIndex !== undefined && (highlightedItemIndex % pageSize) === idx && highlightedPage === currentPage ? `highlighted` : ``}`}>
                   {cols.map((col, idx) =>
                     col.isShown ? (
                       <td key={`col${idx}`} className="zebratable-tbody-td">
