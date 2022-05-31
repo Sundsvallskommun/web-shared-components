@@ -23,7 +23,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006 --no-open",
     "build-storybook": "build-storybook",
-    "release": "changeset publish"
+    "release": "changeset publish",
+    "link-all": "yarn unlink-all && lerna exec --parallel yarn link",
+    "unlink-all": "lerna exec --parallel --bail=false yarn unlink"
   },
   "resolutions": {
     "**/react": "17.0.2",

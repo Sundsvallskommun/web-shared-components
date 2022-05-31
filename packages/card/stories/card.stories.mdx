@@ -1,5 +1,5 @@
 import { Canvas, Meta, Story, Preview } from '@storybook/addon-docs';
-
+import { GuiProvider } from "../../theme";
 import { Card, CardList, CardBody, CardImage, CardLink } from "../src/card.tsx";
 import { Link } from "../../link/src/link.tsx";
 import PlaceholderImage from '../../../.storybook/public/placeholder_2.png';
@@ -28,27 +28,29 @@ import PlaceholderImage from '../../../.storybook/public/placeholder_2.png';
 - Datum tid och plats (Nyheter/Evenemang)
 
 <Preview>
-    <CardList>
-        <Card clickable>
-            <CardImage className="h-80" src={PlaceholderImage} alt="placeholder" />
-            <CardBody>
-                <h4><CardLink href="https://example.com" external={true}>Lorem ipsum dolor sit.</CardLink></h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos soluta eligendi libero? Illo odio, sint accusamus deserunt distinctio commodi suscipit.</p>
-            </CardBody>
-        </Card>
-        <Card clickable>
-            <CardImage className="h-80" src={PlaceholderImage} alt="placeholder" />
-            <CardBody>
-                <h4><CardLink href="https://example.com" external={true}>Lorem ipsum dolor sit.</CardLink></h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos soluta eligendi libero? Illo odio, sint accusamus deserunt distinctio commodi suscipit.</p>
-            </CardBody>
-        </Card>
-        <Card clickable>
-            <CardImage className="h-80" src={PlaceholderImage} alt="placeholder" />
-            <CardBody>
-                <h4><CardLink href="https://example.com" external={true}>Lorem ipsum dolor sit.</CardLink></h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos soluta eligendi libero? Illo odio, sint accusamus deserunt distinctio commodi suscipit.</p>
-            </CardBody>
-        </Card>
-    </CardList>
+    <GuiProvider>
+        <CardList>
+            <Card clickable>
+                <CardImage className="h-80" src={PlaceholderImage} alt="placeholder" />
+                <CardBody>
+                    <h4><CardLink href="https://example.com" external={true}>Lorem ipsum dolor sit.</CardLink></h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos soluta eligendi libero? Illo odio, sint accusamus deserunt distinctio commodi suscipit.</p>
+                </CardBody>
+            </Card>
+            <Card clickable>
+                <CardImage className="h-80" src={PlaceholderImage} alt="placeholder" />
+                <CardBody>
+                    <h4><CardLink href="https://example.com" external={true}>Lorem ipsum dolor sit.</CardLink></h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos soluta eligendi libero? Illo odio, sint accusamus deserunt distinctio commodi suscipit.</p>
+                </CardBody>
+            </Card>
+            <Card clickable>
+                <CardImage className="h-80" src={PlaceholderImage} alt="placeholder" />
+                <CardBody>
+                    <h4><CardLink href="https://example.com" external={true}>Lorem ipsum dolor sit.</CardLink></h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos soluta eligendi libero? Illo odio, sint accusamus deserunt distinctio commodi suscipit.</p>
+                </CardBody>
+            </Card>
+        </CardList>
+    </GuiProvider>
 </Preview>
