@@ -2,6 +2,7 @@ import * as ReactDOM from "react-dom";
 import * as React from "react";
 import ToastManager, { MessageOptionalOptions } from "./ToastManager";
 import { MessageProp, PositionsType } from "./Message";
+import { createRoot } from 'react-dom/client';
 
 const isBrowser =
   typeof window !== "undefined" && typeof window.document !== "undefined";
@@ -32,10 +33,8 @@ class Toaster {
       portalElement = el;
     }
 
-    ReactDOM.render(
-      <ToastManager notify={this.bindNotify as any} />,
-      portalElement
-    );
+    const root = createRoot(portalElement);
+    root.render(<ToastManager notify={this.bindNotify as any} />);
   }
 
   closeAll = () => {
