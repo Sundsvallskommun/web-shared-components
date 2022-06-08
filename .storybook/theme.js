@@ -4,7 +4,7 @@ import logo from './public/logo.svg';
 export default create({
   base: 'light',
   brandTitle: 'Sundsvalls Kommun',
-  brandUrl: 'https://sundsvall.se',
+  // brandUrl: 'https://sundsvall.se',
   brandImage: logo,
 
   // Custom theme
