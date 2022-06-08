@@ -1,37 +1,36 @@
 import chokidar from 'chokidar';
 import { exec } from 'child_process';
 
+// Package: https://www.npmjs.com/package/chokidar
+
 // Initialize watcher.
-const watcher = chokidar.watch('packages', {
+const watcher = chokidar.watch('packages/**/*.ts', 'packages/**/*.tsx', {
     ignored: /(^|[\/\\])\../, // ignore dotfiles
     persistent: true,
     ignoreInitial: true,
+    ignored: ['**/node_modules/**'],
   });
   
 // Something to use when events are received.
 const log = console.log.bind(console);
 // Add event listeners.
 watcher
-.on('add', path => log(`File ${path} has been added`))
-.on('change', path => {
-        log(`File ${path} has been changed`);
-        let dir = path.substring(0,path.lastIndexOf("\/")+1);
-        log(`${dir}`);
-        // exec(`${dir}yarn build`);
-        exec(`yarn --cwd ./${dir} build`, (error, stdout, stderr) => {
-            if (error) {
-              console.error(`error: ${error.message}`);
-              return;
-            }
-          
-            if (stderr) {
-              console.error(`stderr: ${stderr}`);
-              return;
-            }
-          
-            console.log(`stdout:\n${stdout}`);
-          });
-    })
-.on('unlink', path => log(`File ${path} has been removed`));
+.on('change', filePath => {
+    log(`File ${filePath} has been changed`);
+    let dir = filePath.substring(0,filePath.lastIndexOf("\/")+1);
+    exec(`yarn --cwd ./${dir} build`, (error, stdout, stderr) => {
+      if (error) {
+        console.error(`error: ${error.message}`);
+        return;
+      }
+    
+      if (stderr) {
+        console.error(`stderr: ${stderr}`);
+        return;
+      }
+    
+      console.log(`stdout:\n${stdout}`);
+    });
+})
 
 console.log("Chokidar watcher is running")
