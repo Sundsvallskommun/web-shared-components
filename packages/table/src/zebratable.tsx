@@ -98,7 +98,6 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>(
           <table
             className={zebraTableClasses}
             aria-label={`${rows.length} rader på ${currentPages} sidor`}
-            tabIndex={0}
             summary={summary ?? summary}
           >
             {captionTitle && 
@@ -130,7 +129,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>(
                       
                       {h.isColumnSortable ? (
                         <>
-                          <span className="sr-only" aria-label={h.element.props.children}>
+                          <span className="sr-only">
                             {h.element.props.children}
                           </span>
                           <button
