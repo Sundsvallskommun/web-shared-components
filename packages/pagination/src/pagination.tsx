@@ -64,7 +64,6 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       return (
         <button
           type="button"
-          tabIndex={0}
           aria-current={currentPage === pageNumber}
           aria-disabled={isDisabled}
           aria-label={
@@ -98,7 +97,6 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       return (
         <button
           type="button"
-          tabIndex={0}
           aria-label={`${label} sida`}
           aria-disabled={isDisabled}
           disabled={isDisabled}

@@ -73,17 +73,14 @@ export const Message = ({
     config: { mass: 1, tension: 185, friction: 26 },
     from: {
       opacity: 1,
-      height: 'auto',
       transform: `scale(1.1)`,
     },
     enter: {
       opacity: 1,
-      height: 'auto',
       transform: `scale(1)`,
     },
     leave: {
       opacity: 0,
-      height: 0,
       transform: `scale(0.9)`,
     },
     onRest,

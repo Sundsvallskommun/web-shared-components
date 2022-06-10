@@ -38,7 +38,7 @@ module.exports = ZebraTable = () => ({
                 },
     
                 "&-more": {
-                    "@apply text-gray-300": {},
+                    "@apply text-gray-stroke": {},
                 },
             },
         },
