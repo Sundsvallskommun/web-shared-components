@@ -9,9 +9,10 @@
   },
   "description": "",
   "main": "index.js",
-  "directories": {
-  },
+  "directories": {},
   "scripts": {
+    "watch": "node watcher.mjs",
+    "dev": "concurrently \"node watcher.mjs\" \"yarn storybook\" ",
     "clean": "lerna clean --yes && rimraf node_modules",
     "clean-dist": "yarn lerna exec rimraf dist",
     "prestart": "yarn && yarn bootstrap",
@@ -28,8 +29,8 @@
     "unlink-all": "lerna exec --parallel --bail=false yarn unlink"
   },
   "resolutions": {
-    "**/react": "17.0.2",
-    "**/react-dom": "17.0.2"
+    "**/react": "^18.1.0",
+    "**/react-dom": "^18.1.0"
   },
   "license": "MIT",
   "devDependencies": {
@@ -47,8 +48,8 @@
     "@storybook/addon-postcss": "^2.0.0",
     "@storybook/react": "^6.4.13",
     "@tailwindcss/forms": "^0.3.3",
-    "@types/react": "^17.0.11",
-    "@types/react-dom": "^17.0.7",
+    "@types/react": "^18.0.12",
+    "@types/react-dom": "^18.0.5",
     "addon-screen-reader": "^1.8.6",
     "autoprefixer": "^10.2.6",
     "concurrently": "^6.2.0",
@@ -57,12 +58,14 @@
     "lerna": "^4.0.0",
     "npm": "^8.1.4",
     "postcss": "^8.3.4",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
     "rimraf": "^3.0.2",
     "storybook-addon-outline": "^1.4.2",
     "storybook-addon-performance": "^0.16.1",
     "tailwindcss": "^2.2.4",
-    "typescript": "^4.3.2"
+    "typescript": "^4.3.2",
+    "watcher": "^1.2.0",
+    "chokidar": "^3.5.3"
   }
 }
