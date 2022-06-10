@@ -11,6 +11,8 @@
   "main": "index.js",
   "directories": {},
   "scripts": {
+    "watch": "node watcher.mjs",
+    "dev": "concurrently \"node watcher.mjs\" \"yarn storybook\" ",
     "clean": "lerna clean --yes && rimraf node_modules",
     "clean-dist": "yarn lerna exec rimraf dist",
     "prestart": "yarn && yarn bootstrap",
@@ -62,6 +64,8 @@
     "storybook-addon-outline": "^1.4.2",
     "storybook-addon-performance": "^0.16.1",
     "tailwindcss": "^2.2.4",
-    "typescript": "^4.3.2"
+    "typescript": "^4.3.2",
+    "watcher": "^1.2.0",
+    "chokidar": "^3.5.3"
   }
 }
