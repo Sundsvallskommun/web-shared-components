@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/react",
-  "version": "0.1.25",
+  "version": "0.1.26",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -51,16 +51,16 @@
     "@sk-web-gui/icon": "0.1.3",
     "@sk-web-gui/image": "0.1.3",
     "@sk-web-gui/link": "0.1.3",
-    "@sk-web-gui/message": "0.1.7",
+    "@sk-web-gui/message": "0.1.8",
     "@sk-web-gui/notification": "0.1.7",
     "@sk-web-gui/pagination": "0.1.3",
     "@sk-web-gui/radio": "0.1.4",
     "@sk-web-gui/spinner": "0.1.3",
     "@sk-web-gui/switch": "0.1.4",
-    "@sk-web-gui/table": "0.1.7",
+    "@sk-web-gui/table": "0.1.8",
     "@sk-web-gui/tag": "0.1.6",
     "@sk-web-gui/theme": "0.1.3",
-    "@sk-web-gui/user-menu": "0.1.11",
+    "@sk-web-gui/user-menu": "0.1.12",
     "@sk-web-gui/utils": "0.1.3"
   },
   "peerDependencies": {
