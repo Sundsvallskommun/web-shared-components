@@ -8,45 +8,78 @@ import {
 import { createToast, useToastOptions } from "@sk-web-gui/toast";
 import { cx as clsx, __DEV__ } from "@sk-web-gui/utils";
 import * as React from "react";
+import { Button } from "@sk-web-gui/button";
+import { DefaultProps } from "@sk-web-gui/theme";
 
 const statuses = {
   info: {
     icon: InfoIcon,
-    cx: "message-icon-info",
+    cx: "message-info",
     label: "info"
   },
   success: {
     icon: CheckCircleIcon,
-    cx: "message-icon-success",
+    cx: "message-success",
     label: "check-circle"
   },
   error: {
     icon: XCricleIcon,
-    cx: "message-icon-error",
+    cx: "message-error",
     label: "x-circle"
   },
   warning: {
     icon: ExclamationIcon,
-    cx: "message-icon-warning",
+    cx: "message-warning",
     label: "exclamationIcon",
   },
 };
 
 type OmittedTypes =
   | "title"
-  | "closeable"
   | "closeIcon"
   | "onUndo"
   | "undoText"
   | "description";
 
-export interface MessageProps extends Omit<useToastOptions, OmittedTypes> { }
+interface MessageProps extends Omit<useToastOptions, OmittedTypes> {
+   /* Aria-label for close button */
+   closeAriaLabel?: string;
+   /* close callback */
+   closeCallback?: (e:  React.MouseEvent<HTMLButtonElement>) => void;
+}
 
-const Message = React.forwardRef<HTMLDivElement, MessageProps>(
-  ({ message, className, icon: customIcon, status = "" }, ref) => {
+const Message = React.forwardRef<any, MessageProps>(
+  ({ message, className, icon: customIcon, status = "", closeable = true, closeAriaLabel, closeCallback, onClose }, ref) => {
     const { icon, cx, label } = statuses[status] || {};
+    const closeRef = React.useRef<any>(null);
+
+    React.useImperativeHandle(ref, () => ({
+      focus: () => {
+        closeRef.current.focus({
+          preventScroll: true
+        });
+      }
+    }));
+
+    const setInitialFocus = () => {
+      setTimeout(() => {
+        closeRef.current && closeRef.current.focus({
+          preventScroll: true
+        });
+      });
+    };
+
+    React.useEffect(() => {
+      setInitialFocus();
+    }, []);
+
+    const handleCloseCallback = (e:  React.MouseEvent<HTMLButtonElement>) => {
+      onClose && onClose();
+      closeCallback && closeCallback(e);
+    }
+
     return (
-      <div className={clsx("message", className)} ref={ref}>
+      <div className={clsx("message", className, cx)} ref={ref}>
         {((icon && cx) || customIcon) &&
           (customIcon ? (
             customIcon
@@ -54,10 +87,27 @@ const Message = React.forwardRef<HTMLDivElement, MessageProps>(
             <Icon
               as={icon}
               label={label}
-              className={clsx("message-icon w-5 h-5", cx)}
+              className={clsx("message-icon")}
             />
           ))}
-        <span>{message}</span>
+        <span className={clsx("message-text")}>{message}</span>
+        { closeable &&
+          <Button
+            ref={closeRef}
+            type="button"
+            size="lg"
+            onClick={handleCloseCallback}
+            className="message-close-button"
+            aria-label={closeAriaLabel}
+          >
+            <span
+              className="message-close-button-icon material-icons-outlined"
+              aria-hidden="true"
+            >
+              close
+            </span>
+          </Button>
+        }
       </div>
     );
   }
