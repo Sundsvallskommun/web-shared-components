@@ -4,10 +4,11 @@ import { exec } from 'child_process';
 // Package: https://www.npmjs.com/package/chokidar
 
 // Initialize watcher.
-const watcher = chokidar.watch('packages/**/*.ts', 'packages/**/*.tsx', {
+const watcher = chokidar.watch('**/*.ts, **/*.tsx', {
     ignored: /(^|[\/\\])\../, // ignore dotfiles
     persistent: true,
     ignoreInitial: true,
+    cwd: '.',
     ignored: ['**/node_modules/**'],
   });
   
@@ -18,6 +19,7 @@ watcher
 .on('change', filePath => {
     log(`File ${filePath} has been changed`);
     let dir = filePath.substring(0,filePath.lastIndexOf("\/")+1);
+    log(`..running yarn --cwd ./${dir} build`);
     exec(`yarn --cwd ./${dir} build`, (error, stdout, stderr) => {
       if (error) {
         console.error(`error: ${error.message}`);
