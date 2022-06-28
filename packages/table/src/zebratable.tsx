@@ -29,6 +29,7 @@ export interface IZebraTableProps {
   summary?: string;
   highlightedItemIndex?: any;
   changePage?: (page: number) => void;
+  BottomComponent?: JSX.Element;
 }
 
 export type ZebraTableProps = IZebraTableProps &
@@ -44,12 +45,13 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>(
       sortAscending = true,
       pageSize = 5,
       page = 1,
-      pages = 1,
+      pages = Math.ceil(rows.length / pageSize),
       captionTitle,
       captionBody,
       summary,
       highlightedItemIndex,
       changePage,
+      BottomComponent,
       ...rest
     } = props;
 
@@ -191,11 +193,16 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>(
             </tbody>
           </table>
         )}
+        <div className='zebratable-bottomwrapper'>
         {pages > 1 && (
           <div className="zebratable-paginationwrapper">
             <Pagination pages={currentPages} activePage={currentPage} changePage={(page: number) => setCurrentPage(page)} />
           </div>
         )}
+        {BottomComponent && (
+          BottomComponent
+        )}
+        </div>
       </>
     );
   }

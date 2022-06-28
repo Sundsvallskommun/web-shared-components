@@ -64,7 +64,11 @@ module.exports = ZebraTable = () => ({
         },
 
         "&-paginationwrapper": {
-            "@apply px-lg my-lg w-full text-lg flex justify-center lg:justify-start": {},
+            "@apply w-full text-lg flex justify-center lg:justify-start": {},
+        },
+
+        "&-bottomwrapper": {
+            "@apply mt-lg px-lg flex items-center justify-end": {},
         },
     },
 });
