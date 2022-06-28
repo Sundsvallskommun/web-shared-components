@@ -202,7 +202,7 @@ export const basic = ({ text, ...args }: any) => (
         className="container m-auto flex items-center justify-between flex-wrap"
         style={{ maxWidth: "120rem", paddingLeft: "0", paddingRight: "0" }}
       >
-        <div className="flex items-center flex-shrink-0 text-black mr-6">
+        <div className="flex items-center shrink-0 text-black mr-6">
           <Link href={"/"}>
             <a className="flex items-center">
               <svg

@@ -2,7 +2,7 @@
 
 module.exports = {
   mode: "jit",
-  purge: [
+  content: [
     "./public/**/*.html",
     "./packages/*/**/*.{js,jsx,ts,tsx,vue,mdx}",
     "./.storybook/stories/**/*.{js,jsx,ts,tsx,vue,mdx}",
@@ -12,9 +12,6 @@ module.exports = {
   theme: {
     extend: {
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [
     require("@tailwindcss/forms"),
