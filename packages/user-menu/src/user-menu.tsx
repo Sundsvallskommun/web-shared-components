@@ -74,7 +74,7 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
                       className="ml-auto mb-sm align-top material-icons"
                       aria-hidden="true"
                     >
-                      {open ? "expand_less" : "expand_more"}
+                      {open ? "arrow_drop_up" : "arrow_drop_down"}
                     </span>
                   </div>
                   <div className="text-left">{menuSubTitle}</div>
@@ -157,7 +157,7 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
                       className="ml-auto align-top material-icons"
                       aria-hidden="true"
                     >
-                      {open ? "expand_less" : "expand_more"}
+                      {open ? "arrow_drop_up" : "arrow_drop_down"}
                     </span>
                   </div>
                   <div className="text-left">{menuSubTitle}</div>
