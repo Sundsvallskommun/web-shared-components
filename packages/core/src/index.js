@@ -141,6 +141,7 @@ module.exports = plugin.withOptions(
         extend: {
           colors: {
             ...colors,
+            current: 'currentColor',
             gray: {
               DEFAULT: "#4b4b4b",
               stroke: "#939393",
