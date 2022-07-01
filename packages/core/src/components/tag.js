@@ -1,7 +1,7 @@
 function tagOutline(colors) {
   return {
     ".tag-outline": {
-      "@apply border bg-transparent border-gray-stroke text-neutral-900": {},
+      "@apply border bg-transparent border-gray-stroke text-body": {},
 
       "&[href]": {
         [`@apply hover:border-hover hover:text-white hover:bg-hover`]: {},
@@ -24,7 +24,7 @@ function tagSolid(colors) {
       },
 
       ".tag-close-button": {
-        "@apply text-white": {}
+        "@apply text-white hover:text-body": {}
       },
     },
   };
@@ -33,7 +33,7 @@ function tagSolid(colors) {
 function tagLight(colors) {
   return {
     ".tag-light": {
-      "@apply border border-transparent text-neutral-900": {},
+      "@apply border border-transparent text-body": {},
 
       "&[href]": {
         [`@apply hover:border-hover`]: {},
@@ -78,7 +78,7 @@ module.exports = Tag = (colors) => ({
   ...tagLight(colors),
 
   ".tag-close-button": {
-    "@apply border-transparent flex items-center justify-center transition-all duration-150 rounded-full outline-none cursor-base": {},
+    "@apply text-body border-transparent flex items-center justify-center transition-all duration-150 rounded-full outline-none cursor-base": {},
     fontSize: "1em",
     padding: "0.36em",
     marginLeft: "0.25em",

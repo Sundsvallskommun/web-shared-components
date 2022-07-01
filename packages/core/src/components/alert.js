@@ -2,7 +2,7 @@ function alertSubtle(colors) {
   return {
     ".alert-subtle": {
       "@apply border rounded-base": {},
-      "@apply text-neutral-900": {},
+      "@apply text-body": {},
 
       ...colors.reduce(
         (styles, color) => ({
@@ -47,7 +47,7 @@ function alertLeftAccent(colors) {
   return {
     ".alert-left-accent": {
       "@apply border-l-2 rounded-none": {},
-      "@apply text-neutral-900": {},
+      "@apply text-body": {},
 
       ...colors.reduce(
         (styles, color) => ({

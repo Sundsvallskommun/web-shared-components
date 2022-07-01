@@ -73,8 +73,8 @@ function fieldSolid(colors) {
       },
       "focus-visible:ring-4": {},
       /* dark mode */
-      "@apply dark:text-neutral-100 dark:bg-whiteAlpha-50": {},
-      "@apply dark:hover:bg-whiteAlpha-100": {},
+      "@apply dark:text-neutral-100 dark:bg-white/50": {},
+      "@apply dark:hover:bg-white/100": {},
       ".dark &[aria-invalid=true]": {
         "--tw-border-opacity": "1",
         borderColor: "rgba(248, 113, 113, var(--tw-border-opacity))",
@@ -110,7 +110,7 @@ function formControl() {
       "@apply w-full relative": {},
     },
     ".form-helper-text": {
-      "@apply mt-1.5 leading-none text-gray dark:text-whiteAlpha-600": {},
+      "@apply mt-1.5 leading-none text-gray dark:text-white/60": {},
     },
     ".form-error-message": {
       "@apply mt-1.5 leading-none flex items-center text-sm": {},
@@ -169,7 +169,7 @@ function formInputGroup() {
       "@apply text-neutral-600 bg-neutral-50": {},
       // dark colors
       "@apply dark:border-neutral-700": {},
-      "@apply dark:text-neutral-100 dark:bg-whiteAlpha-300": {},
+      "@apply dark:text-neutral-100 dark:bg-white/30": {},
 
       "&-sm": {
         "@apply px-3 text-xs": {},
@@ -224,7 +224,7 @@ module.exports = Forms = (colors) => ({
       "@apply disabled:bg-gray-lighter": {},
       //"@apply disabled:shadow-none disabled:cursor-not-allowed disabled:opacity-60": {},
       //"@apply disabled:border-neutral-200 disabled:bg-neutral-200": {},
-      //"@apply dark:disabled:border-transparent dark:disabled:bg-whiteAlpha-200": {},
+      //"@apply dark:disabled:border-transparent dark:disabled:bg-white/20": {},
     },
 
     // variants

@@ -73,13 +73,13 @@ module.exports = Radio = (colors) => ({
     // disabled
     "&-disabled": {
       "@apply disabled:shadow-none disabled:border-neutral-300 disabled:bg-neutral-300 disabled:hover:text-neutral-300": {},
-      "@apply dark:disabled:border-transparent dark:disabled:bg-whiteAlpha-200 dark:disabled:hover:text-whiteAlpha-200": {},
+      "@apply dark:disabled:border-transparent dark:disabled:bg-white/20 dark:disabled:hover:text-white/20": {},
     },
 
     // label
     "&-label": {
       "@apply ml-2 select-none text-sm": {},
-      "@apply text-neutral-900": {},
+      "@apply text-body": {},
       // dark colors
       "@apply dark:text-neutral-100": {},
   
