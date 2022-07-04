@@ -143,6 +143,10 @@ interface ICardImageProps extends DefaultProps {
   as?: React.ElementType;  
   /* React node */
   children?: React.ReactNode;
+  /* The image `src` attribute */
+  src?: string;
+  /* The alt text for the image */
+  alt?: string;
 }
 
 export interface CardImageProps
