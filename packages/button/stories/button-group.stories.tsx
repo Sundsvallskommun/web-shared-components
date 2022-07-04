@@ -13,7 +13,7 @@ export const Knappgrupp = () => (
   <div className="space-y-4">
 
     <div>
-      <Button.Group variant="solid"kakor color="primary" className="space-x-2">
+      <Button.Group variant="solid" color="primary" className="space-x-2">
         <Button>Button</Button>
         <Button>Button</Button>
         <Button>Button</Button>

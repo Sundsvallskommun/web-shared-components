@@ -107,7 +107,7 @@ export const ghost = () => (
 
 export const size = () => (
   <div className="flex space-x-2">
-    <IconButton size="xs" variant="solid" color="primary">
+    <IconButton variant="solid" color="primary">
       <Announcement size={14} />
     </IconButton>
     <IconButton size="sm" variant="solid" color="primary">
@@ -119,7 +119,7 @@ export const size = () => (
     <IconButton size="lg" variant="solid" color="primary">
       <Announcement size={24} />
     </IconButton>
-    <IconButton size="xl" variant="solid" color="primary">
+    <IconButton variant="solid" color="primary">
       <Announcement size={32} />
     </IconButton>
   </div>
