@@ -181,7 +181,7 @@ export const colors = {
   background: {
     one: "#D9E6EF",
     two: "#F4F4F4",
-    three: "#D9E6EF",
+    three: "#F9F9F9",
   },
 
   // ..headings
