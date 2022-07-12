@@ -3,7 +3,7 @@ module.exports = Badge = (colors) => ({
     "@apply inline-block text-xs font-medium leading-4 text-center whitespace-nowrap": {},
 
     "&-light": {
-      "@apply text-neutral-900 bg-neutral-200 border border-transparent": {},
+      "@apply text-body bg-neutral-200 border border-transparent": {},
       "@apply dark:text-neutral-100 dark:bg-neutral-700": {},
 
       ...colors.reduce(

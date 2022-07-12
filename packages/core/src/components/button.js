@@ -73,7 +73,7 @@ function buttonOutline(colors) {
   return {
     "&-outline": {
       "@apply border border-neutral-200": {},
-      "@apply text-neutral-900 bg-transparent": {},
+      "@apply text-body bg-transparent": {},
       /* hover */
       "@apply hover:bg-neutral-100 hover:border-neutral-300": {},
       /* focus */
@@ -129,7 +129,7 @@ function buttonOutline(colors) {
 function buttonGhost(colors) {
   return {
     "&-ghost": {
-      "@apply text-neutral-900 bg-transparent": {},
+      "@apply text-body bg-transparent": {},
       "@apply hover:bg-neutral-100": {},
       /* focus */
       "@apply focus-visible:z-base": {},
@@ -171,7 +171,7 @@ function buttonLight(colors) {
     "&-light": {
       "@apply shadow-sm": {},
       "@apply border border-transparent": {},
-      "@apply text-neutral-900 bg-neutral-100": {},
+      "@apply text-body bg-neutral-100": {},
       /* hover */
       "@apply hover:bg-neutral-200": {},
       /* focus */

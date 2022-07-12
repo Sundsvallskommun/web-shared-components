@@ -1,6 +1,7 @@
 const plugin = require("tailwindcss/plugin");
 
-const colors = require("./colors");
+// const colors = require("/colors");
+const { colors } = require("@sk-web-gui/theme");
 const withOpacity = require("./with-opacity");
 // components
 const Alert = require("./components/alert");
@@ -142,16 +143,6 @@ module.exports = plugin.withOptions(
           colors: {
             ...colors,
             current: 'currentColor',
-            gray: {
-              DEFAULT: "#4b4b4b",
-              stroke: "#939393",
-              middle: "#ECECEC",
-              light: "#F4F4F4",
-              lighter: "#F9F9F9",
-            },
-            hover: {
-              DEFAULT: "#2B76B0",
-            },
           },
           cursor: {
             base: "var(--vc-cursor)",

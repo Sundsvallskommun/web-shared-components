@@ -1,13 +1,13 @@
 module.exports = Breadcrumb = () => ({
   ".breadcrumb": {
-    "@apply relative": {},
+    "@apply text-body relative": {},
 
     "&-item": {
       "@apply inline-flex items-center whitespace-nowrap": {},
     },
 
     "&-separator": {
-      "@apply mx-2 text-neutral-500": {},
+      "@apply mx-2": {},
     },
   },
 });

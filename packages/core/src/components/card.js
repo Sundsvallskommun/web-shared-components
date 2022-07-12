@@ -21,7 +21,7 @@ module.exports = Card = () => ({
             "@apply hover:shadow-xl hover:cursor-pointer": {},
         },
 
-        // "@apply bg-neutral-200 border border-neutral-100 text-neutral-900": {},
+        // "@apply bg-neutral-200 border border-neutral-100 text-body": {},
         // dark
         //"@apply dark:bg-neutral-700 dark:border-neutral-600 dark:text-neutral-300": {},
     },
@@ -33,7 +33,7 @@ module.exports = Card = () => ({
     },    
 
     ".card-body": {
-        "@apply p-8": {},
+        "@apply text-body p-8": {},
     },
 
     ".card-image": {

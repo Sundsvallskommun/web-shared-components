@@ -29,7 +29,7 @@ module.exports = Pagination = () => ({
     },
 
     "&-prevNextButton": {
-      "@apply ml-4 inline-flex items-center sm:w-auto inline-flex flex-row leading-none":
+      "@apply text-body ml-4 inline-flex items-center sm:w-auto inline-flex flex-row leading-none":
         {},
 
       "&[data-reverse=true]": {

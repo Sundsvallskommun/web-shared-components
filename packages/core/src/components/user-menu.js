@@ -1,7 +1,7 @@
 module.exports = UserMenu = (colors) => ({
   ".usermenu": {
     // "@apply mx-sm mt-sm mb-0 px-md py-0 divide-y divide-y-2 divide-gray-300 bg-white border-2 border-white border-solid rounded":
-    "@apply drop-shadow-none shadow-none filter-none": {},
+    "@apply text-body drop-shadow-none shadow-none filter-none": {},
     // "@apply ": {},
     "&-is-open": {
       // "@apply border-2 border-gray-300 border-solid rounded": {},
@@ -14,7 +14,7 @@ module.exports = UserMenu = (colors) => ({
       },
     },
     "&-item": {
-      "@apply block px-lg py-md lg:px-md lg:py-sm w-full cursor-pointer text-black no-underline": {},
+      "@apply block px-lg py-md lg:px-md lg:py-sm w-full cursor-pointer text-body no-underline": {},
       "&.active": {
         "@apply bg-hover text-white no-underline": {},
       },
