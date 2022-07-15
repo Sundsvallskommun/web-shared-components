@@ -35,7 +35,7 @@ Template.argTypes = {
   },
   onChange: {
     type: { name: 'function', required: true },
-    description: 'Runs on value change',
+    description: 'Runs on value change, expected to manually handle value',
   },
   localeInstance: {
     type: { name: 'string | object', required: false },
