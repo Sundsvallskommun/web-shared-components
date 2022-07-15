@@ -4,8 +4,6 @@ module.exports = Message = () => ({
     "@apply text-body bg-white border-l-4": {},
     // dark
     "@apply dark:text-neutral-100 dark:bg-neutral-700 dark:border-neutral-600": {},
-    "minWidth": "520px",
-    "width": "520px",
 
     "&-text": {
       "@apply text-left flex-grow": {},

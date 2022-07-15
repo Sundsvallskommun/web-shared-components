@@ -79,7 +79,9 @@ const Message = React.forwardRef<any, MessageProps>(
     }
 
     return (
-      <div className={clsx("message", className, cx)} ref={ref}>
+      <div className={clsx("message", className, cx)} ref={ref}
+        style={{width: `${window.innerWidth < 520 ? window.innerWidth - 10 : '520'}px`}}  
+      >
         {((icon && cx) || customIcon) &&
           (customIcon ? (
             customIcon

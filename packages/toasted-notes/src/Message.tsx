@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useTransition, animated } from "react-spring";
+import { useTransition, animated, easings } from "react-spring";
 import ReachAlert from "@reach/alert";
 import Alert from "./Alert";
 import { useTimeout } from "./useTimeout";
@@ -70,18 +70,18 @@ export const Message = ({
   useTimeout(close, timeout);
 
   const animation = {
-    config: { mass: 1, tension: 185, friction: 26 },
+    config: { duration: 200, easings: easings.easeInBack },
     from: {
-      opacity: 1,
-      transform: `scale(1.1)`,
+      opacity: 0.5,
+      marginTop: '-20px'
     },
     enter: {
       opacity: 1,
-      transform: `scale(1)`,
+      marginTop: '0px'
     },
     leave: {
       opacity: 0,
-      transform: `scale(0.9)`,
+      marginTop: '-10px'
     },
     onRest,
   } as any;
@@ -140,6 +140,7 @@ export const Message = ({
               style={{
                 opacity: props.opacity,
                 height: props.height,
+                marginTop: props.marginTop,
                 ...style,
               }}
             >
@@ -147,6 +148,7 @@ export const Message = ({
                 style={{
                   transform: props.transform,
                   pointerEvents: "auto",
+                  maxWidth: '100vw'
                 }}
                 ref={container}
                 className="Toaster__message-wrapper"
