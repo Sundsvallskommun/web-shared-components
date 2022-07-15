@@ -3,7 +3,9 @@ import { useState, useMemo } from "react";
 import { withPerformance } from "storybook-addon-performance";
 //import { light, dark, /* midnight, pale, dawn, bee, cool */ } from "./themes";
 //import { Button } from "@sk-web-gui/button";
-
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc'
+import updateLocale from 'dayjs/plugin/updateLocale'
 import "./styles.css";
 
 export const parameters = {
@@ -32,6 +34,7 @@ export const parameters = {
             'Etiketter|Taggar',
             'Dropdown',
             'Textfält',
+            'Kalender',
             'Meny',
             'Länkar',
             'Filtering',
@@ -56,6 +59,7 @@ export const parameters = {
           'Etiketter|Taggar',
           'Dropdown',
           'Textfält',
+          'Kalender',
           'Meny',
           'Länkar',
           'Filtering',
@@ -91,6 +95,29 @@ const withGui = (StoryFn: Function) => {
       }),
     [colorScheme]
   );
+
+  dayjs.extend(utc)
+  dayjs.locale('se')
+  dayjs.extend(updateLocale)
+  dayjs.updateLocale('se', {
+  months: [
+      "Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli",
+      "Augusti", "September", "Oktober", "November", "December"
+  ],
+  monthsShort: [
+      "Jan", "Feb", "Mar", "Apr", "Maj", "Jun",
+      "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"
+  ],
+  weekdays: [
+      "Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag" 
+  ],
+  weekdaysShort: [
+      "Sön", "Mån", "Tis", "Ons", "Tors", "Fre", "Lör"
+  ],
+  weekdaysMin: [
+      "S", "M", "T", "O", "T", "F", "L"
+  ]
+  });
 
   return (
     <GuiProvider /*theme={theme}*/ colorScheme={colorScheme}>
