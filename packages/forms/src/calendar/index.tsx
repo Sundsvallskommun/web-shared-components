@@ -9,10 +9,10 @@ import { Input, InputProps } from "../input/input";
 import { useCalendarClass } from "./styles";
 
 export interface CalendarProps extends InputProps {
+    /* Dayjs onChange */
+    onChange: (value:any) => void;
     /* Dayjs locale instance */
     localeInstance?: string | object;
-    /* Dayjs onChange */
-    onChange?: (value:any) => void;
     /* Format of date, default "YYYY-MM-DD" */
     inputFormat?: string;
 }
