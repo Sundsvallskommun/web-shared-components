@@ -11,7 +11,6 @@ const ButtonGroup = require("./components/button-group");
 const Checkbox = require("./components/checkbox");
 const Dot = require("./components/dot");
 const Forms = require("./components/forms");
-const Select = require("./components/select");
 const IconButton = require("./components/icon-button");
 const Icon = require("./components/icon");
 const Link = require("./components/link");
@@ -43,7 +42,6 @@ const components = [
   Checkbox,
   Dot,
   Forms,
-  Select,
   IconButton,
   Icon,
   Link,

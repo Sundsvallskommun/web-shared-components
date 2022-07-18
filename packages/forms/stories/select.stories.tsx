@@ -30,10 +30,10 @@ Template.argTypes = {
     type: { name: 'boolean', required: false },
     description: 'Sets invalid',
     table: {
-      defaultValue: { summary: 'false' },
+      defaultValue: { summary: 'undefined' },
     },
     control: 'boolean',
-    defaultValue: false,
+    defaultValue: undefined,
   },
   disabled: {
     type: { name: 'boolean', required: false },
