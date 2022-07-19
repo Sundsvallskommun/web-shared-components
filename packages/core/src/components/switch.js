@@ -1,6 +1,16 @@
 module.exports = Switch = (colors) => ({
   ".form-switch-label": {
     "@apply inline-block align-middle": {},
+
+    "&[type='hidden']": {
+      "@apply hidden": {},
+
+      ".form-switch": {
+        "@apply hidden": {},
+      },
+    } 
+    
+      
   },
   ".form-switch": {
     "@apply rounded-full p-0.5 cursor-base focus:outline-none": {},
