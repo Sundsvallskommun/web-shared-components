@@ -2,6 +2,7 @@ import { DefaultProps } from "@sk-web-gui/theme";
 import { cx, __DEV__ } from "@sk-web-gui/utils";
 import { Button } from "@sk-web-gui/button";
 import * as React from "react";
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 import { useTagClass } from "./styles";
 
@@ -57,12 +58,7 @@ export const Tag = React.forwardRef<any, TagProps>((props, ref) => {
           className="tag-close-button"
           aria-label={deleteAriaLabel}
         >
-          <span
-            className="tag-close-button-icon material-icons-outlined"
-            aria-hidden="true"
-          >
-            close
-          </span>
+          <CloseOutlinedIcon className="tag-close-button-icon" aria-hidden="true"/>
         </Button>
       )}
     </div>
