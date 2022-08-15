@@ -1,6 +1,8 @@
 import { colors, DefaultProps } from "@sk-web-gui/theme";
 import { cx, __DEV__ } from "@sk-web-gui/utils";
 import React, { useEffect, useState } from "react";
+import KeyboardDoubleArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftOutlined';
+import KeyboardDoubleArrowRightOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowRightOutlined';
 
 import { usePaginationClass } from "./styles";
 
@@ -121,9 +123,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
             {prevNextButton({
               label: "Föregående",
               icon: (
-                <span className="material-icons-outlined" aria-hidden="true">
-                  keyboard_double_arrow_left
-                </span>
+                <KeyboardDoubleArrowLeftOutlinedIcon aria-hidden="true"/>
               ),
               triggerNumber: minPage,
               step: -1,
@@ -151,9 +151,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
             {prevNextButton({
               label: "Nästa",
               icon: (
-                <span className="material-icons-outlined" aria-hidden="true">
-                  keyboard_double_arrow_right
-                </span>
+                <KeyboardDoubleArrowRightOutlinedIcon aria-hidden="true"/>
               ),
               triggerNumber: pages,
               step: 1,
