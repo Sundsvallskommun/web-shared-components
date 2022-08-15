@@ -5,6 +5,7 @@ import { Button, Switch } from '@sk-web-gui/react';
 import { useEffect, useRef, useState } from "react";
 import Cookies from 'universal-cookie';
 import * as React from "react";
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 export const defaultCookieConsentName = 'SKCookieConsent';
 
@@ -163,7 +164,7 @@ interface CookieConsentProps extends DefaultProps {
                 <div className="cookie-consent-content-wrapper">
 
                     {closeable && <button className="cookie-consent-close-btn" onClick={() => handleOnClose()}>
-                        <span className="material-icons-outlined">close</span>
+                        <CloseOutlinedIcon className='cookie-consent-close-btn-icon'/>
                     </button>}
 
                     <D.Overlay />
