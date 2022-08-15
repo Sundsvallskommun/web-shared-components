@@ -131,7 +131,6 @@ export default class ToastManager extends React.Component<Props, State> {
   };
 
   getStyle = (position: PositionsType) => {
-    console.log("from Toastmanager, window width", window.innerWidth)
     let style: React.CSSProperties = {
       maxWidth: `${window.innerWidth < 560 ? window.innerWidth : "560"}px`,
       position: "fixed",
