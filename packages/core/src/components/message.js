@@ -52,7 +52,7 @@ module.exports = Message = () => ({
     marginRight: "-0.55em",
 
     "&-icon": {
-      fontSize: "1em"
+      "@apply !text-xl": {},
     },
 
     "&-disabled": {
