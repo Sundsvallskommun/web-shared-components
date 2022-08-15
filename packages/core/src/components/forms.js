@@ -242,7 +242,15 @@ module.exports = Forms = (colors) => ({
   },
 
   ".form-select": {
-    //"@apply pr-10": {},
+    // "@apply ":{}
+
+    "&-option": {
+        "@apply rounded-none cursor-default hover:text-white focus-visible:text-white hover:bg-primary focus-visible:bg-primary": {},
+    
+        "&.active": {
+          "@apply bg-primary text-white": {},
+        }
+    }
   },
 
   ...formInputGroup(),
