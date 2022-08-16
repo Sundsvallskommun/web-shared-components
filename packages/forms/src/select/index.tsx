@@ -6,7 +6,7 @@ import { Input, InputProps } from "../input/input";
 import { useState } from "react";
 
 export const Select = React.forwardRef<HTMLSelectElement, InputProps>((props, ref) => {
-  const { className, placeholder, children, size = "md", ...rest } = props;
+  const { className, placeholder, disabled = false, required = false, "aria-label": ariaLabel, children, size = "md", ...rest } = props;
   const [selectValue, setSelectValue] = useState("");
   const [activeOption, setActiveOption] = useState("");
 
@@ -20,14 +20,19 @@ export const Select = React.forwardRef<HTMLSelectElement, InputProps>((props, re
     <Popover>
       {({ close }) => (
         <div className={`relative`}>
-          <Popover.Button as='span' aria-label="Inställningar"
+          <Popover.Button as='span'
             className={`w-full`}
+            aria-label={ariaLabel}
+            aria-required={required}
+            aria-disabled={disabled}
           >
             <Input
               ref={ref}
               size={size}
               as="select"
               value={selectValue}
+              disabled={disabled}
+              aria-disabled={disabled}
               onChange={(e)=>{setSelectValue(e.target.value); setActiveOption(e.target.value)}}
               type=""
               className={cx("form-select", className)}

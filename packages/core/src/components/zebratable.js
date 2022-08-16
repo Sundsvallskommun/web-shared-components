@@ -23,6 +23,10 @@ module.exports = ZebraTable = () => ({
 
             "&-icon": {
                 "@apply inline-flex pl-sm": {},
+
+                ".MuiSvgIcon-root": {
+                    "@apply !text-lg": {},
+                },
     
     
                 "&-sort": {

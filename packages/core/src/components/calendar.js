@@ -62,16 +62,20 @@ module.exports = Calendar = () => ({
         "@apply border-0 hover:border":{},
     },
 
-    // Input field
-    ".datepicker-input": {
-        "@apply relative": {},
+    ".calendar": {
+        // Input field
+        ".datepicker-input": {
+            "@apply relative": {},
+        },
+
+        ".datepicker-input input":  {
+            "@apply pl-20 cursor-pointer":{},
+        },
+
+        ".datepicker-input-icon": {
+            "@apply pointer-events-none absolute m-6 top-0 left-0 text-xl fill-body":{},
+        },
     },
 
-    ".datepicker-input input":  {
-        "@apply pl-20 cursor-pointer":{},
-    },
-
-    ".datepicker-input-icon": {
-        "@apply pointer-events-none absolute p-6 top-0 left-0 text-xl":{},
-    },
+    
 });

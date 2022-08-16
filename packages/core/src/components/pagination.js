@@ -57,8 +57,8 @@ module.exports = Pagination = () => ({
       "&-icon": {
         "@apply m-1 align-text-bottom leading-none flex items-center": {},
 
-        ".material-icons-outlined": {
-          fontSize: ".675em",
+        ".MuiSvgIcon-root": {
+          fontSize: "1em",
         },
       },
     },

@@ -9,7 +9,7 @@ export default {
 };
 
 export const Template = (args: any) => (
-  <Select {...args} placeholder="Outline">
+  <Select {...args}>
     <option>Option 1</option>
     <option>Option 2</option>
     <option>Option 3</option>
@@ -17,6 +17,22 @@ export const Template = (args: any) => (
 );
 
 Template.argTypes = {
+  placeholder: {
+    type: { name: 'string', required: false },
+    description: 'Sets placeholder',
+    table: {
+      defaultValue: { summary: 'Placeholder' },
+    },
+    defaultValue: 'Placeholder',
+  },
+  "aria-label": {
+    type: { name: 'string', required: false },
+    description: 'Sets aria-label',
+    table: {
+      defaultValue: { summary: '' },
+    },
+    defaultValue: 'Välj alternativ',
+  },
   required: {
     type: { name: 'boolean', required: false },
     description: 'Sets required',

@@ -7,7 +7,11 @@ module.exports = Accordion = () => ({
 
             "[aria-expanded=\"true\"] &": {
                 "@apply bg-hover": {}
-            }
+            },
+
+            "&-icon": {
+                "@apply ml-auto !text-2xl": {},
+            },
         },
 
         "&-is-open &-header": {

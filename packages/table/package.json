@@ -39,7 +39,11 @@
   "dependencies": {
     "@sk-web-gui/pagination": "0.1.4",
     "@sk-web-gui/theme": "0.1.1",
-    "@sk-web-gui/utils": "0.1.3"
+    "@sk-web-gui/utils": "0.1.3",
+    "@emotion/react": "^11.8.1",
+    "@emotion/styled": "^11.8.1",
+    "@mui/material": "^5.10.0",
+    "@mui/icons-material": "^5.8.4"
   },
   "peerDependencies": {
     "react": ">=16.8.6"

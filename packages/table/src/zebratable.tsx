@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import * as React from "react";
 import { useZebraTableClass } from "./styles";
 import { Pagination } from "@sk-web-gui/pagination";
+import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
+import UnfoldMoreOutlinedIcon from '@mui/icons-material/UnfoldMoreOutlined';
 
 export interface ZebraTableHeader {
   element: JSX.Element;
@@ -152,16 +154,9 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>(
                               {tableSortable &&
                                 h.isColumnSortable &&
                                 (idx === sortIndex ? (
-                                  <span
-                                    data-sortmodeascending={sortModeAscending}
-                                    className="zebratable-sortbutton-icon-sort material-icons-outlined"
-                                  >
-                                    chevron_right
-                                  </span>
+                                  <ChevronRightOutlinedIcon className='zebratable-sortbutton-icon-sort' data-sortmodeascending={sortModeAscending}/>
                                 ) : (
-                                  <span className="zebratable-sortbutton-icon-more material-icons-outlined">
-                                    unfold_more
-                                  </span>
+                                  <UnfoldMoreOutlinedIcon className="zebratable-sortbutton-icon-more"/>
                               ))}
 
                             </div>

@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 import { cx, __DEV__ } from "@sk-web-gui/utils";
 import * as React from "react";
 import { Input, InputProps } from "../input/input";
+import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
 
 import { useCalendarClass } from "./styles";
 
@@ -15,10 +16,14 @@ export interface CalendarProps extends InputProps {
     localeInstance?: string | object;
     /* Format of date, default "YYYY-MM-DD" */
     inputFormat?: string;
+    /* Minimum date string */
+    minDate?: string;
+    /* Sets value */
+    value: string;
 }
 
 export const Calendar = React.forwardRef<HTMLSelectElement, CalendarProps>((props, ref) => {
-    const { className, placeholder, value, onChange, localeInstance = "", inputFormat = "YYYY-MM-DD", ...rest } = props;
+    const { className, placeholder, value, onChange, minDate='',localeInstance = "", inputFormat = "YYYY-MM-DD", ...rest } = props;
     const classes = useCalendarClass();
     return (
         <div className={cx(classes, className)}>
@@ -29,9 +34,9 @@ export const Calendar = React.forwardRef<HTMLSelectElement, CalendarProps>((prop
                     reduceAnimations
                     showToolbar={false}
                     // views={['day']}
-                    minDate={dayjs()}
+                    minDate={minDate ? dayjs(minDate) : null}
                     inputFormat={inputFormat}
-                    value={value}
+                    value={minDate && ( value <= minDate) ? minDate : value}
                     onChange={(value: any) => {
                         if (onChange) {
                             onChange(value.format(inputFormat))
@@ -44,9 +49,7 @@ export const Calendar = React.forwardRef<HTMLSelectElement, CalendarProps>((prop
                         <>
                             <div className='datepicker-input'>
                                 <Input ref={inputRef} {...inputProps}/>
-                                <span className="datepicker-input-icon material-icons-outlined">
-                                calendar_today
-                                </span>
+                                <CalendarTodayOutlinedIcon className='datepicker-input-icon'/>
                             </div>
                             {InputProps?.endAdornment}
                         </>

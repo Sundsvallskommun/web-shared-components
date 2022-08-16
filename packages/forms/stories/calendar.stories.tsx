@@ -23,6 +23,7 @@ export const Template = (args: any) => {
         }}
         // localeInstance={""}
         inputFormat={args.inputFormat}
+        minDate={args.minDate}
     />
 )};
 
@@ -46,6 +47,11 @@ Template.argTypes = {
     type: { name: 'string', required: false },
     description: 'Sets input format for date. Other formats might not be supported by certain browsers',
     defaultValue: 'YYYY-MM-DD',
+  },
+  minDate: {
+    type: { name: 'string', required: false },
+    description: 'Sets minimum date string',
+    defaultValue: '',
   },
 };
 

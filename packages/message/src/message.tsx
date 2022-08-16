@@ -10,6 +10,7 @@ import { cx as clsx, __DEV__ } from "@sk-web-gui/utils";
 import * as React from "react";
 import { Button } from "@sk-web-gui/button";
 import { DefaultProps } from "@sk-web-gui/theme";
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 const statuses = {
   info: {
@@ -102,12 +103,7 @@ const Message = React.forwardRef<any, MessageProps>(
             className="message-close-button"
             aria-label={closeAriaLabel}
           >
-            <span
-              className="message-close-button-icon material-icons-outlined"
-              aria-hidden="true"
-            >
-              close
-            </span>
+            <CloseOutlinedIcon className='message-close-button-icon' aria-hidden="true"/>
           </Button>
         }
       </div>

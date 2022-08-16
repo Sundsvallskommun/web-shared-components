@@ -85,7 +85,7 @@ module.exports = Tag = (colors) => ({
     marginRight: "-0.55em",
 
     "&-icon": {
-      fontSize: "1em"
+      fontSize: "1em !important"
     },
 
     "&-disabled": {

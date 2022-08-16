@@ -3,6 +3,9 @@ import { DefaultProps } from "@sk-web-gui/theme";
 import { cx, __DEV__ } from "@sk-web-gui/utils";
 import * as React from "react";
 import { useRef } from "react";
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
+
 
 import { useAccordionClass } from "./styles";
 
@@ -58,7 +61,11 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
         <div className="accordion-header">
           <button type="button" className="accordion-toggle" aria-expanded={accordionOpen} onClick={() => setAccordionOpen(!accordionOpen)}>
             <Comp className="text-base leading-base md:text-lg md:leading-lg">{accordionTitle}</Comp>
-            <span className="ml-auto material-icons" aria-hidden="true">{ accordionOpen ? 'remove' : 'add'}</span>
+            { accordionOpen ? 
+              <RemoveOutlinedIcon className='accordion-header-icon'/>
+              :
+              <AddOutlinedIcon className='accordion-header-icon'/>
+            }
           </button>
         </div>
         <div className="accordion-body" aria-hidden={!accordionOpen} ref={contentEl} style={
