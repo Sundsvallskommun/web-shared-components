@@ -21,7 +21,7 @@ export const Template = (args: any) => {
             console.log(value)
             setVal(value)
         }}
-        // localeInstance={""}
+        // localeInstance={args.localeInstance}
         inputFormat={args.inputFormat}
         minDate={args.minDate}
     />
@@ -51,7 +51,7 @@ Template.argTypes = {
   minDate: {
     type: { name: 'string', required: false },
     description: 'Sets minimum date string',
-    defaultValue: '',
+    defaultValue: undefined,
   },
 };
 

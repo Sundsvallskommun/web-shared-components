@@ -23,7 +23,7 @@ export interface CalendarProps extends InputProps {
 }
 
 export const Calendar = React.forwardRef<HTMLSelectElement, CalendarProps>((props, ref) => {
-    const { className, placeholder, value, onChange, minDate='',localeInstance = "", inputFormat = "YYYY-MM-DD", ...rest } = props;
+    const { className, placeholder, value, onChange, minDate=undefined,localeInstance = "", inputFormat = "YYYY-MM-DD", ...rest } = props;
     const classes = useCalendarClass();
     return (
         <div className={cx(classes, className)}>
@@ -34,7 +34,7 @@ export const Calendar = React.forwardRef<HTMLSelectElement, CalendarProps>((prop
                     reduceAnimations
                     showToolbar={false}
                     // views={['day']}
-                    minDate={minDate ? dayjs(minDate) : null}
+                    minDate={minDate ? dayjs(minDate) : undefined}
                     inputFormat={inputFormat}
                     value={minDate && ( value <= minDate) ? minDate : value}
                     onChange={(value: any) => {
