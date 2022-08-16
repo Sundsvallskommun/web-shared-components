@@ -1,6 +1,7 @@
 import { cx, __DEV__ } from "@sk-web-gui/utils";
 import { DefaultProps } from "@sk-web-gui/theme";
 import * as React from "react";
+import LaunchIcon from '@mui/icons-material/Launch';
 
 interface LinkProps extends DefaultProps {
   /* Makes link disabled */
@@ -22,6 +23,7 @@ export const Link = React.forwardRef<unknown, any>((props, ref) => {
     onClick,
     className,
     as: Comp = "a",
+    children,
     ...rest
   } = props;
   const externalProps = external
@@ -37,7 +39,10 @@ export const Link = React.forwardRef<unknown, any>((props, ref) => {
       className={cx("link", disabled && "link-disabled", className)}
       {...externalProps}
       {...rest}
-    />
+    >
+      {children}
+      { external && <LaunchIcon className='link-external-icon'/>}
+    </Comp>
   );
 });
 
