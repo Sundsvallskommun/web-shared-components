@@ -2,6 +2,11 @@ import { colors, DefaultProps } from "@sk-web-gui/theme";
 import { cx, __DEV__ } from "@sk-web-gui/utils";
 import * as React from "react";
 import { Menu } from "@headlessui/react";
+import ArrowDropUpOutlinedIcon from '@mui/icons-material/ArrowDropUpOutlined';
+import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
+
 export interface MenuItemGroup {
   label: string;
   showLabel: boolean;
@@ -54,14 +59,11 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
               >
                 <div className="block lg:hidden">
                   <div className="font-bold">
-                    <span
-                      className={cx(
-                        `ml-auto mr-2 align-top text-primary material-icons`
-                      )}
-                      aria-hidden="true"
-                    >
-                      {open ? "close" : "menu"}
-                    </span>
+                    {open ? 
+                      <CloseOutlinedIcon aria-hidden="true" className='!text-2xl ml-auto mr-2 align-top text-primary material-icon'/>
+                      :
+                      <MenuOutlinedIcon aria-hidden="true" className='!text-2xl ml-auto mr-2 align-top text-primary material-icon'/>
+                    }
                     <span className="leading-10 text-lg font-semibold">
                       Meny
                     </span>
@@ -70,12 +72,11 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
                 <div className="hidden lg:block text-left">
                   <div className="font-bold">
                     <span>{menuTitle}</span>
-                    <span
-                      className="ml-auto mb-sm align-top material-icons"
-                      aria-hidden="true"
-                    >
-                      {open ? "arrow_drop_up" : "arrow_drop_down"}
-                    </span>
+                    {open ? 
+                      <ArrowDropUpOutlinedIcon aria-hidden="true" className="!text-2xl ml-auto mb-sm align-top material-icon"/>
+                      :
+                      <ArrowDropDownOutlinedIcon aria-hidden="true" className="!text-2xl ml-auto mb-sm align-top material-icon"/>
+                    }
                   </div>
                   <div className="text-left">{menuSubTitle}</div>
                 </div>
@@ -141,24 +142,22 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
               >
                 <div className="block md:hidden">
                   <div className="font-bold">
-                    <span
-                      className="ml-auto mr-2 -mt-0.5 mb-sm align-top material-icons text-blue-500"
-                      aria-hidden="true"
-                    >
-                      {open ? "close" : "menu"}
-                    </span>
+                    {open ? 
+                      <CloseOutlinedIcon aria-hidden="true" className='!text-2xl ml-auto mr-2 -mt-0.5 mb-sm align-top material-icon text-blue-500'/>
+                      :
+                      <MenuOutlinedIcon aria-hidden="true" className='!text-2xl ml-auto mr-2 -mt-0.5 mb-sm align-top material-icon text-blue-500'/>
+                    }
                     <span>Meny</span>
                   </div>
                 </div>
                 <div className="hidden md:block text-left">
                   <div className="font-bold flex flex-between">
                     <span>{menuTitle}</span>
-                    <span
-                      className="ml-auto align-top material-icons"
-                      aria-hidden="true"
-                    >
-                      {open ? "arrow_drop_up" : "arrow_drop_down"}
-                    </span>
+                    {open ? 
+                      <ArrowDropUpOutlinedIcon aria-hidden="true" className="!text-2xl ml-auto align-top material-icon"/>
+                      :
+                      <ArrowDropDownOutlinedIcon aria-hidden="true" className="!text-2xl ml-auto align-top material-icon"/>
+                    }
                   </div>
                   <div className="text-left">{menuSubTitle}</div>
                 </div>
