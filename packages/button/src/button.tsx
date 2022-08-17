@@ -28,6 +28,8 @@ interface IButtonProps extends DefaultProps {
   variant?: "link" | "solid" | "outline" | "light" | "ghost";
   /* React node */
   children?: React.ReactNode;
+  /* Sets the button to the rounded variant */
+  rounded?: boolean;
 }
 
 export interface ButtonProps
@@ -49,6 +51,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       color,
       variant = "outline",
       size = "md",
+      rounded = false,
       ...rest
     } = props;
 
@@ -63,8 +66,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         disabled={disabled}
-        aria-disabled={disabled}
+        aria-disabled={disabled ? disabled : undefined}
         type={type}
+        data-rounded={rounded ? rounded : undefined}
         data-active={active ? "true" : undefined}
         data-color={color ? color : undefined}
         className={cx(classes, className)}

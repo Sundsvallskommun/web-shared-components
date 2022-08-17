@@ -2,10 +2,10 @@ function buttonSolid(colors) {
   return {
     "&-solid": {
       //"@apply text-": {},
-      "@apply border border-gray-stroke": {},
-      "@apply text-black bg-white": {},
+      "@apply font-semibold border border-gray-stroke": {},
+      "@apply text-body bg-white": {},
       /* hover */
-      "@apply hover:text-white hover:bg-hover": {},
+      "@apply hover:text-white hover:bg-hover hover:border-primary-active": {},
       /* focus */
       "@apply focus-visible:z-base": {},
       "@apply focus-visible:border-primary": {},
@@ -23,13 +23,6 @@ function buttonSolid(colors) {
       "@apply dark:focus-visible:border-primary-500": {},
       /* dark active */
       "@apply dark:active:bg-neutral-900 dark:active:border-neutral-600": {},
-
-      /* "&[data-color=\"primary\"]": {
-        "@apply text-white bg-primary": {},
-        "@apply hover:text-white hover:bg-hover": {},
-        "@apply active:text-white active:bg-hover": {},
-        "@apply focus-visible:ring-4 focus-visible:ring-black": {},
-      }, */
 
       ...colors.reduce(
         (styles, color) => ({
@@ -65,6 +58,16 @@ function buttonSolid(colors) {
         {}
       ),
 
+      "&[data-color='primary']": {
+        "@apply border-primary hover:border-primary-active": {},
+      },
+
+      "&.btn": {
+        "&-disabled": {
+          "@apply disabled:border-gray-stroke hover:border-gray-stroke": {},
+        },
+      },
+
     },
   };
 }
@@ -72,10 +75,10 @@ function buttonSolid(colors) {
 function buttonOutline(colors) {
   return {
     "&-outline": {
-      "@apply border border-neutral-200": {},
-      "@apply text-body bg-transparent": {},
+      "@apply font-semibold border border-gray-stroke": {},
+      "@apply text-body bg-white": {},
       /* hover */
-      "@apply hover:bg-neutral-100 hover:border-neutral-300": {},
+      "@apply hover:text-white hover:bg-primary-active hover:border-primary-active": {},
       /* focus */
       "@apply focus-visible:z-base": {},
       "@apply focus-visible:border-primary-500": {},
@@ -99,7 +102,7 @@ function buttonOutline(colors) {
             [`@apply border-current`]: {},
             [`@apply text-${color}-600 bg-transparent`]: {},
             /* hover */
-            [`@apply hover:bg-${color}-50`]: {},
+            [`@apply hover:text-white hover:bg-${color}-active hover:border-${color}-active`]: {},
             /* focus */
             [`@apply focus-visible:border-${color}-500`]: {},
             [`@apply focus-visible:ring-${color}-500`]: {},
@@ -122,6 +125,13 @@ function buttonOutline(colors) {
         }),
         {}
       ),
+
+      "&.btn": {
+        "&-disabled": {
+          "@apply disabled:border-gray-stroke hover:border-gray-stroke": {},
+        },
+      },
+      
     },
   };
 }
@@ -252,7 +262,7 @@ module.exports = Button = (colors) => ({
   ".btn": {
     "@apply relative": {},
     "@apply m-0": {},
-    "@apply inline-flex items-center justify-center flex-shrink-0 align-middle": {},
+    "@apply rounded-lg inline-flex items-center justify-center flex-shrink-0 align-middle": {},
     "@apply font-medium leading-tight": {},
     transitionProperty: "background-color, border-color, color, fill, stroke, box-shadow",
     "@apply	duration-75 ease-out": {},
@@ -260,7 +270,10 @@ module.exports = Button = (colors) => ({
     "@apply focus-visible:outline-none": {},
 
     padding: "1.2rem 3.2rem",
-    borderRadius: "3.2rem",
+
+    "&[data-rounded='true']": {
+      borderRadius: "3.2rem"
+    },
 
     // sizing
     "&-sm": {
@@ -282,7 +295,7 @@ module.exports = Button = (colors) => ({
 
     "&-disabled": {
       "@apply disabled:shadow-none disabled:cursor-not-allowed": {},
-      "@apply disabled:text-black disabled:bg-gray-light !important": {},
+      "@apply disabled:text-gray disabled:bg-gray-light !important": {},
     },
 
     // variants

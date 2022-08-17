@@ -134,9 +134,18 @@ Template.argTypes = {
     table: {
       defaultValue: { summary: 'primary' },
     },
-    options: ['primary', 'secondary'],
+    options: [undefined, 'primary', 'secondary'],
     control: 'select',
     defaultValue: 'primary',
+  },
+  rounded: {
+    type: { name: 'string', required: false },
+    description: 'Sets rounded variant',
+    table: {
+      defaultValue: { summary: 'false' },
+    },
+    control: 'boolean',
+    defaultValue: false,
   },
 };
 
