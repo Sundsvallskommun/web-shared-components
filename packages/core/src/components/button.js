@@ -76,7 +76,7 @@ function buttonOutline(colors) {
   return {
     "&-outline": {
       "@apply font-semibold border border-gray-stroke": {},
-      "@apply text-body bg-white": {},
+      "@apply text-body bg-transparent": {},
       /* hover */
       "@apply hover:text-white hover:bg-primary-active hover:border-primary-active": {},
       /* focus */
