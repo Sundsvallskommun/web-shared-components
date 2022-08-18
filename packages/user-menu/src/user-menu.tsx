@@ -83,7 +83,7 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
               </Menu.Button>
               <Menu.Items
                 className={cx(
-                  "usermenu-body mt-16 py-sm absolute right-0 left-0 bg-white border-none rounded border-t-0 shadow-lg"
+                  "usermenu-body mt-6 py-sm absolute right-0 left-0 bg-white border-none rounded border-t-0 shadow-lg"
                 )}
               >
                 <Menu.Item>

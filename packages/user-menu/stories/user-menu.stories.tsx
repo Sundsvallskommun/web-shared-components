@@ -193,11 +193,11 @@ const menuGroups: MenuItemGroup[] = [
 
 export const basic = ({ text, ...args }: any) => (
   <nav
-    className={cx("lg:static lg:w-auto lg:h-auto lg:min-h-0", {
-      "fixed z-50 top-0 left-0 w-full min-h-screen bg-white ": isMobileMenuOpen,
+    className={cx('lg:border-t-8 lg:border-primary lg:static lg:w-auto lg:h-auto lg:min-h-0', {
+      'fixed z-50 top-0 left-0 w-full min-h-screen bg-white ': isMobileMenuOpen,
     })}
   >
-    <div className="shadow-lg mx-auto p-12">
+    <div className="shadow-lg mx-auto px-7 pt-[22px] pb-[8px]">
       <div
         className="container m-auto flex items-center justify-between"
         style={{ maxWidth: "120rem", paddingLeft: "0", paddingRight: "0" }}
