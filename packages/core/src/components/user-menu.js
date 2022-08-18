@@ -1,7 +1,7 @@
 module.exports = UserMenu = (colors) => ({
   ".usermenu": {
     // "@apply mx-sm mt-sm mb-0 px-md py-0 divide-y divide-y-2 divide-gray-300 bg-white border-2 border-white border-solid rounded":
-    "@apply text-body drop-shadow-none shadow-none filter-none": {},
+    "@apply text-body": {},
     // "@apply ": {},
     "&-is-open": {
       // "@apply border-2 border-gray-300 border-solid rounded": {},

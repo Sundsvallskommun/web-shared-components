@@ -44,17 +44,17 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
 
     return (
       <>
-        <Menu as="div" className="block lg:hidden">
+        <Menu as="div" className="block -mr-md lg:hidden">
           {({ open }) => (
             <div
               className={cx(
-                "w-full mx-auto absolute top-10 inset-0 usermenu drop-shadow-none before:drop-shadow-none after:drop-shadow-none before:filter-none",
+                "mx-auto usermenu",
                 open ? `usermenu-is-open` : undefined
               )}
             >
               <Menu.Button
                 className={cx(
-                  "usermenu-header w-44 absolute right-4 top-1 px-md py-sm bg-white border-none rounded"
+                  "usermenu-header px-md py-sm bg-white border-none rounded"
                 )}
               >
                 <div className="block lg:hidden">
@@ -83,7 +83,7 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
               </Menu.Button>
               <Menu.Items
                 className={cx(
-                  "usermenu-body -mt-2 py-sm absolute top-40 right-0 left-0 bg-white border-none rounded border-t-0 shadow-lg"
+                  "usermenu-body mt-16 py-sm absolute right-0 left-0 bg-white border-none rounded border-t-0 shadow-lg"
                 )}
               >
                 <Menu.Item>
@@ -130,7 +130,7 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>(
           {({ open }) => (
             <div
               className={cx(
-                "w-96 mx-sm relative usermenu drop-shadow-none before:drop-shadow-none after:drop-shadow-none before:filter-none",
+                "w-96 mx-sm relative usermenu",
                 open ? `usermenu-is-open` : undefined
               )}
             >

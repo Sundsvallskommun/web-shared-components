@@ -197,9 +197,9 @@ export const basic = ({ text, ...args }: any) => (
       "fixed z-50 top-0 left-0 w-full min-h-screen bg-white ": isMobileMenuOpen,
     })}
   >
-    <div className="drop-shadow-lg shadow-lg mx-auto p-12">
+    <div className="shadow-lg mx-auto p-12">
       <div
-        className="container m-auto flex items-center justify-between flex-wrap"
+        className="container m-auto flex items-center justify-between"
         style={{ maxWidth: "120rem", paddingLeft: "0", paddingRight: "0" }}
       >
         <div className="flex items-center shrink-0 text-black mr-6">
@@ -316,7 +316,7 @@ export const basic = ({ text, ...args }: any) => (
           </Link>
         </div>
 
-        <div className="w-full block flex-grow lg:flex justify-end lg:items-center lg:w-auto">
+        <div className="block lg:flex justify-end lg:items-center lg:w-auto">
           {/* <div className="text-lg lg:flex-grow lg:flex lg:items-center lg:justify-center hidden"></div> */}
 
           {/* <div className="block lg:block"> */}
