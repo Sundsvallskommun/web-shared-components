@@ -58,6 +58,9 @@ module.exports = Accordion = (colors) => ({
 
     "&-outline": {
       "@apply border border-gray-stroke": {},
+      ".accordion-body": {
+        "@apply mt-0": {},
+      },
       ".accordion-toggle": {
         "&:focus-visible": {
           boxShadow: "0 0 0 0.4rem #4b4b4b!important",
