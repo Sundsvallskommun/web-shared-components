@@ -1,6 +1,6 @@
-import { Canvas, Meta, Story, Preview } from '@storybook/addon-docs';
+import { Canvas, Meta, Story, Preview } from "@storybook/addon-docs";
 import { GuiProvider } from "../../theme";
-import {Accordion} from "../src/accordion.tsx";
+import { Accordion } from "../src/accordion.tsx";
 
 <Meta title="Komponenter/Accordions/Översikt" />
 
@@ -8,22 +8,76 @@ import {Accordion} from "../src/accordion.tsx";
 
 Accordions används främst där du vill dölja viss information för att på så sätt få en mer överskådlig layout. Du kan också använda accordions för att dölja avsnitt i texter som är av sekundärt intresse för alla eller vissa grupper av användare.
 
-Använd en tydlig och sammanfattande rubrik så att användaren förstår vilket innehåll som döljer sig där under. 
+Använd en tydlig och sammanfattande rubrik så att användaren förstår vilket innehåll som döljer sig där under.
 
-**Icke utfälld**
+**Icke utfälld, variant solid**
 
 <GuiProvider>
-    <Accordion accordionTitle="Sök skolskjuts innan den 30 april">
-        <p>Har du barn som är i behov av skolskjuts måste du ansöka innan den 30 april inför hösten 2021. Detta gäller elever som går i förskoleklass, grundskola och gymnasiesärskola.</p>
-        <p>Vilka regler som gäller kring skolskjuts hittar du på sidan om skolsjuts.</p>
-    </Accordion>
+  <Accordion accordionTitle="Sök skolskjuts innan den 30 april">
+    <p>
+      Har du barn som är i behov av skolskjuts måste du ansöka innan den 30
+      april inför hösten 2021. Detta gäller elever som går i förskoleklass,
+      grundskola och gymnasiesärskola.
+    </p>
+    <p>
+      Vilka regler som gäller kring skolskjuts hittar du på sidan om skolsjuts.
+    </p>
+  </Accordion>
 </GuiProvider>
 
-**Utfälld**
+**Icke utfälld, variant outline**
 
 <GuiProvider>
-    <Accordion accordionTitle="Sök skolskjuts innan den 30 april" initalOpen={true}>
-        <p>Har du barn som är i behov av skolskjuts måste du ansöka innan den 30 april inför hösten 2021. Detta gäller elever som går i förskoleklass, grundskola och gymnasiesärskola.</p>
-        <p>Vilka regler som gäller kring skolskjuts hittar du på sidan om skolsjuts.</p>
-    </Accordion>
+  <Accordion
+    variant="outline"
+    accordionTitle="Sök skolskjuts innan den 30 april"
+    accordionSubTitle="Eventuell undertitel här"
+  >
+    <p>
+      Har du barn som är i behov av skolskjuts måste du ansöka innan den 30
+      april inför hösten 2021. Detta gäller elever som går i förskoleklass,
+      grundskola och gymnasiesärskola.
+    </p>
+    <p>
+      Vilka regler som gäller kring skolskjuts hittar du på sidan om skolsjuts.
+    </p>
+  </Accordion>
+</GuiProvider>
+
+**Utfälld, variant solid**
+
+<GuiProvider>
+  <Accordion
+    accordionTitle="Sök skolskjuts innan den 30 april"
+    initalOpen={true}
+  >
+    <p>
+      Har du barn som är i behov av skolskjuts måste du ansöka innan den 30
+      april inför hösten 2021. Detta gäller elever som går i förskoleklass,
+      grundskola och gymnasiesärskola.
+    </p>
+    <p>
+      Vilka regler som gäller kring skolskjuts hittar du på sidan om skolsjuts.
+    </p>
+  </Accordion>
+</GuiProvider>
+
+**Utfälld, variant outline**
+
+<GuiProvider>
+  <Accordion
+    variant="outline"
+    accordionTitle="Sök skolskjuts innan den 30 april"
+    accordionSubTitle="Eventuell undertitel här"
+    initalOpen={true}
+  >
+    <p>
+      Har du barn som är i behov av skolskjuts måste du ansöka innan den 30
+      april inför hösten 2021. Detta gäller elever som går i förskoleklass,
+      grundskola och gymnasiesärskola.
+    </p>
+    <p>
+      Vilka regler som gäller kring skolskjuts hittar du på sidan om skolsjuts.
+    </p>
+  </Accordion>
 </GuiProvider>
