@@ -56,6 +56,13 @@ module.exports = Accordion = (colors) => ({
       },
     },
 
+    "&-is-open": {
+      "@apply border border-gray-stroke": {},
+      "& .accordion-header": {
+        "@apply bg-hover text-white": {},
+      },
+    },
+
     "&-outline": {
       "@apply border border-gray-stroke": {},
       ".accordion-body": {
