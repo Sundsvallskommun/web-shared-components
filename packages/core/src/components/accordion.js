@@ -1,7 +1,5 @@
 module.exports = Accordion = (colors) => ({
   ".accordion": {
-    "@apply border border-gray-stroke": {},
-
     "&-header": {
       "@apply flex flex-col text-left": {},
 
@@ -48,6 +46,7 @@ module.exports = Accordion = (colors) => ({
     },
 
     "&-solid": {
+      "@apply border border-primary": {},
       ".accordion-header": {
         "@apply bg-primary text-white": {},
 
@@ -58,6 +57,13 @@ module.exports = Accordion = (colors) => ({
     },
 
     "&-outline": {
+      "@apply border border-gray-stroke": {},
+      ".accordion-toggle": {
+        "&:focus-visible": {
+          boxShadow: "0 0 0 0.4rem #4b4b4b!important",
+          outline: "0",
+        },
+      },
       ".accordion-header": {
         "@apply bg-transparent text-body": {},
 
