@@ -242,7 +242,7 @@ module.exports = Forms = (colors) => ({
   },
 
   ".form-select": {
-    "@apply caret-transparent select-none cursor-pointer border-gray-stroke":{},
+    "@apply text-body caret-transparent select-none cursor-pointer border-gray-stroke":{},
 
     "&-list": {
       "@apply absolute w-full bg-white mt-0 border border-gray-stroke border-t-0": {},

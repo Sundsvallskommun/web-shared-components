@@ -26,6 +26,7 @@ export const Select = React.forwardRef<HTMLSelectElement, InputProps>((props, re
           <Input
             ref={ref}
             placeholder={placeholder}
+            value={selectedValue}
             defaultValue={selectedValue}
             disabled={disabled ? disabled : undefined}
             onChange={(e)=> {onChange && onChange(e)}}
