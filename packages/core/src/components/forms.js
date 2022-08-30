@@ -245,7 +245,7 @@ module.exports = Forms = (colors) => ({
     "@apply text-body caret-transparent select-none cursor-pointer border-gray-stroke":{},
 
     "&-list": {
-      "@apply absolute w-full bg-white mt-0 border border-gray-stroke border-t-0": {},
+      "@apply z-10 absolute w-full bg-white mt-0 border border-gray-stroke border-t-0": {},
     },
 
     "&-option": {
