@@ -7,8 +7,8 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { useSelectClass } from "./styles";
 
 export const Select = React.forwardRef<HTMLSelectElement, InputProps>((props, ref) => {
-  const { className, placeholder, value, onChange, children, disabled, size = 'md', ...rest } = props;
-  const [selectedValue, setSelectedValue] = useState(value ? value : placeholder)
+  const { className, onChange, value, placeholder = '', children, disabled, size = 'md', ...rest } = props;
+  const [selectedValue, setSelectedValue] = useState(value ? value : "")
 
   const classes = useSelectClass({ size, disabled });
 
@@ -20,21 +20,26 @@ export const Select = React.forwardRef<HTMLSelectElement, InputProps>((props, re
   return (
     <Listbox value={selectedValue} onChange={handleOnChange} as={Fragment} disabled={disabled ? disabled : undefined}>
       <div className='form-select-wrapper block w-full relative'>
+        <Input
+          type='hidden'
+          ref={ref}
+          value={selectedValue}
+          disabled={disabled ? disabled : undefined}
+          aria-disabled={disabled ? disabled : undefined}
+          {...rest}
+        />
         <Listbox.Button
           as={Fragment}
         >
-          <Input
-            ref={ref}
-            placeholder={placeholder}
-            value={selectedValue}
-            defaultValue={selectedValue}
-            disabled={disabled ? disabled : undefined}
-            onChange={(e)=> {onChange && onChange(e)}}
-            aria-disabled={disabled ? disabled : undefined}
-            className={cx("form-select", classes, className)}
-            {...rest}
-          />
-            
+            <Input
+              as='div'
+              disabled={disabled ? disabled : undefined}
+              aria-disabled={disabled ? disabled : undefined}
+              className={cx("form-select", classes, className)}
+              // {...rest}
+            >
+              {selectedValue ? selectedValue : placeholder }
+            </Input>
         </Listbox.Button>
         <Listbox.Options className={cx("form-select-list")}>
           {children && (children as any).map((option: any, index: number) => (
