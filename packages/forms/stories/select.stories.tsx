@@ -9,7 +9,7 @@ export default {
 };
 
 export const Template = (args: any) => (
-  <Select {...args}>
+  <Select {...args} onChange={(e)=>console.log(e)}>
     <option>Option 1</option>
     <option>Option 2</option>
     <option>Option 3</option>
@@ -46,7 +46,7 @@ Template.argTypes = {
     type: { name: 'boolean', required: false },
     description: 'Sets invalid',
     table: {
-      defaultValue: { summary: 'undefined' },
+      defaultValue: { summary: undefined },
     },
     control: 'boolean',
     defaultValue: undefined,
@@ -59,16 +59,6 @@ Template.argTypes = {
     },
     control: 'boolean',
     defaultValue: false,
-  },
-  variant: {
-    type: { name: 'string', required: false },
-    description: 'Sets variant',
-    table: {
-      defaultValue: { summary: 'outline' },
-    },
-    options: ['outline', 'solid'],
-    control: 'select',
-    defaultValue: 'outline',
   },
   size: {
     type: { name: 'string', required: false },
@@ -106,22 +96,6 @@ export const colored = () => (
     <option>Option 2</option>
     <option>Option 3</option>
   </Select>
-);
-
-export const variant = () => (
-  <div className="flex space-x-2">
-    <Select placeholder="Outline">
-      <option>Option 1</option>
-      <option>Option 2</option>
-      <option>Option 3</option>
-    </Select>
-
-    <Select placeholder="Outline" variant="solid">
-      <option>Option 1</option>
-      <option>Option 2</option>
-      <option>Option 3</option>
-    </Select>
-  </div>
 );
 
 export const size = () => (

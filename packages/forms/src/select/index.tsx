@@ -1,66 +1,59 @@
 import { cx, __DEV__ } from "@sk-web-gui/utils";
 import * as React from "react";
-import { Popover } from '@headlessui/react';
+import { Listbox } from '@headlessui/react'
 
 import { Input, InputProps } from "../input/input";
-import { useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
+import { useSelectClass } from "./styles";
 
 export const Select = React.forwardRef<HTMLSelectElement, InputProps>((props, ref) => {
-  const { className, placeholder, disabled = false, required = false, "aria-label": ariaLabel, children, size = "md", ...rest } = props;
-  const [selectValue, setSelectValue] = useState("");
-  const [activeOption, setActiveOption] = useState("");
+  const { className, placeholder, value, onChange, children, disabled, size = 'md', ...rest } = props;
+  const [selectedValue, setSelectedValue] = useState(value ? value : placeholder)
 
-  const handleOnClick = (option: any, e: React.BaseSyntheticEvent) => {
-    setSelectValue(option.props.children);
-    return close()
+  const classes = useSelectClass({ size, disabled });
+
+  const handleOnChange = (value: any) => {
+    setSelectedValue(value);
+    onChange && onChange(value);
   }
 
   return (
-    
-    <Popover>
-      {({ close }) => (
-        <div className={`relative`}>
-          <Popover.Button as='span'
-            className={`w-full`}
-            aria-label={ariaLabel}
-            aria-required={required}
-            aria-disabled={disabled}
-          >
-            <Input
-              ref={ref}
-              size={size}
-              as="select"
-              value={selectValue}
-              disabled={disabled}
-              aria-disabled={disabled}
-              onChange={(e)=>{setSelectValue(e.target.value); setActiveOption(e.target.value)}}
-              type=""
-              className={cx("form-select", className)}
-              {...rest}
+    <Listbox value={selectedValue} onChange={handleOnChange} as={Fragment} disabled={disabled ? disabled : undefined}>
+      <div className='form-select-wrapper block w-full relative'>
+        <Listbox.Button
+          as={Fragment}
+        >
+          <Input
+            ref={ref}
+            placeholder={placeholder}
+            defaultValue={selectedValue}
+            disabled={disabled ? disabled : undefined}
+            onChange={(e)=> {onChange && onChange(e)}}
+            aria-disabled={disabled ? disabled : undefined}
+            className={cx("form-select", classes, className)}
+            {...rest}
+          />
+            
+        </Listbox.Button>
+        <Listbox.Options className={cx("form-select-list")}>
+          {children && (children as any).map((option: any, index: number) => (
+            <Listbox.Option
+              key={`form-select-option-${index}`}
+              value={option.props.children}
+              as={Fragment}
             >
-              {placeholder && <option className='form-select-option' value="">{placeholder}</option>}
-              {children}
-            </Input>
-          </Popover.Button>
-          {(
-            <Popover.Panel className="w-full absolute -mt-1  text-black bg-white border border-gray-stroke z-10">
-              { children && (children as any).map((option: any, index: number) => {
-                return (
-                  <a 
-                    key={`form-select-option-${index}`}
-                    className={`form-select-option form-field form-field-${size} ${activeOption == option.props.children ? 'active' : ''}`}
-                    onClick={(e)=>{handleOnClick(option, e); close()}}
+              {({ active, selected }) => (
+                  <li
+                    className={cx("form-select-option", classes, active ? 'active' : '')}
                   >
                     {option.props.children}
-                  </a>
-                )
-              })
-              }
-            </Popover.Panel>
-          )}
-        </div>
-      )}
-    </Popover>
+                  </li>
+                )}
+            </Listbox.Option>
+          ))}
+        </Listbox.Options>
+      </div>
+    </Listbox>
   );
 });
 

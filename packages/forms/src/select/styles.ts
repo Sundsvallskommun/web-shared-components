@@ -3,8 +3,15 @@ import { cx } from "@sk-web-gui/utils";
 
 export const useSelectClass = createMemoClass((props) => {
 
+  const sizes = {
+    sm: "form-field-sm",
+    md: "form-field-md",
+    lg: "form-field-lg",
+  };
+
   const classes = cx(
-    "form-select"
+    sizes[props.size],
+    props.disabled && "form-field-disabled"
   );
 
   return classes;
