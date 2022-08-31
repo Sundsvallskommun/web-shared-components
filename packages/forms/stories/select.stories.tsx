@@ -19,17 +19,17 @@ export const Template = (args: any) => (
 Template.argTypes = {
   value: {
     type: { name: 'string', required: false },
-    description: 'Sets placeholder',
+    description: 'Sets value',
     table: {
       value: { summary: '' },
     },
-    value: '',
+    defaultValue: '',
   },
   placeholder: {
     type: { name: 'string', required: false },
     description: 'Sets placeholder',
     table: {
-      defaultValue: { summary: 'Placeholder' },
+      defaultValue: { summary: '' },
     },
     defaultValue: 'Placeholder',
   },
