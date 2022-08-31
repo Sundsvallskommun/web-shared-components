@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/table",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -41,7 +41,7 @@
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.10.0",
-    "@sk-web-gui/pagination": "0.1.5",
+    "@sk-web-gui/pagination": "0.1.6",
     "@sk-web-gui/theme": "0.1.1",
     "@sk-web-gui/utils": "0.1.3"
   },
