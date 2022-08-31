@@ -35,6 +35,7 @@ export const Select = React.forwardRef<HTMLSelectElement, InputProps>((props, re
             <Input
               ref={ref}
               as='button'
+              type='button'
               size={size}
               disabled={disabled ? disabled : undefined}
               aria-disabled={disabled ? disabled : undefined}
@@ -45,23 +46,25 @@ export const Select = React.forwardRef<HTMLSelectElement, InputProps>((props, re
               {<ArrowDropDownIcon className={`!text-2xl absolute right-4 ${open ? 'rotate-180' : ''}`}/>}
             </Input>
           </Listbox.Button>
-          <Listbox.Options className={cx("form-select-list")}>
-            {children && (children as any).map((option: any, index: number) => (
-              <Listbox.Option
-                key={`form-select-option-${index}`}
-                value={option.props.children}
-                as={Fragment}
-              >
-                {({ active, selected }) => (
-                    <li
-                      className={cx("form-select-option", classes, active ? 'active' : '')}
-                    >
-                      {option.props.children}
-                    </li>
-                  )}
-              </Listbox.Option>
-            ))}
-          </Listbox.Options>
+          { open && 
+            <Listbox.Options static className={cx("form-select-list")}>
+              {children && (children as any).map((option: any, index: number) => (
+                <Listbox.Option
+                  key={`form-select-option-${index}`}
+                  value={option.props.children}
+                  as={Fragment}
+                >
+                  {({ active, selected }) => (
+                      <li
+                        className={cx("form-select-option", classes, active ? 'active' : '')}
+                      >
+                        {option.props.children}
+                      </li>
+                    )}
+                </Listbox.Option>
+              ))}
+            </Listbox.Options>
+          }
         </div>
       )}
     </Listbox>
