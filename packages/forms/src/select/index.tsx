@@ -7,7 +7,9 @@ import { Input, InputProps } from "../input/input";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { useSelectClass } from "./styles";
 
-export const Select = React.forwardRef<HTMLSelectElement, InputProps>((props, ref) => {
+export type SelectProps = Omit<InputProps, 'onChange'> & { onChange: (value:string) => void };
+
+export const Select = React.forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
   const { className, onChange, value, placeholder = '', children, disabled, size = 'md', ...rest } = props;
   const [selectedValue, setSelectedValue] = useState(value ? value : "")
 
