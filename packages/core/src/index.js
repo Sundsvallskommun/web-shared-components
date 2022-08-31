@@ -122,6 +122,24 @@ module.exports = plugin.withOptions(
           h5: { "@apply text-base leading-base": {} },
           h6: { "@apply text-sm leading-sm": {} },
           p: { "@apply my-4": {} },
+
+          '.text-content': {
+            "@apply max-w-[80rem]":{},
+
+            h1: { 
+              "@apply mb-md": {},
+              
+              "+ p": {
+                "@apply mb-[40px]": {}, 
+              }
+            },
+            h2: { "@apply mt-lg": {} },
+            h3: { "@apply mt-lg": {} },
+            h4: { "@apply mt-lg": {} },
+            h5: { "@apply mt-lg": {} },
+            h6: { "@apply mt-lg": {} },
+            p: { "@apply mt-sm": {} },
+          }
         });
       }
     };
