@@ -41,6 +41,7 @@ module.exports = {
   ],
 };
 ```
+
 Wrappa din React-app med `GuiProvider` för att få stylingen.
 
 ```TypeScript
@@ -74,3 +75,24 @@ Styling för komponenter finns/läggs till i `packages/core`. Skapa en ny kompon
 ### Komponenter
 
 Skapa ett nytt paket i `packages` där du gör din react-komponent exportera den sedan via `packages/react`. Använd Storybook för att testa och dokumentera komponenten.
+
+## Release
+
+Testa så den bygger riktigt samt kika över så komponentberoenden fungerar som tänkt:
+
+```
+npx lerna version --no-git-tag-version --no-push
+```
+
+Om allt ser bra ut:
+
+```
+git restore .
+```
+
+Sedan publicera release:
+
+```
+npx lerna version
+npx lerna publish from-git
+```

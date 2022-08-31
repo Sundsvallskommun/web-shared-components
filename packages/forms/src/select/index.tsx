@@ -1,66 +1,75 @@
 import { cx, __DEV__ } from "@sk-web-gui/utils";
 import * as React from "react";
-import { Popover } from '@headlessui/react';
+import { Listbox } from '@headlessui/react'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 import { Input, InputProps } from "../input/input";
-import { useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
+import { useSelectClass } from "./styles";
 
-export const Select = React.forwardRef<HTMLSelectElement, InputProps>((props, ref) => {
-  const { className, placeholder, disabled = false, required = false, "aria-label": ariaLabel, children, size = "md", ...rest } = props;
-  const [selectValue, setSelectValue] = useState("");
-  const [activeOption, setActiveOption] = useState("");
+export type SelectProps = Omit<InputProps, 'onChange'> & { onChange: (value:string) => void };
 
-  const handleOnClick = (option: any, e: React.BaseSyntheticEvent) => {
-    setSelectValue(option.props.children);
-    return close()
+export const Select = React.forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
+  const { className, onChange, value, placeholder = '', children, disabled, size = 'md', ...rest } = props;
+  const [selectedValue, setSelectedValue] = useState(value ? value : "")
+
+  const classes = useSelectClass({ size, disabled });
+
+  const handleOnChange = (value: any) => {
+    setSelectedValue(value);
+    onChange && onChange(value);
   }
 
   return (
-    
-    <Popover>
-      {({ close }) => (
-        <div className={`relative`}>
-          <Popover.Button as='span'
-            className={`w-full`}
-            aria-label={ariaLabel}
-            aria-required={required}
-            aria-disabled={disabled}
+    <Listbox value={selectedValue} onChange={handleOnChange} as={Fragment} disabled={disabled ? disabled : undefined}>
+      {({ open }) => (
+        <div className='form-select-wrapper block w-full relative'>
+          <Input
+            type='hidden'
+            ref={ref}
+            value={selectedValue}
+            disabled={disabled ? disabled : undefined}
+            aria-disabled={disabled ? disabled : undefined}
+          />
+          <Listbox.Button
+            as={Fragment}
           >
             <Input
               ref={ref}
+              as='button'
+              type='button'
               size={size}
-              as="select"
-              value={selectValue}
-              disabled={disabled}
-              aria-disabled={disabled}
-              onChange={(e)=>{setSelectValue(e.target.value); setActiveOption(e.target.value)}}
-              type=""
+              disabled={disabled ? disabled : undefined}
+              aria-disabled={disabled ? disabled : undefined}
               className={cx("form-select", className)}
               {...rest}
             >
-              {placeholder && <option className='form-select-option' value="">{placeholder}</option>}
-              {children}
+              {selectedValue ? selectedValue : placeholder }
+              {<ArrowDropDownIcon className={`!text-2xl absolute right-4 ${open ? 'rotate-180' : ''}`}/>}
             </Input>
-          </Popover.Button>
-          {(
-            <Popover.Panel className="w-full absolute -mt-1  text-black bg-white border border-gray-stroke z-10">
-              { children && (children as any).map((option: any, index: number) => {
-                return (
-                  <a 
-                    key={`form-select-option-${index}`}
-                    className={`form-select-option form-field form-field-${size} ${activeOption == option.props.children ? 'active' : ''}`}
-                    onClick={(e)=>{handleOnClick(option, e); close()}}
-                  >
-                    {option.props.children}
-                  </a>
-                )
-              })
-              }
-            </Popover.Panel>
-          )}
+          </Listbox.Button>
+          { open && 
+            <Listbox.Options static className={cx("form-select-list")}>
+              {children && (children as any).map((option: any, index: number) => (
+                <Listbox.Option
+                  key={`form-select-option-${index}`}
+                  value={option.props.children}
+                  as={Fragment}
+                >
+                  {({ active, selected }) => (
+                      <li
+                        className={cx("form-select-option", classes, active ? 'active' : '')}
+                      >
+                        {option.props.children}
+                      </li>
+                    )}
+                </Listbox.Option>
+              ))}
+            </Listbox.Options>
+          }
         </div>
       )}
-    </Popover>
+    </Listbox>
   );
 });
 

@@ -123,7 +123,7 @@ const withGui = (StoryFn: Function) => {
     <GuiProvider /*theme={theme}*/ colorScheme={colorScheme}>
       <div
         id="story-wrapper"
-        className="space-y-4"
+        // className="space-y-4"
         /*style={{ minHeight: "100vh" }}*/
       >
         <div className="flex mb-4 justify-items-end">
