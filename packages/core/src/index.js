@@ -34,6 +34,7 @@ const UserMenu = require("./components/user-menu");
 
 const Tag = require("./components/tag");
 const Pagination = require("./components/pagination");
+const Footer = require("./components/footer");
 
 const components = [
   Alert,
@@ -65,6 +66,7 @@ const components = [
 
   Tag,
   Pagination,
+  Footer,
 ];
 
 const defaultColors = ["primary", "secondary"];
