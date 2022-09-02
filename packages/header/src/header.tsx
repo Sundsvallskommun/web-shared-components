@@ -9,7 +9,7 @@ export interface HeaderProps extends DefaultProps {
   /* React node */
   children?: React.ReactNode;
   /* Wrapper for Logo-link, for example Next-Link */
-  LogoLinkWrapperComponent?: React.ReactNode;
+  LogoLinkWrapperComponent?: React.ElementType;
   /* NotificationsAlert component */
   notificationsAlert?: React.ReactNode;
   /* UserMenu component */
@@ -19,9 +19,6 @@ export interface HeaderProps extends DefaultProps {
   /* CSS-classes for top parent node */
   wrapperClasses?: string;
 }
-
-const ConditionalWrapper = ({ wrapper, children }:any) => 
-  wrapper !== undefined ? wrapper(children) : children;
 
 export const Header = React.forwardRef<any, HeaderProps>((props, ref) => {
   const {
@@ -36,6 +33,13 @@ export const Header = React.forwardRef<any, HeaderProps>((props, ref) => {
     ...rest
   } = props;
 
+  const LinkWrapper = ({ wrapper, children }:any) =>{
+    if (wrapper !== undefined) {
+      return React.cloneElement(wrapper, {children});
+    }
+    return children
+  }
+
   return (
     <>
       <nav
@@ -47,7 +51,7 @@ export const Header = React.forwardRef<any, HeaderProps>((props, ref) => {
           <div className={cx('header-container')}>
             <div className={cx('header-content', className)}>
               {title && 
-                <ConditionalWrapper
+                <LinkWrapper
                   wrapper={LogoLinkWrapperComponent}
                 >
                   <Link className='no-underline' aria-label={`Till startsidan för ${title}`}>
@@ -175,7 +179,7 @@ export const Header = React.forwardRef<any, HeaderProps>((props, ref) => {
                       </span>
                     </div>
                   </Link>
-                </ConditionalWrapper>
+                </LinkWrapper>
               }
             </div>
 

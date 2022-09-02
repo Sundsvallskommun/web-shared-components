@@ -10,7 +10,11 @@ export default {
 
 export const Template = ({ ...args }: any) => {
   return (
-    <Header {...args}></Header>
+    <Header {...args}
+      // LogoLinkWrapperComponent={
+      //   <a href='/start' />
+      // }
+    ></Header>
   )
 }
 
@@ -24,9 +28,9 @@ Template.argTypes = {
     },
     defaultValue: "Mina sidor",
   },
-  color: {
+  borderColor: {
     type: { name: "string", required: false },
-    description: "Sets color",
+    description: "Sets borderColor",
     table: {
       defaultValue: { summary: "primary" },
     },
