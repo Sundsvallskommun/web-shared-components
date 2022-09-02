@@ -8,9 +8,9 @@ export default {
   parameters: { controls: { hideNoControlsWarning: true } },
 } as Meta;
 
-export const Template = ({ title, ...args }: any) => {
+export const Template = ({ ...args }: any) => {
   return (
-    <Header title={title}>CONTENT</Header>
+    <Header {...args}></Header>
   )
 }
 
@@ -23,7 +23,50 @@ Template.argTypes = {
       defaultValue: { summary: "" },
     },
     defaultValue: "Mina sidor",
-  }
+  },
+  color: {
+    type: { name: "string", required: false },
+    description: "Sets color",
+    table: {
+      defaultValue: { summary: "primary" },
+    },
+    options: ["primary", "secondary", "none"],
+    control: "select",
+    defaultValue: "primary",
+  },
+  className: {
+    type: { name: "string", required: false },
+    description: "Sets className",
+    table: {
+      defaultValue: { summary: "" },
+    },
+    control: "text",
+    defaultValue: "",
+  },
+  userMenu: {
+    type: { required: false },
+    description: "ReactNode",
+    table: {
+      defaultValue: { summary: 'undefined' },
+    },
+    defaultValue: undefined,
+  },
+  notificationsAlert: {
+    type: { required: false },
+    description: "ReactNode",
+    table: {
+      defaultValue: { summary: 'undefined' },
+    },
+    defaultValue: undefined,
+  },
+  LogoLinkWrapperComponent: {
+    type: { required: false },
+    description: "ReactNode, for wrapping the logo-link with e.g. Next/Link",
+    table: {
+      defaultValue: { summary: 'undefined' },
+    },
+    defaultValue: undefined,
+  },
 };
 
 Template.storyName = "Komponent";

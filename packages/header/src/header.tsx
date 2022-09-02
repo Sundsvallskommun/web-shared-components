@@ -14,7 +14,9 @@ export interface HeaderProps extends DefaultProps {
   notificationsAlert?: React.ReactNode;
   /* UserMenu component */
   userMenu?: React.ReactNode;
-  /* CSS-classes for the top component */
+  /* Color for border. 'none' removes border */
+  color?: string;
+  /* CSS-classes for top parent node */
   wrapperClasses?: string;
 }
 
@@ -29,6 +31,7 @@ export const Header = React.forwardRef<any, HeaderProps>((props, ref) => {
     LogoLinkWrapperComponent,
     notificationsAlert,
     userMenu,
+    color = 'primary',
     wrapperClasses,
     ...rest
   } = props;
@@ -38,10 +41,11 @@ export const Header = React.forwardRef<any, HeaderProps>((props, ref) => {
       <nav
         {...rest}
         className={cx('header', wrapperClasses)}
+        data-color={color}
       >
-        <div className={cx('header-innerwrapper', '')}>
-          <div className={cx('header-container', '')}>
-            <div className={cx(className, 'header-content')}>
+        <div className={cx('header-innerwrapper')}>
+          <div className={cx('header-container')}>
+            <div className={cx('header-content', className)}>
               {title && 
                 <ConditionalWrapper
                   wrapper={LogoLinkWrapperComponent}
@@ -174,6 +178,8 @@ export const Header = React.forwardRef<any, HeaderProps>((props, ref) => {
                 </ConditionalWrapper>
               }
             </div>
+
+            {children}
 
             { (notificationsAlert || userMenu) && 
               <div className="header-usermenu">

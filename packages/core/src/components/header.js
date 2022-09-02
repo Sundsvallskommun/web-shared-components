@@ -2,6 +2,20 @@ module.exports = Header = (colors) => ({
     ".header": {
         "@apply lg:border-t-8 lg:border-primary lg:static lg:w-auto lg:h-auto lg:min-h-0": {},
 
+        ...colors.reduce(
+            (styles, color) => ({
+                ...styles,
+                [`&[data-color="${color}"]`]: {
+                    [`@apply border-${color}`]: {},
+                },
+            }),
+            {}
+        ),
+
+        [`&[data-color="none"]`]: {
+            [`@apply border-none`]: {},
+        },
+
         "&-innerwrapper": {
             "@apply flex lg:h-[112px] shadow-lg relative mx-auto px-7 pt-[22px] pb-[8px] z-10": {},
         },
