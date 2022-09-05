@@ -34,6 +34,7 @@ const UserMenu = require("./components/user-menu");
 
 const Tag = require("./components/tag");
 const Pagination = require("./components/pagination");
+const Footer = require("./components/footer");
 const Header = require("./components/header");
 
 const components = [
@@ -66,6 +67,7 @@ const components = [
 
   Tag,
   Pagination,
+  Footer,
   Header,
 ];
 

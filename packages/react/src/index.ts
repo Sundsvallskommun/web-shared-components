@@ -26,4 +26,5 @@ export * from "@sk-web-gui/table";
 export * from "@sk-web-gui/tag";
 
 export * from "@sk-web-gui/pagination";
+export * from "@sk-web-gui/footer";
 export * from "@sk-web-gui/header";
