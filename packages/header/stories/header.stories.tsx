@@ -47,6 +47,15 @@ Template.argTypes = {
     control: "text",
     defaultValue: "",
   },
+  wrapperClasses: {
+    type: { name: "string", required: false },
+    description: "Sets classes for top parent node",
+    table: {
+      defaultValue: { summary: "" },
+    },
+    control: "text",
+    defaultValue: "",
+  },
   userMenu: {
     type: { required: false },
     description: "ReactNode",

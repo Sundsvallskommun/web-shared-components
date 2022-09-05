@@ -15,7 +15,7 @@ export interface HeaderProps extends DefaultProps {
   /* UserMenu component */
   userMenu?: React.ReactNode;
   /* Color for border. 'none' removes border */
-  color?: string;
+  borderColor?: string;
   /* CSS-classes for top parent node */
   wrapperClasses?: string;
 }
@@ -28,7 +28,7 @@ export const Header = React.forwardRef<any, HeaderProps>((props, ref) => {
     LogoLinkWrapperComponent,
     notificationsAlert,
     userMenu,
-    color = 'primary',
+    borderColor = 'primary',
     wrapperClasses,
     ...rest
   } = props;
@@ -45,7 +45,7 @@ export const Header = React.forwardRef<any, HeaderProps>((props, ref) => {
       <nav
         {...rest}
         className={cx('header', wrapperClasses)}
-        data-color={color}
+        data-color={borderColor}
       >
         <div className={cx('header-innerwrapper')}>
           <div className={cx('header-container')}>
