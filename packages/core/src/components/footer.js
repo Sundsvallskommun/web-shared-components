@@ -15,7 +15,7 @@ module.exports = Footer = (colors) => ({
             ),
         },
 
-        "&-container": {
+        "&-content": {
             "@apply container md:flex items-center justify-center m-auto": {},
         },
 

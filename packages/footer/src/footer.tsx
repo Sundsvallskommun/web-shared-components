@@ -13,6 +13,8 @@ export interface FooterProps extends DefaultProps {
   bottomLinksColor?: string;
   /* Bottom links container classes */
   bottomLinksClasses?: string;
+  /* CSS-classes for top parent node */
+  wrapperClasses?: string;
 }
 
 export const Footer = React.forwardRef<any, FooterProps>((props, ref) => {
@@ -23,14 +25,15 @@ export const Footer = React.forwardRef<any, FooterProps>((props, ref) => {
     children,
     bottomLinks,
     bottomLinksClasses,
+    wrapperClasses,
     ...rest
   } = props;
 
   return (
     <>
-      <footer className="footer" {...rest}>
+      <footer className={cx('footer', wrapperClasses)} {...rest}>
           <div data-color={color} className="footer-innerwrapper">
-              <div className={cx(className, 'footer-container')}>
+              <div className={cx(className, 'footer-content')}>
                 {children}
               </div>
           </div>
