@@ -3,7 +3,7 @@ import { __DEV__ } from "@sk-web-gui/utils";
 import { Dialog as D, Transition } from '@headlessui/react'
 import { Button, Switch } from '@sk-web-gui/react';
 import { useEffect, useRef, useState } from "react";
-import Cookies from 'universal-cookie';
+import Cookies, {CookieSetOptions} from 'universal-cookie';
 import * as React from "react";
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
@@ -62,6 +62,7 @@ interface CookieConsentProps extends DefaultProps {
   title: string;
   body: any;
   resetConsentOnInit: boolean;
+  options?: CookieSetOptions;
 }
 
 /* export interface CookieConsentProps
@@ -69,13 +70,16 @@ interface CookieConsentProps extends DefaultProps {
     ICookieConsentProps {} */
 
   export function CookieConsent({
-      title,
-      body,
-      onConsent,
-      cookies = [],
-      onDecline,
-      closeable = false,
-      resetConsentOnInit = false,
+        title,
+        body,
+        onConsent,
+        cookies = [],
+        onDecline,
+        closeable = false,
+        resetConsentOnInit = false,
+        options = {
+            maxAge: 31536000 // default 12 months according to ePrivacy, EU
+        },
   }: CookieConsentProps) {
 
     const [isOpen, setIsOpen] = useState(false);
@@ -122,15 +126,15 @@ interface CookieConsentProps extends DefaultProps {
         if (onConsent) {
             switch (consentType) {
                 case ConsentType.All:
-                    userCookie.set(defaultCookieConsentName, checkableCookies.map(cookie => cookie.cookieName).join(','));
+                    userCookie.set(defaultCookieConsentName, checkableCookies.map(cookie => cookie.cookieName).join(','), options);
                     onConsent(checkableCookies);
                     break;
                 case ConsentType.Necessary:
-                    userCookie.set(defaultCookieConsentName, checkableCookies.filter((cookie) => !cookie.optional).map(cookie => cookie.cookieName).join(','));
+                    userCookie.set(defaultCookieConsentName, checkableCookies.filter((cookie) => !cookie.optional).map(cookie => cookie.cookieName).join(','), options);
                     onConsent(checkableCookies.filter((cookie) => !cookie.optional));
                     break;
                 case ConsentType.Custom:
-                    userCookie.set(defaultCookieConsentName, checkableCookies.filter((cookie) => cookie.isChecked).map(cookie => cookie.cookieName).join(','));
+                    userCookie.set(defaultCookieConsentName, checkableCookies.filter((cookie) => cookie.isChecked).map(cookie => cookie.cookieName).join(','), options);
                     onConsent(checkableCookies.filter((cookie) => cookie.isChecked));
                     break;
             }
