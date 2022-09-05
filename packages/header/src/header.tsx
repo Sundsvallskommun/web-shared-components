@@ -18,6 +18,8 @@ export interface HeaderProps extends DefaultProps {
   borderColor?: string;
   /* CSS-classes for top parent node */
   wrapperClasses?: string;
+  /* CSS-classes for usermenu */
+  userMenuClasses?: string;
 }
 
 export const Header = React.forwardRef<any, HeaderProps>((props, ref) => {
@@ -30,6 +32,7 @@ export const Header = React.forwardRef<any, HeaderProps>((props, ref) => {
     userMenu,
     borderColor = 'primary',
     wrapperClasses,
+    userMenuClasses,
     ...rest
   } = props;
 
@@ -47,8 +50,7 @@ export const Header = React.forwardRef<any, HeaderProps>((props, ref) => {
         className={cx('header', wrapperClasses)}
         data-color={borderColor}
       >
-        <div className={cx('header-innerwrapper')}>
-          <div className={cx('header-container')}>
+        <div className={cx('header-container')}>
             <div className={cx('header-content', className)}>
               {title && 
                 <LinkWrapper
@@ -181,19 +183,18 @@ export const Header = React.forwardRef<any, HeaderProps>((props, ref) => {
                   </Link>
                 </LinkWrapper>
               }
-            </div>
 
-            {children}
+              {children}
 
-            { (notificationsAlert || userMenu) && 
-              <div className="header-usermenu">
-                <div className="header-usermenu-content">
-                  {notificationsAlert && notificationsAlert}
-                  {userMenu && userMenu}
+              { (notificationsAlert || userMenu) && 
+                <div className={cx('header-usermenu', userMenuClasses)}>
+                  <div className="header-usermenu-content">
+                    {notificationsAlert && notificationsAlert}
+                    {userMenu && userMenu}
+                  </div>
                 </div>
-              </div>
-            }
-          </div>
+              }
+            </div>
         </div>
       </nav>
     </>

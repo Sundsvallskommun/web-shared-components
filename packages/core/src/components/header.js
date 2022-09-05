@@ -16,20 +16,16 @@ module.exports = Header = (colors) => ({
             [`@apply border-none`]: {},
         },
 
-        "&-innerwrapper": {
+        "&-container": {
             "@apply flex lg:h-[112px] shadow-lg relative mx-auto px-7 pt-[22px] pb-[8px] z-10": {},
         },
 
-        "&-container": {
-            "@apply w-full m-auto flex items-center justify-between flex-wrap md:px-lg max-w-[140rem]": {},
-        },
-
         "&-content": {
-            "@apply flex items-center flex-shrink-0 text-black mr-6": {},
+            "@apply flex items-center w-full justify-between m-auto flex-shrink-0 text-body max-w-[140rem]": {},
         },
 
         "&-usermenu": {
-            "@apply block flex-shrink lg:flex lg:items-center lg:w-auto": {},
+            "@apply lg:-mr-lg block flex-shrink lg:flex lg:items-center lg:w-auto": {},
 
             "&-content": {
                 "@apply flex flex-grow lg:flex justify-end items-center lg:w-auto": {},

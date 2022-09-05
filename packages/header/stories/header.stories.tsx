@@ -1,6 +1,7 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
 import { Header } from "../src";
+import { UserMenu } from "@sk-web-gui/react";
 
 export default {
   title: "WIP/Komponenter/Header",
@@ -10,10 +11,18 @@ export default {
 
 export const Template = ({ ...args }: any) => {
   return (
-    <Header {...args}
+    <Header {...args} 
+      className=' !max-w-[156rem]'
       // LogoLinkWrapperComponent={
       //   <a href='/start' />
       // }
+      userMenu={
+        <UserMenu
+          menuTitle="User menu"
+          menuSubTitle=""
+          menuGroups={[]}
+        />
+      }
     ></Header>
   )
 }
@@ -50,6 +59,15 @@ Template.argTypes = {
   wrapperClasses: {
     type: { name: "string", required: false },
     description: "Sets classes for top parent node",
+    table: {
+      defaultValue: { summary: "" },
+    },
+    control: "text",
+    defaultValue: "",
+  },
+  userMenuClasses: {
+    type: { name: "string", required: false },
+    description: "Sets classes for usermenu wrapper",
     table: {
       defaultValue: { summary: "" },
     },
