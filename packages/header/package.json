@@ -1,6 +1,6 @@
 {
-  "name": "@sk-web-gui/react",
-  "version": "0.1.34",
+  "name": "@sk-web-gui/header",
+  "version": "0.1.0",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -34,39 +34,13 @@
     "lint:types": "tsc --noEmit"
   },
   "devDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react": "^17.0.2"
   },
   "dependencies": {
-    "@sk-web-gui/accordion": "0.1.10",
-    "@sk-web-gui/alert": "0.1.4",
-    "@sk-web-gui/breadcrumb": "0.1.5",
-    "@sk-web-gui/button": "0.1.5",
-    "@sk-web-gui/card": "0.1.6",
-    "@sk-web-gui/checkbox": "0.1.6",
-    "@sk-web-gui/cookie-consent": "0.1.5",
-    "@sk-web-gui/divider": "0.1.7",
-    "@sk-web-gui/dot": "0.1.4",
-    "@sk-web-gui/forms": "0.1.6",
-    "@sk-web-gui/icon": "0.1.4",
-    "@sk-web-gui/image": "0.1.4",
-    "@sk-web-gui/link": "0.1.5",
-    "@sk-web-gui/message": "0.1.10",
-    "@sk-web-gui/notification": "0.1.10",
-    "@sk-web-gui/pagination": "0.1.6",
-    "@sk-web-gui/radio": "0.1.7",
-    "@sk-web-gui/spinner": "0.1.4",
-    "@sk-web-gui/switch": "0.1.7",
-    "@sk-web-gui/table": "0.1.11",
-    "@sk-web-gui/tag": "0.1.9",
     "@sk-web-gui/theme": "0.1.4",
-    "@sk-web-gui/user-menu": "0.1.16",
-    "@sk-web-gui/utils": "0.1.3",
-    "@sk-web-gui/footer": "0.1.0"
-    "@sk-web-gui/header": "0.1.0"
+    "@sk-web-gui/utils": "0.1.3"
   },
   "peerDependencies": {
-    "react": ">=16.8.6",
-    "react-dom": ">=16.8.6"
+    "react": ">=16.8.6"
   }
 }
