@@ -9,7 +9,7 @@ export interface HeaderProps extends DefaultProps {
   /* React node */
   children?: React.ReactNode;
   /* Wrapper for Logo-link, for example Next-Link */
-  LogoLinkWrapperComponent?: React.ElementType;
+  LogoLinkWrapperComponent?: React.ReactElement;
   /* NotificationsAlert component */
   notificationsAlert?: React.ReactNode;
   /* UserMenu component */
