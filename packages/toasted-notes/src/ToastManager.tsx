@@ -144,19 +144,19 @@ export default class ToastManager extends React.Component<Props, State> {
     }
 
     if (position.includes("top")) {
-      style.top = 0;
+      style.top = '59px'; // Total 64px to toastmessage
     }
 
     if (position.includes("bottom")) {
-      style.bottom = 0;
+      style.bottom = '59px'; // Total 64px to toastmessage
     }
 
     if (!position.includes("left")) {
-      style.right = 0;
+      style.right = '75px'; // Total 80px to toastmessage
     }
 
     if (!position.includes("right")) {
-      style.left = 0;
+      style.left = '75px'; // Total 80px to toastmessage
     }
 
     return style;

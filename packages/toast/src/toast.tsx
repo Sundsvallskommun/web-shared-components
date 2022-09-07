@@ -66,7 +66,7 @@ export function createToast(Comp: React.ElementType) {
   return function() {
     const notify = useCallback(
       ({
-        position = "bottom",
+        position = "bottom-left",
         duration = 5000,
         render,
         ...rest

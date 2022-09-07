@@ -14,8 +14,6 @@ export const basic = () => {
     message({
       message: "Toast message goes here.",
       status: status,
-      position: "top",
-      duration: 5000,
     });
   };
 
