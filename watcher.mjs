@@ -4,7 +4,7 @@ import { exec } from 'child_process';
 // Package: https://www.npmjs.com/package/chokidar
 
 // Initialize watcher.
-const watcher = chokidar.watch('**/*.ts, **/*.tsx', {
+const watcher = chokidar.watch('**/*.(ts|tsx)', {
     ignored: /(^|[\/\\])\../, // ignore dotfiles
     persistent: true,
     ignoreInitial: true,

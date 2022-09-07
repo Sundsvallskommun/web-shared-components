@@ -23,4 +23,13 @@ module.exports = {
     reactDocgen: false,
   },
   staticDirs: ['./public'],
+  core: {
+    builder: {
+      name: 'webpack5',
+      options: {
+        lazyCompilation: true,
+        fsCache: true,
+      },
+    },
+  },
 };
