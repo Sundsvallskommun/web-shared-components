@@ -78,7 +78,8 @@ interface CookieConsentProps extends DefaultProps {
         closeable = false,
         resetConsentOnInit = false,
         options = {
-            maxAge: 31536000 // default 12 months according to ePrivacy, EU
+            maxAge: 31536000, // default 12 months according to ePrivacy, EU
+            sameSite: 'strict'
         },
   }: CookieConsentProps) {
 
