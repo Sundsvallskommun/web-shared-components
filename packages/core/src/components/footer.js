@@ -1,42 +1,39 @@
 module.exports = Footer = (colors) => ({
-    ".footer": {
+  '.footer': {
+    '&-innerwrapper': {
+      '@apply bg-gray text-white py-12 px-2 sm:p-12': {},
 
-        "&-innerwrapper": {
-            "@apply bg-gray text-white py-12 px-2 sm:p-12": {},
+      ...colors.reduce(
+        (styles, color) => ({
+          ...styles,
+          [`&[data-color="${color}"]`]: {
+            [`@apply bg-${color}`]: {},
+          },
+        }),
+        {}
+      ),
+    },
 
-            ...colors.reduce(
-                (styles, color) => ({
-                    ...styles,
-                    [`&[data-color="${color}"]`]: {
-                        [`@apply bg-${color}`]: {},
-                    },
-                }),
-                {}
-            ),
-        },
+    '&-content': {
+      '@apply container md:flex items-center justify-center m-auto': {},
+    },
 
-        "&-content": {
-            "@apply container md:flex items-center justify-center m-auto": {},
-        },
+    '&-bottomlinks': {
+      '@apply bg-gray-middle text-body py-12 px-2 sm:p-12': {},
 
-        "&-bottomlinks": {
-            "@apply bg-gray-middle text-black py-12 px-2 sm:p-12": {},
+      ...colors.reduce(
+        (styles, color) => ({
+          ...styles,
+          [`&[data-color="${color}"]`]: {
+            [`@apply bg-${color}`]: {},
+          },
+        }),
+        {}
+      ),
 
-            ...colors.reduce(
-                (styles, color) => ({
-                    ...styles,
-                    [`&[data-color="${color}"]`]: {
-                        [`@apply bg-${color}`]: {},
-                    },
-                }),
-                {}
-            ),
-
-            "&-container": {
-                "@apply container flex items-start md:items-center justify-center m-auto md:space-x-10 flex-col md:flex-row": {},
-            }
-        }
-        
-    }
-    
+      '&-container': {
+        '@apply container flex items-start md:items-center justify-center m-auto md:space-x-10 flex-col md:flex-row': {},
+      },
+    },
+  },
 });
