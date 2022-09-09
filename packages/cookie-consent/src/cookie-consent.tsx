@@ -82,7 +82,8 @@ interface CookieConsentProps extends DefaultProps {
             sameSite: 'strict'
         },
   }: CookieConsentProps) {
-
+    const [htmlTagInitOverflow, setHtmlTagInitOverflow] = useState('');
+    const [htmlTagInitBottomPadding, setHtmlTagInitBottomPadding] = useState('');
     const [isOpen, setIsOpen] = useState(false);
     const [isHandlingOptions, setIsHandlingOptions] = useState(false);
 
@@ -113,6 +114,8 @@ interface CookieConsentProps extends DefaultProps {
         }
         userCookie.set(defaultCookieConsentName, '');
         setIsOpen(false);
+        document.documentElement.style.overflow = htmlTagInitOverflow;
+        document.documentElement.style.paddingBottom = htmlTagInitBottomPadding;
     }
 
     const handleOnCheck = (index: number) => {
@@ -141,12 +144,31 @@ interface CookieConsentProps extends DefaultProps {
             }
         }
         setIsOpen(false);
+        document.documentElement.style.overflow = htmlTagInitOverflow;
+        document.documentElement.style.paddingBottom = htmlTagInitBottomPadding;
     }
 
     useEffect(() => {
         const isOpen = !getConsent().length;
         setIsOpen(isOpen);
     }, [setIsOpen]);
+
+    // Let user scroll while cookie banner is shown
+    // Below is needed because Headless ui sets document.html.style.overflow to hidden on open
+    //START:/ Keep these in order
+    useEffect(() => {
+        setHtmlTagInitOverflow(document.documentElement.style.overflow)
+        setHtmlTagInitBottomPadding(document.documentElement.style.paddingBottom)
+    },[]);
+    useEffect(()=>{
+        document.documentElement.style.overflow = 'auto';
+        // Let user see all content
+        const cookieElem:any = document.querySelector(".cookie-consent");
+        if (cookieElem) {
+            document.documentElement.style.paddingBottom = cookieElem.offsetHeight + 'px';
+        }
+    })
+    //:END/
 
     return (
         <Transition
