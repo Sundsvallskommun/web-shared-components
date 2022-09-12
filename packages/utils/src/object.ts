@@ -1,5 +1,5 @@
-import { isObject } from "./assertion";
-import type { Dict } from "./types";
+import { isObject } from './assertion';
+import type { Dict } from './types';
 
 export function omit<T extends Dict, K extends keyof T>(object: T, keys: K[]) {
   const result: Dict = {};
@@ -34,7 +34,7 @@ export function deepmerge<T1, T2>(
   if (isObject(target) && isObject(source)) {
     Object.keys(source).forEach((key) => {
       // Avoid prototype pollution
-      if (key === "__proto__") {
+      if (key === '__proto__') {
         return;
       }
 

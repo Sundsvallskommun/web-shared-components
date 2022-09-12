@@ -1,19 +1,19 @@
-import { useFormControl } from "@sk-web-gui/forms";
-import { cx, __DEV__ } from "@sk-web-gui/utils";
-import { DefaultProps } from "@sk-web-gui/theme";
-import * as React from "react";
+import { useFormControl } from '@sk-web-gui/forms';
+import { cx, __DEV__ } from '@sk-web-gui/utils';
+import { DefaultProps } from '@sk-web-gui/theme';
+import * as React from 'react';
 
-import { useRadioClass, useRadioLabelClass } from "./styles";
+import { useRadioClass, useRadioLabelClass } from './styles';
 
 interface IRadioProps<T = HTMLInputElement> extends DefaultProps {
   /* Makes radio disabled */
-  disabled?: React.InputHTMLAttributes<T>["disabled"];
+  disabled?: React.InputHTMLAttributes<T>['disabled'];
   /* Makes radio invalid */
   invalid?: boolean;
   /* Makes radio required */
-  required?: React.InputHTMLAttributes<T>["required"];
+  required?: React.InputHTMLAttributes<T>['required'];
   /* Makes radio readOnly */
-  readOnly?: React.InputHTMLAttributes<T>["readOnly"];
+  readOnly?: React.InputHTMLAttributes<T>['readOnly'];
   /**
    * If `true`, the radio will be initially checked.
    */
@@ -34,52 +34,48 @@ interface IRadioProps<T = HTMLInputElement> extends DefaultProps {
   /* Radio value */
   value?: string | number;
   /* Size of the radio */
-  size?: "sm" | "md" | "lg" | "xl";
+  size?: 'sm' | 'md' | 'lg' | 'xl';
   /* Set the radio color */
   color?: string;
   /**
    * A11y: A label that describes the input
    */
-  "aria-label"?: string;
+  'aria-label'?: string;
   /**
    * A11y: The id of the element that describes the input
    */
-  "aria-describedby"?: string;
+  'aria-describedby'?: string;
   /**
    * A11y: Refers to the id of the element that labels the radio element.
    */
-  "aria-labelledby"?: string;
+  'aria-labelledby'?: string;
   /**
    * The children is the label to be displayed to the right of the radio.
    */
   children?: React.ReactNode;
 }
 
-export type RadioProps = IRadioProps &
-  React.HTMLAttributes<HTMLInputElement>;
+export type RadioProps = IRadioProps & React.HTMLAttributes<HTMLInputElement>;
 
 export const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
   const {
     id,
     name,
     value,
-    "aria-label": ariaLabel,
-    "aria-labelledby": ariaLabelledBy,
-    "aria-describedby": ariaDescribedby,
-    color = "primary",
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledBy,
+    'aria-describedby': ariaDescribedby,
+    color = 'primary',
     defaultChecked,
     checked,
-    size = "md",
+    size = 'md',
     onChange,
     children,
     className,
     ...rest
   } = props;
 
-  const {
-    disabled,
-    invalid,
-  } = useFormControl(props);
+  const { disabled, invalid } = useFormControl(props);
 
   const radioClasses = useRadioClass({
     size,
@@ -92,10 +88,10 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref)
   return (
     <label
       className={cx(
-        "inline-flex align-top items-center",
-        disabled && "cursor-not-allowed",
+        'inline-flex align-top items-center',
+        disabled && 'cursor-not-allowed',
         radioLabelClasses,
-        disabled ? "opacity-40" : "opacity-100"
+        disabled ? 'opacity-40' : 'opacity-100'
       )}
     >
       <input
@@ -114,11 +110,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref)
         disabled={disabled}
         aria-disabled={disabled}
         data-color={color ? color : undefined}
-        className={cx(
-          radioClasses,
-          disabled ? "opacity-80" : "opacity-100",
-          className
-        )}
+        className={cx(radioClasses, disabled ? 'opacity-80' : 'opacity-100', className)}
         {...rest}
       />
       {children}
@@ -127,5 +119,5 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref)
 });
 
 if (__DEV__) {
-  Radio.displayName = "Radio";
+  Radio.displayName = 'Radio';
 }

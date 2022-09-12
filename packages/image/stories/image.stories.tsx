@@ -1,7 +1,7 @@
-import { Image } from "../src";
+import { Image } from '../src';
 
 export default {
-  title: "WIP/Komponenter/Bild",
+  title: 'WIP/Komponenter/Bild',
   component: Image,
   parameters: {
     controls: { hideNoControlsWarning: true },
@@ -9,11 +9,5 @@ export default {
 };
 
 export const Bild = () => (
-  <Image
-    alt="Dan Abramov"
-    htmlWidth={100}
-    htmlHeight={100}
-    className="object-cover"
-    src="https://bit.ly/dan-abramov"
-  />
+  <Image alt="Dan Abramov" htmlWidth={100} htmlHeight={100} className="object-cover" src="https://bit.ly/dan-abramov" />
 );

@@ -1,7 +1,7 @@
-declare module "@reach/alert" {
+declare module '@reach/alert' {
   export interface AlertProps {
     children?: React.ReactElement<any>;
-    type?: "assertive" | "polite";
+    type?: 'assertive' | 'polite';
     className?: string;
   }
 

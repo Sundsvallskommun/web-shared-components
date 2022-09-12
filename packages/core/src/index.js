@@ -74,8 +74,8 @@ const components = [
 const defaultColors = ['primary', 'secondary'];
 
 module.exports = plugin.withOptions(
-  function(options = { colors: [], cssBase: true }) {
-    return function({ addComponents, addVariant, addBase, variants, e, theme, addUtilities }) {
+  function (options = { colors: [], cssBase: true }) {
+    return function ({ addComponents, addVariant, addBase, variants, e, theme, addUtilities }) {
       const optionColors = [...defaultColors, ...(options.colors || [])];
 
       active({ addVariant, variants, e, theme, addUtilities });
@@ -140,7 +140,7 @@ module.exports = plugin.withOptions(
       }
     };
   },
-  function() {
+  function () {
     return {
       theme: {
         fontSize: {

@@ -1,16 +1,15 @@
-import React from "react";
-import { Story, Meta } from "@storybook/react";
-import { UserMenu } from "../src";
-import { Announcement } from "./announcement";
-import { cx } from "@sk-web-gui/utils";
-import { Link } from "../../react";
-import { MenuItemGroup } from "../src/user-menu";
+import React from 'react';
+import { Meta } from '@storybook/react';
+import { UserMenu } from '../src';
+import { cx } from '@sk-web-gui/utils';
+import { Link } from '../../react';
+import { MenuItemGroup } from '../src/user-menu';
 
 export default {
-  title: "WIP/Komponenter/UserMenu",
+  title: 'WIP/Komponenter/UserMenu',
   component: UserMenu,
   argTypes: {
-    menuTitle: { control: "text", defaultValue: "Menytext" },
+    menuTitle: { control: 'text', defaultValue: 'Menytext' },
   },
   parameters: { controls: { hideNoControlsWarning: true } },
 } as Meta;
@@ -19,51 +18,39 @@ const isMobileMenuOpen = false;
 
 const menuGroups: MenuItemGroup[] = [
   {
-    label: "Main",
+    label: 'Main',
     showLabel: false,
     showOnDesktop: false,
     showOnMobile: true,
     elements: [
       {
-        label: "Pågående",
+        label: 'Pågående',
         element: (active: boolean) => (
-          <Link
-            href="/pagaende"
-            className={`usermenu-item ${active ? "active" : ""}`}
-          >
+          <Link href="/pagaende" className={`usermenu-item ${active ? 'active' : ''}`}>
             Pågående
           </Link>
         ),
       },
       {
-        label: "Beslutade",
+        label: 'Beslutade',
         element: (active: boolean) => (
-          <Link
-            href="/beslutade"
-            className={`usermenu-item ${active ? "active" : ""}`}
-          >
+          <Link href="/beslutade" className={`usermenu-item ${active ? 'active' : ''}`}>
             Beslutade
           </Link>
         ),
       },
       {
-        label: "Handlingsplan",
+        label: 'Handlingsplan',
         element: (active: boolean) => (
-          <Link
-            href="/handlingsplan"
-            className={`usermenu-item ${active ? "active" : ""}`}
-          >
+          <Link href="/handlingsplan" className={`usermenu-item ${active ? 'active' : ''}`}>
             Handlingsplan
           </Link>
         ),
       },
       {
-        label: "Företagsuppgifter",
+        label: 'Företagsuppgifter',
         element: (active: boolean) => (
-          <Link
-            href="/foretagsuppgifter"
-            className={`usermenu-item ${active ? "active" : ""}`}
-          >
+          <Link href="/foretagsuppgifter" className={`usermenu-item ${active ? 'active' : ''}`}>
             Företagsuppgifter
           </Link>
         ),
@@ -71,30 +58,24 @@ const menuGroups: MenuItemGroup[] = [
     ],
   },
   {
-    label: "Relaterade webbplatser",
+    label: 'Relaterade webbplatser',
     showLabel: true,
     showOnDesktop: true,
     showOnMobile: true,
     elements: [
       {
-        label: "E-tjänster",
+        label: 'E-tjänster',
         element: (active: boolean) => (
-          <a
-            href="https://www.sundsvall.se/"
-            className={`usermenu-item ${active ? "active" : ""}`}
-          >
+          <a href="https://www.sundsvall.se/" className={`usermenu-item ${active ? 'active' : ''}`}>
             E-tjänster
           </a>
         ),
       },
 
       {
-        label: "Företagscenter Sundsvall",
+        label: 'Företagscenter Sundsvall',
         element: (active: boolean) => (
-          <a
-            href="https://www.sundsvall.se/"
-            className={`usermenu-item ${active ? "active" : ""}`}
-          >
+          <a href="https://www.sundsvall.se/" className={`usermenu-item ${active ? 'active' : ''}`}>
             Företagscenter Sundsvall
           </a>
         ),
@@ -102,22 +83,16 @@ const menuGroups: MenuItemGroup[] = [
     ],
   },
   {
-    label: "Inställningar",
+    label: 'Inställningar',
     showLabel: true,
     showOnDesktop: true,
     showOnMobile: true,
     elements: [
       {
-        label: "Mina uppgifter",
+        label: 'Mina uppgifter',
         element: (active: boolean) => (
-          <Link
-            href="/myaccount"
-            className={`usermenu-item ${active ? "active" : ""}`}
-          >
-            <span
-              className="material-icons-outlined align-middle mr-sm"
-              aria-hidden="true"
-            >
+          <Link href="/myaccount" className={`usermenu-item ${active ? 'active' : ''}`}>
+            <span className="material-icons-outlined align-middle mr-sm" aria-hidden="true">
               account_circle
             </span>
 
@@ -128,16 +103,10 @@ const menuGroups: MenuItemGroup[] = [
         ),
       },
       {
-        label: "Inställningar som har en riktigt lång text",
+        label: 'Inställningar som har en riktigt lång text',
         element: (active: boolean) => (
-          <Link
-            href="/myaccount"
-            className={`usermenu-item ${active ? "active" : ""}`}
-          >
-            <span
-              className="material-icons-outlined align-middle mr-sm"
-              aria-hidden="true"
-            >
+          <Link href="/myaccount" className={`usermenu-item ${active ? 'active' : ''}`}>
+            <span className="material-icons-outlined align-middle mr-sm" aria-hidden="true">
               settings
             </span>
 
@@ -148,16 +117,10 @@ const menuGroups: MenuItemGroup[] = [
         ),
       },
       {
-        label: "Meddelanden",
+        label: 'Meddelanden',
         element: (active: boolean) => (
-          <Link
-            href="/messages"
-            className={`usermenu-item ${active ? "active" : ""}`}
-          >
-            <span
-              className="material-icons-outlined align-middle mr-sm"
-              aria-hidden="true"
-            >
+          <Link href="/messages" className={`usermenu-item ${active ? 'active' : ''}`}>
+            <span className="material-icons-outlined align-middle mr-sm" aria-hidden="true">
               email
             </span>
 
@@ -168,16 +131,10 @@ const menuGroups: MenuItemGroup[] = [
         ),
       },
       {
-        label: "Logga ut",
+        label: 'Logga ut',
         element: (active: boolean) => (
-          <Link
-            href="/logout"
-            className={`usermenu-item ${active ? "active" : ""}`}
-          >
-            <span
-              className="material-icons-outlined align-middle mr-sm"
-              aria-hidden="true"
-            >
+          <Link href="/logout" className={`usermenu-item ${active ? 'active' : ''}`}>
+            <span className="material-icons-outlined align-middle mr-sm" aria-hidden="true">
               logout
             </span>
 
@@ -191,7 +148,7 @@ const menuGroups: MenuItemGroup[] = [
   },
 ];
 
-export const basic = ({ text, ...args }: any) => (
+export const Basic = () => (
   <nav
     className={cx('lg:border-t-8 lg:border-primary lg:static lg:w-auto lg:h-auto lg:min-h-0', {
       'fixed z-50 top-0 left-0 w-full min-h-screen bg-white ': isMobileMenuOpen,
@@ -200,10 +157,10 @@ export const basic = ({ text, ...args }: any) => (
     <div className="shadow-lg mx-auto px-7 pt-[22px] pb-[8px]">
       <div
         className="container m-auto flex items-center justify-between"
-        style={{ maxWidth: "120rem", paddingLeft: "0", paddingRight: "0" }}
+        style={{ maxWidth: '120rem', paddingLeft: '0', paddingRight: '0' }}
       >
         <div className="flex items-center shrink-0 text-black mr-6">
-          <Link href={"/"}>
+          <Link href={'/'}>
             <a className="flex items-center">
               <svg
                 className="lg:hidden"
@@ -219,9 +176,7 @@ export const basic = ({ text, ...args }: any) => (
                 />
               </svg>
 
-              <span className="text-xl tracking-tight hidden lg:inline-block">
-                Mina sidor
-              </span>
+              <span className="text-xl tracking-tight hidden lg:inline-block">Mina sidor</span>
               <svg
                 className="mx-4"
                 width="1"
@@ -309,9 +264,7 @@ export const basic = ({ text, ...args }: any) => (
                   fill="#212121"
                 />
               </svg>
-              <span className="text-sm tracking-tight lg:hidden">
-                Mina sidor
-              </span>
+              <span className="text-sm tracking-tight lg:hidden">Mina sidor</span>
             </a>
           </Link>
         </div>
@@ -320,11 +273,7 @@ export const basic = ({ text, ...args }: any) => (
           {/* <div className="text-lg lg:flex-grow lg:flex lg:items-center lg:justify-center hidden"></div> */}
 
           {/* <div className="block lg:block"> */}
-          <UserMenu
-            menuTitle="Företagsbolaget AB"
-            menuSubTitle="Förnamn Efternamn"
-            menuGroups={menuGroups}
-          ></UserMenu>
+          <UserMenu menuTitle="Företagsbolaget AB" menuSubTitle="Förnamn Efternamn" menuGroups={menuGroups}></UserMenu>
           {/* </div> */}
         </div>
       </div>

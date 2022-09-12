@@ -1,84 +1,84 @@
 module.exports = Accordion = (colors) => ({
-  ".accordion": {
-    "&-header": {
-      "@apply flex flex-col text-left": {},
+  '.accordion': {
+    '&-header': {
+      '@apply flex flex-col text-left': {},
 
       '[aria-expanded="true"] &': {
-        "@apply bg-hover": {},
+        '@apply bg-hover': {},
       },
 
-      "&-icon": {
-        "@apply ml-auto !text-2xl": {},
+      '&-icon': {
+        '@apply ml-auto !text-2xl': {},
       },
     },
 
-    "&-is-open &-header": {
-      "@apply bg-hover": {},
+    '&-is-open &-header': {
+      '@apply bg-hover': {},
     },
 
-    "&-toggle": {
-      "@apply flex items-center inline-block text-lg leading-lg text-left text-lg mx-lg my-md": {},
-      fontWeight: "bold",
+    '&-toggle': {
+      '@apply flex items-center inline-block text-lg leading-lg text-left text-lg mx-lg my-md': {},
+      fontWeight: 'bold',
       //"@apply focus-visible:shadow shadow-lg": {},
-      "&:focus-visible": {
-        boxShadow: "0 0 0 0.4rem #fff!important",
-        outline: "0",
+      '&:focus-visible': {
+        boxShadow: '0 0 0 0.4rem #fff!important',
+        outline: '0',
         //"@apply border-4": {},
       },
-      ".accordion-subtitle": {
-        "@apply m-0 text-sm font-normal": {},
+      '.accordion-subtitle': {
+        '@apply m-0 text-sm font-normal': {},
       },
     },
 
-    "&-body": {
-      "@apply h-0 overflow-hidden m-lg": {},
-      transitionProperty: "visibility, height, padding, margin",
-      transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
-      transitionDuration: "180ms",
+    '&-body': {
+      '@apply h-0 overflow-hidden m-lg': {},
+      transitionProperty: 'visibility, height, padding, margin',
+      transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      transitionDuration: '180ms',
 
       '&[aria-hidden="true"], &[data-hidden="true"]': {
-        "@apply my-0 invisible": {},
+        '@apply my-0 invisible': {},
       },
 
       '&[aria-hidden="false"], &[data-hidden="false"]': {
-        "@apply block h-auto visible": {},
+        '@apply block h-auto visible': {},
       },
     },
 
-    "&-solid": {
-      "@apply border border-primary": {},
-      ".accordion-header": {
-        "@apply bg-primary text-white": {},
+    '&-solid': {
+      '@apply border border-primary': {},
+      '.accordion-header': {
+        '@apply bg-primary text-white': {},
 
         '[aria-expanded="true"] &': {
-          "@apply bg-hover": {},
+          '@apply bg-hover': {},
         },
       },
     },
 
-    "&-is-open": {
-      "@apply border border-gray-stroke": {},
-      "& .accordion-header": {
-        "@apply bg-hover text-white": {},
+    '&-is-open': {
+      '@apply border border-gray-stroke': {},
+      '& .accordion-header': {
+        '@apply bg-hover text-white': {},
       },
     },
 
-    "&-outline": {
-      "@apply border border-gray-stroke": {},
-      ".accordion-body": {
-        "@apply mt-0": {},
+    '&-outline': {
+      '@apply border border-gray-stroke': {},
+      '.accordion-body': {
+        '@apply mt-0': {},
       },
-      ".accordion-toggle": {
-        "&:focus-visible": {
-          boxShadow: "0 0 0 0.4rem #4b4b4b!important",
-          outline: "0",
+      '.accordion-toggle': {
+        '&:focus-visible': {
+          boxShadow: '0 0 0 0.4rem #4b4b4b!important',
+          outline: '0',
         },
       },
-      ".accordion-header": {
-        "@apply bg-transparent text-body": {},
+      '.accordion-header': {
+        '@apply bg-transparent text-body': {},
 
         '[aria-expanded="true"] &': {
-          "@apply bg-hover": {},
+          '@apply bg-hover': {},
         },
       },
     },

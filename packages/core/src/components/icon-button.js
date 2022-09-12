@@ -1,5 +1,5 @@
 module.exports = IconButton = () => ({
-  ".btn-icon": {
-    "@apply p-0": {},
+  '.btn-icon': {
+    '@apply p-0': {},
   },
 });

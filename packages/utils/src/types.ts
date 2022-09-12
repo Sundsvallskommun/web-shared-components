@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export type Dict<T = any> = Record<string, T>;
 
 export type CSSMap = Dict<{ value: string; var: string; varRef: string }>;

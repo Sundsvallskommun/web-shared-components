@@ -1,10 +1,4 @@
-import {
-  ImgHTMLAttributes,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { ImgHTMLAttributes, useCallback, useEffect, useRef, useState } from 'react';
 
 export interface UseImageProps {
   /**
@@ -35,10 +29,10 @@ export interface UseImageProps {
    * The key used to set the crossOrigin on the HTMLImageElement into which the image will be loaded.
    * This tells the browser to request cross-origin access when trying to download the image data.
    */
-  crossOrigin?: ImgHTMLAttributes<any>["crossOrigin"];
+  crossOrigin?: ImgHTMLAttributes<any>['crossOrigin'];
 }
 
-type Status = "loading" | "failed" | "pending" | "loaded";
+type Status = 'loading' | 'failed' | 'pending' | 'loaded';
 
 type ImageEvent = React.SyntheticEvent<HTMLImageElement, Event>;
 
@@ -59,20 +53,12 @@ type ImageEvent = React.SyntheticEvent<HTMLImageElement, Event>;
  * ```
  */
 export function useImage(props: UseImageProps) {
-  const {
-    src,
-    srcSet,
-    onLoad,
-    onError,
-    crossOrigin,
-    sizes,
-    ignoreFallback,
-  } = props;
+  const { src, srcSet, onLoad, onError, crossOrigin, sizes, ignoreFallback } = props;
 
-  const [status, setStatus] = useState<Status>("pending");
+  const [status, setStatus] = useState<Status>('pending');
 
   useEffect(() => {
-    setStatus(src ? "loading" : "pending");
+    setStatus(src ? 'loading' : 'pending');
   }, [src]);
 
   const imageRef = useRef<HTMLImageElement | null>();
@@ -100,12 +86,12 @@ export function useImage(props: UseImageProps) {
 
     img.onload = (event) => {
       flush();
-      setStatus("loaded");
-      onLoad?.((event as unknown) as ImageEvent);
+      setStatus('loaded');
+      onLoad?.(event as unknown as ImageEvent);
     };
     img.onerror = (error) => {
       flush();
-      setStatus("failed");
+      setStatus('failed');
       onError?.(error as any);
     };
 
@@ -127,7 +113,7 @@ export function useImage(props: UseImageProps) {
      */
     if (ignoreFallback) return undefined;
 
-    if (status === "loading") {
+    if (status === 'loading') {
       load();
     }
     return () => {
@@ -139,7 +125,7 @@ export function useImage(props: UseImageProps) {
    * If user opts out of the fallback/placeholder
    * logic, let's just return 'loaded'
    */
-  return ignoreFallback ? "loaded" : status;
+  return ignoreFallback ? 'loaded' : status;
 }
 
 export type UseImageReturn = ReturnType<typeof useImage>;

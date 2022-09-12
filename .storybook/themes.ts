@@ -1,10 +1,10 @@
-import { colors } from "@sk-web-gui/theme";
-import { ColorScheme } from "@sk-web-gui/react";
+import { colors } from '@sk-web-gui/theme';
+import { ColorScheme } from '@sk-web-gui/react';
 
 // light theme
 export const light: ColorScheme = {
-  id: "light",
-  type: "light",
+  id: 'light',
+  type: 'light',
   colors: {
     bg: {
       base: colors.white,
@@ -22,16 +22,16 @@ export const light: ColorScheme = {
 
 // dark theme
 export const dark: ColorScheme = {
-  id: "light",
-  type: "dark",
+  id: 'light',
+  type: 'dark',
   colors: {
     bg: {
-      base: colors.svartvik["800"],
-      fill: colors.svartvik["900"],
+      base: colors.svartvik['800'],
+      fill: colors.svartvik['900'],
     },
     text: {
-      foreground: colors.svartvik["100"],
-      muted: colors.svartvik["300"],
+      foreground: colors.svartvik['100'],
+      muted: colors.svartvik['300'],
     },
     primary: colors.vattjom,
     secondary: colors.gronsta,

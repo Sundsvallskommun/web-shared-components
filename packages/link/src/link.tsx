@@ -1,6 +1,6 @@
-import { cx, __DEV__ } from "@sk-web-gui/utils";
-import { DefaultProps } from "@sk-web-gui/theme";
-import * as React from "react";
+import { cx, __DEV__ } from '@sk-web-gui/utils';
+import { DefaultProps } from '@sk-web-gui/theme';
+import * as React from 'react';
 import LaunchIcon from '@mui/icons-material/Launch';
 
 interface LinkProps extends DefaultProps {
@@ -17,18 +17,8 @@ interface LinkProps extends DefaultProps {
 }
 
 export const Link = React.forwardRef<unknown, any>((props, ref) => {
-  const {
-    disabled,
-    external,
-    onClick,
-    className,
-    as: Comp = "a",
-    children,
-    ...rest
-  } = props;
-  const externalProps = external
-    ? { target: "_blank", rel: "noopener noreferrer" }
-    : null;
+  const { disabled, external, onClick, className, as: Comp = 'a', children, ...rest } = props;
+  const externalProps = external ? { target: '_blank', rel: 'noopener noreferrer' } : null;
 
   return (
     <Comp
@@ -36,12 +26,12 @@ export const Link = React.forwardRef<unknown, any>((props, ref) => {
       tabIndex={disabled ? -1 : undefined}
       aria-disabled={disabled}
       onClick={disabled ? (event: any) => event.preventDefault() : onClick}
-      className={cx("link", disabled && "link-disabled", className)}
+      className={cx('link', disabled && 'link-disabled', className)}
       {...externalProps}
       {...rest}
     >
       {children}
-      { external && <LaunchIcon className='link-external-icon'/>}
+      {external && <LaunchIcon className="link-external-icon" />}
     </Comp>
   );
 });
@@ -49,5 +39,5 @@ export const Link = React.forwardRef<unknown, any>((props, ref) => {
 export type { LinkProps };
 
 if (__DEV__) {
-  Link.displayName = "Link";
+  Link.displayName = 'Link';
 }

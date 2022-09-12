@@ -1,8 +1,8 @@
 module.exports = Dot = (colors) => ({
-  ".dot": {
-    "@apply relative inline-flex rounded-full": {},
-    "&-solid": {
-      "@apply bg-neutral-500": {},
+  '.dot': {
+    '@apply relative inline-flex rounded-full': {},
+    '&-solid': {
+      '@apply bg-neutral-500': {},
 
       ...colors.reduce(
         (styles, color) => ({
@@ -14,9 +14,9 @@ module.exports = Dot = (colors) => ({
         {}
       ),
 
-      "&.dot-bordered": {
-        "@apply border-2 border-white": {},
-        "@apply dark:border-neutral-800": {},
+      '&.dot-bordered': {
+        '@apply border-2 border-white': {},
+        '@apply dark:border-neutral-800': {},
       },
 
       ...colors.reduce(
@@ -31,9 +31,9 @@ module.exports = Dot = (colors) => ({
       ),
     },
 
-    "&-outline": {
-      "@apply bg-white border-2 border-neutral-500": {},
-      "@apply dark:bg-neutral-800": {},
+    '&-outline': {
+      '@apply bg-white border-2 border-neutral-500': {},
+      '@apply dark:bg-neutral-800': {},
       ...colors.reduce(
         (styles, color) => ({
           ...styles,
@@ -45,40 +45,40 @@ module.exports = Dot = (colors) => ({
       ),
     },
 
-    "&-3xs": {
-      "@apply w-1.5 h-1.5": {},
+    '&-3xs': {
+      '@apply w-1.5 h-1.5': {},
     },
 
-    "&-2xs": {
-      "@apply w-2 h-2": {},
+    '&-2xs': {
+      '@apply w-2 h-2': {},
     },
 
-    "&-xs": {
-      "@apply w-2.5 h-2.5": {},
+    '&-xs': {
+      '@apply w-2.5 h-2.5': {},
     },
 
-    "&-sm": {
-      "@apply w-3 h-3": {},
+    '&-sm': {
+      '@apply w-3 h-3': {},
     },
 
-    "&-md": {
-      "@apply w-3.5 h-3.5": {},
+    '&-md': {
+      '@apply w-3.5 h-3.5': {},
     },
 
-    "&-lg": {
-      "@apply w-4 h-4": {},
+    '&-lg': {
+      '@apply w-4 h-4': {},
     },
 
-    "&-xl": {
-      "@apply w-5 h-5": {},
+    '&-xl': {
+      '@apply w-5 h-5': {},
     },
 
-    "&-2xl": {
-      "@apply w-6 h-6": {},
+    '&-2xl': {
+      '@apply w-6 h-6': {},
     },
 
-    "&-3xl": {
-      "@apply w-8 h-8": {},
+    '&-3xl': {
+      '@apply w-8 h-8': {},
     },
   },
 });

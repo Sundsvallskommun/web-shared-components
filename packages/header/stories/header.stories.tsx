@@ -1,82 +1,77 @@
-import React from "react";
-import { Story, Meta } from "@storybook/react";
-import { Header } from "../src";
-import { UserMenu } from "@sk-web-gui/react";
+import React from 'react';
+import { Story, Meta } from '@storybook/react';
+import { Header } from '../src';
+import { UserMenu } from '@sk-web-gui/react';
 
 export default {
-  title: "WIP/Komponenter/Header",
+  title: 'WIP/Komponenter/Header',
   component: Header,
   parameters: { controls: { hideNoControlsWarning: true } },
 } as Meta;
 
 export const Template = ({ ...args }: any) => {
   return (
-    <Header {...args} 
-      className=' !max-w-[156rem]'
+    <Header
+      {...args}
+      className=" !max-w-[156rem]"
       // LogoLinkWrapperComponent={
       //   <a href='/start' />
       // }
-      userMenu={
-        <UserMenu
-          menuTitle="User menu"
-          menuSubTitle=""
-          menuGroups={[]}
-        />
-      }
+      userMenu={<UserMenu menuTitle="User menu" menuSubTitle="" menuGroups={[]} />}
     ></Header>
-  )
-}
+  );
+};
 
 Template.argTypes = {
   title: {
-    type: { name: "string", required: false },
-    description: "Sets title text",
-    control: "text",
+    type: { name: 'string', required: false },
+    description: 'Sets title text',
+    control: 'text',
     table: {
-      defaultValue: { summary: "" },
+      defaultValue: { summary: '' },
     },
-    defaultValue: "Mina sidor",
+    defaultValue: 'Mina sidor',
   },
   borderColor: {
-    type: { name: "string", required: false },
-    description: "Sets borderColor",
+    type: { name: 'string', required: false },
+    description: 'Sets borderColor',
     table: {
-      defaultValue: { summary: "primary" },
+      defaultValue: { summary: 'primary' },
     },
-    options: ["primary", "secondary", "none"],
-    control: "select",
-    defaultValue: "primary",
+    options: ['primary', 'secondary', 'none'],
+    control: 'select',
+    defaultValue: 'primary',
   },
   className: {
-    type: { name: "string", required: false },
-    description: "Sets className",
+    type: { name: 'string', required: false },
+    description: 'Sets className',
     table: {
-      defaultValue: { summary: "" },
+      defaultValue: { summary: '' },
     },
-    control: "text",
-    defaultValue: "",
+    control: 'text',
+    defaultValue: '',
   },
   wrapperClasses: {
-    type: { name: "string", required: false },
-    description: "Sets classes for top parent node",
+    type: { name: 'string', required: false },
+    description: 'Sets classes for top parent node',
     table: {
-      defaultValue: { summary: "" },
+      defaultValue: { summary: '' },
     },
-    control: "text",
-    defaultValue: "",
+    control: 'text',
+    defaultValue: '',
   },
   userMenuClasses: {
-    type: { name: "string", required: false },
-    description: "Sets classes for usermenu wrapper",
+    type: { name: 'string', required: false },
+    description: 'Sets classes for usermenu wrapper',
     table: {
-      defaultValue: { summary: "" },
+      defaultValue: { summary: '' },
     },
-    control: "text",
-    defaultValue: "",
+    control: 'text',
+    defaultValue: '',
   },
   userMenu: {
     type: { required: false },
-    description: "ReactNode",
+    description: 'ReactNode',
     table: {
       defaultValue: { summary: 'undefined' },
     },
@@ -84,7 +79,7 @@ Template.argTypes = {
   },
   notificationsAlert: {
     type: { required: false },
-    description: "ReactNode",
+    description: 'ReactNode',
     table: {
       defaultValue: { summary: 'undefined' },
     },
@@ -92,7 +87,7 @@ Template.argTypes = {
   },
   LogoLinkWrapperComponent: {
     type: { required: false },
-    description: "ReactNode, for wrapping the logo-link with e.g. Next/Link",
+    description: 'ReactNode, for wrapping the logo-link with e.g. Next/Link',
     table: {
       defaultValue: { summary: 'undefined' },
     },
@@ -100,4 +95,4 @@ Template.argTypes = {
   },
 };
 
-Template.storyName = "Komponent";
+Template.storyName = 'Komponent';

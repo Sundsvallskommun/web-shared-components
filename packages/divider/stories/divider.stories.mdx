@@ -1,19 +1,24 @@
 import { Canvas, Meta, Preview } from '@storybook/addon-docs';
-import { Divider } from "../src";
+import { Divider } from '../src';
 
 <Meta title="Komponenter/Avdelare/Översikt" />
 
 # Avdelare
 
-<p>Använd avdelare (dividers) för att vissuellt dela upp innehåll där det inte räcker med att använda sig av enbart mellanrum.</p>
+<p>
+  Använd avdelare (dividers) för att vissuellt dela upp innehåll där det inte räcker med att använda sig av enbart
+  mellanrum.
+</p>
 
 <Preview>
-    <div className="p-6">
+  <div className="p-6">
     <div className="flex items-center gap-12 p-6">
-        <p className="">Ljus bakgrund</p><Divider className="flex-1" />
+      <p className="">Ljus bakgrund</p>
+      <Divider className="flex-1" />
     </div>
     <div className="flex items-center gap-12 p-6 bg-gray text-white">
-        <p className="">Mörk bakgrund</p><Divider className="flex-1" />
+      <p className="">Mörk bakgrund</p>
+      <Divider className="flex-1" />
     </div>
-    </div>
+  </div>
 </Preview>

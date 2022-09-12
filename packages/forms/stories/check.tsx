@@ -1,6 +1,6 @@
-import * as React from "react";
+import * as React from 'react';
 
-export const Check = ({ color = "currentColor", size = 24, ...rest }) => {
+export const Check = ({ color = 'currentColor', size = 24, ...rest }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

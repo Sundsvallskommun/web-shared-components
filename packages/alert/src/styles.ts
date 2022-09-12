@@ -1,16 +1,16 @@
-import { cx } from "@sk-web-gui/utils";
-import { createMemoClass } from "@sk-web-gui/theme";
+import { cx } from '@sk-web-gui/utils';
+import { createMemoClass } from '@sk-web-gui/theme';
 
 const variantClasses = {
-  subtle: "alert-subtle",
-  solid: "alert-solid",
-  "left-accent": "alert-left-accent",
+  subtle: 'alert-subtle',
+  solid: 'alert-solid',
+  'left-accent': 'alert-left-accent',
 };
 
 export const useAlertCloseButton = createMemoClass(() => {
-  return cx("alert-close-button");
+  return cx('alert-close-button');
 });
 
 export const useAlertClass = createMemoClass((props) => {
-  return cx("alert", variantClasses[props.variant]);
+  return cx('alert', variantClasses[props.variant]);
 });

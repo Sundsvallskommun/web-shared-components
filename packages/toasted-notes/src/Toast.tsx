@@ -1,12 +1,11 @@
-import * as ReactDOM from "react-dom";
-import * as React from "react";
-import ToastManager, { MessageOptionalOptions } from "./ToastManager";
-import { MessageProp, PositionsType } from "./Message";
+import * as ReactDOM from 'react-dom';
+import * as React from 'react';
+import ToastManager, { MessageOptionalOptions } from './ToastManager';
+import { MessageProp, PositionsType } from './Message';
 import { createRoot } from 'react-dom/client';
 
-const isBrowser =
-  typeof window !== "undefined" && typeof window.document !== "undefined";
-const PORTAL_ID = "react-toast";
+const isBrowser = typeof window !== 'undefined' && typeof window.document !== 'undefined';
+const PORTAL_ID = 'react-toast';
 
 class Toaster {
   createNotification?: Function;
@@ -24,9 +23,9 @@ class Toaster {
     if (existingPortalElement) {
       portalElement = existingPortalElement;
     } else {
-      const el = document.createElement("div");
+      const el = document.createElement('div');
       el.id = PORTAL_ID;
-      el.className = "Toaster";
+      el.className = 'Toaster';
       if (document.body != null) {
         document.body.appendChild(el);
       }
@@ -56,10 +55,10 @@ class Toaster {
   };
 
   close = (id: number, position: PositionsType) => {
-    if(this.closeToast){
+    if (this.closeToast) {
       this.closeToast(id, position);
     }
-  }
+  };
 }
 
 export default Toaster;

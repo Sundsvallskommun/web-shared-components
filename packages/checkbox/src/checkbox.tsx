@@ -1,20 +1,20 @@
-import { useFormControl } from "@sk-web-gui/forms";
-import { cx, useForkRef, __DEV__ } from "@sk-web-gui/utils";
-import { DefaultProps } from "@sk-web-gui/theme";
-import * as React from "react";
-import { useEffect, useRef } from "react";
+import { useFormControl } from '@sk-web-gui/forms';
+import { cx, useForkRef, __DEV__ } from '@sk-web-gui/utils';
+import { DefaultProps } from '@sk-web-gui/theme';
+import * as React from 'react';
+import { useEffect, useRef } from 'react';
 
-import { useCheckboxClass, useCheckboxLabelClass } from "./styles";
+import { useCheckboxClass, useCheckboxLabelClass } from './styles';
 
 interface ICheckboxProps<T = HTMLInputElement> extends DefaultProps {
   /* Makes checkbox disabled */
-  disabled?: React.InputHTMLAttributes<T>["disabled"];
+  disabled?: React.InputHTMLAttributes<T>['disabled'];
   /* Makes checkbox invalid */
   invalid?: boolean;
   /* Makes checkbox required */
-  required?: React.InputHTMLAttributes<T>["required"];
+  required?: React.InputHTMLAttributes<T>['required'];
   /* Makes checkbox readOnly */
-  readOnly?: React.InputHTMLAttributes<T>["readOnly"];
+  readOnly?: React.InputHTMLAttributes<T>['readOnly'];
   /* Makes checkbox indeterminate */
   indeterminate?: boolean;
   /**
@@ -35,19 +35,19 @@ interface ICheckboxProps<T = HTMLInputElement> extends DefaultProps {
   /* Set the checkbox color */
   color?: string;
   /* Size of the checkbox */
-  size?: "sm" | "md" | "lg";
+  size?: 'sm' | 'md' | 'lg';
   /**
    * A11y: A label that describes the input
    */
-  "aria-label"?: string;
+  'aria-label'?: string;
   /**
    * A11y: The id of the element that describes the input
    */
-  "aria-describedby"?: string;
+  'aria-describedby'?: string;
   /**
    * A11y: Refers to the id of the element that labels the checkbox element.
    */
-  "aria-labelledby"?: string;
+  'aria-labelledby'?: string;
   /**
    * The children is the label to be displayed to the right of the checkbox.
    */
@@ -58,99 +58,89 @@ interface ICheckboxProps<T = HTMLInputElement> extends DefaultProps {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-export type CheckboxProps = ICheckboxProps &
-  React.HTMLAttributes<HTMLInputElement>;
+export type CheckboxProps = ICheckboxProps & React.HTMLAttributes<HTMLInputElement>;
 
-export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  (props, ref) => {
-    const {
-      id,
-      name,
-      value,
-      "aria-label": ariaLabel,
-      "aria-labelledby": ariaLabelledBy,
-      "aria-describedby": ariaDescribedby,
-      color = "primary",
-      defaultChecked,
-      checked,
-      size = "md",
-      onChange,
-      indeterminate,
-      children,
-      className,
-      ...rest
-    } = props;
+export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
+  const {
+    id,
+    name,
+    value,
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledBy,
+    'aria-describedby': ariaDescribedby,
+    color = 'primary',
+    defaultChecked,
+    checked,
+    size = 'md',
+    onChange,
+    indeterminate,
+    children,
+    className,
+    ...rest
+  } = props;
 
-    const { disabled, invalid, readOnly } = useFormControl(props);
+  const { disabled, invalid, readOnly } = useFormControl(props);
 
-    const checkboxClasses = useCheckboxClass({
-      size,
-      disabled,
-    });
+  const checkboxClasses = useCheckboxClass({
+    size,
+    disabled,
+  });
 
-    const checkboxLabelClasses = useCheckboxLabelClass({ size });
+  const checkboxLabelClasses = useCheckboxLabelClass({ size });
 
-    const ownRef = useRef();
-    const _ref = useForkRef(ownRef, ref);
+  const ownRef = useRef();
+  const _ref = useForkRef(ownRef, ref);
 
-    useEffect(() => {
+  useEffect(() => {
+    // @ts-ignore
+    if (_ref.current) {
       // @ts-ignore
-      if (_ref.current) {
-        // @ts-ignore
-        _ref.current.indeterminate = Boolean(indeterminate);
-      }
-    }, [indeterminate, _ref]);
+      _ref.current.indeterminate = Boolean(indeterminate);
+    }
+  }, [indeterminate, _ref]);
 
-    return (
-      <label
+  return (
+    <label className={cx('inline-flex align-top items-center cursor-base', disabled && 'cursor-not-allowed')}>
+      <input
+        type="checkbox"
+        aria-label={ariaLabel}
+        aria-labelledby={ariaLabelledBy}
+        aria-describedby={ariaDescribedby}
+        id={id}
+        ref={_ref}
+        name={name}
+        value={value}
+        onChange={readOnly ? undefined : onChange}
+        defaultChecked={readOnly ? undefined : defaultChecked}
+        checked={readOnly ? Boolean(checked) : defaultChecked ? undefined : checked}
+        disabled={disabled}
+        aria-disabled={disabled}
+        readOnly={readOnly}
+        aria-readonly={readOnly}
+        aria-invalid={invalid}
+        aria-checked={indeterminate ? 'mixed' : checked}
+        data-color={color ? color : undefined}
         className={cx(
-          "inline-flex align-top items-center cursor-base",
-          disabled && "cursor-not-allowed"
+          checkboxClasses,
+          //readOnly || disabled ? "opacity-80" : "opacity-100",
+          className
         )}
-      >
-        <input
-          type="checkbox"
-          aria-label={ariaLabel}
-          aria-labelledby={ariaLabelledBy}
-          aria-describedby={ariaDescribedby}
-          id={id}
-          ref={_ref}
-          name={name}
-          value={value}
-          onChange={readOnly ? undefined : onChange}
-          defaultChecked={readOnly ? undefined : defaultChecked}
-          checked={
-            readOnly ? Boolean(checked) : defaultChecked ? undefined : checked
-          }
-          disabled={disabled}
-          aria-disabled={disabled}
-          readOnly={readOnly}
-          aria-readonly={readOnly}
-          aria-invalid={invalid}
-          aria-checked={indeterminate ? "mixed" : checked}
-          data-color={color ? color : undefined}
+        {...rest}
+      />
+      {children && (
+        <span
           className={cx(
-            checkboxClasses,
-            //readOnly || disabled ? "opacity-80" : "opacity-100",
-            className
+            checkboxLabelClasses
+            //readOnly || disabled ? "opacity-40" : "opacity-100"
           )}
-          {...rest}
-        />
-        {children && (
-          <span
-            className={cx(
-              checkboxLabelClasses,
-              //readOnly || disabled ? "opacity-40" : "opacity-100"
-            )}
-          >
-            {children}
-          </span>
-        )}
-      </label>
-    );
-  }
-);
+        >
+          {children}
+        </span>
+      )}
+    </label>
+  );
+});
 
 if (__DEV__) {
-  Checkbox.displayName = "Checkbox";
+  Checkbox.displayName = 'Checkbox';
 }

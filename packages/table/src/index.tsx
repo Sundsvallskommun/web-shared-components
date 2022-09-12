@@ -1,1 +1,1 @@
-export * from "./zebratable";
+export * from './zebratable';

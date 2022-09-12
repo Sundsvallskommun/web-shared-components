@@ -1,40 +1,40 @@
 module.exports = Radio = (colors) => ({
-  ".form-radio": {
-    "@apply shadow-sm": {},
-    backgroundColor: "inherit",
-    "@apply border-neutral-300": {},
-    "&[aria-invalid=true]": {
-      "--tw-border-opacity": "1",
-      "borderColor": "rgba(220, 38, 38, var(--tw-border-opacity))",
+  '.form-radio': {
+    '@apply shadow-sm': {},
+    backgroundColor: 'inherit',
+    '@apply border-neutral-300': {},
+    '&[aria-invalid=true]': {
+      '--tw-border-opacity': '1',
+      borderColor: 'rgba(220, 38, 38, var(--tw-border-opacity))',
     },
-    "&[aria-invalid=true]:hover": {
-      "--tw-border-opacity": "1",
-      "border-color": "rgba(220, 38, 38, var(--tw-border-opacity))",
+    '&[aria-invalid=true]:hover': {
+      '--tw-border-opacity': '1',
+      'border-color': 'rgba(220, 38, 38, var(--tw-border-opacity))',
     },
     // dark colors
-    "@apply dark:border-neutral-400": {},
-    ".dark &[aria-invalid=true]": {
-      "--tw-border-opacity": "1",
-      "borderColor": "rgba(248, 113, 113, var(--tw-border-opacity))",
+    '@apply dark:border-neutral-400': {},
+    '.dark &[aria-invalid=true]': {
+      '--tw-border-opacity': '1',
+      borderColor: 'rgba(248, 113, 113, var(--tw-border-opacity))',
     },
-    ".dark &[aria-invalid=true]:hover": {
-      "--tw-border-opacity": "1",
-      "borderColor": "rgba(248, 113, 113, var(--tw-border-opacity))",
-    },
-
-    "@media (prefers-color-scheme: dark)": {
-      "&[aria-invalid=true]": {
-        "--tw-border-opacity": "1",
-        "borderColor": "rgba(220, 38, 38, var(--tw-border-opacity))",
-      },
-      "&[aria-invalid=true]:hover": {
-        "--tw-border-opacity": "1",
-        "border-color": "rgba(220, 38, 38, var(--tw-border-opacity))",
-      },
+    '.dark &[aria-invalid=true]:hover': {
+      '--tw-border-opacity': '1',
+      borderColor: 'rgba(248, 113, 113, var(--tw-border-opacity))',
     },
 
-    "&:checked": {
-      borderColor: "transparent",
+    '@media (prefers-color-scheme: dark)': {
+      '&[aria-invalid=true]': {
+        '--tw-border-opacity': '1',
+        borderColor: 'rgba(220, 38, 38, var(--tw-border-opacity))',
+      },
+      '&[aria-invalid=true]:hover': {
+        '--tw-border-opacity': '1',
+        'border-color': 'rgba(220, 38, 38, var(--tw-border-opacity))',
+      },
+    },
+
+    '&:checked': {
+      borderColor: 'transparent',
     },
 
     // colors
@@ -51,52 +51,53 @@ module.exports = Radio = (colors) => ({
       {}
     ),
 
-    "@apply dark:focus-visible:ring-offset-neutral-900": {},
+    '@apply dark:focus-visible:ring-offset-neutral-900': {},
 
     // sizing
-    "&-sm": {
-      "@apply w-3 h-3": {},
+    '&-sm': {
+      '@apply w-3 h-3': {},
     },
 
-    "&-md": {
-      "@apply w-4 h-4": {},
+    '&-md': {
+      '@apply w-4 h-4': {},
     },
 
-    "&-lg": {
-      "@apply w-5 h-5": {},
+    '&-lg': {
+      '@apply w-5 h-5': {},
     },
 
-    "&-xl": {
-      "@apply w-6 h-6": {},
+    '&-xl': {
+      '@apply w-6 h-6': {},
     },
 
     // disabled
-    "&-disabled": {
-      "@apply disabled:shadow-none disabled:border-neutral-300 disabled:bg-neutral-300 disabled:hover:text-neutral-300": {},
-      "@apply dark:disabled:border-transparent dark:disabled:bg-white/20 dark:disabled:hover:text-white/20": {},
+    '&-disabled': {
+      '@apply disabled:shadow-none disabled:border-neutral-300 disabled:bg-neutral-300 disabled:hover:text-neutral-300':
+        {},
+      '@apply dark:disabled:border-transparent dark:disabled:bg-white/20 dark:disabled:hover:text-white/20': {},
     },
 
     // label
-    "&-label": {
-      "@apply ml-2 select-none text-sm": {},
-      "@apply text-body": {},
+    '&-label': {
+      '@apply ml-2 select-none text-sm': {},
+      '@apply text-body': {},
       // dark colors
-      "@apply dark:text-neutral-100": {},
-  
-      "&-sm": {
-        "@apply text-xs": {},
+      '@apply dark:text-neutral-100': {},
+
+      '&-sm': {
+        '@apply text-xs': {},
       },
-  
-      "&-md": {
-        "@apply text-sm": {},
+
+      '&-md': {
+        '@apply text-sm': {},
       },
-  
-      "&-lg": {
-        "@apply text-base": {},
+
+      '&-lg': {
+        '@apply text-base': {},
       },
-  
-      "&-xl": {
-        "@apply text-lg": {},
+
+      '&-xl': {
+        '@apply text-lg': {},
       },
     },
   },

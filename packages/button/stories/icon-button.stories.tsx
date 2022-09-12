@@ -1,15 +1,15 @@
-import { IconButton } from "../src";
-import { Announcement } from "./announcement";
+import { IconButton } from '../src';
+import { Announcement } from './announcement';
 
 export default {
-  title: "WIP/Komponenter/IconButton",
+  title: 'WIP/Komponenter/IconButton',
   component: IconButton,
   parameters: {
     controls: { hideNoControlsWarning: true },
   },
 };
 
-export const outline = () => (
+export const Outline = () => (
   <div className="flex space-x-2">
     <IconButton>
       <Announcement size={16} />
@@ -33,7 +33,7 @@ export const outline = () => (
   </div>
 );
 
-export const solid = () => (
+export const Solid = () => (
   <div className="flex space-x-2">
     <IconButton variant="solid">
       <Announcement size={16} />
@@ -57,7 +57,7 @@ export const solid = () => (
   </div>
 );
 
-export const light = () => (
+export const Light = () => (
   <div className="flex space-x-2">
     <IconButton variant="light">
       <Announcement size={16} />
@@ -81,7 +81,7 @@ export const light = () => (
   </div>
 );
 
-export const ghost = () => (
+export const Ghost = () => (
   <div className="flex space-x-2">
     <IconButton variant="ghost">
       <Announcement size={16} />
@@ -105,7 +105,7 @@ export const ghost = () => (
   </div>
 );
 
-export const size = () => (
+export const Size = () => (
   <div className="flex space-x-2">
     <IconButton variant="solid" color="primary">
       <Announcement size={14} />

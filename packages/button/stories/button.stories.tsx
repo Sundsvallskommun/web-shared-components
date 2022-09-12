@@ -1,10 +1,10 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import { Button } from "../src";
-import { Announcement } from "./announcement";
+import { Button } from '../src';
+import { Announcement } from './announcement';
 
 export default {
-  title: "Komponenter/Knappar/Komponent",
+  title: 'Komponenter/Knappar/Komponent',
   component: Button,
   argTypes: {
     text: { control: 'text', defaultValue: 'Knapptext' },
@@ -114,7 +114,7 @@ Template.argTypes = {
     table: {
       defaultValue: { summary: 'outline' },
     },
-    options: ["link", "solid", "outline", "light", "ghost"],
+    options: ['link', 'solid', 'outline', 'light', 'ghost'],
     control: 'select',
     defaultValue: 'outline',
   },
@@ -262,7 +262,6 @@ export const light = ({ text, ...args }: any) => (
   </div>
 );
 */
-
 
 /*export const link = ({ text, ...args }: any) => (
   <div className="flex flex-col items-start space-y-2">

@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import { Meta } from '@storybook/react';
-import { ZebraTable, ZebraTableColumn, ZebraTableHeader, ZebraTableProps} from "../src/zebratable";
+import { ZebraTable, ZebraTableColumn, ZebraTableHeader, ZebraTableProps } from '../src/zebratable';
 
 export default {
-  title: "Komponenter/Tabeller/ZebraTable",
+  title: 'Komponenter/Tabeller/ZebraTable',
   component: ZebraTable,
   parameters: {
     controls: { hideNoControlsWarning: true },
@@ -18,34 +18,34 @@ const ongoingCaseLabels: any = [
 ];
 
 const ongoingCases: any = {
-  "data": [
+  data: [
     {
-      "caseType": "Trasig bänk",
-      "id": "000-0005",
-      "status": "Inskickat",
+      caseType: 'Trasig bänk',
+      id: '000-0005',
+      status: 'Inskickat',
     },
     {
-      "caseType": "Skräp i parken",
-      "id": "000-0006",
-      "status": "Inskickat",
+      caseType: 'Skräp i parken',
+      id: '000-0006',
+      status: 'Inskickat',
     },
     {
-      "caseType": "Tillstånd",
-      "id": "000-0007",
-      "status": "Inskickat",
-    }
+      caseType: 'Tillstånd',
+      id: '000-0007',
+      status: 'Inskickat',
+    },
   ],
-  "message": "success"
-}
+  message: 'success',
+};
 
-const headers: ZebraTableHeader[] = ongoingCaseLabels.map((l:any, idx: number) => ({
+const headers: ZebraTableHeader[] = ongoingCaseLabels.map((l: any, idx: number) => ({
   element: <span key={`mh${idx}`}>{l.label}</span>,
   isShown: true,
   isColumnSortable: l.sortable,
   screenReaderOnly: l.screenReaderOnly,
 }));
 
-const rows: ZebraTableColumn[][] = ongoingCases.data.map((r:any, idx: number) => [
+const rows: ZebraTableColumn[][] = ongoingCases.data.map((r: any, idx: number) => [
   {
     element: (
       <div key={`mr${idx}`} className="w-80">
@@ -70,9 +70,7 @@ const rows: ZebraTableColumn[][] = ongoingCases.data.map((r:any, idx: number) =>
     element: (
       <Fragment key={`mr${idx}`}>
         <span className="inline lg:sr-only">Status: </span>
-        <span>
-          {r.status}
-        </span>
+        <span>{r.status}</span>
       </Fragment>
     ),
     isShown: true,
@@ -92,72 +90,72 @@ const rows: ZebraTableColumn[][] = ongoingCases.data.map((r:any, idx: number) =>
   },
 ]);
 
-
-
-export const Template = (args: ZebraTableProps) => <ZebraTable
-headers={headers}
-rows={[
-  ...rows,
-  ...rows,
-  ...rows,
-  ...rows,
-  ...rows,
-  ...rows,
-  ...rows,
-  ...rows,
-  ...rows,
-  ...rows,
-  ...rows,
-  ...rows,
-  ...rows,
-  ...rows,
-  ...rows,
-  ...rows,
-  ...rows,
-  ...rows,
-]}
-tableSortable={true}
-sortHandler={()=> console.log('sort')}
-{...args}
-/>;
+export const Template = (args: ZebraTableProps) => (
+  <ZebraTable
+    headers={headers}
+    rows={[
+      ...rows,
+      ...rows,
+      ...rows,
+      ...rows,
+      ...rows,
+      ...rows,
+      ...rows,
+      ...rows,
+      ...rows,
+      ...rows,
+      ...rows,
+      ...rows,
+      ...rows,
+      ...rows,
+      ...rows,
+      ...rows,
+      ...rows,
+      ...rows,
+    ]}
+    tableSortable={true}
+    sortHandler={() => console.log('sort')}
+    {...args}
+  />
+);
 
 Template.argTypes = {
   captionTitle: {
-    type: { name: "string", required: false },
-    description: "Sets caption title for screen readers",
+    type: { name: 'string', required: false },
+    description: 'Sets caption title for screen readers',
     table: {
-      defaultValue: { summary: "" },
+      defaultValue: { summary: '' },
     },
-    control: "text",
-    defaultValue: "",
+    control: 'text',
+    defaultValue: '',
   },
   captionBody: {
-    type: { name: "string", required: false },
-    description: "Sets caption body for screen readers",
+    type: { name: 'string', required: false },
+    description: 'Sets caption body for screen readers',
     table: {
-      defaultValue: { summary: "" },
+      defaultValue: { summary: '' },
     },
-    control: "text",
-    defaultValue: "",
+    control: 'text',
+    defaultValue: '',
   },
   summary: {
-    type: { name: "string", required: false },
-    description: "Sets summary attribute on table for screen readers",
+    type: { name: 'string', required: false },
+    description: 'Sets summary attribute on table for screen readers',
     table: {
-      defaultValue: { summary: "" },
+      defaultValue: { summary: '' },
     },
-    control: "text",
-    defaultValue: "",
+    control: 'text',
+    defaultValue: '',
   },
   tableSortable: {
-    type: { name: "string", required: false },
-    description: "Sets table to be sortable",
+    type: { name: 'string', required: false },
+    description: 'Sets table to be sortable',
     table: {
-      defaultValue: { summary: "true" },
+      defaultValue: { summary: 'true' },
     },
-    control: "boolean",
-    defaultValue: "true",
-  }
+    control: 'boolean',
+    defaultValue: 'true',
+  },
 };
 
 Template.story = { name: 'ZebraTable' };

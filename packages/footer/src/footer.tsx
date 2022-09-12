@@ -1,6 +1,6 @@
-import { DefaultProps } from "@sk-web-gui/theme";
-import { cx, __DEV__ } from "@sk-web-gui/utils";
-import * as React from "react";
+import { DefaultProps } from '@sk-web-gui/theme';
+import { cx, __DEV__ } from '@sk-web-gui/utils';
+import * as React from 'react';
 
 export interface FooterProps extends DefaultProps {
   /* Main color */
@@ -32,24 +32,20 @@ export const Footer = React.forwardRef<any, FooterProps>((props, ref) => {
   return (
     <>
       <footer className={cx('footer', wrapperClasses)} {...rest}>
-          <div data-color={color} className="footer-innerwrapper">
-              <div className={cx(className, 'footer-content')}>
-                {children}
-              </div>
-          </div>
+        <div data-color={color} className="footer-innerwrapper">
+          <div className={cx(className, 'footer-content')}>{children}</div>
+        </div>
 
-          { bottomLinks &&
-            <div className="footer-bottomlinks" data-color={bottomLinksColor}>
-                <div className={cx(bottomLinksClasses,'footer-bottomlinks-container')}>
-                    {bottomLinks}
-                </div>
-            </div>
-          }
+        {bottomLinks && (
+          <div className="footer-bottomlinks" data-color={bottomLinksColor}>
+            <div className={cx(bottomLinksClasses, 'footer-bottomlinks-container')}>{bottomLinks}</div>
+          </div>
+        )}
       </footer>
     </>
   );
 });
 
 if (__DEV__) {
-  Footer.displayName = "Footer";
+  Footer.displayName = 'Footer';
 }

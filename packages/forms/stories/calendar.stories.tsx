@@ -1,34 +1,32 @@
-import { InputProps, Calendar } from "../src";
+import { InputProps, Calendar } from '../src';
 import dayjsLocale from 'dayjs/locale/se';
-import { useState } from "react";
-
+import { useState } from 'react';
 
 export default {
-  title: "Komponenter/Kalender/Komponent",
+  title: 'Komponenter/Kalender/Komponent',
   component: Calendar,
   parameters: {
     controls: { hideNoControlsWarning: true },
   },
 };
 
-
 export const Template = (args: any) => {
-    const [val, setVal] = useState(args.value)
-    return (
+  const [val, setVal] = useState(args.value);
+  return (
     <Calendar
-        value={val}
-        onChange={(value:any)=>{
-            console.log(value)
-            setVal(value)
-        }}
-        // localeInstance={args.localeInstance}
-        inputFormat={args.inputFormat}
-        minDate={args.minDate}
+      value={val}
+      onChange={(value: any) => {
+        console.log(value);
+        setVal(value);
+      }}
+      // localeInstance={args.localeInstance}
+      inputFormat={args.inputFormat}
+      minDate={args.minDate}
     />
-)};
+  );
+};
 
 Template.argTypes = {
-
   value: {
     type: { name: 'string', required: true },
     description: 'Sets value',
@@ -56,5 +54,3 @@ Template.argTypes = {
 };
 
 Template.storyName = 'Komponent';
-
-

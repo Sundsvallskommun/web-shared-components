@@ -1,7 +1,7 @@
-import { toaster, Position } from "@sk-web-gui/toasted-notes";
-import { DefaultProps } from "@sk-web-gui/theme";
-import * as React from "react";
-import { useCallback } from "react";
+import { toaster, Position } from '@sk-web-gui/toasted-notes';
+import { DefaultProps } from '@sk-web-gui/theme';
+import * as React from 'react';
+import { useCallback } from 'react';
 
 interface IToast extends DefaultProps {
   /**
@@ -43,7 +43,7 @@ interface IToast extends DefaultProps {
   /**
    * The status of the toast
    */
-  status?: "info" | "success" | "error" | "warning";
+  status?: 'info' | 'success' | 'error' | 'warning';
   /**
    * Custom icon
    */
@@ -55,49 +55,35 @@ interface IToast extends DefaultProps {
 }
 
 interface RenderOption {
-  render?: (props: {
-    onClose: (id: string) => void;
-    id: string;
-  }) => React.ReactNode;
+  render?: (props: { onClose: (id: string) => void; id: string }) => React.ReactNode;
 }
 export type useToastOptions = IToast & RenderOption;
 
 export function createToast(Comp: React.ElementType) {
-  return function() {
-    const notify = useCallback(
-      ({
-        position = "bottom-left",
-        duration = 5000,
-        render,
-        ...rest
-      }: useToastOptions) => {
-        const options = {
-          position,
-          duration,
-        };
+  return function () {
+    const notify = useCallback(({ position = 'bottom-left', duration = 5000, render, ...rest }: useToastOptions) => {
+      const options = {
+        position,
+        duration,
+      };
 
-        if (render) {
-          return toaster.notify(
-            ({ onClose, id }) => render({ onClose, id, ...rest }),
-            options
-          );
-        }
+      if (render) {
+        return toaster.notify(({ onClose, id }) => render({ onClose, id, ...rest }), options);
+      }
 
-        toaster.notify(
-          ({ onClose, id }) => (
-            <Comp
-              {...{
-                onClose,
-                id,
-                ...rest,
-              }}
-            />
-          ),
-          options
-        );
-      },
-      []
-    );
+      toaster.notify(
+        ({ onClose, id }) => (
+          <Comp
+            {...{
+              onClose,
+              id,
+              ...rest,
+            }}
+          />
+        ),
+        options
+      );
+    }, []);
 
     return notify;
   };

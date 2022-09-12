@@ -7,25 +7,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @sk-web-gui/utils
 
-
-
-
-
 ## 0.1.2 (2022-02-18)
 
 **Note:** Version bump only for package @sk-web-gui/utils
 
-
-
-
-
 ## 0.1.2 (2022-02-18)
 
 **Note:** Version bump only for package @sk-web-gui/utils
-
-
-
-
 
 ## 0.1.2 (2022-02-18)
 

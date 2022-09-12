@@ -1,34 +1,22 @@
-import { DefaultProps } from "@sk-web-gui/theme";
-import { cx, __DEV__ } from "@sk-web-gui/utils";
-import * as React from "react";
+import { DefaultProps } from '@sk-web-gui/theme';
+import { cx, __DEV__ } from '@sk-web-gui/utils';
+import * as React from 'react';
 
-import { useFormControl } from "../form-control";
+import { useFormControl } from '../form-control';
 interface IFormErrorMessageProps extends DefaultProps {
   children?: React.ReactNode;
 }
 
-export interface FormErrorMessageProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    IFormErrorMessageProps {}
+export interface FormErrorMessageProps extends React.HTMLAttributes<HTMLDivElement>, IFormErrorMessageProps {}
 
-export const FormErrorMessage = React.forwardRef<
-  HTMLParagraphElement,
-  FormErrorMessageProps
->((props, ref) => {
+export const FormErrorMessage = React.forwardRef<HTMLParagraphElement, FormErrorMessageProps>((props, ref) => {
   const { className, id, ...rest } = props;
-  const classes = cx("form-error-message", className);
+  const classes = cx('form-error-message', className);
   const formControl = useFormControl({});
 
-  return (
-    <div
-      ref={ref}
-      className={classes}
-      id={id || formControl.errorId}
-      {...rest}
-    />
-  );
+  return <div ref={ref} className={classes} id={id || formControl.errorId} {...rest} />;
 });
 
 if (__DEV__) {
-  FormErrorMessage.displayName = "FormErrorMessage";
+  FormErrorMessage.displayName = 'FormErrorMessage';
 }

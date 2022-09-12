@@ -1,7 +1,7 @@
-const fs = require("fs");
-const postcss = require("postcss");
-const tailwind = require("tailwindcss");
-const CleanCSS = require("clean-css");
+const fs = require('fs');
+const postcss = require('postcss');
+const tailwind = require('tailwindcss');
+const CleanCSS = require('clean-css');
 
 function buildDistFile(filename) {
   // FIXME: basic mode seems buggy when compiling plugins
@@ -37,8 +37,8 @@ function buildDistFile(filename) {
   return Promise.resolve();
 }
 
-console.info("Building CSS...");
+console.info('Building CSS...');
 
-Promise.all([buildDistFile("sk-web-gui")]).then(() => {
-  console.log("Finished building CSS.");
+Promise.all([buildDistFile('sk-web-gui')]).then(() => {
+  console.log('Finished building CSS.');
 });

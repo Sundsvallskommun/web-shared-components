@@ -1,18 +1,14 @@
-import { createMemoClass } from "@sk-web-gui/theme";
-import { cx } from "@sk-web-gui/utils";
+import { createMemoClass } from '@sk-web-gui/theme';
+import { cx } from '@sk-web-gui/utils';
 
 export const useSelectClass = createMemoClass((props) => {
-
   const sizes = {
-    sm: "form-field-sm",
-    md: "form-field-md",
-    lg: "form-field-lg",
+    sm: 'form-field-sm',
+    md: 'form-field-md',
+    lg: 'form-field-lg',
   };
 
-  const classes = cx(
-    sizes[props.size],
-    props.disabled && "form-field-disabled"
-  );
+  const classes = cx(sizes[props.size], props.disabled && 'form-field-disabled');
 
   return classes;
 });

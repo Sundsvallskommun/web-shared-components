@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @sk-web-gui/header
 
-
-
-
-
 ## 0.1.1 (2022-09-05)
 
 **Note:** Version bump only for package @sk-web-gui/header

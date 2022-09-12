@@ -1,28 +1,28 @@
-import { Button } from "@sk-web-gui/button";
-import { useNotification } from "../src";
+import { Button } from '@sk-web-gui/button';
+import { useNotification } from '../src';
 
 export default {
-  title: "WIP/Komponenter/Notification",
+  title: 'WIP/Komponenter/Notification',
   parameters: {
     controls: { hideNoControlsWarning: true },
   },
 };
 
-export const basic = () => {
+export const Basic = () => {
   const notification = useNotification();
 
   const handleMessage = (status?: any) => {
     notification({
-      title: "Toast title",
-      description: "Toast message goes here.",
+      title: 'Toast title',
+      description: 'Toast message goes here.',
       status: status,
-      position: "top",
-    //   duration: 10000000,
+      position: 'top',
+      //   duration: 10000000,
       // icon: <Icon size={20} as={Announcement} />,
       // closeIcon: <Icon size={16} as={Announcement} />,
-      undoText: "Quay lại",
+      undoText: 'Quay lại',
       // closeable: false,
-      onUndo: () => {},
+      onUndo: () => { },
     });
   };
 
@@ -31,11 +31,11 @@ export const basic = () => {
       <div className="flex items-center w-full space-x-4">
         <Button onClick={() => handleMessage()}>Click me</Button>
 
-        <Button onClick={() => handleMessage("info")}>Info</Button>
+        <Button onClick={() => handleMessage('info')}>Info</Button>
 
-        <Button onClick={() => handleMessage("success")}>Success</Button>
-        <Button onClick={() => handleMessage("error")}>Error</Button>
-        <Button onClick={() => handleMessage("warning")}>Warning</Button>
+        <Button onClick={() => handleMessage('success')}>Success</Button>
+        <Button onClick={() => handleMessage('error')}>Error</Button>
+        <Button onClick={() => handleMessage('warning')}>Warning</Button>
       </div>
     </>
   );

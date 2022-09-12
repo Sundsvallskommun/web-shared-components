@@ -1,7 +1,7 @@
-import { useId } from "@reach/auto-id";
-import { DefaultProps } from "@sk-web-gui/theme";
-import { cx, __DEV__ } from "@sk-web-gui/utils";
-import * as React from "react";
+import { useId } from '@reach/auto-id';
+import { DefaultProps } from '@sk-web-gui/theme';
+import { cx, __DEV__ } from '@sk-web-gui/utils';
+import * as React from 'react';
 
 interface UseFormControlProps {
   /** If `true`, this prop is passed to its children. */
@@ -26,15 +26,11 @@ interface IFormControlProps extends DefaultProps, UseFormControlProps {
   children?: React.ReactNode;
 }
 
-export interface FormControlProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    IFormControlProps {}
+export interface FormControlProps extends React.HTMLAttributes<HTMLDivElement>, IFormControlProps {}
 
 interface FormControlContext extends UseFormControlProps {}
 
-export const useFormControl = (
-  props: UseFormControlProps
-): UseFormControlData => {
+export const useFormControl = (props: UseFormControlProps): UseFormControlData => {
   const context = useFormControlContext();
   if (!context) {
     return props;
@@ -54,53 +50,40 @@ export const useFormControl = (
   }, {});
 };
 
-const FormControlContext = React.createContext<FormControlContext | undefined>(
-  undefined
-);
+const FormControlContext = React.createContext<FormControlContext | undefined>(undefined);
 
 const useFormControlContext = () => React.useContext(FormControlContext);
 
-export const FormControl = React.forwardRef<HTMLDivElement, FormControlProps>(
-  (props, ref) => {
-    const {
-      children,
-      className,
-      required,
-      disabled,
-      invalid,
-      readOnly,
-      id: idProp,
-      ...rest
-    } = props;
-    const classes = cx("form-control", className);
+export const FormControl = React.forwardRef<HTMLDivElement, FormControlProps>((props, ref) => {
+  const { children, className, required, disabled, invalid, readOnly, id: idProp, ...rest } = props;
+  const classes = cx('form-control', className);
 
-    const id = idProp || `field-${useId()}`;
+  const id = idProp || `field-${useId()}`;
 
-    const labelId = `${id}-label`;
-    const errorId = `${id}-error`;
-    const helpTextId = `${id}-helptext`;
+  const labelId = `${id}-label`;
+  const errorId = `${id}-error`;
+  const helpTextId = `${id}-helptext`;
 
-    const context = {
-      required,
-      disabled,
-      invalid,
-      readOnly,
-      id,
-      labelId,
-      errorId,
-      helpTextId,
-    };
+  const context = {
+    required,
+    disabled,
+    invalid,
+    readOnly,
+    id,
+    labelId,
+    errorId,
+    helpTextId,
+  };
 
-    return (
-      <FormControlContext.Provider value={context}>
-        <div role="group" ref={ref} className={classes} {...rest}>
-          {children}
-        </div>
-      </FormControlContext.Provider>
-    );
-  }
-);
+  return (
+    <FormControlContext.Provider value={context}>
+      <div role="group" ref={ref} className={classes} {...rest}>
+        {children}
+      </div>
+    </FormControlContext.Provider>
+  );
+});
 
 if (__DEV__) {
-  FormControl.displayName = "FormGroup";
+  FormControl.displayName = 'FormGroup';
 }

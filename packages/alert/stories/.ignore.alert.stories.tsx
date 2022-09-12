@@ -1,7 +1,7 @@
-import { Alert } from "../src";
+import { Alert } from '../src';
 
 export default {
-  title: "WIP/Komponenter/Alert",
+  title: 'WIP/Komponenter/Alert',
   component: Alert,
   parameters: {
     controls: { hideNoControlsWarning: true },

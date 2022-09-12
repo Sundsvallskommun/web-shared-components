@@ -1,9 +1,9 @@
-import { FormControl, FormLabel } from "@sk-web-gui/forms";
-import { useState } from "react";
-import { Pagination } from "../src";
+import { FormControl, FormLabel } from '@sk-web-gui/forms';
+import { useState } from 'react';
+import { Pagination } from '../src';
 
 export default {
-  title: "Komponenter/Pagination/Komponent",
+  title: 'Komponenter/Pagination/Komponent',
   component: Pagination,
   parameters: {
     controls: { hideNoControlsWarning: true },
@@ -16,60 +16,53 @@ export const Template = ({ ...args }: any) => {
     <div>
       <div>paginationPage: {paginationPage}</div>
       <div>
-        <button
-          className="p-sm my-md border rounded-lg text-white bg-primary"
-          onClick={() => setPaginationPage(3)}
-        >
+        <button className="p-sm my-md border rounded-lg text-white bg-primary" onClick={() => setPaginationPage(3)}>
           Go to page 3 from parent
         </button>
       </div>
-      <Pagination
-        {...args}
-        activePage={paginationPage}
-        changePage={setPaginationPage}
-      />
+      <Pagination {...args} activePage={paginationPage} changePage={setPaginationPage} />
     </div>
   );
 };
 
-Template.storyName = "Komponent";
+Template.storyName = 'Komponent';
 
 Template.argTypes = {
   pages: {
-    type: { name: "string", required: true },
-    description: "Sets total pages",
+    type: { name: 'string', required: true },
+    description: 'Sets total pages',
     table: {
-      defaultValue: { summary: "false" },
+      defaultValue: { summary: 'false' },
     },
-    control: "number",
+    control: 'number',
     defaultValue: 11,
   },
   activePage: {
-    type: { name: "string", required: true },
-    description: "Sets active page",
+    type: { name: 'string', required: true },
+    description: 'Sets active page',
     table: {
-      defaultValue: { summary: "1" },
+      defaultValue: { summary: '1' },
     },
-    control: "number",
+    control: 'number',
     defaultValue: 1,
   },
   changePage: {
-    type: { name: "function", required: true },
-    description: "Sends page number to parent",
+    type: { name: 'function', required: true },
+    description: 'Sends page number to parent',
     table: {
-      defaultValue: { summary: "() => {}" },
+      defaultValue: { summary: '() => {}' },
     },
-    control: "function",
+    control: 'function',
     defaultValue: () => {},
   },
   size: {
-    type: { name: "string", required: false },
-    description: "Sets size",
+    type: { name: 'string', required: false },
+    description: 'Sets size',
     table: {
-      defaultValue: { summary: "md" },
+      defaultValue: { summary: 'md' },
     },
-    options: ["sm", "md", "lg"],
-    control: "select",
-    defaultValue: "md",
+    options: ['sm', 'md', 'lg'],
+    control: 'select',
+    defaultValue: 'md',
   },
 };

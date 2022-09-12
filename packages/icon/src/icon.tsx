@@ -1,9 +1,9 @@
-import { DefaultProps } from "@sk-web-gui/theme";
-import { cx, __DEV__ } from "@sk-web-gui/utils";
-import VisuallyHidden from "@sk-web-gui/visually-hidden";
-import * as React from "react";
+import { DefaultProps } from '@sk-web-gui/theme';
+import { cx, __DEV__ } from '@sk-web-gui/utils';
+import VisuallyHidden from '@sk-web-gui/visually-hidden';
+import * as React from 'react';
 
-import { QuestionCircleIcon } from "./core";
+import { QuestionCircleIcon } from './core';
 
 export interface IconProps extends DefaultProps {
   as?: React.ElementType;
@@ -18,20 +18,13 @@ export interface IconProps extends DefaultProps {
 }
 
 export const Icon = React.forwardRef<any, IconProps>((props, ref) => {
-  const {
-    as: Comp = QuestionCircleIcon,
-    inline = true,
-    className,
-    role = "presentation",
-    label,
-    ...rest
-  } = props;
+  const { as: Comp = QuestionCircleIcon, inline = true, className, role = 'presentation', label, ...rest } = props;
 
   return (
     <>
       <Comp
         ref={ref}
-        className={cx(inline ? "icon-inline" : "icon-block", className)}
+        className={cx(inline ? 'icon-inline' : 'icon-block', className)}
         role={role}
         aria-hidden={true}
         focusable={false}
@@ -43,5 +36,5 @@ export const Icon = React.forwardRef<any, IconProps>((props, ref) => {
 });
 
 if (__DEV__) {
-  Icon.displayName = "Icon";
+  Icon.displayName = 'Icon';
 }

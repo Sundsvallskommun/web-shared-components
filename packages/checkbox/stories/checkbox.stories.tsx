@@ -1,8 +1,8 @@
-import { FormControl, FormHelperText, FormLabel } from "@sk-web-gui/forms";
-import { Checkbox, CheckboxProps } from "../src";
+import { FormControl, FormHelperText, FormLabel } from '@sk-web-gui/forms';
+import { Checkbox, CheckboxProps } from '../src';
 
 export default {
-  title: "Komponenter/Kryssrutor/Komponent",
+  title: 'Komponenter/Kryssrutor/Komponent',
   component: Checkbox,
   parameters: {
     controls: { hideNoControlsWarning: true },
@@ -25,7 +25,7 @@ Template.argTypes = {
     },
     control: 'boolean',
     defaultValue: false,
-  },  
+  },
   invalid: {
     type: { name: 'boolean', required: false },
     description: 'Sets invalid',

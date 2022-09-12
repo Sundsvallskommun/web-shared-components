@@ -1,16 +1,16 @@
-import { GuiProvider, extendTheme, defaultTheme } from "@sk-web-gui/react";
-import { useState, useMemo } from "react";
-import { withPerformance } from "storybook-addon-performance";
+import { GuiProvider, extendTheme, defaultTheme } from '@sk-web-gui/react';
+import { useState, useMemo } from 'react';
+import { withPerformance } from 'storybook-addon-performance';
 //import { light, dark, /* midnight, pale, dawn, bee, cool */ } from "./themes";
 //import { Button } from "@sk-web-gui/button";
 import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc'
-import updateLocale from 'dayjs/plugin/updateLocale'
-import "./styles.css";
+import utc from 'dayjs/plugin/utc';
+import updateLocale from 'dayjs/plugin/updateLocale';
+import './styles.css';
 
 export const parameters = {
   viewMode: 'docs',
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: { argTypesRegex: '^on[A-Z].*' },
   options: {
     storySort: {
       // includeName: true,
@@ -70,53 +70,47 @@ export const parameters = {
           '/**/Komponent',
         ],
         'Guider',
-        [
-          'Att skapa nya komponenter',
-          'Hur vi designar webbplatser för SiteVision',
-          [
-            'Webbvy',
-            'Mobilvy'
-          ]
-        ],
+        ['Att skapa nya komponenter', 'Hur vi designar webbplatser för SiteVision', ['Webbvy', 'Mobilvy']],
         '*',
-        'WIP'
+        'WIP',
       ],
     },
   },
 };
 
 const withGui = (StoryFn: Function) => {
-  const [colorScheme, setColorScheme] = useState("light");
+  const [colorScheme, setColorScheme] = useState('light');
   const theme = useMemo(
     () =>
       extendTheme({
-        cursor: colorScheme === "light" ? "pointer" : "default",
+        cursor: colorScheme === 'light' ? 'pointer' : 'default',
         colorSchemes: defaultTheme.colorSchemes,
       }),
     [colorScheme]
   );
 
-  dayjs.extend(utc)
-  dayjs.locale('se')
-  dayjs.extend(updateLocale)
+  dayjs.extend(utc);
+  dayjs.locale('se');
+  dayjs.extend(updateLocale);
   dayjs.updateLocale('se', {
-  months: [
-      "Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli",
-      "Augusti", "September", "Oktober", "November", "December"
-  ],
-  monthsShort: [
-      "Jan", "Feb", "Mar", "Apr", "Maj", "Jun",
-      "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"
-  ],
-  weekdays: [
-      "Söndag", "Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag" 
-  ],
-  weekdaysShort: [
-      "Sön", "Mån", "Tis", "Ons", "Tors", "Fre", "Lör"
-  ],
-  weekdaysMin: [
-      "S", "M", "T", "O", "T", "F", "L"
-  ]
+    months: [
+      'Januari',
+      'Februari',
+      'Mars',
+      'April',
+      'Maj',
+      'Juni',
+      'Juli',
+      'Augusti',
+      'September',
+      'Oktober',
+      'November',
+      'December',
+    ],
+    monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'],
+    weekdays: ['Söndag', 'Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag'],
+    weekdaysShort: ['Sön', 'Mån', 'Tis', 'Ons', 'Tors', 'Fre', 'Lör'],
+    weekdaysMin: ['S', 'M', 'T', 'O', 'T', 'F', 'L'],
   });
 
   return (

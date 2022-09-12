@@ -1,22 +1,24 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
-import { GuiProvider } from "../../theme";
-import { Breadcrumb } from "../src";
+import { GuiProvider } from '../../theme';
+import { Breadcrumb } from '../src';
 
 <Meta title="Komponenter/Brödsmulor/Översikt" />
 
-export const Template = (args) => <Breadcrumb {...args }>
-        <Breadcrumb.Item>
-        <Breadcrumb.Link href="#">Start</Breadcrumb.Link>
-      </Breadcrumb.Item>
-      <Breadcrumb.Item>
-        <Breadcrumb.Link href="#">Inlägg</Breadcrumb.Link>
-      </Breadcrumb.Item>
-      <Breadcrumb.Item currentPage>
-        <Breadcrumb.Link href="#">Amet minim mollit non</Breadcrumb.Link>
-      </Breadcrumb.Item>
-</Breadcrumb>
+export const Template = (args) => (
+  <Breadcrumb {...args}>
+    <Breadcrumb.Item>
+      <Breadcrumb.Link href="#">Start</Breadcrumb.Link>
+    </Breadcrumb.Item>
+    <Breadcrumb.Item>
+      <Breadcrumb.Link href="#">Inlägg</Breadcrumb.Link>
+    </Breadcrumb.Item>
+    <Breadcrumb.Item currentPage>
+      <Breadcrumb.Link href="#">Amet minim mollit non</Breadcrumb.Link>
+    </Breadcrumb.Item>
+  </Breadcrumb>
+);
 
-# Brödsmulor 
+# Brödsmulor
 
 Brödsmulor ska inte vara den enda vägen för en användare att navigera utan brödsmulor kompletterar alltid ett annat navigeringssätt. Om du använder någon annan typ av navigering som exempelvis en sidebar överväg då om användaren också behöver brödsmulor.
 

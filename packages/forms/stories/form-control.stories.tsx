@@ -1,14 +1,14 @@
-import { FormControl, FormLabel, Input, FormHelperText, FormErrorMessage } from "../src";
+import { FormControl, FormLabel, Input, FormHelperText, FormErrorMessage } from '../src';
 
 export default {
-  title: "Komponenter/Textfält/Komponent",
+  title: 'Komponenter/Textfält/Komponent',
   component: FormControl,
   parameters: {
     controls: { hideNoControlsWarning: true },
   },
 };
 
-export const outline = () => (
+export const Outline = () => (
   <>
     <FormControl id="email">
       <FormLabel>
@@ -27,12 +27,12 @@ export const outline = () => (
       <FormLabel>
         <strong>Disabled</strong>
       </FormLabel>
-      <Input placeholder="Disabled"/>
-    </FormControl>    
+      <Input placeholder="Disabled" />
+    </FormControl>
   </>
 );
 
-export const solid = () => (
+export const Solid = () => (
   <>
     <FormControl id="email">
       <FormLabel>
@@ -84,7 +84,7 @@ export const Storlekar = () => (
   </>
 );
 
-export const invalid = () => (
+export const Invalid = () => (
   <>
     <FormControl invalid aria-invalid id="first-name" required>
       <Input placeholder="Förnamn *" aria-describedby="first-name-error" />
@@ -97,11 +97,9 @@ export const invalid = () => (
   </>
 );
 
-export const required = () => (
+export const Required = () => (
   <FormControl id="first-name" required>
-    <FormLabel>
-      First name
-    </FormLabel>
+    <FormLabel>First name</FormLabel>
     <Input placeholder="Enter your first name." aria-describedby="first-name-error" />
     <FormErrorMessage>First name is required!</FormErrorMessage>
   </FormControl>

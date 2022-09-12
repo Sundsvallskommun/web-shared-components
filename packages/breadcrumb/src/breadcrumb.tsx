@@ -1,29 +1,21 @@
-import { Link, LinkProps } from "@sk-web-gui/link";
-import { cx, getValidChildren, __DEV__ } from "@sk-web-gui/utils";
-import { DefaultProps } from "@sk-web-gui/theme";
-import * as React from "react";
-import { cloneElement } from "react";
+import { Link, LinkProps } from '@sk-web-gui/link';
+import { cx, getValidChildren, __DEV__ } from '@sk-web-gui/utils';
+import { DefaultProps } from '@sk-web-gui/theme';
+import * as React from 'react';
+import { cloneElement } from 'react';
 
 export interface BreadcrumbSeparatorProps extends DefaultProps, React.HTMLAttributes<HTMLSpanElement> {
   children?: React.ReactNode;
 }
 
-const BreadcrumbSeparator = React.forwardRef<
-  HTMLSpanElement,
-  BreadcrumbSeparatorProps
->(({ className, ...props }, ref) => {
-  return (
-    <span
-      ref={ref}
-      role="presentation"
-      className={cx("breadcrumb-separator", className)}
-      {...props}
-    />
-  );
-});
+const BreadcrumbSeparator = React.forwardRef<HTMLSpanElement, BreadcrumbSeparatorProps>(
+  ({ className, ...props }, ref) => {
+    return <span ref={ref} role="presentation" className={cx('breadcrumb-separator', className)} {...props} />;
+  }
+);
 
 if (__DEV__) {
-  BreadcrumbSeparator.displayName = "BreadcrumbSeparator";
+  BreadcrumbSeparator.displayName = 'BreadcrumbSeparator';
 }
 
 interface BreadcrumbLinkProps extends LinkProps {
@@ -34,20 +26,16 @@ interface BreadcrumbLinkProps extends LinkProps {
   currentPage?: boolean;
 }
 
-export type { BreadcrumbLinkProps }
+export type { BreadcrumbLinkProps };
 
-const BreadcrumbLink = React.forwardRef<any, any>(
-  ({ currentPage, ...props }, ref) => {
-    const Comp = currentPage ? "span" : Link;
+const BreadcrumbLink = React.forwardRef<any, any>(({ currentPage, ...props }, ref) => {
+  const Comp = currentPage ? 'span' : Link;
 
-    return (
-      <Comp ref={ref} aria-current={currentPage ? "page" : undefined} {...props} />
-    );
-  }
-);
+  return <Comp ref={ref} aria-current={currentPage ? 'page' : undefined} {...props} />;
+});
 
 if (__DEV__) {
-  BreadcrumbLink.displayName = "BreadcrumbLink";
+  BreadcrumbLink.displayName = 'BreadcrumbLink';
 }
 
 export interface BreadcrumbItemProps extends BreadcrumbProps {
@@ -59,43 +47,31 @@ export interface BreadcrumbItemProps extends BreadcrumbProps {
   lastChild?: boolean;
 }
 
-const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProps>(
-  (props, ref) => {
-    const {
-      currentPage,
-      separator,
-      lastChild,
-      addSeparator,
-      children,
-      className,
-      ...rest
-    } = props;
+const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProps>((props, ref) => {
+  const { currentPage, separator, lastChild, addSeparator, children, className, ...rest } = props;
 
-    const validChildren = getValidChildren(children);
-    const clones = validChildren.map((child) => {
-      if (child.type === BreadcrumbLink) {
-        return cloneElement(child, { currentPage });
-      }
+  const validChildren = getValidChildren(children);
+  const clones = validChildren.map((child) => {
+    if (child.type === BreadcrumbLink) {
+      return cloneElement(child, { currentPage });
+    }
 
-      if (child.type === BreadcrumbSeparator) {
-        return cloneElement(child, {
-          children: child.props.children || separator,
-        });
-      }
+    if (child.type === BreadcrumbSeparator) {
+      return cloneElement(child, {
+        children: child.props.children || separator,
+      });
+    }
 
-      return child;
-    });
+    return child;
+  });
 
-    return (
-      <li ref={ref} className={cx("breadcrumb-item", className)} {...rest}>
-        {clones}
-        {!lastChild && addSeparator && (
-          <BreadcrumbSeparator children={separator} />
-        )}
-      </li>
-    );
-  }
-);
+  return (
+    <li ref={ref} className={cx('breadcrumb-item', className)} {...rest}>
+      {clones}
+      {!lastChild && addSeparator && <BreadcrumbSeparator children={separator} />}
+    </li>
+  );
+});
 
 interface IBreadcrumbProps extends DefaultProps {
   /* The visual separator between each breadcrumb item */
@@ -106,42 +82,27 @@ interface IBreadcrumbProps extends DefaultProps {
   children?: React.ReactNode;
 }
 
-export interface BreadcrumbProps
-  extends React.HTMLAttributes<HTMLElement>,
-    IBreadcrumbProps {}
+export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement>, IBreadcrumbProps {}
 
-const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
-  (props, ref) => {
-    const {
-      children,
-      addSeparator = true,
-      separator = "/",
-      className,
-      ...rest
-    } = props;
-    const validChildren = getValidChildren(children);
-    const clones = validChildren.map((child, index) => {
-      return cloneElement(child, {
-        addSeparator,
-        separator,
-        lastChild: validChildren.length === index + 1,
-      });
+const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>((props, ref) => {
+  const { children, addSeparator = true, separator = '/', className, ...rest } = props;
+  const validChildren = getValidChildren(children);
+  const clones = validChildren.map((child, index) => {
+    return cloneElement(child, {
+      addSeparator,
+      separator,
+      lastChild: validChildren.length === index + 1,
     });
+  });
 
-    return (
-      <nav
-        ref={ref}
-        aria-label="breadcrumb"
-        className={cx("breadcrumb", className)}
-        {...rest}
-      >
-        <ol>{clones}</ol>
-      </nav>
-    );
-  }
-);
+  return (
+    <nav ref={ref} aria-label="breadcrumb" className={cx('breadcrumb', className)} {...rest}>
+      <ol>{clones}</ol>
+    </nav>
+  );
+});
 
 if (__DEV__) {
-  Breadcrumb.displayName = "Breadcrumb";
+  Breadcrumb.displayName = 'Breadcrumb';
 }
 export { Breadcrumb, BreadcrumbLink, BreadcrumbItem, BreadcrumbSeparator };

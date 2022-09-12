@@ -1,8 +1,8 @@
-import { FormControl, FormLabel } from "@sk-web-gui/forms";
-import { Switch } from "../src";
+import { FormControl, FormLabel } from '@sk-web-gui/forms';
+import { Switch } from '../src';
 
 export default {
-  title: "Komponenter/Toggel/Komponent",
+  title: 'Komponenter/Toggel/Komponent',
   component: Switch,
   parameters: {
     controls: { hideNoControlsWarning: true },

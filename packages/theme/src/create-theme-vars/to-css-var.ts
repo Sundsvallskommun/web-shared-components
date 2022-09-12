@@ -1,7 +1,7 @@
-import type { WithCSSVar, Dict } from "@sk-web-gui/utils";
+import type { WithCSSVar, Dict } from '@sk-web-gui/utils';
 
-import { createThemeVars } from "./create-theme-vars";
-import { extractTokens, omitVars } from "./theme-tokens";
+import { createThemeVars } from './create-theme-vars';
+import { extractTokens, omitVars } from './theme-tokens';
 
 export function toCSSVar<T extends Dict>(rawTheme: T) {
   /**
@@ -13,7 +13,7 @@ export function toCSSVar<T extends Dict>(rawTheme: T) {
   // omit components and breakpoints from css variable map
   const tokens = extractTokens(theme);
 
-  const cssVarPrefix = theme.config?.cssVarPrefix || "vc";
+  const cssVarPrefix = theme.config?.cssVarPrefix || 'vc';
 
   const {
     /**

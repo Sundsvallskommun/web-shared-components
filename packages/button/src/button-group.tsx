@@ -1,8 +1,8 @@
-import { DefaultProps } from "@sk-web-gui/theme";
-import { cx, getValidChildren, __DEV__ } from "@sk-web-gui/utils";
-import * as React from "react";
+import { DefaultProps } from '@sk-web-gui/theme';
+import { cx, getValidChildren, __DEV__ } from '@sk-web-gui/utils';
+import * as React from 'react';
 
-import { ButtonProps } from "./button";
+import { ButtonProps } from './button';
 
 interface IButtonGroupProps extends DefaultProps {
   /**
@@ -13,55 +13,37 @@ interface IButtonGroupProps extends DefaultProps {
   /* Set all wrapped button will be disabled */
   disabled?: boolean;
   /* Size of all wrapped button */
-  size?: ButtonProps["size"];
+  size?: ButtonProps['size'];
   /** Controls all wrapped button appearance */
-  variant?: ButtonProps["variant"];
+  variant?: ButtonProps['variant'];
   /* Set all wrapped button color */
-  color?: ButtonProps["color"];
+  color?: ButtonProps['color'];
   /* React node */
   children?: React.ReactNode;
 }
 
-export interface ButtonGroupProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    IButtonGroupProps {}
+export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement>, IButtonGroupProps {}
 
-export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
-  (props, ref) => {
-    const {
-      size,
-      color,
-      variant,
-      attached,
-      disabled,
-      children,
-      className,
-      ...rest
-    } = props;
+export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>((props, ref) => {
+  const { size, color, variant, attached, disabled, children, className, ...rest } = props;
 
-    const validChildren = getValidChildren(children);
-    const clones = validChildren.map((child) => {
-      return React.cloneElement(child, {
-        size: size || child.props.size,
-        color: child.props.color || color,
-        variant: child.props.variant || variant,
-        disabled: child.props.disabled || disabled,
-      });
+  const validChildren = getValidChildren(children);
+  const clones = validChildren.map((child) => {
+    return React.cloneElement(child, {
+      size: size || child.props.size,
+      color: child.props.color || color,
+      variant: child.props.variant || variant,
+      disabled: child.props.disabled || disabled,
     });
+  });
 
-    return (
-      <div
-        ref={ref}
-        role="group"
-        className={cx("btn-group", attached && "btn-group-attached", className)}
-        {...rest}
-      >
-        {clones}
-      </div>
-    );
-  }
-);
+  return (
+    <div ref={ref} role="group" className={cx('btn-group', attached && 'btn-group-attached', className)} {...rest}>
+      {clones}
+    </div>
+  );
+});
 
 if (__DEV__) {
-  ButtonGroup.displayName = "ButtonGroup";
+  ButtonGroup.displayName = 'ButtonGroup';
 }

@@ -1,7 +1,7 @@
-import { InputProps, Select } from "../src";
+import { InputProps, Select } from '../src';
 
 export default {
-  title: "Komponenter/Dropdown/Komponent",
+  title: 'Komponenter/Dropdown/Komponent',
   component: Select,
   parameters: {
     controls: { hideNoControlsWarning: true },
@@ -9,7 +9,7 @@ export default {
 };
 
 export const Template = (args: any) => (
-  <Select {...args} onChange={(e)=>console.log(e)}>
+  <Select {...args} onChange={(e) => console.log(e)}>
     <option>Option 1</option>
     <option>Option 2</option>
     <option>Option 3</option>
@@ -33,7 +33,7 @@ Template.argTypes = {
     },
     defaultValue: 'Placeholder',
   },
-  "aria-label": {
+  'aria-label': {
     type: { name: 'string', required: false },
     description: 'Sets aria-label',
     table: {
@@ -49,7 +49,7 @@ Template.argTypes = {
     },
     control: 'boolean',
     defaultValue: false,
-  },  
+  },
   invalid: {
     type: { name: 'boolean', required: false },
     description: 'Sets invalid',
@@ -82,7 +82,7 @@ Template.argTypes = {
 
 Template.storyName = 'Komponent';
 
-export const disabled = () => (
+export const Disabled = () => (
   <Select disabled placeholder="Outline">
     <option>Option 1</option>
     <option>Option 2</option>
@@ -90,7 +90,7 @@ export const disabled = () => (
   </Select>
 );
 
-export const invalid = () => (
+export const Invalid = () => (
   <Select invalid placeholder="Outline">
     <option>Option 1</option>
     <option>Option 2</option>
@@ -98,7 +98,7 @@ export const invalid = () => (
   </Select>
 );
 
-export const colored = () => (
+export const Colored = () => (
   <Select placeholder="Outline" color="orange">
     <option>Option 1</option>
     <option>Option 2</option>
@@ -106,7 +106,7 @@ export const colored = () => (
   </Select>
 );
 
-export const size = () => (
+export const Size = () => (
   <div className="flex space-x-2">
     <Select placeholder="Outline" size="sm">
       <option>Option 1</option>

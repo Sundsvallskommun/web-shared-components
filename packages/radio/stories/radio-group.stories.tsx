@@ -1,64 +1,64 @@
-import { FormControl, FormHelperText, FormLabel } from "@sk-web-gui/forms";
-import { Radio, RadioGroupProps, RadioProps } from "../src";
+import { FormControl, FormHelperText, FormLabel } from '@sk-web-gui/forms';
+import { Radio, RadioGroupProps, RadioProps } from '../src';
 
 export default {
-    title: "Komponenter/Radioknappar/Komponent/Grupp",
-    component: Radio,
-    parameters: {
-        controls: { hideNoControlsWarning: true },
-    },
+  title: 'Komponenter/Radioknappar/Komponent/Grupp',
+  component: Radio,
+  parameters: {
+    controls: { hideNoControlsWarning: true },
+  },
 };
 
 export const Template = (args: RadioGroupProps) => (
-    <div className="flex flex-col space-y-4">
-        <Radio.Group {...args}>
-            <Radio value="1">Exempel 1</Radio>
-            <Radio value="2">Exempel 2</Radio>
-            <Radio value="3">Exempel 3</Radio>
-        </Radio.Group>
-    </div>
+  <div className="flex flex-col space-y-4">
+    <Radio.Group {...args}>
+      <Radio value="1">Exempel 1</Radio>
+      <Radio value="2">Exempel 2</Radio>
+      <Radio value="3">Exempel 3</Radio>
+    </Radio.Group>
+  </div>
 );
 
 Template.argTypes = {
-    defaultValue: {
-        type: { name: 'text', required: false },
-        description: 'Sets default value',
-        table: {
-            defaultValue: { summary: 'undefined' },
-        },
-        control: 'text',
-        //defaultValue: 'md',
+  defaultValue: {
+    type: { name: 'text', required: false },
+    description: 'Sets default value',
+    table: {
+      defaultValue: { summary: 'undefined' },
     },
-    inline: {
-        type: { name: 'boolean', required: false },
-        description: 'Sets inline',
-        table: {
-            defaultValue: { summary: 'false' },
-        },
-        control: 'boolean',
-        defaultValue: false,
+    control: 'text',
+    //defaultValue: 'md',
+  },
+  inline: {
+    type: { name: 'boolean', required: false },
+    description: 'Sets inline',
+    table: {
+      defaultValue: { summary: 'false' },
     },
-    size: {
-        type: { name: 'string', required: false },
-        description: 'Sets size',
-        table: {
-            defaultValue: { summary: 'md' },
-        },
-        options: ['sm', 'md', 'lg'],
-        control: 'select',
-        defaultValue: 'md',
+    control: 'boolean',
+    defaultValue: false,
+  },
+  size: {
+    type: { name: 'string', required: false },
+    description: 'Sets size',
+    table: {
+      defaultValue: { summary: 'md' },
     },
-    color: {
-        type: { name: 'string', required: false },
-        description: 'Sets color',
-        table: {
-            defaultValue: { summary: 'primary' },
-        },
-        options: ['primary', 'secondary'],
-        control: 'select',
-        defaultValue: 'primary',
+    options: ['sm', 'md', 'lg'],
+    control: 'select',
+    defaultValue: 'md',
+  },
+  color: {
+    type: { name: 'string', required: false },
+    description: 'Sets color',
+    table: {
+      defaultValue: { summary: 'primary' },
     },
-}
+    options: ['primary', 'secondary'],
+    control: 'select',
+    defaultValue: 'primary',
+  },
+};
 
 Template.storyName = 'Grupp';
 

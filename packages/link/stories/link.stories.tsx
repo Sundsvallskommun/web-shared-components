@@ -1,7 +1,7 @@
-import { Link, LinkProps } from "../src";
+import { Link, LinkProps } from '../src';
 
 export default {
-  title: "Komponenter/Länkar/Komponent",
+  title: 'Komponenter/Länkar/Komponent',
   component: Link,
   parameters: {
     controls: { hideNoControlsWarning: true },
@@ -10,9 +10,14 @@ export default {
 
 export const Template = (args: LinkProps) => (
   <div className="flex flex-col space-y-2">
-    <Link {...args} href="#">Lorem ipsum dolor sit amet.</Link>
+    <Link {...args} href="#">
+      Lorem ipsum dolor sit amet.
+    </Link>
     <p>
-      <Link {...args} href="#">Lorem, ipsum dolor.</Link> Lorem ipsum dolor sit amet consectetur adipisicing.
+      <Link {...args} href="#">
+        Lorem, ipsum dolor.
+      </Link>{' '}
+      Lorem ipsum dolor sit amet consectetur adipisicing.
     </p>
   </div>
 );

@@ -1,67 +1,51 @@
-import { DefaultProps } from "@sk-web-gui/theme";
-import { cx, __DEV__ } from "@sk-web-gui/utils";
-import * as React from "react";
+import { DefaultProps } from '@sk-web-gui/theme';
+import { cx, __DEV__ } from '@sk-web-gui/utils';
+import * as React from 'react';
 
-import { InputProps } from "../input/input";
+import { InputProps } from '../input/input';
 
-type Placement = "left" | "right";
+type Placement = 'left' | 'right';
 
 export interface IInputAddonProps extends DefaultProps {
   /* Placement of the input addon */
   placement?: Placement;
   /* Size of the input addon */
-  size?: InputProps["size"];
+  size?: InputProps['size'];
 }
 
 const _placement = {
-  left: "form-input-addon-left",
-  right: "form-input-addon-right",
+  left: 'form-input-addon-left',
+  right: 'form-input-addon-right',
 };
 
 const sizes = {
-  xs: "form-input-addon-xs",
-  sm: "form-input-addon-sm",
-  md: "form-input-addon-md",
-  lg: "form-input-addon-lg",
-  xl: "form-input-addon-xl",
+  xs: 'form-input-addon-xs',
+  sm: 'form-input-addon-sm',
+  md: 'form-input-addon-md',
+  lg: 'form-input-addon-lg',
+  xl: 'form-input-addon-xl',
 };
 
-export interface InputAddonProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    IInputAddonProps {}
+export interface InputAddonProps extends React.HTMLAttributes<HTMLDivElement>, IInputAddonProps {}
 
-const InputAddon: React.FC<InputAddonProps> = ({
-  placement = "left",
-  size = "md",
-  className,
-  ...props
-}) => {
-  const classes = cx(
-    "form-input-addon",
-    sizes[size],
-    _placement[placement],
-    className
-  );
+const InputAddon: React.FC<InputAddonProps> = ({ placement = 'left', size = 'md', className, ...props }) => {
+  const classes = cx('form-input-addon', sizes[size], _placement[placement], className);
 
   return <div className={classes} {...props} />;
 };
 
 if (__DEV__) {
-  InputAddon.displayName = "InputAddon";
+  InputAddon.displayName = 'InputAddon';
 }
 
-export const InputLeftAddon: React.FC<InputAddonProps> = (props) => (
-  <InputAddon placement="left" {...props} />
-);
+export const InputLeftAddon: React.FC<InputAddonProps> = (props) => <InputAddon placement="left" {...props} />;
 
 if (__DEV__) {
-  InputLeftAddon.displayName = "InputLeftAddon";
+  InputLeftAddon.displayName = 'InputLeftAddon';
 }
 
-export const InputRightAddon: React.FC<InputAddonProps> = (props) => (
-  <InputAddon placement="right" {...props} />
-);
+export const InputRightAddon: React.FC<InputAddonProps> = (props) => <InputAddon placement="right" {...props} />;
 
 if (__DEV__) {
-  InputRightAddon.displayName = "InputRightAddon";
+  InputRightAddon.displayName = 'InputRightAddon';
 }

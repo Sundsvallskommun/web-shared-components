@@ -1,12 +1,11 @@
-import * as React from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import * as React from 'react';
 
-type ReactRef<T> =
-  | React.Ref<T>
-  | React.RefObject<T>
-  | React.MutableRefObject<T>;
+type ReactRef<T> = React.Ref<T> | React.RefObject<T> | React.MutableRefObject<T>;
 
 export function setRef<T = any>(ref: ReactRef<T> | undefined, value: T) {
-  if (typeof ref === "function") {
+  if (typeof ref === 'function') {
     ref(value);
   } else if (ref) {
     // @ts-ignore
@@ -14,10 +13,7 @@ export function setRef<T = any>(ref: ReactRef<T> | undefined, value: T) {
   }
 }
 
-export function useForkRef<T = any>(
-  refA: ReactRef<T> | undefined,
-  refB: ReactRef<T> | undefined
-) {
+export function useForkRef<T = any>(refA: ReactRef<T> | undefined, refB: ReactRef<T> | undefined) {
   return React.useMemo(() => {
     if (refA == null && refB == null) {
       return null;

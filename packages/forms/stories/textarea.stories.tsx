@@ -1,31 +1,29 @@
-import { Textarea } from "../src";
+import { Textarea } from '../src';
 
 export default {
-  title: "WIP/Komponenter/Textarea",
+  title: 'WIP/Komponenter/Textarea',
   component: Textarea,
   parameters: {
     controls: { hideNoControlsWarning: true },
   },
 };
 
-export const basic = () => <Textarea placeholder="name@example.com" />;
+export const Basic = () => <Textarea placeholder="name@example.com" />;
 
-export const disabled = () => <Textarea disabled placeholder="name@example.com" />;
+export const Disabled = () => <Textarea disabled placeholder="name@example.com" />;
 
-export const invalid = () => <Textarea invalid placeholder="name@example.com" />;
+export const Invalid = () => <Textarea invalid placeholder="name@example.com" />;
 
-export const variant = () => (
+export const Variant = () => (
   <div className="flex flex-col space-y-4">
     <Textarea placeholder="name@example.com" />
     <Textarea placeholder="name@example.com" variant="solid" />
   </div>
-)
-
-export const colored = () => (
-  <Textarea placeholder="name@example.com" color="secondary" />
 );
 
-export const counter = () => (
+export const Colored = () => <Textarea placeholder="name@example.com" color="secondary" />;
+
+export const Counter = () => (
   <Textarea
     placeholder="name@example.com"
     color="secondary"

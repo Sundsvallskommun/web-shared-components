@@ -1,9 +1,9 @@
 module.exports = Icon = () => ({
-  ".icon-inline": {
-    "@apply inline-block align-middle": {},
+  '.icon-inline': {
+    '@apply inline-block align-middle': {},
   },
 
-  ".icon-block": {
-    "@apply block": {},
+  '.icon-block': {
+    '@apply block': {},
   },
 });

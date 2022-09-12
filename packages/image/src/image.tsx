@@ -1,7 +1,7 @@
-import { DefaultProps } from "@sk-web-gui/theme";
-import { omit, __DEV__ } from "@sk-web-gui/utils";
-import * as React from "react";
-import { useImage, UseImageProps } from "./use-image";
+import { DefaultProps } from '@sk-web-gui/theme';
+import { omit, __DEV__ } from '@sk-web-gui/utils';
+import * as React from 'react';
+import { useImage, UseImageProps } from './use-image';
 
 interface INativeImageProps extends DefaultProps {
   /**
@@ -14,35 +14,23 @@ interface INativeImageProps extends DefaultProps {
   htmlHeight?: string | number;
 }
 
-interface NativeImageProps
-  extends React.ImgHTMLAttributes<HTMLImageElement>,
-    INativeImageProps {}
+interface NativeImageProps extends React.ImgHTMLAttributes<HTMLImageElement>, INativeImageProps {}
 
 export type { NativeImageProps };
 
-export const NativeImage = React.forwardRef(
-  (props: NativeImageProps, ref: React.Ref<any>) => {
-    const { htmlWidth, htmlHeight, alt, ...rest } = props;
-    return (
-      <img
-        width={htmlWidth}
-        height={htmlHeight}
-        ref={ref}
-        alt={alt}
-        {...rest}
-      />
-    );
-  }
-);
+export const NativeImage = React.forwardRef((props: NativeImageProps, ref: React.Ref<any>) => {
+  const { htmlWidth, htmlHeight, alt, ...rest } = props;
+  return <img width={htmlWidth} height={htmlHeight} ref={ref} alt={alt} {...rest} />;
+});
 
 if (__DEV__) {
-  NativeImage.displayName = "NativeImage";
+  NativeImage.displayName = 'NativeImage';
 }
 
-interface IImageProps extends Omit<NativeImageProps, "onError"> {
+interface IImageProps extends Omit<NativeImageProps, 'onError'> {
   fallbackSrc?: string;
   fallback?: React.ReactElement;
-  loading?: "eager" | "lazy";
+  loading?: 'eager' | 'lazy';
   ignoreFallback?: boolean;
   as?: React.ElementType;
 }
@@ -50,16 +38,7 @@ interface IImageProps extends Omit<NativeImageProps, "onError"> {
 interface ImageProps extends UseImageProps, IImageProps {}
 
 export const Image = React.forwardRef<unknown, ImageProps>((props, ref) => {
-  const {
-    fallbackSrc,
-    fallback,
-    src,
-    loading,
-    ignoreFallback,
-    crossOrigin,
-    as: Comp = NativeImage,
-    ...rest
-  } = props;
+  const { fallbackSrc, fallback, src, loading, ignoreFallback, crossOrigin, as: Comp = NativeImage, ...rest } = props;
 
   /**
    * Defer to native `img` tag if `loading` prop is passed
@@ -74,10 +53,10 @@ export const Image = React.forwardRef<unknown, ImageProps>((props, ref) => {
 
   const shared = {
     ref,
-    ...(shouldIgnore ? rest : omit(rest, ["onError", "onLoad"])),
+    ...(shouldIgnore ? rest : omit(rest, ['onError', 'onLoad'])),
   };
 
-  if (status !== "loaded") {
+  if (status !== 'loaded') {
     /**
      * If user passed a custom fallback component,
      * let's render it here.
@@ -87,13 +66,11 @@ export const Image = React.forwardRef<unknown, ImageProps>((props, ref) => {
     return <Comp src={fallbackSrc} {...shared} />;
   }
 
-  return (
-    <Comp src={src} crossOrigin={crossOrigin} loading={loading} {...shared} />
-  );
+  return <Comp src={src} crossOrigin={crossOrigin} loading={loading} {...shared} />;
 });
 
 export type { ImageProps };
 
 if (__DEV__) {
-  Image.displayName = "Image";
+  Image.displayName = 'Image';
 }

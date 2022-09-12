@@ -1,20 +1,13 @@
-import {
-  walkObject,
-  omit,
-  toRGB,
-  deepmerge,
-  WithCSSVar,
-  Dict,
-} from "@sk-web-gui/utils";
-import * as React from "react";
-import { createContext, useContext, useMemo } from "react";
-import set from "lodash.set";
+import { walkObject, omit, toRGB, deepmerge, WithCSSVar, Dict } from '@sk-web-gui/utils';
+import * as React from 'react';
+import { createContext, useContext, useMemo } from 'react';
+import set from 'lodash.set';
 
-import { defaultTheme } from "./default-theme";
-import { toCSSVar } from "./create-theme-vars";
-import { useSafeEffect } from "./use-safe-effect";
-import { isBrowser } from "./utils";
-import { GuiTheme, GuiThemeOverride } from "./types";
+import { defaultTheme } from './default-theme';
+import { toCSSVar } from './create-theme-vars';
+import { useSafeEffect } from './use-safe-effect';
+import { isBrowser } from './utils';
+import { GuiTheme, GuiThemeOverride } from './types';
 
 interface DictGuiTheme extends Dict {}
 
@@ -25,7 +18,7 @@ export const GuiContext = createContext<
   | undefined
 >(undefined);
 
-GuiContext.displayName = "GuiContext";
+GuiContext.displayName = 'GuiContext';
 
 export interface GuiProviderProps {
   children: React.ReactNode;
@@ -33,23 +26,19 @@ export interface GuiProviderProps {
   colorScheme?: string;
 }
 
-export function GuiProvider({
-  theme = defaultTheme,
-  colorScheme = "light",
-  children,
-}: GuiProviderProps) {
+export function GuiProvider({ theme = defaultTheme, colorScheme = 'light', children }: GuiProviderProps) {
   const computedTheme = useMemo(() => {
-    const omittedTheme = omit(theme, ["colorSchemes"]);
+    const omittedTheme = omit(theme, ['colorSchemes']);
     const { colors, type } = theme.colorSchemes[colorScheme] || {};
     if (isBrowser) {
-      if (type === "dark") document.documentElement.classList.add("dark");
-      else document.documentElement.classList.remove("dark");
+      if (type === 'dark') document.documentElement.classList.add('dark');
+      else document.documentElement.classList.remove('dark');
     }
 
     walkObject(colors, (value, path) => {
-      if (typeof value !== "string") return;
+      if (typeof value !== 'string') return;
       const rgb = toRGB(value);
-      if (rgb) set(colors, path, rgb.join(","));
+      if (rgb) set(colors, path, rgb.join(','));
     });
 
     const normalizedTheme = {
@@ -71,9 +60,7 @@ export function GuiProvider({
     [computedTheme]
   );
 
-  return (
-    <GuiContext.Provider value={value}>{children}</GuiContext.Provider>
-  );
+  return <GuiContext.Provider value={value}>{children}</GuiContext.Provider>;
 }
 
 function setStyleVariable(name: string, value: string) {
@@ -82,7 +69,7 @@ function setStyleVariable(name: string, value: string) {
 }
 
 function updateStyleHelper(_themeKey: string, style: string) {
-  const themeKey = _themeKey.startsWith("--") ? _themeKey : `--${_themeKey}`;
+  const themeKey = _themeKey.startsWith('--') ? _themeKey : `--${_themeKey}`;
   setStyleVariable(themeKey, style);
 }
 
@@ -93,13 +80,9 @@ function updateThemeVariables(vars: Record<string, string>) {
 }
 
 export function useGui<T extends object = Dict>() {
-  const theme = useContext(
-    (GuiContext as unknown) as React.Context<T | undefined>
-  );
+  const theme = useContext(GuiContext as unknown as React.Context<T | undefined>);
   if (!theme) {
-    throw Error(
-      "useGui: `theme` is undefined. Seems you forgot to wrap your app in `<GuiProvider />`"
-    );
+    throw Error('useGui: `theme` is undefined. Seems you forgot to wrap your app in `<GuiProvider />`');
   }
 
   return theme as WithCSSVar<T>;

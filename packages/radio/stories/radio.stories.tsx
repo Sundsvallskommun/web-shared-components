@@ -1,8 +1,8 @@
-import { FormControl, FormHelperText, FormLabel } from "@sk-web-gui/forms";
-import { Radio, RadioGroupProps, RadioProps } from "../src";
+import { FormControl, FormHelperText, FormLabel } from '@sk-web-gui/forms';
+import { Radio, RadioGroupProps, RadioProps } from '../src';
 
 export default {
-  title: "Komponenter/Radioknappar/Komponent",
+  title: 'Komponenter/Radioknappar/Komponent',
   component: Radio,
   parameters: {
     controls: { hideNoControlsWarning: true },
@@ -11,9 +11,15 @@ export default {
 
 export const Template = (args: RadioProps) => (
   <>
-    <Radio {...args} className="m-2" name="example">Exempel 1</Radio>
-    <Radio {...args} className="m-2" name="example">Exempel 2</Radio>
-    <Radio {...args} className="m-2" name="example">Exempel 2</Radio>
+    <Radio {...args} className="m-2" name="example">
+      Exempel 1
+    </Radio>
+    <Radio {...args} className="m-2" name="example">
+      Exempel 2
+    </Radio>
+    <Radio {...args} className="m-2" name="example">
+      Exempel 2
+    </Radio>
   </>
 );
 
@@ -26,7 +32,7 @@ Template.argTypes = {
     },
     control: 'boolean',
     defaultValue: false,
-  },  
+  },
   invalid: {
     type: { name: 'boolean', required: false },
     description: 'Sets invalid',

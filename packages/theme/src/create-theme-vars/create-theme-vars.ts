@@ -1,7 +1,7 @@
-import { Dict, walkObject } from "@sk-web-gui/utils";
+import { Dict, walkObject } from '@sk-web-gui/utils';
 
-import { ThemeScale } from "./theme-tokens";
-import { cssVar } from "./css-var";
+import { ThemeScale } from './theme-tokens';
+import { cssVar } from './css-var';
 
 export interface CreateThemeVarsOptions {
   cssVarPrefix?: string;
@@ -45,14 +45,10 @@ const tokenHandlerMap: Partial<Record<ThemeScale, TokenHandler>> & {
   defaultHandler: TokenHandler;
 } = {
   defaultHandler: (keys, value, options) => {
-    const lookupKey = keys.join(".");
-    const varKey = keys.join("-");
+    const lookupKey = keys.join('.');
+    const varKey = keys.join('-');
 
-    const { variable, reference } = cssVar(
-      varKey,
-      undefined,
-      options.cssVarPrefix
-    );
+    const { variable, reference } = cssVar(varKey, undefined, options.cssVarPrefix);
 
     return {
       cssVars: {

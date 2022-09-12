@@ -1,39 +1,36 @@
-import * as React from "react";
-import { useTransition, animated, easings } from "react-spring";
-import ReachAlert from "@reach/alert";
-import Alert from "./Alert";
-import { useTimeout } from "./useTimeout";
-import POSITIONS from "./Positions";
+import * as React from 'react';
+import { useTransition, animated, easings } from 'react-spring';
+import ReachAlert from '@reach/alert';
+import Alert from './Alert';
+import { useTimeout } from './useTimeout';
+import POSITIONS from './Positions';
 
 interface MessageCallback {
   id: string;
   onClose: () => void;
 }
 
-export type MessageType = "default" | "success" | "error";
+export type MessageType = 'default' | 'success' | 'error';
 
 export type PositionsType = keyof typeof POSITIONS;
 
 const getStyle = (position: PositionsType) => {
   let style = {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   } as React.CSSProperties;
 
-  if (position.includes("right")) {
-    style.alignItems = "flex-end";
-  } else if (position.includes("left")) {
-    style.alignItems = "flex-start";
+  if (position.includes('right')) {
+    style.alignItems = 'flex-end';
+  } else if (position.includes('left')) {
+    style.alignItems = 'flex-start';
   }
 
   return style;
 };
 
-export type MessageProp =
-  | React.ReactNode
-  | ((callback: MessageCallback) => React.ReactNode)
-  | string;
+export type MessageProp = React.ReactNode | ((callback: MessageCallback) => React.ReactNode) | string;
 
 export interface MessageOptions {
   id: string;
@@ -52,20 +49,12 @@ interface Props extends MessageOptions {
   position: PositionsType;
 }
 
-export const Message = ({
-  id,
-  message,
-  position,
-  onRequestRemove,
-  requestClose = false,
-  duration = 30000,
-}: Props) => {
+export const Message = ({ id, message, position, onRequestRemove, requestClose = false, duration = 30000 }: Props) => {
   const container = React.useRef<HTMLDivElement | null>(null);
   const [timeout, setTimeout] = React.useState(duration);
   const [localShow, setLocalShow] = React.useState(true);
 
-  const isFromTop =
-    position === "top-left" || position === "top-right" || position === "top";
+  const isFromTop = position === 'top-left' || position === 'top-right' || position === 'top';
 
   useTimeout(close, timeout);
 
@@ -73,15 +62,15 @@ export const Message = ({
     config: { duration: 200, easings: easings.easeInBack },
     from: {
       opacity: 0.5,
-      marginTop: '-20px'
+      marginTop: '-20px',
     },
     enter: {
       opacity: 1,
-      marginTop: '0px'
+      marginTop: '0px',
     },
     leave: {
       opacity: 0,
-      marginTop: '-10px'
+      marginTop: '-10px',
     },
     onRest,
   } as any;
@@ -114,11 +103,11 @@ export const Message = ({
   }, [requestClose]);
 
   function renderMessage() {
-    if (typeof message === "string" || React.isValidElement(message)) {
+    if (typeof message === 'string' || React.isValidElement(message)) {
       return <Alert id={id} title={message} onClose={close} />;
     }
 
-    if (typeof message === "function") {
+    if (typeof message === 'function') {
       return message({
         id,
         onClose: close,
@@ -147,8 +136,8 @@ export const Message = ({
               <animated.div
                 style={{
                   transform: props.transform,
-                  pointerEvents: "auto",
-                  maxWidth: '100vw'
+                  pointerEvents: 'auto',
+                  maxWidth: '100vw',
                 }}
                 ref={container}
                 className="Toaster__message-wrapper"

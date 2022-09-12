@@ -1,9 +1,9 @@
-import React from "react";
-import { Story, Meta } from "@storybook/react";
-import { Tag, TagProps } from "../src";
+import React from 'react';
+import { Story, Meta } from '@storybook/react';
+import { Tag, TagProps } from '../src';
 
 export default {
-  title: "Komponenter/Etiketter|Taggar/Komponent",
+  title: 'Komponenter/Etiketter|Taggar/Komponent',
   component: Tag,
   parameters: { controls: { hideNoControlsWarning: true } },
 } as Meta;
@@ -112,57 +112,57 @@ export const Light = ({ text, ...args }: any) => (
 
 Template.argTypes = {
   text: {
-    type: { name: "string", required: false },
-    description: "Sets tag text",
-    control: "text",
-    defaultValue: "Etikett-text",
+    type: { name: 'string', required: false },
+    description: 'Sets tag text',
+    control: 'text',
+    defaultValue: 'Etikett-text',
   },
   variant: {
-    type: { name: "string", required: false },
-    description: "Sets variant",
+    type: { name: 'string', required: false },
+    description: 'Sets variant',
     table: {
-      defaultValue: { summary: "outline" },
+      defaultValue: { summary: 'outline' },
     },
-    options: ["outline", "solid", "light"],
-    control: "select",
-    defaultValue: "outline",
+    options: ['outline', 'solid', 'light'],
+    control: 'select',
+    defaultValue: 'outline',
   },
   size: {
-    type: { name: "string", required: false },
-    description: "Sets size",
+    type: { name: 'string', required: false },
+    description: 'Sets size',
     table: {
-      defaultValue: { summary: "md" },
+      defaultValue: { summary: 'md' },
     },
-    options: ["sm", "md", "lg"],
-    control: "select",
-    defaultValue: "md",
+    options: ['sm', 'md', 'lg'],
+    control: 'select',
+    defaultValue: 'md',
   },
   useDeleteButton: {
-    type: { name: "boolean", required: false },
-    description: "Set true to use delete button",
+    type: { name: 'boolean', required: false },
+    description: 'Set true to use delete button',
     table: {
       defaultValue: { summary: false },
     },
     options: [false, true],
-    control: "boolean",
+    control: 'boolean',
     defaultValue: false,
   },
   deleteAriaLabel: {
-    type: { name: "string", required: false },
-    description: "Sets delete button aria-label",
+    type: { name: 'string', required: false },
+    description: 'Sets delete button aria-label',
     table: {
-      defaultValue: { summary: "" },
+      defaultValue: { summary: '' },
     },
-    control: "text",
-    defaultValue: "Remove tag",
+    control: 'text',
+    defaultValue: 'Remove tag',
   },
   href: {
-    type: { name: "string", required: false },
-    description: "Sets href",
+    type: { name: 'string', required: false },
+    description: 'Sets href',
     table: {
-      defaultValue: { summary: "" },
+      defaultValue: { summary: '' },
     },
-    control: "text",
-    defaultValue: "",
+    control: 'text',
+    defaultValue: '',
   },
 };
