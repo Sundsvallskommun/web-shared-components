@@ -126,7 +126,7 @@ module.exports = plugin.withOptions(
               '@apply mb-md': {},
 
               '+ p': {
-                '@apply mb-[40px]': {},
+                '@apply mb-[40px] mt-0': {},
               },
             },
             h2: { '@apply mt-lg': {} },
