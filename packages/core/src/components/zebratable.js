@@ -56,7 +56,7 @@
           {},
 
         '&.highlighted': {
-          '@apply lg:border lg:border-hover': {},
+          '@apply lg:border-4 lg:border-hover': {},
         },
       },
 
