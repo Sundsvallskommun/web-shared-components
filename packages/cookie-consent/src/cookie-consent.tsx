@@ -84,6 +84,7 @@ export function CookieConsent({
     sameSite: 'strict',
   },
 }: CookieConsentProps) {
+  const [htmlTagPropsCopied, setHtmlTagPropsCopied] = useState(false);
   const [htmlTagInitOverflow, setHtmlTagInitOverflow] = useState('');
   const [htmlTagInitBottomPadding, setHtmlTagInitBottomPadding] = useState('');
   const [isOpen, setIsOpen] = useState(false);
@@ -93,8 +94,8 @@ export function CookieConsent({
     resetConsent();
   }
 
-  let initialFocus = useRef<any>(null);
-  let settingsFocus = useRef<any>(null);
+  const initialFocus = useRef<any>(null);
+  const settingsFocus = useRef<any>(null);
 
   const [checkableCookies, setCheckableCookies] = useState(getCheckableCookies(cookies));
 
@@ -174,8 +175,11 @@ export function CookieConsent({
   // Below is needed because Headless ui sets document.html.style.overflow to hidden on open
   //START:/ Keep these in order
   useEffect(() => {
-    setHtmlTagInitOverflow(document.documentElement.style.overflow);
-    setHtmlTagInitBottomPadding(document.documentElement.style.paddingBottom);
+    if (htmlTagPropsCopied) {
+      setHtmlTagInitOverflow(document.documentElement.style.overflow);
+      setHtmlTagInitBottomPadding(document.documentElement.style.paddingBottom);
+      setHtmlTagPropsCopied(true);
+    }
   }, []);
   useEffect(() => {
     document.documentElement.style.overflow = 'auto';
