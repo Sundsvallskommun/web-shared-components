@@ -1,7 +1,7 @@
 module.exports = Footer = (colors) => ({
   '.footer': {
     '&-innerwrapper': {
-      '@apply bg-gray text-white py-12 px-2 sm:p-12': {},
+      '@apply bg-gray text-white py-12': {},
 
       ...colors.reduce(
         (styles, color) => ({
@@ -15,11 +15,11 @@ module.exports = Footer = (colors) => ({
     },
 
     '&-content': {
-      '@apply container md:flex items-center justify-center m-auto': {},
+      '@apply px-md md:flex items-center justify-center m-auto': {},
     },
 
     '&-bottomlinks': {
-      '@apply bg-gray-middle text-body py-12 px-2 sm:p-12': {},
+      '@apply bg-gray-middle text-body py-md': {},
 
       ...colors.reduce(
         (styles, color) => ({
@@ -32,8 +32,10 @@ module.exports = Footer = (colors) => ({
       ),
 
       '&-container': {
-        '@apply container flex items-start md:items-center justify-center m-auto md:space-x-10 flex-col md:flex-row':
-          {},
+        '@apply px-md flex items-center items-center justify-center m-auto md:space-x-10 flex-col md:flex-row': {},
+        '> *': {
+          '@apply text-body text-sm leading-sm py-sm': {},
+        },
       },
     },
   },

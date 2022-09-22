@@ -16,7 +16,7 @@ module.exports = CookieConsent = () => ({
     },
 
     '&-title': {
-      '@apply text-2xl leading-2xl mb-1 mt-4': {},
+      '@apply text-2xl leading-2xl mb-1 mt-4 break-words': {},
     },
 
     '&-description': {

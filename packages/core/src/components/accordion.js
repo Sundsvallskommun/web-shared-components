@@ -17,7 +17,7 @@ module.exports = Accordion = (colors) => ({
     },
 
     '&-toggle': {
-      '@apply flex items-center inline-block text-lg leading-lg text-left text-lg mx-lg my-md': {},
+      '@apply flex items-center inline-block text-lg leading-lg text-left text-lg mx-md sm:mx-lg my-md': {},
       fontWeight: 'bold',
       //"@apply focus-visible:shadow shadow-lg": {},
       '&:focus-visible': {
@@ -25,8 +25,11 @@ module.exports = Accordion = (colors) => ({
         outline: '0',
         //"@apply border-4": {},
       },
+      '.accordion-title': {
+        '@apply mr-md text-base leading-base md:text-lg md:leading-lg': {},
+      },
       '.accordion-subtitle': {
-        '@apply m-0 text-sm font-normal': {},
+        '@apply m-0 mr-md text-sm font-normal': {},
       },
     },
 

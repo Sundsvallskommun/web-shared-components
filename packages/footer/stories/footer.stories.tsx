@@ -15,8 +15,9 @@ export const Template = ({ ...args }: any) => {
       {...args}
       bottomLinks={
         <>
-          <Link className="text-black">Tillgänglighetsredogörelse</Link>
-          <Link className="text-black">Behandling av personuppgifter</Link>
+          <Link>Tillgänglighetsredogörelse</Link>
+          <Link>Behandling av personuppgifter</Link>
+          <Link>Kakor (Om cookies)</Link>
         </>
       }
     >

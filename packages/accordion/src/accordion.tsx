@@ -21,10 +21,10 @@ interface IAccordionProps extends DefaultProps {
   /* the element or component to use in place of `h2` */
   as?: React.ElementType;
   /* React node */
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }
 
-export interface AccordionProps extends React.HTMLAttributes<HTMLDivElement>, IAccordionProps { }
+export interface AccordionProps extends React.HTMLAttributes<HTMLDivElement>, IAccordionProps {}
 
 export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props, ref) => {
   const {
@@ -63,7 +63,7 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
           onClick={() => setAccordionOpen(!accordionOpen)}
         >
           <div>
-            <Comp className="text-base leading-base md:text-lg md:leading-lg">{accordionTitle}</Comp>
+            <Comp className="accordion-title">{accordionTitle}</Comp>
             {accordionSubTitle && <p className="accordion-subtitle">{accordionSubTitle}</p>}
           </div>
           {accordionOpen ? (
