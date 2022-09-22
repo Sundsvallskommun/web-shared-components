@@ -82,29 +82,29 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>((props, 
               {menuGroups.map((g: MenuItemGroup, idx: number) => {
                 return g.showOnMobile
                   ? [
-                    g.showLabel && (
-                      <Menu.Item
-                        as="div"
-                        key={`group${idx}`}
-                        disabled
-                        aria-hidden={true}
-                        aria-label={g.label}
-                        className="flex align-middle mt-md"
-                      >
-                        <div
-                          className={`inline-block px-lg py-md lg:pl-md lg:pr-md lg:py-sm text-sm font-semibold uppercase small whitespace-nowrap`}
+                      g.showLabel && (
+                        <Menu.Item
+                          as="div"
+                          key={`group${idx}`}
+                          disabled
+                          aria-hidden={true}
+                          aria-label={g.label}
+                          className="flex align-middle mt-md"
                         >
-                          {g.label}
-                        </div>
-                        <div className="inline-block w-full h-px border-gray-300 border-t-2 mt-[26px]">&nbsp;</div>
-                      </Menu.Item>
-                    ),
-                    ...g.elements.map((element, idx) => (
-                      <Menu.Item key={`icon${idx}`} aria-label={element.label}>
-                        {({ active }) => element.element(active)}
-                      </Menu.Item>
-                    )),
-                  ]
+                          <div
+                            className={`inline-block px-lg py-md lg:pl-md lg:pr-md lg:py-sm text-sm font-semibold uppercase small whitespace-nowrap`}
+                          >
+                            {g.label}
+                          </div>
+                          <div className="inline-block w-full h-px border-gray-300 border-t-2 mt-[26px]">&nbsp;</div>
+                        </Menu.Item>
+                      ),
+                      ...g.elements.map((element, idx) => (
+                        <Menu.Item key={`icon${idx}`} aria-label={element.label}>
+                          {({ active }) => element.element(active)}
+                        </Menu.Item>
+                      )),
+                    ]
                   : [];
               })}
             </Menu.Items>
@@ -113,7 +113,7 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>((props, 
       </Menu>
       <Menu as="div" className="hidden lg:block">
         {({ open }) => (
-          <div className={cx('w-96 mx-sm relative usermenu test', open ? `usermenu-is-open` : undefined)}>
+          <div className={cx('w-96 mx-sm relative usermenu', open ? `usermenu-is-open` : undefined)}>
             <Menu.Button
               className={cx(
                 'usermenu-header w-96 px-md py-sm bg-white border-2 border-solid rounded border-b-0',
@@ -161,28 +161,28 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>((props, 
               {menuGroups.map((g: MenuItemGroup, idx: number) => {
                 return g.showOnDesktop
                   ? [
-                    g.showLabel && (
-                      <Menu.Item
-                        disabled
-                        aria-hidden={true}
-                        aria-label={g.label}
-                        as="div"
-                        key={`group${idx}`}
-                        className="flex align-middle mt-md mb-xs"
-                      >
-                        <div
-                          className={`inline-block pl-md pr-md py-sm text-sm font-semibold uppercase small whitespace-nowrap`}
+                      g.showLabel && (
+                        <Menu.Item
+                          disabled
+                          aria-hidden={true}
+                          aria-label={g.label}
+                          as="div"
+                          key={`group${idx}`}
+                          className="flex align-middle mt-md mb-xs"
                         >
-                          {g.label}
-                        </div>
-                      </Menu.Item>
-                    ),
-                    ...g.elements.map((element, idx) => (
-                      <Menu.Item key={`icon${idx}`} aria-label={element.label}>
-                        {({ active }) => element.element(active)}
-                      </Menu.Item>
-                    )),
-                  ]
+                          <div
+                            className={`inline-block pl-md pr-md py-sm text-sm font-semibold uppercase small whitespace-nowrap`}
+                          >
+                            {g.label}
+                          </div>
+                        </Menu.Item>
+                      ),
+                      ...g.elements.map((element, idx) => (
+                        <Menu.Item key={`icon${idx}`} aria-label={element.label}>
+                          {({ active }) => element.element(active)}
+                        </Menu.Item>
+                      )),
+                    ]
                   : [];
               })}
             </Menu.Items>
