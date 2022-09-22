@@ -122,6 +122,10 @@ module.exports = plugin.withOptions(
           '.text-content': {
             '@apply max-w-[80rem]': {},
 
+            '.ingress': {
+              '@apply text-xl leading-[1.5]': {},
+            },
+
             h1: {
               '@apply mb-md': {},
 
