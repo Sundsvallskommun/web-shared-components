@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Meta } from '@storybook/react';
 import { Accordion, AccordionProps } from '../src';
+import { Button } from '@sk-web-gui/react';
 
 export default {
   title: 'Komponenter/Accordions/Komponent',
@@ -11,7 +12,7 @@ export default {
 } as Meta;
 
 export const Template = (args: AccordionProps) => {
-  const [content, setContent] = useState(false);
+  const [extraContent, setExtraContent] = useState(false);
 
   return (
     <>
@@ -21,14 +22,14 @@ export const Template = (args: AccordionProps) => {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero placeat eveniet quas nulla saepe minus
           recusandae quis obcaecati necessitatibus. Quidem.
         </p>
-        <button
+        <Button
           onClick={() => {
-            setContent(!content);
+            setExtraContent(!extraContent);
           }}
         >
-          Växla
-        </button>
-        {content && (
+          Utökat innehåll
+        </Button>
+        {extraContent && (
           <>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam ullam pariatur perspiciatis molestiae

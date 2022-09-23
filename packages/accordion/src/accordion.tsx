@@ -49,6 +49,29 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
   const [accordionOpen, setAccordionOpen] = React.useState(initalOpen ?? false);
   const contentEl = useRef<HTMLDivElement>(null);
 
+  React.useEffect(() => {
+    const config = { attributes: true, childList: true, subtree: true };
+    const callback: MutationCallback = (mutationList) => {
+      for (const mutation of mutationList) {
+        if (mutation.type === 'childList') {
+          const newHeight = 'auto';
+          if (typeof newHeight !== 'undefined' && contentEl.current) {
+            setAccordionOpen(false);
+            contentEl.current.style.height = newHeight;
+            setAccordionOpen(true);
+          }
+        }
+      }
+    };
+    const observer = new MutationObserver(callback);
+    if (contentEl.current) {
+      observer.observe(contentEl.current, config);
+    }
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <div
       data-color={color ? color : undefined}
@@ -77,8 +100,7 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
         className="accordion-body"
         aria-hidden={!accordionOpen}
         ref={contentEl}
-        // style={accordionOpen ? { height: contentEl?.current?.scrollHeight } : { height: '0' }}
-        style={accordionOpen ? { height: 'auto' } : { height: '0' }}
+        style={accordionOpen ? { height: contentEl?.current?.scrollHeight } : { height: '0' }}
       >
         {children}
       </div>
