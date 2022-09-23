@@ -77,7 +77,8 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
         className="accordion-body"
         aria-hidden={!accordionOpen}
         ref={contentEl}
-        style={accordionOpen ? { height: contentEl?.current?.scrollHeight } : { height: '0' }}
+        // style={accordionOpen ? { height: contentEl?.current?.scrollHeight } : { height: '0' }}
+        style={accordionOpen ? { height: 'auto' } : { height: '0' }}
       >
         {children}
       </div>

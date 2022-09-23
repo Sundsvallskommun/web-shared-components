@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Meta } from '@storybook/react';
 import { Accordion, AccordionProps } from '../src';
 
@@ -10,15 +10,52 @@ export default {
   },
 } as Meta;
 
-export const Template = (args: AccordionProps) => (
-  <Accordion {...args}>
-    <h4>Lorem Ipsum</h4>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero placeat eveniet quas nulla saepe minus recusandae
-      quis obcaecati necessitatibus. Quidem.
-    </p>
-  </Accordion>
-);
+export const Template = (args: AccordionProps) => {
+  const [content, setContent] = useState(false);
+
+  return (
+    <>
+      <Accordion {...args}>
+        <h4>Lorem Ipsum</h4>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero placeat eveniet quas nulla saepe minus
+          recusandae quis obcaecati necessitatibus. Quidem.
+        </p>
+        <button
+          onClick={() => {
+            setContent(!content);
+          }}
+        >
+          Växla
+        </button>
+        {content && (
+          <>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam ullam pariatur perspiciatis molestiae
+              itaque, nulla illo quam, provident ex reprehenderit veniam in consectetur debitis maiores sapiente
+              consequuntur fugiat voluptatem. Fugiat!
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam ullam pariatur perspiciatis molestiae
+              itaque, nulla illo quam, provident ex reprehenderit veniam in consectetur debitis maiores sapiente
+              consequuntur fugiat voluptatem. Fugiat!
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam ullam pariatur perspiciatis molestiae
+              itaque, nulla illo quam, provident ex reprehenderit veniam in consectetur debitis maiores sapiente
+              consequuntur fugiat voluptatem. Fugiat!
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam ullam pariatur perspiciatis molestiae
+              itaque, nulla illo quam, provident ex reprehenderit veniam in consectetur debitis maiores sapiente
+              consequuntur fugiat voluptatem. Fugiat!
+            </p>
+          </>
+        )}
+      </Accordion>
+    </>
+  );
+};
 
 Template.argTypes = {
   accordionTitle: { control: 'text', defaultValue: 'En vanlig fråga' },
