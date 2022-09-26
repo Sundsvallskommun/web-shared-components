@@ -99,7 +99,6 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
     const startIndex = currentPage * pageSize - pageSize;
     setManagedRows(rows.slice(startIndex, startIndex + pageSize));
   }, [pageSize, currentPage, rows]);
-  console.log('from zebra', sortIndex, sortModeAscending);
   return (
     <>
       {managedRows.length > 0 && (
