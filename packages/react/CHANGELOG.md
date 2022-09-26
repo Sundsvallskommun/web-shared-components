@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.41](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.40...@sk-web-gui/react@0.1.41) (2022-09-26)
+
+**Note:** Version bump only for package @sk-web-gui/react
+
+
+
+
+
 ## [0.1.40](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.39...@sk-web-gui/react@0.1.40) (2022-09-22)
 
 **Note:** Version bump only for package @sk-web-gui/react

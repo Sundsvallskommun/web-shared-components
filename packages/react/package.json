@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/react",
-  "version": "0.1.40",
+  "version": "0.1.41",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -38,7 +38,7 @@
     "react-dom": "^17.0.2"
   },
   "dependencies": {
-    "@sk-web-gui/accordion": "0.1.12",
+    "@sk-web-gui/accordion": "0.1.13",
     "@sk-web-gui/alert": "0.1.5",
     "@sk-web-gui/breadcrumb": "0.1.6",
     "@sk-web-gui/button": "0.1.6",
@@ -62,7 +62,7 @@
     "@sk-web-gui/table": "0.1.12",
     "@sk-web-gui/tag": "0.1.10",
     "@sk-web-gui/theme": "0.1.5",
-    "@sk-web-gui/user-menu": "0.1.17",
+    "@sk-web-gui/user-menu": "0.1.18",
     "@sk-web-gui/utils": "0.1.4"
   },
   "peerDependencies": {
