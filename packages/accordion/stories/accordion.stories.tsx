@@ -13,6 +13,7 @@ export default {
 
 export const Template = (args: AccordionProps) => {
   const [extraContent, setExtraContent] = useState(false);
+  const [extraExtraContent, setExtraExtraContent] = useState(false);
 
   return (
     <>
@@ -51,6 +52,37 @@ export const Template = (args: AccordionProps) => {
               itaque, nulla illo quam, provident ex reprehenderit veniam in consectetur debitis maiores sapiente
               consequuntur fugiat voluptatem. Fugiat!
             </p>
+            <Button
+              onClick={() => {
+                setExtraExtraContent(!extraExtraContent);
+              }}
+            >
+              Ännu mer utökat innehåll
+            </Button>
+            {extraExtraContent && (
+              <>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam ullam pariatur perspiciatis molestiae
+                  itaque, nulla illo quam, provident ex reprehenderit veniam in consectetur debitis maiores sapiente
+                  consequuntur fugiat voluptatem. Fugiat!
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam ullam pariatur perspiciatis molestiae
+                  itaque, nulla illo quam, provident ex reprehenderit veniam in consectetur debitis maiores sapiente
+                  consequuntur fugiat voluptatem. Fugiat!
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam ullam pariatur perspiciatis molestiae
+                  itaque, nulla illo quam, provident ex reprehenderit veniam in consectetur debitis maiores sapiente
+                  consequuntur fugiat voluptatem. Fugiat!
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam ullam pariatur perspiciatis molestiae
+                  itaque, nulla illo quam, provident ex reprehenderit veniam in consectetur debitis maiores sapiente
+                  consequuntur fugiat voluptatem. Fugiat!
+                </p>
+              </>
+            )}
           </>
         )}
       </Accordion>

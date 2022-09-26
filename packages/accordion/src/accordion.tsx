@@ -50,7 +50,7 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
   const contentEl = useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    const config = { attributes: true, childList: true, subtree: true };
+    const config = { childList: true, subtree: true };
     const callback: MutationCallback = (mutationList) => {
       for (const mutation of mutationList) {
         if (mutation.type === 'childList') {
