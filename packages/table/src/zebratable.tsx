@@ -22,6 +22,7 @@ export interface IZebraTableProps {
   rows: ZebraTableColumn[][];
   tableSortable?: boolean;
   sortHandler?: (idx: number, sortMode: boolean) => void;
+  defaultSort?: { idx: number; sortMode: boolean };
   sortAscending?: boolean;
   pageSize?: number;
   page?: number;
@@ -29,7 +30,7 @@ export interface IZebraTableProps {
   captionTitle?: string;
   captionBody?: string;
   summary?: string;
-  highlightedItemIndex?: any;
+  highlightedItemIndex?: number;
   changePage?: (page: number) => void;
   BottomComponent?: JSX.Element;
 }
@@ -41,7 +42,8 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
     headers,
     rows,
     tableSortable = true,
-    sortHandler = () => { },
+    sortHandler = () => ({}),
+    defaultSort = { idx: 0, sortMode: true },
     sortAscending = true,
     pageSize = 5,
     page = 1,
@@ -56,14 +58,13 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
   } = props;
 
   const zebraTableClasses = useZebraTableClass();
-
   const [managedRows, setManagedRows] = useState(rows);
-  const [sortModeAscending, setSortModeAscending] = useState(sortAscending);
-  const [sortIndex, setSortIndex] = useState<number>(0);
+  const [sortModeAscending, setSortModeAscending] = useState(defaultSort.sortMode);
+  const [sortIndex, setSortIndex] = useState<number>(defaultSort.idx);
   const [currentPage, setCurrentPage] = useState<number>(page);
   const [currentPages, setPages] = useState<number>(pages);
   const internalSortHandler = (idx: number) => {
-    setSortModeAscending(sortIndex === idx ? !sortModeAscending : sortAscending);
+    setSortModeAscending(sortIndex === idx ? !sortModeAscending : defaultSort.sortMode);
     setSortIndex(idx);
   };
   const [highlightedPage, setHighlightedPage] = useState<number>(0);
@@ -71,6 +72,11 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
   useEffect(() => {
     sortHandler(sortIndex, sortModeAscending);
   }, [sortIndex, sortModeAscending, sortHandler]);
+
+  useEffect(() => {
+    setSortIndex(defaultSort.idx);
+    setSortModeAscending(defaultSort.sortMode);
+  }, []);
 
   useEffect(() => {
     setCurrentPage(page);
@@ -82,7 +88,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
 
   useEffect(() => {
     if (highlightedItemIndex !== undefined) {
-      let itemPage = Math.floor(highlightedItemIndex / pageSize + 1);
+      const itemPage = Math.floor(highlightedItemIndex / pageSize + 1);
       setHighlightedPage(itemPage);
       setCurrentPage(itemPage);
     }
@@ -90,14 +96,16 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
 
   useEffect(() => {
     setPages(Math.ceil(rows.length / pageSize));
-    let startIndex = currentPage * pageSize - pageSize;
+    const startIndex = currentPage * pageSize - pageSize;
     setManagedRows(rows.slice(startIndex, startIndex + pageSize));
-  }, [pageSize, currentPage, rows, sortIndex, sortModeAscending]);
-
+  }, [pageSize, currentPage, rows]);
+  console.log('from zebra', sortIndex, sortModeAscending);
   return (
     <>
       {managedRows.length > 0 && (
         <table
+          ref={ref}
+          {...rest}
           className={zebraTableClasses}
           aria-label={`${rows.length} rader på ${currentPages} sidor`}
           summary={summary ?? summary}
@@ -131,9 +139,10 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
                         <span className="sr-only">{h.element.props.children}</span>
                         <button
                           className="zebratable-sortbutton"
-                          aria-label={`Sortera efter ${h.element.props.children} i ${sortModeAscending ? 'stigande' : 'fallande'
-                            } ordning`}
-                          onClick={(e) => {
+                          aria-label={`Sortera efter ${h.element.props.children} i ${
+                            sortModeAscending ? 'stigande' : 'fallande'
+                          } ordning`}
+                          onClick={() => {
                             tableSortable && h.isColumnSortable && internalSortHandler(idx);
                           }}
                         >
@@ -164,12 +173,13 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
             {managedRows.map((cols, idx) => (
               <tr
                 key={`row${idx}`}
-                className={`zebratable-tbody-tr ${highlightedItemIndex !== undefined &&
-                    highlightedItemIndex % pageSize === idx &&
-                    highlightedPage === currentPage
+                className={`zebratable-tbody-tr ${
+                  highlightedItemIndex !== undefined &&
+                  highlightedItemIndex % pageSize === idx &&
+                  highlightedPage === currentPage
                     ? `highlighted`
                     : ``
-                  }`}
+                }`}
               >
                 {cols.map((col, idx) =>
                   col.isShown ? (

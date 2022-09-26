@@ -113,6 +113,7 @@ export const Template = (args: ZebraTableProps) => (
       ...rows,
       ...rows,
     ]}
+    defaultSort={{ idx: 1, sortMode: false }}
     tableSortable={true}
     sortHandler={() => console.log('sort')}
     {...args}
