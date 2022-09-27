@@ -1,17 +1,16 @@
 import { __DEV__ } from '@sk-web-gui/utils';
-import * as React from 'react';
 import { DeltaStatic, Sources } from 'quill';
 import ReactQuill, { Value, UnprivilegedEditor } from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 
 type propTypes = {
+  theme: string;
   value: Value;
   onChange: ((value: string, delta: DeltaStatic, source: Sources, editor: UnprivilegedEditor) => void) | undefined;
   advanced: boolean;
 };
 
 export const TextEditor = (props: propTypes) => {
-  const { value, onChange, advanced = false } = props;
+  const { theme, value, onChange, advanced = false } = props;
 
   const simpleOptions = [
     [{ header: 1 }],
@@ -43,5 +42,5 @@ export const TextEditor = (props: propTypes) => {
     toolbar: advanced ? advancedOptions : simpleOptions,
   };
 
-  return <ReactQuill theme="snow" value={value} onChange={onChange} modules={modules} />;
+  return <ReactQuill theme={theme} value={value} onChange={onChange} modules={modules} />;
 };
