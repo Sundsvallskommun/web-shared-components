@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Meta } from '@storybook/react';
 import { TextEditor } from '../src/text-editor';
+import 'react-quill/dist/quill.snow.css';
 
 export default {
   title: 'Komponenter/TextRedigerare/Komponent',
@@ -13,7 +14,7 @@ export const Template = ({ text, ...args }: any) => {
 
   return (
     <>
-      <TextEditor {...args} value={value} onChange={setValue} />
+      <TextEditor {...args} theme="snow" value={value} onChange={setValue} />
       <p>Example output:</p>
       <p>
         <code>{value}</code>

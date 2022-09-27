@@ -42,6 +42,7 @@
     "react-quill": "2.0.0"
   },
   "peerDependencies": {
-    "react": ">=16.8.6"
+    "react": ">=16.8.6",
+    "react-quill": "2.0.0"
   }
 }
