@@ -24,6 +24,7 @@ export * from '@sk-web-gui/user-menu';
 export * from '@sk-web-gui/table';
 
 export * from '@sk-web-gui/tag';
+export * from '@sk-web-gui/text-editor';
 
 export * from '@sk-web-gui/pagination';
 export * from '@sk-web-gui/footer';
