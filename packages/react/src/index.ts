@@ -20,11 +20,17 @@ export * from '@sk-web-gui/cookie-consent';
 export * from '@sk-web-gui/card';
 export * from '@sk-web-gui/divider';
 
+export * from '@sk-web-gui/menu';
+export * from '@sk-web-gui/tab-menu';
 export * from '@sk-web-gui/user-menu';
+
+export * from '@sk-web-gui/dropdown-filter';
+
 export * from '@sk-web-gui/table';
 
 export * from '@sk-web-gui/tag';
-export * from '@sk-web-gui/text-editor';
+
+export * from '@sk-web-gui/search-bar';
 
 export * from '@sk-web-gui/pagination';
 export * from '@sk-web-gui/footer';

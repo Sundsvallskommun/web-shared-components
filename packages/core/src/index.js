@@ -30,12 +30,18 @@ const Modal = require('./components/modal');
 const CookieConsent = require('./components/cookie-consent');
 const Divider = require('./components/divider');
 
+const Menu = require('./components/menu');
+const TabMenu = require('./components/tab-menu');
 const UserMenu = require('./components/user-menu');
+
+const DropdownFilter = require('./components/dropdown-filter');
 
 const Tag = require('./components/tag');
 const Pagination = require('./components/pagination');
 const Footer = require('./components/footer');
 const Header = require('./components/header');
+
+const SearchBar = require('./components/search-bar');
 
 const components = [
   Alert,
@@ -63,7 +69,13 @@ const components = [
   Card,
   Divider,
 
+  Menu,
+  TabMenu,
   UserMenu,
+  
+  DropdownFilter,
+
+  SearchBar,
 
   Tag,
   Pagination,
@@ -121,10 +133,6 @@ module.exports = plugin.withOptions(
 
           '.text-content': {
             '@apply max-w-[80rem]': {},
-
-            '.ingress': {
-              '@apply text-xl leading-[1.5]': {},
-            },
 
             h1: {
               '@apply mb-md': {},
