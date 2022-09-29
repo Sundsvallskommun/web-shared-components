@@ -74,7 +74,7 @@ Styling för komponenter finns/läggs till i `packages/core`. Skapa en ny kompon
 
 ### Komponenter
 
-Skapa ett nytt paket i `packages` där du gör din react-komponent exportera den sedan via `packages/react`. Använd Storybook för att testa och dokumentera komponenten.
+Skapa ett nytt paket i `packages` där du gör din react-komponent exportera den sedan via `packages/react`. Kom igår att även lägga till de nya paketen i `packages/react/package.json` också. Använd Storybook för att testa och dokumentera komponenten.
 
 ## Release
 
