@@ -1,1 +1,1 @@
-export * from './src/tab-menu';
+export * from './src';

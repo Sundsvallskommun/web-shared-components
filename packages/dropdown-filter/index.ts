@@ -1,1 +1,1 @@
-export * from './src/dropdown-filter';
+export * from './src';

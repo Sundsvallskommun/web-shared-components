@@ -1,5 +1,5 @@
 import React from 'react';
-import { Story, Meta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import { Menu } from "../src/menu";
 import { Link } from '@sk-web-gui/link';
 
