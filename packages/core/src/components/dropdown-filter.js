@@ -37,7 +37,7 @@ module.exports = DropdownFilter = () => ({
 
             ".filter-controls": {
                 display: "flex",
-                justifyContent: "end",
+                justifyContent: "flex-end",
                 padding: "0 1rem",
                 paddingBottom: 12,
 
