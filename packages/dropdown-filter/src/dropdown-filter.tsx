@@ -17,7 +17,7 @@ interface IDropdownFilter {
   onFilterChange: (value: Array<IFilterData>) => void
 }
 
-const DropdownFilter = React.forwardRef<HTMLDivElement, IDropdownFilter>((props, ref) => {
+export const DropdownFilter = React.forwardRef<HTMLDivElement, IDropdownFilter>((props, ref) => {
   const {
     label,
     filterData,

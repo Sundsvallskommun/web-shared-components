@@ -31,6 +31,8 @@ export const TabMenu = React.forwardRef<HTMLDivElement, ITabMenu>((props, ref) =
   );
 });
 
+export default TabMenu
+
 if (__DEV__) {
   TabMenu.displayName = 'TabMenu';
 }

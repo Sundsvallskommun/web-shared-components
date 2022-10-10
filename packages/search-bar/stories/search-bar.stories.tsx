@@ -1,14 +1,23 @@
-import React from 'react';
-import SearchBar, { ISearchBarProps } from '../src/search-bar';
+import React, { useState } from 'react';
+import { ISearchBarProps, SearchBar } from '../src/search-bar';
 
 export default {
   title: 'Komponenter/Sök',
   component: SearchBar,
 };
 
-export const Template = (args: ISearchBarProps) => (
-  <SearchBar {...args} />
-);
+export const Template = (args: ISearchBarProps) => {
+
+  const [term, setTerm] = useState('')
+  
+  const onChangeHandler = (event) => {
+    setTerm(event.target.value)
+  }
+
+  return (
+    <SearchBar {...args} value={term} onChange={onChangeHandler} /> 
+  )
+}
 
 Template.argTypes = {
   value: {

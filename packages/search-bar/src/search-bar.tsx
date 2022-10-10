@@ -11,7 +11,7 @@ export interface ISearchBarProps {
   smallIcon?: boolean;
 }
 
-const SearchBar = React.forwardRef<HTMLInputElement, ISearchBarProps>((props, ref) => {
+export const SearchBar = React.forwardRef<HTMLInputElement, ISearchBarProps>((props, ref) => {
   const {
     value,
     onChange,
@@ -51,8 +51,8 @@ const SearchBar = React.forwardRef<HTMLInputElement, ISearchBarProps>((props, re
   )
 })
 
+export default SearchBar
+
 if (__DEV__) {
   SearchBar.displayName = 'SearchBar';
 }
-
-export default SearchBar 
