@@ -6,12 +6,15 @@ export interface ITabMenu {
   menuData: Array<IMenuItem>
   active: string | number
   onChange: (active: string | number) => void
+  children: React.ReactNode
+  
 } 
 
 export const TabMenu = React.forwardRef<HTMLDivElement, ITabMenu>((props, ref) => {
   const {
     menuData,
-    active
+    active,
+    children,
   } = props;
 
   return (
@@ -25,6 +28,7 @@ export const TabMenu = React.forwardRef<HTMLDivElement, ITabMenu>((props, ref) =
             element={<Component />}
           />
         )}
+        {children}
       </div>
       <div className="underline" />
     </nav>
