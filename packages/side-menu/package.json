@@ -37,7 +37,6 @@
     "react": "^17.0.2"
   },
   "dependencies": {
-    "next/link": "",
     "@sk-web-gui/link": "0.1.5",
     "@sk-web-gui/theme": "0.1.4",
     "@sk-web-gui/utils": "0.1.3"
