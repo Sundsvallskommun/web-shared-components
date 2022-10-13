@@ -30,7 +30,7 @@ const Modal = require('./components/modal');
 const CookieConsent = require('./components/cookie-consent');
 const Divider = require('./components/divider');
 
-const Menu = require('./components/menu');
+const SideMenu = require('./components/side-menu');
 const TabMenu = require('./components/tab-menu');
 const UserMenu = require('./components/user-menu');
 
@@ -69,7 +69,7 @@ const components = [
   Card,
   Divider,
 
-  Menu,
+  SideMenu,
   TabMenu,
   UserMenu,
   

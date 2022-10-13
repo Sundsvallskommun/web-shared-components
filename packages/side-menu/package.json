@@ -1,6 +1,6 @@
 {
-  "name": "@sk-web-gui/menu",
-  "version": "0.1.2",
+  "name": "@sk-web-gui/side-menu",
+  "version": "0.1.0",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
