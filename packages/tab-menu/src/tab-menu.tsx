@@ -4,8 +4,8 @@ import TabItem, { IMenuItem } from './tab-item';
 
 export interface ITabMenu {
   menuData: Array<IMenuItem>
-  active: string | number
-  onChange: (active: string | number) => void
+  active: string
+  onTabChange: (path: string, id: string | number) => void
   children: React.ReactNode
   
 } 
@@ -15,19 +15,28 @@ export const TabMenu = React.forwardRef<HTMLDivElement, ITabMenu>((props, ref) =
     menuData,
     active,
     children,
+    onTabChange
   } = props;
+
+  const onTabClickHandler = (path: string, id: string | number) => {
+    onTabChange(path, id) 
+  }
 
   return (
     <nav className="TabMenu">
       <div className="tab-wrapper">
-        {menuData && menuData.map(({id, element: Component}) => 
-          <TabItem 
-            key={id} 
-            id={id}
-            active={active}
-            element={<Component />}
-          />
-        )}
+        <li>
+          {menuData && menuData.map(({id, label, path}) => 
+            <TabItem 
+              key={id} 
+              id={id}
+              label={label}
+              path={path}
+              active={active}
+              onTabClick={onTabClickHandler}
+            />
+          )}
+        </li>
         {children}
       </div>
       <div className="underline" />

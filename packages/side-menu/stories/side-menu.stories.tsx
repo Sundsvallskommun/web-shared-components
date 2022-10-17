@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Meta } from '@storybook/react';
-import { SideMenu } from "../src/side-menu";
+import { IDataObject, SideMenu } from "../src/side-menu";
 import testData from './testData.json'
 import { Select } from '@sk-web-gui/forms';
 
@@ -84,7 +84,7 @@ export const TemplateHeadElement = ({ ...args }: any) => {
     setActive(1295)
   }
 
-  const linkCallbackHandler = (data: any) => {
+  const linkCallbackHandler = (data: IDataObject) => {
     setActive(data.id)
 
     console.log("link click", data)

@@ -11,43 +11,53 @@ export default {
 const menuData = [
   {
     id: 1,
-    element: () => <a href="#">Menu 1</a>
+    label: 'label 1',
+    path: '/path/1'
   },
   {
     id: 2,
-    element: () => <a href="#">Menu 2</a>
+    label: 'label 2',
+    path: '/path/2'
   },
   {
     id: 3,
-    element: () => <a href="#">Menu 3</a>
+    label: 'label 3',
+    path: '/path/3'
   }
 ]
 
-
-  
-
 export const Template = (args: any) => {
+  const [active, setActive] = useState<string>("/path/1")
 
-  const [active, setActive] = useState<string | number>(2)
+  const onTabChangeHandler = (path, id) => {
+    console.log("Path", path, "Id", id)
+
+    setActive(path)
+  }
 
   return (
     <TabMenu 
-    {...args} 
-    active={active}
-    onChange={setActive}
+      {...args} 
+      active={active}
+      onTabChange={onTabChangeHandler}
     />
   );
 }
 
 export const TemplateWithChildren = (args: any) => {
+  const [active, setActive] = useState<string>("/path/1")
 
-  const [active, setActive] = useState<string | number>(2)
+  const onTabChangeHandler = (path, id) => {
+    console.log("Path", path, "Id", id)
+
+    setActive(path)
+  }
 
   return (
     <TabMenu 
-    {...args} 
-    active={active}
-    onChange={setActive}
+      {...args} 
+      active={active}
+      onTabChange={onTabChangeHandler}
     >
      <p style={{marginLeft:"auto", padding:"10px", borderRadius:"10px", border:"1px solid grey"}}>Child component</p>
     </TabMenu>

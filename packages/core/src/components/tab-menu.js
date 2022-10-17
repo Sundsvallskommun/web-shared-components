@@ -3,7 +3,12 @@ module.exports = TabMenu = () => ({
         
         ".tab-wrapper": {
             display: "flex",
-            flexDirection: "row"
+            flexDirection: "row",
+
+            "li" : {
+                all: "unset",
+                display: "flex"
+            }
         },
 
         ".TabItem": {
@@ -14,6 +19,7 @@ module.exports = TabMenu = () => ({
             marginRight: "5rem",
             alignItems: "center",
             position: "relative",
+            cursor: "pointer",
 
             "&.active::after": {
                 content: '""',

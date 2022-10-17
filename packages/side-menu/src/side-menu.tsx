@@ -3,7 +3,7 @@ import { cx, __DEV__ } from "@sk-web-gui/utils";
 import * as React from "react";
 import { MenuItem } from "./menu-item";
 
-interface IDataObject extends DefaultProps {
+export interface IDataObject extends DefaultProps {
   id: string | number
   level: number
   label: string
