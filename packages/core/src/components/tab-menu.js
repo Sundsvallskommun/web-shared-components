@@ -4,6 +4,8 @@ module.exports = TabMenu = () => ({
         ".tab-wrapper": {
             display: "flex",
             flexDirection: "row",
+            margin: "auto",
+            maxWidth: "140rem",
 
             "li" : {
                 all: "unset",
