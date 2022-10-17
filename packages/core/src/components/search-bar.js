@@ -1,5 +1,6 @@
 module.exports = SearchBar = () => ({
     ".SearchBar": {
+        width: "100%",
         position: "relative",
         border: "1px solid #939393",
         borderRadius: 200,
