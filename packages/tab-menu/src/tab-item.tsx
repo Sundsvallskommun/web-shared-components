@@ -7,10 +7,12 @@ export interface IMenuItem {
     label: string
     path: string
     active?: string | number
+}
+interface IMenuItemProps extends IMenuItem {
     onTabClick: (path: string, id: string | number) => void
 }
 
-const TabItem = (props: IMenuItem) => {
+const TabItem = (props: IMenuItemProps) => {
     const {
         id,
         label,
@@ -20,7 +22,9 @@ const TabItem = (props: IMenuItem) => {
     } = props
 
     const onClickHandler = () => {
-        onTabClick(path, id)
+        if (typeof onTabClick !== undefined) {
+            onTabClick(path, id)
+        }
     }
 
     return (

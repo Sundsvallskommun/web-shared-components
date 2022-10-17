@@ -76,6 +76,7 @@ Template.argTypes = {
   },
 
 };
+
 TemplateWithChildren.argTypes = {
   menuData:{
     type:{
