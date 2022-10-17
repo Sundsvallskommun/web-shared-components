@@ -74,7 +74,7 @@ Template.argTypes = {
 
 
 export const TemplateHeadElement = ({ ...args }: any) => {
-  const [active, setActive] = useState<number>()
+  const [active, setActive] = useState<number | string>()
   
   const goDeepHandler = () => {
     setActive(1277)
@@ -117,15 +117,6 @@ export const TemplateHeadElement = ({ ...args }: any) => {
 TemplateHeadElement.storyName = 'SideMenu With headElement';
 
 TemplateHeadElement.argTypes = {
-  disabled: {
-    type: { name: 'string', required: false },
-    description: 'Sets disabled',
-    table: {
-      defaultValue: { summary: 'false' },
-    },
-    control: 'boolean',
-    defaultValue: false,
-  },
   menuData: {
     type: { 
       name: 'array',

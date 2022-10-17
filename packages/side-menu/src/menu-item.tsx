@@ -2,10 +2,16 @@ import { cx } from '@sk-web-gui/utils';
 import React, { useEffect, useState } from 'react'
 import MinusIcon from './assets/MinusIcon';
 import PlusIcon from './assets/PlusIcon';
-import { IMenu } from './side-menu'
+import { IDataObject, IMenu } from './side-menu'
 //import useUnmountDelay from './delay-unmounting';
 
-export const MenuItem = (props: IMenu) => {
+export interface IMenuExtended extends IMenu {
+  active: string | number
+  linkCallback: (data: IDataObject) => void
+  activeCallback: () => void
+}
+
+export const MenuItem = (props: IMenuExtended) => {
   const {
     id,
     label,

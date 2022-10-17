@@ -12,9 +12,6 @@ export interface IDataObject extends DefaultProps {
 
 export interface IMenu extends DefaultProps, IDataObject {
   subItems?: Array<IMenu> | null | []
-  linkCallback: (data: IDataObject) => void
-  active: string | number
-  activeCallback: () => void
 }
 
 export interface IMenuProps {
