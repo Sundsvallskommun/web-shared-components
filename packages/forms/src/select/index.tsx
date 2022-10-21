@@ -15,10 +15,15 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>((props, r
   const visualInputRef = useRef<HTMLButtonElement>(null);
   const classes = useSelectClass({ size, disabled });
   const [width, setWidth] = useState(0);
+  const [listPos, setListPos] = useState({ top: 0, left: 0 });
 
   const setListBoundingBox = () => {
     if (visualInputRef && visualInputRef.current) {
       setWidth(visualInputRef.current.getBoundingClientRect().width);
+      setListPos({
+        top: visualInputRef.current.getBoundingClientRect().top + visualInputRef.current.getBoundingClientRect().height,
+        left: visualInputRef.current.getBoundingClientRect().left,
+      });
     }
   };
 
@@ -58,7 +63,11 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>((props, r
             </Input>
           </Listbox.Button>
           {open && (
-            <Listbox.Options style={{ width: width }} static className={cx('form-select-list')}>
+            <Listbox.Options
+              style={{ width: width, top: listPos.top, left: listPos.left }}
+              static
+              className={cx('form-select-list')}
+            >
               {children &&
                 (children as any).map((option: any, index: number) => (
                   <Listbox.Option key={`form-select-option-${index}`} value={option.props.children} as={Fragment}>
