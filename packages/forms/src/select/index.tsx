@@ -31,6 +31,11 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>((props, r
     window.addEventListener('resize', setListBoundingBox);
     window.addEventListener('scroll', setListBoundingBox);
     setListBoundingBox();
+
+    return () => {
+      window.removeEventListener('resize', setListBoundingBox);
+      window.removeEventListener('scroll', setListBoundingBox);
+    };
   }, []);
 
   const handleOnChange = (value: any) => {
