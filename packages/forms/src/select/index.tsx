@@ -28,9 +28,8 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>((props, r
   };
 
   useEffect(() => {
-    if (window) {
-      window.onresize = setListBoundingBox;
-    }
+    window.addEventListener('resize', setListBoundingBox);
+    window.addEventListener('scroll', setListBoundingBox);
     setListBoundingBox();
   }, []);
 
