@@ -26,13 +26,6 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>((props, r
       });
     }
   };
-
-  useEffect(() => {
-    if (window) {
-      window.onresize = setListBoundingBox;
-    }
-    setListBoundingBox();
-  }, []);
  
   useEffect(() => {
     setListBoundingBox();
