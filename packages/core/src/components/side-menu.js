@@ -3,7 +3,6 @@ module.exports = Menu = () => ({
         width: "440px",
         border: "1px solid #939393",
         borderRadius: "2px",
-        overflow: "hidden",
 
         ".menu-header": {
             padding: "3rem 1rem 1.8rem", 

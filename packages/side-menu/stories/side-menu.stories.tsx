@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Meta } from '@storybook/react';
 import { IDataObject, SideMenu } from "../src/side-menu";
 import testData from './testData.json'
@@ -34,7 +34,7 @@ export const Template = ({ ...args }: any) => {
       <button className="bg-black rounded-xl text-white m-10 p-10" onClick={goDeepHandler}>Active Shallow</button>
       <button className="bg-black rounded-xl text-white m-10 p-10" onClick={goShallowHandler}>Active Deep</button>
     
-      <SideMenu {...args} linkCallback={linkCallbackHandler} active={active} />
+      <SideMenu {...args} linkCallback={linkCallbackHandler} active={active}/>
     </div>
   )
 }
@@ -117,6 +117,58 @@ export const TemplateHeadElement = ({ ...args }: any) => {
 TemplateHeadElement.storyName = 'SideMenu With headElement';
 
 TemplateHeadElement.argTypes = {
+  menuData: {
+    type: { 
+      name: 'array',
+      required: true
+    },
+    description: 'Data for menu',
+    defaultValue: testData
+  },
+  label: {
+    type: { 
+      name: 'string',
+      required: false
+    },
+    description: 'Name of menu',
+    defaultValue: 'Menu label (254)'
+  }
+};
+
+
+export const TemplateLoadingBlock = ({ ...args }: any) => {
+  const [active, setActive] = useState<number>()
+
+
+  const linkCallbackHandler = (data: any) => {
+    setActive(data.id)
+
+    console.log("link click", data)
+  }
+  
+
+  return (
+    <div> 
+      <SideMenu {...args} linkCallback={linkCallbackHandler} loading={true} active={active}/>
+    </div>
+  )
+}
+
+
+
+
+TemplateLoadingBlock.storyName = 'SideMenu with loading block';
+
+TemplateLoadingBlock.argTypes = {
+  disabled: {
+    type: { name: 'string', required: false },
+    description: 'Sets disabled',
+    table: {
+      defaultValue: { summary: 'false' },
+    },
+    control: 'boolean',
+    defaultValue: false,
+  },
   menuData: {
     type: { 
       name: 'array',

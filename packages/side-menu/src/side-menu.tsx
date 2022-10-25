@@ -2,12 +2,14 @@ import { DefaultProps } from "@sk-web-gui/theme";
 import { cx, __DEV__ } from "@sk-web-gui/utils";
 import * as React from "react";
 import { MenuItem } from "./menu-item";
+import { Spinner } from '@sk-web-gui/spinner';
+import { useEffect, useState } from "react";
 
 export interface IDataObject extends DefaultProps {
   id: string | number
   level: number
   label: string
-  path: string
+  path?: string
 }
 
 export interface IMenu extends DefaultProps, IDataObject {
@@ -24,8 +26,11 @@ export interface IMenuProps {
   active: string | number
 }
 
+
+
 export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref) => {
   const {
+      loading,
       headElement,
       menuData,
       label,
@@ -33,14 +38,14 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
       active
     } = props;
 
-
-    const linkCallbackHandler = (data: IDataObject) => {
-      linkCallback(data)
+    const linkCallbackHandler = (menuData: IDataObject) => {
+      linkCallback(menuData)
     }
 
     const activeCallbackHandler = () => {
       // Void
     }
+
 
     return (
      <nav className="SideMenu">
@@ -59,7 +64,7 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
           } 
         </div>
         
-        {menuData && menuData.map((item) =>
+        {!loading && menuData && menuData.map((item) =>
           <MenuItem 
             key={item.id} 
             id={item.id}
@@ -72,6 +77,9 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
             linkCallback={linkCallbackHandler}
           /> 
         )}
+
+        {loading && <div className="py-20 flex justify-center w-full"><Spinner size="xl" /></div>}
+
      </nav>
     )
   }
