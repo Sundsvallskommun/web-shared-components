@@ -3,7 +3,6 @@ module.exports = Menu = () => ({
         width: "440px",
         border: "1px solid #939393",
         borderRadius: "2px",
-        overflow: "hidden",
 
         ".menu-header": {
             padding: "3rem 1rem 1.8rem", 
@@ -31,41 +30,24 @@ module.exports = Menu = () => ({
         ".MenuItem": {
             borderTop: "1px solid #939393",
             transition: "500ms ease",
-            overflow: "hidden", 
             
             "&.active": {
                 "> .wrapper": {
                     boxShadow: "inset 6px 0 0 0 #005595",
                     
-                    "> div > a": {
+                    "> .MenuItem-link": {
                         fontWeight: 600,
                     }
                 } 
             },
 
-            ".items": {
-                height: 0
-            }, 
-
             ".wrapper": {
                 minHeight: "64px",
                 display: "flex",
                 alignItems: "center",
-                
-                "a, button": {
-                    all: "unset",
-                    cursor: "pointer",
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    verticalAlign: "middle",
-                    alignItems: "center", 
-                    paddingRight: '15px'
-                },
 
-
-                "label": {
-                    
+                ".MenuItem-link": {
+                    "@apply flex-grow text-left justify-start pr-[15px] h-full":{}
                 },
                 
                 ".expand": {
@@ -106,77 +88,77 @@ module.exports = Menu = () => ({
 
             "&.lvl-0": {
                 backgroundColor: "#fff",
-                "> .wrapper > div > a": {
-                    paddingLeft: "1rem"
+                "> .wrapper > .MenuItem-link": {
+                    marginLeft: "1rem"
                 }
             },
 
             "&.lvl-1": {
                 backgroundColor: "#F9F9F9",
-                "> .wrapper > div > a": {
+                "> .wrapper > .MenuItem-link": {
                     paddingLeft: "2rem"
                 }
             },
 
             "&.lvl-2": {
                 backgroundColor: "#ECECEC",
-                "> .wrapper > div > a": {
+                "> .wrapper > .MenuItem-link": {
                     paddingLeft: "3rem"
                 }
             },
 
             "&.lvl-3": {
                 backgroundColor: "#ECECEC",
-                "> .wrapper > div > a": {
+                "> .wrapper > .MenuItem-link": {
                     paddingLeft: "4rem"
                 }
             },
 
             "&.lvl-4": {
                 backgroundColor: "#ECECEC",
-                "> .wrapper > div > a": {
+                "> .wrapper > .MenuItem-link": {
                     paddingLeft: "5rem"
                 }
             },
 
             "&.lvl-5": {
                 backgroundColor: "#ECECEC",
-                "> .wrapper > div > a": {
+                "> .wrapper > .MenuItem-link": {
                     paddingLeft: "6rem"
                 }
             },
 
             "&.lvl-6": {
                 backgroundColor: "#ECECEC",
-                "> .wrapper > div > a": {
+                "> .wrapper > .MenuItem-link": {
                     paddingLeft: "7rem"
                 }
             },
 
             "&.lvl-7": {
                 backgroundColor: "#ECECEC",
-                "> .wrapper > div > a": {
+                "> .wrapper > .MenuItem-link": {
                     paddingLeft: "8rem"
                 }
             },
             
             "&.lvl-8": {
                 backgroundColor: "#ECECEC",
-                "> .wrapper > div > a": {
+                "> .wrapper > .MenuItem-link": {
                     paddingLeft: "9rem"
                 }
             },
 
             "&.lvl-9": {
                 backgroundColor: "#ECECEC",
-                "> .wrapper > div > a": {
+                "> .wrapper > .MenuItem-link": {
                     paddingLeft: "10rem"
                 }
             },
 
             "&.lvl-10": {
                 backgroundColor: "#ECECEC",
-                "> .wrapper > div > a": {
+                "> .wrapper > .MenuItem-link": {
                     paddingLeft: "11rem"
                 }
             }

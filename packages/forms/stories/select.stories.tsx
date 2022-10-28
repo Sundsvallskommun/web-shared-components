@@ -9,10 +9,19 @@ export default {
 };
 
 export const Template = (args: any) => (
-  <Select {...args} onChange={(e) => console.log(e)}>
+  <Select {...args} onChange={e => console.log(e)}>
     <option>Option 1</option>
     <option>Option 2</option>
     <option>Option 3</option>
+    <option>Option 4</option>
+    <option>Option 5</option>
+    <option>Option 6</option>
+    <option>Option 7</option>
+    <option>Option 8</option>
+    <option>Option 9</option>
+    <option>Option 10</option>
+    <option>Option 11</option>
+    <option>Option 12</option>
   </Select>
 );
 

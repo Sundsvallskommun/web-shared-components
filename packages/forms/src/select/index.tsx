@@ -7,10 +7,25 @@ import { Input, InputProps } from '../input/input';
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { useSelectClass } from './styles';
 
-export type SelectProps = Omit<InputProps, 'onChange'> & { onChange: (value: string) => void };
+export type SelectProps = Omit<InputProps, 'onChange'> & {
+  onChange: (value: string) => void;
+  listClassName?: string;
+  defaultOptionsAmount?: number;
+};
 
 export const Select = React.forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
-  const { className, onChange, value, placeholder = '', children, disabled, size = 'md', ...rest } = props;
+  const {
+    className,
+    listClassName,
+    defaultOptionsAmount = 10,
+    onChange,
+    value,
+    placeholder = '',
+    children,
+    disabled,
+    size = 'md',
+    ...rest
+  } = props;
   const [selectedValue, setSelectedValue] = useState(value ? value : '');
 
   const classes = useSelectClass({ size, disabled });
@@ -19,6 +34,12 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>((props, r
     setSelectedValue(value);
     onChange && onChange(value);
   };
+
+  useEffect(() => {
+    if (value) {
+      setSelectedValue(value as string);
+    }
+  }, [value]);
 
   return (
     <Listbox value={selectedValue} onChange={handleOnChange} as={Fragment} disabled={disabled ? disabled : undefined}>
@@ -47,7 +68,11 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>((props, r
             </Input>
           </Listbox.Button>
           {open && (
-            <Listbox.Options static className={cx('form-select-list')}>
+            <Listbox.Options
+              static
+              style={{ maxHeight: `${defaultOptionsAmount * 50 + 10}px` }}
+              className={cx('form-select-list', listClassName)}
+            >
               {children &&
                 (children as any).map((option: any, index: number) => (
                   <Listbox.Option key={`form-select-option-${index}`} value={option.props.children} as={Fragment}>
