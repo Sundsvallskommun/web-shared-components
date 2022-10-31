@@ -192,18 +192,20 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
           </tbody>
         </table>
       )}
-      <div className="zebratable-bottomwrapper">
-        {pages > 1 && (
-          <div className="zebratable-paginationwrapper">
-            <Pagination
-              pages={currentPages}
-              activePage={currentPage}
-              changePage={(page: number) => setCurrentPage(page)}
-            />
-          </div>
-        )}
-        {BottomComponent && BottomComponent}
-      </div>
+      {(pages > 1 || BottomComponent) && (
+        <div className="zebratable-bottomwrapper">
+          {pages > 1 && (
+            <div className="zebratable-paginationwrapper">
+              <Pagination
+                pages={currentPages}
+                activePage={currentPage}
+                changePage={(page: number) => setCurrentPage(page)}
+              />
+            </div>
+          )}
+          {BottomComponent && BottomComponent}
+        </div>
+      )}
     </>
   );
 });
