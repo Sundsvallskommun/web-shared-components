@@ -238,7 +238,7 @@ module.exports = Forms = (colors) => ({
     'background-image': 'none',
 
     '&-list': {
-      '@apply z-10 absolute overflow-y-scroll w-full bg-white mt-0 border border-gray-stroke border-t-0': {},
+      '@apply z-10 absolute overflow-y-auto w-full bg-white mt-0 border border-gray-stroke border-t-0': {},
     },
 
     '&-option': {
