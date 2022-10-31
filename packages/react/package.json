@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/react",
-  "version": "0.1.57",
+  "version": "0.1.58",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -63,7 +63,7 @@
     "@sk-web-gui/spinner": "0.1.5",
     "@sk-web-gui/switch": "0.1.10",
     "@sk-web-gui/tab-menu": "0.1.6",
-    "@sk-web-gui/table": "0.1.16",
+    "@sk-web-gui/table": "0.1.17",
     "@sk-web-gui/tag": "0.1.10",
     "@sk-web-gui/text-editor": "0.1.4",
     "@sk-web-gui/theme": "0.1.5",
