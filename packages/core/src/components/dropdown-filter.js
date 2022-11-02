@@ -1,7 +1,7 @@
 module.exports = DropdownFilter = () => ({
     ".DropdownFilter": {
         position: "relative",
-        height: 44,
+        height: 50,
         border: "1px solid #939393",
         maxWidth: 291,
         display: "flex",
@@ -28,7 +28,7 @@ module.exports = DropdownFilter = () => ({
             position: "absolute",
             top: "100%",
             left: "-1px",
-            index: 10,
+            zIndex: 10,
             width: "calc(100% + 2px)",
             background: "#fff",
             border: "1px solid #939393",
