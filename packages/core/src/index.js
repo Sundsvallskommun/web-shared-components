@@ -223,6 +223,17 @@ module.exports = plugin.withOptions(
             toast: 1700,
             tooltip: 1800,
           },
+          keyframes: {
+            'reset-overflow': {
+              'from, to': {
+                'overflow': 'hidden',
+              }
+            }
+            
+          },
+          animation: {
+            'reset-overflow': 'reset-overflow 180ms backwards'
+          }
         },
       },
       variants: {
