@@ -56,9 +56,7 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
         if (mutation.type === 'childList') {
           const newHeight = 'auto';
           if (typeof newHeight !== 'undefined' && contentEl.current) {
-            setAccordionOpen(false);
             contentEl.current.style.height = newHeight;
-            setAccordionOpen(true);
           }
         }
       }
@@ -83,7 +81,14 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
           type="button"
           className="accordion-toggle"
           aria-expanded={accordionOpen}
-          onClick={() => setAccordionOpen(!accordionOpen)}
+          onClick={() => {
+            if (contentEl.current) {
+              contentEl.current.style.height = `${contentEl.current?.scrollHeight}px`;
+            }
+            setTimeout(() => {
+              setAccordionOpen(!accordionOpen);
+            }, 0);
+          }}
         >
           <div>
             <Comp className="accordion-title">{accordionTitle}</Comp>

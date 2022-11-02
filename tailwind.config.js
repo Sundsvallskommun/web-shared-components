@@ -10,7 +10,19 @@ module.exports = {
   ],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        'fixoverflow': {
+          'from, to': {
+            'overflow': 'hidden',
+          }
+        }
+        
+      },
+      animation: {
+        'fixit': 'fixoverflow 180ms backwards'
+      }
+    },
   },
   plugins: [
     require('@tailwindcss/forms'),

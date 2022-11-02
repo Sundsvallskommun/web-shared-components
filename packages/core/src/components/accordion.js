@@ -66,6 +66,10 @@ module.exports = Accordion = (colors) => ({
       },
     },
 
+    '&-is-open &-body': {
+      '@apply overflow-visible animate-fixit': {},
+    },
+
     '&-outline': {
       '@apply border border-gray-stroke': {},
       '.accordion-body': {

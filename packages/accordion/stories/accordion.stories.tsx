@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Meta } from '@storybook/react';
 import { Accordion, AccordionProps } from '../src';
-import { Button } from '@sk-web-gui/react';
+import { Button, cx, FormControl, FormLabel, Select } from '@sk-web-gui/react';
 
 export default {
   title: 'Komponenter/Accordions/Komponent',
@@ -23,6 +23,59 @@ export const Template = (args: AccordionProps) => {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero placeat eveniet quas nulla saepe minus
           recusandae quis obcaecati necessitatibus. Quidem.
         </p>
+        <form>
+          <FormControl id="priority">
+            <FormLabel>
+              <Select onChange={() => {}} placeholder="Välj">
+                <option
+                  className={cx(
+                    `cursor-pointer select-none relative py-4 pl-10 pr-4
+                              `
+                  )}
+                  value="1"
+                >
+                  Först
+                </option>
+                <option
+                  className={cx(
+                    `cursor-pointer select-none relative py-4 pl-10 pr-4
+                              `
+                  )}
+                  value="1"
+                >
+                  Andra
+                </option>
+                <option
+                  className={cx(
+                    `cursor-pointer select-none relative py-4 pl-10 pr-4
+                              `
+                  )}
+                  value="1"
+                >
+                  Andra
+                </option>
+                <option
+                  className={cx(
+                    `cursor-pointer select-none relative py-4 pl-10 pr-4
+                              `
+                  )}
+                  value="1"
+                >
+                  Andra
+                </option>
+                <option
+                  className={cx(
+                    `cursor-pointer select-none relative py-4 pl-10 pr-4
+                              `
+                  )}
+                  value="1"
+                >
+                  Andra
+                </option>
+              </Select>
+            </FormLabel>
+          </FormControl>
+        </form>
         <Button
           onClick={() => {
             setExtraContent(!extraContent);
