@@ -14,6 +14,7 @@ export * from '@sk-web-gui/spinner';
 export * from '@sk-web-gui/switch';
 export * from '@sk-web-gui/theme';
 export * from '@sk-web-gui/utils';
+export * from '@sk-web-gui/modal';
 
 export * from '@sk-web-gui/accordion';
 export * from '@sk-web-gui/cookie-consent';
@@ -35,3 +36,4 @@ export * from '@sk-web-gui/search-bar';
 export * from '@sk-web-gui/pagination';
 export * from '@sk-web-gui/footer';
 export * from '@sk-web-gui/header';
+
