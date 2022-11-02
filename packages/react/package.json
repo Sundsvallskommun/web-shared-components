@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/react",
-  "version": "0.1.60",
+  "version": "0.1.61",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
