@@ -70,6 +70,15 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
     };
   }, []);
 
+  const onClick = () => {
+    if (contentEl.current) {
+      contentEl.current.style.height = `${contentEl.current?.scrollHeight}px`;
+    }
+    setTimeout(() => {
+      setAccordionOpen(!accordionOpen);
+    }, 0);
+  };
+
   return (
     <div
       data-color={color ? color : undefined}
@@ -77,19 +86,7 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
       {...rest}
     >
       <div className="accordion-header">
-        <button
-          type="button"
-          className="accordion-toggle"
-          aria-expanded={accordionOpen}
-          onClick={() => {
-            if (contentEl.current) {
-              contentEl.current.style.height = `${contentEl.current?.scrollHeight}px`;
-            }
-            setTimeout(() => {
-              setAccordionOpen(!accordionOpen);
-            }, 0);
-          }}
-        >
+        <button type="button" className="accordion-toggle" aria-expanded={accordionOpen} onClick={onClick}>
           <div>
             <Comp className="accordion-title">{accordionTitle}</Comp>
             {accordionSubTitle && <p className="accordion-subtitle">{accordionSubTitle}</p>}
