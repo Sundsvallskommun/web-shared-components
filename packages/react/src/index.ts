@@ -1,4 +1,5 @@
 export * from '@sk-web-gui/alert';
+export * from '@sk-web-gui/alert-banner';
 export * from '@sk-web-gui/breadcrumb';
 export * from '@sk-web-gui/button';
 export * from '@sk-web-gui/checkbox';
@@ -36,4 +37,3 @@ export * from '@sk-web-gui/search-bar';
 export * from '@sk-web-gui/pagination';
 export * from '@sk-web-gui/footer';
 export * from '@sk-web-gui/header';
-

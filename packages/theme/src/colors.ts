@@ -198,14 +198,14 @@ export const colors = {
   // ..statuses
   info: {
     DEFAULT: _colors.vattjom.DEFAULT,
-    dark: _colors.vattjom.DEFAULT,
-    light: _colors.vattjom.DEFAULT,
+    dark: _colors.vattjom.dark,
+    light: _colors.vattjom.light,
     active: _colors.vattjom.DEFAULT,
   },
   success: {
     DEFAULT: _colors.gronsta.DEFAULT,
-    dark: _colors.gronsta.DEFAULT,
-    light: _colors.gronsta.DEFAULT,
+    dark: _colors.gronsta.dark,
+    light: _colors.gronsta.light,
     active: _colors.gronsta.DEFAULT,
   },
   warning: {
@@ -216,8 +216,8 @@ export const colors = {
   },
   error: {
     DEFAULT: _colors.red.DEFAULT,
-    dark: _colors.red.DEFAULT,
-    light: _colors.red.DEFAULT,
+    dark: _colors.red.dark,
+    light: _colors.juniskar.light,
     active: _colors.red.DEFAULT,
   },
 };

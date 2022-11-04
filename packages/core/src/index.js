@@ -5,6 +5,7 @@ const { colors } = require('@sk-web-gui/theme');
 const withOpacity = require('./with-opacity');
 // components
 const Alert = require('./components/alert');
+const AlertBanner = require('./components/alert-banner');
 const Breadcrumb = require('./components/breadcrumb');
 const ButtonGroup = require('./components/button-group');
 
@@ -45,6 +46,7 @@ const SearchBar = require('./components/search-bar');
 
 const components = [
   Alert,
+  AlertBanner,
   Breadcrumb,
   ButtonGroup,
   Button,
@@ -72,7 +74,7 @@ const components = [
   SideMenu,
   TabMenu,
   UserMenu,
-  
+
   DropdownFilter,
 
   SearchBar,
@@ -226,14 +228,13 @@ module.exports = plugin.withOptions(
           keyframes: {
             'reset-overflow': {
               'from, to': {
-                'overflow': 'hidden',
-              }
-            }
-            
+                overflow: 'hidden',
+              },
+            },
           },
           animation: {
-            'reset-overflow': 'reset-overflow 180ms backwards'
-          }
+            'reset-overflow': 'reset-overflow 180ms backwards',
+          },
         },
       },
       variants: {
