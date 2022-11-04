@@ -36,7 +36,16 @@ export interface IInputProps<T = HTMLInputElement> extends DefaultProps {
   'aria-describedby'?: string;
 }
 
-export type OmittedTypes = 'size' | 'disabled' | 'required' | 'checked' | 'defaultChecked' | 'readOnly';
+export type OmittedTypes =
+  | 'size'
+  | 'disabled'
+  | 'required'
+  | 'checked'
+  | 'defaultChecked'
+  | 'readOnly'
+  | 'nonce'
+  | 'onResize'
+  | 'onResizeCapture';
 
 export type InputHTMLAttributes = Omit<React.InputHTMLAttributes<HTMLInputElement>, OmittedTypes>;
 
