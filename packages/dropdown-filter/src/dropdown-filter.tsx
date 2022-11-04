@@ -108,7 +108,3 @@ export const DropdownFilter = React.forwardRef<HTMLDivElement, IDropdownFilter>(
 })
 
 export default DropdownFilter
-
-if (__DEV__) {
-  DropdownFilter.displayName = 'DropdownFilter'
-}

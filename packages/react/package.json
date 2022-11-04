@@ -48,6 +48,7 @@
     "@sk-web-gui/divider": "0.1.8",
     "@sk-web-gui/dot": "0.1.5",
     "@sk-web-gui/dropdown-filter": "0.1.5",
+    "@sk-web-gui/dropdown-search": "0.1.0",
     "@sk-web-gui/footer": "0.1.2",
     "@sk-web-gui/forms": "0.1.9",
     "@sk-web-gui/header": "0.1.3",
