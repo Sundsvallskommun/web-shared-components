@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/react",
-  "version": "0.1.61",
+  "version": "0.1.62",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -38,7 +38,7 @@
     "react-dom": "^17.0.2"
   },
   "dependencies": {
-    "@sk-web-gui/accordion": "0.1.13",
+    "@sk-web-gui/accordion": "0.1.14",
     "@sk-web-gui/alert": "0.1.5",
     "@sk-web-gui/alert-banner": "0.1.0",
     "@sk-web-gui/breadcrumb": "0.1.6",
@@ -48,7 +48,8 @@
     "@sk-web-gui/cookie-consent": "0.1.8",
     "@sk-web-gui/divider": "0.1.8",
     "@sk-web-gui/dot": "0.1.5",
-    "@sk-web-gui/dropdown-filter": "0.1.5",
+    "@sk-web-gui/dropdown-filter": "0.1.6",
+    "@sk-web-gui/dropdown-search": "0.1.1",
     "@sk-web-gui/footer": "0.1.2",
     "@sk-web-gui/forms": "0.1.9",
     "@sk-web-gui/header": "0.1.3",

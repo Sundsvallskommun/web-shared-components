@@ -3,7 +3,7 @@ import { Meta } from '@storybook/react';
 import DropdownFilter from '../src/dropdown-filter';
 
 export default {
-  title: 'Komponenter/Dropdown',
+  title: 'Komponenter/Dropdown/DropdownFilter',
   component: DropdownFilter,
   parameters: { controls: { hideNoControlsWarning: true } },
 } as Meta;

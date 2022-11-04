@@ -27,6 +27,7 @@ export * from '@sk-web-gui/user-menu';
 export * from '@sk-web-gui/tab-menu';
 
 export * from '@sk-web-gui/dropdown-filter';
+export * from '@sk-web-gui/dropdown-search';
 
 export * from '@sk-web-gui/table';
 
