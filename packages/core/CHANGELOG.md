@@ -3,115 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.46](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@0.1.45...@sk-web-gui/core@0.1.46) (2022-11-04)
+## [0.1.47](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@0.1.46...@sk-web-gui/core@0.1.47) (2022-11-04)
 
 **Note:** Version bump only for package @sk-web-gui/core
 
+## [0.1.46](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@0.1.45...@sk-web-gui/core@0.1.46) (2022-11-04)
 
-
-
-
+**Note:** Version bump only for package @sk-web-gui/core
 
 ## [0.1.45](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@0.1.44...@sk-web-gui/core@0.1.45) (2022-11-02)
 
 **Note:** Version bump only for package @sk-web-gui/core
 
-
-
-
-
-
 ## [0.1.44](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@0.1.42...@sk-web-gui/core@0.1.44) (2022-10-31)
 
 **Note:** Version bump only for package @sk-web-gui/core
-
-
-
-
-
 
 ## [0.1.43](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@0.1.42...@sk-web-gui/core@0.1.43) (2022-10-28)
 
 **Note:** Version bump only for package @sk-web-gui/core
 
-
-
-
-
 ## [0.1.42](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@0.1.41...@sk-web-gui/core@0.1.42) (2022-10-17)
 
 **Note:** Version bump only for package @sk-web-gui/core
-
-
-
-
 
 ## [0.1.41](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@0.1.40...@sk-web-gui/core@0.1.41) (2022-10-17)
 
 **Note:** Version bump only for package @sk-web-gui/core
 
-
-
-
-
-
 ## [0.1.40](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@0.1.39...@sk-web-gui/core@0.1.40) (2022-10-17)
 
 **Note:** Version bump only for package @sk-web-gui/core
-
-
-
-
-
 
 ## [0.1.39](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@0.1.38...@sk-web-gui/core@0.1.39) (2022-10-13)
 
 **Note:** Version bump only for package @sk-web-gui/core
 
-
-
-
-
-
 ## [0.1.38](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@0.1.37...@sk-web-gui/core@0.1.38) (2022-10-04)
 
 **Note:** Version bump only for package @sk-web-gui/core
-
-
-
-
 
 ## [0.1.37](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@0.1.36...@sk-web-gui/core@0.1.37) (2022-09-29)
 
 **Note:** Version bump only for package @sk-web-gui/core
 
-
-
-
-
 ## [0.1.36](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@0.1.35...@sk-web-gui/core@0.1.36) (2022-09-26)
 
 **Note:** Version bump only for package @sk-web-gui/core
-
-
-
-
 
 ## [0.1.35](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@0.1.34...@sk-web-gui/core@0.1.35) (2022-09-22)
 
 **Note:** Version bump only for package @sk-web-gui/core
 
-
-
-
-
 ## [0.1.34](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@0.1.33...@sk-web-gui/core@0.1.34) (2022-09-22)
 
 **Note:** Version bump only for package @sk-web-gui/core
-
-
-
-
 
 ## [0.1.33](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@0.1.32...@sk-web-gui/core@0.1.33) (2022-09-09)
 

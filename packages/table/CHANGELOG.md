@@ -3,54 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.17](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@0.1.16...@sk-web-gui/table@0.1.17) (2022-10-31)
+## [0.1.18](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@0.1.17...@sk-web-gui/table@0.1.18) (2022-11-04)
 
 **Note:** Version bump only for package @sk-web-gui/table
 
+## [0.1.17](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@0.1.16...@sk-web-gui/table@0.1.17) (2022-10-31)
 
-
-
+**Note:** Version bump only for package @sk-web-gui/table
 
 ## [0.1.16](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@0.1.14...@sk-web-gui/table@0.1.16) (2022-10-31)
 
 **Note:** Version bump only for package @sk-web-gui/table
 
-
-
-
-
-
 ## [0.1.15](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@0.1.14...@sk-web-gui/table@0.1.15) (2022-10-28)
 
 **Note:** Version bump only for package @sk-web-gui/table
-
-
-
-
 
 ## [0.1.14](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@0.1.13...@sk-web-gui/table@0.1.14) (2022-09-27)
 
 **Note:** Version bump only for package @sk-web-gui/table
 
-
-
-
-
 ## [0.1.13](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@0.1.12...@sk-web-gui/table@0.1.13) (2022-09-26)
 
 **Note:** Version bump only for package @sk-web-gui/table
 
-
-
-
-
 ## [0.1.12](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@0.1.11...@sk-web-gui/table@0.1.12) (2022-09-22)
 
 **Note:** Version bump only for package @sk-web-gui/table
-
-
-
-
 
 ## [0.1.11](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@0.1.10...@sk-web-gui/table@0.1.11) (2022-08-31)
 

@@ -3,203 +3,105 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.62](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.61...@sk-web-gui/react@0.1.62) (2022-11-04)
+## [0.1.63](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.62...@sk-web-gui/react@0.1.63) (2022-11-04)
 
 **Note:** Version bump only for package @sk-web-gui/react
 
+## [0.1.62](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.61...@sk-web-gui/react@0.1.62) (2022-11-04)
 
-
-
-
+**Note:** Version bump only for package @sk-web-gui/react
 
 ## [0.1.61](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.60...@sk-web-gui/react@0.1.61) (2022-11-02)
 
 **Note:** Version bump only for package @sk-web-gui/react
 
-
-
-
-
-
 ## [0.1.60](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.59...@sk-web-gui/react@0.1.60) (2022-11-02)
 
 **Note:** Version bump only for package @sk-web-gui/react
-
-
-
-
-
 
 ## [0.1.59](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.58...@sk-web-gui/react@0.1.59) (2022-11-02)
 
 **Note:** Version bump only for package @sk-web-gui/react
 
-
-
-
-
-
 ## [0.1.58](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.57...@sk-web-gui/react@0.1.58) (2022-10-31)
 
 **Note:** Version bump only for package @sk-web-gui/react
-
-
-
-
 
 ## [0.1.57](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.55...@sk-web-gui/react@0.1.57) (2022-10-31)
 
 **Note:** Version bump only for package @sk-web-gui/react
 
-
-
-
-
-
 ## [0.1.56](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.55...@sk-web-gui/react@0.1.56) (2022-10-28)
 
 **Note:** Version bump only for package @sk-web-gui/react
-
-
-
-
 
 ## [0.1.55](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.54...@sk-web-gui/react@0.1.55) (2022-10-17)
 
 **Note:** Version bump only for package @sk-web-gui/react
 
-
-
-
-
 ## [0.1.54](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.53...@sk-web-gui/react@0.1.54) (2022-10-17)
 
 **Note:** Version bump only for package @sk-web-gui/react
-
-
-
-
-
 
 ## [0.1.53](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.52...@sk-web-gui/react@0.1.53) (2022-10-13)
 
 **Note:** Version bump only for package @sk-web-gui/react
 
-
-
-
-
-
 ## [0.1.52](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.51...@sk-web-gui/react@0.1.52) (2022-10-11)
 
 **Note:** Version bump only for package @sk-web-gui/react
-
-
-
-
 
 ## [0.1.51](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.50...@sk-web-gui/react@0.1.51) (2022-10-11)
 
 **Note:** Version bump only for package @sk-web-gui/react
 
-
-
-
-
-
 ## [0.1.50](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.49...@sk-web-gui/react@0.1.50) (2022-10-04)
 
 **Note:** Version bump only for package @sk-web-gui/react
-
-
-
-
 
 ## [0.1.49](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.48...@sk-web-gui/react@0.1.49) (2022-09-29)
 
 **Note:** Version bump only for package @sk-web-gui/react
 
-
-
-
-
 ## [0.1.48](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.47...@sk-web-gui/react@0.1.48) (2022-09-29)
 
 **Note:** Version bump only for package @sk-web-gui/react
-
-
-
-
 
 ## [0.1.47](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.46...@sk-web-gui/react@0.1.47) (2022-09-28)
 
 **Note:** Version bump only for package @sk-web-gui/react
 
-
-
-
-
 ## [0.1.46](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.45...@sk-web-gui/react@0.1.46) (2022-09-27)
 
 **Note:** Version bump only for package @sk-web-gui/react
-
-
-
-
 
 ## [0.1.45](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.44...@sk-web-gui/react@0.1.45) (2022-09-27)
 
 **Note:** Version bump only for package @sk-web-gui/react
 
-
-
-
-
 ## [0.1.44](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.43...@sk-web-gui/react@0.1.44) (2022-09-27)
 
 **Note:** Version bump only for package @sk-web-gui/react
-
-
-
-
 
 ## [0.1.43](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.42...@sk-web-gui/react@0.1.43) (2022-09-27)
 
 **Note:** Version bump only for package @sk-web-gui/react
 
-
-
-
-
 ## [0.1.42](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.41...@sk-web-gui/react@0.1.42) (2022-09-26)
 
 **Note:** Version bump only for package @sk-web-gui/react
-
-
-
-
 
 ## [0.1.41](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.40...@sk-web-gui/react@0.1.41) (2022-09-26)
 
 **Note:** Version bump only for package @sk-web-gui/react
 
-
-
-
-
 ## [0.1.40](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.39...@sk-web-gui/react@0.1.40) (2022-09-22)
 
 **Note:** Version bump only for package @sk-web-gui/react
 
-
-
-
-
 ## [0.1.39](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.38...@sk-web-gui/react@0.1.39) (2022-09-22)
 
 **Note:** Version bump only for package @sk-web-gui/react
-
-
 
 ## [0.1.38](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.37...@sk-web-gui/react@0.1.38) (2022-09-09)
 

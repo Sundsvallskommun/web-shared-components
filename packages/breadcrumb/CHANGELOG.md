@@ -3,13 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.6](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/breadcrumb@0.1.5...@sk-web-gui/breadcrumb@0.1.6) (2022-09-22)
+## [0.1.7](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/breadcrumb@0.1.6...@sk-web-gui/breadcrumb@0.1.7) (2022-11-04)
 
 **Note:** Version bump only for package @sk-web-gui/breadcrumb
 
+## [0.1.6](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/breadcrumb@0.1.5...@sk-web-gui/breadcrumb@0.1.6) (2022-09-22)
 
-
-
+**Note:** Version bump only for package @sk-web-gui/breadcrumb
 
 ## [0.1.5](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/breadcrumb@0.1.4...@sk-web-gui/breadcrumb@0.1.5) (2022-08-16)
 
