@@ -120,7 +120,7 @@ const withGui = (StoryFn: Function) => {
         // className="space-y-4"
         /*style={{ minHeight: "100vh" }}*/
       >
-        <div className="flex mb-4 justify-items-end">
+        <div className="flex mb-10 justify-items-end">
           {/*<Button
             color="primary"
             variant="outline"
