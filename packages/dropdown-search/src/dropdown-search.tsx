@@ -14,7 +14,7 @@ export interface IDropdownSearchProps {
   value: IData
   onChange: (value: IData) => void
   maxAmount: number
-  notFoundLabel: string
+  notFoundLabel?: string
   className?: string
   placeholder?: string
   listClassName?: string
@@ -78,7 +78,7 @@ export const DropdownSearch = (props: IDropdownSearchProps) => {
           <Combobox.Input
             className={cx('form-field form-field-outline form-field-md', className)}
             onChange={setQueryHandler}
-            displayValue={(item: IData) => item.name}
+            displayValue={(item: number) => data.filter((x) => x.id === item)[0].name}
             placeholder={placeholder}
           />
           {show && 
