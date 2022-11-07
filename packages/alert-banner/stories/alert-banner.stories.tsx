@@ -71,4 +71,14 @@ Template.argTypes = {
     control: 'boolean',
     defaultValue: true,
   },
+  fromDate: {
+    type: { name: 'Date', required: false },
+    description: 'Date from which the alert-banner will be shown',
+    control: 'date',
+  },
+  toDate: {
+    type: { name: 'Date', required: false },
+    description: 'Date to which the alert-banner will be shown',
+    control: 'date',
+  },
 };
