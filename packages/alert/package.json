@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/alert",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -37,8 +37,8 @@
     "react": "^17.0.2"
   },
   "dependencies": {
-    "@sk-web-gui/icon": "0.1.7",
-    "@sk-web-gui/theme": "0.1.7",
+    "@sk-web-gui/icon": "0.1.8",
+    "@sk-web-gui/theme": "0.1.8",
     "@sk-web-gui/utils": "0.1.4"
   },
   "peerDependencies": {
