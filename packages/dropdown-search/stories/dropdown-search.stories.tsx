@@ -18,7 +18,7 @@ export const Template = (args: any) => {
     { id: 5, name: 'Katelyn Rohan' },
   ]
 
-  const [value, setValue] = useState({ id: 1, name: 'Durward Reynolds' })
+  const [value, setValue] = useState({ id: null, name: '' })
 
   const setValueHandler = (value: any) => {
     setValue(value)

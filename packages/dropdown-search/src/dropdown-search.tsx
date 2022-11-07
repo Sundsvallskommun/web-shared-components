@@ -78,7 +78,7 @@ export const DropdownSearch = (props: IDropdownSearchProps) => {
           <Combobox.Input
             className={cx('form-field form-field-outline form-field-md', className)}
             onChange={setQueryHandler}
-            displayValue={(item: number) => data.filter((x) => x.id === item)[0].name}
+            displayValue={(item: number) => (item) ? data.filter((x) => x.id === item)[0].name : ''}
             placeholder={placeholder}
           />
           {show && 
