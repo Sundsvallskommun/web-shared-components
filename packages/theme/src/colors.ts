@@ -115,6 +115,13 @@ export const _colors = {
     light: '#A90000',
     active: '#A90000',
   },
+
+  orange: {
+    DEFAULT: '#C16A03',
+    dark: '#C16A03',
+    light: '#F3E1CD',
+    active: '#C16A03',
+  },
 };
 
 // App setup
@@ -209,10 +216,10 @@ export const colors = {
     active: _colors.gronsta.DEFAULT,
   },
   warning: {
-    DEFAULT: '#E8B34D',
-    dark: '#E8B34D',
-    light: '#E8B34D',
-    active: '#E8B34D',
+    DEFAULT: _colors.orange.DEFAULT,
+    dark: _colors.orange.dark,
+    light: _colors.orange.light,
+    active: _colors.orange.DEFAULT,
   },
   error: {
     DEFAULT: _colors.red.DEFAULT,
