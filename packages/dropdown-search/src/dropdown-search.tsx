@@ -1,13 +1,18 @@
 import * as React from 'react';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import { Combobox } from '@headlessui/react'
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useDropdownSearchClass } from './styles';
 
+export interface IData {
+  id: number, 
+  name: string
+}
+
 export interface IDropdownSearchProps {
-  data: {id: number, name: string}[]
-  value: {id: number, name: string}
-  onChange: (value: {id: number, name: string}) => void
+  data: Array<IData>
+  value: IData
+  onChange: (value: IData) => void
   maxAmount: number
   notFoundLabel: string
   className?: string
@@ -64,7 +69,7 @@ export const DropdownSearch = (props: IDropdownSearchProps) => {
   return (
     <div className="DropdownSearch">
       <Combobox 
-        value={value} 
+        value={value.id} 
         onChange={onChangeHandler} 
         as={Fragment} 
         disabled={disabled ? disabled : undefined}
@@ -73,7 +78,7 @@ export const DropdownSearch = (props: IDropdownSearchProps) => {
           <Combobox.Input
             className={cx('form-field form-field-outline form-field-md', className)}
             onChange={setQueryHandler}
-            displayValue={(item: {id: number, name: string}) => item.name}
+            displayValue={(item: IData) => item.name}
             placeholder={placeholder}
           />
           {show && 
@@ -86,7 +91,7 @@ export const DropdownSearch = (props: IDropdownSearchProps) => {
                     {notFoundLabel}
                   </div>
                 ) : ( 
-                  filteredData.slice(0, maxAmount).map((item: any) => (
+                  filteredData.slice(0, maxAmount).map((item: IData) => (
                     <Combobox.Option 
                       key={item.id} 
                       value={item.id} 
