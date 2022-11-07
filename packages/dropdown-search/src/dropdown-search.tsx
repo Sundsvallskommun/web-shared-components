@@ -6,7 +6,7 @@ import { useDropdownSearchClass } from './styles';
 
 export interface IDropdownSearchProps {
   data: {id: number, name: string}[]
-  value: string | number
+  value: {id: number, name: string}
   onChange: (value: {id: number, name: string}) => void
   maxAmount: number
   notFoundLabel: string
