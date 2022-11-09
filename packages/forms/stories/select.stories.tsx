@@ -29,8 +29,8 @@ export const Template = (args: any) => {
         }}
         value={selectedValue}
       >
-        {people.map((person) => (
-          <Option key={person.id} value={{ label: person.name, data: person }} />
+        {people.map((person, index) => (
+          <Option disabled={index === 2} key={person.id} value={{ label: person.name, data: person }} />
         ))}
       </Select>
     </>
