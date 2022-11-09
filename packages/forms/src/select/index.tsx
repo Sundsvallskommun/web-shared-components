@@ -10,10 +10,10 @@ import { DefaultProps } from '@sk-web-gui/theme';
 
 type OptionValueType = { label: string; data: any };
 export interface OptionProps extends DefaultProps {
-  value: OptionValueType;
+  value?: OptionValueType;
 }
 
-export const Option: React.FC<OptionProps> = ({ value }) => <option value={value.data}>{value.label}</option>;
+export const Option: React.FC<OptionProps> = ({ value }) => <option value={value?.data}>{value?.label}</option>;
 
 export interface SelectProps extends Omit<InputProps, 'value'> {
   onChange: (value: any) => void;
@@ -74,14 +74,14 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>((props, r
               <Listbox.Options
                 static
                 style={{ maxHeight: `${defaultOptionsAmount * 50 + 10}px` }}
-                className={cx('form-select-list')}
+                className={cx('form-select-list', listClassName)}
               >
                 {children &&
                   (children as any).map((option: any, index: number) => (
-                    <Listbox.Option key={`form-select-option-${index}`} value={option.props.value} as={Fragment}>
+                    <Listbox.Option key={`form-select-option-${index}`} value={option.props?.value} as={Fragment}>
                       {({ active, selected }) => (
                         <li className={cx('form-select-option', classes, active ? 'active' : '')}>
-                          {option.props.value.label}
+                          {option.props?.value?.label}
                         </li>
                       )}
                     </Listbox.Option>
