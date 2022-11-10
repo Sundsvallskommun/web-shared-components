@@ -5,6 +5,8 @@ import { cx } from '@sk-web-gui/utils';
 import { Link } from '../../react';
 import { MenuItemGroup } from '../src/user-menu';
 
+import PlaceholderImage from '../../../.storybook/public/placeholder_2.png';
+
 export default {
   title: 'WIP/Komponenter/UserMenu',
   component: UserMenu,
@@ -273,7 +275,12 @@ export const Basic = () => (
           {/* <div className="text-lg lg:flex-grow lg:flex lg:items-center lg:justify-center hidden"></div> */}
 
           {/* <div className="block lg:block"> */}
-          <UserMenu menuTitle="Företagsbolaget AB" menuSubTitle="Förnamn Efternamn" menuGroups={menuGroups}></UserMenu>
+          <UserMenu
+            menuTitle="Företagsbolaget AB"
+            menuSubTitle="Förnamn Efternamn"
+            menuGroups={menuGroups}
+            image={PlaceholderImage}
+          ></UserMenu>
           {/* </div> */}
         </div>
       </div>

@@ -20,6 +20,8 @@ interface IUserMenuProps extends DefaultProps {
   children?: React.ReactNode;
   menuTitle: string;
   menuSubTitle: string;
+  image?: string;
+  imageAlt?: string;
 }
 
 export interface UserMenuProps extends React.HTMLAttributes<HTMLDivElement>, IUserMenuProps {
@@ -27,9 +29,19 @@ export interface UserMenuProps extends React.HTMLAttributes<HTMLDivElement>, IUs
 }
 
 export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>((props, ref) => {
-  const { children, className, menuTitle, menuSubTitle, menuGroups, color, ...rest } = props;
+  const {
+    children,
+    className,
+    menuTitle,
+    menuSubTitle,
+    menuGroups,
+    color,
+    image,
+    imageAlt = 'Bild på användare',
+    ...rest
+  } = props;
 
-  const [menuOpen, setMenuOpen] = React.useState(false);
+  const menuWidthClass = image ? 'w-[300px]' : 'w-96';
 
   return (
     <>
@@ -113,10 +125,11 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>((props, 
       </Menu>
       <Menu as="div" className="hidden lg:block">
         {({ open }) => (
-          <div className={cx('w-96 mx-sm relative usermenu', open ? `usermenu-is-open` : undefined)}>
+          <div className={cx(menuWidthClass, 'mx-sm relative usermenu', open ? `usermenu-is-open` : undefined)}>
             <Menu.Button
               className={cx(
-                'usermenu-header w-96 px-md py-sm bg-white border-2 border-solid rounded border-b-0',
+                menuWidthClass,
+                'usermenu-header px-md py-sm bg-white border-2 border-solid rounded border-b-0',
                 open ? `border-gray-300 shadow-none` : `border-transparent`
               )}
             >
@@ -136,24 +149,38 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>((props, 
                   <span>Meny</span>
                 </div>
               </div>
-              <div className="hidden md:block text-left">
-                <div className="font-bold flex flex-between">
-                  <span>{menuTitle}</span>
-                  {open ? (
-                    <ArrowDropUpOutlinedIcon aria-hidden="true" className="!text-2xl ml-auto align-top material-icon" />
-                  ) : (
-                    <ArrowDropDownOutlinedIcon
-                      aria-hidden="true"
-                      className="!text-2xl ml-auto align-top material-icon"
-                    />
-                  )}
+              <div className="hidden md:flex items-center text-left">
+                {image && (
+                  <div
+                    role="img"
+                    aria-label={imageAlt}
+                    style={{ backgroundImage: `url('${image}')` }}
+                    className="bg-cover bg-center flex-shrink-0 text-xs leading-none flex items-center justify-center text-center w-[48px] h-[48px] mr-md rounded-full border-2 border-primary"
+                  ></div>
+                )}
+                <div className="flex-grow">
+                  <div className="font-bold flex flex-between">
+                    <span>{menuTitle}</span>
+                    {open ? (
+                      <ArrowDropUpOutlinedIcon
+                        aria-hidden="true"
+                        className="!text-2xl ml-auto align-top material-icon"
+                      />
+                    ) : (
+                      <ArrowDropDownOutlinedIcon
+                        aria-hidden="true"
+                        className="!text-2xl ml-auto align-top material-icon"
+                      />
+                    )}
+                  </div>
+                  <div className="text-left">{menuSubTitle}</div>
                 </div>
-                <div className="text-left">{menuSubTitle}</div>
               </div>
             </Menu.Button>
             <Menu.Items
               className={cx(
-                'usermenu-body w-96 -mt-2 py-sm absolute bg-white border-2 border-solid rounded border-t-0', // before:my-sm before:mb-lg before:left-1/4 before:content-[''] before:absolute before:top-0 before:h-1px before:w-1/2 before:border-b-2 before:border-gray-300",
+                menuWidthClass,
+                'usermenu-body -mt-2 py-sm absolute bg-white border-2 border-solid rounded border-t-0', // before:my-sm before:mb-lg before:left-1/4 before:content-[''] before:absolute before:top-0 before:h-1px before:w-1/2 before:border-b-2 before:border-gray-300",
                 open ? `border-gray-300 shadow-t-0 shadow-lg` : `border-white`
               )}
             >
