@@ -28,7 +28,8 @@
 										"id": 1280,
 										"label": "Midlanda flygplats Ledning",
 										"path": "/",
-										"level": 6
+										"level": 6,
+										"subItems": null
 									}
 								]
 							}
@@ -50,19 +51,22 @@
 										"id": 1283,
 										"label": "Midlanda Verkstad",
 										"path": "/",
-										"level": 6
+										"level": 6,
+										"subItems": null
 									},
 									{
 										"id": 1286,
 										"label": "*Midlanda Team 5",
 										"path": "/",
-										"level": 6
+										"level": 6,
+										"subItems": null
 									},
 									{
 										"id": 1287,
 										"label": "Midlanda Ramp/Verkstad",
 										"path": "/",
-										"level": 6
+										"level": 6,
+										"subItems": null
 									}
 								]
 							},
@@ -76,7 +80,8 @@
 										"id": 1294,
 										"label": "Midlanda Operations",
 										"path": "/",
-										"level": 6
+										"level": 6,
+										"subItems": null
 									}
 								]
 							},
@@ -90,7 +95,8 @@
 										"id": 1295,
 										"label": "Midlanda Customer Service",
 										"path": "/",
-										"level": 6
+										"level": 6,
+										"subItems": null
 									}
 								]
 							},
@@ -104,7 +110,8 @@
 										"id": 1296,
 										"label": "Midlanda Enhet C",
 										"path": "/",
-										"level": 6
+										"level": 6,
+										"subItems": null
 									}
 								]
 							},
@@ -118,7 +125,8 @@
 										"id": 1298,
 										"label": "Midlanda Fält",
 										"path": "/",
-										"level": 6
+										"level": 6,
+										"subItems": null
 									}
 								]
 							},
@@ -132,7 +140,8 @@
 										"id": 1300,
 										"label": "Midlanda Projekt o Underhåll",
 										"path": "/",
-										"level": 6
+										"level": 6,
+										"subItems": null
 									}
 								]
 							},
@@ -146,7 +155,8 @@
 										"id": 1306,
 										"label": "Midlanda VA Ledning",
 										"path": "/",
-										"level": 6
+										"level": 6,
+										"subItems": null
 									}
 								]
 							}
@@ -168,13 +178,15 @@
 										"id": 1304,
 										"label": "Midlanda FSK/Räddning",
 										"path": "/",
-										"level": 6
+										"level": 6,
+										"subItems": null
 									},
 									{
 										"id": 4237,
 										"label": "Midlanda FSK/Utbildning",
 										"path": "/",
-										"level": 6
+										"level": 6,
+										"subItems": null
 									}
 								]
 							}
@@ -196,7 +208,8 @@
 										"id": 1302,
 										"label": "Midlanda Adm/Marknad",
 										"path": "/",
-										"level": 6
+										"level": 6,
+										"subItems": null
 									}
 								]
 							}
@@ -234,7 +247,8 @@
 										"id": 1297,
 										"label": "*Midlanda Enhet D",
 										"path": "/",
-										"level": 6
+										"level": 6,
+										"subItems": null
 									}
 								]
 							},
@@ -248,7 +262,8 @@
 										"id": 1299,
 										"label": "*Midlanda Tekniska",
 										"path": "/",
-										"level": 6
+										"level": 6,
+										"subItems": null
 									}
 								]
 							}

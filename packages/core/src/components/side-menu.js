@@ -84,80 +84,79 @@ module.exports = Menu = () => ({
                 minHeight: "56px",
             },
 
+            "&.background-white": {
+                "@apply bg-white": {},
+            },
+            "&.background-lightGrey": {
+                "@apply bg-gray-lighter": {},
+            },
+            "&.background-darkerGrey": {
+                "@apply bg-gray-middle": {},
+            },
+
 
 
             "&.lvl-0": {
-                backgroundColor: "#fff",
                 "> .wrapper > .MenuItem-link": {
                     marginLeft: "1rem"
                 }
             },
 
             "&.lvl-1": {
-                backgroundColor: "#F9F9F9",
                 "> .wrapper > .MenuItem-link": {
                     paddingLeft: "2rem"
                 }
             },
 
             "&.lvl-2": {
-                backgroundColor: "#ECECEC",
                 "> .wrapper > .MenuItem-link": {
                     paddingLeft: "3rem"
                 }
             },
 
             "&.lvl-3": {
-                backgroundColor: "#ECECEC",
                 "> .wrapper > .MenuItem-link": {
                     paddingLeft: "4rem"
                 }
             },
 
             "&.lvl-4": {
-                backgroundColor: "#ECECEC",
                 "> .wrapper > .MenuItem-link": {
                     paddingLeft: "5rem"
                 }
             },
 
             "&.lvl-5": {
-                backgroundColor: "#ECECEC",
                 "> .wrapper > .MenuItem-link": {
                     paddingLeft: "6rem"
                 }
             },
 
             "&.lvl-6": {
-                backgroundColor: "#ECECEC",
                 "> .wrapper > .MenuItem-link": {
                     paddingLeft: "7rem"
                 }
             },
 
             "&.lvl-7": {
-                backgroundColor: "#ECECEC",
                 "> .wrapper > .MenuItem-link": {
                     paddingLeft: "8rem"
                 }
             },
             
             "&.lvl-8": {
-                backgroundColor: "#ECECEC",
                 "> .wrapper > .MenuItem-link": {
                     paddingLeft: "9rem"
                 }
             },
 
             "&.lvl-9": {
-                backgroundColor: "#ECECEC",
                 "> .wrapper > .MenuItem-link": {
                     paddingLeft: "10rem"
                 }
             },
 
             "&.lvl-10": {
-                backgroundColor: "#ECECEC",
                 "> .wrapper > .MenuItem-link": {
                     paddingLeft: "11rem"
                 }
