@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.23](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/user-menu@0.1.22...@sk-web-gui/user-menu@0.1.23) (2022-11-17)
+
+**Note:** Version bump only for package @sk-web-gui/user-menu
+
 ## [0.1.22](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/user-menu@0.1.21...@sk-web-gui/user-menu@0.1.22) (2022-11-07)
 
 **Note:** Version bump only for package @sk-web-gui/user-menu
