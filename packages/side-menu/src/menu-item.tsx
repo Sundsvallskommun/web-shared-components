@@ -18,7 +18,6 @@ export const MenuItem = (props: IMenuExtended) => {
   const { itemData, id, label, path, level, subItems, linkCallback, active, activeCallback } = props;
 
   const [open, setOpen] = useState<boolean>(false);
-  const [levelColor, setlevelColor] = useState<string>();
 
   //const transitionTime = 0 // ms
   //const delayComponent = useUnmountDelay(open, transitionTime)
@@ -51,22 +50,20 @@ export const MenuItem = (props: IMenuExtended) => {
   }, [active]);
 
   //setting grayscale depending on subitems and level
-  useEffect(() => {
-    let color;
-    if (itemData.level > 2) {
-      if (!itemData.subItems || itemData.subItems === null) {
-        color = 'background-darkerGrey';
-      } else if (itemData.subItems !== null) {
-        color = 'background-lightGrey';
-      }
-    } else if (itemData.level == 2) {
-      color = 'white';
+
+  let color;
+  if (itemData.level > 2) {
+    if (!itemData.subItems || itemData.subItems === null) {
+      color = 'background-darkerGrey';
+    } else if (itemData.subItems !== null) {
+      color = 'background-lightGrey';
     }
-    setlevelColor(color);
-  }, [levelColor]);
+  } else if (itemData.level == 2) {
+    color = 'white';
+  }
 
   return (
-    <div className={cx('MenuItem', 'lvl-' + level, levelColor, { open: subItems && open }, { active: active === id })}>
+    <div className={cx('MenuItem', 'lvl-' + level, color, { open: subItems && open }, { active: active === id })}>
       <div className="wrapper">
         {path ? (
           <a className="MenuItem-link" href={path}>
