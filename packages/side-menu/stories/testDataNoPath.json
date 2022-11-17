@@ -29,7 +29,8 @@
 									{
 										"id": 1280,
 										"label": "Midlanda flygplats Ledning",
-										"level": 6
+										"level": 6,
+										"subItems": null
 									}
 								]
 							}

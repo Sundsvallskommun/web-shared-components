@@ -50,6 +50,7 @@ export const MenuItem = (props: IMenuExtended) => {
     }
   }, [active]);
 
+  //setting grayscale depending on subitems and level
   useEffect(() => {
     let color;
     if (itemData.level > 2) {

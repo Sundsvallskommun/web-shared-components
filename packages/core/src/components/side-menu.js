@@ -87,9 +87,11 @@ module.exports = Menu = () => ({
             "&.background-white": {
                 "@apply bg-white": {},
             },
+
             "&.background-lightGrey": {
                 "@apply bg-gray-lighter": {},
             },
+            
             "&.background-darkerGrey": {
                 "@apply bg-gray-middle": {},
             },

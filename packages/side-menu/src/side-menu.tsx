@@ -43,7 +43,7 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
       </div>
       {!loading &&
         menuData &&
-        menuData.map(item => (
+        menuData.map((item) => (
           <MenuItem
             itemData={item}
             key={item.id}
