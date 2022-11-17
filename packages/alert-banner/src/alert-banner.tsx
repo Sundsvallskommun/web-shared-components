@@ -5,7 +5,7 @@ import React from 'react';
 import { __DEV__ } from '@sk-web-gui/utils';
 
 interface AlertBannerProps {
-  message: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
   /** For example a max-width to match site content max-width */
   contentClassName?: string;
@@ -18,7 +18,7 @@ interface AlertBannerProps {
 
 export const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>((props, ref) => {
   const {
-    message,
+    children,
     className = '',
     contentClassName = '',
     severity = 'info',
@@ -78,7 +78,7 @@ export const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>((p
           <span className={`alert-banner-icon ${iconColor}`}>
             <ErrorIcon className="!text-2xl" />
           </span>
-          <div className="alert-banner-message">{message}</div>
+          <div className="alert-banner-message">{children}</div>
         </div>
         {showClose && (
           <button className="alert-banner-close" aria-label={closeAriaLabel} onClick={handleOnClose}>
