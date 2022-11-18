@@ -30,6 +30,7 @@ module.exports = Menu = () => ({
         ".MenuItem": {
             borderTop: "1px solid #939393",
             transition: "500ms ease",
+            "@apply bg-white": {},
             
             "&.active": {
                 "> .wrapper": {
@@ -84,9 +85,6 @@ module.exports = Menu = () => ({
                 minHeight: "56px",
             },
 
-            "&.background-white": {
-                "@apply bg-white": {},
-            },
 
             "&.background-lightGrey": {
                 "@apply bg-gray-lighter": {},

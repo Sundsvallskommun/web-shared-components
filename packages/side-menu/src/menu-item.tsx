@@ -58,8 +58,6 @@ export const MenuItem = (props: IMenuExtended) => {
     } else if (itemData.subItems !== null) {
       color = 'background-lightGrey';
     }
-  } else if (itemData.level == 2) {
-    color = 'white';
   }
 
   return (
