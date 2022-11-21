@@ -13,7 +13,7 @@ export interface OptionProps extends Omit<InputProps, 'value'> {
   value?: OptionValueType;
 }
 
-export const Option: React.FC<OptionProps> = ({ value }) => <option value={value?.data}>{value?.label}</option>;
+const Option: React.FC<OptionProps> = ({ value }) => <option value={value?.data}>{value?.label}</option>;
 
 export interface SelectProps extends Omit<InputProps, 'value'> {
   onChange: (value: any) => void;
@@ -22,7 +22,7 @@ export interface SelectProps extends Omit<InputProps, 'value'> {
   value?: OptionValueType;
 }
 
-export const Select = React.forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
+const InternalSelect = React.forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
   const {
     className,
     listClassName,
@@ -111,5 +111,15 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>((props, r
 });
 
 if (__DEV__) {
-  Select.displayName = 'Select';
+  InternalSelect.displayName = 'Select';
 }
+
+interface Select extends React.ForwardRefExoticComponent<SelectProps & React.RefAttributes<HTMLElement>> {
+  Option: typeof Option;
+}
+
+const Select = InternalSelect as Select;
+
+Select.Option = Option;
+
+export { Select, Option };

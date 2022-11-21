@@ -1,5 +1,6 @@
+import React from 'react';
 import { useState } from 'react';
-import { Option, Select } from '../src';
+import { Select } from '../src';
 
 export default {
   title: 'Komponenter/Dropdown/Komponent',
@@ -30,7 +31,7 @@ export const Template = (args: any) => {
         value={selectedValue}
       >
         {people.map((person, index) => (
-          <Option disabled={index === 2} key={person.id} value={{ label: person.name, data: person }} />
+          <Select.Option disabled={index === 2} key={person.id} value={{ label: person.name, data: person }} />
         ))}
       </Select>
     </>
