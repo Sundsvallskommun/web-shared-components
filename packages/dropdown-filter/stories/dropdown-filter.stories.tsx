@@ -19,38 +19,44 @@ export const Template = (args: any) => {
       id: 2,
       name: 'filter 2',
       value: false,
-      disabled: true
+      disabled: true,
+    },
+    {
+      id: 2,
+      name: 'filter 2',
+      value: true,
+      disabled: true,
     },
     {
       id: 3,
       name: 'filter 3',
-      value: true
+      value: true,
     },
     {
       id: 4,
       name: 'filter 4',
-      value: false
-    }
-  ]
+      value: false,
+    },
+  ];
 
-  const [filterData, setFilterData] = useState(cleanState)
+  const [filterData, setFilterData] = useState(cleanState);
 
-  return(
-    <div style={{minHeight: 300}}>
-      <DropdownFilter {...args } filterData={filterData} onFilterChange={setFilterData}/>
+  return (
+    <div style={{ minHeight: 300 }}>
+      <DropdownFilter {...args} filterData={filterData} onFilterChange={setFilterData} />
     </div>
   );
-}
+};
 
 Template.storyName = 'DropdownFilter';
 
 Template.argTypes = {
   label: {
-    type: { 
-      name: 'string', 
-      required: false 
+    type: {
+      name: 'string',
+      required: false,
     },
     description: 'Label',
     defaultValue: 'Filter label',
-  }
-}
+  },
+};

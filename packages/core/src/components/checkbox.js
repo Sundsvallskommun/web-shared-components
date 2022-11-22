@@ -96,8 +96,8 @@ module.exports = Checkbox = (colors, theme) => ({
     },
 
     // disabled
-    '&-disabled': {
-      backgroundColor: '#ECECEC',
+    '&-disabled, &-disabled:checked': {
+      '@apply grayscale cursor-not-allowed bg-gray-middle hover:bg-gray-middle': {},
       //"@apply disabled:bg-gray-stroke": {},
       //"@apply disabled:shadow-none disabled:border-neutral-300 disabled:bg-neutral-300 disabled:hover:text-neutral-300": {},
       //"@apply dark:disabled:border-transparent dark:disabled:bg-white/20 dark:disabled:hover:text-white/20": {},

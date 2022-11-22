@@ -86,7 +86,7 @@ export const DropdownFilter = React.forwardRef<HTMLDivElement, IDropdownFilter>(
         </span>
       </button>
       {open && (
-        <div className="fitler-container">
+        <div className="filter-container">
           <div className="filter-controls">
             <button onClick={showAllHandler}>Visa alla</button>
             <button onClick={hideAllHandler}>Dölj alla</button>
