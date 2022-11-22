@@ -15,8 +15,8 @@ export interface OptionProps extends Omit<InputProps, 'value'> {
 
 const Option: React.FC<OptionProps> = ({ value }) => <option value={value?.data}>{value?.label}</option>;
 
-export interface SelectProps extends Omit<InputProps, 'value'> {
-  onChange: (value: any) => void;
+export interface SelectProps extends Omit<InputProps, 'value' | 'onChange'> {
+  onChange: (value: OptionValueType) => void;
   listClassName?: string;
   defaultOptionsAmount?: number;
   value?: OptionValueType;
@@ -43,7 +43,7 @@ const InternalSelect = React.forwardRef<HTMLSelectElement, SelectProps>((props, 
 
   const classes = useSelectClass({ size, disabled });
 
-  const handleOnChange = (value: any) => {
+  const handleOnChange = (value: OptionValueType) => {
     setSelectedValue(value);
     onChange && onChange(value);
   };
