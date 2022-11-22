@@ -41,7 +41,6 @@
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.10.0",
-    "@sk-web-gui/forms": "0.1.14",
     "@sk-web-gui/theme": "0.1.9",
     "@sk-web-gui/utils": "0.1.4",
     "@sk-web-gui/visually-hidden": "0.1.3"

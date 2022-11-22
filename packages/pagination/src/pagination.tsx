@@ -1,4 +1,4 @@
-import { colors, DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/theme';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import React, { useEffect, useState } from 'react';
 import KeyboardDoubleArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftOutlined';
@@ -17,7 +17,7 @@ export interface IPaginationProps extends DefaultProps {
   size?: 'sm' | 'md' | 'lg';
 }
 
-export interface PaginationProps extends React.HTMLAttributes<HTMLDivElement>, IPaginationProps { }
+export interface PaginationProps extends React.HTMLAttributes<HTMLDivElement>, IPaginationProps {}
 
 export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((props, ref) => {
   const { pages = 1, activePage = 1, changePage, children, size = 'md', ...rest } = props;
