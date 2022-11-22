@@ -1,19 +1,28 @@
-import { cx, __DEV__ } from '@sk-web-gui/utils';
-import * as React from 'react';
 import { Listbox } from '@headlessui/react';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { cx, __DEV__ } from '@sk-web-gui/utils';
+import * as React from 'react';
 
+import { Fragment, useEffect, useState } from 'react';
 import { Input, InputProps } from '../input/input';
-import { Fragment, useEffect, useRef, useState } from 'react';
 import { useSelectClass } from './styles';
 
-export type SelectProps = Omit<InputProps, 'onChange'> & {
-  onChange: (value: string) => void;
+type OptionValueType = { label: string; data: any };
+
+export interface OptionProps extends Omit<InputProps, 'value'> {
+  value?: OptionValueType;
+}
+
+const Option: React.FC<OptionProps> = ({ value }) => <option value={value?.data}>{value?.label}</option>;
+
+export interface SelectProps extends Omit<InputProps, 'value'> {
+  onChange: (value: any) => void;
   listClassName?: string;
   defaultOptionsAmount?: number;
-};
+  value?: OptionValueType;
+}
 
-export const Select = React.forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
+const InternalSelect = React.forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
   const {
     className,
     listClassName,
@@ -26,7 +35,11 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>((props, r
     size = 'md',
     ...rest
   } = props;
-  const [selectedValue, setSelectedValue] = useState(value ? value : '');
+  const [selectedValue, setSelectedValue] = useState<OptionValueType | undefined>(value);
+
+  useEffect(() => {
+    setSelectedValue(value);
+  }, [value]);
 
   const classes = useSelectClass({ size, disabled });
 
@@ -35,23 +48,10 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>((props, r
     onChange && onChange(value);
   };
 
-  useEffect(() => {
-    if (value) {
-      setSelectedValue(value as string);
-    }
-  }, [value]);
-
   return (
     <Listbox value={selectedValue} onChange={handleOnChange} as={Fragment} disabled={disabled ? disabled : undefined}>
       {({ open }) => (
         <div className="form-select-wrapper block w-full relative">
-          <Input
-            type="hidden"
-            ref={ref}
-            value={selectedValue}
-            disabled={disabled ? disabled : undefined}
-            aria-disabled={disabled ? disabled : undefined}
-          />
           <Listbox.Button as={Fragment}>
             <Input
               ref={ref}
@@ -63,7 +63,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>((props, r
               className={cx('form-select', className)}
               {...rest}
             >
-              {selectedValue ? selectedValue : placeholder}
+              {selectedValue ? selectedValue.label : placeholder}
               {<ArrowDropDownIcon className={`!text-2xl absolute right-4 ${open ? 'rotate-180' : ''}`} />}
             </Input>
           </Listbox.Button>
@@ -74,15 +74,34 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>((props, r
               className={cx('form-select-list', listClassName)}
             >
               {children &&
-                (children as any).map((option: any, index: number) => (
-                  <Listbox.Option key={`form-select-option-${index}`} value={option.props.children} as={Fragment}>
-                    {({ active, selected }) => (
-                      <li className={cx('form-select-option', classes, active ? 'active' : '')}>
-                        {option.props.children}
-                      </li>
-                    )}
-                  </Listbox.Option>
-                ))}
+                (children as any).map((option: any, index: number) => {
+                  const { value, disabled, className, ...rest } = option.props;
+                  return (
+                    <Listbox.Option
+                      key={`form-select-option-${index}`}
+                      value={option.props?.value}
+                      disabled={option.props.disabled}
+                      as={Fragment}
+                    >
+                      {({ active, selected }) => (
+                        <li
+                          className={cx(
+                            'form-select-option',
+                            classes,
+                            className,
+                            option.props.disabled
+                              ? 'opacity-75 cursor-not-allowed hover:bg-white hover:text-black'
+                              : '',
+                            active ? 'active' : ''
+                          )}
+                          {...rest}
+                        >
+                          {option.props?.value?.label}
+                        </li>
+                      )}
+                    </Listbox.Option>
+                  );
+                })}
             </Listbox.Options>
           )}
         </div>
@@ -92,5 +111,15 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>((props, r
 });
 
 if (__DEV__) {
-  Select.displayName = 'Select';
+  InternalSelect.displayName = 'Select';
 }
+
+interface Select extends React.ForwardRefExoticComponent<SelectProps & React.RefAttributes<HTMLElement>> {
+  Option: typeof Option;
+}
+
+const Select = InternalSelect as Select;
+
+Select.Option = Option;
+
+export { Select, Option };
