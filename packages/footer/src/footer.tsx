@@ -30,19 +30,17 @@ export const Footer = React.forwardRef<any, FooterProps>((props, ref) => {
   } = props;
 
   return (
-    <>
-      <footer className={cx('footer', wrapperClasses)} {...rest}>
-        <div data-color={color} className="footer-innerwrapper">
-          <div className={cx(className, 'footer-content')}>{children}</div>
-        </div>
+    <footer ref={ref} className={cx('footer', wrapperClasses)} {...rest}>
+      <div data-color={color} className="footer-innerwrapper">
+        <div className={cx(className, 'footer-content')}>{children}</div>
+      </div>
 
-        {bottomLinks && (
-          <div className="footer-bottomlinks" data-color={bottomLinksColor}>
-            <div className={cx(bottomLinksClasses, 'footer-bottomlinks-container')}>{bottomLinks}</div>
-          </div>
-        )}
-      </footer>
-    </>
+      {bottomLinks && (
+        <div className="footer-bottomlinks" data-color={bottomLinksColor}>
+          <div className={cx(bottomLinksClasses, 'footer-bottomlinks-container')}>{bottomLinks}</div>
+        </div>
+      )}
+    </footer>
   );
 });
 
