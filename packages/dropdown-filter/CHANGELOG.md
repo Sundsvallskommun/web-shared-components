@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.13](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/dropdown-filter@0.1.12...@sk-web-gui/dropdown-filter@0.1.13) (2022-11-22)
+
+**Note:** Version bump only for package @sk-web-gui/dropdown-filter
+
 ## [0.1.12](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/dropdown-filter@0.1.11...@sk-web-gui/dropdown-filter@0.1.12) (2022-11-08)
 
 **Note:** Version bump only for package @sk-web-gui/dropdown-filter
