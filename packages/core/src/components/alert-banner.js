@@ -14,8 +14,8 @@ module.exports = Modal = () => ({
       '@apply mr-[10px]': {},
     },
 
-    '&-message': {
-      '@apply underline inline-block max-w-[800px] text-body text-base': {},
+    '&-children': {
+      '@apply w-full underline inline-block max-w-[800px] text-body text-base': {},
     },
 
     '&-close': {

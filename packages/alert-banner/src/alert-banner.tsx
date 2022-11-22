@@ -9,6 +9,8 @@ interface AlertBannerProps {
   className?: string;
   /** For example a max-width to match site content max-width */
   contentClassName?: string;
+  /** For example a max-width override */
+  childrenClassName?: string;
   severity?: 'neutral' | 'info' | 'warning' | 'error';
   showClose?: boolean;
   fromDate?: Date;
@@ -21,6 +23,7 @@ export const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>((p
     children,
     className = '',
     contentClassName = '',
+    childrenClassName = '',
     severity = 'info',
     showClose = true,
     closeAriaLabel,
@@ -78,7 +81,7 @@ export const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>((p
           <span className={`alert-banner-icon ${iconColor}`}>
             <ErrorIcon className="!text-2xl" />
           </span>
-          <div className="alert-banner-message">{children}</div>
+          <div className={`${childrenClassName} alert-banner-children`}>{children}</div>
         </div>
         {showClose && (
           <button className="alert-banner-close" aria-label={closeAriaLabel} onClick={handleOnClose}>

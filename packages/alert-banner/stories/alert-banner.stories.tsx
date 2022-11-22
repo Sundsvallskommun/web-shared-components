@@ -9,7 +9,7 @@ export default {
   parameters: { controls: { hideNoControlsWarning: true } },
 } as Meta;
 
-export const Template = ({ text, ...args }: any) => {
+export const Template = ({ text, children, ...args }: any) => {
   const localstorageKey = 'alert-banner-is-open';
   const [open, setOpen] = useLocalStorageValue(localstorageKey, true, {
     storeDefaultValue: true,
@@ -25,7 +25,7 @@ export const Template = ({ text, ...args }: any) => {
       <button className="link mb-md" onClick={handleReset}>
         Reset
       </button>
-      <AlertBanner {...args} />
+      <AlertBanner {...args}>{children}</AlertBanner>
     </>
   );
 };
@@ -33,7 +33,7 @@ export const Template = ({ text, ...args }: any) => {
 Template.storyName = 'Alert-banner';
 
 Template.argTypes = {
-  message: {
+  children: {
     type: { name: 'string', required: false },
     description: 'Sets message',
     control: 'text',
@@ -59,6 +59,12 @@ Template.argTypes = {
   contentClassName: {
     type: { name: 'string', required: false },
     description: 'Sets className for content',
+    control: 'text',
+    defaultValue: undefined,
+  },
+  childrenClassName: {
+    type: { name: 'string', required: false },
+    description: 'Sets className for children',
     control: 'text',
     defaultValue: undefined,
   },
