@@ -21,6 +21,8 @@ export interface TagProps extends DefaultProps {
   deleteCallback?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   /* React node */
   children?: React.ReactNode;
+  /* Classnames */
+  className?: string;
 }
 
 export const Tag = React.forwardRef<any, TagProps>((props, ref) => {
@@ -32,6 +34,7 @@ export const Tag = React.forwardRef<any, TagProps>((props, ref) => {
     useDeleteButton,
     deleteAriaLabel,
     deleteCallback,
+    className,
     ...rest
   } = props;
 
@@ -42,14 +45,14 @@ export const Tag = React.forwardRef<any, TagProps>((props, ref) => {
 
   if (href) {
     return (
-      <a href={href} className={cx(classes)} {...rest}>
+      <a href={href} className={cx(className, classes)} {...rest}>
         <span className="tag-text">{children}</span>
       </a>
     );
   }
 
   return (
-    <div className={cx(classes)} {...rest}>
+    <div className={cx(className, classes)} {...rest}>
       <span className="tag-text">{children}</span>
       {useDeleteButton && (
         <Button type="button" onClick={deleteCallback} className="tag-close-button" aria-label={deleteAriaLabel}>
