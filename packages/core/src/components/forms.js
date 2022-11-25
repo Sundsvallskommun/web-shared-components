@@ -211,9 +211,9 @@ module.exports = Forms = (colors) => ({
       padding: '1.32rem 1.76rem',
     },
 
-    '&-disabled': {
-      '@apply disabled:cursor-not-allowed': {},
-      '@apply disabled:bg-gray-lighter': {},
+    '&-disabled, &&-disabled': {
+      '@apply disabled:cursor-not-allowed cursor-not-allowed': {},
+      '@apply disabled:bg-gray-lighter bg-gray-lighter': {},
       //"@apply disabled:shadow-none disabled:cursor-not-allowed disabled:opacity-60": {},
       //"@apply disabled:border-neutral-200 disabled:bg-neutral-200": {},
       //"@apply dark:disabled:border-transparent dark:disabled:bg-white/20": {},
