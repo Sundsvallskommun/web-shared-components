@@ -10,6 +10,8 @@ export interface HeaderProps extends DefaultProps {
   children?: React.ReactNode;
   /* Wrapper for Logo-link, for example Next-Link */
   LogoLinkWrapperComponent?: React.ReactElement;
+  /* onClick for Logo-link */
+  logoLinkOnClick?: () => void;
   /* NotificationsAlert component */
   notificationsAlert?: React.ReactNode;
   /* UserMenu component */
@@ -28,6 +30,7 @@ export const Header = React.forwardRef<any, HeaderProps>((props, ref) => {
     className,
     children,
     LogoLinkWrapperComponent,
+    logoLinkOnClick,
     notificationsAlert,
     userMenu,
     borderColor = 'primary',
@@ -43,6 +46,11 @@ export const Header = React.forwardRef<any, HeaderProps>((props, ref) => {
     return children;
   };
 
+  const handleLogoLinkOnClick = (e: React.BaseSyntheticEvent) => {
+    e.preventDefault();
+    logoLinkOnClick && logoLinkOnClick();
+  };
+
   return (
     <>
       <nav {...rest} className={cx('header', wrapperClasses)} data-color={borderColor}>
@@ -50,7 +58,12 @@ export const Header = React.forwardRef<any, HeaderProps>((props, ref) => {
           <div className={cx('header-content', className)}>
             {title && (
               <LinkWrapper wrapper={LogoLinkWrapperComponent}>
-                <Link className="no-underline" aria-label={`Till startsidan för ${title}`}>
+                <Link
+                  href="/"
+                  onClick={logoLinkOnClick ? handleLogoLinkOnClick : undefined}
+                  className="no-underline"
+                  aria-label={`Till startsidan för ${title}`}
+                >
                   <div className="flex items-center cursor-pointer">
                     <div className="lg:hidden">
                       <svg

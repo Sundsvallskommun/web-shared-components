@@ -13,7 +13,7 @@ export default {
 } as Meta;
 
 export const Template = ({ ...args }: any) => {
-  const [active, setActive] = useState<number>();
+  const [active, setActive] = useState<number>(1280);
 
   const goDeepHandler = () => {
     setActive(1277);
@@ -38,7 +38,12 @@ export const Template = ({ ...args }: any) => {
         Active Deep
       </button>
 
-      <SideMenu {...args} linkCallback={linkCallbackHandler} active={active} />
+      <SideMenu
+        {...args}
+        linkCallback={linkCallbackHandler}
+        active={active}
+        labelCallback={() => console.log('labelCallback')}
+      />
     </div>
   );
 };
@@ -70,6 +75,14 @@ Template.argTypes = {
     },
     description: 'Name of menu',
     defaultValue: 'Menu label (254)',
+  },
+  closeNoneActive: {
+    type: {
+      name: 'boolean',
+      required: false,
+    },
+    description: 'Close non active menuitems when active id changes',
+    defaultValue: true,
   },
 };
 

@@ -14,9 +14,8 @@ export const Template = ({ ...args }: any) => {
     <Header
       {...args}
       className=" !max-w-[156rem]"
-      // LogoLinkWrapperComponent={
-      //   <a href='/start' />
-      // }
+      // logoLinkOnClick={() => console.log('test')}
+      // LogoLinkWrapperComponent={<a href="/start" />}
       userMenu={<UserMenu menuTitle="User menu" menuSubTitle="" menuGroups={[]} />}
     ></Header>
   );
