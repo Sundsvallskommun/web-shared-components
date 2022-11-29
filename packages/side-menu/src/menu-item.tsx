@@ -5,22 +5,19 @@ import React, { useEffect, useState } from 'react';
 import MinusIcon from './assets/MinusIcon';
 import PlusIcon from './assets/PlusIcon';
 import { IDataObject, IMenu } from './side-menu';
-//import useUnmountDelay from './delay-unmounting';
 
 export interface IMenuExtended extends IMenu {
   itemData: any;
   active: string | number;
   linkCallback: (data: IDataObject) => void;
-  activeCallback: () => void;
+  /* Closes non active trees in the menu. Default is true. */
+  closeNoneActive: boolean;
 }
 
 export const MenuItem = (props: IMenuExtended) => {
-  const { itemData, id, label, path, level, subItems, linkCallback, active, activeCallback } = props;
+  const { itemData, id, label, path, level, subItems, linkCallback, active, closeNoneActive = true } = props;
 
   const [open, setOpen] = useState<boolean>(false);
-
-  //const transitionTime = 0 // ms
-  //const delayComponent = useUnmountDelay(open, transitionTime)
 
   const expandHandler = () => {
     setOpenHandler(!open);
@@ -35,28 +32,34 @@ export const MenuItem = (props: IMenuExtended) => {
     linkCallback(itemData);
   };
 
-  // Child is open
-  const activeCallbackHandler = () => {
-    setOpen(true);
-    activeCallback();
+  const hasActiveChild = (item: IMenu, activeId: number | string): boolean => {
+    if (item.id === activeId) {
+      return true;
+    } else if (item.subItems && item.subItems.length > 0) {
+      return item.subItems.some((subItem: IMenu) => {
+        return hasActiveChild(subItem, activeId);
+      });
+    }
+    return false;
   };
 
-  // Current item is active
   useEffect(() => {
-    if (active === id) {
+    if (hasActiveChild(itemData, active)) {
       setOpen(true);
-      activeCallback();
+    } else {
+      if (closeNoneActive) {
+        setOpen(false);
+      }
     }
   }, [active]);
 
-  //setting grayscale depending on subitems and level
-
+  // Setting grayscale depending on subitems and level
   let color;
   if (itemData.level > 2) {
     if (!itemData.subItems || itemData.subItems === null) {
-      color = 'background-darkerGrey';
+      color = 'isLeafNode';
     } else if (itemData.subItems !== null) {
-      color = 'background-lightGrey';
+      color = 'isSubNode';
     }
   }
 
@@ -94,10 +97,11 @@ export const MenuItem = (props: IMenuExtended) => {
                 label={item.label}
                 path={item.path}
                 active={active}
-                activeCallback={activeCallbackHandler}
+                // activeCallback={activeCallbackHandler}
                 level={level + 1}
                 subItems={item.subItems}
                 linkCallback={linkCallback}
+                closeNoneActive={closeNoneActive}
               />
             ))}
         </div>

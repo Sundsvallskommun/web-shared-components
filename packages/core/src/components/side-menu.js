@@ -1,167 +1,159 @@
 module.exports = Menu = () => ({
-    ".SideMenu": {
-        width: "440px",
-        border: "1px solid #939393",
-        borderRadius: "2px",
+  '.SideMenu': {
+    '@apply w-[440px]': {},
 
-        ".menu-header": {
-            padding: "3rem 1rem 1.8rem", 
-            backgroundColor: "#005595",
-            padding: "2rem 1rem",
+    '.menu-header': {
+      '@apply py-[2rem] px-[1.6rem] bg-primary text-white': {},
 
-            "label": {
-                fontSize: "20px",
-                fontWeight: 700,
-                color: "#fff" 
-            },
+      'label, .label': {
+        '@apply text-xl font-bold text-white': {},
+      },
 
-            ".label-header": {
-                display: "flex",
-                alignItems: "center",
+      '.label-button': {
+        '@apply w-full justify-between p-0': {},
 
+        '&-icon': {
+          '@apply !text-xl': {},
+        },
+      },
 
-                "span": {
-                    marginLeft: "auto"
-                }
-            },
+      '.label-header': {
+        '@apply flex items-center': {},
+
+        span: {
+          '@apply ml-auto': {},
+        },
+      },
+    },
+
+    '.menu-body': {
+      '@apply border border-gray-stroke': {},
+      '>.MenuItem:first-child': {
+        '@apply border-t-0': {},
+      },
+    },
+
+    '.MenuItem': {
+      '@apply bg-white h-full border-t border-gray-stroke': {},
+
+      '.items': {
+        '@apply block': {},
+      },
+
+      '&.active': {
+        '> .wrapper': {
+          boxShadow: 'inset 6px 0 0 0 #005595',
+
+          '> .MenuItem-link': {
+            '@apply underline': {},
+          },
+        },
+      },
+
+      '.wrapper': {
+        '@apply flex items-center': {},
+
+        '.MenuItem-link': {
+          '@apply flex-grow text-left justify-start py-sm pr-[15px] h-full': {},
         },
 
-        
-        ".MenuItem": {
-            borderTop: "1px solid #939393",
-            transition: "500ms ease",
-            "@apply bg-white": {},
-            
-            "&.active": {
-                "> .wrapper": {
-                    boxShadow: "inset 6px 0 0 0 #005595",
-                    
-                    "> .MenuItem-link": {
-                        fontWeight: 600,
-                    }
-                } 
-            },
+        '.expand': {
+          '@apply w-[50px] h-full flex justify-center items-center ml-auto p-0': {},
 
-            ".wrapper": {
-                minHeight: "64px",
-                display: "flex",
-                alignItems: "center",
+          span: {
+            '@apply flex justify-center items-center border-l border-gray-stroke h-[24px] w-[45px]': {},
+          },
+        },
+      },
 
-                ".MenuItem-link": {
-                    "@apply flex-grow text-left justify-start pr-[15px] h-full":{}
-                },
-                
-                ".expand": {
-                    width: "50px",
-                    height: "64px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    marginLeft: "auto",
-                    padding: 0,
-                    
-                    "span": {
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        borderLeft: "1px solid",
-                        height: '24px',
-                        width: '45px'
-                    }
-                }
-            },
+      '&.lvl-1, &.lvl-2, &.lvl-3, &.lvl-4, &.lvl-5, &.lvl-6, &.lvl-7, &.lvl-8, &.lvl-9, &.lvl-10': {
+        // '.MenuItem-link ': {
+        //   '@apply py-sm': {},
+        // },
+        // '@apply py-sm': {},
+        '> .wrapper ': {
+          '@apply min-h-[48px]': {},
+        },
+      },
 
-            "&.open": {
-                "> .wrapper": {
-                    boxShadow: "inset 6px 0 0 0 #005595"
-                },
+      '&.isSubNode': {
+        '@apply bg-gray-lighter': {},
+      },
 
-                "> .items": {
-                    height: "unset"
-                }
-            },
+      '&.isLeafNode': {
+        '@apply bg-gray-middle': {},
+      },
 
-            "&.lvl-1, &.lvl-2, &.lvl-3, &.lvl-4, &.lvl-5, &.lvl-6, &.lvl-7, &.lvl-8, &.lvl-9, &.lvl-10": {
-                minHeight: "56px",
-            },
+      '&.lvl-0': {
+        '> .wrapper ': {
+          '@apply min-h-[64px]': {},
 
+          '> .MenuItem-link': {
+            '@apply py-md': {},
+            paddingLeft: '3.2rem',
+          },
+        },
+      },
 
-            "&.background-lightGrey": {
-                "@apply bg-gray-lighter": {},
-            },
-            
-            "&.background-darkerGrey": {
-                "@apply bg-gray-middle": {},
-            },
+      '&.lvl-1': {
+        '> .wrapper > .MenuItem-link': {
+          paddingLeft: '4.8rem',
+        },
+      },
 
+      '&.lvl-2': {
+        '> .wrapper > .MenuItem-link': {
+          paddingLeft: '6.4rem',
+        },
+      },
 
+      '&.lvl-3': {
+        '> .wrapper > .MenuItem-link': {
+          paddingLeft: '8rem',
+        },
+      },
 
-            "&.lvl-0": {
-                "> .wrapper > .MenuItem-link": {
-                    marginLeft: "1rem"
-                }
-            },
+      '&.lvl-4': {
+        '> .wrapper > .MenuItem-link': {
+          paddingLeft: '9.6rem',
+        },
+      },
 
-            "&.lvl-1": {
-                "> .wrapper > .MenuItem-link": {
-                    paddingLeft: "2rem"
-                }
-            },
+      '&.lvl-5': {
+        '> .wrapper > .MenuItem-link': {
+          paddingLeft: '11.2rem',
+        },
+      },
 
-            "&.lvl-2": {
-                "> .wrapper > .MenuItem-link": {
-                    paddingLeft: "3rem"
-                }
-            },
+      '&.lvl-6': {
+        '> .wrapper > .MenuItem-link': {
+          paddingLeft: '12.8rem',
+        },
+      },
 
-            "&.lvl-3": {
-                "> .wrapper > .MenuItem-link": {
-                    paddingLeft: "4rem"
-                }
-            },
+      '&.lvl-7': {
+        '> .wrapper > .MenuItem-link': {
+          paddingLeft: '14.4rem',
+        },
+      },
 
-            "&.lvl-4": {
-                "> .wrapper > .MenuItem-link": {
-                    paddingLeft: "5rem"
-                }
-            },
+      '&.lvl-8': {
+        '> .wrapper > .MenuItem-link': {
+          paddingLeft: '16rem',
+        },
+      },
 
-            "&.lvl-5": {
-                "> .wrapper > .MenuItem-link": {
-                    paddingLeft: "6rem"
-                }
-            },
+      '&.lvl-9': {
+        '> .wrapper > .MenuItem-link': {
+          paddingLeft: '17.6rem',
+        },
+      },
 
-            "&.lvl-6": {
-                "> .wrapper > .MenuItem-link": {
-                    paddingLeft: "7rem"
-                }
-            },
-
-            "&.lvl-7": {
-                "> .wrapper > .MenuItem-link": {
-                    paddingLeft: "8rem"
-                }
-            },
-            
-            "&.lvl-8": {
-                "> .wrapper > .MenuItem-link": {
-                    paddingLeft: "9rem"
-                }
-            },
-
-            "&.lvl-9": {
-                "> .wrapper > .MenuItem-link": {
-                    paddingLeft: "10rem"
-                }
-            },
-
-            "&.lvl-10": {
-                "> .wrapper > .MenuItem-link": {
-                    paddingLeft: "11rem"
-                }
-            }
-        }
+      '&.lvl-10': {
+        '> .wrapper > .MenuItem-link': {
+          paddingLeft: '19.2rem',
+        },
+      },
     },
+  },
 });
-  
