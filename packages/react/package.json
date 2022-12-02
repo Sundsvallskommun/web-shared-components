@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/react",
-  "version": "0.1.77",
+  "version": "0.1.78",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -70,7 +70,7 @@
     "@sk-web-gui/tag": "0.1.15",
     "@sk-web-gui/text-editor": "0.1.4",
     "@sk-web-gui/theme": "0.1.9",
-    "@sk-web-gui/user-menu": "0.1.23",
+    "@sk-web-gui/user-menu": "0.1.24",
     "@sk-web-gui/utils": "0.1.4"
   },
   "peerDependencies": {
