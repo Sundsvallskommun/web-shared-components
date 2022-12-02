@@ -279,7 +279,9 @@ export const Basic = () => (
             menuTitle="Företagsbolaget AB"
             menuSubTitle="Förnamn Efternamn"
             menuGroups={menuGroups}
-            image={PlaceholderImage}
+            imageElem={<img src="https://placehold.co/48x48" alt="" />}
+            // image={PlaceholderImage}
+            // placeholderImage="https://placehold.co/600x400"
           ></UserMenu>
           {/* </div> */}
         </div>

@@ -22,6 +22,8 @@ interface IUserMenuProps extends DefaultProps {
   menuSubTitle: string;
   image?: string;
   imageAlt?: string;
+  placeholderImage?: string;
+  imageElem?: React.ReactNode;
 }
 
 export interface UserMenuProps extends React.HTMLAttributes<HTMLDivElement>, IUserMenuProps {
@@ -38,10 +40,12 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>((props, 
     color,
     image,
     imageAlt = 'Bild på användare',
+    placeholderImage,
+    imageElem,
     ...rest
   } = props;
 
-  const menuWidthClass = image ? 'w-[300px]' : 'w-96';
+  const menuWidthClass = imageElem || image || placeholderImage ? 'w-[300px]' : 'w-96';
 
   return (
     <>
@@ -150,13 +154,30 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>((props, 
                 </div>
               </div>
               <div className="hidden md:flex items-center text-left">
-                {image && (
-                  <div
-                    role="img"
-                    aria-label={imageAlt}
-                    style={{ backgroundImage: `url('${image}')` }}
-                    className="bg-cover bg-center flex-shrink-0 text-xs leading-none flex items-center justify-center text-center w-[48px] h-[48px] mr-md rounded-full border-2 border-primary"
-                  ></div>
+                {imageElem && (
+                  <div className="relative overflow-hidden flex-shrink-0 text-xs leading-none flex items-center justify-center text-center w-[48px] h-[48px] mr-md rounded-full border-2 border-primary">
+                    {imageElem}
+                  </div>
+                )}
+                {(placeholderImage || image) && !imageElem && (
+                  <div className="relative overflow-hidden flex-shrink-0 text-xs leading-none flex items-center justify-center text-center w-[48px] h-[48px] mr-md rounded-full border-2 border-primary">
+                    {placeholderImage && (
+                      <div
+                        role="img"
+                        aria-label={imageAlt}
+                        style={{ backgroundImage: `url('${placeholderImage}')` }}
+                        className="bg-cover absolute inset-0 bg-center text-xs leading-none"
+                      ></div>
+                    )}
+                    {image && (
+                      <div
+                        role="img"
+                        aria-label={imageAlt}
+                        style={{ backgroundImage: `url('${image}')` }}
+                        className="bg-cover absolute inset-0 z-[1] bg-center text-xs leading-none"
+                      ></div>
+                    )}
+                  </div>
                 )}
                 <div className="flex-grow">
                   <div className="font-bold flex flex-between">
