@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/core",
-  "version": "0.1.54",
+  "version": "0.1.55",
   "license": "MIT",
   "main": "src/index.js",
   "files": [
