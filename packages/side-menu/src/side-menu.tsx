@@ -29,7 +29,7 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
   const { loading, headElement, menuData, label, linkCallback, active, closeNoneActive = true, labelCallback } = props;
 
   return (
-    <nav className="SideMenu">
+    <nav className="SideMenu" ref={ref}>
       <div className="menu-header">
         {headElement && headElement}
         {label && (
