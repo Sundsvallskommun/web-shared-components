@@ -20,12 +20,14 @@ export interface SelectProps extends Omit<InputProps, 'value' | 'onChange'> {
   listClassName?: string;
   defaultOptionsAmount?: number;
   value?: OptionValueType;
+  classNameWrapper?: string;
 }
 
 const InternalSelect = React.forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
   const {
     className,
-    listClassName,
+    listClassName = '',
+    classNameWrapper = '',
     defaultOptionsAmount = 10,
     onChange,
     value,
@@ -51,7 +53,7 @@ const InternalSelect = React.forwardRef<HTMLSelectElement, SelectProps>((props, 
   return (
     <Listbox value={selectedValue} onChange={handleOnChange} as={Fragment} disabled={disabled ? disabled : undefined}>
       {({ open }) => (
-        <div className="form-select-wrapper block w-full relative">
+        <div className={`${classNameWrapper} form-select-wrapper block w-full relative`}>
           <Listbox.Button as={Fragment}>
             <Input
               ref={ref}

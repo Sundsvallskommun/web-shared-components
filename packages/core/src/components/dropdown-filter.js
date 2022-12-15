@@ -3,7 +3,6 @@ module.exports = DropdownFilter = () => ({
     position: 'relative',
     height: 50,
     border: '1px solid #939393',
-    maxWidth: 291,
     display: 'flex',
     background: '#fff',
     borderRadius: 2,
@@ -14,14 +13,6 @@ module.exports = DropdownFilter = () => ({
       flexGrow: 1,
       alignItems: 'center',
       padding: '0 1rem',
-
-      '.arrow-icon': {
-        transform: 'rotate(180deg)',
-
-        '&.open': {
-          transform: 'rotate(0)',
-        },
-      },
     },
 
     '.filter-container': {

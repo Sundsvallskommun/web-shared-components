@@ -38,7 +38,8 @@
   },
   "dependencies": {
     "@sk-web-gui/checkbox": "0.1.16",
-    "@sk-web-gui/utils": "0.1.4"
+    "@sk-web-gui/utils": "0.1.4",
+    "@mui/icons-material": "5.11.0"
   },
   "peerDependencies": {
     "react": ">=16.8.6"

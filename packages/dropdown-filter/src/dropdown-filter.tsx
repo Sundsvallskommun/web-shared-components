@@ -1,8 +1,8 @@
-import { cx, __DEV__ } from '@sk-web-gui/utils';
+import { __DEV__ } from '@sk-web-gui/utils';
 import { useState, useRef, useEffect } from 'react';
 import * as React from 'react';
 import FilterItem from './filter-item';
-import ArrowIcon from './assets/arrow-icon';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 export interface IFilterData {
   id: number;
@@ -15,10 +15,12 @@ interface IDropdownFilter {
   label: string;
   filterData: Array<IFilterData>;
   onFilterChange: (value: Array<IFilterData>) => void;
+  ariaLabel?: string;
+  className?: string;
 }
 
 export const DropdownFilter = React.forwardRef<HTMLDivElement, IDropdownFilter>((props, ref) => {
-  const { label, filterData, onFilterChange } = props;
+  const { label, filterData, onFilterChange, ariaLabel, className = '' } = props;
 
   const wrapperRef = useRef<HTMLInputElement>(null);
   const [open, setOpen] = useState(false);
@@ -78,12 +80,10 @@ export const DropdownFilter = React.forwardRef<HTMLDivElement, IDropdownFilter>(
   }, [ref]);
 
   return (
-    <div className="DropdownFilter" ref={wrapperRef}>
-      <button className="dropdown-button" onClick={openHandler}>
+    <div className={`${className} DropdownFilter`} ref={wrapperRef}>
+      <button className="dropdown-button" onClick={openHandler} aria-label={ariaLabel} aria-expanded={open}>
         <label>{label}</label>
-        <span className={cx('arrow-icon', { open: open })}>
-          <ArrowIcon />
-        </span>
+        <ArrowDropDownIcon className={`!text-2xl absolute right-4 ${open ? 'rotate-180' : ''}`} />
       </button>
       {open && (
         <div className="filter-container">
