@@ -107,6 +107,7 @@ export const DropdownSearch = (props: IDropdownSearchProps) => {
     if (inputRef && inputRef.current) {
       inputRef.current.value = value;
     }
+    setActiveOption(null);
   };
 
   /**
@@ -156,9 +157,13 @@ export const DropdownSearch = (props: IDropdownSearchProps) => {
     if (e.keyCode == 38) {
       // up arrow
       setActiveOption((index) => (index == null ? 0 : index !== 0 ? index - 1 : index));
+      e.preventDefault();
+      e.stopPropagation();
     } else if (e.keyCode == 40) {
       // down arrow
       setActiveOption((index) => (index == null ? 0 : index !== filteredData.length - 1 ? index + 1 : index));
+      e.preventDefault();
+      e.stopPropagation();
     } else if (e.keyCode == 13) {
       // enter
       if (activeOption == null) return;
