@@ -20,18 +20,29 @@ export const Template = (args: any) => {
 
   const [value, setValue] = useState({ id: 0, orgName: 'default' });
 
-  const setValueHandler = (value: any) => {
-    console.log('setValueHandler', value);
+  const handleOnSelect = (value: any) => {
+    console.log('handleOnSelect', value);
     setValue(value.data);
   };
 
+  const handleOnChange = (event: React.BaseSyntheticEvent) => {
+    console.log('handleOnChange', event.target.value);
+  };
+
   return (
-    <div style={{ minHeight: 300 }}>
+    <form
+      style={{ minHeight: 300 }}
+      onSubmit={(e) => {
+        e.preventDefault();
+        console.log('submit');
+      }}
+    >
       <DropdownSearch
         {...args}
         data={cleanState}
         labelProperty="orgName"
-        onChange={setValueHandler}
+        onChange={handleOnChange}
+        onSelect={handleOnSelect}
         value={{ label: value.orgName, data: value }}
         render={(value) => {
           return <div>{value.label} TEST</div>;
@@ -41,22 +52,18 @@ export const Template = (args: any) => {
           if (item.data.id && item.data.id.toString().includes(q.toLowerCase())) return true;
           return false;
         }}
+        useDeleteButton
+        // deleteCallback={() => console.log('deletebutton clicked')}
+        // closeIcon={<div>X</div>}
+        notFoundLabel="Inga resultat..."
       />
-    </div>
+    </form>
   );
 };
 
 Template.storyName = 'DropdownSearch';
 
 Template.argTypes = {
-  label: {
-    type: {
-      name: 'string',
-      required: false,
-    },
-    description: 'Label',
-    defaultValue: 'Filter label',
-  },
   maxAmount: {
     type: {
       name: 'number',

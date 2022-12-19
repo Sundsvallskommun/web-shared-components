@@ -37,7 +37,9 @@
     "react": "^17.0.2"
   },
   "dependencies": {
-    "@sk-web-gui/utils": "0.1.4"
+    "@sk-web-gui/utils": "0.1.4",
+    "@sk-web-gui/forms": "0.1.17",
+    "@sk-web-gui/button": "0.1.10"
   },
   "peerDependencies": {
     "react": ">=16.8.6"

@@ -224,6 +224,18 @@ module.exports = Forms = (colors) => ({
     ...fieldSolid(colors),
   },
 
+  '.form-close-button': {
+    '@apply p-sm border-0 rounded-[50%] ml-auto': {},
+
+    '&-icon': {
+      '@apply inline-flex': {},
+    },
+
+    '&-wrapper': {
+      '@apply flex items-center absolute inset-y-0 right-sm': {},
+    },
+  },
+
   '.form-textarea': {
     //"@apply leading-tight": {},
     minHeight: '5rem',
