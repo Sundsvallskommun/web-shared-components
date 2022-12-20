@@ -17,10 +17,11 @@ interface IDropdownFilter {
   onFilterChange: (value: Array<IFilterData>) => void;
   ariaLabel?: string;
   className?: string;
+  dropDownIcon?: React.ReactNode;
 }
 
 export const DropdownFilter = React.forwardRef<HTMLDivElement, IDropdownFilter>((props, ref) => {
-  const { label, filterData, onFilterChange, ariaLabel, className = '' } = props;
+  const { label, filterData, onFilterChange, ariaLabel, className = '', dropDownIcon } = props;
 
   const wrapperRef = useRef<HTMLInputElement>(null);
   const [open, setOpen] = useState(false);
@@ -82,8 +83,10 @@ export const DropdownFilter = React.forwardRef<HTMLDivElement, IDropdownFilter>(
   return (
     <div className={`${className} DropdownFilter`} ref={wrapperRef}>
       <button className="dropdown-button" onClick={openHandler} aria-label={ariaLabel} aria-expanded={open}>
-        <label>{label}</label>
-        <ArrowDropDownIcon className={`!text-2xl absolute right-4 ${open ? 'rotate-180' : ''}`} />
+        <span>{label}</span>
+        <div className={`dropdown-button-icon absolute right-4 ${open ? 'open rotate-180' : ''}`}>
+          {dropDownIcon ? dropDownIcon : <ArrowDropDownIcon className={`!text-2xl`} />}
+        </div>
       </button>
       {open && (
         <div className="filter-container">

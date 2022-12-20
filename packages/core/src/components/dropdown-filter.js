@@ -46,6 +46,10 @@ module.exports = DropdownFilter = () => ({
         borderBottom: '1px solid #939393',
         padding: '0 1rem',
 
+        '> label:first-child': {
+          '@apply flex-grow': {},
+        },
+
         '&.disabled': {
           color: '#939393',
         },

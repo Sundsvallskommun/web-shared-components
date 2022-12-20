@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Select } from '../src';
+import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 
 export default {
   title: 'Komponenter/Dropdown/Komponent',
@@ -29,6 +30,7 @@ export const Template = (args: any) => {
           console.log('onchange on select:', e);
         }}
         value={selectedValue}
+        // dropDownIcon={<ArrowForwardIosOutlinedIcon className="!text-xl rotate-90" />}
       >
         {people.map((person, index) => (
           <Select.Option disabled={index === 2} key={person.id} value={{ label: person.name, data: person }} />

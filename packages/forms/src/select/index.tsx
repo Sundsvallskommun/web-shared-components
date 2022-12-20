@@ -21,6 +21,7 @@ export interface SelectProps extends Omit<InputProps, 'value' | 'onChange'> {
   defaultOptionsAmount?: number;
   value?: OptionValueType;
   classNameWrapper?: string;
+  dropDownIcon?: React.ReactNode;
 }
 
 const InternalSelect = React.forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
@@ -35,6 +36,7 @@ const InternalSelect = React.forwardRef<HTMLSelectElement, SelectProps>((props, 
     children,
     disabled,
     size = 'md',
+    dropDownIcon,
     ...rest
   } = props;
   const [selectedValue, setSelectedValue] = useState<OptionValueType | undefined>(value);
@@ -65,8 +67,10 @@ const InternalSelect = React.forwardRef<HTMLSelectElement, SelectProps>((props, 
               className={cx('form-select', className)}
               {...rest}
             >
-              {selectedValue ? selectedValue.label : placeholder}
-              {<ArrowDropDownIcon className={`!text-2xl absolute right-4 ${open ? 'rotate-180' : ''}`} />}
+              <span>{selectedValue ? selectedValue.label : placeholder}</span>
+              <div className={`form-select-icon absolute right-4 ${open ? 'open rotate-180' : ''}`}>
+                {dropDownIcon ? dropDownIcon : <ArrowDropDownIcon className={`!text-2xl`} />}
+              </div>
             </Input>
           </Listbox.Button>
           {open && (
