@@ -71,7 +71,7 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>((props, 
               </div>
               <div className="hidden lg:block text-left">
                 <div className="font-bold">
-                  <span>{menuTitle}</span>
+                  <span className="usermenu-menuTitle">{menuTitle}</span>
                   {open ? (
                     <ArrowDropUpOutlinedIcon
                       aria-hidden="true"
@@ -84,7 +84,7 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>((props, 
                     />
                   )}
                 </div>
-                <div className="text-left">{menuSubTitle}</div>
+                <div className="usermenu-menuSubTitle text-left">{menuSubTitle}</div>
               </div>
             </Menu.Button>
             <Menu.Items
@@ -181,7 +181,7 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>((props, 
                 )}
                 <div className="flex-grow">
                   <div className="font-bold flex flex-between">
-                    <span>{menuTitle}</span>
+                    <span className="usermenu-menuTitle">{menuTitle}</span>
                     {open ? (
                       <ArrowDropUpOutlinedIcon
                         aria-hidden="true"
@@ -194,7 +194,7 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>((props, 
                       />
                     )}
                   </div>
-                  <div className="text-left">{menuSubTitle}</div>
+                  <div className="usermenu-menuSubTitle text-left">{menuSubTitle}</div>
                 </div>
               </div>
             </Menu.Button>

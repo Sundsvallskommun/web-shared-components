@@ -276,8 +276,8 @@ export const Basic = () => (
 
           {/* <div className="block lg:block"> */}
           <UserMenu
-            menuTitle="Företagsbolaget AB"
-            menuSubTitle="Förnamn Efternamn"
+            menuTitle="Företagsbolaget AB "
+            menuSubTitle="Förnamn Efternamn som är lite längre"
             menuGroups={menuGroups}
             imageElem={<img src="https://placehold.co/48x48" alt="" />}
             // image={PlaceholderImage}
