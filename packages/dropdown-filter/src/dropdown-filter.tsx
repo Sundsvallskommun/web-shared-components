@@ -15,13 +15,14 @@ interface IDropdownFilter {
   label: string;
   filterData: Array<IFilterData>;
   onFilterChange: (value: Array<IFilterData>) => void;
+  onFilterItemChange?: (item: IFilterData) => void;
   ariaLabel?: string;
   className?: string;
   dropDownIcon?: React.ReactNode;
 }
 
 export const DropdownFilter = React.forwardRef<HTMLDivElement, IDropdownFilter>((props, ref) => {
-  const { label, filterData, onFilterChange, ariaLabel, className = '', dropDownIcon } = props;
+  const { label, filterData, onFilterChange, onFilterItemChange, ariaLabel, className = '', dropDownIcon } = props;
 
   const wrapperRef = useRef<HTMLInputElement>(null);
   const [open, setOpen] = useState(false);
@@ -38,6 +39,7 @@ export const DropdownFilter = React.forwardRef<HTMLDivElement, IDropdownFilter>(
     const array = [...filterData];
     array[array.findIndex((x) => x.id === item.id)] = item;
     onFilterChange(array);
+    onFilterItemChange && onFilterItemChange(item);
   };
 
   /**
