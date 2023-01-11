@@ -82,7 +82,13 @@ export const DropdownFilter = React.forwardRef<HTMLDivElement, IDropdownFilter>(
 
   return (
     <div className={`${className} DropdownFilter`} ref={wrapperRef}>
-      <button className="dropdown-button" onClick={openHandler} aria-label={ariaLabel} aria-expanded={open}>
+      <button
+        type="button"
+        className="dropdown-button"
+        onClick={openHandler}
+        aria-label={ariaLabel}
+        aria-expanded={open}
+      >
         <span>{label}</span>
         <div className={`dropdown-button-icon absolute right-4 ${open ? 'open rotate-180' : ''}`}>
           {dropDownIcon ? dropDownIcon : <ArrowDropDownIcon className={`!text-2xl`} />}
@@ -91,8 +97,12 @@ export const DropdownFilter = React.forwardRef<HTMLDivElement, IDropdownFilter>(
       {open && (
         <div className="filter-container">
           <div className="filter-controls">
-            <button onClick={showAllHandler}>Visa alla</button>
-            <button onClick={hideAllHandler}>Dölj alla</button>
+            <button type="button" onClick={showAllHandler}>
+              Visa alla
+            </button>
+            <button type="button" onClick={hideAllHandler}>
+              Dölj alla
+            </button>
           </div>
           <ul>
             {filterData &&
