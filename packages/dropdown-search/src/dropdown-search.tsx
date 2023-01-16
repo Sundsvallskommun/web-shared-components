@@ -216,6 +216,7 @@ export const DropdownSearch = (props: IDropdownSearchProps) => {
         onKeyDown={keyboardHandler}
         placeholder={placeholder}
         onBlur={onBlurHandler}
+        disabled={disabled ? disabled : undefined}
       />
       {render && showResult && selectedValue && (
         <div
