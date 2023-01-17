@@ -19,7 +19,7 @@ module.exports = Modal = () => ({
     },
 
     '&-close': {
-      '@apply p-4 -m-4 inline-flex': {},
+      '@apply p-4 -m-4 flex flex-col': {},
     },
   },
 });

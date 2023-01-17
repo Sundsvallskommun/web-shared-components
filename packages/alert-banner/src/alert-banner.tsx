@@ -1,9 +1,9 @@
 import { useLocalStorageValue } from '@react-hookz/web';
-import CloseIcon from '@mui/icons-material/Close';
 import ErrorIcon from '@mui/icons-material/Error';
 import React from 'react';
 import { __DEV__ } from '@sk-web-gui/utils';
-
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
 interface AlertBannerProps {
   children?: React.ReactNode;
   className?: string;
@@ -15,7 +15,9 @@ interface AlertBannerProps {
   showClose?: boolean;
   fromDate?: Date;
   toDate?: Date;
+  openAriaLabel?: 'Öppna meddelandet';
   closeAriaLabel?: 'Stäng meddelandet';
+  dropDownIcon?: React.ReactNode;
 }
 
 export const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>((props, ref) => {
@@ -26,9 +28,11 @@ export const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>((p
     childrenClassName = '',
     severity = 'info',
     showClose = true,
+    openAriaLabel,
     closeAriaLabel,
     fromDate,
     toDate,
+    dropDownIcon,
   } = props;
 
   const localstorageKey = 'alert-banner-is-open';
@@ -36,10 +40,6 @@ export const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>((p
     storeDefaultValue: true,
     initializeWithStorageValue: true,
   });
-
-  if (!open) {
-    return <></>;
-  }
 
   if (fromDate && toDate) {
     const todayDate = new Date();
@@ -71,21 +71,39 @@ export const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>((p
   }
 
   const handleOnClose = (e: React.BaseSyntheticEvent) => {
-    setOpen(false);
+    setOpen((val) => !val);
   };
 
   return (
-    <div className={`${className} alert-banner ${bgColor}`}>
+    <div
+      className={`${className} alert-banner ${!open ? '!py-[10px]' : ''} ${bgColor}`}
+      onClick={!open ? handleOnClose : undefined}
+      aria-expanded={open}
+      role={!open ? 'button' : undefined}
+      aria-label={!open ? openAriaLabel : undefined}
+    >
       <div className={`${contentClassName} alert-banner-content`}>
         <div className="alert-banner-content-wrapper">
           <span className={`alert-banner-icon ${iconColor}`}>
             <ErrorIcon className="!text-2xl" />
           </span>
-          <div className={`${childrenClassName} alert-banner-children`}>{children}</div>
+          {open && <div className={`${childrenClassName} alert-banner-children`}>{children}</div>}
         </div>
         {showClose && (
-          <button className="alert-banner-close" aria-label={closeAriaLabel} onClick={handleOnClose}>
-            <CloseIcon className="!text-2xl" />
+          <button
+            className="alert-banner-close"
+            aria-label={open ? openAriaLabel : closeAriaLabel}
+            onClick={handleOnClose}
+          >
+            <div className={`alert-banner-close-icon ${open ? 'open rotate-180' : ''}`}>
+              {dropDownIcon ? (
+                dropDownIcon
+              ) : open ? (
+                <RemoveOutlinedIcon className={`!text-2xl`} />
+              ) : (
+                <AddOutlinedIcon className={`!text-2xl`} />
+              )}
+            </div>
           </button>
         )}
       </div>
