@@ -9,6 +9,7 @@ export interface IFilterData {
   name: string;
   value: boolean;
   disabled?: boolean;
+  isShown?: boolean;
 }
 
 interface IDropdownFilter {
@@ -108,9 +109,9 @@ export const DropdownFilter = React.forwardRef<HTMLDivElement, IDropdownFilter>(
           </div>
           <ul>
             {filterData &&
-              filterData.map((item: IFilterData) => (
-                <FilterItem key={item.id} item={item} itemChange={itemChangeHandler} />
-              ))}
+              filterData
+                .filter((x) => (x.isShown == undefined || x.isShown == true ? true : false))
+                .map((item: IFilterData) => <FilterItem key={item.id} item={item} itemChange={itemChangeHandler} />)}
           </ul>
         </div>
       )}

@@ -22,20 +22,26 @@ export const Template = (args: any) => {
       disabled: true,
     },
     {
-      id: 2,
-      name: 'filter 2',
+      id: 3,
+      name: 'filter 3',
       value: true,
       disabled: true,
     },
     {
-      id: 3,
-      name: 'filter 3',
+      id: 4,
+      name: 'filter 4',
       value: true,
     },
     {
-      id: 4,
-      name: 'filter 4',
+      id: 5,
+      name: 'filter 5',
       value: false,
+    },
+    {
+      id: 6,
+      name: 'filter 6',
+      value: false,
+      isShown: false,
     },
   ];
 
