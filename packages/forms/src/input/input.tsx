@@ -34,6 +34,10 @@ export interface IInputProps<T = HTMLInputElement> extends DefaultProps {
    * A11y: The id of the element that describes the input
    */
   'aria-describedby'?: string;
+  /**
+   * Border-radius is rounded
+   */
+  rounded?: boolean;
 }
 
 export type OmittedTypes =
@@ -62,6 +66,7 @@ export const Input = React.forwardRef<HTMLElement, InputProps>((props, ref) => {
     className,
     type = 'text',
     id,
+    rounded = false,
     ...rest
   } = props;
 
@@ -81,6 +86,7 @@ export const Input = React.forwardRef<HTMLElement, InputProps>((props, ref) => {
       aria-required={required}
       aria-describedby={ariaDescribedby}
       data-color={color ? color : undefined}
+      data-rounded={rounded ? rounded : undefined}
       className={cx(classes, className)}
       type={type}
       id={id || formControl.id}

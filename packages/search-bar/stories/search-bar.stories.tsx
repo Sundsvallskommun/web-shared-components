@@ -10,12 +10,13 @@ export const Template = (args: ISearchBarProps) => {
 
   const [term, setTerm] = useState('')
   
-  const onChangeHandler = (event) => {
+  const onChangeHandler = (event:React.BaseSyntheticEvent) => {
     setTerm(event.target.value)
   }
 
   return (
-    <SearchBar {...args} value={term} onChange={onChangeHandler} /> 
+    <SearchBar {...args} value={term} onChange={onChangeHandler}/> 
+    
   )
 }
 
@@ -49,7 +50,7 @@ Template.argTypes = {
       name: 'boolean', 
       required: false 
     },
-    description: 'Icon is small?',
+    description: 'Small search icon',
     defaultValue: false,
   },
   onSearch: {
@@ -59,6 +60,14 @@ Template.argTypes = {
     },
     description: 'Simple search call',
     defaultValue: null,
+  },
+  rounded: {
+    type: { 
+      name: 'boolean', 
+      required: false 
+    },
+    description: 'Round corners',
+    defaultValue: false,
   },
 };
 

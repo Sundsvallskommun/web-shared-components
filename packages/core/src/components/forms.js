@@ -218,6 +218,10 @@ module.exports = Forms = (colors) => ({
       //"@apply disabled:border-neutral-200 disabled:bg-neutral-200": {},
       //"@apply dark:disabled:border-transparent dark:disabled:bg-white/20": {},
     },
+    
+    "&[data-rounded='true']": {
+      borderRadius: '3.2rem',
+    },
 
     // variants
     ...fieldOutline(colors),

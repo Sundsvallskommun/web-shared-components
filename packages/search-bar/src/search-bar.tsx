@@ -1,6 +1,7 @@
 import { __DEV__ } from '@sk-web-gui/utils';
 import React from 'react';
-import SearchIcon from './assets/search-icon';
+import { Input } from '@sk-web-gui/react';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
 export interface ISearchBarProps {
   // Parent should handle the state
@@ -9,49 +10,44 @@ export interface ISearchBarProps {
   onSearch: () => void;
   placeholder?: string;
   smallIcon?: boolean;
+  rounded?: boolean;
+  size?: 'sm' | 'md' | 'lg';
 }
 
 export const SearchBar = React.forwardRef<HTMLInputElement, ISearchBarProps>((props, ref) => {
-  const {
-    value,
-    onChange,
-    placeholder,
-    onSearch,
-    smallIcon
-  } = props
-   
+  const { value, onChange, placeholder, onSearch, smallIcon = false, rounded = false, size = 'sm' } = props;
+
   const onSearchHandler = () => {
-    onSearch()
-  }
+    onSearch();
+  };
 
   // Search on enter
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      onSearchHandler()
+      onSearchHandler();
     }
-  }
+  };
 
   return (
-    <div className="SearchBar"> 
-      <input 
-        type="text" 
-        onChange={onChange} 
-        value={value} 
+    <div className="SearchBar">
+      <Input
+        type="text"
+        onChange={onChange}
+        value={value}
         placeholder={placeholder}
         onKeyDown={handleKeyDown}
+        rounded={rounded}
+        size={size}
       />
-      <button 
-        className="search-icon" 
-        onClick={onSearchHandler}
-        role="button"
-      >
-        <SearchIcon smallIcon={smallIcon} />
+
+      <button className="search-button" onClick={onSearchHandler} role="button">
+        <SearchOutlinedIcon className={`search-button-icon ${smallIcon ? 'small' : ''}`} />
       </button>
     </div>
-  )
-})
+  );
+});
 
-export default SearchBar
+export default SearchBar;
 
 if (__DEV__) {
   SearchBar.displayName = 'SearchBar';
