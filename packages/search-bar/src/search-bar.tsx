@@ -1,9 +1,9 @@
 import { __DEV__ } from '@sk-web-gui/utils';
 import React from 'react';
-import { Input } from '@sk-web-gui/react';
+import { Input, InputProps } from '@sk-web-gui/react';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
-export interface ISearchBarProps {
+export interface IISearchBarProps {
   // Parent should handle the state
   value: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
@@ -12,10 +12,23 @@ export interface ISearchBarProps {
   smallIcon?: boolean;
   rounded?: boolean;
   size?: 'sm' | 'md' | 'lg';
+  className?: string;
 }
 
+export type ISearchBarProps<T = HTMLElement> = IISearchBarProps & InputProps & React.RefAttributes<T>;
+
 export const SearchBar = React.forwardRef<HTMLInputElement, ISearchBarProps>((props, ref) => {
-  const { value, onChange, placeholder, onSearch, smallIcon = false, rounded = false, size = 'sm' } = props;
+  const {
+    value,
+    onChange,
+    placeholder,
+    onSearch,
+    smallIcon = false,
+    rounded = false,
+    size = 'sm',
+    className,
+    ...rest
+  } = props;
 
   const onSearchHandler = () => {
     onSearch();
@@ -29,8 +42,9 @@ export const SearchBar = React.forwardRef<HTMLInputElement, ISearchBarProps>((pr
   };
 
   return (
-    <div className="SearchBar">
+    <div className={`${className} SearchBar`}>
       <Input
+        ref={ref}
         type="text"
         onChange={onChange}
         value={value}
@@ -38,6 +52,7 @@ export const SearchBar = React.forwardRef<HTMLInputElement, ISearchBarProps>((pr
         onKeyDown={handleKeyDown}
         rounded={rounded}
         size={size}
+        {...rest}
       />
 
       <button className="search-button" onClick={onSearchHandler} role="button">
