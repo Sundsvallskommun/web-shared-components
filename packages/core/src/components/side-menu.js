@@ -29,6 +29,7 @@ module.exports = Menu = () => ({
         },
       },
     },
+    
 
     '.menu-body': {
       '@apply border border-gray-stroke': {},
