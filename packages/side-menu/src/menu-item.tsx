@@ -54,17 +54,17 @@ export const MenuItem = (props: IMenuExtended) => {
   }, [active]);
 
   // Setting grayscale depending on subitems and level
-  let color;
+  let colorHeight;
   if (itemData.level > 2) {
     if (!itemData.subItems || itemData.subItems === null) {
-      color = 'isLeafNode';
+      colorHeight = 'isLeafNode';
     } else if (itemData.subItems !== null) {
-      color = 'isSubNode';
+      colorHeight = 'isSubNode';
     }
   }
 
   return (
-    <div className={cx('MenuItem', 'lvl-' + level, color, { open: subItems && open }, { active: active === id })}>
+    <div className={cx('MenuItem', 'lvl-' + level, colorHeight, { open: subItems && open }, { active: active === id })}>
       <div className="wrapper">
         {path ? (
           <a className="MenuItem-link" href={path}>

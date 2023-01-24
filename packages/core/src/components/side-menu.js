@@ -9,6 +9,10 @@ module.exports = Menu = () => ({
         '@apply text-xl font-bold text-white': {},
       },
 
+      '.label-small': {
+        '@apply text-[1.6rem]': {},
+      },
+
       '.label-button': {
         '@apply w-full justify-between p-0': {},
 
@@ -66,22 +70,26 @@ module.exports = Menu = () => ({
         },
       },
 
-      '&.lvl-1, &.lvl-2, &.lvl-3, &.lvl-4, &.lvl-5, &.lvl-6, &.lvl-7, &.lvl-8, &.lvl-9, &.lvl-10': {
-        // '.MenuItem-link ': {
-        //   '@apply py-sm': {},
-        // },
-        // '@apply py-sm': {},
-        '> .wrapper ': {
-          '@apply min-h-[48px]': {},
+      /*'&.lvl-1, &.lvl-2, &.lvl-3, &.lvl-4, &.lvl-5, &.lvl-6, &.lvl-7, &.lvl-8, &.lvl-9, &.lvl-10': {
+        '.MenuItem-link ': {
+          '@apply py-sm': {},
         },
+        '@apply py-sm': {},
       },
+      */
 
       '&.isSubNode': {
         '@apply bg-gray-lighter': {},
+        '> .wrapper ': {
+          '@apply min-h-[56px]': {},
+        },
       },
 
       '&.isLeafNode': {
         '@apply bg-gray-middle': {},
+        '> .wrapper ': {
+          '@apply min-h-[48px]': {},
+        },
       },
 
       '&.lvl-0': {

@@ -121,9 +121,9 @@ export const TemplateHeadElement = ({ ...args }: any) => {
         linkCallback={linkCallbackHandler}
         active={active}
         headElement={
-          <div>
-            <label>Select in head</label>
-            <Select onChange={selectChangeHandler}>
+          <div className="mb-[20px]">
+            <label className="label-small">Select in head</label>
+            <Select className="mt-[6px]" onChange={selectChangeHandler}>
               <option>1</option>
               <option>2</option>
               <option>3</option>
