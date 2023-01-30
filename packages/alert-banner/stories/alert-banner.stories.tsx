@@ -21,12 +21,13 @@ export const Template = ({ text, children, ...args }: any) => {
   };
 
   return (
-    <>
-      <button className="link mb-md" onClick={handleReset}>
+    <div className="min-h-[200px]">
+      <AlertBanner {...args}>{children}</AlertBanner>
+      <div className="w-full h-[50px] border-y-2 text-center">Ett sidhuvud</div>
+      <button className="link mb-md absolute bottom-0" onClick={handleReset}>
         Reset
       </button>
-      <AlertBanner {...args}>{children}</AlertBanner>
-    </>
+    </div>
   );
 };
 
@@ -67,6 +68,16 @@ Template.argTypes = {
     description: 'Sets className for children',
     control: 'text',
     defaultValue: undefined,
+  },
+  contentType: {
+    type: { name: 'string', required: false },
+    description: 'Set type on banner',
+    table: {
+      defaultValue: { summary: 'fold' },
+    },
+    options: ['fold', 'tab'],
+    control: 'select',
+    defaultValue: 'fold',
   },
   showClose: {
     type: { name: 'boolean', required: false },
