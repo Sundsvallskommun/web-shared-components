@@ -67,6 +67,7 @@ export const DropdownSearch = (props: IDropdownSearchProps) => {
   const [showResult, setShowResult] = useState(true);
   const [selectedValue, setSelectedValue] = useState<OptionValueType | undefined | null>(value);
   const [activeOption, setActiveOption] = useState<number | null>(null);
+  const [dropdownActive, setDropdownActive] = useState<boolean>(false);
 
   const variantClasses = {
     outline: 'form-field-outline',
@@ -130,6 +131,7 @@ export const DropdownSearch = (props: IDropdownSearchProps) => {
     setTimeout(() => {
       setShowOptions(false);
       setActiveOption(null);
+      setDropdownActive(false);
     }, 50);
   };
 
@@ -149,8 +151,11 @@ export const DropdownSearch = (props: IDropdownSearchProps) => {
   };
 
   const onBlurHandler = () => {
-    setShowResult(true);
-    showResults();
+    if (!dropdownActive) {
+      showResults();
+    } else {
+      inputRef.current && inputRef.current.focus();
+    }
   };
 
   const keyboardHandler = (e: any) => {
@@ -241,15 +246,19 @@ export const DropdownSearch = (props: IDropdownSearchProps) => {
         </div>
       )}
       {showSuggestions && (
-        <ul className={cx('form-field-outline form-select-list', listClassName)}>
+        <ul
+          className={cx('form-field-outline form-select-list', listClassName)}
+          onMouseEnter={() => setDropdownActive(true)}
+          onMouseLeave={() => setDropdownActive(false)}
+        >
           {filteredData.length === 0 && notFoundLabel && query !== '' ? (
             <div className={`${classes}  form-select-option`}>{notFoundLabel}</div>
           ) : (
             filteredData.slice(0, maxAmount).map((option: OptionValueType, index: number) => {
               return (
                 <li
-                  onClick={() => setSelected(option)}
                   onMouseOver={() => setActiveOption(index)}
+                  onClick={() => setSelected(option)}
                   key={`form-select-option-dropdown-${option[labelProperty]}-${index}`}
                   className={`form-select-option ${activeOption == index ? 'active' : ''} ${classes}`}
                 >
