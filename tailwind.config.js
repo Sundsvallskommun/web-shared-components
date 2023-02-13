@@ -4,9 +4,10 @@ module.exports = {
   mode: 'jit',
   content: [
     './public/**/*.html',
-    './packages/*/**/*.{js,jsx,ts,tsx,vue,mdx}',
-    './.storybook/stories/**/*.{js,jsx,ts,tsx,vue,mdx}',
-    './.storybook/components/**/*.{js,jsx,ts,tsx,vue,mdx}',
+    './packages/*/src/**/*.{js,jsx,ts,tsx}',
+    './packages/*/stories/**/*.{js,jsx,ts,tsx,mdx}',
+    './.storybook/stories/**/*.{js,jsx,ts,tsx,mdx}',
+    './.storybook/components/**/*.{js,jsx,ts,tsx,mdx}',
   ],
   darkMode: 'class', // or 'media' or 'class'
   theme: {

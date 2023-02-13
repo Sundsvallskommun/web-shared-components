@@ -30,10 +30,7 @@ export const _colors = {
     DEFAULT: '#4b4b4b',
     dark: '#4b4b4b',
     light: '#4b4b4b',
-    // lighter: "#F9F9F9",
     active: '#F4F4F4',
-    // stroke: "#939393",
-    // middle: "#ECECEC",
   },
   'gray-light': {
     DEFAULT: '#F4F4F4',
