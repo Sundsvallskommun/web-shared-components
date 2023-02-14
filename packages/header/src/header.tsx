@@ -199,7 +199,9 @@ export const Header = React.forwardRef<any, HeaderProps>((props, ref) => {
                       className="text-2xl header-font leading-tight font-medium text-black tracking-tight hidden lg:inline-block"
                     >
                       {title}
-                      {subtitle && <span className="text-base text-normal leading-none block">{subtitle}</span>}
+                      {subtitle && (
+                        <span className="text-base font-normal tracking-normal leading-none block">{subtitle}</span>
+                      )}
                     </span>
                     <span
                       id="page-title-small-screen"
@@ -207,7 +209,7 @@ export const Header = React.forwardRef<any, HeaderProps>((props, ref) => {
                       font-medium text-black tracking-tight lg:hidden`}
                     >
                       {title}
-                      {subtitle && <span className="text-sm text-normal block">{subtitle}</span>}
+                      {subtitle && <span className="text-sm font-normal tracking-normal block">{subtitle}</span>}
                     </span>
                   </div>
                 </Link>
