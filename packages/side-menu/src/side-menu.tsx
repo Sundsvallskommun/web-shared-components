@@ -1,35 +1,59 @@
-import { DefaultProps } from '@sk-web-gui/theme';
-import { cx, __DEV__ } from '@sk-web-gui/utils';
+import { __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 import { MenuItem } from './menu-item';
 import { Spinner } from '@sk-web-gui/spinner';
-import { useEffect, useState } from 'react';
 import { Button } from '@sk-web-gui/button';
 import EastIcon from '@mui/icons-material/East';
-export interface IDataObject extends DefaultProps {
+import { useState } from 'react';
+export interface IDataObject {
   id: string | number;
   level: number;
   label: string;
   path?: string;
+  separator?: boolean;
+  disabled?: boolean;
+  movedAway?: boolean;
+  movedHere?: boolean;
+  newItem?: boolean;
+  error?: boolean;
+  changes?: number;
 }
-export interface IMenu extends DefaultProps, IDataObject {
+export interface IMenu extends IDataObject {
   subItems?: Array<IMenu> | null | [];
 }
 export interface IMenuProps {
-  loading?: boolean;
-  headElement?: React.ReactNode;
   menuData: Array<IMenu>;
-  label: string;
   linkCallback: (data: IDataObject) => void;
   active: string | number;
+  loading?: boolean;
+  headElement?: React.ReactNode;
+  label?: string;
+  onDrop?: (data: IDataObject) => void;
   closeNoneActive?: boolean;
   labelCallback?: () => void;
+  draggable?: boolean;
+  className?: string;
+  ariaExpanded?: { open: string; close: string };
 }
+
 export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref) => {
-  const { loading, headElement, menuData, label, linkCallback, active, closeNoneActive = true, labelCallback } = props;
+  const {
+    loading,
+    headElement,
+    menuData,
+    label,
+    linkCallback,
+    onDrop,
+    active,
+    closeNoneActive = true,
+    labelCallback,
+    draggable = false,
+    className = '',
+    ariaExpanded = { open: 'Visa undermeny', close: 'Dölj undermeny' },
+  } = props;
 
   return (
-    <nav className="SideMenu" ref={ref}>
+    <nav className={`SideMenu ${className}`} ref={ref}>
       <div className="menu-header">
         {headElement && headElement}
         {label && (
@@ -52,20 +76,33 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
       <div className="menu-body">
         {!loading &&
           menuData &&
-          menuData.map((item) => (
-            <MenuItem
-              itemData={item}
-              key={item.id}
-              id={item.id}
-              label={item.label}
-              path={item.path}
-              active={active}
-              level={0}
-              subItems={item.subItems}
-              linkCallback={linkCallback}
-              closeNoneActive={closeNoneActive}
-            />
-          ))}
+          menuData.map((item) => {
+            return (
+              <MenuItem
+                itemData={item}
+                key={item.id}
+                id={item.id}
+                label={item.label}
+                path={item.path}
+                active={active}
+                level={0}
+                subItems={item.subItems}
+                linkCallback={linkCallback}
+                onDropCallback={onDrop}
+                closeNoneActive={closeNoneActive}
+                disabled={item.disabled}
+                ariaExpanded={ariaExpanded}
+                /** Below are specific for draggable */
+                separator={item.separator}
+                draggable={draggable}
+                movedAway={item.movedAway}
+                movedHere={item.movedHere}
+                newItem={item.newItem}
+                error={item.error}
+                changes={item.changes}
+              />
+            );
+          })}
         {loading && (
           <div className="py-20 flex justify-center w-full">
             <Spinner size="xl" />

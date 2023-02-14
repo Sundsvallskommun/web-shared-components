@@ -3,6 +3,7 @@ import { Meta } from '@storybook/react';
 import { IDataObject, SideMenu } from '../src/side-menu';
 import testData from './testData.json';
 import testDataNoPath from './testDataNoPath.json';
+import testDataNoPathDraggable from './testDataNoPathDraggable.json';
 import { Select } from '@sk-web-gui/forms';
 import { Spinner } from '@sk-web-gui/spinner';
 
@@ -43,6 +44,8 @@ export const Template = ({ ...args }: any) => {
         linkCallback={linkCallbackHandler}
         active={active}
         labelCallback={() => console.log('labelCallback')}
+        draggable
+        className="ml-[100px]"
       />
     </div>
   );
@@ -66,7 +69,7 @@ Template.argTypes = {
       required: true,
     },
     description: 'Data for menu',
-    defaultValue: testDataNoPath,
+    defaultValue: testDataNoPathDraggable,
   },
   label: {
     type: {
@@ -186,6 +189,47 @@ TemplateLoadingBlock.argTypes = {
     },
     description: 'Data for menu',
     defaultValue: testDataNoPath,
+  },
+  label: {
+    type: {
+      name: 'string',
+      required: false,
+    },
+    description: 'Name of menu',
+    defaultValue: 'Menu label (254)',
+  },
+};
+
+export const TemplateDraggable = ({ ...args }: any) => {
+  const [active, setActive] = useState<number>(1280);
+  const linkCallbackHandler = (data: any) => {
+    setActive(data.id);
+    console.log('link click', data);
+  };
+  return (
+    <div>
+      <SideMenu {...args} linkCallback={linkCallbackHandler} active={active} draggable className="ml-[100px]" />
+    </div>
+  );
+};
+TemplateDraggable.storyName = 'SideMenu that is draggable';
+TemplateDraggable.argTypes = {
+  disabled: {
+    type: { name: 'string', required: false },
+    description: 'Sets disabled',
+    table: {
+      defaultValue: { summary: 'false' },
+    },
+    control: 'boolean',
+    defaultValue: false,
+  },
+  menuData: {
+    type: {
+      name: 'array',
+      required: true,
+    },
+    description: 'Data for menu',
+    defaultValue: testDataNoPathDraggable,
   },
   label: {
     type: {
