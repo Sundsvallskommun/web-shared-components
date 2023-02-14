@@ -31,6 +31,15 @@ Template.argTypes = {
     },
     defaultValue: 'Mina sidor',
   },
+  subtitle: {
+    type: { name: 'string', required: false },
+    description: 'Sets sutitle text',
+    control: 'text',
+    table: {
+      defaultValue: { summary: '' },
+    },
+    defaultValue: '',
+  },
   borderColor: {
     type: { name: 'string', required: false },
     description: 'Sets borderColor',

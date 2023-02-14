@@ -6,6 +6,8 @@ import * as React from 'react';
 export interface HeaderProps extends DefaultProps {
   /* Title for main page */
   title?: string;
+  /*Subtitle for page- optional */
+  subtitle?: string;
   /* React node */
   children?: React.ReactNode;
   /* Wrapper for Logo-link, for example Next-Link */
@@ -27,6 +29,7 @@ export interface HeaderProps extends DefaultProps {
 export const Header = React.forwardRef<any, HeaderProps>((props, ref) => {
   const {
     title,
+    subtitle,
     className,
     children,
     LogoLinkWrapperComponent,
@@ -62,7 +65,9 @@ export const Header = React.forwardRef<any, HeaderProps>((props, ref) => {
                   href="/"
                   onClick={logoLinkOnClick ? handleLogoLinkOnClick : undefined}
                   className="no-underline"
-                  aria-label={`Till startsidan för ${title}`}
+                  aria-label={`${
+                    subtitle ? `Till startsidan för ${title} ${subtitle}` : `Till startsidan för ${title}`
+                  }`}
                 >
                   <div className="flex items-center cursor-pointer">
                     <div className="lg:hidden">
@@ -162,29 +167,47 @@ export const Header = React.forwardRef<any, HeaderProps>((props, ref) => {
                         />
                       </svg>
                     </div>
-                    <svg
-                      focusable="false"
-                      className="h-[24px] lg:h-[40px] ml-[7px] mr-[4px] lg:ml-[15px] lg:mr-[12px]"
-                      width="1"
-                      height="40"
-                      viewBox="0 0 1 40"
-                      fill="none"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect width="1" height="40" fill="#212121" />
-                    </svg>
+                    {subtitle ? (
+                      <svg
+                        focusable="false"
+                        className="h-[34px] lg:h-[50px] ml-[7px] mr-[4px] lg:ml-[15px] lg:mr-[12px]"
+                        width="1"
+                        height="50"
+                        viewBox="0 0 1 50"
+                        fill="none"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <rect width="1" height="50" fill="#212121" />
+                      </svg>
+                    ) : (
+                      <svg
+                        focusable="false"
+                        className="h-[24px] lg:h-[40px] ml-[7px] mr-[4px] lg:ml-[15px] lg:mr-[12px]"
+                        width="1"
+                        height="40"
+                        viewBox="0 0 1 40"
+                        fill="none"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <rect width="1" height="40" fill="#212121" />
+                      </svg>
+                    )}
                     <span
                       id="page-title"
-                      className="text-2xl header-font font-medium text-black tracking-tight hidden lg:inline-block"
+                      className="text-2xl header-font leading-tight font-medium text-black tracking-tight hidden lg:inline-block"
                     >
                       {title}
+                      {subtitle && <span className="text-base text-normal leading-none block">{subtitle}</span>}
                     </span>
                     <span
                       id="page-title-small-screen"
-                      className="text-sm header-font font-medium text-black tracking-tight lg:hidden"
+                      className={`text-sm header-font ${subtitle && `leading-none`} 
+                      font-medium text-black tracking-tight lg:hidden`}
                     >
                       {title}
+                      {subtitle && <span className="text-sm text-normal block">{subtitle}</span>}
                     </span>
                   </div>
                 </Link>
