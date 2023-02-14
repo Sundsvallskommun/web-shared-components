@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/forms",
-  "version": "0.1.19",
+  "version": "0.1.20",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -45,7 +45,7 @@
     "@mui/styles": "^5.4.4",
     "@mui/x-date-pickers": "^5.0.0-beta.0",
     "@reach/auto-id": "^0.15.3",
-    "@sk-web-gui/theme": "0.1.9",
+    "@sk-web-gui/theme": "0.1.10",
     "@sk-web-gui/utils": "0.1.4",
     "dayjs": "^1.10.8"
   },

@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/tag",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -41,8 +41,8 @@
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.10.0",
-    "@sk-web-gui/button": "0.1.10",
-    "@sk-web-gui/theme": "0.1.9",
+    "@sk-web-gui/button": "0.1.11",
+    "@sk-web-gui/theme": "0.1.10",
     "@sk-web-gui/utils": "0.1.4"
   },
   "peerDependencies": {
