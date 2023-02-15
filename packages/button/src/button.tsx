@@ -25,7 +25,7 @@ interface IButtonProps extends DefaultProps {
   /* Size of the button */
   size?: 'sm' | 'md' | 'lg';
   /** Controls button appearance */
-  variant?: 'link' | 'solid' | 'outline' | 'light' | 'ghost' | 'icon';
+  variant?: 'link' | 'solid' | 'outline' | 'light' | 'ghost';
   /* React node */
   children?: React.ReactNode;
   /* Sets the button to the rounded variant */

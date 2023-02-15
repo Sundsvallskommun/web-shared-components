@@ -1,7 +1,6 @@
 import SignalWifi2BarOutlinedIcon from '@mui/icons-material/SignalWifi2BarOutlined';
 import { Meta } from '@storybook/react';
 import { Button } from '../src';
-import React from 'react';
 
 export default {
   title: 'Komponenter/Knappar/Komponent',
