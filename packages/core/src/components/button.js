@@ -258,14 +258,17 @@ module.exports = Button = (colors) => ({
   '.btn': {
     '@apply relative': {},
     '@apply m-0': {},
-    '@apply rounded-lg inline-flex items-center justify-center flex-shrink-0 align-middle': {},
+    '@apply rounded-[4px] inline-flex items-center justify-center flex-shrink-0 align-middle': {},
     '@apply font-medium leading-tight': {},
     transitionProperty: 'background-color, border-color, color, fill, stroke, box-shadow',
     '@apply	duration-75 ease-out': {},
     '@apply outline-none appearance-none cursor-base select-none whitespace-nowrap': {},
     '@apply focus-visible:outline-none': {},
 
-    padding: '1.2rem 3.2rem',
+    padding: '0 3.2rem',
+    maxHeight: '3em',
+    minHeight: '3em',
+    boxSizing: 'content-box',
 
     "&[data-rounded='true']": {
       borderRadius: '3.2rem',
@@ -274,7 +277,6 @@ module.exports = Button = (colors) => ({
     // sizing
     '&-sm': {
       '@apply text-xs': {},
-      // minWidth: "1.75rem",
     },
 
     '&-md': {
@@ -293,6 +295,11 @@ module.exports = Button = (colors) => ({
       '@apply disabled:shadow-none disabled:cursor-not-allowed': {},
       '@apply disabled:text-gray disabled:bg-gray-light !important': {},
     },
+    '.MuiSvgIcon-root': {
+      fontSize: '1.5em',
+      width: '1em',
+      height: '1em',
+    },
 
     // variants
     ...buttonSolid(colors),
@@ -300,5 +307,13 @@ module.exports = Button = (colors) => ({
     //...buttonGhost(colors),
     //...buttonLight(colors),
     ...buttonLink(colors),
+  },
+  '.btn-has-icon': {
+    '&-left .MuiSvgIcon-root': {
+      '@apply mr-sm': {},
+    },
+    '&-right .MuiSvgIcon-root': {
+      '@apply ml-sm': {},
+    },
   },
 });

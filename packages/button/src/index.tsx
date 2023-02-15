@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Button as InternalButton, ButtonProps } from './button';
+import { Button as InternalButton, ButtonProps, getButtonContent } from './button';
 import { ButtonGroup, ButtonGroupProps } from './button-group';
 import { IconButton, IconButtonProps } from './icon-button';
 interface Button extends React.ForwardRefExoticComponent<ButtonProps & React.RefAttributes<HTMLButtonElement>> {
@@ -13,4 +13,4 @@ Button.Group = ButtonGroup;
 
 export type { ButtonProps, ButtonGroupProps, IconButtonProps };
 
-export { Button, ButtonGroup, IconButton };
+export { Button, ButtonGroup, IconButton, getButtonContent };

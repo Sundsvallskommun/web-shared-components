@@ -8,6 +8,7 @@ export const useButtonClass = createMemoClass((props) => {
     ghost: 'btn-ghost',
     light: 'btn-light',
     link: 'btn-link',
+    icon: 'btn-icon',
   };
 
   const sizes = {
