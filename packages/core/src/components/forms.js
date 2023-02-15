@@ -261,7 +261,13 @@ module.exports = Forms = (colors) => ({
       '@apply rounded-none cursor-default hover:text-white focus-visible:text-white hover:bg-primary focus-visible:bg-primary':
         {},
 
+      '&.multiple.selected': {
+        '@apply bg-background-one': {},
+      },
       '&.active': {
+        '@apply bg-primary text-white': {},
+      },
+      '&.active.selected': {
         '@apply bg-primary text-white': {},
       },
     },

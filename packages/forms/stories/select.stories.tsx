@@ -1,7 +1,5 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Select } from '../src';
-import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 
 export default {
   title: 'Komponenter/Dropdown/Komponent',
@@ -21,22 +19,32 @@ const people = [
 
 export const Template = (args: any) => {
   const [selectedValue, setSelectedValue] = useState<{ label: string; data: any }>();
+  const [selectedValues, setSelectedValues] = useState<{ label: string; data: any }[]>([]);
   return (
-    <>
-      <button onClick={() => setSelectedValue({ label: people[1].name, data: people[1] })}>Välj Kenton Towne</button>
+    <div className="h-80">
+      <button
+        className="mb-md"
+        onClick={() =>
+          args.multiple
+            ? setSelectedValues([{ label: people[1].name, data: people[1] }])
+            : setSelectedValue({ label: people[1].name, data: people[1] })
+        }
+      >
+        Välj Kenton Towne
+      </button>
       <Select
         {...args}
         onChange={(e) => {
           console.log('onchange on select:', e);
         }}
-        value={selectedValue}
+        value={args.multiple ? selectedValues : selectedValue}
         // dropDownIcon={<ArrowForwardIosOutlinedIcon className="!text-xl rotate-90" />}
       >
         {people.map((person, index) => (
           <Select.Option disabled={index === 2} key={person.id} value={{ label: person.name, data: person }} />
         ))}
       </Select>
-    </>
+    </div>
   );
 };
 
@@ -86,6 +94,15 @@ Template.argTypes = {
   disabled: {
     type: { name: 'boolean', required: false },
     description: 'Sets disabled',
+    table: {
+      defaultValue: { summary: 'false' },
+    },
+    control: 'boolean',
+    defaultValue: false,
+  },
+  multiple: {
+    type: { name: 'boolean', required: false },
+    description: 'Sets if multichoice',
     table: {
       defaultValue: { summary: 'false' },
     },
