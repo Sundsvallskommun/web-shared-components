@@ -1,13 +1,14 @@
 import { Listbox } from '@headlessui/react';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { cx, __DEV__ } from '@sk-web-gui/utils';
+import { cx, isArray, __DEV__ } from '@sk-web-gui/utils';
+import { Tag } from '@sk-web-gui/react';
 import * as React from 'react';
 
 import { Fragment, useEffect, useState } from 'react';
 import { Input, InputProps } from '../input/input';
 import { useSelectClass } from './styles';
 
-type OptionValueType = { label: string; data: any };
+export type OptionValueType = { label: string; data: any };
 
 export interface OptionProps extends Omit<InputProps, 'value'> {
   value?: OptionValueType;
@@ -16,12 +17,13 @@ export interface OptionProps extends Omit<InputProps, 'value'> {
 const Option: React.FC<OptionProps> = ({ value }) => <option value={value?.data}>{value?.label}</option>;
 
 export interface SelectProps extends Omit<InputProps, 'value' | 'onChange'> {
-  onChange: (value: OptionValueType) => void;
+  onChange: (value: OptionValueType | OptionValueType[]) => void;
   listClassName?: string;
   defaultOptionsAmount?: number;
-  value?: OptionValueType;
+  value?: OptionValueType | OptionValueType[];
   classNameWrapper?: string;
   dropDownIcon?: React.ReactNode;
+  multiple?: boolean;
 }
 
 const InternalSelect = React.forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
@@ -37,23 +39,38 @@ const InternalSelect = React.forwardRef<HTMLSelectElement, SelectProps>((props, 
     disabled,
     size = 'md',
     dropDownIcon,
+    multiple = false,
     ...rest
   } = props;
-  const [selectedValue, setSelectedValue] = useState<OptionValueType | undefined>(value);
+  const [selectedValue, setSelectedValue] = useState<OptionValueType | undefined>();
+  const [selectedValues, setSelectedValues] = useState<OptionValueType[] | undefined>(undefined);
 
   useEffect(() => {
-    setSelectedValue(value);
-  }, [value]);
+    if (multiple) {
+      isArray(value) ? setSelectedValues(value) : setSelectedValues([value as OptionValueType]);
+    } else {
+      setSelectedValue(value as OptionValueType);
+    }
+  }, [value, multiple]);
 
   const classes = useSelectClass({ size, disabled });
 
-  const handleOnChange = (value: OptionValueType) => {
-    setSelectedValue(value);
+  const handleOnChange = (value: OptionValueType | OptionValueType[]) => {
+    if (multiple) {
+      setSelectedValues(value as OptionValueType[]);
+    }
+    setSelectedValue(value as OptionValueType);
     onChange && onChange(value);
   };
 
   return (
-    <Listbox value={selectedValue} onChange={handleOnChange} as={Fragment} disabled={disabled ? disabled : undefined}>
+    <Listbox
+      value={multiple ? selectedValues : selectedValue}
+      onChange={handleOnChange}
+      as={Fragment}
+      disabled={disabled ? disabled : undefined}
+      multiple={multiple}
+    >
       {({ open }) => (
         <div className={`${classNameWrapper} form-select-wrapper block w-full relative`}>
           <Listbox.Button as={Fragment}>
@@ -67,7 +84,23 @@ const InternalSelect = React.forwardRef<HTMLSelectElement, SelectProps>((props, 
               className={cx('form-select', className)}
               {...rest}
             >
-              <span>{selectedValue ? selectedValue.label : placeholder}</span>
+              {multiple ? (
+                <div className="flex w-full justify-between pr-md">
+                  <div className="truncate pr-md">
+                    {selectedValues && selectedValues.length
+                      ? selectedValues.map((value) => value.label).join(', ')
+                      : placeholder}
+                  </div>
+                  {selectedValues && selectedValues.length > 1 && (
+                    <Tag size="sm" variant="solid">
+                      {selectedValues?.length}
+                    </Tag>
+                  )}
+                </div>
+              ) : (
+                <span>{selectedValue ? selectedValue.label : placeholder}</span>
+              )}
+
               <div className={`form-select-icon absolute right-4 ${open ? 'open rotate-180' : ''}`}>
                 {dropDownIcon ? dropDownIcon : <ArrowDropDownIcon className={`!text-2xl`} />}
               </div>
@@ -98,7 +131,9 @@ const InternalSelect = React.forwardRef<HTMLSelectElement, SelectProps>((props, 
                             option.props.disabled
                               ? 'opacity-75 cursor-not-allowed hover:bg-white hover:text-black'
                               : '',
-                            active ? 'active' : ''
+                            multiple ? 'multiple' : '',
+                            active ? 'active' : '',
+                            selected ? 'selected' : ''
                           )}
                           {...rest}
                         >
