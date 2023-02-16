@@ -258,17 +258,14 @@ module.exports = Button = (colors) => ({
   '.btn': {
     '@apply relative': {},
     '@apply m-0': {},
-    '@apply rounded-[4px] inline-flex items-center justify-center flex-shrink-0 align-middle': {},
+    '@apply px-[3.2rem]': {},
+    '@apply py-0': {},
+    '@apply rounded-[0.4rem] inline-flex items-center justify-center flex-shrink-0 align-middle': {},
     '@apply font-medium leading-tight': {},
     transitionProperty: 'background-color, border-color, color, fill, stroke, box-shadow',
     '@apply	duration-75 ease-out': {},
     '@apply outline-none appearance-none cursor-base select-none whitespace-nowrap': {},
     '@apply focus-visible:outline-none': {},
-
-    padding: '0 3.2rem',
-    maxHeight: '3em',
-    minHeight: '3em',
-    boxSizing: 'content-box',
 
     "&[data-rounded='true']": {
       borderRadius: '3.2rem',
@@ -277,16 +274,20 @@ module.exports = Button = (colors) => ({
     // sizing
     '&-sm': {
       '@apply text-xs': {},
+      minHeight: '4rem',
+      maxHeight: '4rem',
     },
 
     '&-md': {
       '@apply text-sm': {},
-      // minWidth: "2rem",
+      minHeight: '4.4rem',
+      maxHeight: '4.4rem',
     },
 
     '&-lg': {
       '@apply text-base': {},
-      // minWidth: "2.5rem",
+      minHeight: '4.8rem',
+      maxHeight: '4.8rem',
     },
 
     // State
