@@ -15,7 +15,7 @@ const ContextMenuComponent = React.forwardRef<HTMLDivElement, ContextMenuProps>(
   };
 
   const getItems = () => {
-    return React.Children.toArray(children).filter((child: any) => child?.type?.name === 'ContextMenuItem');
+    return React.Children.toArray(children).filter((child: any) => child?.type?.name !== 'ContextMenuButton');
   };
 
   return (
@@ -26,11 +26,19 @@ const ContextMenuComponent = React.forwardRef<HTMLDivElement, ContextMenuProps>(
   );
 });
 
-const ContextMenuItem: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => (
-  <Menu.Item as="div" className={cx('context-menu-item', className)}>
-    {children}
-  </Menu.Item>
-);
+const ContextMenuItem: React.FC<{ children: JSX.Element; className?: string }> = ({ children, className }) => {
+  const getItem = (child: JSX.Element, active: boolean) => {
+    const classes = cx(child?.props?.className, active ? 'active' : '');
+    const props = { ...child.props, className: classes };
+    return React.cloneElement(child, props);
+  };
+
+  return (
+    <Menu.Item as="div" className={cx('context-menu-item', className)}>
+      {({ active }) => getItem(children, active)}
+    </Menu.Item>
+  );
+};
 
 interface ContextMenu extends React.ForwardRefExoticComponent<ContextMenuProps & React.RefAttributes<HTMLElement>> {
   Item: typeof ContextMenuItem;

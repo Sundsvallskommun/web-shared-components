@@ -6,6 +6,10 @@ function buttonSolid(colors) {
       '@apply text-body bg-white': {},
       /* hover */
       '@apply hover:text-white hover:bg-hover hover:border-primary-active': {},
+      /* keyboard active */
+      '&.active': {
+        '@apply text-white bg-hover border-primary-active': {},
+      },
       /* focus */
       '@apply focus-visible:z-base': {},
       '@apply focus-visible:border-primary': {},
@@ -18,6 +22,10 @@ function buttonSolid(colors) {
       '@apply dark:text-neutral-100 dark:bg-neutral-700': {},
       /* dark hover */
       '@apply dark:hover:border-hover dark:hover:bg-neutral-600': {},
+      /* dark keyboard active */
+      '&.active': {
+        '@apply dark:border-hover dark:bg-neutral-600': {},
+      },
       /* dark focus */
       '@apply dark:focus-visible:border-primary-500': {},
       /* dark active */
@@ -31,6 +39,10 @@ function buttonSolid(colors) {
             [`@apply text-white bg-${color}`]: {},
             // hover
             [`@apply hover:text-white hover:bg-${color}-active`]: {},
+            // keyboard active
+            '&.active': {
+              [`@apply text-white bg-${color}-active`]: {},
+            },
 
             [`@apply active:text-white active:bg-${color}-active`]: {},
             [`@apply focus-visible:ring-4 focus-visible:ring-black`]: {},
@@ -58,11 +70,17 @@ function buttonSolid(colors) {
 
       "&[data-color='primary']": {
         '@apply border-primary hover:border-primary-active': {},
+        '&.active': {
+          '@apply border-primary-active': {},
+        },
       },
 
       '&.btn': {
         '&-disabled': {
           '@apply disabled:border-gray-stroke hover:border-gray-stroke': {},
+          '&.active': {
+            '@apply border-gray-stroke': {},
+          },
         },
       },
     },
@@ -76,6 +94,10 @@ function buttonOutline(colors) {
       '@apply text-body bg-transparent': {},
       /* hover */
       '@apply hover:text-white hover:bg-primary-active hover:border-primary-active': {},
+      /* keyboard active */
+      '&.active': {
+        '@apply text-white bg-primary-active border-primary-active': {},
+      },
       /* focus */
       '@apply focus-visible:z-base': {},
       '@apply focus-visible:border-primary-500': {},
@@ -87,6 +109,10 @@ function buttonOutline(colors) {
       '@apply dark:text-neutral-100 dark:bg-transparent': {},
       /* dark hover */
       '@apply dark:hover:border-neutral-300 dark:hover:bg-neutral-700': {},
+      /* dark keyboard active */
+      '&.active': {
+        '@apply dark:border-neutral-300 dark:bg-neutral-700': {},
+      },
       /* dark focus */
       '@apply dark:focus-visible:border-primary-500': {},
       /* dark active */
@@ -100,6 +126,10 @@ function buttonOutline(colors) {
             [`@apply text-${color}-600 bg-transparent`]: {},
             /* hover */
             [`@apply hover:text-white hover:bg-${color}-active hover:border-${color}-active`]: {},
+            /* keyboard active */
+            '&.active': {
+              [`@apply text-white bg-${color}-active border-${color}-active`]: {},
+            },
             /* focus */
             [`@apply focus-visible:border-${color}-500`]: {},
             [`@apply focus-visible:ring-${color}-500`]: {},
@@ -112,6 +142,11 @@ function buttonOutline(colors) {
             /* dark hover */
             [`@apply dark:hover:bg-${color}-200`]: {},
             [`@apply dark:hover:bg-opacity-15`]: {},
+            /* dark keyboard active */
+            '&.active': {
+              [`@apply dark:bg-${color}-200`]: {},
+              [`@apply dark:bg-opacity-15`]: {},
+            },
             /* dark focus */
             [`@apply dark:focus-visible:border-${color}-500`]: {},
             [`@apply dark:focus-visible:ring-${color}-500`]: {},
@@ -126,6 +161,9 @@ function buttonOutline(colors) {
       '&.btn': {
         '&-disabled': {
           '@apply disabled:border-gray-stroke hover:border-gray-stroke': {},
+          '&.active': {
+            '@apply border-gray-stroke': {},
+          },
         },
       },
     },
@@ -232,6 +270,9 @@ function buttonLink(colors) {
   return {
     '&-link': {
       '@apply h-auto p-0 leading-normal text-neutral-600 hover:underline active:text-neutral-700': {},
+      '&.active': {
+        '@apply underline': {},
+      },
       '@apply focus-visible:z-base focus-visible:ring-4 focus-visible:ring-primary-500': {},
       // dark colors
       '@apply dark:text-neutral-200': {},
