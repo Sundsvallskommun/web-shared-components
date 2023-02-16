@@ -38,3 +38,4 @@ export * from '@sk-web-gui/search-bar';
 export * from '@sk-web-gui/pagination';
 export * from '@sk-web-gui/footer';
 export * from '@sk-web-gui/header';
+export * from '@sk-web-gui/context-menu';

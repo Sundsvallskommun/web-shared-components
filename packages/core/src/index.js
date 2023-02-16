@@ -10,6 +10,7 @@ const Breadcrumb = require('./components/breadcrumb');
 const ButtonGroup = require('./components/button-group');
 
 const Checkbox = require('./components/checkbox');
+const ContextMenu = require('./components/context-menu');
 const Dot = require('./components/dot');
 const Forms = require('./components/forms');
 const Calendar = require('./components/calendar');
@@ -51,6 +52,7 @@ const components = [
   ButtonGroup,
   Button,
   Checkbox,
+  ContextMenu,
   Dot,
   Forms,
   Calendar,
