@@ -14,7 +14,7 @@ const FilterItem = ({ item, itemChange }: IFilterItemProps) => {
   };
 
   return (
-    <li className={cx('FilterItem', { disabled: item?.disabled })}>
+    <li className={cx('filter-item', { disabled: item?.disabled })}>
       <label htmlFor={'checkbox-' + item.id}>{item.name}</label>
       <Checkbox id={'checkbox-' + item.id} checked={item.value} disabled={item.disabled} onChange={onClickHandler} />
     </li>

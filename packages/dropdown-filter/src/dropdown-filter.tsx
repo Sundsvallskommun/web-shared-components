@@ -84,7 +84,7 @@ export const DropdownFilter = React.forwardRef<HTMLDivElement, IDropdownFilter>(
   }, [ref]);
 
   return (
-    <div className={`${className} DropdownFilter`} ref={wrapperRef}>
+    <div className={`${className} dropdown-filter`} ref={wrapperRef}>
       <button
         type="button"
         className="dropdown-button"
@@ -93,7 +93,7 @@ export const DropdownFilter = React.forwardRef<HTMLDivElement, IDropdownFilter>(
         aria-expanded={open}
       >
         <span>{label}</span>
-        <div className={`dropdown-button-icon absolute right-4 ${open ? 'open rotate-180' : ''}`}>
+        <div className={`dropdown-button-icon ${open ? 'open rotate-180' : ''}`}>
           {dropDownIcon ? dropDownIcon : <ArrowDropDownIcon className={`!text-2xl`} />}
         </div>
       </button>

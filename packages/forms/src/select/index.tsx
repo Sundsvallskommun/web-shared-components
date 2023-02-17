@@ -72,7 +72,7 @@ const InternalSelect = React.forwardRef<HTMLSelectElement, SelectProps>((props, 
       multiple={multiple}
     >
       {({ open }) => (
-        <div className={`${classNameWrapper} form-select-wrapper block w-full relative`}>
+        <div className={`${classNameWrapper} form-select-wrapper `}>
           <Listbox.Button as={Fragment}>
             <Input
               ref={ref}
@@ -101,7 +101,7 @@ const InternalSelect = React.forwardRef<HTMLSelectElement, SelectProps>((props, 
                 <span>{selectedValue ? selectedValue.label : placeholder}</span>
               )}
 
-              <div className={`form-select-icon absolute right-4 ${open ? 'open rotate-180' : ''}`}>
+              <div className={`form-select-icon ${open ? 'open rotate-180' : ''}`}>
                 {dropDownIcon ? dropDownIcon : <ArrowDropDownIcon className={`!text-2xl`} />}
               </div>
             </Input>

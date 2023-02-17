@@ -1,5 +1,5 @@
 module.exports = DropdownFilter = () => ({
-  '.DropdownFilter': {
+  '.dropdown-filter': {
     position: 'relative',
     height: 50,
     border: '1px solid #939393',
@@ -8,11 +8,10 @@ module.exports = DropdownFilter = () => ({
     borderRadius: 2,
 
     '.dropdown-button': {
-      justifyContent: 'space-between',
-      display: 'flex',
-      flexGrow: 1,
-      alignItems: 'center',
-      padding: '0 1rem',
+      '@apply flex justify-between items-center py-0 px-[1rem] grow': {},
+      '.dropdown-button-icon': {
+        '@apply justify-self-end grow-0': {},
+      },
     },
 
     '.filter-container': {
@@ -38,7 +37,7 @@ module.exports = DropdownFilter = () => ({
         },
       },
 
-      '.FilterItem': {
+      '.filter-item': {
         height: 48,
         display: 'flex',
         justifyContent: 'space-between',
