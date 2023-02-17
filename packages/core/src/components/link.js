@@ -6,6 +6,9 @@ module.exports = Link = () => ({
 
     '@apply hover:text-primary-active': {},
 
+    '&.active': {
+      '@apply underline text-primary-active': {},
+    },
     '&-external-icon': {
       fontSize: '0.875em !important',
       lineHeight: '1',
