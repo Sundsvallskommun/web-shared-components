@@ -1,33 +1,33 @@
-import * as React from 'react';
-import { useEffect, useState, Fragment } from 'react';
-import { cx, __DEV__ } from '@sk-web-gui/utils';
-import CloseIcon from '@mui/icons-material/Close';
 import { Dialog, Transition } from '@headlessui/react';
+import CloseIcon from '@mui/icons-material/Close';
+import { __DEV__ } from '@sk-web-gui/utils';
+import * as React from 'react';
+import { Fragment } from 'react';
 
 export interface IModalProps {
-  show: boolean
-  label?: string
-  className?: string
-  onClose?: () => void
-  hideClosebutton?: boolean
-  children?: React.ReactNode
+  show: boolean;
+  label?: string;
+  className?: string;
+  onClose?: () => void;
+  hideClosebutton?: boolean;
+  children?: React.ReactNode;
+  disableCloseOutside?: boolean;
 }
 
 export const Modal = React.forwardRef<HTMLDivElement, IModalProps>((props, ref) => {
-  const { 
-    show,
-    label,
-    className,
-    hideClosebutton = false,
-    onClose,
-    children
-  } = props;
+  const { show, label, className, hideClosebutton = false, onClose, children, disableCloseOutside = false } = props;
 
   const onCloseHandler = () => {
     if (onClose) {
-      onClose()
+      onClose();
     }
-  }
+  };
+
+  const onCloseOutsideHandler = () => {
+    if (onClose && !disableCloseOutside) {
+      onClose();
+    }
+  };
 
   return (
     <div className="Modal">
@@ -36,7 +36,7 @@ export const Modal = React.forwardRef<HTMLDivElement, IModalProps>((props, ref) 
           open={show}
           as="div"
           className="fixed inset-0 z-20 overflow-y-auto bg-opacity-50 bg-gray-500"
-          onClose={onCloseHandler}
+          onClose={onCloseOutsideHandler}
         >
           <div className="min-h-screen px-4 text-center">
             <Transition.Child
@@ -47,7 +47,7 @@ export const Modal = React.forwardRef<HTMLDivElement, IModalProps>((props, ref) 
               leave="ease-in duration-200"
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
-              >
+            >
               <Dialog.Overlay className="fixed inset-0" />
             </Transition.Child>
 
@@ -73,15 +73,10 @@ export const Modal = React.forwardRef<HTMLDivElement, IModalProps>((props, ref) 
                   </Dialog.Title>
 
                   {!hideClosebutton && (
-                    <button
-                      className="p-4 -m-4"
-                      aria-label={`Stäng ${label}`}
-                      onClick={onCloseHandler}
-                    >
+                    <button className="p-4 -m-4" aria-label={`Stäng ${label}`} onClick={onCloseHandler}>
                       <CloseIcon className="material-icon !text-2xl" />
                     </button>
                   )}
-
                 </div>
                 <div>{children}</div>
               </div>
