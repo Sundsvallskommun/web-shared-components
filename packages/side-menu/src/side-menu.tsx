@@ -4,7 +4,6 @@ import { MenuItem } from './menu-item';
 import { Spinner } from '@sk-web-gui/spinner';
 import { Button } from '@sk-web-gui/button';
 import EastIcon from '@mui/icons-material/East';
-import { useEffect } from 'react';
 import { Draggable } from './Draggable';
 
 export interface IDataObject {
@@ -71,7 +70,7 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
     draggable && props.onDrop && props.onDrop(draggedItem, newParent);
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     let draggables: InstanceType<typeof Draggable>;
     if (internalRef) {
       if (draggable && internalRef) {

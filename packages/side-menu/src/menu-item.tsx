@@ -1,7 +1,6 @@
+import { useEffect, useState } from 'react';
 import { Button } from '@sk-web-gui/button';
 import { cx } from '@sk-web-gui/utils';
-
-import { useEffect, useRef, useState } from 'react';
 import MinusIcon from './assets/MinusIcon';
 import PlusIcon from './assets/PlusIcon';
 import { IDataObject, IMenu } from './side-menu';
@@ -17,7 +16,6 @@ export interface IMenuExtended extends IMenu {
   closeNoneActive: boolean;
   ariaExpanded: { open: string; close: string };
   draggable?: boolean;
-  onDropCallback?: (data: IDataObject) => void;
 }
 
 export const MenuItem = (props: IMenuExtended) => {
@@ -42,7 +40,6 @@ export const MenuItem = (props: IMenuExtended) => {
     error,
     changes,
   } = props;
-  const dragRef = useRef<HTMLDivElement>(null);
 
   const [open, setOpen] = useState<boolean>(false);
 
@@ -119,7 +116,6 @@ export const MenuItem = (props: IMenuExtended) => {
 
   return (
     <div
-      ref={dragRef}
       className={cx(
         'MenuItem',
         'lvl-' + level,
