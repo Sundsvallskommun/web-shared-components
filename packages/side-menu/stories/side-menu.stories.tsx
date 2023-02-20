@@ -6,6 +6,7 @@ import testDataNoPath from './testDataNoPath.json';
 import testDataNoPathDraggable from './testDataNoPathDraggable.json';
 import { Select } from '@sk-web-gui/forms';
 import { Spinner } from '@sk-web-gui/spinner';
+import { IMenu } from '@sk-web-gui/react';
 
 export default {
   title: 'Komponenter/Meny/SideMenu',
@@ -31,7 +32,7 @@ export const Template = ({ ...args }: any) => {
   };
 
   return (
-    <div>
+    <div className="pb-xl">
       <button className="bg-black rounded-xl text-white m-10 p-10" onClick={goDeepHandler}>
         Active Shallow
       </button>
@@ -44,8 +45,6 @@ export const Template = ({ ...args }: any) => {
         linkCallback={linkCallbackHandler}
         active={active}
         labelCallback={() => console.log('labelCallback')}
-        draggable
-        className="ml-[100px]"
       />
     </div>
   );
@@ -69,7 +68,7 @@ Template.argTypes = {
       required: true,
     },
     description: 'Data for menu',
-    defaultValue: testDataNoPathDraggable,
+    defaultValue: testDataNoPath,
   },
   label: {
     type: {
@@ -206,9 +205,19 @@ export const TemplateDraggable = ({ ...args }: any) => {
     setActive(data.id);
     console.log('link click', data);
   };
+  const handleOnDrop = (draggedItem: IMenu, newParent: IMenu) => {
+    console.log('handleOnDrop', draggedItem, newParent);
+  };
   return (
-    <div>
-      <SideMenu {...args} linkCallback={linkCallbackHandler} active={active} draggable className="ml-[100px]" />
+    <div className="pb-xl">
+      <SideMenu
+        {...args}
+        linkCallback={linkCallbackHandler}
+        active={active}
+        draggable
+        className="ml-[100px]"
+        onDrop={handleOnDrop}
+      />
     </div>
   );
 };

@@ -1,36 +1,39 @@
-import { IMenuExtended } from './menu-item';
 import { IDataObject, IMenu } from './side-menu';
 
+var dragging: boolean = false;
 var draggedElement: Element;
-var draggedElementData: IMenu;
-var draggedElementDataParent: IMenu;
-var dragoverTimeout: any;
+var draggedElementData: IMenu | undefined;
+var draggedElementDataParent: IMenu | undefined;
 var dropSuccess: boolean = false;
+var draggedElementGhost: any;
+var draggedElementGhostBoundingClientRect: any;
 
 export const Draggable = class {
-  public element: HTMLElement;
-  public elementData: IMenu;
+  public menuElement: HTMLElement;
+  public menuElementData: Array<IMenu>;
   public dropFunction: (draggedElementData: IMenu, newParent: IMenu) => void;
+  public document: HTMLHtmlElement;
   constructor(
-    element: HTMLElement,
-    elementData: IMenuExtended,
+    menuElement: HTMLElement,
+    menuElementData: Array<IMenu>,
     onDrop: (draggedItem: IMenu, newParent: IMenu) => void
   ) {
-    this.element = element;
-    this.elementData = elementData;
+    this.menuElement = menuElement;
+    this.menuElementData = menuElementData;
     this.dropFunction = onDrop;
+    this.document = this.menuElement.closest('html') as HTMLHtmlElement;
 
-    this.element.addEventListener('dragenter', this.handleDragEnter);
-    this.element.addEventListener('dragleave', this.handleDragLeave);
-    this.element.addEventListener('dragover', this.handleDragOver);
-    this.element.addEventListener('dragstart', this.handleDragStart);
-    this.element.addEventListener('dragend', this.handleDragEnd);
-    this.element.addEventListener('drop', this.handleDrop);
+    this.menuElement.addEventListener('mouseover', this.handleDragEnter);
+    this.menuElement.addEventListener('mouseleave', this.handleDragLeave);
+    this.menuElement.addEventListener('mousedown', this.handleDragStart);
+    this.document.addEventListener('mouseup', this.handleDragEnd);
   }
 
-  handleDragEnter = (e: DragEvent) => {
+  handleDragEnter = (e: MouseEvent) => {
+    if (!dragging) return;
     this.removeDragenter();
-    if (draggedElementData.id == this.getElementDataFromEvent(e).id) return;
+    const elementData = this.getElementDataFromEvent(e);
+    if (elementData && draggedElementData?.id == elementData.id) return;
     const closestMenuItem = this.getClosestMenuItem(e);
     if (closestMenuItem !== null) {
       if (!closestMenuItem.className.includes('movedAway')) {
@@ -39,52 +42,57 @@ export const Draggable = class {
     }
   };
 
-  handleDragLeave = () => {
-    if (!dragoverTimeout) {
-      dragoverTimeout = window.setTimeout(() => {
-        this.removeDragenter();
-      }, 100);
-    }
+  handleDragLeave = (e: MouseEvent) => {
+    if (!dragging) return;
+    this.removeDragenter();
   };
 
-  handleDragOver = (e: DragEvent) => {
-    e.preventDefault();
-    if (dragoverTimeout) {
-      window.clearTimeout(dragoverTimeout);
-      dragoverTimeout = null;
-    }
-  };
-
-  handleDragStart = (e: DragEvent) => {
-    setTimeout(() => {
-      window.addEventListener('mousemove', this.handleMouseDrag);
-    });
+  handleDragStart = (e: MouseEvent) => {
     dropSuccess = false;
+    const isMoveButton = (e.target as HTMLElement).closest("[draggable='true']");
+    if (!isMoveButton) return;
     const closestMenuItem = this.getClosestMenuItem(e);
-    if (e.dataTransfer && closestMenuItem) {
+    if (closestMenuItem) {
+      dragging = true;
       draggedElement = closestMenuItem;
+
+      this.createGhostElement(draggedElement);
+      this.handleMouseDrag(e);
+      this.document.addEventListener('mousemove', this.handleMouseDrag);
+
       draggedElement.classList.add('movedAway');
-      e.dataTransfer.setDragImage(closestMenuItem, 0, 0);
+      draggedElementData = this.getElementDataFromEvent(e);
+      if (draggedElementData) {
+        draggedElementDataParent = this.findParentData(draggedElementData.id);
+      }
     }
-    draggedElementData = this.getElementDataFromEvent(e);
-    draggedElementDataParent = this.getParentData(this.elementData, draggedElementData.id);
-    console.log('draggedElementDataParent', draggedElementDataParent);
   };
 
-  handleDragEnd = () => {
+  handleDragEnd = (e: MouseEvent) => {
+    if (!dragging) return;
+    this.handleDrop(e);
     if (!dropSuccess) {
       draggedElement.classList.remove('movedAway');
     }
-    window.removeEventListener('mousemove', this.handleMouseDrag);
+    draggedElementGhost.remove();
+    this.document.removeEventListener('mousemove', this.handleMouseDrag);
+    dragging = false;
   };
 
-  handleDrop = (e: DragEvent) => {
-    const closestMenuItem = this.getClosestMenuItem(e);
+  handleDrop = (e: MouseEvent) => {
+    const closestMenuItem = this.document.querySelector('.dragenter');
     if (closestMenuItem?.className.includes('movedAway')) return;
     if (closestMenuItem?.className.includes('dragenter')) {
-      document.querySelector('.dragenter')?.classList.remove('dragenter');
-      const newParent: IMenu = this.getElementDataFromEvent(e);
-      if (newParent.id !== draggedElementData.id && draggedElementDataParent.id !== newParent.id) {
+      this.document.querySelector('.dragenter')?.classList.remove('dragenter');
+      const id = closestMenuItem.getAttribute('data-id');
+      if (!id) return;
+      const newParent: IMenu | undefined = this.findElementFromId(parseInt(id));
+      if (
+        newParent &&
+        draggedElementData &&
+        newParent.id !== draggedElementData.id &&
+        draggedElementDataParent?.id !== newParent.id
+      ) {
         draggedElement.classList.add('movedAway');
         this.dropFunction(draggedElementData, newParent);
         e.stopPropagation();
@@ -94,12 +102,39 @@ export const Draggable = class {
   };
 
   handleMouseDrag = (e: MouseEvent) => {
-    console.log('handleMouseDrag', e.clientX, e.clientY);
+    draggedElementGhost.style.top = e.clientY - 20 + 'px';
+    draggedElementGhost.style.left = e.clientX + 10 + 'px';
   };
 
-  getParentData = (elementData: IMenu, id: IMenu['id']) => {
+  createGhostElement = (draggedElement: Element) => {
+    draggedElementGhost = draggedElement.cloneNode(true);
+    draggedElementGhost.style.position = 'fixed';
+    draggedElementGhostBoundingClientRect = draggedElement.getBoundingClientRect();
+    draggedElementGhost.style.height = draggedElementGhostBoundingClientRect.height + 'px';
+    draggedElementGhost.style.width = draggedElementGhostBoundingClientRect.width + 'px';
+    draggedElementGhost.style.pointerEvents = 'none';
+    draggedElementGhost.style.opacity = '.75';
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('side-menu');
+    wrapper.style.fontSize = 'inherit';
+    wrapper.appendChild(draggedElementGhost);
+    this.document.appendChild(wrapper);
+  };
+
+  removeDragenter = () => {
+    this.document.querySelector('.dragenter')?.classList.remove('dragenter');
+  };
+
+  getClosestMenuItem = (e: MouseEvent) => {
+    if (e.target !== null) {
+      return (e.target as Element).closest('.MenuItem');
+    }
+    return null;
+  };
+
+  getParentData = (elementData: IMenu, id: IMenu['id']): IMenu | undefined => {
     if (elementData.id == id) return elementData; // is top parent
-    if (!elementData.subItems) return null;
+    if (!elementData.subItems) return undefined;
     if (elementData?.subItems?.length > 0) {
       if (elementData?.subItems?.find((x: IDataObject) => x.id == id)) {
         return elementData;
@@ -109,28 +144,23 @@ export const Draggable = class {
         if (found) return found;
       }
     }
-    return null;
+    return undefined;
   };
 
-  removeDragenter = () => {
-    document.querySelector('.dragenter')?.classList.remove('dragenter');
+  findParentData = (id: IMenu['id']): IMenu | undefined => {
+    let result: IMenu | undefined = undefined;
+    this.menuElementData.find((menuElement) => {
+      result = this.getParentData(menuElement, id);
+      return result !== undefined;
+    });
+    return result ? result : undefined;
   };
 
-  setDraggedElementPosition = (e: MouseEvent) => {
-    console.log('setDraggedElementPosition', e);
-  };
-
-  getClosestMenuItem = (e: DragEvent) => {
-    if (e.target !== null) {
-      return (e.target as Element).closest('.MenuItem');
-    }
-    return null;
-  };
-
-  getElementFromId = (element: any, id: any) => {
-    if (element.id.toString() === id.toString()) {
+  getElementFromId = (element: IMenu, id: number) => {
+    if (!element) return;
+    if (parseInt(element.id as string) === id) {
       return element;
-    } else if (element.subItems?.length > 0) {
+    } else if (element.subItems && element.subItems.length > 0) {
       for (const subItem of element.subItems) {
         const found: any = this.getElementFromId(subItem, id);
         if (found) return found;
@@ -138,20 +168,29 @@ export const Draggable = class {
     }
   };
 
-  getElementDataFromEvent = (e: DragEvent) => {
+  findElementFromId = (id: number): IMenu | undefined => {
+    let result: IMenu | undefined = undefined;
+    this.menuElementData.find((menuElement) => {
+      result = this.getElementFromId(menuElement, id);
+      return result !== undefined;
+    });
+    return result ? result : undefined;
+  };
+
+  getElementDataFromEvent = (e: MouseEvent): IMenu | undefined => {
     const closestMenuItem = this.getClosestMenuItem(e);
     if (closestMenuItem !== null) {
       const id = closestMenuItem.getAttribute('data-id');
-      return this.getElementFromId(this.elementData, id);
+      if (!id) return undefined;
+      return this.findElementFromId(parseInt(id));
     }
+    return undefined;
   };
 
   destroy = () => {
-    this.element.removeEventListener('dragenter', this.handleDragEnter);
-    this.element.removeEventListener('dragleave', this.handleDragLeave);
-    this.element.removeEventListener('dragover', this.handleDragOver);
-    this.element.removeEventListener('dragstart', this.handleDragStart);
-    this.element.removeEventListener('dragend', this.handleDragEnd);
-    this.element.removeEventListener('drop', this.handleDrop);
+    this.menuElement.removeEventListener('mouseover', this.handleDragEnter);
+    this.menuElement.removeEventListener('mouseleave', this.handleDragLeave);
+    this.menuElement.removeEventListener('mousedown', this.handleDragStart);
+    this.document.removeEventListener('mouseup', this.handleDragEnd);
   };
 };

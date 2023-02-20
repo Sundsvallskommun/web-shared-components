@@ -1,12 +1,11 @@
-import { Link } from '@sk-web-gui/link';
 import { Button } from '@sk-web-gui/button';
 import { cx } from '@sk-web-gui/utils';
-import React, { useEffect, useRef, useState } from 'react';
+
+import { useEffect, useRef, useState } from 'react';
 import MinusIcon from './assets/MinusIcon';
 import PlusIcon from './assets/PlusIcon';
 import { IDataObject, IMenu } from './side-menu';
 import DragIndicatorOutlinedIcon from '@mui/icons-material/DragIndicatorOutlined';
-import { Draggable } from './Draggable';
 import ErrorOutlinedIcon from '@mui/icons-material/ErrorOutlined';
 import SparkleIcon from './assets/SparkleIcon';
 
@@ -17,8 +16,8 @@ export interface IMenuExtended extends IMenu {
   /* Closes non active trees in the menu. Default is true. */
   closeNoneActive: boolean;
   ariaExpanded: { open: string; close: string };
-  onDropCallback?: (data: IDataObject) => void;
   draggable?: boolean;
+  onDropCallback?: (data: IDataObject) => void;
 }
 
 export const MenuItem = (props: IMenuExtended) => {
@@ -30,7 +29,6 @@ export const MenuItem = (props: IMenuExtended) => {
     level,
     subItems,
     linkCallback,
-    onDropCallback,
     active,
     closeNoneActive = true,
     ariaExpanded,
@@ -119,25 +117,6 @@ export const MenuItem = (props: IMenuExtended) => {
     );
   };
 
-  const handleOnDrop = (draggedItem: IDataObject, droppedOnItem: IDataObject) => {
-    if (open) {
-      setOpen(false);
-    }
-    console.log('handleOnDrop', draggedItem, droppedOnItem);
-  };
-
-  useEffect(() => {
-    let draggables: InstanceType<typeof Draggable>;
-    if (draggable && !separator && level == 0) {
-      draggables = new Draggable(dragRef.current as HTMLDivElement, itemData, handleOnDrop);
-    }
-    return () => {
-      if (draggables) {
-        draggables.destroy();
-      }
-    };
-  }, []);
-
   return (
     <div
       ref={dragRef}
@@ -177,7 +156,7 @@ export const MenuItem = (props: IMenuExtended) => {
             onClick={expandHandler}
             aria-expanded={open}
             aria-disabled={disabled || movedAway ? true : undefined}
-            aria-label={open ? ariaExpanded.open : ariaExpanded.close}
+            aria-label={open ? ariaExpanded.close : ariaExpanded.open}
           >
             <span>
               {open && <MinusIcon />}
@@ -201,7 +180,6 @@ export const MenuItem = (props: IMenuExtended) => {
                 level={level + 1}
                 subItems={item.subItems}
                 linkCallback={linkCallback}
-                onDropCallback={onDropCallback}
                 closeNoneActive={closeNoneActive}
                 disabled={item.disabled}
                 ariaExpanded={ariaExpanded}

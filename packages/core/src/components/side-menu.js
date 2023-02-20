@@ -1,5 +1,5 @@
 module.exports = Menu = () => ({
-  '.SideMenu': {
+  '.side-menu': {
     '@apply w-[440px]': {},
 
     '.menu-header': {
@@ -58,7 +58,7 @@ module.exports = Menu = () => ({
         '@apply min-h-[48px] max-h-[48px] relative flex flex-wrap items-center': {},
 
         '.MenuItem-link': {
-          '@apply flex-grow flex items-center text-left justify-start py-sm pr-sm h-full': {},
+          '@apply flex-grow flex items-center text-base text-left justify-start py-sm pr-sm h-full': {},
         },
 
         '.expand': {

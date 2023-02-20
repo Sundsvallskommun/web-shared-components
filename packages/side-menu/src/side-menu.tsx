@@ -4,14 +4,17 @@ import { MenuItem } from './menu-item';
 import { Spinner } from '@sk-web-gui/spinner';
 import { Button } from '@sk-web-gui/button';
 import EastIcon from '@mui/icons-material/East';
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { Draggable } from './Draggable';
+
 export interface IDataObject {
   id: string | number;
   level: number;
   label: string;
   path?: string;
-  separator?: boolean;
   disabled?: boolean;
+  /* Below at draggable specific */
+  separator?: boolean;
   movedAway?: boolean;
   movedHere?: boolean;
   newItem?: boolean;
@@ -21,20 +24,30 @@ export interface IDataObject {
 export interface IMenu extends IDataObject {
   subItems?: Array<IMenu> | null | [];
 }
-export interface IMenuProps {
+
+interface CommonProps {
   menuData: Array<IMenu>;
   linkCallback: (data: IDataObject) => void;
   active: string | number;
   loading?: boolean;
   headElement?: React.ReactNode;
   label?: string;
-  onDrop?: (data: IDataObject) => void;
   closeNoneActive?: boolean;
   labelCallback?: () => void;
-  draggable?: boolean;
   className?: string;
   ariaExpanded?: { open: string; close: string };
+  onDrop?: (draggedItem: IMenu, newParent: IMenu) => void;
 }
+interface IMenuPropsRegular extends CommonProps {
+  draggable: false | undefined;
+}
+
+interface IMenuPropsDraggable extends CommonProps {
+  draggable: true;
+  onDrop: (draggedItem: IMenu, newParent: IMenu) => void;
+}
+
+export type IMenuProps = IMenuPropsRegular | IMenuPropsDraggable;
 
 export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref) => {
   const {
@@ -43,7 +56,6 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
     menuData,
     label,
     linkCallback,
-    onDrop,
     active,
     closeNoneActive = true,
     labelCallback,
@@ -51,9 +63,29 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
     className = '',
     ariaExpanded = { open: 'Visa undermeny', close: 'Dölj undermeny' },
   } = props;
+  const internalRef = React.useRef<HTMLDivElement>(null);
+  React.useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(ref, () => internalRef.current);
+
+  const handleDrop = (draggedItem: IMenu, newParent: IMenu) => {
+    props.draggable && props.onDrop(draggedItem, newParent);
+  };
+
+  useEffect(() => {
+    let draggables: InstanceType<typeof Draggable>;
+    if (internalRef) {
+      if (draggable && internalRef) {
+        draggables = new Draggable(internalRef.current as HTMLDivElement, menuData, handleDrop);
+      }
+    }
+    return () => {
+      if (draggables) {
+        draggables.destroy();
+      }
+    };
+  }, []);
 
   return (
-    <nav className={`SideMenu ${className}`} ref={ref}>
+    <nav className={`side-menu ${className}`} ref={internalRef}>
       <div className="menu-header">
         {headElement && headElement}
         {label && (
@@ -88,7 +120,6 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
                 level={0}
                 subItems={item.subItems}
                 linkCallback={linkCallback}
-                onDropCallback={onDrop}
                 closeNoneActive={closeNoneActive}
                 disabled={item.disabled}
                 ariaExpanded={ariaExpanded}
