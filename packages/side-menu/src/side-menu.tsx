@@ -38,8 +38,9 @@ interface CommonProps {
   ariaExpanded?: { open: string; close: string };
   onDrop?: (draggedItem: IMenu, newParent: IMenu) => void;
 }
+
 interface IMenuPropsRegular extends CommonProps {
-  draggable: false | undefined;
+  draggable?: false;
 }
 
 interface IMenuPropsDraggable extends CommonProps {
@@ -59,15 +60,15 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
     active,
     closeNoneActive = true,
     labelCallback,
-    draggable = false,
     className = '',
     ariaExpanded = { open: 'Visa undermeny', close: 'Dölj undermeny' },
+    draggable = false,
   } = props;
   const internalRef = React.useRef<HTMLDivElement>(null);
   React.useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(ref, () => internalRef.current);
 
   const handleDrop = (draggedItem: IMenu, newParent: IMenu) => {
-    props.draggable && props.onDrop(draggedItem, newParent);
+    draggable && props.onDrop && props.onDrop(draggedItem, newParent);
   };
 
   useEffect(() => {
