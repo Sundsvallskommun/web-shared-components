@@ -124,10 +124,6 @@ module.exports = Menu = () => ({
             '@apply hidden': {},
           },
 
-          '> div.wrapper': {
-            '@apply border-0': {},
-          },
-
           '.expand': {
             '@apply opacity-[78%]': {},
             path: {
@@ -143,14 +139,10 @@ module.exports = Menu = () => ({
         },
 
         '&.separator': {
-          '@apply bg-transparent relative h-[44px]': {},
+          '@apply bg-transparent relative': {},
 
           '> div.wrapper, > .MenuItem-link': {
-            '@apply h-[44px] border-0': {},
-          },
-
-          '+ .MenuItem:not(.newItem) > .wrapper': {
-            '@apply border-t': {},
+            '@apply h-[44px]': {},
           },
         },
 
@@ -160,13 +152,19 @@ module.exports = Menu = () => ({
             boxSizing: 'border-box',
 
             '.MenuItem-moveButton': {
-              '@apply -ml-[2px]': {},
+              '@apply -ml-[3px]': {},
             },
           },
         },
 
         '& .MenuItem-changes': {
           '@apply bg-warning rounded-full w-[24px] h-[24px] text-center text-sm font-bold text-white': {},
+        },
+
+        '&.open': {
+          '&:not(.movedAway) + .MenuItem:not(.newItem) > .wrapper': {
+            '@apply border-t': {},
+          },
         },
       },
 
@@ -202,7 +200,11 @@ module.exports = Menu = () => ({
         },
 
         '> .items': {
-          '@apply border-b border-l border-r border-svartvik-200': {},
+          '@apply border-l border-r border-svartvik-200': {},
+        },
+
+        '&.separator > .wrapper': {
+          '@apply border-l-0 border-r-0': {},
         },
       },
 

@@ -1,10 +1,10 @@
 import { __DEV__ } from '@sk-web-gui/utils';
-import * as React from 'react';
 import { MenuItem } from './menu-item';
 import { Spinner } from '@sk-web-gui/spinner';
 import { Button } from '@sk-web-gui/button';
 import EastIcon from '@mui/icons-material/East';
 import { Draggable } from './Draggable';
+import * as React from 'react';
 
 export interface IDataObject {
   id: string | number;
@@ -35,7 +35,7 @@ interface CommonProps {
   labelCallback?: () => void;
   className?: string;
   ariaExpanded?: { open: string; close: string };
-  onDrop?: (draggedItem: IMenu, newParent: IMenu) => void;
+  onDrop?: (draggedItem: IMenu, oldParent: IMenu, newParent: IMenu) => void;
 }
 
 interface IMenuPropsRegular extends CommonProps {
@@ -44,7 +44,7 @@ interface IMenuPropsRegular extends CommonProps {
 
 interface IMenuPropsDraggable extends CommonProps {
   draggable: true;
-  onDrop: (draggedItem: IMenu, newParent: IMenu) => void;
+  onDrop: (draggedItem: IMenu, oldParent: IMenu, newParent: IMenu) => void;
 }
 
 export type IMenuProps = IMenuPropsRegular | IMenuPropsDraggable;
@@ -63,16 +63,18 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
     ariaExpanded = { open: 'Visa undermeny', close: 'Dölj undermeny' },
     draggable = false,
   } = props;
-  const internalRef = React.useRef<HTMLDivElement>(null);
+  const internalRef = React.useRef<HTMLDivElement | null>(null);
   React.useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(ref, () => internalRef.current);
 
-  const handleDrop = (draggedItem: IMenu, newParent: IMenu) => {
-    draggable && props.onDrop && props.onDrop(draggedItem, newParent);
+  const handleDrop = (draggedItem: IMenu, oldParent: IMenu, newParent: IMenu) => {
+    draggable && props.onDrop && props.onDrop(draggedItem, oldParent, newParent);
   };
+
+  const draggablesMemo = React.useMemo(() => menuData, [menuData, ref]);
 
   React.useEffect(() => {
     let draggables: InstanceType<typeof Draggable>;
-    if (internalRef) {
+    if (internalRef && internalRef.current && menuData?.length > 0) {
       if (draggable && internalRef) {
         draggables = new Draggable(internalRef.current as HTMLDivElement, menuData, handleDrop);
       }
@@ -82,7 +84,7 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
         draggables.destroy();
       }
     };
-  }, []);
+  }, [draggablesMemo]);
 
   return (
     <nav className={`side-menu ${className}`} ref={internalRef}>

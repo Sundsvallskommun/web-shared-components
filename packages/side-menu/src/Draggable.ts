@@ -1,22 +1,21 @@
 import { IDataObject, IMenu } from './side-menu';
 
-var dragging: boolean = false;
-var draggedElement: Element;
-var draggedElementData: IMenu | undefined;
-var draggedElementDataParent: IMenu | undefined;
-var dropSuccess: boolean = false;
-var draggedElementGhost: any;
-var draggedElementGhostBoundingClientRect: any;
-
 export const Draggable = class {
-  public menuElement: HTMLElement;
+  public dragging: boolean = false;
+  public draggedElement: Element | null | undefined;
+  public draggedElementData: IMenu | undefined;
+  public draggedElementDataParent: IMenu | undefined;
+  public dropSuccess: boolean = false;
+  public draggedElementGhost: any;
+
+  public menuElement: HTMLDivElement;
   public menuElementData: Array<IMenu>;
-  public dropFunction: (draggedElementData: IMenu, newParent: IMenu) => void;
+  public dropFunction: (draggedElementData: IMenu, oldParent: IMenu, newParent: IMenu) => void;
   public document: HTMLHtmlElement;
   constructor(
-    menuElement: HTMLElement,
+    menuElement: HTMLDivElement,
     menuElementData: Array<IMenu>,
-    onDrop: (draggedItem: IMenu, newParent: IMenu) => void
+    onDrop: (draggedItem: IMenu, oldParent: IMenu, newParent: IMenu) => void
   ) {
     this.menuElement = menuElement;
     this.menuElementData = menuElementData;
@@ -30,10 +29,10 @@ export const Draggable = class {
   }
 
   handleDragEnter = (e: MouseEvent) => {
-    if (!dragging) return;
+    if (!this.dragging) return;
     this.removeDragenter();
     const elementData = this.getElementDataFromEvent(e);
-    if (elementData && draggedElementData?.id == elementData.id) return;
+    if (elementData && this.draggedElementData?.id == elementData.id) return;
     const closestMenuItem = this.getClosestMenuItem(e);
     if (closestMenuItem !== null) {
       if (!closestMenuItem.className.includes('movedAway')) {
@@ -42,41 +41,41 @@ export const Draggable = class {
     }
   };
 
-  handleDragLeave = (e: MouseEvent) => {
-    if (!dragging) return;
+  handleDragLeave = () => {
+    if (!this.dragging) return;
     this.removeDragenter();
   };
 
   handleDragStart = (e: MouseEvent) => {
-    dropSuccess = false;
+    this.dropSuccess = false;
     const isMoveButton = (e.target as HTMLElement).closest("[draggable='true']");
     if (!isMoveButton) return;
     const closestMenuItem = this.getClosestMenuItem(e);
     if (closestMenuItem) {
-      dragging = true;
-      draggedElement = closestMenuItem;
+      this.dragging = true;
+      this.draggedElement = closestMenuItem;
 
-      this.createGhostElement(draggedElement);
+      this.createGhostElement(this.draggedElement);
       this.handleMouseDrag(e);
       this.document.addEventListener('mousemove', this.handleMouseDrag);
 
-      draggedElement.classList.add('movedAway');
-      draggedElementData = this.getElementDataFromEvent(e);
-      if (draggedElementData) {
-        draggedElementDataParent = this.findParentData(draggedElementData.id);
+      this.draggedElement.classList.add('movedAway');
+      this.draggedElementData = this.getElementDataFromEvent(e);
+      if (this.draggedElementData) {
+        this.draggedElementDataParent = this.findParentData(this.draggedElementData.id);
       }
     }
   };
 
   handleDragEnd = (e: MouseEvent) => {
-    if (!dragging) return;
+    if (!this.dragging) return;
     this.handleDrop(e);
-    if (!dropSuccess) {
-      draggedElement.classList.remove('movedAway');
+    if (!this.dropSuccess) {
+      this.draggedElement && this.draggedElement.classList.remove('movedAway');
     }
-    draggedElementGhost.remove();
+    this.draggedElementGhost.remove();
     this.document.removeEventListener('mousemove', this.handleMouseDrag);
-    dragging = false;
+    this.dragging = false;
   };
 
   handleDrop = (e: MouseEvent) => {
@@ -89,35 +88,37 @@ export const Draggable = class {
       const newParent: IMenu | undefined = this.findElementFromId(parseInt(id));
       if (
         newParent &&
-        draggedElementData &&
-        newParent.id !== draggedElementData.id &&
-        draggedElementDataParent?.id !== newParent.id
+        this.draggedElementData &&
+        newParent.id !== this.draggedElementData.id &&
+        this.draggedElementDataParent &&
+        this.draggedElementDataParent?.id !== newParent.id
       ) {
-        draggedElement.classList.add('movedAway');
-        this.dropFunction(draggedElementData, newParent);
+        this.draggedElement && this.draggedElement.classList.add('movedAway');
+        this.dropFunction(this.draggedElementData, this.draggedElementDataParent, newParent);
         e.stopPropagation();
-        dropSuccess = true;
+        this.dropSuccess = true;
       }
     }
   };
 
   handleMouseDrag = (e: MouseEvent) => {
-    draggedElementGhost.style.top = e.clientY - 20 + 'px';
-    draggedElementGhost.style.left = e.clientX + 10 + 'px';
+    this.draggedElementGhost.style.top = e.clientY - 20 + 'px';
+    this.draggedElementGhost.style.left = e.clientX + 10 + 'px';
   };
 
   createGhostElement = (draggedElement: Element) => {
-    draggedElementGhost = draggedElement.cloneNode(true);
-    draggedElementGhost.style.position = 'fixed';
-    draggedElementGhostBoundingClientRect = draggedElement.getBoundingClientRect();
-    draggedElementGhost.style.height = draggedElementGhostBoundingClientRect.height + 'px';
-    draggedElementGhost.style.width = draggedElementGhostBoundingClientRect.width + 'px';
-    draggedElementGhost.style.pointerEvents = 'none';
-    draggedElementGhost.style.opacity = '.75';
+    if (!this.draggedElement) return;
+    this.draggedElementGhost = this.draggedElement.cloneNode(true);
+    this.draggedElementGhost.style.position = 'fixed';
+    const draggedElementGhostBoundingClientRect = this.draggedElement.getBoundingClientRect();
+    this.draggedElementGhost.style.height = draggedElementGhostBoundingClientRect.height + 'px';
+    this.draggedElementGhost.style.width = draggedElementGhostBoundingClientRect.width + 'px';
+    this.draggedElementGhost.style.pointerEvents = 'none';
+    this.draggedElementGhost.style.opacity = '.75';
     const wrapper = document.createElement('div');
     wrapper.classList.add('side-menu');
     wrapper.style.fontSize = 'inherit';
-    wrapper.appendChild(draggedElementGhost);
+    wrapper.appendChild(this.draggedElementGhost);
     this.document.appendChild(wrapper);
   };
 
@@ -133,7 +134,7 @@ export const Draggable = class {
   };
 
   getParentData = (elementData: IMenu, id: IMenu['id']): IMenu | undefined => {
-    if (elementData.id == id) return elementData; // is top parent
+    if (elementData.id == id) return elementData; // is top parent, return self
     if (!elementData.subItems) return undefined;
     if (elementData?.subItems?.length > 0) {
       if (elementData?.subItems?.find((x: IDataObject) => x.id == id)) {

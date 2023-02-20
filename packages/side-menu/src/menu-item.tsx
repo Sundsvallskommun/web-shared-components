@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import * as React from 'react';
 import { Button } from '@sk-web-gui/button';
 import { cx } from '@sk-web-gui/utils';
 import MinusIcon from './assets/MinusIcon';
@@ -41,7 +41,7 @@ export const MenuItem = (props: IMenuExtended) => {
     changes,
   } = props;
 
-  const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = React.useState<boolean>(false);
 
   const expandHandler = () => {
     if (!movedAway) {
@@ -67,7 +67,7 @@ export const MenuItem = (props: IMenuExtended) => {
     return false;
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (hasActiveChild(itemData, active) && !movedAway) {
       setOpen(true);
     } else {
@@ -119,7 +119,7 @@ export const MenuItem = (props: IMenuExtended) => {
       className={cx(
         'MenuItem',
         'lvl-' + level,
-        { open: open },
+        { open: open && subItems },
         { active: active === id },
 
         /** Below are specific for draggable */

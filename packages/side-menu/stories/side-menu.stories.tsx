@@ -31,8 +31,8 @@ export const Template = ({ ...args }: any) => {
     console.log('link click', data);
   };
 
-  const handleOnDrop = (draggedItem: IMenu, newParent: IMenu) => {
-    console.log('handleOnDrop', draggedItem, newParent);
+  const handleOnDrop = (draggedItem: IMenu, oldParent: IMenu, newParent: IMenu) => {
+    console.log('handleOnDrop', draggedItem, oldParent, newParent);
   };
 
   return (
@@ -186,8 +186,8 @@ export const TemplateDraggable = ({ ...args }: any) => {
     setActive(data.id);
     console.log('link click', data);
   };
-  const handleOnDrop = (draggedItem: IMenu, newParent: IMenu) => {
-    console.log('handleOnDrop', draggedItem, newParent);
+  const handleOnDrop = (draggedItem: IMenu, oldParent: IMenu, newParent: IMenu) => {
+    console.log('handleOnDrop', draggedItem, oldParent, newParent);
   };
   return (
     <div className="pb-xl">
