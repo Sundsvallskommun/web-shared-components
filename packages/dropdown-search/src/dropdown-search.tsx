@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import { Button } from '@sk-web-gui/button';
-import { Input, InputProps } from '@sk-web-gui/forms';
+import { Input, InputProps, OptionValueType } from '@sk-web-gui/forms';
 import { useEffect, useRef, useState } from 'react';
 import { useDropdownSearchClass } from './styles';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-
-export type OptionValueType = { label: string; data: any };
 
 type InputPropsOmitted = Pick<InputProps, 'size' | 'variant'>;
 export interface IDropdownSearchProps extends InputPropsOmitted {

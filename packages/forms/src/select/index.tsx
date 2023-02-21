@@ -42,8 +42,10 @@ const InternalSelect = React.forwardRef<HTMLSelectElement, SelectProps>((props, 
     multiple = false,
     ...rest
   } = props;
-  const [selectedValue, setSelectedValue] = useState<OptionValueType | undefined>();
-  const [selectedValues, setSelectedValues] = useState<OptionValueType[] | undefined>(undefined);
+  const [selectedValue, setSelectedValue] = useState<OptionValueType | undefined>(value as OptionValueType | undefined);
+  const [selectedValues, setSelectedValues] = useState<OptionValueType[] | undefined>(
+    value as OptionValueType[] | undefined
+  );
 
   useEffect(() => {
     if (multiple) {
