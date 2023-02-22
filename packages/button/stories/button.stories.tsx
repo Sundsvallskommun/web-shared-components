@@ -2,6 +2,7 @@ import SignalWifi2BarOutlinedIcon from '@mui/icons-material/SignalWifi2BarOutlin
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import { Meta } from '@storybook/react';
 import { Button } from '../src';
+import React from 'react';
 
 export default {
   title: 'Komponenter/Knappar/Komponent',
@@ -20,8 +21,8 @@ export default {
 export const Template = ({ text, ...args }: any) => (
   <div className="flex flex-col items-start space-y-2">
     <Button {...args}>{args.iconButton ? <SignalWifi2BarOutlinedIcon /> : text}</Button>
-    <Button {...args} leftIcon={args.iconButton ? undefined : <CheckOutlinedIcon />}>
-      {args.iconButton ? <CheckOutlinedIcon /> : text}
+    <Button {...args} leftIcon={<CheckOutlinedIcon />}>
+      {args.iconButton ? '' : text}
     </Button>
   </div>
 );

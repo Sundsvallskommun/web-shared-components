@@ -16,15 +16,25 @@ export interface OptionProps extends Omit<InputProps, 'value'> {
 
 const Option: React.FC<OptionProps> = ({ value }) => <option value={value?.data}>{value?.label}</option>;
 
-export interface SelectProps extends Omit<InputProps, 'value' | 'onChange'> {
-  onChange: (value: OptionValueType | OptionValueType[]) => void;
+export interface CommonProps extends Omit<InputProps, 'value' | 'onChange'> {
   listClassName?: string;
   defaultOptionsAmount?: number;
-  value?: OptionValueType | OptionValueType[];
   classNameWrapper?: string;
   dropDownIcon?: React.ReactNode;
-  multiple?: boolean;
 }
+
+interface SelectPropsRegular extends Omit<CommonProps, 'onChange'> {
+  multiple?: false | undefined;
+  value?: OptionValueType;
+  onChange: (value: OptionValueType) => void;
+}
+interface SelectPropsMultiple extends Omit<CommonProps, 'onChange'> {
+  multiple: true;
+  value?: OptionValueType[];
+  onChange: (value: OptionValueType[]) => void;
+}
+
+export type SelectProps = SelectPropsMultiple | SelectPropsRegular;
 
 const InternalSelect = React.forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
   const {
@@ -42,12 +52,14 @@ const InternalSelect = React.forwardRef<HTMLSelectElement, SelectProps>((props, 
     multiple = false,
     ...rest
   } = props;
-  const [selectedValue, setSelectedValue] = useState<OptionValueType | undefined>();
-  const [selectedValues, setSelectedValues] = useState<OptionValueType[] | undefined>(undefined);
+  const [selectedValue, setSelectedValue] = useState<OptionValueType | undefined>(value as OptionValueType | undefined);
+  const [selectedValues, setSelectedValues] = useState<OptionValueType[] | undefined>(
+    value as OptionValueType[] | undefined
+  );
 
   useEffect(() => {
     if (multiple) {
-      isArray(value) ? setSelectedValues(value) : setSelectedValues([value as OptionValueType]);
+      setSelectedValues(value as OptionValueType[]);
     } else {
       setSelectedValue(value as OptionValueType);
     }
@@ -56,11 +68,22 @@ const InternalSelect = React.forwardRef<HTMLSelectElement, SelectProps>((props, 
   const classes = useSelectClass({ size, disabled });
 
   const handleOnChange = (value: OptionValueType | OptionValueType[]) => {
-    if (multiple) {
-      setSelectedValues(value as OptionValueType[]);
+    // Need props.prefix for type safety: https://github.com/microsoft/TypeScript/pull/46266
+    if (!value) return;
+    switch (props.multiple) {
+      case true:
+        setSelectedValues(value as OptionValueType[]);
+        props.onChange(value as OptionValueType[]);
+        break;
+      case false:
+        setSelectedValue(value as OptionValueType);
+        props.onChange(value as OptionValueType);
+        break;
+      case undefined:
+        setSelectedValue(value as OptionValueType);
+        props.onChange(value as OptionValueType);
+        break;
     }
-    setSelectedValue(value as OptionValueType);
-    onChange && onChange(value);
   };
 
   return (
@@ -72,7 +95,7 @@ const InternalSelect = React.forwardRef<HTMLSelectElement, SelectProps>((props, 
       multiple={multiple}
     >
       {({ open }) => (
-        <div className={`${classNameWrapper} form-select-wrapper block w-full relative`}>
+        <div className={`${classNameWrapper} form-select-wrapper `}>
           <Listbox.Button as={Fragment}>
             <Input
               ref={ref}
@@ -101,7 +124,7 @@ const InternalSelect = React.forwardRef<HTMLSelectElement, SelectProps>((props, 
                 <span>{selectedValue ? selectedValue.label : placeholder}</span>
               )}
 
-              <div className={`form-select-icon absolute right-4 ${open ? 'open rotate-180' : ''}`}>
+              <div className={`form-select-icon ${open ? 'open rotate-180' : ''}`}>
                 {dropDownIcon ? dropDownIcon : <ArrowDropDownIcon className={`!text-2xl`} />}
               </div>
             </Input>

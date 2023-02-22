@@ -18,5 +18,13 @@ module.exports = IconButton = () => ({
       minWidth: '4.8rem',
       maxWidth: '4.8rem',
     },
+    '.btn-has-icon': {
+      '&-left .MuiSvgIcon-root': {
+        '@apply mr-0': {},
+      },
+      '&-right .MuiSvgIcon-root': {
+        '@apply ml-0': {},
+      },
+    },
   },
 });

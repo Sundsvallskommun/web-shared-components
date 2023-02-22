@@ -218,7 +218,7 @@ module.exports = Forms = (colors) => ({
       //"@apply disabled:border-neutral-200 disabled:bg-neutral-200": {},
       //"@apply dark:disabled:border-transparent dark:disabled:bg-white/20": {},
     },
-    
+
     "&[data-rounded='true']": {
       borderRadius: '3.2rem',
     },
@@ -229,7 +229,7 @@ module.exports = Forms = (colors) => ({
   },
 
   '.form-close-button': {
-    '@apply p-sm border-0 rounded-[50%] ml-auto': {},
+    '@apply border-0 ml-auto': {},
 
     '&-icon': {
       '@apply inline-flex': {},
@@ -250,9 +250,15 @@ module.exports = Forms = (colors) => ({
   },
 
   '.form-select': {
-    '@apply min-h-[50px] text-body bg-white caret-transparent select-none cursor-pointer border-gray-stroke': {},
+    '@apply min-h-[50px] justify-between grow text-body bg-white caret-transparent select-none cursor-pointer border-gray-stroke':
+      {},
     'background-image': 'none',
-
+    '&-wrapper': {
+      '@apply block w-full relative': {},
+    },
+    '&-icon': {
+      '@apply grow-0': {},
+    },
     '&-list': {
       '@apply z-10 absolute overflow-y-auto w-full bg-white mt-0 border border-gray-stroke border-t-0': {},
     },

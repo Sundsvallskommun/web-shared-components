@@ -1,20 +1,16 @@
 import * as React from 'react';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import { Button } from '@sk-web-gui/button';
-import { Input, InputProps } from '@sk-web-gui/forms';
+import { Input, InputProps, OptionValueType } from '@sk-web-gui/forms';
 import { useEffect, useRef, useState } from 'react';
 import { useDropdownSearchClass } from './styles';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
-type OptionValueType = { label: string; data: any };
-
-type InputPropsOmitted = Omit<InputProps, 'value' | 'onChange' | 'onSelect'>;
+type InputPropsOmitted = Pick<InputProps, 'size' | 'variant'>;
 export interface IDropdownSearchProps extends InputPropsOmitted {
   name?: string;
   data?: Array<any>;
   value?: OptionValueType;
-  /** triggers on input change */
-  onChange?: (value: OptionValueType) => void;
   onSelect?: (value: OptionValueType) => void;
   /** Defaults to 'label' */
   labelProperty?: string;
@@ -36,7 +32,10 @@ export interface IDropdownSearchProps extends InputPropsOmitted {
   closeIcon?: React.ReactNode;
 }
 
-export const DropdownSearch = (props: IDropdownSearchProps) => {
+type OmittedHTMLInputElement = Omit<React.HTMLAttributes<HTMLDivElement>, 'onSelect'>;
+export interface DropdownSearchProps extends OmittedHTMLInputElement, IDropdownSearchProps {}
+
+export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchProps>((props, ref) => {
   const {
     name,
     data,
@@ -207,7 +206,7 @@ export const DropdownSearch = (props: IDropdownSearchProps) => {
   const showSuggestions = data && query && showOptions && (notFoundLabel || filteredData.length > 0);
 
   return (
-    <div className="DropdownSearch block w-full relative">
+    <div ref={ref} className="dropdown-search block w-full relative">
       <Input
         {...rest}
         aria-expanded={showSuggestions}
@@ -238,6 +237,9 @@ export const DropdownSearch = (props: IDropdownSearchProps) => {
             onClick={handleDeleteCallback}
             className="form-close-button"
             aria-label={deleteAriaLabel}
+            iconButton
+            rounded
+            size="sm"
           >
             <div className="form-close-button-icon">
               {closeIcon ? closeIcon : <CloseOutlinedIcon className="!text-xl" aria-hidden="true" />}
@@ -245,6 +247,7 @@ export const DropdownSearch = (props: IDropdownSearchProps) => {
           </Button>
         </div>
       )}
+
       {showSuggestions && (
         <ul
           className={cx('form-field-outline form-select-list', listClassName)}
@@ -271,6 +274,6 @@ export const DropdownSearch = (props: IDropdownSearchProps) => {
       )}
     </div>
   );
-};
+});
 
 export default DropdownSearch;
