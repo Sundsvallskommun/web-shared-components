@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/dropdown-search",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -37,8 +37,8 @@
     "react": "^17.0.2"
   },
   "dependencies": {
-    "@sk-web-gui/button": "0.1.11",
-    "@sk-web-gui/forms": "0.1.20",
+    "@sk-web-gui/button": "0.1.12",
+    "@sk-web-gui/forms": "0.1.21",
     "@sk-web-gui/utils": "0.1.4"
   },
   "peerDependencies": {
