@@ -3576,6 +3576,15 @@
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.24.51.tgz#645f33fe4e02defe26f2f5c0410e1c094eac7f5f"
   integrity sha512-1P1OROm/rdubP5aFDSZQILU0vrLCJ4fvHt6EoqHEM+2D/G5MK3bIaymUKLit8Js9gbns5UyJnkP/TZROLw4tUA==
 
+"@sk-web-gui/button@0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@sk-web-gui/button/-/button-0.1.10.tgz#68eed42e6473a37b810f6f4cb889bcb093f648b3"
+  integrity sha512-aVYZNEdxkUv6uvb6e9K7CIHGBmG+mqGMqIytRfV/kLSRhiIS35hbbOrMg85K3FJUXOz6agrpZjLL605DBQks0A==
+  dependencies:
+    "@sk-web-gui/spinner" "0.1.9"
+    "@sk-web-gui/theme" "0.1.9"
+    "@sk-web-gui/utils" "0.1.4"
+
 "@sk-web-gui/link@0.1.5":
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/@sk-web-gui/link/-/link-0.1.5.tgz#8054da8add83cd2c1b6abca0b5e538b8234b3024"
@@ -3587,6 +3596,14 @@
     "@mui/material" "^5.10.0"
     "@sk-web-gui/theme" "0.1.4"
     "@sk-web-gui/utils" "0.1.3"
+
+"@sk-web-gui/spinner@0.1.9":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@sk-web-gui/spinner/-/spinner-0.1.9.tgz#83708ccba8cd605e86129fa3eb06eec604aad9a3"
+  integrity sha512-tS5SXLKIXifk+SjHJI42pMXZirlhzHJEMWjT0Mu93W8fCpbhIh5np4eJrVIYHH2OMrvPCdhNuv53PyLiBr47zA==
+  dependencies:
+    "@sk-web-gui/theme" "0.1.9"
+    "@sk-web-gui/utils" "0.1.4"
 
 "@sk-web-gui/theme@0.1.1":
   version "0.1.1"
@@ -3602,6 +3619,14 @@
   integrity sha512-gW2cfHIfIPVVNkgwA5m9IUNoOf1IXMdHrf2VsgVghKsTru8u3whfBCiMvP3Mn3D7uL3F/ycN1ZJWwt4T+X31UA==
   dependencies:
     "@sk-web-gui/utils" "0.1.3"
+    lodash.set "^4.3.2"
+
+"@sk-web-gui/theme@0.1.9":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@sk-web-gui/theme/-/theme-0.1.9.tgz#1708e54ce6df7fcf8dc55ab2883bffd3b83613dd"
+  integrity sha512-ZSbGxtXq9O/6OSvpTK1gd6QxuYes952iRW3ptUmPY6alirwzacFdJqfozuOU9/6rTZ/CvyypGd5VVv3e8XPVvg==
+  dependencies:
+    "@sk-web-gui/utils" "0.1.4"
     lodash.set "^4.3.2"
 
 "@sk-web-gui/utils@0.1.2":
