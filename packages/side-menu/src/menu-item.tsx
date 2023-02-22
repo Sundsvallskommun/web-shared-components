@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Button } from '@sk-web-gui/button';
 import { cx } from '@sk-web-gui/utils';
-import MinusIcon from './assets/MinusIcon';
-import PlusIcon from './assets/PlusIcon';
+import MinusIcon from './assets/minus-icon';
+import PlusIcon from './assets/plus-icon';
 import { IDataObject, IMenu } from './side-menu';
 import DragIndicatorOutlinedIcon from '@mui/icons-material/DragIndicatorOutlined';
 import ErrorOutlinedIcon from '@mui/icons-material/ErrorOutlined';
-import SparkleIcon from './assets/SparkleIcon';
+import SparkleIcon from './assets/sparkle-icon';
 
 export interface IMenuExtended extends IMenu {
   itemData: any;
@@ -80,13 +80,13 @@ export const MenuItem = (props: IMenuExtended) => {
   const getLabel = () => {
     return (
       <>
-        {draggable && error && !movedAway && <ErrorOutlinedIcon className="MenuItem-error !text-xl" />}
-        <span className="MenuItem-label">
+        {draggable && error && !movedAway && <ErrorOutlinedIcon className="menu-item-error !text-xl" />}
+        <span className="menu-item-label">
           {label}
           {newItem && <SparkleIcon />}
         </span>
         {draggable && changes && changes > 0 && !movedAway && (
-          <span className="MenuItem-changes">{`${changes > 9 ? '9+' : changes}`}</span>
+          <span className="menu-item-changes">{`${changes > 9 ? '9+' : changes}`}</span>
         )}
       </>
     );
@@ -95,17 +95,17 @@ export const MenuItem = (props: IMenuExtended) => {
   const getLabelItemType = (item: IDataObject) => {
     if (item.path) {
       return (
-        <a className="MenuItem-link" href={path} aria-disabled={disabled || movedAway ? true : undefined}>
+        <a className="menu-item-link" href={path} aria-disabled={disabled || movedAway ? true : undefined}>
           {getLabel()}
         </a>
       );
     }
     if (separator) {
-      return <div className="MenuItem-separator"></div>;
+      return <div className="menu-item-separator"></div>;
     }
     return (
       <button
-        className="MenuItem-link"
+        className="menu-item-link"
         onClick={linkCallbackhandler}
         aria-disabled={disabled || movedAway ? true : undefined}
       >
@@ -117,7 +117,7 @@ export const MenuItem = (props: IMenuExtended) => {
   return (
     <div
       className={cx(
-        'MenuItem',
+        'menu-item',
         'lvl-' + level,
         { open: open && subItems },
         { active: active === id },
@@ -125,9 +125,9 @@ export const MenuItem = (props: IMenuExtended) => {
         /** Below are specific for draggable */
         { separator: separator },
         { draggable: draggable },
-        { movedAway: movedAway },
-        { movedHere: movedHere },
-        { newItem: newItem }
+        { 'moved-away': movedAway },
+        { 'moved-here': movedHere },
+        { 'new-item': newItem }
       )}
       data-id={id}
     >
@@ -136,12 +136,12 @@ export const MenuItem = (props: IMenuExtended) => {
           /** Specific for draggable */
           <Button
             draggable={draggable}
-            className={`MenuItem-moveButton`}
+            className={`menu-item-move-button`}
             variant="link"
             aria-disabled={disabled || movedAway ? true : undefined}
-            rightIcon={<DragIndicatorOutlinedIcon className="MenuItem-moveButtonIcon !text-2xl" />}
+            rightIcon={<DragIndicatorOutlinedIcon className="menu-item-move-button-icon !text-2xl" />}
           >
-            {movedHere && <span className="MenuItem-moveButtonLabel">Flyttad</span>}
+            {movedHere && <span className="menu-item-move-button-label">Flyttad</span>}
           </Button>
         )}
         {getLabelItemType(itemData)}

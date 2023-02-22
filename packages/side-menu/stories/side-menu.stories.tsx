@@ -107,6 +107,14 @@ Template.argTypes = {
     description: 'Callback triggered on drop for draggable menu',
     defaultValue: undefined,
   },
+  draggableOptions: {
+    type: {
+      name: 'object',
+      required: false,
+    },
+    description: 'Options for draggable menu',
+    defaultValue: undefined,
+  },
 };
 
 export const TemplateHeadElement = ({ ...args }: any) => {
@@ -199,6 +207,7 @@ export const TemplateDraggable = ({ ...args }: any) => {
         className="ml-[100px]"
         draggable
         onDrop={handleOnDrop}
+        draggableOptions={{ showMovedAwayOnDrag: false }}
       />
     </div>
   );

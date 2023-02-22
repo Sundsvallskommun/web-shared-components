@@ -30,7 +30,7 @@ module.exports = Menu = () => ({
       },
     },
 
-    '.MenuItem': {
+    '.menu-item': {
       '@apply bg-white h-full': {},
 
       '.items': {
@@ -38,13 +38,13 @@ module.exports = Menu = () => ({
       },
 
       '&-label': {
-        '@apply flex-grow': {},
+        '@apply flex-grow select-none': {},
       },
 
       '&.active': {
         '> .wrapper': {
           boxShadow: 'inset 6px 0 0 0 #005595',
-          '.MenuItem-label': {
+          '.menu-item-label': {
             '@apply underline': {},
           },
         },
@@ -57,7 +57,7 @@ module.exports = Menu = () => ({
       '& .wrapper': {
         '@apply min-h-[48px] max-h-[48px] relative flex flex-wrap items-center': {},
 
-        '.MenuItem-link': {
+        '.menu-item-link': {
           '@apply flex-grow flex items-center text-base text-left justify-start py-sm pr-sm h-full': {},
         },
 
@@ -67,6 +67,12 @@ module.exports = Menu = () => ({
           span: {
             '@apply flex justify-center items-center border-l border-gray-stroke h-[24px] w-[45px]': {},
           },
+        },
+      },
+
+      '&.open': {
+        '&:not(.moved-away) + .menu-item:not(.new-item) > .wrapper': {
+          '@apply border-t': {},
         },
       },
 
@@ -85,25 +91,29 @@ module.exports = Menu = () => ({
           },
         },
 
-        '& .MenuItem-moveButton': {
+        '&.moving': {
+          '@apply hidden': {},
+        },
+
+        '& .menu-item-move-button': {
           '@apply -translate-x-full text-gray-stroke absolute py-sm inset-y-0 my-auto': {},
 
           svg: {
             '@apply h-full': {},
           },
-          '&Label': {
+          '&-label': {
             '@apply text-[#B65A06]': {},
           },
         },
 
-        '.MenuItem-error': {
+        '.menu-item-error': {
           '@apply text-error -ml-[5px] absolute -translate-x-full': {},
         },
 
-        '&.movedAway': {
+        '&.moved-away': {
           '@apply text-gray pointer-events-none': {},
 
-          '.MenuItem-link': {
+          '.menu-item-link': {
             '@apply opacity-[78%] relative': {},
 
             '&::before': {
@@ -112,15 +122,15 @@ module.exports = Menu = () => ({
             },
           },
 
-          '.MenuItem-error, .MenuItem-changes, .items': {
+          '.menu-item-error, .menu-item-changes, .items': {
             '@apply hidden': {},
           },
 
-          '.MenuItem-changes': {
+          '.menu-item-changes': {
             '@apply bg-gray': {},
           },
 
-          '.MenuItem-moveButton': {
+          '.menu-item-move-button': {
             '@apply hidden': {},
           },
 
@@ -141,30 +151,24 @@ module.exports = Menu = () => ({
         '&.separator': {
           '@apply bg-transparent relative': {},
 
-          '> div.wrapper, > .MenuItem-link': {
+          '> div.wrapper, > .menu-item-link': {
             '@apply h-[44px]': {},
           },
         },
 
-        '&.newItem': {
+        '&.new-item': {
           '.wrapper': {
             '@apply border-[3px] border-dashed border-[rgba(0,0,0,0.3)]': {},
             boxSizing: 'border-box',
 
-            '.MenuItem-moveButton': {
+            '.menu-item-move-button': {
               '@apply -ml-[3px]': {},
             },
           },
         },
 
-        '& .MenuItem-changes': {
+        '& .menu-item-changes': {
           '@apply bg-warning rounded-full w-[24px] h-[24px] text-center text-sm font-bold text-white': {},
-        },
-
-        '&.open': {
-          '&:not(.movedAway) + .MenuItem:not(.newItem) > .wrapper': {
-            '@apply border-t': {},
-          },
         },
       },
 
@@ -185,22 +189,26 @@ module.exports = Menu = () => ({
         '> .wrapper': {
           '@apply h-[64px] max-h-[64px] border border-svartvik-200': {},
 
-          '> .MenuItem-link': {
+          '> .menu-item-link': {
             '@apply  py-md': {},
             paddingLeft: '3.2rem',
           },
         },
 
-        '.MenuItem-link': {
+        '.menu-item-link': {
           '@apply h-[64px] max-h-[64px]': {},
         },
 
-        '& + .MenuItem > .wrapper': {
+        '& + .menu-item > .wrapper': {
           '@apply border-t-0': {},
         },
 
         '> .items': {
           '@apply border-l border-r border-svartvik-200': {},
+        },
+
+        '&:last-child.open > .items': {
+          '@apply border-b border-svartvik-200': {},
         },
 
         '&.separator > .wrapper': {
@@ -211,21 +219,21 @@ module.exports = Menu = () => ({
       '&.lvl-1': {
         '@apply bg-gray-lighter': {},
 
-        '> .wrapper, .MenuItem-link': {
+        '> .wrapper, .menu-item-link': {
           '@apply h-[56px] max-h-[56px]': {},
         },
 
-        '&.newItem': {
-          '> .wrapper .MenuItem-link': {
+        '&.new-item': {
+          '> .wrapper .menu-item-link': {
             '@apply h-[50px] max-h-[50px]': {},
           },
         },
 
-        '&.open:not(.newItem) > .wrapper': {
+        '&.open:not(.new-item) > .wrapper': {
           '@apply border-b border-svartvik-200': {},
         },
 
-        '> .wrapper > .MenuItem-link': {
+        '> .wrapper > .menu-item-link': {
           paddingLeft: '4.8rem',
         },
       },
@@ -234,24 +242,24 @@ module.exports = Menu = () => ({
         '.wrapper': {
           '@apply bg-gray-middle h-[48px] max-h-[48px]': {},
 
-          '> .MenuItem-link': {
+          '> .menu-item-link': {
             '@apply h-[48px] max-h-[48px]': {},
           },
         },
 
-        '&.newItem, .newItem': {
-          '> .wrapper .MenuItem-link': {
+        '&.new-item, .new-item': {
+          '> .wrapper .menu-item-link': {
             '@apply h-[42px] max-h-[42px]': {},
           },
         },
 
-        '> .wrapper > .MenuItem-link': {
+        '> .wrapper > .menu-item-link': {
           paddingLeft: '6.4rem',
         },
       },
 
       '&.lvl-3': {
-        '> .wrapper > .MenuItem-link': {
+        '> .wrapper > .menu-item-link': {
           paddingLeft: '8rem',
         },
       },
@@ -260,43 +268,43 @@ module.exports = Menu = () => ({
         '.wrapper': {
           '@apply bg-[#d4d4d4]': {},
         },
-        '> .wrapper > .MenuItem-link': {
+        '> .wrapper > .menu-item-link': {
           paddingLeft: '9.6rem',
         },
       },
 
       '&.lvl-5': {
-        '> .wrapper > .MenuItem-link': {
+        '> .wrapper > .menu-item-link': {
           paddingLeft: '11.2rem',
         },
       },
 
       '&.lvl-6': {
-        '> .wrapper > .MenuItem-link': {
+        '> .wrapper > .menu-item-link': {
           paddingLeft: '12.8rem',
         },
       },
 
       '&.lvl-7': {
-        '> .wrapper > .MenuItem-link': {
+        '> .wrapper > .menu-item-link': {
           paddingLeft: '14.4rem',
         },
       },
 
       '&.lvl-8': {
-        '> .wrapper > .MenuItem-link': {
+        '> .wrapper > .menu-item-link': {
           paddingLeft: '16rem',
         },
       },
 
       '&.lvl-9': {
-        '> .wrapper > .MenuItem-link': {
+        '> .wrapper > .menu-item-link': {
           paddingLeft: '17.6rem',
         },
       },
 
       '&.lvl-10': {
-        '> .wrapper > .MenuItem-link': {
+        '> .wrapper > .menu-item-link': {
           paddingLeft: '19.2rem',
         },
       },
@@ -304,10 +312,10 @@ module.exports = Menu = () => ({
   },
 
   // Sparkle icon scss
-  '.SparkleIcon': {
+  '.sparkle-icon': {
     '@apply inline-flex w-[25px] h-[18px] ml-md  gap-[6px]': {},
   },
-  '.sparkleVert-lg': {
+  '.sparkle-vert-lg': {
     '@apply relative w-0 h-0 border-b-[10px] border-b-primary border-x-[4px] border-x-transparent border-t-[4px] border-t-transparent top-[-4px]':
       {},
     '&::after': {
@@ -315,7 +323,7 @@ module.exports = Menu = () => ({
         {},
     },
   },
-  '.sparkleHorizontal-lg': {
+  '.sparkle-horizontal-lg': {
     '@apply relative w-0 h-0 border-b-[10px] border-b-primary border-x-[4px] border-x-transparent border-t-[4px] border-t-transparent right-[-7px] top-[-10px] rotate-[90deg]':
       {},
     '&::after': {
@@ -323,7 +331,7 @@ module.exports = Menu = () => ({
         {},
     },
   },
-  '.sparkleVert-sm': {
+  '.sparkle-vert-sm': {
     '@apply relative w-0 h-0 border-b-[6px] border-b-primary border-x-[2px] border-x-transparent border-t-[2px] border-t-transparent top-[-2px]':
       {},
     '&::after': {
@@ -331,7 +339,7 @@ module.exports = Menu = () => ({
         {},
     },
   },
-  '.sparkleHorizontal-sm': {
+  '.sparkle-horizontal-sm': {
     '@apply relative w-0 h-0 border-b-[6px] border-b-primary border-x-[2px] border-x-transparent border-t-[6px] border-t-transparent right-[-5.5px] top-[-8px] rotate-[90deg]':
       {},
     '&::after': {
@@ -343,28 +351,28 @@ module.exports = Menu = () => ({
     '@apply animate-pulse delay-75': {},
   },
   '.twinkling-2': {
-    '@apply animate-fastPulse delay-75': {},
+    '@apply animate-fast-pulse delay-75': {},
   },
   '.twinkling-3': {
-    '@apply animate-slowPulse delay-1000': {},
+    '@apply animate-slow-pulse delay-1000': {},
   },
 
-  '@keyframes slowPulse': {
+  '@keyframes slow-pulse': {
     '75%': {
       opacity: 0,
     },
   },
-  '@keyframes fastPulse': {
+  '@keyframes fast-pulse': {
     '65%': {
       opacity: 0,
     },
   },
 
-  '.animate-slowPulse': {
-    animation: 'slowPulse 2s cubic-bezier(0.1, 0.8, 0.2, 0.8) infinite',
+  '.animate-slow-pulse': {
+    animation: 'slow-pulse 2s cubic-bezier(0.1, 0.8, 0.2, 0.8) infinite',
   },
 
-  '.animate-fastPulse': {
-    animation: 'fastPulse 1.5s cubic-bezier(0.4, 0.8, 0.8, 1) infinite',
+  '.animate-fast-pulse': {
+    animation: 'fast-pulse 1.5s cubic-bezier(0.4, 0.8, 0.8, 1) infinite',
   },
 });

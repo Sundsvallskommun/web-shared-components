@@ -3,7 +3,7 @@ import { MenuItem } from './menu-item';
 import { Spinner } from '@sk-web-gui/spinner';
 import { Button } from '@sk-web-gui/button';
 import EastIcon from '@mui/icons-material/East';
-import { Draggable } from './Draggable';
+import { Draggable, DraggableOptionsType } from './draggable';
 import * as React from 'react';
 
 export interface IDataObject {
@@ -35,6 +35,7 @@ interface CommonProps {
   labelCallback?: () => void;
   className?: string;
   ariaExpanded?: { open: string; close: string };
+  draggableOptions?: DraggableOptionsType;
   onDrop?: (draggedItem: IMenu, oldParent: IMenu, newParent: IMenu) => void;
 }
 
@@ -62,6 +63,7 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
     className = '',
     ariaExpanded = { open: 'Visa undermeny', close: 'Dölj undermeny' },
     draggable = false,
+    draggableOptions,
   } = props;
   const internalRef = React.useRef<HTMLDivElement | null>(null);
   React.useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(ref, () => internalRef.current);
@@ -76,7 +78,7 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
     let draggables: InstanceType<typeof Draggable>;
     if (internalRef && internalRef.current && menuData?.length > 0) {
       if (draggable && internalRef) {
-        draggables = new Draggable(internalRef.current as HTMLDivElement, menuData, handleDrop);
+        draggables = new Draggable(internalRef.current as HTMLDivElement, menuData, handleDrop, draggableOptions);
       }
     }
     return () => {
