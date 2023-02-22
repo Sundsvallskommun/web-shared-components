@@ -3,8 +3,10 @@ import { Meta } from '@storybook/react';
 import { IDataObject, SideMenu } from '../src/side-menu';
 import testData from './testData.json';
 import testDataNoPath from './testDataNoPath.json';
+import testDataNoPathDraggable from './testDataNoPathDraggable.json';
 import { Select } from '@sk-web-gui/forms';
 import { Spinner } from '@sk-web-gui/spinner';
+import { IMenu } from '@sk-web-gui/react';
 
 export default {
   title: 'Komponenter/Meny/SideMenu',
@@ -29,8 +31,12 @@ export const Template = ({ ...args }: any) => {
     console.log('link click', data);
   };
 
+  const handleOnDrop = (draggedItem: IMenu, oldParent: IMenu, newParent: IMenu) => {
+    console.log('handleOnDrop', draggedItem, oldParent, newParent);
+  };
+
   return (
-    <div>
+    <div className="pb-xl">
       <button className="bg-black rounded-xl text-white m-10 p-10" onClick={goDeepHandler}>
         Active Shallow
       </button>
@@ -43,6 +49,7 @@ export const Template = ({ ...args }: any) => {
         linkCallback={linkCallbackHandler}
         active={active}
         labelCallback={() => console.log('labelCallback')}
+        onDrop={handleOnDrop}
       />
     </div>
   );
@@ -84,10 +91,34 @@ Template.argTypes = {
     description: 'Close non active menuitems when active id changes',
     defaultValue: true,
   },
+  draggable: {
+    type: {
+      name: 'boolean',
+      required: false,
+    },
+    description: 'Make menu items draggable',
+    defaultValue: false,
+  },
+  onDrop: {
+    type: {
+      name: 'function',
+      required: false,
+    },
+    description: 'Callback triggered on drop for draggable menu',
+    defaultValue: undefined,
+  },
+  draggableOptions: {
+    type: {
+      name: 'object',
+      required: false,
+    },
+    description: 'Options for draggable menu',
+    defaultValue: undefined,
+  },
 };
 
 export const TemplateHeadElement = ({ ...args }: any) => {
-  const [active, setActive] = useState<number | string>();
+  const [active, setActive] = useState<number | string>(1280);
 
   const goDeepHandler = () => {
     setActive(1277);
@@ -117,7 +148,7 @@ export const TemplateHeadElement = ({ ...args }: any) => {
       </button>
 
       <SideMenu
-        {...args}
+        menuData={testData}
         linkCallback={linkCallbackHandler}
         active={active}
         headElement={
@@ -137,62 +168,48 @@ export const TemplateHeadElement = ({ ...args }: any) => {
 
 TemplateHeadElement.storyName = 'SideMenu With headElement';
 
-TemplateHeadElement.argTypes = {
-  menuData: {
-    type: {
-      name: 'array',
-      required: true,
-    },
-    description: 'Data for menu',
-    defaultValue: testData,
-  },
-  label: {
-    type: {
-      name: 'string',
-      required: false,
-    },
-    description: 'Name of menu',
-    defaultValue: 'Menu label (254)',
-  },
-};
-
 export const TemplateLoadingBlock = ({ ...args }: any) => {
-  const [active, setActive] = useState<number>();
+  const [active, setActive] = useState<number>(1280);
   const linkCallbackHandler = (data: any) => {
     setActive(data.id);
     console.log('link click', data);
   };
   return (
     <div>
-      <SideMenu {...args} linkCallback={linkCallbackHandler} loading={true} active={active} />
+      <SideMenu
+        label="Menu label (254)"
+        menuData={testData}
+        linkCallback={linkCallbackHandler}
+        loading={true}
+        active={active}
+      />
     </div>
   );
 };
 TemplateLoadingBlock.storyName = 'SideMenu with loading block';
-TemplateLoadingBlock.argTypes = {
-  disabled: {
-    type: { name: 'string', required: false },
-    description: 'Sets disabled',
-    table: {
-      defaultValue: { summary: 'false' },
-    },
-    control: 'boolean',
-    defaultValue: false,
-  },
-  menuData: {
-    type: {
-      name: 'array',
-      required: true,
-    },
-    description: 'Data for menu',
-    defaultValue: testDataNoPath,
-  },
-  label: {
-    type: {
-      name: 'string',
-      required: false,
-    },
-    description: 'Name of menu',
-    defaultValue: 'Menu label (254)',
-  },
+
+export const TemplateDraggable = ({ ...args }: any) => {
+  const [active, setActive] = useState<number>(1280);
+  const linkCallbackHandler = (data: any) => {
+    setActive(data.id);
+    console.log('link click', data);
+  };
+  const handleOnDrop = (draggedItem: IMenu, oldParent: IMenu, newParent: IMenu) => {
+    console.log('handleOnDrop', draggedItem, oldParent, newParent);
+  };
+  return (
+    <div className="pb-xl">
+      <SideMenu
+        label="Menu label (254)"
+        menuData={testDataNoPathDraggable}
+        linkCallback={linkCallbackHandler}
+        active={active}
+        className="ml-[100px]"
+        draggable
+        onDrop={handleOnDrop}
+        draggableOptions={{ showMovedAwayOnDrag: false }}
+      />
+    </div>
+  );
 };
+TemplateDraggable.storyName = 'SideMenu that is draggable';
