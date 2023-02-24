@@ -134,4 +134,14 @@ Template.argTypes = {
     description: 'Filter function',
     defaultValue: '',
   },
+  size: {
+    type: { name: 'string', required: false },
+    description: 'Sets size',
+    table: {
+      defaultValue: { summary: 'md' },
+    },
+    options: ['sm', 'md', 'lg'],
+    control: 'select',
+    defaultValue: 'md',
+  },
 };
