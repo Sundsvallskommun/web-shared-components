@@ -15,7 +15,7 @@ export interface IISearchBarProps {
   className?: string;
 }
 
-export type ISearchBarProps<T = HTMLElement> = IISearchBarProps & InputProps & React.RefAttributes<T>;
+export type ISearchBarProps<T = HTMLInputElement> = IISearchBarProps & InputProps & React.RefAttributes<T>;
 
 export const SearchBar = React.forwardRef<HTMLInputElement, ISearchBarProps>((props, ref) => {
   const {
@@ -25,7 +25,7 @@ export const SearchBar = React.forwardRef<HTMLInputElement, ISearchBarProps>((pr
     onSearch,
     smallIcon = false,
     rounded = false,
-    size = 'sm',
+    size = 'md',
     className,
     ...rest
   } = props;

@@ -275,7 +275,7 @@ module.exports = Forms = (colors) => ({
       '@apply truncate pr-md': {},
     },
     '&-option': {
-      '@apply rounded-none cursor-default hover:text-white focus-visible:text-white hover:bg-primary focus-visible:bg-primary flex items-center':
+      '@apply text-body rounded-none cursor-default hover:text-white focus-visible:text-white hover:bg-primary focus-visible:bg-primary flex items-center':
         {},
 
       '&.multiple.selected': {
