@@ -23,7 +23,7 @@ interface IButtonProps extends DefaultProps {
   /* Set the button color */
   color?: string;
   /* Size of the button */
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg' | 'fit';
   /** Controls button appearance */
   variant?: 'link' | 'solid' | 'outline' | 'light' | 'ghost';
   /* React node */

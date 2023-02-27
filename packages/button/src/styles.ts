@@ -11,6 +11,7 @@ export const useButtonClass = createMemoClass((props) => {
   };
 
   const sizes = {
+    fit: 'btn-fit-content',
     xs: 'btn-xs',
     sm: 'btn-sm',
     md: 'btn-md',

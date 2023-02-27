@@ -330,6 +330,10 @@ module.exports = Button = (colors) => ({
       minHeight: '4.8rem',
       maxHeight: '4.8rem',
     },
+    '&-fit-content': {
+      '@apply p-0': {},
+      fontSize: 'inherit',
+    },
 
     // State
 

@@ -55,7 +55,15 @@ export const Tag = React.forwardRef<any, TagProps>((props, ref) => {
     <div className={cx(className, classes)} {...rest}>
       <span className="tag-text">{children}</span>
       {useDeleteButton && (
-        <Button type="button" onClick={deleteCallback} className="tag-close-button" aria-label={deleteAriaLabel}>
+        <Button
+          size="fit"
+          type="button"
+          iconButton
+          rounded
+          onClick={deleteCallback}
+          className="tag-close-button"
+          aria-label={deleteAriaLabel}
+        >
           <CloseOutlinedIcon className="tag-close-button-icon" aria-hidden="true" />
         </Button>
       )}

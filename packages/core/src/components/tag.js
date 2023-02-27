@@ -79,8 +79,7 @@ module.exports = Tag = (colors) => ({
   ...tagLight(colors),
 
   '.tag-close-button': {
-    '@apply text-body border-transparent flex items-center justify-center transition-all duration-150 rounded-full outline-none cursor-base':
-      {},
+    '@apply border-transparent cursor-base': {},
     fontSize: '1em',
     padding: '0.36em',
     marginLeft: '0.25em',

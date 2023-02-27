@@ -45,7 +45,7 @@ Template.argTypes = {
     table: {
       defaultValue: { summary: 'md' },
     },
-    options: ['sm', 'md', 'lg'],
+    options: ['sm', 'md', 'lg', 'fit'],
     control: 'select',
     defaultValue: 'md',
   },
