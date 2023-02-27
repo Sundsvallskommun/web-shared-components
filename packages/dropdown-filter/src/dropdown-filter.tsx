@@ -1,8 +1,9 @@
-import { __DEV__ } from '@sk-web-gui/utils';
+import { cx, __DEV__ } from '@sk-web-gui/utils';
 import { useState, useRef, useEffect } from 'react';
 import * as React from 'react';
 import FilterItem from './filter-item';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { useDropdownFilterClass } from './styles';
 
 export interface IFilterData {
   id: number;
@@ -20,13 +21,25 @@ interface IDropdownFilter {
   ariaLabel?: string;
   className?: string;
   dropDownIcon?: React.ReactNode;
+  size?: 'sm' | 'md' | 'lg';
 }
 
 export const DropdownFilter = React.forwardRef<HTMLDivElement, IDropdownFilter>((props, ref) => {
-  const { label, filterData, onFilterChange, onFilterItemChange, ariaLabel, className = '', dropDownIcon } = props;
+  const {
+    label,
+    filterData,
+    onFilterChange,
+    onFilterItemChange,
+    ariaLabel,
+    className = '',
+    dropDownIcon,
+    size = 'md',
+  } = props;
 
   const wrapperRef = useRef<HTMLInputElement>(null);
   const [open, setOpen] = useState(false);
+
+  const classes = useDropdownFilterClass({ size });
 
   const openHandler = () => {
     setOpen(!open);
@@ -84,7 +97,7 @@ export const DropdownFilter = React.forwardRef<HTMLDivElement, IDropdownFilter>(
   }, [ref]);
 
   return (
-    <div className={`${className} dropdown-filter`} ref={wrapperRef}>
+    <div className={cx(classes, className)} ref={wrapperRef}>
       <button
         type="button"
         className="dropdown-button"
@@ -99,7 +112,7 @@ export const DropdownFilter = React.forwardRef<HTMLDivElement, IDropdownFilter>(
       </button>
       {open && (
         <div className="filter-container">
-          <div className="filter-controls">
+          <div className={cx('filter-controls', `form-field-${size}`)}>
             <button type="button" onClick={showAllHandler}>
               Visa alla
             </button>
@@ -111,7 +124,9 @@ export const DropdownFilter = React.forwardRef<HTMLDivElement, IDropdownFilter>(
             {filterData &&
               filterData
                 .filter((x) => (x.isShown == undefined || x.isShown == true ? true : false))
-                .map((item: IFilterData) => <FilterItem key={item.id} item={item} itemChange={itemChangeHandler} />)}
+                .map((item: IFilterData) => (
+                  <FilterItem size={size} key={item.id} item={item} itemChange={itemChangeHandler} />
+                ))}
           </ul>
         </div>
       )}

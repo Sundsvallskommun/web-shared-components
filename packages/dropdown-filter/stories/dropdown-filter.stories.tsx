@@ -65,4 +65,14 @@ Template.argTypes = {
     description: 'Label',
     defaultValue: 'Filter label',
   },
+  size: {
+    type: { name: 'string', required: false },
+    description: 'Sets size',
+    table: {
+      defaultValue: { summary: 'md' },
+    },
+    options: ['sm', 'md', 'lg'],
+    control: 'select',
+    defaultValue: 'md',
+  },
 };

@@ -1,7 +1,7 @@
 import { Listbox } from '@headlessui/react';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { cx, isArray, __DEV__ } from '@sk-web-gui/utils';
 import { Tag } from '@sk-web-gui/react';
+import { cx, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 
 import { Fragment, useEffect, useState } from 'react';
@@ -108,8 +108,8 @@ const InternalSelect = React.forwardRef<HTMLSelectElement, SelectProps>((props, 
               {...rest}
             >
               {multiple ? (
-                <div className="flex w-full justify-between pr-md">
-                  <div className="truncate pr-md">
+                <div className="form-select-has-multiple-choices">
+                  <div className="form-select-multiple-chioces">
                     {selectedValues && selectedValues.length
                       ? selectedValues.map((value) => value.label).join(', ')
                       : placeholder}
@@ -151,12 +151,10 @@ const InternalSelect = React.forwardRef<HTMLSelectElement, SelectProps>((props, 
                             'form-select-option',
                             classes,
                             className,
-                            option.props.disabled
-                              ? 'opacity-75 cursor-not-allowed hover:bg-white hover:text-black'
-                              : '',
                             multiple ? 'multiple' : '',
                             active ? 'active' : '',
-                            selected ? 'selected' : ''
+                            selected ? 'selected' : '',
+                            disabled ? 'disabled' : ''
                           )}
                           {...rest}
                         >

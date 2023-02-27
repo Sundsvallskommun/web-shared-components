@@ -196,19 +196,25 @@ module.exports = Forms = (colors) => ({
     '&-sm': {
       '@apply text-sm leading-sm': {},
       borderRadius: '0.2rem',
-      padding: '1.08rem 1.44rem',
+      padding: '0 1.44rem',
+      minHeight: '4rem',
+      maxHeight: '4rem',
     },
 
     '&-md': {
       '@apply text-base leading-base': {},
       borderRadius: '0.2rem',
-      padding: '1.2rem 1.6rem',
+      padding: '0 1.6rem',
+      minHeight: '4.4rem',
+      maxHeight: '4.4rem',
     },
 
     '&-lg': {
       '@apply text-lg leading-lg': {},
       borderRadius: '0.2rem',
-      padding: '1.32rem 1.76rem',
+      padding: '0 1.76rem',
+      minHeight: '4.8rem',
+      maxHeight: '4.8rem',
     },
 
     '&-disabled, &&-disabled': {
@@ -250,7 +256,7 @@ module.exports = Forms = (colors) => ({
   },
 
   '.form-select': {
-    '@apply min-h-[50px] justify-between grow text-body bg-white caret-transparent select-none cursor-pointer border-gray-stroke':
+    '@apply justify-between items-center grow text-body bg-white caret-transparent select-none cursor-pointer border-gray-stroke':
       {},
     'background-image': 'none',
     '&-wrapper': {
@@ -262,9 +268,14 @@ module.exports = Forms = (colors) => ({
     '&-list': {
       '@apply z-10 absolute overflow-y-auto w-full bg-white mt-0 border border-gray-stroke border-t-0': {},
     },
-
+    '&-has-multiple-choices': {
+      '@apply flex w-full h-full justify-between items-center pr-md': {},
+    },
+    '&-multiple-chioces': {
+      '@apply truncate pr-md': {},
+    },
     '&-option': {
-      '@apply rounded-none cursor-default hover:text-white focus-visible:text-white hover:bg-primary focus-visible:bg-primary':
+      '@apply text-body rounded-none cursor-default hover:text-white focus-visible:text-white hover:bg-primary focus-visible:bg-primary flex items-center':
         {},
 
       '&.multiple.selected': {
@@ -275,6 +286,9 @@ module.exports = Forms = (colors) => ({
       },
       '&.active.selected': {
         '@apply bg-primary text-white': {},
+      },
+      '&.disabled': {
+        '@apply opacity-75 cursor-not-allowed hover:bg-white hover:text-black': {},
       },
     },
   },
