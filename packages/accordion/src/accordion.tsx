@@ -19,6 +19,7 @@ interface IAccordionProps extends DefaultProps {
   /** Controls accordion appearance */
   variant?: 'solid' | 'outline' | 'alert';
   /* the element or component to use in place of `h2` */
+  margin?: boolean;
   as?: React.ElementType;
   /* React node */
   children?: React.ReactNode;
@@ -36,6 +37,7 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
     className,
     color,
     variant = 'solid',
+    margin,
     as: Comp = 'h2',
     ...rest
   } = props;
@@ -103,7 +105,7 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
         </button>
       </div>
       <div
-        className="accordion-body"
+        className={`accordion-body ${margin ? 'm-lg' : ''}`}
         aria-hidden={!accordionOpen}
         ref={contentEl}
         style={accordionOpen ? { height: contentEl?.current?.scrollHeight } : { height: '0' }}

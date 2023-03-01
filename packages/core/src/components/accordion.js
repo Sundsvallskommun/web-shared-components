@@ -34,7 +34,7 @@ module.exports = Accordion = (colors) => ({
     },
 
     '&-body': {
-      '@apply h-0 overflow-hidden m-lg': {},
+      '@apply h-0 overflow-hidden': {},
       transitionProperty: 'visibility, height, padding, margin',
       transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
       transitionDuration: '180ms',

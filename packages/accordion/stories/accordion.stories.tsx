@@ -157,6 +157,7 @@ Template.argTypes = {
     control: 'select',
     defaultValue: 'solid',
   },
+  margin: { control: 'boolean', defaultValue: true },
   // TODO: implement disabled and color for accordions
   /* disabled: { control: 'boolean', defaultValue: false },
     color: {
