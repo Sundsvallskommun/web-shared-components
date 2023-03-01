@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/react",
-  "version": "0.1.100",
+  "version": "0.1.101",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -38,7 +38,7 @@
     "react-dom": "^17.0.2"
   },
   "dependencies": {
-    "@sk-web-gui/accordion": "0.1.21",
+    "@sk-web-gui/accordion": "0.1.22",
     "@sk-web-gui/alert": "0.1.10",
     "@sk-web-gui/alert-banner": "0.1.8",
     "@sk-web-gui/breadcrumb": "0.1.11",
