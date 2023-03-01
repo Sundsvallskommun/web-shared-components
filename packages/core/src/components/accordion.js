@@ -59,6 +59,17 @@ module.exports = Accordion = (colors) => ({
       },
     },
 
+    '&-alert': {
+      '@apply border border-warning': {},
+      '.accordion-header': {
+        '@apply bg-warning-light text-warning': {},
+
+        '[aria-expanded="true"] &': {
+          '@apply bg-warning-light': {},
+        },
+      },
+    },
+
     '&-is-open': {
       '@apply border border-gray-stroke': {},
       '& .accordion-header': {
@@ -66,7 +77,14 @@ module.exports = Accordion = (colors) => ({
       },
     },
 
-    '&-is-open &-body': {
+    '&-is-open-alert': {
+      '@apply border border-warning': {},
+      '& .accordion-header': {
+        '@apply border-b border-warning': {},
+      },
+    },
+
+    '&-is-open &-body &-is-open-alert': {
       '@apply overflow-visible animate-reset-overflow': {},
     },
 

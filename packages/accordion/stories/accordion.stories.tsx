@@ -153,7 +153,7 @@ Template.argTypes = {
     table: {
       defaultValue: { summary: 'solid' },
     },
-    options: ['solid', 'outline'],
+    options: ['solid', 'outline', 'alert'],
     control: 'select',
     defaultValue: 'solid',
   },

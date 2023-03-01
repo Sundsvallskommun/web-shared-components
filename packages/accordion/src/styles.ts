@@ -5,6 +5,7 @@ export const useAccordionClass = createMemoClass((props) => {
   const variantClasses = {
     outline: 'accordion-outline',
     solid: 'accordion-solid',
+    alert: 'accordion-alert',
   };
 
   const classes = cx('accordion', variantClasses[props.variant], props.disabled && 'accordion-disabled');
