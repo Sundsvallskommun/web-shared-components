@@ -24,12 +24,26 @@ export const Disabled = () => (
 Disabled.storyName = 'Inaktiverad';
 
 export const Invalid = () => (
-  <div className="flex space-x-2">
-    <Input placeholder="jon@gmail.com" invalid />
-    <Input placeholder="jon@gmail.com" invalid variant="solid" />
+  <div>
+    <div className="flex space-x-2">
+      <Input placeholder="jon@gmail.com" invalid />
+      <Input placeholder="jon@gmail.com" invalid variant="solid" />
+    </div>
+    <div className="flex mt-md space-x-2">
+      <Input.Group invalid>
+        <Input.LeftAddon children="https://" />
+        <Input placeholder="mysite" />
+        <Input.RightAddon children=".com" />
+      </Input.Group>
+      <Input.Group invalid>
+        <Input.LeftAddin children="https://" />
+        <Input placeholder="mysite" />
+        <Input.RightAddin children=".com" />
+      </Input.Group>
+    </div>
   </div>
 );
-Invalid.storyName = 'Inaktiverad';
+Invalid.storyName = 'Invaliderad';
 
 export const Variant = () => (
   <div className="flex space-x-2">
@@ -82,12 +96,6 @@ export const Element = () => (
 
 export const Addon = () => (
   <div className="flex flex-wrap items-center w-full">
-    <Input.Group size="md" className="mb-2 mr-2">
-      <Input.LeftAddon children="https://" />
-      <Input placeholder="mysite" />
-      <Input.RightAddon children=".com" />
-    </Input.Group>
-
     <Input.Group size="sm" className="mb-2 mr-2">
       <Input.LeftAddon children="https://" />
       <Input placeholder="mysite" />
@@ -104,6 +112,28 @@ export const Addon = () => (
       <Input.LeftAddon children="https://" />
       <Input placeholder="mysite" />
       <Input.RightAddon children=".com" />
+    </Input.Group>
+  </div>
+);
+
+export const Addin = () => (
+  <div className="flex flex-wrap items-center w-full">
+    <Input.Group size="sm" className="mb-2 mr-2">
+      <Input.LeftAddin children="https://" />
+      <Input placeholder="mysite" />
+      <Input.RightAddin children=".com" />
+    </Input.Group>
+
+    <Input.Group size="md" className="mb-2 mr-2">
+      <Input.LeftAddin children="https://" />
+      <Input placeholder="mysite" />
+      <Input.RightAddin children=".com" />
+    </Input.Group>
+
+    <Input.Group size="lg" className="mb-2 mr-2">
+      <Input.LeftAddin children="https://" />
+      <Input placeholder="mysite" />
+      <Input.RightAddin children=".com" />
     </Input.Group>
   </div>
 );

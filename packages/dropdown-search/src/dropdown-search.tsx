@@ -10,7 +10,7 @@ type InputPropsOmitted = Pick<InputProps, 'size' | 'variant'>;
 export interface IDropdownSearchProps extends InputPropsOmitted {
   name?: string;
   data?: Array<any>;
-  value?: OptionValueType;
+  value?: OptionValueType | null;
   onSelect?: (value: OptionValueType) => void;
   /** Defaults to 'label' */
   labelProperty?: string;
@@ -142,6 +142,7 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
   };
 
   const handleClickOnRenderedResult = () => {
+    console.log('handleClickOnRenderedResult');
     if (!disabled) {
       setShowResult(false);
       setShowOptions(true);
@@ -189,13 +190,6 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
   };
 
   useEffect(() => {
-    inputRef.current?.addEventListener('focus', handleClickOnRenderedResult);
-    return () => {
-      inputRef.current?.removeEventListener('focus', handleClickOnRenderedResult);
-    };
-  }, []);
-
-  useEffect(() => {
     if (value) {
       setSelectedValue(value);
       setQueryHandler(value.label);
@@ -207,46 +201,42 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
 
   return (
     <div ref={ref} className="dropdown-search block w-full relative">
-      <Input
-        {...rest}
-        aria-expanded={showSuggestions}
-        value={query}
-        ref={inputRef}
-        size={size}
-        variant={variant}
-        autoComplete="off"
-        className={cx(classes, 'relative', className)}
-        onChange={onChangeHandler}
-        onKeyDown={keyboardHandler}
-        placeholder={placeholder}
-        onBlur={onBlurHandler}
-        disabled={disabled ? disabled : undefined}
-      />
-      {render && showResult && selectedValue && (
-        <div
+      <Input.Group size={size}>
+        <Input
+          {...rest}
+          as={showResult && selectedValue ? 'button' : 'input'}
+          aria-expanded={showSuggestions}
+          value={query}
+          ref={inputRef}
+          size={size}
+          variant={variant}
+          autoComplete="off"
+          onChange={onChangeHandler}
+          onKeyDown={keyboardHandler}
+          placeholder={placeholder}
+          onBlur={onBlurHandler}
+          disabled={disabled ? disabled : undefined}
           onClick={handleClickOnRenderedResult}
-          className={cx(classes, variantClasses[variant], 'form-field absolute inset-0 cursor-text', className)}
-        >
-          {render(selectedValue)}
-        </div>
-      )}
-      {useDeleteButton && query && (
-        <div className="form-close-button-wrapper">
-          <Button
-            type="button"
-            onClick={handleDeleteCallback}
-            className="form-close-button"
-            aria-label={deleteAriaLabel}
-            iconButton
-            rounded
-            size="sm"
-          >
-            <div className="form-close-button-icon">
-              {closeIcon ? closeIcon : <CloseOutlinedIcon className="!text-xl" aria-hidden="true" />}
-            </div>
-          </Button>
-        </div>
-      )}
+          onFocus={handleClickOnRenderedResult}
+          className={cx('cursor-text', className)}
+          children={render && showResult && selectedValue ? render(selectedValue) : undefined}
+        />
+        {useDeleteButton && query && (
+          <Input.RightAddin>
+            <Button
+              type="button"
+              onClick={handleDeleteCallback}
+              className="form-button"
+              aria-label={deleteAriaLabel}
+              iconButton
+              rounded
+              size="fit"
+            >
+              <div className="form-button-icon">{closeIcon ? closeIcon : <CloseOutlinedIcon aria-hidden="true" />}</div>
+            </Button>
+          </Input.RightAddin>
+        )}
+      </Input.Group>
 
       {showSuggestions && (
         <ul

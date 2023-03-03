@@ -12,8 +12,14 @@ export const Template = (args: ISearchBarProps) => {
   const onChangeHandler = (event: React.BaseSyntheticEvent) => {
     setTerm(event.target.value);
   };
+  const onCloseHandler = () => {
+    console.log('onCloseHandler');
+  };
+  const onSearchHandler = (query: string) => {
+    console.log('onSearchHandler', query);
+  };
 
-  return <SearchBar {...args} onChange={onChangeHandler} />;
+  return <SearchBar {...args} onChange={onChangeHandler} onClose={onCloseHandler} onSearch={onSearchHandler} />;
 };
 
 Template.argTypes = {

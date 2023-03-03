@@ -1,18 +1,24 @@
 import { __DEV__ } from '@sk-web-gui/utils';
-import React from 'react';
-import { Input, InputProps } from '@sk-web-gui/react';
+import React, { useEffect, useState } from 'react';
+import { Button, Input, InputProps } from '@sk-web-gui/react';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 export interface IISearchBarProps {
   // Parent should handle the state
   value: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
-  onSearch: () => void;
+  onSearch?: (query: string) => void;
+  onClose?: () => void;
   placeholder?: string;
   smallIcon?: boolean;
   rounded?: boolean;
   size?: 'sm' | 'md' | 'lg';
   className?: string;
+  searchAriaLabel?: string;
+  closeAriaLabel?: string;
+  searchIcon?: React.ReactNode;
+  closeIcon?: React.ReactNode;
 }
 
 export type ISearchBarProps<T = HTMLInputElement> = IISearchBarProps & InputProps & React.RefAttributes<T>;
@@ -23,41 +29,108 @@ export const SearchBar = React.forwardRef<HTMLInputElement, ISearchBarProps>((pr
     onChange,
     placeholder,
     onSearch,
+    onClose,
     smallIcon = false,
     rounded = false,
     size = 'md',
-    className,
+    className = '',
+    searchAriaLabel = 'Sök',
+    closeAriaLabel = 'Rensa',
+    searchIcon,
+    closeIcon,
     ...rest
   } = props;
 
-  const onSearchHandler = () => {
-    onSearch();
+  const [query, setQuery] = useState(value);
+  const internalRef = React.useRef<HTMLDivElement | null>(null);
+  React.useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(ref, () => internalRef.current);
+
+  const setInputFocus = () => {
+    setTimeout(() => {
+      internalRef.current && internalRef.current.focus();
+    });
+  };
+
+  const handleOnSearch = () => {
+    onSearch && onSearch(query);
+  };
+
+  const handleOnClose = () => {
+    setQuery('');
+    setInputFocus();
+    onClose && onClose();
   };
 
   // Search on enter
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      onSearchHandler();
+      handleOnSearch();
     }
   };
 
-  return (
-    <div className={`${className} SearchBar`}>
-      <Input
-        ref={ref}
-        type="text"
-        onChange={onChange}
-        value={value}
-        placeholder={placeholder}
-        onKeyDown={handleKeyDown}
-        rounded={rounded}
-        size={size}
-        {...rest}
-      />
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+    onChange(e);
+  };
 
-      <button className="search-button" onClick={onSearchHandler} role="button">
-        <SearchOutlinedIcon className={`search-button-icon ${smallIcon ? 'small' : ''}`} />
-      </button>
+  useEffect(() => {
+    if (value !== null || value !== undefined) {
+      setQuery(value);
+    }
+  }, [value]);
+
+  return (
+    <div className={`search-bar ${className}`}>
+      <Input.Group size={size} rounded={rounded}>
+        <Input
+          ref={internalRef}
+          type="text"
+          onChange={handleOnChange}
+          value={query}
+          placeholder={placeholder}
+          onKeyDown={handleKeyDown}
+          {...rest}
+        />
+        <Input.RightAddin>
+          {query ? (
+            <Button
+              type="button"
+              onClick={handleOnClose}
+              className="form-button form-button-close"
+              aria-label={closeAriaLabel}
+              iconButton
+              rounded
+              size="fit"
+            >
+              <div className="form-button-icon">
+                {closeIcon ? (
+                  closeIcon
+                ) : (
+                  <CloseOutlinedIcon className={`form-button-icon  ${smallIcon ? 'small' : ''}`} aria-hidden="true" />
+                )}
+              </div>
+            </Button>
+          ) : (
+            <Button
+              type="button"
+              onClick={handleOnSearch}
+              className="form-button form-button-search"
+              aria-label={searchAriaLabel}
+              iconButton
+              rounded
+              size="fit"
+            >
+              <div className="form-button-icon">
+                {searchIcon ? (
+                  searchIcon
+                ) : (
+                  <SearchOutlinedIcon aria-hidden="true" className={`form-button-icon  ${smallIcon ? 'small' : ''}`} />
+                )}
+              </div>
+            </Button>
+          )}
+        </Input.RightAddin>
+      </Input.Group>
     </div>
   );
 });

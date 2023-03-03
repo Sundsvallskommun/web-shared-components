@@ -5,12 +5,16 @@ import * as React from 'react';
 import { Input, InputProps } from '../input/input';
 import { InputLeftElement, InputRightElement } from '../input-element';
 import { InputLeftAddon, InputRightAddon } from '../input-addon';
+import { useInputGroupClass } from './styles';
 
 interface IInputGroupProps extends DefaultProps {
   /* Size of all wrapped input */
   size?: InputProps['size'];
   /* React node */
   children?: React.ReactNode;
+  /* Makes input invalid */
+  invalid?: boolean;
+  rounded?: boolean;
 }
 
 export interface InputGroupProps extends React.HTMLAttributes<HTMLDivElement>, IInputGroupProps {}
@@ -40,7 +44,8 @@ const prSizes = {
 };
 
 export const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>((props, ref) => {
-  const { children, className, size = 'md', ...rest } = props;
+  const { children, className, size = 'md', invalid, rounded, ...rest } = props;
+  const classes = useInputGroupClass({ size });
   const height = inputSizes[size];
   let pl: string | undefined;
   let pr: string | undefined;
@@ -67,7 +72,14 @@ export const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>((pro
   });
 
   return (
-    <div ref={ref} role="group" className={cx('form-input-group', className)} {...rest}>
+    <div
+      ref={ref}
+      role="group"
+      aria-invalid={invalid}
+      data-rounded={rounded ? rounded : undefined}
+      className={cx('form-input-group', classes, className)}
+      {...rest}
+    >
       {validChildren.map((child) => {
         if (child.type === Input) {
           return React.cloneElement(child, {
