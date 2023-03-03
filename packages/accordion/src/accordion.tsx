@@ -9,8 +9,8 @@ import { useAccordionClass } from './styles';
 
 interface IAccordionProps extends DefaultProps {
   initalOpen?: boolean;
-  accordionTitle: string;
-  accordionSubTitle?: string;
+  accordionTitle: React.ReactNode;
+  accordionSubTitle?: React.ReactNode;
 
   /* Makes accordion disabled */
   disabled?: boolean;
