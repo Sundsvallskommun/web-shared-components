@@ -3,11 +3,7 @@ module.exports = Menu = () => ({
     '@apply w-[440px]': {},
 
     '.menu-header': {
-      '@apply py-[2rem] px-[1.6rem] bg-primary text-white rounded-t-sm': {},
-
-      'label, .label': {
-        '@apply text-xl font-bold text-white': {},
-      },
+      '@apply py-[2rem] px-[1.6rem] rounded-t-[.2rem] bg-primary text-white': {},
 
       '.label-small': {
         '@apply text-[1.6rem]': {},
@@ -23,6 +19,10 @@ module.exports = Menu = () => ({
 
       '.label-header': {
         '@apply flex items-center': {},
+
+        'label, .label': {
+          '@apply text-xl font-bold': {},
+        },
 
         span: {
           '@apply ml-auto': {},
