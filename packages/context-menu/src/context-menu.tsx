@@ -5,10 +5,12 @@ import { cx, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 import { ContextMenuButton } from './context-menu-button';
 
-export interface ContextMenuProps extends React.HTMLAttributes<HTMLDivElement>, DefaultProps {}
+export interface ContextMenuProps extends React.HTMLAttributes<HTMLDivElement>, DefaultProps {
+  classNameItems: string;
+}
 
 const ContextMenuComponent = React.forwardRef<HTMLDivElement, ContextMenuProps>((props, ref) => {
-  const { className, children, ...rest } = props;
+  const { className, classNameItems, children, ...rest } = props;
 
   const getButton = () => {
     return React.Children.toArray(children).find((child: any) => child?.type?.name === 'ContextMenuButton');
@@ -21,7 +23,7 @@ const ContextMenuComponent = React.forwardRef<HTMLDivElement, ContextMenuProps>(
   return (
     <Menu as="div" ref={ref} className={cx('context-menu-wrapper', className)} {...rest}>
       {getButton()}
-      <Menu.Items className={`context-menu-items`}>{getItems()}</Menu.Items>
+      <Menu.Items className={`context-menu-items ${classNameItems}`}>{getItems()}</Menu.Items>
     </Menu>
   );
 });
