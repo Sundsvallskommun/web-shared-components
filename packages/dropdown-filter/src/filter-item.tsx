@@ -2,6 +2,7 @@ import { Checkbox } from '@sk-web-gui/checkbox';
 import { cx } from '@sk-web-gui/utils';
 import { IFilterData } from './dropdown-filter';
 import { useFilterItemClass } from './styles';
+import * as React from 'react';
 
 interface IFilterItemProps {
   item: IFilterData;
