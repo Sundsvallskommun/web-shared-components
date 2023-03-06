@@ -8,9 +8,10 @@ interface IFilterItemProps {
   item: IFilterData;
   itemChange: (item: IFilterData) => void;
   size: 'sm' | 'md' | 'lg';
+  className?: string;
 }
 
-const FilterItem = ({ item, itemChange, size }: IFilterItemProps) => {
+export const FilterItem = ({ item, itemChange, size, className }: IFilterItemProps) => {
   const onClickHandler = () => {
     itemChange({ ...item, value: !item.value });
   };
@@ -18,7 +19,7 @@ const FilterItem = ({ item, itemChange, size }: IFilterItemProps) => {
   const classes = useFilterItemClass({ size, disabled: item.disabled });
 
   return (
-    <li className={cx(classes)}>
+    <li className={cx(classes, className)}>
       <label htmlFor={'checkbox-' + item.id}>{item.name}</label>
       <Checkbox id={'checkbox-' + item.id} checked={item.value} disabled={item.disabled} onChange={onClickHandler} />
     </li>
