@@ -1,8 +1,7 @@
 function badgeSolid(colors) {
   return {
     '&-solid': {
-      //"@apply text-": {},
-      '@apply border border-white': {},
+      '@apply border-2 border-white box-border': {},
       '@apply text-white': {},
 
       ...colors.reduce(
@@ -86,7 +85,7 @@ module.exports = badge = (colors) => ({
   '.badge': {
     '@apply relative': {},
     '@apply m-0': {},
-    '@apply  inline-flex items-center justify-center flex-shrink-0 align-middle': {},
+    '@apply inline-flex items-center justify-center content-center align-middle': {},
     '@apply font-medium leading-none': {},
 
     '&-fullrounded': {
@@ -95,7 +94,7 @@ module.exports = badge = (colors) => ({
 
     //rounding
     '&-roundedcorners-md': {
-      '@apply rounded-2xl px-sm': {},
+      '@apply rounded-3xl px-sm': {},
     },
 
     '&-roundedcorners-lg': {
@@ -105,24 +104,24 @@ module.exports = badge = (colors) => ({
     // sizing
     '&-sm': {
       '@apply text-opacity-0 text-[0rem] overflow-hidden rounded-full': {},
-      minHeight: '7px',
-      maxHeight: '7px',
-      minWidth: '7px',
+      minHeight: '9px',
+      maxHeight: '9px',
+      minWidth: '9px',
     },
 
     '&-md': {
       '@apply text-xs font-bold': {},
-      minHeight: '21px',
-      maxHeight: '21px',
-      minWidth: '21px',
+      minHeight: '23px',
+      maxHeight: '23px',
+      minWidth: '23px',
 
     },
 
     '&-lg': {
       '@apply text-sm font-bold': {},
-      minHeight: '25px',
-      maxHeight: '25px',
-      minWidth: '25px',
+      minHeight: '27px',
+      maxHeight: '27px',
+      minWidth: '27px',
 
     },
 
