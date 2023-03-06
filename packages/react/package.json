@@ -41,6 +41,7 @@
     "@sk-web-gui/accordion": "0.1.22",
     "@sk-web-gui/alert": "0.1.10",
     "@sk-web-gui/alert-banner": "0.1.8",
+    "@sk-web-gui/badge": "0.1.10",
     "@sk-web-gui/breadcrumb": "0.1.11",
     "@sk-web-gui/button": "0.1.13",
     "@sk-web-gui/card": "0.1.12",

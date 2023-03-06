@@ -6,6 +6,7 @@ const withOpacity = require('./with-opacity');
 // components
 const Alert = require('./components/alert');
 const AlertBanner = require('./components/alert-banner');
+const Badge = require('./components/badge');
 const Breadcrumb = require('./components/breadcrumb');
 const ButtonGroup = require('./components/button-group');
 
@@ -49,6 +50,7 @@ const SearchBar = require('./components/search-bar');
 const components = [
   Alert,
   AlertBanner,
+  Badge,
   Breadcrumb,
   ButtonGroup,
   Button,
