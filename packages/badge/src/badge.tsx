@@ -16,7 +16,7 @@ interface IBadgeProps extends DefaultProps {
   /*The miximum number ability to show */
   max?: number;
   /*the position of the badge as child in relation to another component */
-  position?: 'standard' | 'super' | 'overlap' | 'super-overlap';
+  position?: 'standard' | 'super' | 'super-overlap';
 }
 
 export interface BadgeProps extends Omit<React.HTMLAttributes<HTMLSpanElement>, 'color'>, IBadgeProps {}
@@ -45,10 +45,6 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) 
       ${size == 'sm' && position == 'super-overlap' && 'badge-superoverlap-sm'}
       ${size == 'md' && position == 'super-overlap' && 'badge-superoverlap-md'}
       ${size == 'lg' && position == 'super-overlap' && 'badge-superoverlap-lg'}
-
-      ${size == 'sm' && position == 'overlap' && 'badge-overlap-sm'}
-      ${size == 'md' && position == 'overlap' && 'badge-overlap-md'}
-      ${size == 'lg' && position == 'overlap' && 'badge-overlap-lg'}
          
       ${cx(classes, className)}`}
       {...rest}

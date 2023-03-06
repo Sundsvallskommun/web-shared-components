@@ -2,6 +2,9 @@ import { Button } from '@sk-web-gui/button';
 import { Meta } from '@storybook/react';
 import React from 'react';
 import { Badge, BadgeProps } from '../src';
+import MessageIcon from '@mui/icons-material/Message';
+import MenuIcon from '@mui/icons-material/Menu';
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 
 export default {
   title: 'WIP/Komponenter/Badge',
@@ -72,7 +75,7 @@ Template.argTypes = {
     table: {
       defaultValue: { summary: '' },
     },
-    options: ['standard', 'super', 'overlap', 'super-overlap', 'none'],
+    options: ['standard', 'super', 'super-overlap', 'none'],
     control: { type: 'select' },
     defaultValue: '',
   },
@@ -111,20 +114,6 @@ export const BadgeOnElement = () => {
       </div>
       <div className="flex gap-20">
         <Button>
-          Overlap sm
-          <Badge size="sm" variant="solid" color="warning" max={99} counter={4} position={'overlap'} />
-        </Button>
-        <Button>
-          Overlap md
-          <Badge size="md" variant="solid" color="warning" max={99} counter={4} position={'overlap'} />
-        </Button>
-        <Button>
-          Overlap lg
-          <Badge size="lg" variant="solid" color="warning" max={99} counter={4} position={'overlap'} />
-        </Button>
-      </div>
-      <div className="flex gap-20">
-        <Button>
           Superoverlap sm
           <Badge size="sm" variant="solid" color="warning" max={99} counter={4} position={'super-overlap'} />
         </Button>
@@ -149,6 +138,47 @@ export const BadgeOnElement = () => {
         <Button className="w-fit">
           <Badge size="lg" variant="solid" color="warning" max={99} counter={4} />
           No positioning lg
+        </Button>
+      </div>
+      <div className="flex gap-20">
+        <span>on icon - sibling inside a div</span>
+        <div>
+          <MessageIcon fontSize="large" />
+          <Badge size="md" variant="solid" color="warning" max={99} counter={4} position={'super-overlap'} />
+        </div>
+        <div>
+          <MenuIcon fontSize="large" />
+          <Badge size="md" variant="solid" color="warning" max={99} counter={4} position={'standard'} />
+        </div>
+        <div>
+          <MenuIcon fontSize="large" />
+          <Badge size="md" variant="solid" color="warning" max={99} counter={4} position={'super'} />
+        </div>
+        <div>
+          <MenuIcon fontSize="large" />
+          <Badge size="md" variant="solid" color="warning" max={99} counter={4} position={'super-overlap'} />
+
+          <NotificationsNoneOutlinedIcon sx={{ fontSize: '2.6rem' }} />
+          <Badge size="md" variant="solid" color="error" max={99} counter={4} position={'super-overlap'} />
+        </div>
+        <div>
+          <NotificationsNoneOutlinedIcon sx={{ fontSize: '2.6rem' }} />
+          <Badge size="md" variant="solid" color="error" max={99} counter={4} position={'super'} />
+        </div>
+      </div>
+      <div className="flex gap-20">
+        <span>inside button Custom absolute and right</span>
+        <Button className="w-fit">
+          <Badge
+            className="absolute right-[-14px]"
+            size="lg"
+            variant="solid"
+            color="warning"
+            max={99}
+            counter={4}
+            position={'super-overlap'}
+          />
+          custom absolute lg
         </Button>
       </div>
     </div>

@@ -2,7 +2,7 @@ function badgeSolid(colors) {
   return {
     '&-solid': {
       //"@apply text-": {},
-      '@apply border-none': {},
+      '@apply border border-white': {},
       '@apply text-white': {},
 
       ...colors.reduce(
@@ -105,66 +105,57 @@ module.exports = badge = (colors) => ({
     // sizing
     '&-sm': {
       '@apply text-opacity-0 text-[0rem] overflow-hidden rounded-full': {},
-      minHeight: '6px',
-      maxHeight: '6px',
-      minWidth: '6px',
+      minHeight: '7px',
+      maxHeight: '7px',
+      minWidth: '7px',
     },
 
     '&-md': {
       '@apply text-xs font-bold': {},
-      minHeight: '20px',
-      maxHeight: '20px',
-      minWidth: '20px',
+      minHeight: '21px',
+      maxHeight: '21px',
+      minWidth: '21px',
 
     },
 
     '&-lg': {
       '@apply text-sm font-bold': {},
-      minHeight: '24px',
-      maxHeight: '24px',
-      minWidth: '24px',
+      minHeight: '25px',
+      maxHeight: '25px',
+      minWidth: '25px',
 
     },
 
     '&-standard-sm': {
-      '@apply absolute right-[-14px]': {},
+      '@apply right-[-4px] self-center' : {},
     },
     '&-standard-md': {
-      '@apply absolute right-[-28px]': {},
+      '@apply right-[-4px] self-center': {},
     },
     '&-standard-lg': {
-      '@apply absolute right-[-32px]': {},
+      '@apply right-[-4px] self-center': {},
     },
 
     '&-super-sm': {
-      '@apply absolute right-[-14px] top-[-3px]': {},
+      '@apply right-[-2px] top-[-5px]': {},
     },
     '&-super-md': {
-      '@apply absolute right-[-28px] top-[-8px]': {},
+      '@apply right-[-3px] top-[-8px]': {},
     },
     '&-super-lg': {
-      '@apply absolute right-[-32px] top-[-8px]': {},
+      '@apply right-[-4px] top-[-8px]': {},
     },
 
     '&-superoverlap-sm': {
-      '@apply absolute right-[-4px] top-[-3px]': {},
+      '@apply right-[3px] top-[-5px]': {},
     },
     '&-superoverlap-md': {
-      '@apply absolute right-[-12px] top-[-8px]': {},
+      '@apply right-[8px] top-[-6px]': {},
     },
     '&-superoverlap-lg': {
-      '@apply absolute right-[-13px] top-[-8px]': {},
+      '@apply right-[8px] top-[-8px]': {},
     },
 
-    '&-overlap-sm': {
-      '@apply absolute right-[8px]': {},
-    },
-    '&-overlap-md': {
-      '@apply absolute right-[6px]': {},
-    },
-    '&-overlap-lg': {
-      '@apply absolute right-[4px]': {},
-    },
 
     '&-fit-content': {
       '@apply p-0': {},
