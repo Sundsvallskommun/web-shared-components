@@ -15,11 +15,11 @@ module.exports = Pagination = () => ({
     },
 
     '&-list': {
-      '@apply flex items-baseline': {},
+      '@apply flex items-center': {},
     },
 
     '&-pageLabel': {
-      '@apply cursor-pointer m-sm': {},
+      '@apply cursor-pointer m-sm box-content': {},
       width: '1.5em',
       height: '1.75em',
 
@@ -29,7 +29,8 @@ module.exports = Pagination = () => ({
     },
 
     '&-prevNextButton': {
-      '@apply text-body ml-4 inline-flex items-center sm:w-auto inline-flex flex-row leading-none': {},
+      '@apply text-body ml-4 my-sm inline-flex items-center sm:w-auto inline-flex flex-row leading-none': {},
+      height: '1.75em',
 
       '&[data-reverse=true]': {
         '@apply mr-4 ml-0 flex-row-reverse': {},
@@ -54,7 +55,7 @@ module.exports = Pagination = () => ({
       },
 
       '&-icon': {
-        '@apply m-1 align-text-bottom leading-none flex items-center': {},
+        '@apply m-1 leading-none flex items-center': {},
 
         '.MuiSvgIcon-root': {
           fontSize: '1em',

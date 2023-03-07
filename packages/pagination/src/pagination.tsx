@@ -15,19 +15,44 @@ export interface IPaginationProps extends DefaultProps {
   changePage: (page: number) => void;
   /* Size of the button */
   size?: 'sm' | 'md' | 'lg';
+  /* Number of pages shown before current page */
+  pagesBefore?: number;
+  /* Number of pages shown after current page */
+  pagesAfter?: number;
+  /* Always show first page */
+  showFirst?: boolean;
+  /* Always show last page */
+  showLast?: boolean;
+  /* Label on next button */
+  nextLabel?: string;
+  /* Label on previous button */
+  prevLabel?: string;
 }
 
 export interface PaginationProps extends React.HTMLAttributes<HTMLDivElement>, IPaginationProps {}
 
 export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((props, ref) => {
-  const { pages = 1, activePage = 1, changePage, children, size = 'md', ...rest } = props;
+  const {
+    pages = 1,
+    activePage = 1,
+    changePage,
+    children,
+    size = 'md',
+    showFirst = true,
+    showLast = true,
+    pagesBefore = 2,
+    pagesAfter = 2,
+    className,
+    nextLabel = 'Nästa',
+    prevLabel = 'Föregående',
+    ...rest
+  } = props;
 
   const classes = usePaginationClass({
     size,
   });
 
   const minPage = 1;
-  const pagesBeforeAndAfter = 2;
   const [currentPage, setCurrentPage] = useState(1);
   const internalHandleChange = (page: number) => {
     if (page > minPage - 1 && page < pages + 1) {
@@ -41,10 +66,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
   };
 
   const shouldShowLabel: (idx: number, cP: number, pBaA: number) => boolean = (idx) =>
-    idx !== 0 &&
-    idx !== pages - 1 &&
-    idx > currentPage - pagesBeforeAndAfter - 2 &&
-    idx < currentPage + pagesBeforeAndAfter;
+    idx !== 0 && idx !== pages - 1 && idx > currentPage - pagesBefore - 2 && idx < currentPage + pagesAfter;
 
   useEffect(() => {
     internalHandleChange(activePage);
@@ -85,7 +107,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
         onClick={() => isDisabled || handleClick(currentPage + step)}
         className={cx(`pagination-prevNextButton`)}
       >
-        <span className={cx(`pagination-prevNextButton-label`)}>{label}</span>
+        <span className={cx(`pagination-prevNextButton-label`)}>{label || ' '}</span>
         <span className={cx(`pagination-prevNextButton-icon`)}>{icon}</span>
       </button>
     );
@@ -94,33 +116,33 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
   const ellipsis = <span className="pagination-prevNextButton-ellipsis">...</span>;
 
   return (
-    <nav className={cx(classes)} {...rest} aria-label="pagination">
+    <nav className={cx(classes, className)} {...rest} aria-label="pagination">
       <ul className="pagination-list">
         <li className="inline">
           {prevNextButton({
-            label: 'Föregående',
+            label: prevLabel,
             icon: <KeyboardDoubleArrowLeftOutlinedIcon aria-hidden="true" />,
             triggerNumber: minPage,
             step: -1,
             reverse: true,
           })}
         </li>
-        <li className="inline">{pageLabel(1)}</li>
-        {currentPage > pagesBeforeAndAfter + 2 && <li className="inline">{ellipsis}</li>}
+        {(activePage === 1 || showFirst) && <li className="inline">{pageLabel(1)}</li>}
+        {currentPage > pagesBefore + 2 && showFirst && <li className="inline">{ellipsis}</li>}
         {[...Array(pages)].map((_, idx: number) => {
           return (
-            shouldShowLabel(idx, currentPage, pagesBeforeAndAfter) && (
+            shouldShowLabel(idx, currentPage, pagesBefore) && (
               <li key={`pageLabel-${idx}`} className="inline">
                 {pageLabel(idx + 1)}
               </li>
             )
           );
         })}
-        {currentPage < pages - pagesBeforeAndAfter - 1 && <li className="inline">{ellipsis}</li>}
-        <li className="inline">{pageLabel(pages)}</li>
+        {currentPage < pages - pagesAfter - 1 && showLast && <li className="inline">{ellipsis}</li>}
+        {(showLast || activePage === pages) && <li className="inline">{pageLabel(pages)}</li>}
         <li className="inline">
           {prevNextButton({
-            label: 'Nästa',
+            label: nextLabel,
             icon: <KeyboardDoubleArrowRightOutlinedIcon aria-hidden="true" />,
             triggerNumber: pages,
             step: 1,

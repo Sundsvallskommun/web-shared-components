@@ -1,6 +1,7 @@
 import { FormControl, FormLabel } from '@sk-web-gui/forms';
 import { useState } from 'react';
 import { Pagination } from '../src';
+import React from 'react';
 
 export default {
   title: 'Komponenter/Pagination/Komponent',
@@ -20,7 +21,14 @@ export const Template = ({ ...args }: any) => {
           Go to page 3 from parent
         </button>
       </div>
-      <Pagination {...args} activePage={paginationPage} changePage={setPaginationPage} />
+      <div className="w-full">
+        <Pagination
+          {...args}
+          className="flex justify-between"
+          activePage={paginationPage}
+          changePage={setPaginationPage}
+        />
+      </div>
     </div>
   );
 };
@@ -46,6 +54,24 @@ Template.argTypes = {
     control: 'number',
     defaultValue: 1,
   },
+  pagesBefore: {
+    type: { name: 'string', required: true },
+    description: 'Number of pages to display before active page',
+    table: {
+      defaultValue: { summary: '2' },
+    },
+    control: 'number',
+    defaultValue: 2,
+  },
+  pagesAfter: {
+    type: { name: 'string', required: true },
+    description: 'Number of pages to display after active page',
+    table: {
+      defaultValue: { summary: '2' },
+    },
+    control: 'number',
+    defaultValue: 2,
+  },
   changePage: {
     type: { name: 'function', required: true },
     description: 'Sends page number to parent',
@@ -64,5 +90,41 @@ Template.argTypes = {
     options: ['sm', 'md', 'lg'],
     control: 'select',
     defaultValue: 'md',
+  },
+  showFirst: {
+    type: { name: 'boolean', required: false },
+    description: 'Always show first page',
+    table: {
+      defaultValue: { summary: 'true' },
+    },
+    control: 'boolean',
+    defaultValue: true,
+  },
+  showLast: {
+    type: { name: 'boolean', required: false },
+    description: 'Always show last page',
+    table: {
+      defaultValue: { summary: 'true' },
+    },
+    control: 'boolean',
+    defaultValue: true,
+  },
+  nextLabel: {
+    type: { name: 'string', required: false },
+    description: 'Label on next button',
+    table: {
+      defaultValue: { summary: 'Nästa' },
+    },
+    control: 'text',
+    defaultValue: 'Nästa',
+  },
+  prevLabel: {
+    type: { name: 'string', required: false },
+    description: 'Label on previous button',
+    table: {
+      defaultValue: { summary: 'Föregående' },
+    },
+    control: 'text',
+    defaultValue: 'Föregående',
   },
 };
