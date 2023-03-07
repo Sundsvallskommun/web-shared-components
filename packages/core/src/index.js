@@ -47,6 +47,9 @@ const Header = require('./components/header');
 
 const SearchBar = require('./components/search-bar');
 
+const ProfilePicture = require('./components/profile-picture');
+const Profile = require('./components/profile');
+
 const components = [
   Alert,
   AlertBanner,
@@ -89,6 +92,9 @@ const components = [
   Pagination,
   Footer,
   Header,
+
+  ProfilePicture,
+  Profile,
 ];
 
 const defaultColors = ['primary', 'secondary'];
