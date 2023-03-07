@@ -53,7 +53,6 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
   });
 
   const minPage = 1;
-  // const pagesBeforeAndAfter = 2;
   const [currentPage, setCurrentPage] = useState(1);
   const internalHandleChange = (page: number) => {
     if (page > minPage - 1 && page < pages + 1) {
