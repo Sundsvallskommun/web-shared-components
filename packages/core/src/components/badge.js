@@ -1,60 +1,170 @@
-module.exports = Badge = (colors) => ({
-  '.badge': {
-    '@apply inline-block text-xs font-medium leading-4 text-center whitespace-nowrap': {},
-
-    '&-light': {
-      '@apply text-body bg-neutral-200 border border-transparent': {},
-      '@apply dark:text-neutral-100 dark:bg-neutral-700': {},
-
-      ...colors.reduce(
-        (styles, color) => ({
-          ...styles,
-          [`&[data-color="${color}"]`]: {
-            [`@apply text-${color}-800 bg-${color}-100`]: {},
-            [`@apply dark:text-${color}-400 dark:bg-${color}-500`]: {},
-            '@apply dark:bg-opacity-15': {},
-          },
-        }),
-        {}
-      ),
-    },
-
+function badgeSolid(colors) {
+  return {
     '&-solid': {
-      '@apply text-white bg-neutral-500 border border-transparent': {},
-      '@apply dark:border-neutral-600 dark:text-neutral-100 dark:bg-neutral-700': {},
+      '@apply border-2 border-white box-border': {},
+      '@apply text-white': {},
+
       ...colors.reduce(
         (styles, color) => ({
           ...styles,
           [`&[data-color="${color}"]`]: {
-            [`@apply bg-${color}-500`]: {},
-            [`@apply dark:text-${color}-400 dark:border-${color}-500 dark:bg-${color}-500`]: {},
-            '@apply dark:bg-opacity-15': {},
-            '@apply dark:border-opacity-40': {},
+            //[`@apply border-${color}`]: {},
+            [`@apply text-white bg-${color}`]: {},
           },
         }),
         {}
       ),
+
+      "&[data-color='primary']": {
+        '@apply bg-primary': {},
+      },
+      "&[data-color='warning']": {
+        '@apply bg-warning': {},
+      },
+      "&[data-color='error']": {
+        '@apply bg-error': {},
+      },
+      "&[data-color='neutral']": {
+        '@apply bg-neutral-400': {},
+      },
+
+    },
+  };
+}
+
+function badgeOutline(colors) {
+  return {
+    '&-outline': {
+      '@apply border border-gray-stroke': {},
+      '@apply text-body bg-transparent': {},
+
+      ...colors.reduce(
+        (styles, color) => ({
+          ...styles,
+          [`&[data-color="${color}"]`]: {
+            [`@apply border-current`]: {},
+            [`@apply text-${color}`]: {},
+
+          },
+        }),
+        {}
+      ),
+
+      '&.badge': {
+        '&-disabled': {
+          '@apply disabled:border-gray-stroke hover:border-gray-stroke': {},
+          '&.active': {
+            '@apply border-gray-stroke': {},
+          },
+        },
+      },
+
+      "&[data-color='primary']": {
+        '@apply border-primary': {},
+        '@apply text-primary': {},
+      },
+      "&[data-color='warning']": {
+        '@apply border-warning': {},
+        '@apply text-warning': {},
+      },
+      "&[data-color='error']": {
+        '@apply border-error': {},
+        '@apply text-error': {},
+      },
+      "&[data-color='neutral']": {
+        '@apply border-neutral-300': {},
+        '@apply border-neutral-300': {},
+
+      },
+    },
+  };
+}
+
+
+module.exports = badge = (colors) => ({
+  '.badge': {
+    '@apply relative': {},
+    '@apply m-0': {},
+    '@apply inline-flex items-center justify-center content-center align-middle': {},
+    '@apply font-medium leading-none': {},
+
+    '&-fullrounded': {
+      '@apply rounded-full': {},
     },
 
+    //rounding
+    '&-roundedcorners-md': {
+      '@apply rounded-3xl px-sm': {},
+    },
+
+    '&-roundedcorners-lg': {
+      '@apply rounded-3xl px-sm': {},
+    },
+
+    // sizing
     '&-sm': {
-      minWidth: '14px',
-      height: '14px',
-      padding: 0,
-      lineHeight: '12px',
-      borderRadius: '2em',
+      '@apply text-opacity-0 text-[0rem] overflow-hidden rounded-full': {},
+      minHeight: '9px',
+      maxHeight: '9px',
+      minWidth: '9px',
     },
 
     '&-md': {
-      '@apply px-1.5 py-0': {},
-      minWidth: '20px',
-      height: '20px',
-      lineHeight: '18px',
-      borderRadius: '2em',
+      '@apply text-xs font-bold': {},
+      minHeight: '23px',
+      maxHeight: '23px',
+      minWidth: '23px',
+
     },
 
-    '&-shadow': {
-      '@apply ring-1 ring-white': {},
-      '@apply dark:ring-black': {},
+    '&-lg': {
+      '@apply text-sm font-bold': {},
+      minHeight: '27px',
+      maxHeight: '27px',
+      minWidth: '27px',
+
     },
+
+    '&-standard-sm': {
+      '@apply right-[-4px] self-center' : {},
+    },
+    '&-standard-md': {
+      '@apply right-[-4px] self-center': {},
+    },
+    '&-standard-lg': {
+      '@apply right-[-4px] self-center': {},
+    },
+
+    '&-super-sm': {
+      '@apply right-[-2px] top-[-5px]': {},
+    },
+    '&-super-md': {
+      '@apply right-[-3px] top-[-8px]': {},
+    },
+    '&-super-lg': {
+      '@apply right-[-4px] top-[-8px]': {},
+    },
+
+    '&-superoverlap-sm': {
+      '@apply right-[3px] top-[-5px]': {},
+    },
+    '&-superoverlap-md': {
+      '@apply right-[8px] top-[-6px]': {},
+    },
+    '&-superoverlap-lg': {
+      '@apply right-[8px] top-[-8px]': {},
+    },
+
+
+    '&-fit-content': {
+      '@apply p-0': {},
+      fontSize: 'inherit',
+    },
+
+
+    // variants
+    ...badgeSolid(colors),
+    ...badgeOutline(colors),
+
   },
 });
