@@ -96,7 +96,7 @@ module.exports = Menu = () => ({
         },
 
         '& .menu-item-move-button': {
-          '@apply -translate-x-full text-gray-stroke absolute py-sm inset-y-0 my-auto': {},
+          '@apply -translate-x-full no-underline text-gray-stroke absolute py-sm inset-y-0 my-auto': {},
 
           svg: {
             '@apply h-full': {},

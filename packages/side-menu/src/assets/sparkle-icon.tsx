@@ -1,3 +1,5 @@
+import React from 'react';
+
 function SparkleIcon() {
   return (
     <span className="sparkle-icon">
