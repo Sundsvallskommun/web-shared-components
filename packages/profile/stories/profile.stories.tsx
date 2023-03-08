@@ -46,6 +46,16 @@ Template.argTypes = {
     control: 'text',
     defaultValue: '',
   },
+  minimal: {
+    type: { name: 'boolean', required: false },
+    description: 'Set true to use truncate titles',
+    table: {
+      defaultValue: { summary: false },
+    },
+    options: [false, true],
+    control: 'boolean',
+    defaultValue: true,
+  },
 };
 
 Template.storyName = 'Profile';

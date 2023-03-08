@@ -9,19 +9,35 @@ interface IProfileProps extends DefaultProps, ProfilePictureProps {
   imageAlt?: string;
   placeholderImage?: string;
   image?: string;
+  imageElem?: React.ReactElement;
+  minimal?: boolean;
+  showPicture?: boolean;
 }
 
 export interface ProfileProps extends React.HTMLAttributes<HTMLDivElement>, IProfileProps {}
 
 export const Profile = React.forwardRef<HTMLDivElement, ProfileProps>((props, ref) => {
-  const { title, subTitle, className, imageAlt, placeholderImage, image, ...rest } = props;
+  const {
+    title,
+    subTitle,
+    className = '',
+    imageAlt,
+    placeholderImage,
+    image,
+    imageElem,
+    minimal = true,
+    showPicture = true,
+    ...rest
+  } = props;
 
   return (
-    <div ref={ref} className={cx('ProfileContainer', className ? className : '')} {...rest}>
-      <ProfilePicture imageAlt={imageAlt} placeholderImage={placeholderImage} image={image} />
+    <div ref={ref} className={cx('profile-container', className, minimal ? 'minimal' : '')} {...rest}>
+      {showPicture && (
+        <ProfilePicture imageAlt={imageAlt} placeholderImage={placeholderImage} image={image} imageElem={imageElem} />
+      )}
       <div>
-        <p className="ProfileP ProfileMargin">{title}</p>
-        <p className="ProfileMargin">{subTitle} </p>
+        <p className="profile-title">{title}</p>
+        <p className="profile-subtitle">{subTitle} </p>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import ArrowDropUpOutlinedIcon from '@mui/icons-material/ArrowDropUpOutlined';
 import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
-
+import { Profile } from '@sk-web-gui/profile';
 export interface MenuItemGroup {
   label: string;
   showLabel: boolean;
@@ -23,7 +23,7 @@ interface IUserMenuProps extends DefaultProps {
   image?: string;
   imageAlt?: string;
   placeholderImage?: string;
-  imageElem?: React.ReactNode;
+  imageElem?: React.ReactElement;
 }
 
 export interface UserMenuProps extends React.HTMLAttributes<HTMLDivElement>, IUserMenuProps {
@@ -154,47 +154,24 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>((props, 
                 </div>
               </div>
               <div className="hidden md:flex items-center text-left">
-                {imageElem && (
-                  <div className="relative overflow-hidden flex-shrink-0 text-xs leading-none flex items-center justify-center text-center w-[48px] h-[48px] mr-md rounded-full border-2 border-primary">
-                    {imageElem}
-                  </div>
-                )}
-                {(placeholderImage || image) && !imageElem && (
-                  <div className="relative overflow-hidden flex-shrink-0 text-xs leading-none flex items-center justify-center text-center w-[48px] h-[48px] mr-md rounded-full border-2 border-primary">
-                    {placeholderImage && (
-                      <div
-                        role="img"
-                        aria-label={imageAlt}
-                        style={{ backgroundImage: `url('${placeholderImage}')` }}
-                        className="bg-cover absolute inset-0 bg-center text-xs leading-none"
-                      ></div>
-                    )}
-                    {image && (
-                      <div
-                        role="img"
-                        aria-label={imageAlt}
-                        style={{ backgroundImage: `url('${image}')` }}
-                        className="bg-cover absolute inset-0 z-[1] bg-center text-xs leading-none"
-                      ></div>
-                    )}
-                  </div>
-                )}
-                <div className="flex-grow">
-                  <div className="font-bold flex flex-between">
-                    <span className="usermenu-menuTitle">{menuTitle}</span>
-                    {open ? (
-                      <ArrowDropUpOutlinedIcon
-                        aria-hidden="true"
-                        className="!text-2xl ml-auto align-top material-icon"
-                      />
-                    ) : (
-                      <ArrowDropDownOutlinedIcon
-                        aria-hidden="true"
-                        className="!text-2xl ml-auto align-top material-icon"
-                      />
-                    )}
-                  </div>
-                  <div className="usermenu-menuSubTitle text-left">{menuSubTitle}</div>
+                <div className={`flex flex-grow max-w-full ${!menuSubTitle ? 'items-center' : ''}`}>
+                  <Profile
+                    title={menuTitle}
+                    subTitle={menuSubTitle}
+                    image={image}
+                    imageAlt={imageAlt}
+                    imageElem={imageElem}
+                    placeholderImage={placeholderImage}
+                    showPicture={!!image || !!imageElem || !!placeholderImage || false}
+                  />
+                  {open ? (
+                    <ArrowDropUpOutlinedIcon aria-hidden="true" className="!text-2xl ml-auto align-top material-icon" />
+                  ) : (
+                    <ArrowDropDownOutlinedIcon
+                      aria-hidden="true"
+                      className="!text-2xl ml-auto align-top material-icon"
+                    />
+                  )}
                 </div>
               </div>
             </Menu.Button>
