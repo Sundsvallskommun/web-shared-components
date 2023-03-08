@@ -6,7 +6,7 @@ import * as React from 'react';
 import { ContextMenuButton } from './context-menu-button';
 
 export interface ContextMenuProps extends React.HTMLAttributes<HTMLDivElement>, DefaultProps {
-  classNameItems: string;
+  classNameItems?: string;
 }
 
 const ContextMenuComponent = React.forwardRef<HTMLDivElement, ContextMenuProps>((props, ref) => {
