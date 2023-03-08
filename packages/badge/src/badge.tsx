@@ -17,12 +17,14 @@ interface IBadgeProps extends DefaultProps {
   max?: number;
   /*the position of the badge as child in relation to another component */
   position?: 'standard' | 'super' | 'super-overlap';
+
+  noBorder?: boolean;
 }
 
 export interface BadgeProps extends Omit<React.HTMLAttributes<HTMLSpanElement>, 'color'>, IBadgeProps {}
 
 export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
-  const { color, variant = 'solid', className, size = 'sm', counter, max, position, ...rest } = props;
+  const { color, variant = 'solid', className, size = 'sm', counter, max, position, noBorder = false, ...rest } = props;
 
   const classes = useBadgeClass({ variant, size, position });
   return (
@@ -45,6 +47,8 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) 
       ${size == 'sm' && position == 'super-overlap' && 'badge-superoverlap-sm'}
       ${size == 'md' && position == 'super-overlap' && 'badge-superoverlap-md'}
       ${size == 'lg' && position == 'super-overlap' && 'badge-superoverlap-lg'}
+
+      ${noBorder ? `noborder` : ''}
          
       ${cx(classes, className)}`}
       {...rest}

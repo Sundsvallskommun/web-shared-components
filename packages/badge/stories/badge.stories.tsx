@@ -79,6 +79,15 @@ Template.argTypes = {
     control: { type: 'select' },
     defaultValue: '',
   },
+  noBorder: {
+    type: { name: 'boolean', required: false },
+    description: 'remove border',
+    table: {
+      defaultValue: { summary: false },
+    },
+    control: 'boolean',
+    defaultValue: false,
+  },
 };
 
 export const BadgeOnElement = () => {
@@ -92,6 +101,10 @@ export const BadgeOnElement = () => {
         <Button>
           Standard md
           <Badge size="md" variant="solid" color="warning" max={99} counter={4} position={'standard'} />
+        </Button>
+        <Button variant="solid" className="bg-gray-200">
+          Standard no border md
+          <Badge size="md" variant="solid" color="warning" max={99} counter={4} position={'standard'} noBorder />
         </Button>
         <Button>
           Standard lg
@@ -111,6 +124,10 @@ export const BadgeOnElement = () => {
           Super lg
           <Badge size="lg" variant="solid" color="warning" max={99} counter={4} position={'super'} />
         </Button>
+        <Button variant="solid" className="bg-gray-200">
+          Super lg no border
+          <Badge size="lg" variant="solid" color="warning" max={99} counter={4} position={'super'} noBorder />
+        </Button>
       </div>
       <div className="flex gap-20">
         <Button>
@@ -124,6 +141,10 @@ export const BadgeOnElement = () => {
         <Button>
           Superoverlap lg
           <Badge size="lg" variant="solid" color="warning" max={99} counter={4} position={'super-overlap'} />
+        </Button>
+        <Button variant="solid" className="bg-gray-200">
+          Superoverlap lg no border
+          <Badge size="lg" variant="solid" color="warning" max={99} counter={4} position={'super-overlap'} noBorder />
         </Button>
       </div>
       <div className="flex gap-20">

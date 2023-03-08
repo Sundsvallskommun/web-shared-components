@@ -59,6 +59,7 @@ function badgeOutline(colors) {
         },
       },
 
+      
       "&[data-color='primary']": {
         '@apply border-primary': {},
         '@apply text-primary': {},
@@ -86,7 +87,7 @@ module.exports = badge = (colors) => ({
     '@apply relative': {},
     '@apply m-0': {},
     '@apply inline-flex items-center justify-center content-center align-middle': {},
-    '@apply font-medium leading-none': {},
+    '@apply font-sans leading-none': {},
 
     '&-fullrounded': {
       '@apply rounded-full': {},
@@ -104,55 +105,103 @@ module.exports = badge = (colors) => ({
     // sizing
     '&-sm': {
       '@apply text-opacity-0 text-[0rem] overflow-hidden rounded-full': {},
-      minHeight: '9px',
-      maxHeight: '9px',
-      minWidth: '9px',
+      minHeight: '10px',
+      maxHeight: '10px',
+      minWidth: '10px',
+
+      '&.noborder': {
+        '@apply border-none': {},
+        minHeight: '6px',
+        maxHeight: '6px',
+        minWidth: '6px',
+      }
     },
 
     '&-md': {
       '@apply text-xs font-bold': {},
-      minHeight: '23px',
-      maxHeight: '23px',
-      minWidth: '23px',
+      minHeight: '24px',
+      maxHeight: '24px',
+      minWidth: '24px',
+
+      '&.noborder': {
+        '@apply border-none': {},
+        minHeight: '20px',
+        maxHeight: '20px',
+        minWidth: '20px',
+      }
 
     },
 
     '&-lg': {
       '@apply text-sm font-bold': {},
-      minHeight: '27px',
-      maxHeight: '27px',
-      minWidth: '27px',
+      minHeight: '28px',
+      maxHeight: '28px',
+      minWidth: '28px',
+
+      '&.noborder': {
+        '@apply border-none': {},
+        minHeight: '24px',
+        maxHeight: '24px',
+        minWidth: '24px',
+      }
 
     },
 
     '&-standard-sm': {
       '@apply right-[-4px] self-center' : {},
+      '&.noborder': {
+        '@apply right-[-5px]': {},
+      }
     },
     '&-standard-md': {
       '@apply right-[-4px] self-center': {},
+      '&.noborder': {
+        '@apply right-[-5px]': {},
+      }
     },
     '&-standard-lg': {
       '@apply right-[-4px] self-center': {},
+      '&.noborder': {
+        '@apply right-[-5px]': {},
+      }
     },
 
     '&-super-sm': {
       '@apply right-[-2px] top-[-5px]': {},
+      '&.noborder': {
+        '@apply right-[-3px]': {},
+      }
     },
     '&-super-md': {
       '@apply right-[-3px] top-[-8px]': {},
+      '&.noborder': {
+        '@apply right-[-4px]': {},
+      }
     },
     '&-super-lg': {
       '@apply right-[-4px] top-[-8px]': {},
+      '&.noborder': {
+        '@apply right-[-5px]': {},
+      }
     },
 
     '&-superoverlap-sm': {
       '@apply right-[3px] top-[-5px]': {},
+      '&.noborder': {
+        '@apply right-[2px]': {},
+      }
     },
     '&-superoverlap-md': {
       '@apply right-[8px] top-[-6px]': {},
+      '&.noborder': {
+        '@apply right-[7px]': {},
+      }
     },
     '&-superoverlap-lg': {
       '@apply right-[8px] top-[-8px]': {},
+      '&.noborder': {
+        '@apply right-[7px]': {},
+      }
     },
 
 
