@@ -40,3 +40,5 @@ export * from '@sk-web-gui/footer';
 export * from '@sk-web-gui/header';
 export * from '@sk-web-gui/context-menu';
 export * from '@sk-web-gui/badge';
+
+export * from '@sk-web-gui/profile';
