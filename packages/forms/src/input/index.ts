@@ -4,7 +4,7 @@ import { Input as InternalInput, InputProps } from './input';
 import { InputGroup, InputGroupProps } from '../input-group';
 import { InputLeftAddon, InputRightAddon, InputAddonProps } from '../input-addon';
 import { InputLeftElement, InputRightElement, InputElementProps } from '../input-element';
-import { InputLeftAddin, InputRightAddin } from '../input-addin';
+import { InputLeftAddin, InputRightAddin, InputAddinProps } from '../input-addin';
 
 interface Input extends React.ForwardRefExoticComponent<InputProps & React.RefAttributes<HTMLElement>> {
   Group: typeof InputGroup;
@@ -29,6 +29,6 @@ Input.RightAddin = InputRightAddin;
 Input.LeftElement = InputLeftElement;
 Input.RightElement = InputRightElement;
 
-export type { InputProps, InputGroupProps, InputAddonProps, InputElementProps };
+export type { InputProps, InputGroupProps, InputAddonProps, InputAddinProps, InputElementProps };
 
 export { Input };

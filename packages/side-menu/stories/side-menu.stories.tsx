@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Meta } from '@storybook/react';
 import { IDataObject, SideMenu } from '../src/side-menu';
 import testData from './testData.json';
 import testDataNoPath from './testDataNoPath.json';
 import testDataNoPathDraggable from './testDataNoPathDraggable.json';
 import { Select } from '@sk-web-gui/forms';
-import { Spinner } from '@sk-web-gui/spinner';
 import { IMenu } from '@sk-web-gui/react';
 
 export default {
@@ -115,6 +114,22 @@ Template.argTypes = {
     description: 'Options for draggable menu',
     defaultValue: undefined,
   },
+  renderMenuItemLabel: {
+    type: {
+      name: 'function',
+      required: false,
+    },
+    description: 'Renderfunction that replaces label and carries (itemData, active)',
+    defaultValue: undefined,
+  },
+  renderMenuItemExpand: {
+    type: {
+      name: 'function',
+      required: false,
+    },
+    description: 'Renderfunction that replaces expand button and carries (itemData, open, defaultElement)',
+    defaultValue: undefined,
+  },
 };
 
 export const TemplateHeadElement = ({ ...args }: any) => {
@@ -207,7 +222,6 @@ export const TemplateDraggable = ({ ...args }: any) => {
         className="ml-[100px]"
         draggable
         onDrop={handleOnDrop}
-        draggableOptions={{ showMovedAwayOnDrag: false }}
       />
     </div>
   );
