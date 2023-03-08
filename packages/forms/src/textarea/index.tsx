@@ -64,7 +64,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>((pr
   }, [value]);
 
   return (
-    <div>
+    <div className={cx(className)}>
       <Comp
         onChange={handleOnChange}
         maxLength={maxLength}

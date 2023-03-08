@@ -1,3 +1,4 @@
+import { ArgTypes } from '@storybook/react';
 import { Textarea } from '../src';
 
 export default {
@@ -8,7 +9,7 @@ export default {
   },
 };
 
-export const Basic = () => <Textarea placeholder="name@example.com" />;
+export const Basic = (args: ArgTypes) => <Textarea {...args} placeholder="name@example.com" />;
 
 export const Disabled = () => <Textarea disabled placeholder="name@example.com" />;
 
@@ -32,3 +33,25 @@ export const Counter = () => (
     maxLengthWarningText="Some text"
   />
 );
+
+Basic.argTypes = {
+  size: {
+    type: { name: 'string', required: false },
+    description: 'Sets size',
+    table: {
+      defaultValue: { summary: 'md' },
+    },
+    options: ['sm', 'md', 'lg'],
+    control: 'select',
+    defaultValue: 'md',
+  },
+  rows: {
+    type: { name: 'string', required: false },
+    description: 'Sets number of rows showm',
+    table: {
+      defaultValue: { summary: 'unset' },
+    },
+    control: 'number',
+    defaultValue: 1,
+  },
+};

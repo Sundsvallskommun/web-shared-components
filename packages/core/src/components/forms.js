@@ -260,9 +260,20 @@ module.exports = Forms = (colors) => ({
   },
 
   '.form-textarea': {
-    //"@apply leading-tight": {},
-    minHeight: '5rem',
+    maxHeight: 'none',
+    '&.form-field': {
+      '&-sm': {
+        '@apply py-[0.85rem] min-h-[4rem]': {},
+      },
 
+      '&-md': {
+        '@apply py-[0.9rem] min-h-[4.4rem]': {},
+      },
+
+      '&-lg': {
+        '@apply py-[1.1rem] min-h-[4.8rem]': {},
+      },
+    },
     '&-counter': {
       '@apply mt-xs text-right': {},
     },
