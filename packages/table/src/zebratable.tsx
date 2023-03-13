@@ -3,18 +3,17 @@ import { useEffect, useState } from 'react';
 import * as React from 'react';
 import { useZebraTableClass } from './styles';
 import { Pagination } from '@sk-web-gui/pagination';
-import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
-import UnfoldMoreOutlinedIcon from '@mui/icons-material/UnfoldMoreOutlined';
+import { ZTableHeader } from './zebratable-header';
 
 export interface ZebraTableHeader {
   element: JSX.Element;
-  isColumnSortable: boolean;
-  isShown: boolean;
+  isColumnSortable?: boolean;
+  isShown?: boolean;
   screenReaderOnly?: boolean;
 }
 export interface ZebraTableColumn {
   element: JSX.Element;
-  isShown: boolean;
+  isShown?: boolean;
 }
 
 export interface IZebraTableProps {
@@ -63,6 +62,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
   const [sortIndex, setSortIndex] = useState<number>(defaultSort.idx);
   const [currentPage, setCurrentPage] = useState<number>(page);
   const [currentPages, setPages] = useState<number>(pages);
+
   const internalSortHandler = (idx: number) => {
     setSortModeAscending(sortIndex === idx ? !sortModeAscending : defaultSort.sortMode);
     setSortIndex(idx);
@@ -125,48 +125,17 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
 
           <thead className="zebratable-thead">
             <tr className={cx(`zebratable-thead-tr`)}>
-              {headers.map((h, idx) => {
-                return h.isShown ? (
-                  <th
-                    scope="col"
-                    key={`header${idx}`}
-                    aria-sort={`${sortIndex == idx ? (sortModeAscending ? 'ascending' : 'descending') : 'none'}`}
-                    data-iscolumnsortable={h.isColumnSortable}
-                    className="zebratable-thead-th"
-                  >
-                    {h.isColumnSortable ? (
-                      <>
-                        <span className="sr-only">{h.element.props.children}</span>
-                        <button
-                          className="zebratable-sortbutton"
-                          aria-label={`Sortera efter ${h.element.props.children} i ${
-                            sortModeAscending ? 'stigande' : 'fallande'
-                          } ordning`}
-                          onClick={() => {
-                            tableSortable && h.isColumnSortable && internalSortHandler(idx);
-                          }}
-                        >
-                          {h.element}
-                          <div className="zebratable-sortbutton-icon">
-                            {tableSortable &&
-                              h.isColumnSortable &&
-                              (idx === sortIndex ? (
-                                <ChevronRightOutlinedIcon
-                                  className="zebratable-sortbutton-icon-sort"
-                                  data-sortmodeascending={sortModeAscending}
-                                />
-                              ) : (
-                                <UnfoldMoreOutlinedIcon className="zebratable-sortbutton-icon-more" />
-                              ))}
-                          </div>
-                        </button>
-                      </>
-                    ) : (
-                      <span className={cx(`${h.screenReaderOnly ? `sr-only` : ``}`)}>{h.element.props.children}</span>
-                    )}
-                  </th>
-                ) : null;
-              })}
+              {headers.map((h, idx) => (
+                <ZTableHeader
+                  key={`header${idx}`}
+                  {...h}
+                  handleSort={internalSortHandler}
+                  index={idx}
+                  tableSortable={tableSortable}
+                  sortIndex={sortIndex}
+                  sortModeAscending={sortModeAscending}
+                />
+              ))}
             </tr>
           </thead>
           <tbody className="zebratable-tbody">
@@ -181,10 +150,10 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
                     : ``
                 }`}
               >
-                {cols.map((col, idx) =>
-                  col.isShown ? (
+                {cols.map(({ element, isShown = true }, idx) =>
+                  isShown ? (
                     <td key={`col${idx}`} className="zebratable-tbody-td">
-                      {col.element}
+                      {element}
                     </td>
                   ) : null
                 )}
