@@ -2,6 +2,8 @@ import { ZebraTableHeader } from './zebratable';
 import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
 import UnfoldMoreOutlinedIcon from '@mui/icons-material/UnfoldMoreOutlined';
 import { cx } from '@sk-web-gui/utils';
+import * as React from 'react';
+
 interface ZTableHeaderProps extends ZebraTableHeader {
   sortIndex: number;
   sortModeAscending: boolean;
