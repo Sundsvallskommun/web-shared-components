@@ -83,14 +83,14 @@ function formControl() {
 function formInputGroup() {
   return {
     '.form-input-group': {
-      '@apply flex relative h-fit w-full rounded-[0.2rem] border border-gray-stroke': {},
+      '@apply flex relative bg-white h-fit w-full rounded-[0.2rem] border border-gray-stroke': {},
 
       '&:focus-within': {
         '@apply border border-primary ring-primary ring-1': {},
       },
 
       '> *': {
-        '@apply border-0 ring-0': {},
+        '@apply border-0 ring-0 shadow-none': {},
 
         '&:focus': {
           '@apply ring-0': {},
