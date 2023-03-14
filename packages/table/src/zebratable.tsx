@@ -95,10 +95,14 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
   }, [highlightedItemIndex]);
 
   useEffect(() => {
-    setPages(Math.ceil(rows.length / pageSize));
-    const startIndex = currentPage * pageSize - pageSize;
-    setManagedRows(rows.slice(startIndex, startIndex + pageSize));
-  }, [pageSize, currentPage, rows]);
+    if (pages > 0) {
+      setPages(Math.ceil(rows.length / pageSize));
+      const startIndex = currentPage * pageSize - pageSize;
+      setManagedRows(rows.slice(startIndex, startIndex + pageSize));
+    } else {
+      setManagedRows(rows);
+    }
+  }, [pageSize, currentPage, rows, pages]);
 
   return (
     <>
