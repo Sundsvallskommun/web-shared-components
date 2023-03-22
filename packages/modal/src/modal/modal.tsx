@@ -6,7 +6,7 @@ import { Fragment } from 'react';
 
 export interface IModalProps {
   show: boolean;
-  label?: string;
+  label?: string | JSX.Element;
   className?: string;
   onClose?: () => void;
   hideClosebutton?: boolean;
