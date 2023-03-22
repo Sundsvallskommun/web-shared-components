@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/react",
-  "version": "0.1.107",
+  "version": "0.1.108",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -59,7 +59,7 @@
     "@sk-web-gui/image": "0.1.10",
     "@sk-web-gui/link": "0.1.11",
     "@sk-web-gui/message": "0.1.17",
-    "@sk-web-gui/modal": "0.1.7",
+    "@sk-web-gui/modal": "0.1.8",
     "@sk-web-gui/notification": "0.1.19",
     "@sk-web-gui/pagination": "0.1.18",
     "@sk-web-gui/profile": "0.1.1",
