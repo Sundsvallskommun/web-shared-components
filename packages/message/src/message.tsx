@@ -1,10 +1,9 @@
-import { Icon, InfoIcon, XCricleIcon, CheckCircleIcon, ExclamationIcon } from '@sk-web-gui/icon';
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import { Button } from '@sk-web-gui/button';
+import { CheckCircleIcon, ExclamationIcon, Icon, InfoIcon, XCricleIcon } from '@sk-web-gui/icon';
 import { createToast, useToastOptions } from '@sk-web-gui/toast';
 import { cx as clsx, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
-import { Button } from '@sk-web-gui/button';
-import { DefaultProps } from '@sk-web-gui/theme';
-import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 const statuses = {
   info: {
@@ -88,6 +87,7 @@ const Message = React.forwardRef<any, MessageProps>(
             size="lg"
             onClick={handleCloseCallback}
             className="message-close-button"
+            iconButton
             aria-label={closeAriaLabel}
           >
             <CloseOutlinedIcon className="message-close-button-icon" aria-hidden="true" />

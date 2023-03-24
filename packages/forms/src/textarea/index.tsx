@@ -60,6 +60,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>((pr
   };
 
   React.useEffect(() => {
+    setText(value);
     setCharCount(value.length);
   }, [value]);
 
