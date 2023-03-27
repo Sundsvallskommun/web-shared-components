@@ -309,7 +309,7 @@ module.exports = Forms = (colors) => ({
         '@apply bg-primary text-white': {},
       },
       '&.active.selected': {
-        '@apply bg-primary text-white': {},
+        '@apply bg-gray text-white': {},
       },
       '&.disabled': {
         '@apply opacity-75 cursor-not-allowed hover:bg-white hover:text-black': {},

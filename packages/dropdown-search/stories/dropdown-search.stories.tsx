@@ -17,19 +17,24 @@ export const Template = (args: any) => {
     { id: 3, orgName: 'Therese Wunsch' },
     { id: 4, orgName: 'Benedict Kessler' },
     { id: 5, orgName: 'Katelyn Rohan', moreData: { test: '' } },
+    { id: 6, orgName: 'Reynolds Kenton' },
+    { id: 7, orgName: 'Rohan Towne' },
+    { id: 8, orgName: 'Wunsch Benedict' },
+    { id: 9, orgName: 'Kessler Therese' },
+    { id: 10, orgName: 'Durward Katelyn', moreData: { test: '' } },
   ];
 
-  const options: OptionValueType[] = cleanState.map((state) => ({ label: state.orgName, data: { ...state } }));
-  const [value, setValue] = useState<OptionValueType>();
+  // const options: OptionValueType[] = cleanState.map((state) => ({ label: state.orgName, data: { ...state } }));
+  // const [value, setValue] = useState<OptionValueType[]>();
 
-  const handleOnSelect = (value: OptionValueType) => {
-    console.log('handleOnSelect', value);
-    setValue(value);
-  };
+  // const handleOnSelect = (value: OptionValueType[]) => {
+  //   console.log('handleOnSelect', value);
+  //   setValue(value);
+  // };
 
-  const handleOnChange = (event: React.BaseSyntheticEvent) => {
-    console.log('handleOnChange', event.target.value);
-  };
+  // const handleOnChange = (event: React.BaseSyntheticEvent) => {
+  //   console.log('handleOnChange', event.target.value);
+  // };
 
   return (
     <form
@@ -39,15 +44,18 @@ export const Template = (args: any) => {
         console.log('submit');
       }}
     >
-      <Button onClick={() => setValue(undefined)} type="button">
+      {/* <Button onClick={() => setValue(undefined)} type="button">
         Reset
-      </Button>
+      </Button> */}
       <DropdownSearch
         {...args}
-        data={options}
-        onChange={handleOnChange}
-        onSelect={handleOnSelect}
-        value={value}
+        data={cleanState}
+        labelProperty="orgName"
+        // onChange={handleOnChange}
+        // onSelect={handleOnSelect}
+        defaultList={cleanState.slice(2, 6)}
+        // value={value}
+        multiple
         useDeleteButton
         // deleteCallback={() => console.log('deletebutton clicked')}
         // closeIcon={<div>X</div>}
