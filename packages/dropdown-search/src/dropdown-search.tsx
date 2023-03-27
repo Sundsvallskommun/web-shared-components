@@ -118,6 +118,9 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
       : option[labelProperty].toLowerCase().includes(query.toLowerCase());
   };
 
+  /**
+   * Pre-filter out selected data from options when multi-choice
+   */
   const preFilteredData = () => {
     switch (multiple) {
       case false || undefined:
@@ -131,6 +134,7 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
         return data || [];
     }
   };
+
   /**
    * Filter for dropdown data based on search query
    */

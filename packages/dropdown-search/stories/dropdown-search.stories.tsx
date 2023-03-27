@@ -1,7 +1,4 @@
-import { Button } from '@sk-web-gui/button';
-import { OptionValueType } from '@sk-web-gui/forms';
 import { Meta } from '@storybook/react';
-import React, { useState } from 'react';
 import DropdownSearch from '../src/dropdown-search';
 
 export default {
@@ -24,18 +21,6 @@ export const Template = (args: any) => {
     { id: 10, orgName: 'Durward Katelyn', moreData: { test: '' } },
   ];
 
-  // const options: OptionValueType[] = cleanState.map((state) => ({ label: state.orgName, data: { ...state } }));
-  // const [value, setValue] = useState<OptionValueType[]>();
-
-  // const handleOnSelect = (value: OptionValueType[]) => {
-  //   console.log('handleOnSelect', value);
-  //   setValue(value);
-  // };
-
-  // const handleOnChange = (event: React.BaseSyntheticEvent) => {
-  //   console.log('handleOnChange', event.target.value);
-  // };
-
   return (
     <form
       style={{ minHeight: 300 }}
@@ -44,21 +29,12 @@ export const Template = (args: any) => {
         console.log('submit');
       }}
     >
-      {/* <Button onClick={() => setValue(undefined)} type="button">
-        Reset
-      </Button> */}
       <DropdownSearch
         {...args}
         data={cleanState}
         labelProperty="orgName"
-        // onChange={handleOnChange}
-        // onSelect={handleOnSelect}
         defaultList={cleanState.slice(2, 6)}
-        // value={value}
-        multiple
         useDeleteButton
-        // deleteCallback={() => console.log('deletebutton clicked')}
-        // closeIcon={<div>X</div>}
         notFoundLabel="Inga resultat..."
       />
     </form>
@@ -122,6 +98,14 @@ Template.argTypes = {
     description: 'To specify which object property to use as label',
     defaultValue: 'label',
   },
+  idProperty: {
+    type: {
+      name: 'string',
+      require: false,
+    },
+    description: 'To specify which object property to use as unique identifier (used when multichoice)',
+    defaultValue: 'id',
+  },
   render: {
     type: {
       name: 'function',
@@ -147,5 +131,14 @@ Template.argTypes = {
     options: ['sm', 'md', 'lg'],
     control: 'select',
     defaultValue: 'md',
+  },
+  multiple: {
+    type: { name: 'string', required: false },
+    description: 'Sets if multiple choice',
+    table: {
+      defaultValue: { summary: 'false' },
+    },
+    control: 'boolean',
+    defaultValue: false,
   },
 };
