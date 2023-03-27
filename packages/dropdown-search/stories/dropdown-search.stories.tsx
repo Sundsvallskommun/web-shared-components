@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { Button } from '@sk-web-gui/button';
+import { OptionValueType } from '@sk-web-gui/forms';
 import { Meta } from '@storybook/react';
+import React, { useState } from 'react';
 import DropdownSearch from '../src/dropdown-search';
-import { defaults } from 'autoprefixer';
 
 export default {
   title: 'Komponenter/Dropdown/DropdownSearch',
@@ -18,11 +19,12 @@ export const Template = (args: any) => {
     { id: 5, orgName: 'Katelyn Rohan', moreData: { test: '' } },
   ];
 
-  const [value, setValue] = useState({ id: 0, orgName: 'default' });
+  const options: OptionValueType[] = cleanState.map((state) => ({ label: state.orgName, data: { ...state } }));
+  const [value, setValue] = useState<OptionValueType>();
 
-  const handleOnSelect = (value: any) => {
+  const handleOnSelect = (value: OptionValueType) => {
     console.log('handleOnSelect', value);
-    setValue(value.data);
+    setValue(value);
   };
 
   const handleOnChange = (event: React.BaseSyntheticEvent) => {
@@ -37,21 +39,15 @@ export const Template = (args: any) => {
         console.log('submit');
       }}
     >
+      <Button onClick={() => setValue(undefined)} type="button">
+        Reset
+      </Button>
       <DropdownSearch
         {...args}
-        data={cleanState}
-        labelProperty="orgName"
+        data={options}
         onChange={handleOnChange}
         onSelect={handleOnSelect}
-        value={{ label: value.orgName, data: value }}
-        render={(value) => {
-          return <div>{value.label} TEST</div>;
-        }}
-        filterFunction={(q, item) => {
-          if (item.data.orgName.toLowerCase().includes(q.toLowerCase())) return true;
-          if (item.data.id && item.data.id.toString().includes(q.toLowerCase())) return true;
-          return false;
-        }}
+        value={value}
         useDeleteButton
         // deleteCallback={() => console.log('deletebutton clicked')}
         // closeIcon={<div>X</div>}

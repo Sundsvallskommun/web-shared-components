@@ -46,8 +46,6 @@ module.exports = Message = () => ({
   '.message-close-button': {
     '@apply text-body border-transparent flex items-center justify-center transition-all duration-150 rounded-full outline-none cursor-base':
       {},
-    fontSize: '1.2em',
-    padding: '0.36em',
     marginLeft: '0.25em',
     marginRight: '-0.55em',
 

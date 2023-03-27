@@ -83,7 +83,7 @@ module.exports = Tag = (colors) => ({
     fontSize: '1em',
     padding: '0.36em',
     marginLeft: '0.25em',
-    marginRight: '-0.55em',
+    marginRight: '-1em',
 
     '&-icon': {
       fontSize: '1em !important',

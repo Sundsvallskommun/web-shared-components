@@ -190,11 +190,9 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
   };
 
   useEffect(() => {
-    if (value) {
-      setSelectedValue(value);
-      setQueryHandler(value.label);
-      setShowResult(true);
-    }
+    setSelectedValue(value);
+    setQueryHandler(value?.label || '');
+    setShowResult(!!value);
   }, [value]);
 
   const showSuggestions = data && query && showOptions && (notFoundLabel || filteredData.length > 0);
@@ -219,7 +217,9 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
           onClick={handleClickOnRenderedResult}
           onFocus={handleClickOnRenderedResult}
           className={cx('cursor-text', className)}
-          children={render && showResult && selectedValue ? render(selectedValue) : undefined}
+          children={
+            showResult && selectedValue ? (render ? render(selectedValue) : selectedValue[labelProperty]) : undefined
+          }
         />
         {useDeleteButton && query && (
           <Input.RightAddin>
