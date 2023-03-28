@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react';
 import DropdownSearch from '../src/dropdown-search';
-
+import React from 'react';
 export default {
   title: 'Komponenter/Dropdown/DropdownSearch',
   component: DropdownSearch,
@@ -12,7 +12,11 @@ export const Template = (args: any) => {
     { id: 1, orgName: 'Durward Reynolds' },
     { id: 2, orgName: 'Kenton Towne' },
     { id: 3, orgName: 'Therese Wunsch' },
-    { id: 4, orgName: 'Benedict Kessler' },
+    {
+      id: 4,
+      orgName:
+        'Benedict Kessler asd asd asd das dsa ew sdccsdcsdc e dwe csdcsdcsd ewcwec sdc sc cwe wec wec sdcsc scdc ew cwe csd sdc sdccwe c',
+    },
     { id: 5, orgName: 'Katelyn Rohan', moreData: { test: '' } },
     { id: 6, orgName: 'Reynolds Kenton' },
     { id: 7, orgName: 'Rohan Towne' },
@@ -36,6 +40,7 @@ export const Template = (args: any) => {
         defaultList={cleanState.slice(2, 6)}
         useDeleteButton
         notFoundLabel="Inga resultat..."
+        onSelect={console.log}
       />
     </form>
   );

@@ -314,6 +314,12 @@ module.exports = Forms = (colors) => ({
       '&.disabled': {
         '@apply opacity-75 cursor-not-allowed hover:bg-white hover:text-black': {},
       },
+      '&-remove-button': {
+        '@apply w-full flex justify-between items-center': {},
+        '&-text': {
+          '@apply truncate grow text-left': {},
+        },
+      },
     },
   },
 

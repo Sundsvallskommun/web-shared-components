@@ -122,17 +122,11 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
    * Pre-filter out selected data from options when multi-choice
    */
   const preFilteredData = () => {
-    switch (multiple) {
-      case false || undefined:
-        return data || [];
-      case true:
-        return (
-          data?.filter((data) => !selectedValues.map((value) => value.data[idProperty]).includes(data[idProperty])) ||
-          []
-        );
-      default:
-        return data || [];
-    }
+    if (multiple)
+      return (
+        data?.filter((data) => !selectedValues.map((value) => value.data[idProperty]).includes(data[idProperty])) || []
+      );
+    return data || [];
   };
 
   /**
@@ -169,8 +163,9 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
     if (event.target.value) {
       setShowOptions(true);
     } else {
-      if (!defaultList) {
+      if (!defaultList && !selectedValues.length) {
         setShowOptions(false);
+        setDropdownActive(false);
       }
     }
     onChange && onChange(event);
@@ -189,18 +184,16 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
     });
   };
 
-  const setSelected = (value: OptionValueType) => {
-    switch (multiple) {
-      case false || undefined:
-        setSelectedValue({ label: value[labelProperty], data: value });
-        setQueryHandler(value[labelProperty]);
-        onSelect && onSelect({ label: value[labelProperty], data: value });
-        showResults();
-        break;
-      case true:
-        setSelectedValues([...selectedValues, { label: value[labelProperty], data: value }]);
-        onSelect && onSelect(selectedValues);
-        break;
+  const setSelected = (value: any) => {
+    if (!multiple) {
+      setSelectedValue({ label: value[labelProperty], data: value });
+      setQueryHandler(value[labelProperty]);
+      onSelect && onSelect({ label: value[labelProperty], data: value });
+      showResults();
+    }
+    if (multiple) {
+      setSelectedValues([...selectedValues, { label: value[labelProperty], data: value }]);
+      onSelect && onSelect([...selectedValues, { label: value[labelProperty], data: value }]);
     }
   };
 
@@ -209,7 +202,7 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
       const newValues = [...selectedValues];
       newValues.splice(index, 1);
       setSelectedValues(newValues);
-      onSelect && onSelect(selectedValues);
+      onSelect && onSelect(newValues);
     }
   };
 
@@ -332,46 +325,39 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
   };
 
   useEffect(() => {
-    switch (multiple) {
-      case true:
-        setSelectedValues(value || []);
-        break;
-      case false || undefined:
-        setSelectedValue(value as OptionValueType);
-        setQueryHandler(value?.label || '');
+    if (multiple) {
+      setSelectedValues(value || []);
+    }
+    if (!multiple) {
+      setSelectedValue(value as OptionValueType);
+      setQueryHandler(value?.label || '');
     }
     setShowResult(!!value);
   }, [value]);
 
   const renderResults = () => {
     if (!showResult) return undefined;
-    switch (multiple) {
-      case false || undefined:
-        return selectedValue ? (render ? render(selectedValue) : selectedValue.label) : undefined;
-      case true:
-        return selectedValues?.length ? selectedValues.map((value) => value.label).join(', ') : undefined;
-      default:
-        return undefined;
-    }
+    if (!multiple) return selectedValue ? (render ? render(selectedValue) : selectedValue.label) : undefined;
+    if (multiple) return selectedValues?.length ? selectedValues.map((value) => value.label).join(', ') : undefined;
+  };
+
+  const defaultListOptions = () => {
+    if (multiple)
+      return (
+        defaultList
+          ?.filter((item) => !selectedValues.map((selected) => selected.data[idProperty]).includes(item[idProperty]))
+          .slice(0, maxAmount) || []
+      );
+    return defaultList?.slice(0, maxAmount) || [];
   };
 
   const showSuggestions =
-    data && showOptions && (((notFoundLabel || filteredData.length > 0) && query) || (defaultList && !query));
+    data &&
+    showOptions &&
+    (((notFoundLabel || filteredData.length > 0) && !!query) ||
+      defaultListOptions().length > 0 ||
+      (multiple && selectedValues.length > 0));
 
-  const defaultListOptions = () => {
-    switch (multiple) {
-      case false || undefined:
-        return defaultList?.slice(0, maxAmount) || [];
-      case true:
-        return (
-          defaultList
-            ?.filter((item) => !selectedValues.map((selected) => selected.data[idProperty]).includes(item[idProperty]))
-            .slice(0, maxAmount) || []
-        );
-      default:
-        return defaultList?.slice(0, maxAmount) || [];
-    }
-  };
   return (
     <div ref={ref} className="dropdown-search block w-full relative">
       <Input.Group size={size}>
@@ -393,7 +379,7 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
           onFocus={handleClickOnRenderedResult}
           className={cx('cursor-text', className)}
           children={
-            showResult && (selectedValue || selectedValues.length) ? (
+            showResult && (selectedValue || selectedValues.length > 0) ? (
               <div className="w-full flex justify-between items-center">
                 <div className="truncate text-left grow">{renderResults()}</div>
                 <div className="grow-0">
@@ -437,16 +423,19 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
                   setActiveOption(null);
                 }}
                 key={`form-select-option-dropdown-${selected.data[idProperty]}`}
-                className={`form-select-option multiple selected ${
+                className={`form-select-option multiple selected truncate ${
                   activeSelectedOption == index ? 'active' : ''
                 } ${classes}`}
               >
                 <button
-                  className="w-full flex justify-between items-center"
+                  className="form-select-option-remove-button"
                   aria-label="Ta bort val"
                   onClick={() => handleRemoveSelected(index)}
+                  title={selected.label}
                 >
-                  {render ? render(selected) : selected.label}
+                  <div className="form-select-option-remove-button-text">
+                    {render ? render(selected) : selected.label}
+                  </div>
                   <CloseIcon fontSize="large" />
                 </button>
               </li>
@@ -455,7 +444,7 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
             <div className={`${classes}  form-select-option`}>{notFoundLabel}</div>
           ) : (
             query &&
-            filteredData.slice(0, maxAmount).map((option: OptionValueType, index: number) => {
+            filteredData.slice(0, maxAmount).map((option: any, index: number) => {
               return (
                 <li
                   onMouseOver={() => {
@@ -464,7 +453,7 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
                   }}
                   onClick={() => setSelected(option)}
                   key={`form-select-option-dropdown-${option[labelProperty]}-${index}`}
-                  className={`form-select-option ${activeOption == index ? 'active' : ''} ${classes}`}
+                  className={`form-select-option truncate ${activeOption == index ? 'active' : ''} ${classes}`}
                 >
                   {render ? render({ label: option[labelProperty], data: option }) : option[labelProperty]}
                 </li>
@@ -473,7 +462,7 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
           )}
           {!query &&
             defaultList &&
-            defaultListOptions()?.map((option: OptionValueType, index: number) => {
+            defaultListOptions()?.map((option: any, index: number) => {
               return (
                 <li
                   onMouseOver={() => {
@@ -482,7 +471,7 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
                   }}
                   onClick={() => setSelected(option)}
                   key={`form-select-option-dropdown-${option[labelProperty]}-${index}`}
-                  className={`form-select-option ${activeOption == index ? 'active' : ''} ${classes}`}
+                  className={`form-select-option truncate ${activeOption == index ? 'active' : ''} ${classes}`}
                 >
                   {render ? render({ label: option[labelProperty], data: option }) : option[labelProperty]}
                 </li>
