@@ -194,6 +194,7 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
     if (multiple) {
       setSelectedValues([...selectedValues, { label: value[labelProperty], data: value }]);
       onSelect && onSelect([...selectedValues, { label: value[labelProperty], data: value }]);
+      inputRef.current && inputRef.current.focus();
     }
   };
 
@@ -313,6 +314,16 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
       // escape
       setDropdownActive(false);
       inputRef.current && inputRef.current.blur();
+      showResults();
+    } else if (e.keyCode === 9) {
+      // tab
+      // Make sure that you can always tab away
+      const { target, nativeEvent } = e;
+      setDropdownActive(false);
+      setTimeout(() => {
+        const clonedNativeEvent = new KeyboardEvent('keypress', nativeEvent);
+        target.dispatchEvent(clonedNativeEvent);
+      });
     }
   };
 
@@ -327,12 +338,17 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
   useEffect(() => {
     if (multiple) {
       setSelectedValues(value || []);
+      if (showSuggestions) {
+        inputRef.current && inputRef.current.focus();
+      } else {
+        setShowResult(!!value);
+      }
     }
     if (!multiple) {
       setSelectedValue(value as OptionValueType);
       setQueryHandler(value?.label || '');
+      setShowResult(!!value);
     }
-    setShowResult(!!value);
   }, [value]);
 
   const renderResults = () => {
@@ -351,6 +367,7 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
     return defaultList?.slice(0, maxAmount) || [];
   };
 
+  const listData = query && filteredData ? filteredData : !query && defaultList ? defaultListOptions() : undefined;
   const showSuggestions =
     data &&
     showOptions &&
@@ -411,7 +428,7 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
       {showSuggestions && (
         <ul
           className={cx('form-field-outline form-select-list', listClassName)}
-          onMouseEnter={() => setDropdownActive(true)}
+          onMouseOver={() => setDropdownActive(true)}
           onMouseLeave={() => setDropdownActive(false)}
         >
           {multiple &&
@@ -430,7 +447,11 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
                 <button
                   className="form-select-option-remove-button"
                   aria-label="Ta bort val"
-                  onClick={() => handleRemoveSelected(index)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleRemoveSelected(index);
+                  }}
                   title={selected.label}
                 >
                   <div className="form-select-option-remove-button-text">
@@ -443,15 +464,18 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
           {query && filteredData.length === 0 && notFoundLabel && query !== '' ? (
             <div className={`${classes}  form-select-option`}>{notFoundLabel}</div>
           ) : (
-            query &&
-            filteredData.slice(0, maxAmount).map((option: any, index: number) => {
+            listData?.slice(0, maxAmount).map((option: any, index: number) => {
               return (
                 <li
                   onMouseOver={() => {
                     setActiveOption(index);
                     setActiveSelectedOption(null);
                   }}
-                  onClick={() => setSelected(option)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setSelected(option);
+                  }}
                   key={`form-select-option-dropdown-${option[labelProperty]}-${index}`}
                   className={`form-select-option truncate ${activeOption == index ? 'active' : ''} ${classes}`}
                 >
@@ -460,23 +484,6 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
               );
             })
           )}
-          {!query &&
-            defaultList &&
-            defaultListOptions()?.map((option: any, index: number) => {
-              return (
-                <li
-                  onMouseOver={() => {
-                    setActiveOption(index);
-                    setActiveSelectedOption(null);
-                  }}
-                  onClick={() => setSelected(option)}
-                  key={`form-select-option-dropdown-${option[labelProperty]}-${index}`}
-                  className={`form-select-option truncate ${activeOption == index ? 'active' : ''} ${classes}`}
-                >
-                  {render ? render({ label: option[labelProperty], data: option }) : option[labelProperty]}
-                </li>
-              );
-            })}
         </ul>
       )}
     </div>
