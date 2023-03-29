@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ISearchBarProps, SearchBar } from '../src/search-bar';
 
 export default {
-  title: 'Komponenter/Sök',
+  title: 'Komponenter/Sök/Komponent',
   component: SearchBar,
 };
 

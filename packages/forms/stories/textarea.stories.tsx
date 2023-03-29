@@ -1,15 +1,18 @@
 import { ArgTypes } from '@storybook/react';
+import React from 'react';
 import { Textarea } from '../src';
 
 export default {
-  title: 'WIP/Komponenter/Textarea',
+  title: 'Komponenter/Textfält/Textarea',
   component: Textarea,
   parameters: {
     controls: { hideNoControlsWarning: true },
   },
 };
 
-export const Basic = (args: ArgTypes) => <Textarea {...args} placeholder="name@example.com" />;
+export const Template = (args: ArgTypes) => <Textarea {...args} placeholder="name@example.com" />;
+
+Template.storyName = 'Textarea';
 
 export const Disabled = () => <Textarea disabled placeholder="name@example.com" />;
 
@@ -34,7 +37,7 @@ export const Counter = () => (
   />
 );
 
-Basic.argTypes = {
+Template.argTypes = {
   size: {
     type: { name: 'string', required: false },
     description: 'Sets size',

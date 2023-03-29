@@ -193,5 +193,5 @@ export const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>((p
 });
 
 if (__DEV__) {
-  AlertBanner.displayName = 'Alert-banner';
+  AlertBanner.displayName = 'AlertBanner';
 }

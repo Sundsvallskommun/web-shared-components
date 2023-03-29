@@ -8,7 +8,7 @@ import { MenuItemGroup } from '../src/user-menu';
 import PlaceholderImage from '../../../.storybook/public/placeholder_2.png';
 
 export default {
-  title: 'WIP/Komponenter/UserMenu',
+  title: 'Komponenter/Meny/Användarmeny',
   component: UserMenu,
   argTypes: {
     menuTitle: { control: 'text', defaultValue: 'Menytext' },
@@ -150,7 +150,7 @@ const menuGroups: MenuItemGroup[] = [
   },
 ];
 
-export const Basic = () => (
+export const Template = () => (
   <nav
     className={cx('lg:border-t-8 lg:border-primary lg:static lg:w-auto lg:h-auto lg:min-h-0', {
       'fixed z-50 top-0 left-0 w-full min-h-screen bg-white ': isMobileMenuOpen,
@@ -289,3 +289,5 @@ export const Basic = () => (
     </div>
   </nav>
 );
+
+Template.storyName = 'UserMenu';

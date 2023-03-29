@@ -22,7 +22,7 @@ export const Template = (args: DividerProps) => (
   </div>
 );
 
-Template.storyName = 'Komponent';
+Template.storyName = 'Divider';
 
 Template.argTypes = {
   orientation: {

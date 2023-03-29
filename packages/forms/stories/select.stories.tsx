@@ -121,9 +121,9 @@ Template.argTypes = {
   },
 };
 
-Template.storyName = 'Komponent';
+Template.storyName = 'Select';
 
-export const Disabled = () => (
+export const Inaktiverad = () => (
   <Select onChange={() => {}} disabled placeholder="Outline">
     <option>Option 1</option>
     <option>Option 2</option>
@@ -131,7 +131,7 @@ export const Disabled = () => (
   </Select>
 );
 
-export const Invalid = () => (
+export const Invaliderad = () => (
   <Select onChange={() => {}} invalid placeholder="Outline">
     <option>Option 1</option>
     <option>Option 2</option>
@@ -139,15 +139,7 @@ export const Invalid = () => (
   </Select>
 );
 
-export const Colored = () => (
-  <Select onChange={() => {}} placeholder="Outline" color="orange">
-    <option>Option 1</option>
-    <option>Option 2</option>
-    <option>Option 3</option>
-  </Select>
-);
-
-export const Size = () => (
+export const Storlekar = () => (
   <div className="flex space-x-2">
     <Select onChange={() => {}} placeholder="Outline" size="sm">
       <option>Option 1</option>

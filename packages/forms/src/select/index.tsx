@@ -103,7 +103,6 @@ const InternalSelect = React.forwardRef<HTMLSelectElement, SelectProps>((props, 
               type="button"
               size={size}
               disabled={disabled ? disabled : undefined}
-              aria-disabled={disabled ? disabled : undefined}
               className={cx('form-select', className)}
               {...rest}
             >

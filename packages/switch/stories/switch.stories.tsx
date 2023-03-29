@@ -1,3 +1,4 @@
+import React from 'react';
 import { FormControl, FormLabel } from '@sk-web-gui/forms';
 import { Switch } from '../src';
 
@@ -23,7 +24,7 @@ export const Template = (args) => (
   </div>
 );
 
-Template.storyName = 'Komponent';
+Template.storyName = 'Switch';
 
 Template.argTypes = {
   defaultChecked: {

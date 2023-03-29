@@ -3,7 +3,7 @@ import { Meta } from '@storybook/react';
 import { Modal } from '../src/modal/modal';
 
 export default {
-  title: 'Komponenter/Modal/Komponent/Modal',
+  title: 'Komponenter/Modal/Komponent',
   component: Modal,
   parameters: {
     controls: { hideNoControlsWarning: true },

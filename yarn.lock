@@ -3605,6 +3605,15 @@
     "@sk-web-gui/theme" "0.1.9"
     "@sk-web-gui/utils" "0.1.4"
 
+"@sk-web-gui/text-editor@0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@sk-web-gui/text-editor/-/text-editor-0.1.4.tgz#8cf335f61dd72e4f9eb0e498aa51f2fc86bad774"
+  integrity sha512-2chsa+ocCep/q5mMm5jDTjKUXW/QyNNuROQocCKzOYX4V1JgPupJ1g7qd2tzyXIzGphWB6xL7uNcnd+7Vx1o+A==
+  dependencies:
+    "@sk-web-gui/theme" "0.1.4"
+    "@sk-web-gui/utils" "0.1.3"
+    react-quill "2.0.0"
+
 "@sk-web-gui/theme@0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@sk-web-gui/theme/-/theme-0.1.1.tgz#d17cbf8ec2d1c85d99855d86e7dafc06b353c4e2"

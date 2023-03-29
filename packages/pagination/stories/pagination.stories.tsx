@@ -33,7 +33,7 @@ export const Template = ({ ...args }: any) => {
   );
 };
 
-Template.storyName = 'Komponent';
+Template.storyName = 'Pagination';
 
 Template.argTypes = {
   pages: {

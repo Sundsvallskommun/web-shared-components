@@ -10,6 +10,8 @@ export default {
 
 export const Template = ({ text, ...args }: any) => <Tag {...args}>{text}</Tag>;
 
+Template.storyName = 'Tag';
+
 export const Outline = ({ text, ...args }: any) => (
   <>
     <div className="flex w-full place-content-evenly">

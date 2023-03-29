@@ -1,13 +1,14 @@
+import React from 'react';
 import { useMessage } from '../src';
 
 export default {
-  title: 'WIP/Komponenter/Message',
+  title: 'Komponenter/Meddelanden/Toast',
   parameters: {
     controls: { hideNoControlsWarning: true },
   },
 };
 
-export const Basic = () => {
+export const Toast = () => {
   const message = useMessage();
 
   const handleMessage = (status?: any) => {

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link, LinkProps } from '../src';
 
 export default {
@@ -22,7 +23,7 @@ export const Template = (args: LinkProps) => (
   </div>
 );
 
-Template.storyName = 'Komponent';
+Template.storyName = 'Link';
 
 Template.argTypes = {
   disabled: {

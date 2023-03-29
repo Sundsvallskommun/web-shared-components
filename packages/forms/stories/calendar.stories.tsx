@@ -1,5 +1,6 @@
+import React from 'react';
 import { InputProps, Calendar } from '../src';
-import dayjsLocale from 'dayjs/locale/se';
+import dayjsLocale from 'dayjs/locale/sv';
 import { useState } from 'react';
 
 export default {
@@ -14,14 +15,13 @@ export const Template = (args: any) => {
   const [val, setVal] = useState(args.value);
   return (
     <Calendar
+      {...args}
       value={val}
       onChange={(value: any) => {
         console.log(value);
         setVal(value);
       }}
       // localeInstance={args.localeInstance}
-      inputFormat={args.inputFormat}
-      minDate={args.minDate}
     />
   );
 };
@@ -51,6 +51,16 @@ Template.argTypes = {
     description: 'Sets minimum date string',
     defaultValue: undefined,
   },
+  size: {
+    type: { name: 'string', required: false },
+    description: 'Sets size',
+    table: {
+      defaultValue: { summary: 'md' },
+    },
+    options: ['sm', 'md', 'lg'],
+    control: 'select',
+    defaultValue: 'md',
+  },
 };
 
-Template.storyName = 'Komponent';
+Template.storyName = 'Calendar';

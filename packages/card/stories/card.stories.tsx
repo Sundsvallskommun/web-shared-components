@@ -1,3 +1,4 @@
+import React from 'react';
 import { Card, CardList, CardBody, CardImage, CardLink, CardProps } from '../src';
 
 import PlaceholderImage from '../../../.storybook/public/placeholder_2.png';
@@ -124,4 +125,4 @@ Template.argTypes = {
   },
 };
 
-Template.storyName = 'Komponent';
+Template.storyName = 'Card';

@@ -29,7 +29,7 @@ export interface AccordionProps extends React.HTMLAttributes<HTMLDivElement>, IA
 
 export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props, ref) => {
   const {
-    disabled: _disabled,
+    disabled,
     initalOpen,
     accordionTitle,
     accordionSubTitle,
@@ -42,7 +42,6 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
     ...rest
   } = props;
 
-  const disabled = _disabled;
   const classes = useAccordionClass({
     variant,
     disabled,
@@ -92,7 +91,14 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
       {...rest}
     >
       <div className="accordion-header">
-        <button type="button" className="accordion-toggle" aria-expanded={accordionOpen} onClick={onClick}>
+        <button
+          aria-disabled={disabled ? disabled : undefined}
+          disabled={disabled}
+          type="button"
+          className="accordion-toggle"
+          aria-expanded={accordionOpen}
+          onClick={onClick}
+        >
           <div>
             <Comp className="accordion-title">{accordionTitle}</Comp>
             {accordionSubTitle && <p className="accordion-subtitle">{accordionSubTitle}</p>}

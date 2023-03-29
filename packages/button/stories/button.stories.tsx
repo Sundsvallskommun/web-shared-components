@@ -3,6 +3,7 @@ import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import { Meta } from '@storybook/react';
 import { Button } from '../src';
 import React from 'react';
+import { Announcement } from './announcement';
 
 export default {
   title: 'Komponenter/Knappar/Komponent',
@@ -27,7 +28,7 @@ export const Template = ({ text, ...args }: any) => (
   </div>
 );
 
-Template.storyName = 'Komponent';
+Template.storyName = 'Button';
 
 Template.argTypes = {
   disabled: {
@@ -116,3 +117,125 @@ Template.argTypes = {
     defaultValue: false,
   },
 };
+
+export const Grupp = () => (
+  <div className="space-y-4">
+    <div>
+      <Button.Group variant="solid" color="primary" className="space-x-2">
+        <Button>Button</Button>
+        <Button>Button</Button>
+        <Button>Button</Button>
+        <Button>Button</Button>
+      </Button.Group>
+    </div>
+
+    <div>
+      <Button.Group variant="solid" color="orange" className="space-x-2">
+        <Button>Button</Button>
+        <Button>Button</Button>
+        <Button>Button</Button>
+        <Button>Button</Button>
+      </Button.Group>
+    </div>
+
+    <div>
+      <Button.Group variant="solid" color="primary" className="space-x-2">
+        <Button iconButton>
+          <Announcement size={16} />
+        </Button>
+
+        <Button iconButton>
+          <Announcement size={16} />
+        </Button>
+
+        <Button iconButton>
+          <Announcement size={16} />
+        </Button>
+
+        <Button iconButton>
+          <Announcement size={16} />
+        </Button>
+      </Button.Group>
+    </div>
+  </div>
+);
+
+export const Fastsittandes = () => (
+  <div className="space-y-4">
+    <div>
+      <Button.Group variant="solid" attached>
+        <Button>Button</Button>
+        <Button>Button</Button>
+        <Button>Button</Button>
+        <Button>Button</Button>
+      </Button.Group>
+    </div>
+
+    <div>
+      <Button.Group variant="solid" size="lg" attached>
+        <Button>Button</Button>
+        <Button>Button</Button>
+        <Button>Button</Button>
+        <Button>Button</Button>
+      </Button.Group>
+    </div>
+
+    <div>
+      <Button.Group variant="solid" color="primary" attached>
+        <Button>Button</Button>
+        <Button>Button</Button>
+        <Button>Button</Button>
+        <Button>Button</Button>
+      </Button.Group>
+    </div>
+
+    <div>
+      <Button.Group variant="solid" attached>
+        <Button>Button</Button>
+        <Button color="primary">Button</Button>
+        <Button color="secondary">Button</Button>
+        <Button>Button</Button>
+      </Button.Group>
+    </div>
+
+    <div>
+      <Button.Group variant="solid" attached>
+        <Button iconButton>
+          <Announcement size={16} />
+        </Button>
+
+        <Button iconButton>
+          <Announcement size={16} />
+        </Button>
+
+        <Button iconButton>
+          <Announcement size={16} />
+        </Button>
+
+        <Button iconButton>
+          <Announcement size={16} />
+        </Button>
+      </Button.Group>
+    </div>
+
+    <div>
+      <Button.Group variant="solid" attached>
+        <Button iconButton>
+          <Announcement size={32} />
+        </Button>
+
+        <Button iconButton>
+          <Announcement size={32} />
+        </Button>
+
+        <Button iconButton>
+          <Announcement size={32} />
+        </Button>
+
+        <Button iconButton>
+          <Announcement size={32} />
+        </Button>
+      </Button.Group>
+    </div>
+  </div>
+);

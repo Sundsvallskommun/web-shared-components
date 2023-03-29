@@ -2,7 +2,7 @@ import { ProfilePicture, ProfilePictureProps } from '../src/profile-picture';
 import React from 'react';
 
 export default {
-  title: 'WIP/Komponenter/Profil/Profilbild',
+  title: 'Komponenter/Profil/Komponent/ProfilePicture',
   component: ProfilePicture,
   parameters: {
     controls: { hideNoControlsWarning: true },

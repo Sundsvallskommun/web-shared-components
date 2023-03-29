@@ -1,7 +1,8 @@
+import React from 'react';
 import { Spinner } from '../src';
 
 export default {
-  title: 'WIP/Komponenter/Spinner',
+  title: 'Komponenter/Spinner/Komponent',
   component: Spinner,
   parameters: {
     controls: { hideNoControlsWarning: true },
@@ -15,7 +16,7 @@ export const Basic = () => (
   </div>
 );
 
-export const Size = () => (
+export const Storlekar = () => (
   <div className="flex space-x-2">
     <Spinner size="xs" />
     <Spinner size="sm" />
