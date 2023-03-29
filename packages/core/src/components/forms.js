@@ -278,6 +278,18 @@ module.exports = Forms = (colors) => ({
       '@apply mt-xs text-right': {},
     },
   },
+  '.dropdown-search': {
+    '@apply block w-full relative': {},
+    '&-results': {
+      '@apply w-full flex justify-between items-center': {},
+      '&-text': {
+        '@apply truncate text-left grow': {},
+      },
+      '&-counter': {
+        '@apply grow-0': {},
+      },
+    },
+  },
 
   '.form-select': {
     '@apply justify-between items-center grow text-body bg-white caret-transparent select-none cursor-pointer border-gray-stroke':
@@ -298,6 +310,7 @@ module.exports = Forms = (colors) => ({
     '&-multiple-chioces': {
       '@apply truncate pr-md': {},
     },
+
     '&-option': {
       '@apply text-body rounded-none cursor-default hover:text-white focus-visible:text-white hover:bg-primary focus-visible:bg-primary flex items-center':
         {},

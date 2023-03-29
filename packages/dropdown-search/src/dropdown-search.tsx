@@ -376,7 +376,7 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
       (multiple && selectedValues.length > 0));
 
   return (
-    <div ref={ref} className="dropdown-search block w-full relative">
+    <div ref={ref} className="dropdown-search ">
       <Input.Group size={size}>
         <Input
           {...rest}
@@ -397,9 +397,9 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
           className={cx('cursor-text', className)}
           children={
             showResult && (selectedValue || selectedValues.length > 0) ? (
-              <div className="w-full flex justify-between items-center">
-                <div className="truncate text-left grow">{renderResults()}</div>
-                <div className="grow-0">
+              <div className="dropdown-search-results">
+                <div className="dropdown-search-results-text">{renderResults()}</div>
+                <div className="dropdown-search-results-counter">
                   {selectedValues.length > 0 && (
                     <Badge counter={selectedValues.length} size="lg" position="standard" color="neutral" />
                   )}
@@ -444,21 +444,19 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
                   activeSelectedOption == index ? 'active' : ''
                 } ${classes}`}
               >
-                <button
+                <div
                   className="form-select-option-remove-button"
                   aria-label="Ta bort val"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    handleRemoveSelected(index);
-                  }}
+                  aria-selected
+                  role="option"
+                  onClick={() => handleRemoveSelected(index)}
                   title={selected.label}
                 >
                   <div className="form-select-option-remove-button-text">
                     {render ? render(selected) : selected.label}
                   </div>
                   <CloseIcon fontSize="large" />
-                </button>
+                </div>
               </li>
             ))}
           {query && filteredData.length === 0 && notFoundLabel && query !== '' ? (
@@ -471,11 +469,7 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
                     setActiveOption(index);
                     setActiveSelectedOption(null);
                   }}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setSelected(option);
-                  }}
+                  onClick={() => setSelected(option)}
                   key={`form-select-option-dropdown-${option[labelProperty]}-${index}`}
                   className={`form-select-option truncate ${activeOption == index ? 'active' : ''} ${classes}`}
                 >
