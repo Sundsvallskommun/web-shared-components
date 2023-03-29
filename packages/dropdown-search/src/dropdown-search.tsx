@@ -93,10 +93,6 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
   const [activeSelectedOption, setActiveSelectedOption] = useState<number | null>(null);
   const [dropdownActive, setDropdownActive] = useState<boolean>(false);
 
-  const variantClasses = {
-    outline: 'form-field-outline',
-    solid: 'form-field-solid',
-  };
   const classes = useDropdownSearchClass({ size, disabled });
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -204,6 +200,7 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
       newValues.splice(index, 1);
       setSelectedValues(newValues);
       onSelect && onSelect(newValues);
+      inputRef.current && inputRef.current.focus();
     }
   };
 
@@ -435,6 +432,11 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
             selectedValues?.length > 0 &&
             selectedValues.map((selected, index) => (
               <li
+                aria-label="Ta bort val"
+                aria-selected
+                role="option"
+                onClick={() => handleRemoveSelected(index)}
+                title={selected.label}
                 onMouseOver={() => {
                   setActiveSelectedOption(index);
                   setActiveOption(null);
@@ -444,14 +446,7 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
                   activeSelectedOption == index ? 'active' : ''
                 } ${classes}`}
               >
-                <div
-                  className="form-select-option-remove-button"
-                  aria-label="Ta bort val"
-                  aria-selected
-                  role="option"
-                  onClick={() => handleRemoveSelected(index)}
-                  title={selected.label}
-                >
+                <div className="form-select-option-remove-button">
                   <div className="form-select-option-remove-button-text">
                     {render ? render(selected) : selected.label}
                   </div>
@@ -465,6 +460,9 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
             listData?.slice(0, maxAmount).map((option: any, index: number) => {
               return (
                 <li
+                  aria-label="Lägg till val"
+                  role="option"
+                  title={option[labelProperty]}
                   onMouseOver={() => {
                     setActiveOption(index);
                     setActiveSelectedOption(null);
