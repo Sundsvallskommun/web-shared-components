@@ -1,7 +1,8 @@
 import { DefaultProps } from '@sk-web-gui/theme';
 import { __DEV__ } from '@sk-web-gui/utils';
 import { Dialog as D, Transition } from '@headlessui/react';
-import { Button, Switch } from '@sk-web-gui/react';
+import { Button } from '@sk-web-gui/button';
+import { Switch } from '@sk-web-gui/switch';
 import { useEffect, useRef, useState } from 'react';
 import Cookies, { CookieSetOptions } from 'universal-cookie';
 import * as React from 'react';
