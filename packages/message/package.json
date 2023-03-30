@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/message",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
