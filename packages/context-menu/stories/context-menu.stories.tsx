@@ -4,10 +4,11 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import UndoIcon from '@mui/icons-material/Undo';
 import { Button } from '@sk-web-gui/button';
 import { Divider } from '@sk-web-gui/divider';
+import React from 'react';
 import { ContextMenu } from '../src';
 
 export default {
-  title: 'WIP/Komponenter/Kontextmeny/Komponent',
+  title: 'Komponenter/Meny/Kontextmeny',
   component: ContextMenu,
   parameters: {
     controls: { hideNoControlsWarning: true },
@@ -44,4 +45,4 @@ export const Template = () => {
   );
 };
 
-Template.storyName = 'Komponent';
+Template.storyName = 'ContextMenu';

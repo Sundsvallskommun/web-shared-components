@@ -16,7 +16,6 @@ const Dialog = require('./components/dialog');
 const Dot = require('./components/dot');
 const Forms = require('./components/forms');
 const Calendar = require('./components/calendar');
-const IconButton = require('./components/icon-button');
 const Icon = require('./components/icon');
 const Link = require('./components/link');
 const Message = require('./components/message');
@@ -63,7 +62,6 @@ const components = [
   Dot,
   Forms,
   Calendar,
-  IconButton,
   Icon,
   Link,
   Message,

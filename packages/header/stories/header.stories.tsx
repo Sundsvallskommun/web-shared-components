@@ -4,7 +4,7 @@ import { Header } from '../src';
 import { UserMenu } from '@sk-web-gui/react';
 
 export default {
-  title: 'WIP/Komponenter/Header',
+  title: 'Komponenter/Header/Komponent',
   component: Header,
   parameters: { controls: { hideNoControlsWarning: true } },
 } as Meta;
@@ -103,4 +103,4 @@ Template.argTypes = {
   },
 };
 
-Template.storyName = 'Komponent';
+Template.storyName = 'Header';

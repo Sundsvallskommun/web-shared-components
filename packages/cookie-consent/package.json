@@ -45,6 +45,8 @@
     "@sk-web-gui/spinner": "0.1.10",
     "@sk-web-gui/theme": "0.1.10",
     "@sk-web-gui/utils": "0.1.4",
+    "@sk-web-gui/button": "0.1.13",
+    "@sk-web-gui/switch": "0.1.25",
     "universal-cookie": "^4.0.4"
   },
   "peerDependencies": {

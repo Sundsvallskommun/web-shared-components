@@ -1,7 +1,8 @@
+import React from 'react';
 import { FormControl, FormLabel, Input, FormHelperText, FormErrorMessage } from '../src';
 
 export default {
-  title: 'Komponenter/Textfält/Komponent',
+  title: 'Komponenter/Textfält/FormControl',
   component: FormControl,
   parameters: {
     controls: { hideNoControlsWarning: true },
@@ -84,7 +85,7 @@ export const Storlekar = () => (
   </>
 );
 
-export const Invalid = () => (
+export const Invaliderad = () => (
   <>
     <FormControl invalid aria-invalid id="first-name" required>
       <Input placeholder="Förnamn *" aria-describedby="first-name-error" />
@@ -97,7 +98,7 @@ export const Invalid = () => (
   </>
 );
 
-export const Required = () => (
+export const Obligatorisk = () => (
   <FormControl id="first-name" required>
     <FormLabel>First name</FormLabel>
     <Input placeholder="Enter your first name." aria-describedby="first-name-error" />

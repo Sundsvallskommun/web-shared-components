@@ -6,20 +6,22 @@ import { cx, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 import { Input, InputProps } from '../input/input';
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
-
+import dayjsLocale from 'dayjs/locale/sv';
 import { useCalendarClass } from './styles';
 
 export interface CalendarProps extends InputProps {
+  /* Sets value */
+  value: string;
   /* Dayjs onChange */
   onChange: (value: any) => void;
-  /* Dayjs locale instance */
+  /* Dayjs locale instance, defaults to sv */
   localeInstance?: string | object;
   /* Format of date, default "YYYY-MM-DD" */
   inputFormat?: string;
   /* Minimum date string */
   minDate?: string;
-  /* Sets value */
-  value: string;
+  /* Sets size: sm | md | lg */
+  size?: 'sm' | 'md' | 'lg';
 }
 
 export const Calendar = React.forwardRef<HTMLSelectElement, CalendarProps>((props, ref) => {
@@ -29,8 +31,9 @@ export const Calendar = React.forwardRef<HTMLSelectElement, CalendarProps>((prop
     value,
     onChange,
     minDate = undefined,
-    localeInstance = '',
+    localeInstance = dayjsLocale,
     inputFormat = 'YYYY-MM-DD',
+    size = 'md',
     ...rest
   } = props;
   const classes = useCalendarClass();
@@ -42,7 +45,6 @@ export const Calendar = React.forwardRef<HTMLSelectElement, CalendarProps>((prop
           closeOnSelect
           reduceAnimations
           showToolbar={false}
-          // views={['day']}
           minDate={minDate ? dayjs(minDate) : undefined}
           inputFormat={inputFormat}
           value={minDate && value <= minDate ? minDate : value}
@@ -57,7 +59,7 @@ export const Calendar = React.forwardRef<HTMLSelectElement, CalendarProps>((prop
           renderInput={({ inputRef, inputProps, InputProps }: any) => (
             <>
               <div className="datepicker-input">
-                <Input ref={inputRef} {...inputProps} />
+                <Input ref={inputRef} {...inputProps} size={size} {...rest} />
                 <CalendarTodayOutlinedIcon className="datepicker-input-icon" />
               </div>
               {InputProps?.endAdornment}

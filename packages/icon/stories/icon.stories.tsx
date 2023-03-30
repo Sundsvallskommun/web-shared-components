@@ -1,3 +1,4 @@
+import React from 'react';
 import { Icon, InfoIcon, XCricleIcon, CheckCircleIcon, ExclamationIcon } from '../src';
 
 export default {

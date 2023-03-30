@@ -107,5 +107,17 @@ module.exports = Accordion = (colors) => ({
         },
       },
     },
+
+    '&-disabled, &-disabled button': {
+      '@apply disabled:cursor-not-allowed cursor-not-allowed': {},
+    },
+
+    '&-disabled &-header': {
+      '@apply bg-gray-lighter text-gray': {},
+    },
+
+    '&-disabled, &&-disabled': {
+      '@apply border-gray': {},
+    },
   },
 });

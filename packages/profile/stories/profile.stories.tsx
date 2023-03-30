@@ -2,7 +2,7 @@ import { Profile, ProfileProps } from '../../profile/src/profile';
 import React from 'react';
 
 export default {
-  title: 'WIP/Komponenter/Profil/Profil',
+  title: 'Komponenter/Profil/Komponent',
   component: Profile,
   parameters: {
     controls: { hideNoControlsWarning: true },

@@ -4,7 +4,7 @@ import { Footer } from '../src';
 import { Link } from '@sk-web-gui/react';
 
 export default {
-  title: 'WIP/Komponenter/Footer',
+  title: 'Komponenter/Footer/Komponent',
   component: Footer,
   parameters: { controls: { hideNoControlsWarning: true } },
 } as Meta;
@@ -171,4 +171,4 @@ Template.argTypes = {
   },
 };
 
-Template.storyName = 'Komponent';
+Template.storyName = 'Footer';

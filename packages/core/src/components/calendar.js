@@ -76,7 +76,7 @@ module.exports = Calendar = () => ({
     },
 
     '.datepicker-input-icon': {
-      '@apply pointer-events-none absolute m-6 top-0 left-0 text-xl fill-body': {},
+      '@apply pointer-events-none absolute my-auto top-0 bottom-0 left-md mr-md text-xl fill-body': {},
     },
   },
 });

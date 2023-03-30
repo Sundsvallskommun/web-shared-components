@@ -7,7 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 
 export default {
-  title: 'WIP/Komponenter/Badge',
+  title: 'Komponenter/Badge/Komponent',
   parameters: {
     controls: { hideNoControlsWarning: true },
   },
@@ -16,7 +16,7 @@ export default {
 
 export const Template = (args: BadgeProps) => <Badge {...args} />;
 
-Template.story = { name: 'Komponent' };
+Template.story = { name: 'Badge' };
 
 Template.argTypes = {
   counter: {

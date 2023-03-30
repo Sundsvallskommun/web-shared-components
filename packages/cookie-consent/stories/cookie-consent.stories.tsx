@@ -1,20 +1,22 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { Link } from '@sk-web-gui/link';
+import { Meta } from '@storybook/react';
+import React from 'react';
+import { CookieConsent } from '../src/cookie-consent';
 
-import { CookieConsent, resetConsent } from '../src/cookie-consent.tsx';
+export default {
+  title: 'Komponenter/Kakor/Komponent',
+  component: CookieConsent,
+  parameters: { controls: { hideNoControlsWarning: true } },
+} as Meta;
 
-<Meta title="WIP/Komponenter/Kakor" />
-
-export const Template = (args) => (
+export const Template = ({ text, ...args }: any) => (
   <CookieConsent
     {...args}
     title="Kakor på example.sundsvall.se"
     body={
       <p>
         Vi använder kakor, cookies, för att ge dig en förbättrad upplevelse, sammanställa statistik och för att viss
-        nödvändig funktionalitet ska fungera på webbplatsen.{' '}
-        <NextLink href="/kakor" passHref>
-          <Link>Läs mer om hur vi använder kakor</Link>
-        </NextLink>
+        nödvändig funktionalitet ska fungera på webbplatsen. <Link href="/kakor">Läs mer om hur vi använder kakor</Link>
       </p>
     }
     cookies={[
@@ -47,10 +49,4 @@ export const Template = (args) => (
   />
 );
 
-# Samtyckte till kakor
-
-WIP
-
-<Story name="Kakor" args={{}}>
-  {Template.bind({})}
-</Story>
+Template.storyName = 'Kakor';

@@ -1,7 +1,27 @@
 import { Meta } from '@storybook/addon-docs';
+import { Button } from '@sk-web-gui/react';
 
-<Meta title="WIP/Guider/Hur man använder komponenter" />
+<Meta title="WIP/Guider/Utveckling/Hur man använder komponenter" />
 
-# WIP: placeholder
+# Att installera biblioteket
 
-Detta är en placeholder.
+En strävan finns att separera styling för komponenterna och hantera det via "core"-paketet. Därför behövs båda dessa
+paket installeras för att komponenterna ska få bibliotekets styling.
+
+<pre>npm install @sk-web-gui/react</pre>
+
+<pre>npm install @sk-web-gui/core</pre>
+
+# Att importera en komponent
+
+Alla komponenter exporteras ifrån @sk-web-gui/react vilket gör att du kan importera önskad komponent såhär:
+
+<pre>{`import { Button } from '@sk-web-gui/react'`}</pre>
+
+och sen använda den:
+
+<pre>{`<Button>Test</Button>`}</pre>
+
+Vilket ger:
+
+<Button>Test</Button>

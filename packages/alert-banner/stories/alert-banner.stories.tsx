@@ -4,7 +4,7 @@ import { AlertBanner } from '../src';
 import { useLocalStorageValue } from '@react-hookz/web';
 
 export default {
-  title: 'Komponenter/Alert-banner',
+  title: 'Komponenter/Meddelanden/AlertBanner',
   component: AlertBanner,
   parameters: { controls: { hideNoControlsWarning: true } },
 } as Meta;
@@ -31,7 +31,7 @@ export const Template = ({ text, children, ...args }: any) => {
   );
 };
 
-Template.storyName = 'Alert-banner';
+Template.storyName = 'AlertBanner';
 
 Template.argTypes = {
   children: {

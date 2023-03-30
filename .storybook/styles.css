@@ -17,3 +17,8 @@ h4,
 h6 {
   font-family: raleway, sans-serif;
 }
+
+/* Styling for Show code */
+pre.prismjs .tag {
+  @apply px-[.05em];
+}

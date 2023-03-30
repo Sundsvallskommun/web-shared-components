@@ -1,3 +1,4 @@
+import React from 'react';
 import { FormControl, FormHelperText, FormLabel } from '@sk-web-gui/forms';
 import { Radio, RadioGroupProps, RadioProps } from '../src';
 
@@ -82,19 +83,9 @@ Template.argTypes = {
   },
 };
 
-Template.storyName = 'Komponent';
+Template.storyName = 'Radio';
 
-/*
-export const basic = () => (
-  <div className="space-x-2">
-    <Radio name="basic">First</Radio>
-    <Radio name="basic" defaultChecked>
-      Second
-    </Radio>
-  </div>
-);
-
-export const invalid = () => (
+export const invaliderad = () => (
   <div className="space-x-2">
     <Radio invalid name="invalid">
       First
@@ -105,18 +96,7 @@ export const invalid = () => (
   </div>
 );
 
-export const colored = () => (
-  <div className="space-x-2">
-    <Radio color="orange" name="colored">
-      First
-    </Radio>
-    <Radio color="orange" name="colored" defaultChecked>
-      Second
-    </Radio>
-  </div>
-);
-
-export const disabled = () => (
+export const inaktiverad = () => (
   <div className="space-x-2">
     <Radio disabled name="disabled">
       First
@@ -134,7 +114,7 @@ export const disabled = () => (
   </div>
 );
 
-export const size = () => (
+export const storlekar = () => (
   <div className="space-x-2">
     <Radio size="sm" name="size">
       Radio
@@ -151,22 +131,6 @@ export const size = () => (
   </div>
 );
 
-export const group = () => (
-  <div className="flex flex-col space-y-4">
-    <Radio.Group defaultValue="2" className="space-x-4" inline>
-      <Radio value="1">First</Radio>
-      <Radio value="2">Second</Radio>
-      <Radio value="3">Third</Radio>
-    </Radio.Group>
-
-    <Radio.Group defaultValue="2" className="space-x-4" inline color="orange">
-      <Radio value="1">First</Radio>
-      <Radio value="2">Second</Radio>
-      <Radio value="3">Third</Radio>
-    </Radio.Group>
-  </div>
-);
-
 export const formControl = () => (
   <FormControl>
     <FormLabel>Favorite Naruto Character</FormLabel>
@@ -178,4 +142,3 @@ export const formControl = () => (
     <FormHelperText>Select only if you're a fan.</FormHelperText>
   </FormControl>
 );
-*/

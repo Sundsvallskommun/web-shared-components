@@ -17,7 +17,7 @@ export const Template = (args: AccordionProps) => {
 
   return (
     <>
-      <Accordion {...args}>
+      <Accordion {...args} color="yellow">
         <h4>Lorem Ipsum</h4>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero placeat eveniet quas nulla saepe minus
@@ -158,13 +158,15 @@ Template.argTypes = {
     defaultValue: 'solid',
   },
   noMargin: { control: 'boolean', defaultValue: false },
-  // TODO: implement disabled and color for accordions
-  /* disabled: { control: 'boolean', defaultValue: false },
-    color: {
-      options: ['primary', 'secondary'],
-      control: { type: 'select' },
-      defaultValue: 'primary',
-    }, */
+  disabled: {
+    type: { name: 'string', required: false },
+    description: 'Sets disabled',
+    table: {
+      defaultValue: { summary: 'false' },
+    },
+    control: 'boolean',
+    defaultValue: false,
+  },
 };
 
-Template.story = { name: 'Komponent' };
+Template.story = { name: 'Accordion' };
