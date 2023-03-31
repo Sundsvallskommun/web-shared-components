@@ -2,12 +2,12 @@ import { createMemoClass } from '@sk-web-gui/theme';
 import { cx } from '@sk-web-gui/utils';
 
 export const useInputClass = createMemoClass((props) => {
-  const variantClasses = {
+  const variantClasses: { [key: string]: string } = {
     outline: 'form-field-outline',
     solid: 'form-field-solid',
   };
 
-  const sizes = {
+  const sizes: { [key: string]: string } = {
     sm: 'form-field-sm',
     md: 'form-field-md',
     lg: 'form-field-lg',

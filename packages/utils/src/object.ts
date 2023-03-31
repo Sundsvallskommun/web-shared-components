@@ -25,8 +25,8 @@ export function pick<T extends Dict, K extends keyof T>(object: T, keys: K[]) {
 }
 
 export function deepmerge<T1, T2>(
-  target: Partial<T1>,
-  source: Partial<T2>,
+  target: Partial<T1> & any,
+  source: Partial<T2> & any,
   options: { clone: boolean } = { clone: false }
 ) {
   const output = options.clone ? { ...target } : target;

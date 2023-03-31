@@ -22,7 +22,7 @@ export function createThemeVars(target: Dict, options: CreateThemeVarsOptions) {
     // firstKey will be e.g. "space"
     const [firstKey] = path;
 
-    const handler = tokenHandlerMap[firstKey] ?? tokenHandlerMap.defaultHandler;
+    const handler: TokenHandler = (tokenHandlerMap as any)[firstKey] ?? tokenHandlerMap.defaultHandler;
 
     const { cssVars, cssMap } = handler(path, value, options);
     Object.assign(context.cssVars, cssVars);

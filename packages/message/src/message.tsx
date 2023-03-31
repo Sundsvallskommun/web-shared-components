@@ -5,7 +5,15 @@ import { createToast, useToastOptions } from '@sk-web-gui/toast';
 import { cx as clsx, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 
-const statuses = {
+interface Status {
+  [key: string]: {
+    icon: any;
+    cx: string;
+    label: string;
+  };
+}
+
+const statuses: Status = {
   info: {
     icon: InfoIcon,
     cx: 'message-info',

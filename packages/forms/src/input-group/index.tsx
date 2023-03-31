@@ -19,7 +19,7 @@ interface IInputGroupProps extends DefaultProps {
 
 export interface InputGroupProps extends React.HTMLAttributes<HTMLDivElement>, IInputGroupProps {}
 
-const inputSizes = {
+const inputSizes: { [key: string]: string } = {
   xl: '12',
   lg: '10',
   md: '8',
@@ -27,7 +27,7 @@ const inputSizes = {
   xs: '6',
 };
 
-const plSizes = {
+const plSizes: { [key: string]: string } = {
   12: 'pl-12',
   10: 'pl-10',
   8: 'pl-8',
@@ -35,7 +35,7 @@ const plSizes = {
   6: 'pl-6',
 };
 
-const prSizes = {
+const prSizes: { [key: string]: string } = {
   12: 'pr-12',
   10: 'pr-10',
   8: 'pr-8',

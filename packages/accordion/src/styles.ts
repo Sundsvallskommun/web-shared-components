@@ -2,7 +2,7 @@ import { createMemoClass } from '@sk-web-gui/theme';
 import { cx } from '@sk-web-gui/utils';
 
 export const useAccordionClass = createMemoClass((props) => {
-  const variantClasses = {
+  const variantClasses: { [key: string]: string } = {
     outline: 'accordion-outline',
     solid: 'accordion-solid',
     alert: 'accordion-alert',

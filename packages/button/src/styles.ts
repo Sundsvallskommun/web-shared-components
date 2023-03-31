@@ -2,7 +2,7 @@ import { createMemoClass } from '@sk-web-gui/theme';
 import { cx } from '@sk-web-gui/utils';
 
 export const useButtonClass = createMemoClass((props) => {
-  const variantClasses = {
+  const variantClasses: { [key: string]: string } = {
     outline: 'btn-outline',
     solid: 'btn-solid',
     ghost: 'btn-ghost',
@@ -10,7 +10,7 @@ export const useButtonClass = createMemoClass((props) => {
     link: 'btn-link',
   };
 
-  const sizes = {
+  const sizes: { [key: string]: string } = {
     fit: 'btn-fit-content',
     xs: 'btn-xs',
     sm: 'btn-sm',

@@ -30,13 +30,13 @@ export interface FormControlProps extends React.HTMLAttributes<HTMLDivElement>, 
 
 interface FormControlContext extends UseFormControlProps {}
 
-export const useFormControl = (props: UseFormControlProps): UseFormControlData => {
+export const useFormControl = (props: UseFormControlProps & { [key: string]: any }): UseFormControlData => {
   const context = useFormControlContext();
   if (!context) {
     return props;
   }
   const keys = Object.keys(context);
-  return keys.reduce((acc, prop) => {
+  return keys.reduce((acc: { [key: string]: string }, prop) => {
     /** Giving precedence to `props` over `context` */
     acc[prop] = props[prop];
 
@@ -50,7 +50,7 @@ export const useFormControl = (props: UseFormControlProps): UseFormControlData =
   }, {});
 };
 
-const FormControlContext = React.createContext<FormControlContext | undefined>(undefined);
+const FormControlContext = React.createContext<(FormControlContext & { [key: string]: any }) | undefined>(undefined);
 
 const useFormControlContext = () => React.useContext(FormControlContext);
 

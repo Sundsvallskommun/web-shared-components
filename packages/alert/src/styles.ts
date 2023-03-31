@@ -1,7 +1,7 @@
 import { cx } from '@sk-web-gui/utils';
 import { createMemoClass } from '@sk-web-gui/theme';
 
-const variantClasses = {
+const variantClasses: { [key: string]: string } = {
   subtle: 'alert-subtle',
   solid: 'alert-solid',
   'left-accent': 'alert-left-accent',

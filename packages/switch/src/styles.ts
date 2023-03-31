@@ -2,7 +2,7 @@ import { createMemoClass } from '@sk-web-gui/theme';
 import { cx } from '@sk-web-gui/utils';
 
 export const useSwitchBoxClass = createMemoClass((props) => {
-  const sizes = {
+  const sizes: { [key: string]: string } = {
     sm: 'form-switch-box-sm',
     md: 'form-switch-box-md',
     lg: 'form-switch-box-lg',
@@ -15,7 +15,7 @@ export const useSwitchBoxClass = createMemoClass((props) => {
 });
 
 export const useSwitchClass = createMemoClass((props) => {
-  const sizes = {
+  const sizes: { [key: string]: string } = {
     sm: 'form-switch-sm',
     md: 'form-switch-md',
     lg: 'form-switch-lg',
