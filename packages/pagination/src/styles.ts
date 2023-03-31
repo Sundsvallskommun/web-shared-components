@@ -2,7 +2,7 @@ import { createMemoClass } from '@sk-web-gui/theme';
 import { cx } from '@sk-web-gui/utils';
 
 export const usePaginationClass = createMemoClass((props) => {
-  const sizes = {
+  const sizes: { [key: string]: string } = {
     sm: 'pagination-sm',
     md: 'pagination-md',
     lg: 'pagination-lg',

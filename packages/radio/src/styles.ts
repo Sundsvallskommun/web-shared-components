@@ -2,7 +2,7 @@ import { createMemoClass } from '@sk-web-gui/theme';
 import { cx } from '@sk-web-gui/utils';
 
 export const useRadioLabelClass = createMemoClass((props) => {
-  const sizes = {
+  const sizes: { [key: string]: string } = {
     sm: 'form-radio-label-sm',
     md: 'form-radio-label-md',
     lg: 'form-radio-label-lg',
@@ -15,7 +15,7 @@ export const useRadioLabelClass = createMemoClass((props) => {
 });
 
 export const useRadioClass = createMemoClass((props) => {
-  const sizes = {
+  const sizes: { [key: string]: string } = {
     sm: 'form-radio-sm',
     md: 'form-radio-md',
     lg: 'form-radio-lg',

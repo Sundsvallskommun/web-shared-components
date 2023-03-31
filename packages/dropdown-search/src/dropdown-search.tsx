@@ -82,7 +82,7 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
     ...rest
   } = props;
 
-  const [query, setQuery] = useState(value && value[labelProperty] ? value[labelProperty] : '');
+  const [query, setQuery] = useState(!multiple ? value?.label || '' : '');
   const [showOptions, setShowOptions] = useState(false);
   const [showResult, setShowResult] = useState(true);
   const [selectedValue, setSelectedValue] = useState<OptionValueType | undefined | null>(
@@ -108,10 +108,10 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
    * @param option The option object
    * @returns boolean, if object passed (true) or did not pass (false)
    */
-  const _filterFunction = (option: OptionValueType) => {
+  const _filterFunction = (data: OptionValueType['data']) => {
     return filterFunction
-      ? filterFunction(query, { label: option[labelProperty], data: option })
-      : option[labelProperty].toLowerCase().includes(query.toLowerCase());
+      ? filterFunction(query, { label: data[labelProperty], data: data })
+      : data[labelProperty].toLowerCase().includes(query.toLowerCase());
   };
 
   /**

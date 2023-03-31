@@ -1,7 +1,7 @@
 import { createMemoClass } from '@sk-web-gui/theme';
 import { cx } from '@sk-web-gui/utils';
 
-const sizes = {
+const sizes: { [key: string]: string } = {
   xs: 'w-3 h-3',
   sm: 'w-4 h-4',
   md: 'w-6 h-6',
