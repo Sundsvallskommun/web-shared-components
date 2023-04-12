@@ -57,9 +57,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, r
     active,
     type,
     className,
-    loadingText,
-    rightIcon,
-    leftIcon,
     color,
     variant = 'outline',
     size = 'md',
@@ -81,7 +78,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, r
       ref={ref}
       disabled={disabled}
       aria-disabled={disabled ? disabled : undefined}
-      type={type}
       data-active={active ? 'true' : undefined}
       className={cx(className)}
       {...rest}

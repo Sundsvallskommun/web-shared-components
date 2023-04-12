@@ -14,7 +14,7 @@ interface IProfileProps extends DefaultProps, ProfilePictureProps {
   showPicture?: boolean;
 }
 
-export interface ProfileProps extends React.HTMLAttributes<HTMLDivElement>, IProfileProps {}
+export interface ProfileProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>, IProfileProps {}
 
 export const Profile = React.forwardRef<HTMLDivElement, ProfileProps>((props, ref) => {
   const {

@@ -26,7 +26,7 @@ export interface HeaderProps extends DefaultProps {
   userMenuClasses?: string;
 }
 
-export const Header = React.forwardRef<any, HeaderProps>((props, ref) => {
+export const Header = React.forwardRef<HTMLDivElement, HeaderProps>((props, ref) => {
   const {
     title,
     subtitle,

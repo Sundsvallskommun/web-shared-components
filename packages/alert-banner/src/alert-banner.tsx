@@ -4,7 +4,7 @@ import React from 'react';
 import { __DEV__ } from '@sk-web-gui/utils';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-interface AlertBannerProps {
+export interface AlertBannerProps {
   children?: React.ReactNode;
   className?: string;
   /** For example a max-width to match site content max-width */

@@ -36,7 +36,7 @@ interface SelectPropsMultiple extends Omit<CommonProps, 'onChange'> {
 
 export type SelectProps = SelectPropsMultiple | SelectPropsRegular;
 
-const InternalSelect = React.forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
+const InternalSelect = React.forwardRef<HTMLInputElement, SelectProps>((props, ref) => {
   const {
     className,
     listClassName = '',

@@ -17,7 +17,13 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "baseUrl": ".",
+    "paths": {
+      "@stories/*": [".storybook/stories/*"],
+      "@components/*": ["packages/*"],
+      "@public/*": [".storybook/public/*"]
+    }
   },
   "include": ["packages"],
   "exclude": ["node_modules"],
