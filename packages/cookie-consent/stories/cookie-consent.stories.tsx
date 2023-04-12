@@ -1,15 +1,15 @@
 import { Link } from '@sk-web-gui/link';
 import { Meta } from '@storybook/react';
 import React from 'react';
-import { CookieConsent } from '../src/cookie-consent';
+import { CookieConsent, CookieConsentProps } from '../src/cookie-consent';
 
 export default {
   title: 'Komponenter/Kakor/Komponent',
   component: CookieConsent,
-  parameters: { controls: { hideNoControlsWarning: true } },
+  tags: ['autodocs'],
 } as Meta;
 
-export const Template = ({ text, ...args }: any) => (
+export const Template = ({ ...args }: CookieConsentProps) => (
   <CookieConsent
     {...args}
     title="Kakor på example.sundsvall.se"

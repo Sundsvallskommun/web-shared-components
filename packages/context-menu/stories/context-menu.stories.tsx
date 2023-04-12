@@ -10,9 +10,7 @@ import { ContextMenu } from '../src';
 export default {
   title: 'Komponenter/Meny/Kontextmeny',
   component: ContextMenu,
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
+  tags: ['autodocs'],
 };
 
 export const Template = () => {

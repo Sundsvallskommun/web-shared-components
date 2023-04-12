@@ -1,14 +1,13 @@
 import React from 'react';
 import { FormControl, FormHelperText, FormLabel } from '@sk-web-gui/forms';
-import { Radio, RadioGroupProps, RadioProps } from '../src';
+import { Radio, RadioProps } from '../src';
+import { Meta } from '@storybook/react';
 
 export default {
   title: 'Komponenter/Radioknappar/Komponent',
   component: Radio,
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
-};
+  tags: ['autodocs'],
+} as Meta;
 
 export const Template = (args: RadioProps) => (
   <>
@@ -24,68 +23,9 @@ export const Template = (args: RadioProps) => (
   </>
 );
 
-Template.argTypes = {
-  required: {
-    type: { name: 'boolean', required: false },
-    description: 'Sets required',
-    table: {
-      defaultValue: { summary: 'false' },
-    },
-    control: 'boolean',
-    defaultValue: false,
-  },
-  invalid: {
-    type: { name: 'boolean', required: false },
-    description: 'Sets invalid',
-    table: {
-      defaultValue: { summary: 'false' },
-    },
-    control: 'boolean',
-    defaultValue: false,
-  },
-  disabled: {
-    type: { name: 'boolean', required: false },
-    description: 'Sets disabled',
-    table: {
-      defaultValue: { summary: 'false' },
-    },
-    control: 'boolean',
-    defaultValue: false,
-  },
-  defaultChecked: {
-    type: { name: 'boolean', required: false },
-    description: 'Sets default checked',
-    table: {
-      defaultValue: { summary: 'false' },
-    },
-    control: 'boolean',
-    defaultValue: false,
-  },
-  size: {
-    type: { name: 'string', required: false },
-    description: 'Sets size',
-    table: {
-      defaultValue: { summary: 'md' },
-    },
-    options: ['sm', 'md', 'lg'],
-    control: 'select',
-    defaultValue: 'md',
-  },
-  color: {
-    type: { name: 'string', required: false },
-    description: 'Sets color',
-    table: {
-      defaultValue: { summary: 'primary' },
-    },
-    options: ['primary', 'secondary'],
-    control: 'select',
-    defaultValue: 'primary',
-  },
-};
-
 Template.storyName = 'Radio';
 
-export const invaliderad = () => (
+export const Invaliderad = () => (
   <div className="space-x-2">
     <Radio invalid name="invalid">
       First
@@ -96,7 +36,7 @@ export const invaliderad = () => (
   </div>
 );
 
-export const inaktiverad = () => (
+export const Inaktiverad = () => (
   <div className="space-x-2">
     <Radio disabled name="disabled">
       First
@@ -114,7 +54,7 @@ export const inaktiverad = () => (
   </div>
 );
 
-export const storlekar = () => (
+export const Storlekar = () => (
   <div className="space-x-2">
     <Radio size="sm" name="size">
       Radio
@@ -131,7 +71,7 @@ export const storlekar = () => (
   </div>
 );
 
-export const formControl = () => (
+export const FormControlComp = () => (
   <FormControl>
     <FormLabel>Favorite Naruto Character</FormLabel>
     <Radio.Group defaultValue="2" className="space-x-4" inline>
@@ -139,6 +79,8 @@ export const formControl = () => (
       <Radio value="2">Second</Radio>
       <Radio value="3">Third</Radio>
     </Radio.Group>
-    <FormHelperText>Select only if you're a fan.</FormHelperText>
+    <FormHelperText>Helpertext</FormHelperText>
   </FormControl>
 );
+
+FormControlComp.storyName = 'FormControl';

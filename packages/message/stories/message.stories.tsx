@@ -1,14 +1,17 @@
 import React from 'react';
-import { useMessage } from '../src';
+import { MessageProps, useMessage, Message } from '../src';
+import { Meta } from '@storybook/react';
 
 export default {
   title: 'Komponenter/Meddelanden/Toast',
-  parameters: {
-    controls: { hideNoControlsWarning: true },
+  component: Message,
+  tags: ['autodocs'],
+  args: {
+    message: 'Toast message goes here.',
   },
-};
+} as Meta;
 
-export const Toast = () => {
+export const Template = (args: MessageProps) => {
   const message = useMessage();
 
   const handleMessage = (status?: any) => {
@@ -20,8 +23,9 @@ export const Toast = () => {
 
   return (
     <>
-      <div className="flex items-center w-full space-x-4">
-        <button onClick={() => handleMessage()}>Click me</button>
+      <Message {...args} />
+      <div className="flex items-center mt-lg w-full space-x-4">
+        <button onClick={() => handleMessage()}>Default</button>
 
         <button onClick={() => handleMessage('info')}>Info</button>
 
@@ -32,3 +36,5 @@ export const Toast = () => {
     </>
   );
 };
+
+Template.storyName = 'Message';

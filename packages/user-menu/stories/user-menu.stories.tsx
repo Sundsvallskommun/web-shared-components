@@ -3,15 +3,16 @@ import { Meta } from '@storybook/react';
 import { UserMenu } from '../src';
 import { cx } from '@sk-web-gui/utils';
 import { Link } from '../../react';
-import { MenuItemGroup } from '../src/user-menu';
+import { MenuItemGroup, UserMenuProps } from '../src/user-menu';
 
 export default {
   title: 'Komponenter/Meny/Användarmeny',
   component: UserMenu,
-  argTypes: {
-    menuTitle: { control: 'text', defaultValue: 'Menytext' },
+  args: {
+    menuTitle: 'Företagsbolaget AB',
+    menuSubTitle: 'Förnamn Efternamn som är lite längre',
   },
-  parameters: { controls: { hideNoControlsWarning: true } },
+  tags: ['autodocs'],
 } as Meta;
 
 const isMobileMenuOpen = false;
@@ -148,7 +149,7 @@ const menuGroups: MenuItemGroup[] = [
   },
 ];
 
-export const Template = () => (
+export const Template = (args: UserMenuProps) => (
   <div className="mb-[400px]">
     <nav
       className={cx('lg:border-t-8 lg:border-primary lg:static lg:w-auto lg:h-auto lg:min-h-0', {
@@ -275,8 +276,9 @@ export const Template = () => (
 
             {/* <div className="block lg:block"> */}
             <UserMenu
-              menuTitle="Företagsbolaget AB "
-              menuSubTitle="Förnamn Efternamn som är lite längre"
+              {...args}
+              // menuTitle="Företagsbolaget AB "
+              // menuSubTitle="Förnamn Efternamn som är lite längre"
               menuGroups={menuGroups}
               imageElem={<img src="https://placehold.co/48x48" alt="" />}
               // image={PlaceholderImage}

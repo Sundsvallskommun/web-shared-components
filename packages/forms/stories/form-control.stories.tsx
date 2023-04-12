@@ -1,13 +1,25 @@
 import React from 'react';
-import { FormControl, FormLabel, Input, FormHelperText, FormErrorMessage } from '../src';
+import { FormControl, FormLabel, Input, FormHelperText, FormErrorMessage, FormControlProps } from '../src';
+import { Meta } from '@storybook/react';
 
 export default {
   title: 'Komponenter/Textfält/FormControl',
   component: FormControl,
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
+  tags: ['autodocs'],
+} as Meta;
+
+export const Template = (args: FormControlProps) => {
+  return (
+    <FormControl {...args} id="firstname">
+      <FormLabel>
+        <strong>Förnamn</strong>
+      </FormLabel>
+      <Input placeholder="Leif" />
+    </FormControl>
+  );
 };
+
+Template.storyName = 'FormControl';
 
 export const Outline = () => (
   <>

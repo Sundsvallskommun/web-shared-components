@@ -1,18 +1,21 @@
 import React from 'react';
-import { Story, Meta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import { Tag, TagProps } from '../src';
 
 export default {
   title: 'Komponenter/Etiketter|Taggar/Komponent',
   component: Tag,
-  parameters: { controls: { hideNoControlsWarning: true } },
+  tags: ['autodocs'],
+  args: {
+    children: 'Taggnamn',
+  },
 } as Meta;
 
-export const Template = ({ text, ...args }: any) => <Tag {...args}>{text}</Tag>;
+export const Template = ({ children, ...args }: TagProps) => <Tag {...args}>{children}</Tag>;
 
 Template.storyName = 'Tag';
 
-export const Outline = ({ text, ...args }: any) => (
+export const Outline = () => (
   <>
     <div className="flex w-full place-content-evenly">
       <Tag size="lg">Large</Tag>
@@ -40,7 +43,7 @@ export const Outline = ({ text, ...args }: any) => (
   </>
 );
 
-export const Solid = ({ text, ...args }: any) => (
+export const Solid = () => (
   <>
     <div className="flex w-full place-content-evenly">
       <Tag size="lg" variant="solid">
@@ -76,7 +79,7 @@ export const Solid = ({ text, ...args }: any) => (
   </>
 );
 
-export const Light = ({ text, ...args }: any) => (
+export const Light = () => (
   <>
     <div className="flex w-full place-content-evenly">
       <Tag size="lg" variant="light">
@@ -111,60 +114,3 @@ export const Light = ({ text, ...args }: any) => (
     </div>
   </>
 );
-
-Template.argTypes = {
-  text: {
-    type: { name: 'string', required: false },
-    description: 'Sets tag text',
-    control: 'text',
-    defaultValue: 'Etikett-text',
-  },
-  variant: {
-    type: { name: 'string', required: false },
-    description: 'Sets variant',
-    table: {
-      defaultValue: { summary: 'outline' },
-    },
-    options: ['outline', 'solid', 'light'],
-    control: 'select',
-    defaultValue: 'outline',
-  },
-  size: {
-    type: { name: 'string', required: false },
-    description: 'Sets size',
-    table: {
-      defaultValue: { summary: 'md' },
-    },
-    options: ['sm', 'md', 'lg'],
-    control: 'select',
-    defaultValue: 'md',
-  },
-  useDeleteButton: {
-    type: { name: 'boolean', required: false },
-    description: 'Set true to use delete button',
-    table: {
-      defaultValue: { summary: false },
-    },
-    options: [false, true],
-    control: 'boolean',
-    defaultValue: false,
-  },
-  deleteAriaLabel: {
-    type: { name: 'string', required: false },
-    description: 'Sets delete button aria-label',
-    table: {
-      defaultValue: { summary: '' },
-    },
-    control: 'text',
-    defaultValue: 'Remove tag',
-  },
-  href: {
-    type: { name: 'string', required: false },
-    description: 'Sets href',
-    table: {
-      defaultValue: { summary: '' },
-    },
-    control: 'text',
-    defaultValue: '',
-  },
-};

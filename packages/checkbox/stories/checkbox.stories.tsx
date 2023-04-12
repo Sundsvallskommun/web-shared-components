@@ -5,9 +5,7 @@ import { Checkbox, CheckboxProps } from '../src';
 export default {
   title: 'Komponenter/Kryssrutor/Komponent',
   component: Checkbox,
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
+  tags: ['autodocs'],
 };
 
 export const Template = (args: CheckboxProps) => (
@@ -17,67 +15,9 @@ export const Template = (args: CheckboxProps) => (
   </div>
 );
 
-Template.argTypes = {
-  required: {
-    type: { name: 'boolean', required: false },
-    description: 'Sets required',
-    table: {
-      defaultValue: { summary: 'false' },
-    },
-    control: 'boolean',
-    defaultValue: false,
-  },
-  invalid: {
-    type: { name: 'boolean', required: false },
-    description: 'Sets invalid',
-    table: {
-      defaultValue: { summary: 'false' },
-    },
-    control: 'boolean',
-    defaultValue: false,
-  },
-  disabled: {
-    type: { name: 'boolean', required: false },
-    description: 'Sets disabled',
-    table: {
-      defaultValue: { summary: 'false' },
-    },
-    control: 'boolean',
-    defaultValue: false,
-  },
-  indeterminate: {
-    type: { name: 'boolean', required: false },
-    description: 'Sets indeterminate state',
-    table: {
-      defaultValue: { summary: 'false' },
-    },
-    control: 'boolean',
-    defaultValue: false,
-  },
-  defaultChecked: {
-    type: { name: 'boolean', required: false },
-    description: 'Sets default checked',
-    table: {
-      defaultValue: { summary: 'false' },
-    },
-    control: 'boolean',
-    defaultValue: false,
-  },
-  size: {
-    type: { name: 'string', required: false },
-    description: 'Sets size',
-    table: {
-      defaultValue: { summary: 'md' },
-    },
-    options: ['sm', 'md', 'lg'],
-    control: 'select',
-    defaultValue: 'md',
-  },
-};
-
 Template.storyName = 'Checkbox';
 
-export const invaliderad = () => (
+export const Invaliderad = () => (
   <div className="flex space-x-8">
     <Checkbox invalid>Checkbox</Checkbox>
     <Checkbox invalid defaultChecked>
@@ -127,7 +67,7 @@ export const Grupp = () => (
   </div>
 );
 
-export const formControl = () => (
+export const FormControlComp = () => (
   <FormControl>
     <FormLabel>Label</FormLabel>
     <Checkbox.Group className="space-x-4" inline defaultValue={['ett', 'tre']}>
@@ -138,4 +78,4 @@ export const formControl = () => (
     <FormHelperText>Hjälptext, Lorem ipsum dolor sit amet.</FormHelperText>
   </FormControl>
 );
-formControl.storyName = 'Formulär';
+FormControlComp.storyName = 'Formulär';
