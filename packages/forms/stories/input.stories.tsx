@@ -1,91 +1,16 @@
 import React from 'react';
-import { Input } from '../src';
+import { Input, InputProps } from '../src';
 import { Check } from './check';
+import { Meta } from '@storybook/react';
 
 export default {
   title: 'Komponenter/Textfält/Komponent',
   component: Input,
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
-};
+  tags: ['autodocs'],
+} as Meta;
 
-export const Template = (args: any) => {
+export const Template = (args: InputProps) => {
   return <Input {...args} />;
-};
-
-Template.argTypes = {
-  value: {
-    type: { name: 'string', required: false },
-    description: 'Sets value',
-    table: {
-      value: { summary: '' },
-    },
-    defaultValue: '',
-  },
-  placeholder: {
-    type: { name: 'string', required: false },
-    description: 'Sets placeholder',
-    table: {
-      defaultValue: { summary: '' },
-    },
-    defaultValue: 'Placeholder',
-  },
-  variant: {
-    type: { name: 'string', required: false },
-    description: 'Sets variant',
-    table: {
-      defaultValue: { summary: 'outline' },
-    },
-    options: ['solid', 'outline'],
-    control: 'select',
-    defaultValue: 'outline',
-  },
-  required: {
-    type: { name: 'boolean', required: false },
-    description: 'Sets required',
-    table: {
-      defaultValue: { summary: 'false' },
-    },
-    control: 'boolean',
-    defaultValue: false,
-  },
-  invalid: {
-    type: { name: 'boolean', required: false },
-    description: 'Sets invalid',
-    table: {
-      defaultValue: { summary: undefined },
-    },
-    control: 'boolean',
-    defaultValue: undefined,
-  },
-  disabled: {
-    type: { name: 'boolean', required: false },
-    description: 'Sets disabled',
-    table: {
-      defaultValue: { summary: 'false' },
-    },
-    control: 'boolean',
-    defaultValue: false,
-  },
-  size: {
-    type: { name: 'string', required: false },
-    description: 'Sets size',
-    table: {
-      defaultValue: { summary: 'md' },
-    },
-    options: ['sm', 'md', 'lg'],
-    control: 'select',
-    defaultValue: 'md',
-  },
-  className: {
-    type: {
-      name: 'string',
-      require: false,
-    },
-    description: 'Extra className',
-    defaultValue: '',
-  },
 };
 
 Template.storyName = 'Input';

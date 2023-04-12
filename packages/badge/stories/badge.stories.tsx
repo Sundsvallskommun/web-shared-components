@@ -8,87 +8,16 @@ import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNone
 
 export default {
   title: 'Komponenter/Badge/Komponent',
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
   component: Badge,
+  tags: ['autodocs'],
+  args: {
+    color: 'primary',
+  },
 } as Meta;
 
 export const Template = (args: BadgeProps) => <Badge {...args} />;
 
-Template.story = { name: 'Badge' };
-
-Template.argTypes = {
-  counter: {
-    type: { name: 'number', required: false },
-    description: 'Sets numbered value',
-    table: {
-      defaultValue: { summary: 4 },
-    },
-    control: { type: 'number', min: 1, max: 200, step: 1 },
-    defaultValue: 4,
-  },
-  max: {
-    type: { name: 'number', required: false },
-    description: 'Sets max value that can appear',
-    table: {
-      defaultValue: { summary: 99 },
-    },
-    control: { type: 'number', min: 1, max: 1000, step: 1 },
-    defaultValue: 99,
-  },
-  variant: {
-    type: { name: 'string', required: false },
-    description: 'Sets variant',
-    table: {
-      defaultValue: { summary: 'solid' },
-    },
-    options: ['solid', 'outline'],
-    control: 'select',
-    defaultValue: 'solid',
-  },
-
-  size: {
-    type: { name: 'string', required: false },
-    description: 'Sets size',
-    table: {
-      defaultValue: { summary: 'sm' },
-    },
-    options: ['sm', 'md', 'lg'],
-    control: 'select',
-    defaultValue: 'sm',
-  },
-
-  color: {
-    type: { name: 'string', required: false },
-    description: 'Sets color',
-    table: {
-      defaultValue: { summary: 'primary' },
-    },
-    options: ['primary', 'warning', 'error', 'neutral'],
-    control: { type: 'select' },
-    defaultValue: 'primary',
-  },
-  position: {
-    type: { name: 'string', required: false },
-    description: 'Sets posiiton of badge when inline in another component',
-    table: {
-      defaultValue: { summary: '' },
-    },
-    options: ['standard', 'super', 'super-overlap', 'none'],
-    control: { type: 'select' },
-    defaultValue: '',
-  },
-  noBorder: {
-    type: { name: 'boolean', required: false },
-    description: 'remove border',
-    table: {
-      defaultValue: { summary: false },
-    },
-    control: 'boolean',
-    defaultValue: false,
-  },
-};
+Template.storyName = 'Badge';
 
 export const BadgeOnElement = () => {
   return (
@@ -206,4 +135,4 @@ export const BadgeOnElement = () => {
   );
 };
 
-BadgeOnElement.story = 'Badge on element';
+BadgeOnElement.storyName = 'Badge on element';

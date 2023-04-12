@@ -1,11 +1,10 @@
+import React from 'react';
 import { Divider, DividerProps } from '../src';
 
 export default {
   title: 'Komponenter/Avdelare/Komponent',
   component: Divider,
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
+  tags: ['autodocs'],
 };
 
 export const Template = (args: DividerProps) => (
@@ -23,16 +22,3 @@ export const Template = (args: DividerProps) => (
 );
 
 Template.storyName = 'Divider';
-
-Template.argTypes = {
-  orientation: {
-    type: { name: 'string', required: false },
-    description: 'Sets orientation',
-    table: {
-      defaultValue: { summary: 'horizontal' },
-    },
-    options: ['horizontal', 'vertical'],
-    control: 'select',
-    defaultValue: 'horizontal',
-  },
-};

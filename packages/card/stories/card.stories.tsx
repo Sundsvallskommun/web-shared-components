@@ -6,9 +6,7 @@ import PlaceholderImage from '../../../.storybook/public/placeholder_2.png';
 export default {
   title: 'Komponenter/Kort/Komponent',
   component: Card,
-  parameters: {
-    // controls: { hideNoControlsWarning: true },
-  },
+  tags: ['autodocs'],
 };
 
 export const Template = (args: CardProps) => (

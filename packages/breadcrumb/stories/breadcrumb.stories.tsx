@@ -1,15 +1,40 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbProps } from '../src';
+import { Meta } from '@storybook/react';
 
 export default {
   title: 'Komponenter/Brödsmulor/Komponent',
   component: Breadcrumb,
-  parameters: {
-    // controls: { hideNoControlsWarning: true },
+  tags: ['autodocs'],
+  argTypes: {
+    separator: {
+      type: { name: 'string', required: false },
+      description: 'Seperator can be string or JSX',
+      table: {
+        defaultValue: { summary: '/' },
+      },
+      control: 'text',
+    },
+    addSeparator: {
+      type: { name: 'boolean', required: false },
+      description: 'Adds separator',
+      table: {
+        defaultValue: { summary: true },
+      },
+      control: 'boolean',
+    },
+    children: {
+      type: { name: 'string', required: false },
+      description: 'Children, e.g. Breadcrumb.Items',
+      control: 'text',
+    },
   },
-};
+  args: {
+    separator: '/',
+  },
+} as Meta;
 
-export const Template = (args) => (
+export const Template = (args: BreadcrumbProps) => (
   <div className="flex flex-col space-y-2">
     <Breadcrumb {...args}>
       <Breadcrumb.Item>
@@ -49,17 +74,5 @@ export const Template = (args) => (
     </Breadcrumb>
   </div>
 );
-
-Template.argTypes = {
-  separator: {
-    type: { name: 'string', required: false },
-    description: 'Seperator can be string or JSX',
-    table: {
-      defaultValue: { summary: '/' },
-    },
-    control: 'text',
-    defaultValue: '/',
-  },
-};
 
 Template.storyName = 'Breadcrumb';

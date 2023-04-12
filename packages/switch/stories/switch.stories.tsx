@@ -1,16 +1,15 @@
 import React from 'react';
 import { FormControl, FormLabel } from '@sk-web-gui/forms';
-import { Switch } from '../src';
+import { Switch, SwitchProps } from '../src';
+import { Meta } from '@storybook/react';
 
 export default {
   title: 'Komponenter/Toggel/Komponent',
   component: Switch,
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
-};
+  tags: ['autodocs'],
+} as Meta;
 
-export const Template = (args) => (
+export const Template = (args: SwitchProps) => (
   <div className="space-x-2">
     <Switch {...args} aria-label="example switch 1" />
 
@@ -26,59 +25,10 @@ export const Template = (args) => (
 
 Template.storyName = 'Switch';
 
-Template.argTypes = {
-  defaultChecked: {
-    type: { name: 'string', required: false },
-    description: 'Sets defaultChecked',
-    table: {
-      defaultValue: { summary: 'false' },
-    },
-    control: 'boolean',
-    defaultValue: false,
-  },
-  disabled: {
-    type: { name: 'string', required: false },
-    description: 'Sets disabled',
-    table: {
-      defaultValue: { summary: 'false' },
-    },
-    control: 'boolean',
-    defaultValue: false,
-  },
-  size: {
-    type: { name: 'string', required: false },
-    description: 'Sets size',
-    table: {
-      defaultValue: { summary: 'md' },
-    },
-    options: ['sm', 'md', 'lg'],
-    control: 'select',
-    defaultValue: 'md',
-  },
-  color: {
-    type: { name: 'string', required: false },
-    description: 'Sets color',
-    table: {
-      defaultValue: { summary: 'primary' },
-    },
-    options: ['primary', 'secondary'],
-    control: 'select',
-    defaultValue: 'primary',
-  },
-};
-
-/*
-export const disabled = () => (
+export const Inaktiverad = () => (
   <div className="space-x-2">
     <Switch aria-label="example switch" disabled />
     <Switch aria-label="example switch 2" defaultChecked disabled />
-  </div>
-);
-
-export const colored = () => (
-  <div className="space-x-2">
-    <Switch aria-label="example switch" color="secondary" />
-    <Switch aria-label="example switch 2" color="secondary" defaultChecked />
   </div>
 );
 
@@ -90,8 +40,7 @@ export const Storlekar = () => (
   </div>
 );
 
-
-export const formControl = () => (
+export const FormControlComp = () => (
   <FormControl className="flex items-center">
     <FormLabel htmlFor="email-alerts" className="mb-0 mr-2">
       Enable email alerts?
@@ -99,4 +48,5 @@ export const formControl = () => (
     <Switch aria-label="example switch" id="email-alerts" />
   </FormControl>
 );
-*/
+
+FormControlComp.storyName = 'FormControl';

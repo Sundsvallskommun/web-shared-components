@@ -1,13 +1,83 @@
 import React from 'react';
 import { Button } from '@sk-web-gui/button';
 import { Meta } from '@storybook/react';
-import { useState } from 'react';
 import { useConfirm } from '../src/confirm';
 import { ConfirmationDialogContextProvider } from '../src/confirm/confirm';
 
 export default {
   title: 'Komponenter/Modal/Komponent/Confirm',
   component: ConfirmationDialogContextProvider,
+  tags: ['autodocs'],
+  args: {
+    title: 'Dialog label',
+    message: 'Is this a confirmation dialog?',
+  },
+  argTypes: {
+    title: {
+      type: {
+        name: 'string',
+        required: false,
+      },
+      description: 'Confirmation title',
+      defaultValue: 'Dialog label',
+    },
+
+    message: {
+      type: {
+        name: 'string',
+        required: false,
+      },
+      description: 'Confirmation message',
+      defaultValue: 'Is this a confirmation dialog?',
+    },
+
+    confirmLabel: {
+      type: {
+        name: 'string',
+        required: false,
+      },
+      table: {
+        defaultValue: { summary: 'Ja' },
+      },
+      default: 'Ja',
+      description: 'Text on confirm button',
+      defaultValue: 'Yes',
+    },
+    dismissLabel: {
+      type: {
+        name: 'string',
+        required: false,
+      },
+      table: {
+        defaultValue: { summary: 'Nej' },
+      },
+      description: 'Text on dismiss button',
+      defaultValue: 'No',
+    },
+    dialogType: {
+      type: {
+        name: 'string',
+        required: false,
+      },
+      description: 'Set type',
+      table: {
+        defaultValue: { summary: null },
+      },
+      options: ['warning', 'error', 'info', null],
+      control: 'select',
+      defaultValue: null,
+    },
+    icon: {
+      type: { name: 'string', required: false },
+      description: 'Set icon',
+      table: {
+        defaultValue: { summary: null },
+      },
+      options: ['info', 'error', 'question', null],
+      control: 'select',
+      defaultValue: null,
+    },
+  },
 } as Meta;
 
 const ConfirmComponent: React.FC<{
@@ -50,73 +120,6 @@ export const Template = ({ ...args }: any) => {
 };
 
 Template.storyName = 'Confirm';
-
-Template.argTypes = {
-  title: {
-    type: {
-      name: 'string',
-      required: false,
-    },
-    description: 'Confirmation title',
-    defaultValue: 'Dialog label',
-  },
-
-  message: {
-    type: {
-      name: 'string',
-      required: false,
-    },
-    description: 'Confirmation message',
-    defaultValue: 'Is this a confirmation dialog?',
-  },
-
-  confirmLabel: {
-    type: {
-      name: 'string',
-      required: false,
-    },
-    table: {
-      defaultValue: { summary: 'Ja' },
-    },
-    default: 'Ja',
-    description: 'Text on confirm button',
-    defaultValue: 'Yes',
-  },
-  dismissLabel: {
-    type: {
-      name: 'string',
-      required: false,
-    },
-    table: {
-      defaultValue: { summary: 'Nej' },
-    },
-    description: 'Text on dismiss button',
-    defaultValue: 'No',
-  },
-  dialogType: {
-    type: {
-      name: 'string',
-      required: false,
-    },
-    description: 'Set type',
-    table: {
-      defaultValue: { summary: null },
-    },
-    options: ['warning', 'error', 'info', null],
-    control: 'select',
-    defaultValue: null,
-  },
-  icon: {
-    type: { name: 'string', required: false },
-    description: 'Set icon',
-    table: {
-      defaultValue: { summary: null },
-    },
-    options: ['info', 'error', 'question', null],
-    control: 'select',
-    defaultValue: null,
-  },
-};
 
 const ConfirmTypeComponent: React.FC<{
   title: string;

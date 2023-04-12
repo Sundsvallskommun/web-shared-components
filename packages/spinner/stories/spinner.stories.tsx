@@ -4,17 +4,17 @@ import { Spinner } from '../src';
 export default {
   title: 'Komponenter/Spinner/Komponent',
   component: Spinner,
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
+  tags: ['autodocs'],
 };
 
-export const Basic = () => (
+export const Template = () => (
   <div className="flex space-x-2">
     <Spinner />
     <Spinner className="text-primary-500" />
   </div>
 );
+
+Template.storyName = 'Spinner';
 
 export const Storlekar = () => (
   <div className="flex space-x-2">

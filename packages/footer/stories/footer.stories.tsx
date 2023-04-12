@@ -1,15 +1,15 @@
 import React from 'react';
-import { Story, Meta } from '@storybook/react';
-import { Footer } from '../src';
+import { Meta } from '@storybook/react';
+import { Footer, FooterProps } from '../src';
 import { Link } from '@sk-web-gui/react';
 
 export default {
   title: 'Komponenter/Footer/Komponent',
   component: Footer,
-  parameters: { controls: { hideNoControlsWarning: true } },
+  tags: ['autodocs'],
 } as Meta;
 
-export const Template = ({ ...args }: any) => {
+export const Template = ({ ...args }: FooterProps) => {
   return (
     <Footer
       {...args}
@@ -111,64 +111,6 @@ export const Template = ({ ...args }: any) => {
       </div>
     </Footer>
   );
-};
-
-Template.argTypes = {
-  color: {
-    type: { name: 'string', required: false },
-    description: 'Sets color',
-    table: {
-      defaultValue: { summary: 'primary' },
-    },
-    options: ['primary', 'secondary', 'gray'],
-    control: 'select',
-    defaultValue: 'primary',
-  },
-  className: {
-    type: { name: 'string', required: false },
-    description: 'Sets className',
-    table: {
-      defaultValue: { summary: '' },
-    },
-    control: 'text',
-    defaultValue: '',
-  },
-  wrapperClasses: {
-    type: { name: 'string', required: false },
-    description: 'Sets classes for top parent node',
-    table: {
-      defaultValue: { summary: '' },
-    },
-    control: 'text',
-    defaultValue: '',
-  },
-  bottomLinks: {
-    type: { required: false },
-    description: 'ReactNode',
-    table: {
-      defaultValue: { summary: 'undefined' },
-    },
-    defaultValue: undefined,
-  },
-  bottomLinksColor: {
-    type: { name: 'string', required: false },
-    description: 'Sets bottomLinksColor',
-    table: {
-      defaultValue: { summary: 'gray-middle' },
-    },
-    options: ['primary', 'secondary', 'gray-middle'],
-    control: 'select',
-    defaultValue: 'gray-middle',
-  },
-  bottomLinksClasses: {
-    type: { name: 'string', required: false },
-    description: 'Sets bottomLinksClasses',
-    table: {
-      defaultValue: { summary: '' },
-    },
-    control: 'text',
-    defaultValue: '',
-  },
 };
 
 Template.storyName = 'Footer';

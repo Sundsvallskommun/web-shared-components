@@ -5,9 +5,7 @@ import { DataTable, DataTableHeader, DataTableProps } from '../src/datatable';
 export default {
   title: 'Komponenter/Tabeller/DataTable',
   component: DataTable,
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
+  tags: ['autodocs'],
 } as Meta;
 
 const ongoingCases: any = {
@@ -95,62 +93,5 @@ const headers: Array<string | DataTableHeader> = [
 ];
 
 export const Template = (args: DataTableProps) => <DataTable {...args} data={ongoingCases.data} headers={headers} />;
-
-Template.argTypes = {
-  captionTitle: {
-    type: { name: 'string', required: false },
-    description: 'Sets caption title for screen readers',
-    table: {
-      defaultValue: { summary: '' },
-    },
-    control: 'text',
-    defaultValue: '',
-  },
-  captionBody: {
-    type: { name: 'string', required: false },
-    description: 'Sets caption body for screen readers',
-    table: {
-      defaultValue: { summary: '' },
-    },
-    control: 'text',
-    defaultValue: '',
-  },
-  summary: {
-    type: { name: 'string', required: false },
-    description: 'Sets summary attribute on table for screen readers',
-    table: {
-      defaultValue: { summary: '' },
-    },
-    control: 'text',
-    defaultValue: '',
-  },
-  pageSize: {
-    type: { name: 'string', required: false },
-    description: 'Number of entries per page',
-    table: {
-      defaultValue: { summary: '5' },
-    },
-    control: 'number',
-    defaultValue: 5,
-  },
-  page: {
-    type: { name: 'string', required: false },
-    description: 'Page number',
-    table: {
-      defaultValue: { summary: '1' },
-    },
-    control: 'number',
-    defaultValue: 1,
-  },
-  tableSortable: {
-    type: { name: 'string', required: false },
-    description: 'Sets table to be sortable',
-    table: {
-      defaultValue: { summary: 'true' },
-    },
-    control: 'boolean',
-    defaultValue: 'true',
-  },
-};
 
 Template.story = { name: 'DataTable' };

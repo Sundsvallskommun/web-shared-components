@@ -1,16 +1,14 @@
-import { ArgTypes } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import React from 'react';
-import { Textarea } from '../src';
+import { Textarea, TextareaProps } from '../src';
 
 export default {
   title: 'Komponenter/Textfält/Textarea',
   component: Textarea,
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
-};
+  tags: ['autodocs'],
+} as Meta;
 
-export const Template = (args: ArgTypes) => <Textarea {...args} placeholder="name@example.com" />;
+export const Template = (args: TextareaProps) => <Textarea {...args} placeholder="name@example.com" />;
 
 Template.storyName = 'Textarea';
 

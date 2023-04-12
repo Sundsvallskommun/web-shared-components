@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { Select } from '../src';
+import { Select, SelectProps } from '../src';
 
 export default {
   title: 'Komponenter/Dropdown/Komponent',
   component: Select,
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
+  tags: ['autodocs'],
 };
 
 const people = [
@@ -17,7 +15,7 @@ const people = [
   { id: 5, name: 'Katelyn Rohan', unavailable: false },
 ];
 
-export const Template = (args: any) => {
+export const Template = (args: SelectProps) => {
   const [selectedValue, setSelectedValue] = useState<{ label: string; data: any }>();
   const [selectedValues, setSelectedValues] = useState<{ label: string; data: any }[]>([]);
   return (
@@ -32,99 +30,42 @@ export const Template = (args: any) => {
       >
         Välj Kenton Towne
       </button>
-      <Select
-        {...args}
-        onChange={(e) => {
-          console.log('onchange on select:', e);
-        }}
-        value={args.multiple ? selectedValues : selectedValue}
-        // dropDownIcon={<ArrowForwardIosOutlinedIcon className="!text-xl rotate-90" />}
-      >
-        {people.map((person, index) => (
-          <Select.Option disabled={index === 2} key={person.id} value={{ label: person.name, data: person }} />
-        ))}
-      </Select>
+      {args.multiple ? (
+        <Select
+          {...args}
+          multiple
+          onChange={(e) => {
+            console.log('onchange on select:', e);
+          }}
+          value={selectedValues}
+          // dropDownIcon={<ArrowForwardIosOutlinedIcon className="!text-xl rotate-90" />}
+        >
+          {people.map((person, index) => (
+            <Select.Option disabled={index === 2} key={person.id} value={{ label: person.name, data: person }} />
+          ))}
+        </Select>
+      ) : (
+        <Select
+          {...args}
+          onChange={(e) => {
+            console.log('onchange on select:', e);
+          }}
+          value={selectedValue}
+          // dropDownIcon={<ArrowForwardIosOutlinedIcon className="!text-xl rotate-90" />}
+        >
+          {people.map((person, index) => (
+            <Select.Option disabled={index === 2} key={person.id} value={{ label: person.name, data: person }} />
+          ))}
+        </Select>
+      )}
     </div>
   );
-};
-
-Template.argTypes = {
-  value: {
-    type: { name: 'string', required: false },
-    description: 'Sets value',
-    table: {
-      value: { summary: '' },
-    },
-    defaultValue: '',
-  },
-  placeholder: {
-    type: { name: 'string', required: false },
-    description: 'Sets placeholder',
-    table: {
-      defaultValue: { summary: '' },
-    },
-    defaultValue: 'Placeholder',
-  },
-  'aria-label': {
-    type: { name: 'string', required: false },
-    description: 'Sets aria-label',
-    table: {
-      defaultValue: { summary: '' },
-    },
-    defaultValue: 'Välj alternativ',
-  },
-  required: {
-    type: { name: 'boolean', required: false },
-    description: 'Sets required',
-    table: {
-      defaultValue: { summary: 'false' },
-    },
-    control: 'boolean',
-    defaultValue: false,
-  },
-  invalid: {
-    type: { name: 'boolean', required: false },
-    description: 'Sets invalid',
-    table: {
-      defaultValue: { summary: undefined },
-    },
-    control: 'boolean',
-    defaultValue: undefined,
-  },
-  disabled: {
-    type: { name: 'boolean', required: false },
-    description: 'Sets disabled',
-    table: {
-      defaultValue: { summary: 'false' },
-    },
-    control: 'boolean',
-    defaultValue: false,
-  },
-  multiple: {
-    type: { name: 'boolean', required: false },
-    description: 'Sets if multichoice',
-    table: {
-      defaultValue: { summary: 'false' },
-    },
-    control: 'boolean',
-    defaultValue: false,
-  },
-  size: {
-    type: { name: 'string', required: false },
-    description: 'Sets size',
-    table: {
-      defaultValue: { summary: 'md' },
-    },
-    options: ['sm', 'md', 'lg'],
-    control: 'select',
-    defaultValue: 'md',
-  },
 };
 
 Template.storyName = 'Select';
 
 export const Inaktiverad = () => (
-  <Select onChange={() => {}} disabled placeholder="Outline">
+  <Select onChange={() => ({})} disabled placeholder="Outline">
     <option>Option 1</option>
     <option>Option 2</option>
     <option>Option 3</option>
@@ -132,7 +73,7 @@ export const Inaktiverad = () => (
 );
 
 export const Invaliderad = () => (
-  <Select onChange={() => {}} invalid placeholder="Outline">
+  <Select onChange={() => ({})} invalid placeholder="Outline">
     <option>Option 1</option>
     <option>Option 2</option>
     <option>Option 3</option>
@@ -141,19 +82,19 @@ export const Invaliderad = () => (
 
 export const Storlekar = () => (
   <div className="flex space-x-2">
-    <Select onChange={() => {}} placeholder="Outline" size="sm">
+    <Select onChange={() => ({})} placeholder="Outline" size="sm">
       <option>Option 1</option>
       <option>Option 2</option>
       <option>Option 3</option>
     </Select>
 
-    <Select onChange={() => {}} placeholder="Outline" size="md">
+    <Select onChange={() => ({})} placeholder="Outline" size="md">
       <option>Option 1</option>
       <option>Option 2</option>
       <option>Option 3</option>
     </Select>
 
-    <Select onChange={() => {}} placeholder="Outline" size="lg">
+    <Select onChange={() => ({})} placeholder="Outline" size="lg">
       <option>Option 1</option>
       <option>Option 2</option>
       <option>Option 3</option>
