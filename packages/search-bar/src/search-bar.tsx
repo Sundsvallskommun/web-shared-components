@@ -1,6 +1,7 @@
 import { __DEV__ } from '@sk-web-gui/utils';
 import React, { useEffect, useState } from 'react';
-import { Button, Input, InputProps } from '@sk-web-gui/react';
+import { Button } from '@sk-web-gui/button';
+import { Input, InputProps } from '@sk-web-gui/forms';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
@@ -42,7 +43,7 @@ export const SearchBar = React.forwardRef<HTMLInputElement, ISearchBarProps>((pr
   } = props;
 
   const [query, setQuery] = useState(value);
-  const internalRef = React.useRef<HTMLDivElement | null>(null);
+  const internalRef = React.useRef<HTMLInputElement | null>(null);
   React.useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(ref, () => internalRef.current);
 
   const setInputFocus = () => {

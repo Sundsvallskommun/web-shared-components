@@ -24,7 +24,9 @@ interface IDropdownFilter {
   size?: 'sm' | 'md' | 'lg';
 }
 
-export const DropdownFilter = React.forwardRef<HTMLDivElement, IDropdownFilter>((props, ref) => {
+export interface DropdownFilterProps extends React.HTMLAttributes<HTMLDivElement>, IDropdownFilter {}
+
+export const DropdownFilter = React.forwardRef<HTMLDivElement, DropdownFilterProps>((props, ref) => {
   const {
     label,
     filterData,

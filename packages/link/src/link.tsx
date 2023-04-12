@@ -3,7 +3,7 @@ import { DefaultProps } from '@sk-web-gui/theme';
 import * as React from 'react';
 import LaunchIcon from '@mui/icons-material/Launch';
 
-interface LinkProps extends DefaultProps {
+interface ILinkProps extends DefaultProps {
   /* Makes link disabled */
   disabled?: boolean;
   /* Makes link open in new tab */
@@ -11,12 +11,16 @@ interface LinkProps extends DefaultProps {
   /* The element or component to use in place of `a` */
   as?: React.ElementType;
   /* Action to perform when clicked */
-  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
+  onClick?: React.MouseEventHandler<HTMLElement>;
   /* React node */
   children?: React.ReactNode;
+  /* href */
+  href?: string;
 }
 
-export const Link = React.forwardRef<unknown, any>((props, ref) => {
+export interface LinkProps extends ILinkProps, React.HTMLAttributes<HTMLElement>, React.RefAttributes<HTMLElement> {}
+
+export const Link = React.forwardRef<HTMLElement, LinkProps>((props, ref) => {
   const { disabled, external, onClick, className, as: Comp = 'a', children, ...rest } = props;
   const externalProps = external ? { target: '_blank', rel: 'noopener noreferrer' } : null;
 
@@ -25,7 +29,7 @@ export const Link = React.forwardRef<unknown, any>((props, ref) => {
       ref={ref}
       tabIndex={disabled ? -1 : undefined}
       aria-disabled={disabled}
-      onClick={disabled ? (event: any) => event.preventDefault() : onClick}
+      onClick={disabled ? (event: React.MouseEvent<HTMLElement>) => event.preventDefault() : onClick}
       className={cx('link', disabled && 'link-disabled', className)}
       {...externalProps}
       {...rest}
@@ -35,8 +39,6 @@ export const Link = React.forwardRef<unknown, any>((props, ref) => {
     </Comp>
   );
 });
-
-export type { LinkProps };
 
 if (__DEV__) {
   Link.displayName = 'Link';

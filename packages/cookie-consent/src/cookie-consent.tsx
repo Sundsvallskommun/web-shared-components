@@ -10,8 +10,6 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 export const defaultCookieConsentName = 'SKCookieConsent';
 
-import { useCookieConsentClass } from './styles';
-
 export interface ConsentCookie {
   optional: boolean;
   displayName: string;
@@ -55,7 +53,7 @@ export function getCheckableCookies(cookies: ConsentCookie[]): CheckableConsentC
   );
 }
 
-interface CookieConsentProps extends DefaultProps {
+interface ICookieConsentProps extends DefaultProps {
   isOpen?: boolean;
   // eslint-disable-next-line no-unused-vars
   onConsent: (cookies: ConsentCookie[]) => void;
@@ -63,14 +61,12 @@ interface CookieConsentProps extends DefaultProps {
   onDecline?: () => void;
   cookies: ConsentCookie[];
   title: string;
-  body: any;
+  body: React.ReactNode;
   resetConsentOnInit: boolean;
   options?: CookieSetOptions;
 }
 
-/* export interface CookieConsentProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    ICookieConsentProps {} */
+export interface CookieConsentProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>, ICookieConsentProps {}
 
 export function CookieConsent({
   title,

@@ -1,13 +1,16 @@
+const path = require('path');
+const fs = require('fs');
+/** @type {import('tailwindcss').Config} */
 // const colors = require("tailwindcss/colors");
 /* eslint @typescript-eslint/no-var-requires: "off" */
 module.exports = {
-  mode: 'jit',
   content: [
-    './public/**/*.html',
-    './packages/*/src/**/*.{js,jsx,ts,tsx}',
-    './packages/*/stories/**/*.{js,jsx,ts,tsx,mdx}',
-    './.storybook/stories/**/*.{js,jsx,ts,tsx,mdx}',
-    './.storybook/components/**/*.{js,jsx,ts,tsx,mdx}',
+    // './public/**/*.html',
+    // './packages/*/src/**/*.{js,jsx,ts,tsx}',
+    // './packages/*/stories/**/*.{js,jsx,ts,tsx,mdx}',
+    './.storybook/**/*.{js,jsx,ts,tsx,mdx}',
+    path.join(fs.realpathSync('./node_modules/@sk-web-gui'), '/*/dist/**/*.{js,jsx}'),
+    path.join(fs.realpathSync('./node_modules/@sk-web-gui/core/src/'), '**/*.{js,jsx}'),
   ],
   darkMode: 'class', // or 'media' or 'class'
   theme: {

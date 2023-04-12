@@ -133,7 +133,7 @@ if (__DEV__) {
 
 // NOTE: Card link component
 
-export const CardLink = React.forwardRef<unknown, LinkProps>((props, ref) => {
+export const CardLink = React.forwardRef<HTMLLinkElement, LinkProps>((props, ref) => {
   const { children, external, className, ...rest } = props;
 
   return (

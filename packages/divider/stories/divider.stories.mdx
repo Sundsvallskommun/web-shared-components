@@ -1,5 +1,6 @@
-import { Canvas, Meta, Preview } from '@storybook/addon-docs';
+import { Meta, Canvas } from '@storybook/blocks';
 import { Divider } from '../src';
+import { ComponentPreview } from '../../../.storybook/preview';
 
 <Meta title="Komponenter/Avdelare/Översikt" />
 
@@ -10,7 +11,7 @@ import { Divider } from '../src';
   mellanrum.
 </p>
 
-<Preview>
+<ComponentPreview>
   <div className="p-6">
     <div className="flex items-center gap-12 p-6">
       <p className="">Ljus bakgrund</p>
@@ -21,4 +22,4 @@ import { Divider } from '../src';
       <Divider className="flex-1" />
     </div>
   </div>
-</Preview>
+</ComponentPreview>
