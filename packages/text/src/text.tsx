@@ -83,7 +83,6 @@ export const Text = React.forwardRef<HTMLDivElement, TextProps>((props, ref) => 
       .replace(/(\r\n)/g, '\n')
       .replace(/(\n\n)/g, '<p>')
       .split('<p>');
-    console.log('🚀 ~ file: text.tsx:91 ~ formatText ~ textArray:', textArray);
 
     const paragraphs = textArray.map((text) => {
       const sections = text.split('\n');
