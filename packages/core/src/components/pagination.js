@@ -17,7 +17,9 @@ module.exports = Pagination = () => ({
     '&-list': {
       '@apply flex items-center': {},
     },
-
+    '.form-select-wrapper': {
+      '@apply w-fit': {},
+    },
     '&-pageLabel': {
       '@apply cursor-pointer m-sm box-content': {},
       width: '1.5em',
@@ -65,6 +67,15 @@ module.exports = Pagination = () => ({
 
     '&-ellipsis': {
       '@apply inline-block w-16 text-center': {},
+    },
+    '&.fit-content': {
+      '@apply w-full': {},
+      '.pagination-list': {
+        '@apply w-full flex justify-between': {},
+      },
+      '.form-select-wrapper': {
+        '@apply w-full': {},
+      },
     },
   },
 });

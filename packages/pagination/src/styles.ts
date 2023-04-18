@@ -8,7 +8,7 @@ export const usePaginationClass = createMemoClass((props) => {
     lg: 'pagination-lg',
   };
 
-  const classes = cx('pagination', sizes[props.size]);
+  const classes = cx('pagination', props.fitContainer ? 'fit-content' : '', sizes[props.size]);
 
   return classes;
 });
