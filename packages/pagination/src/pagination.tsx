@@ -155,7 +155,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
         </Select>
       ) : (
         <ul className="pagination-list">
-          <li className="inline">
+          <li className="pagination-list-item prev-next">
             {prevNextButton({
               label: prevLabel,
               icon: <KeyboardDoubleArrowLeftOutlinedIcon aria-hidden="true" />,
@@ -165,23 +165,25 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
             })}
           </li>
           {(activePage === 1 || showFirst || pagesBefore >= currentPage - 1) && (
-            <li className="inline-flex">{pageLabel(1)}</li>
+            <li className="pagination-list-item">{pageLabel(1)}</li>
           )}
-          {currentPage > pagesBefore + 2 && showFirst && <li className="inline">{ellipsis}</li>}
+          {currentPage > pagesBefore + 2 && showFirst && <li className="pagination-list-item ellipsis">{ellipsis}</li>}
           {[...Array(pages)].map((_, idx: number) => {
             return (
               shouldShowLabel(idx, currentPage, pagesBefore) && (
-                <li key={`pageLabel-${idx}`} className="inline">
+                <li key={`pageLabel-${idx}`} className="pagination-list-item">
                   {pageLabel(idx + 1)}
                 </li>
               )
             );
           })}
-          {currentPage < pages - pagesAfter - 1 && showLast && <li className="inline">{ellipsis}</li>}
-          {(showLast || activePage === pages || pagesAfter > pages - (currentPage + 1)) && (
-            <li className="inline">{pageLabel(pages)}</li>
+          {currentPage < pages - pagesAfter - 1 && showLast && (
+            <li className="pagination-list-item ellipsis">{ellipsis}</li>
           )}
-          <li className="inline">
+          {(showLast || activePage === pages || pagesAfter > pages - (currentPage + 1)) && (
+            <li className="pagination-list-item">{pageLabel(pages)}</li>
+          )}
+          <li className="pagination-list-item  prev-next">
             {prevNextButton({
               label: nextLabel,
               icon: <KeyboardDoubleArrowRightOutlinedIcon aria-hidden="true" />,

@@ -69,9 +69,21 @@ module.exports = Pagination = () => ({
       '@apply inline-block w-16 text-center': {},
     },
     '&.fit-content': {
-      '@apply w-full': {},
+      '@apply w-full max-w-full': {},
       '.pagination-list': {
         '@apply w-full flex justify-between': {},
+        '&-item': {
+          '@apply px-0  flex-shrink grow text-center': {},
+          '&.ellipsis': {
+            '@apply flex-shrink grow-0': {},
+          },
+          '&.prev-next': {
+            '@apply flex-shrink grow-0': {},
+          },
+          '.pagination-pageLabel': {
+            '@apply w-full max-w-[1.5em] mx-xs': {},
+          },
+        },
       },
       '.form-select-wrapper': {
         '@apply w-full': {},
