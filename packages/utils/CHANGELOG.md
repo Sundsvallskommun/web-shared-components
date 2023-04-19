@@ -3,13 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/utils@0.1.3...@sk-web-gui/utils@0.1.4) (2022-09-22)
+## [0.1.5](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/utils@0.1.4...@sk-web-gui/utils@0.1.5) (2023-04-19)
 
 **Note:** Version bump only for package @sk-web-gui/utils
 
+## [0.1.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/utils@0.1.3...@sk-web-gui/utils@0.1.4) (2022-09-22)
 
-
-
+**Note:** Version bump only for package @sk-web-gui/utils
 
 ## [0.1.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/utils@0.1.2...@sk-web-gui/utils@0.1.3) (2022-05-19)
 

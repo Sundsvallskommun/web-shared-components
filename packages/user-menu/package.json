@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/user-menu",
-  "version": "0.1.27",
+  "version": "0.1.28",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -42,10 +42,10 @@
     "@headlessui/react": "^1.4.3",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.10.0",
-    "@sk-web-gui/profile": "0.1.1",
-    "@sk-web-gui/spinner": "0.1.10",
-    "@sk-web-gui/theme": "0.1.10",
-    "@sk-web-gui/utils": "0.1.4"
+    "@sk-web-gui/profile": "0.1.2",
+    "@sk-web-gui/spinner": "0.1.11",
+    "@sk-web-gui/theme": "0.1.11",
+    "@sk-web-gui/utils": "0.1.5"
   },
   "peerDependencies": {
     "react": ">=16.8.6"

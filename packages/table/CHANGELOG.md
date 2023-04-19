@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.30](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@0.1.29...@sk-web-gui/table@0.1.30) (2023-04-19)
+
+**Note:** Version bump only for package @sk-web-gui/table
+
 ## [0.1.29](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@0.1.28...@sk-web-gui/table@0.1.29) (2023-03-14)
 
 **Note:** Version bump only for package @sk-web-gui/table

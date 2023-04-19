@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.26](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/checkbox@0.1.25...@sk-web-gui/checkbox@0.1.26) (2023-04-19)
+
+**Note:** Version bump only for package @sk-web-gui/checkbox
+
 ## [0.1.25](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/checkbox@0.1.24...@sk-web-gui/checkbox@0.1.25) (2023-03-30)
 
 **Note:** Version bump only for package @sk-web-gui/checkbox

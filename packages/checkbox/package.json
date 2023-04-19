@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/checkbox",
-  "version": "0.1.25",
+  "version": "0.1.26",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -38,9 +38,9 @@
   },
   "dependencies": {
     "@reach/auto-id": "^0.15.0",
-    "@sk-web-gui/forms": "0.1.25",
-    "@sk-web-gui/theme": "0.1.10",
-    "@sk-web-gui/utils": "0.1.4"
+    "@sk-web-gui/forms": "0.1.26",
+    "@sk-web-gui/theme": "0.1.11",
+    "@sk-web-gui/utils": "0.1.5"
   },
   "peerDependencies": {
     "react": ">=16.8.6"
