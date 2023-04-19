@@ -1,4 +1,4 @@
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 
@@ -61,3 +61,5 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) 
 if (__DEV__) {
   Badge.displayName = 'Badge';
 }
+
+export default Badge;

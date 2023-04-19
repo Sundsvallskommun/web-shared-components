@@ -34,21 +34,19 @@
     "lint:types": "tsc --noEmit"
   },
   "devDependencies": {
-    "react": "^17.0.2"
+    "react": "^18.2.0"
   },
   "dependencies": {
-    "@emotion/react": "^11.8.1",
-    "@emotion/styled": "^11.8.1",
-    "@headlessui/react": "^1.4.3",
-    "@mui/icons-material": "^5.8.4",
-    "@mui/material": "^5.10.0",
+    "@headlessui/react": "^1.7.14",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.12.0",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
     "@sk-web-gui/profile": "0.1.1",
-    "@sk-web-gui/spinner": "0.1.10",
     "@sk-web-gui/theme": "0.1.10",
     "@sk-web-gui/utils": "0.1.4"
   },
   "peerDependencies": {
-    "react": ">=16.8.6"
-  },
-  "gitHead": "1917c4afdbd79e4b804afd927a88dea64644e2e5"
+    "react": ">=18.2.0"
+  }
 }

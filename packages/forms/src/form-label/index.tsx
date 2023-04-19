@@ -1,4 +1,4 @@
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 
@@ -43,3 +43,5 @@ export const RequiredIndicator = React.forwardRef<HTMLSpanElement, React.HTMLAtt
 if (__DEV__) {
   RequiredIndicator.displayName = 'RequiredIndicator';
 }
+
+export default FormLabel;

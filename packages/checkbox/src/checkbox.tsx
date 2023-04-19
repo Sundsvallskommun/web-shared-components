@@ -1,6 +1,6 @@
 import { useFormControl } from '@sk-web-gui/forms';
 import { cx, useForkRef, __DEV__ } from '@sk-web-gui/utils';
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import * as React from 'react';
 import { useEffect, useRef } from 'react';
 
@@ -92,8 +92,10 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>((props
   const _ref = useForkRef(ownRef, ref);
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     if (_ref.current) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       _ref.current.indeterminate = Boolean(indeterminate);
     }
@@ -144,3 +146,5 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>((props
 if (__DEV__) {
   Checkbox.displayName = 'Checkbox';
 }
+
+export default Checkbox;

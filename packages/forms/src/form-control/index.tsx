@@ -1,5 +1,5 @@
 import { useId } from '@reach/auto-id';
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 
@@ -85,3 +85,5 @@ export const FormControl = React.forwardRef<HTMLDivElement, FormControlProps>((p
 if (__DEV__) {
   FormControl.displayName = 'FormGroup';
 }
+
+export default FormControl;

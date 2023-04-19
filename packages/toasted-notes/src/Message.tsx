@@ -15,7 +15,7 @@ export type MessageType = 'default' | 'success' | 'error';
 export type PositionsType = keyof typeof POSITIONS;
 
 const getStyle = (position: PositionsType) => {
-  let style = {
+  const style = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

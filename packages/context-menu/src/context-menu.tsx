@@ -1,15 +1,15 @@
 import { Menu } from '@headlessui/react';
 
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 import { ContextMenuButton } from './context-menu-button';
 
-export interface ContextMenuProps extends React.HTMLAttributes<HTMLDivElement>, DefaultProps {
+export interface ContextMenuPropsInternal extends React.HTMLAttributes<HTMLDivElement>, DefaultProps {
   classNameItems?: string;
 }
 
-const ContextMenuComponent = React.forwardRef<HTMLDivElement, ContextMenuProps>((props, ref) => {
+const ContextMenuComponent = React.forwardRef<HTMLDivElement, ContextMenuPropsInternal>((props, ref) => {
   const { className, classNameItems, children, ...rest } = props;
 
   const getButton = () => {
@@ -42,12 +42,14 @@ const ContextMenuItem: React.FC<{ children: JSX.Element; className?: string }> =
   );
 };
 
-interface ContextMenu extends React.ForwardRefExoticComponent<ContextMenuProps & React.RefAttributes<HTMLElement>> {
+interface ContextMenuProps
+  extends ContextMenuPropsInternal,
+    React.ForwardRefExoticComponent<ContextMenuPropsInternal & React.RefAttributes<HTMLElement>> {
   Item: typeof ContextMenuItem;
   Button: typeof ContextMenuButton;
 }
 
-export const ContextMenu = ContextMenuComponent as ContextMenu;
+export const ContextMenu = ContextMenuComponent as ContextMenuProps;
 
 ContextMenu.Item = ContextMenuItem;
 ContextMenu.Button = ContextMenuButton;
@@ -56,4 +58,5 @@ if (__DEV__) {
   ContextMenu.displayName = 'Context menu';
 }
 
+export type { ContextMenuProps };
 export default ContextMenu;

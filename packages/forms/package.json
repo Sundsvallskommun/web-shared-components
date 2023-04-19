@@ -34,22 +34,22 @@
     "lint:types": "tsc --noEmit"
   },
   "devDependencies": {
-    "react": "^17.0.2"
+    "react": "^18.2.0"
   },
   "dependencies": {
-    "@emotion/react": "^11.8.1",
-    "@emotion/styled": "^11.8.1",
-    "@headlessui/react": "^1.4.2",
-    "@mui/icons-material": "^5.8.4",
-    "@mui/material": "^5.10.0",
-    "@mui/styles": "^5.4.4",
+    "@headlessui/react": "^1.7.14",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.12.0",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
     "@mui/x-date-pickers": "^5.0.0-beta.0",
-    "@reach/auto-id": "^0.15.3",
+    "@reach/auto-id": "^0.18.0",
+    "@sk-web-gui/tag": "0.1.19",
     "@sk-web-gui/theme": "0.1.10",
     "@sk-web-gui/utils": "0.1.4",
-    "dayjs": "^1.10.8"
+    "dayjs": "^1.11.7"
   },
   "peerDependencies": {
-    "react": ">=16.8.6"
+    "react": ">=18.2.0"
   }
 }

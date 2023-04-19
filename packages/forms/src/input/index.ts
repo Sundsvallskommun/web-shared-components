@@ -1,12 +1,14 @@
 import * as React from 'react';
 
-import { Input as InternalInput, InputProps } from './input';
+import { Input as InternalInput, InputProps as InternalInputProps } from './input';
 import { InputGroup, InputGroupProps } from '../input-group';
 import { InputLeftAddon, InputRightAddon, InputAddonProps } from '../input-addon';
 import { InputLeftElement, InputRightElement, InputElementProps } from '../input-element';
 import { InputLeftAddin, InputRightAddin, InputAddinProps } from '../input-addin';
 
-interface Input extends React.ForwardRefExoticComponent<InputProps & React.RefAttributes<HTMLElement>> {
+interface InputProps
+  extends InternalInputProps,
+    React.ForwardRefExoticComponent<InternalInputProps & React.RefAttributes<HTMLElement>> {
   Group: typeof InputGroup;
 
   LeftAddon: typeof InputLeftAddon;
@@ -19,7 +21,7 @@ interface Input extends React.ForwardRefExoticComponent<InputProps & React.RefAt
   RightElement: typeof InputRightElement;
 }
 
-const Input = InternalInput as Input;
+const Input = InternalInput as InputProps;
 
 Input.Group = InputGroup;
 Input.LeftAddon = InputLeftAddon;
@@ -32,3 +34,4 @@ Input.RightElement = InputRightElement;
 export type { InputProps, InputGroupProps, InputAddonProps, InputAddinProps, InputElementProps };
 
 export { Input };
+export default Input;

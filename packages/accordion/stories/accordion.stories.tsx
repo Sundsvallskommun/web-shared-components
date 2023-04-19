@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Meta } from '@storybook/react';
 import { Accordion, AccordionProps } from '../src';
-import { Button, cx, FormControl, FormLabel, Select } from '@sk-web-gui/react';
+import { FormControl, FormLabel, Select } from '@sk-web-gui/forms';
+import { Button } from '@sk-web-gui/button';
+import { cx } from '@sk-web-gui/utils';
 
 export default {
   title: 'Komponenter/Accordions/Komponent',

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import { Header, HeaderProps } from '../src';
-import { UserMenu } from '@sk-web-gui/react';
+import { UserMenu } from '@sk-web-gui/user-menu';
 
 export default {
   title: 'Komponenter/Header/Komponent',

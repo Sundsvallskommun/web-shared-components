@@ -1,4 +1,4 @@
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import React, { useEffect, useState } from 'react';
 import KeyboardDoubleArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftOutlined';
@@ -156,3 +156,5 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
 if (__DEV__) {
   Pagination.displayName = 'Pagination';
 }
+
+export default Pagination;

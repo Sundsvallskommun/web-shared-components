@@ -1,11 +1,11 @@
 import { Spinner } from '@sk-web-gui/spinner';
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps, PolymorphicComponentPropsWithRef, PolymorphicRef } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 import { Link } from '@sk-web-gui/link';
 import { useButtonClass } from './styles';
 
-interface IButtonProps extends DefaultProps {
+export interface ButtonProps extends DefaultProps, React.ButtonHTMLAttributes<HTMLButtonElement> {
   /* Shows loading spinner */
   loading?: boolean;
   /* Makes button disabled */
@@ -15,7 +15,7 @@ interface IButtonProps extends DefaultProps {
   /* The label to show in the button when loading is true */
   loadingText?: string;
   /* Set the original html type of button */
-  type?: 'button' | 'reset' | 'submit';
+  // type?: 'button' | 'reset' | 'submit';
   /* Adds icon before button label */
   leftIcon?: React.ReactElement;
   /* Adds icon after button label */
@@ -34,7 +34,31 @@ interface IButtonProps extends DefaultProps {
   iconButton?: boolean;
 }
 
-export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement>, IButtonProps {}
+type IButtonProps<C extends React.ElementType> = PolymorphicComponentPropsWithRef<C, ButtonProps>;
+// export type ButtonProps = CommonProps;
+// interface ButtonProps extends CommonProps{}
+
+// type ButtonComponent = <C extends React.ElementType = 'button'>(props: IButtonProps<C>) => React.ReactElement | null;
+
+// export interface ButtonRegularProps extends CommonProps, React.HTMLAttributes<HTMLButtonElement> {
+//   variant?: 'solid' | 'outline' | 'light' | 'ghost';
+//   // ref?: React.RefObject<HTMLButtonElement>;
+// }
+// export interface ButtonLinkProps extends CommonProps, LinkProps {
+//   variant: 'link';
+//   // ref?: React.RefObject<HTMLLinkElement>;
+// }
+
+// // export type IButtonProps = CommonProps extends {variant: 'link'} ? ButtonLinkProps : ButtonRegularProps
+// // export interface IButtonProps extends CommonProps<'link'> ? ButtonRegularProps : ButtonLinkProps {}
+
+// export type IButtonProps = ButtonRegularProps | ButtonLinkProps;
+
+// export interface IButtonProps extends React.HTMLAttributes<HTMLButtonElement>, IButtonProps {}
+
+// const isLink = (props: IButtonProps): props is ButtonLinkProps => {
+//   return props.variant == 'link';
+// };
 
 export const getButtonContent = (props: ButtonProps): JSX.Element => {
   const { loading, loadingText, leftIcon, rightIcon, children } = props;
@@ -50,58 +74,69 @@ export const getButtonContent = (props: ButtonProps): JSX.Element => {
   );
 };
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
-  const {
-    disabled: _disabled,
-    loading,
-    active,
-    type,
-    className,
-    color,
-    variant = 'outline',
-    size = 'md',
-    rounded = false,
-    iconButton,
-    ...rest
-  } = props;
+// type PolymorphicButton = {
+//   (props: ButtonLinkProps): JSX.Element;
+//   (props: ButtonRegularProps): JSX.Element;
+// };
 
-  const disabled = _disabled || loading;
-  const classes = useButtonClass({
-    variant,
-    size,
-    disabled,
-  });
+export const Button = React.forwardRef(
+  <C extends React.ElementType = 'button'>(props: IButtonProps<C>, ref?: PolymorphicRef<C>) => {
+    const {
+      disabled: _disabled,
+      loading,
+      active,
+      type,
+      className,
+      color,
+      variant = 'outline',
+      size = 'md',
+      rounded = false,
+      iconButton,
+      as,
+      ...rest
+    } = props;
+    const Component = as || 'button';
 
-  return variant === 'link' ? (
-    <Link
-      as="button"
-      ref={ref}
-      disabled={disabled}
-      aria-disabled={disabled ? disabled : undefined}
-      data-active={active ? 'true' : undefined}
-      className={cx(className)}
-      {...rest}
-    >
-      {getButtonContent(props)}
-    </Link>
-  ) : (
-    <button
-      ref={ref}
-      disabled={disabled}
-      aria-disabled={disabled ? disabled : undefined}
-      type={type}
-      data-rounded={rounded ? rounded : undefined}
-      data-active={active ? 'true' : undefined}
-      data-color={color ? color : undefined}
-      data-icon={iconButton ? iconButton : undefined}
-      className={cx(classes, className)}
-      {...rest}
-    >
-      {getButtonContent(props)}
-    </button>
-  );
-});
+    const disabled = _disabled || loading;
+    const classes = useButtonClass({
+      variant,
+      size,
+      disabled,
+    });
+
+    return variant == 'link' ? (
+      <Link
+        as="button"
+        ref={ref}
+        disabled={disabled}
+        aria-disabled={disabled ? disabled : undefined}
+        data-active={active ? 'true' : undefined}
+        className={cx(className)}
+        {...rest}
+      >
+        {getButtonContent(props)}
+      </Link>
+    ) : (
+      <Component
+        {...rest}
+        ref={ref}
+        disabled={disabled}
+        aria-disabled={disabled ? disabled : undefined}
+        type={type}
+        data-rounded={rounded ? rounded : undefined}
+        data-active={active ? 'true' : undefined}
+        data-color={color ? color : undefined}
+        data-icon={iconButton ? iconButton : undefined}
+        className={cx(classes, className)}
+      >
+        {getButtonContent(props)}
+      </Component>
+    );
+  }
+);
 
 if (__DEV__) {
   Button.displayName = 'Button';
 }
+
+export default Button;

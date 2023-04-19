@@ -158,3 +158,4 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
 if (__DEV__) {
   SideMenu.displayName = 'Menu';
 }
+export default SideMenu;

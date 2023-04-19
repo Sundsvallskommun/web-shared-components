@@ -1,12 +1,19 @@
 import * as React from 'react';
 
-import { Alert as InternalAlert, AlertProps, AlertCloseButton, AlertCloseButtonProps } from './alert';
+import {
+  Alert as InternalAlert,
+  AlertProps as InternalAlertProps,
+  AlertCloseButton,
+  AlertCloseButtonProps,
+} from './alert';
 
-interface Alert extends React.ForwardRefExoticComponent<AlertProps & React.RefAttributes<HTMLDivElement>> {
+interface AlertProps
+  extends InternalAlertProps,
+    React.ForwardRefExoticComponent<InternalAlertProps & React.RefAttributes<HTMLDivElement>> {
   CloseButton: typeof AlertCloseButton;
 }
 
-const Alert = InternalAlert as Alert;
+const Alert = InternalAlert as AlertProps;
 
 Alert.CloseButton = AlertCloseButton;
 

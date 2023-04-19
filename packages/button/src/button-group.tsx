@@ -1,4 +1,4 @@
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, getValidChildren, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 
@@ -47,3 +47,5 @@ export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>((p
 if (__DEV__) {
   ButtonGroup.displayName = 'ButtonGroup';
 }
+
+export default ButtonGroup;

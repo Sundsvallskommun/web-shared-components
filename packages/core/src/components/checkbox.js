@@ -1,6 +1,6 @@
 const svgToDataUri = require('mini-svg-data-uri');
 
-module.exports = Checkbox = (colors, theme) => ({
+module.exports = Checkbox = (colors) => ({
   '.form-checkbox': {
     //"@apply rounded shadow-sm": {},
     backgroundColor: 'inherit',

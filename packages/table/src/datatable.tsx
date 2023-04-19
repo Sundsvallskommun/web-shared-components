@@ -150,3 +150,5 @@ export const DataTable = React.forwardRef<HTMLTableElement, DataTableProps>((pro
 if (__DEV__) {
   DataTable.displayName = 'DataTable';
 }
+
+export default DataTable;

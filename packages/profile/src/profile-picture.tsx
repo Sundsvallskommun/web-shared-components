@@ -1,4 +1,4 @@
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import React, { cloneElement } from 'react';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import Person3Icon from '@mui/icons-material/Person3';
@@ -41,3 +41,5 @@ export const ProfilePicture = React.forwardRef<HTMLDivElement, ProfilePicturePro
 if (__DEV__) {
   ProfilePicture.displayName = 'ProfilePicture';
 }
+
+export default ProfilePicture;

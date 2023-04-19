@@ -1,6 +1,6 @@
 import { Link, LinkProps } from '@sk-web-gui/link';
 import { cx, getValidChildren, __DEV__ } from '@sk-web-gui/utils';
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import * as React from 'react';
 import { cloneElement } from 'react';
 
@@ -8,7 +8,7 @@ export interface BreadcrumbSeparatorProps extends DefaultProps, React.HTMLAttrib
   children?: React.ReactNode;
 }
 
-const BreadcrumbSeparator = React.forwardRef<HTMLSpanElement, BreadcrumbSeparatorProps>(
+export const BreadcrumbSeparator = React.forwardRef<HTMLSpanElement, BreadcrumbSeparatorProps>(
   ({ className, ...props }, ref) => {
     return <span ref={ref} role="presentation" className={cx('breadcrumb-separator', className)} {...props} />;
   }
@@ -28,7 +28,7 @@ interface BreadcrumbLinkProps extends LinkProps {
 
 export type { BreadcrumbLinkProps };
 
-const BreadcrumbLink = React.forwardRef<any, any>(({ currentPage, ...props }, ref) => {
+export const BreadcrumbLink = React.forwardRef<any, any>(({ currentPage, ...props }, ref) => {
   const Comp = currentPage ? 'span' : Link;
 
   return <Comp ref={ref} aria-current={currentPage ? 'page' : undefined} {...props} />;
@@ -47,7 +47,7 @@ export interface BreadcrumbItemProps extends BreadcrumbProps {
   lastChild?: boolean;
 }
 
-const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProps>((props, ref) => {
+export const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProps>((props, ref) => {
   const { currentPage, separator, lastChild, addSeparator, children, className, ...rest } = props;
 
   const validChildren = getValidChildren(children);
@@ -84,7 +84,7 @@ interface IBreadcrumbProps extends DefaultProps {
 
 export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement>, IBreadcrumbProps {}
 
-const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>((props, ref) => {
+export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>((props, ref) => {
   const { children, addSeparator = true, separator = '/', className, ...rest } = props;
   const validChildren = getValidChildren(children);
   const clones = validChildren.map((child, index) => {
@@ -105,4 +105,5 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>((props, ref) =
 if (__DEV__) {
   Breadcrumb.displayName = 'Breadcrumb';
 }
-export { Breadcrumb, BreadcrumbLink, BreadcrumbItem, BreadcrumbSeparator };
+
+export default Breadcrumb;

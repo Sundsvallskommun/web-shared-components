@@ -1,4 +1,4 @@
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import React from 'react';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import { ProfilePicture, ProfilePictureProps } from './profile-picture';
@@ -46,3 +46,5 @@ export const Profile = React.forwardRef<HTMLDivElement, ProfileProps>((props, re
 if (__DEV__) {
   Profile.displayName = 'Profile picture, name, title';
 }
+
+export default Profile;
