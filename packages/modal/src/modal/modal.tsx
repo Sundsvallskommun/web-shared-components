@@ -91,3 +91,5 @@ export const Modal = React.forwardRef<HTMLDivElement, IModalProps>((props, ref) 
 if (__DEV__) {
   Modal.displayName = 'Modal';
 }
+
+export default Modal;

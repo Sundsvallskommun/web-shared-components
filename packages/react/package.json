@@ -34,8 +34,8 @@
     "lint:types": "tsc --noEmit"
   },
   "devDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "dependencies": {
     "@sk-web-gui/accordion": "0.1.25",
@@ -69,14 +69,13 @@
     "@sk-web-gui/tab-menu": "0.1.6",
     "@sk-web-gui/table": "0.1.30",
     "@sk-web-gui/tag": "0.1.20",
-    "@sk-web-gui/text": "0.1.1",
-    "@sk-web-gui/text-editor": "0.1.4",
     "@sk-web-gui/theme": "0.1.11",
+    "@sk-web-gui/text": "0.1.1",
     "@sk-web-gui/user-menu": "0.1.28",
     "@sk-web-gui/utils": "0.1.5"
   },
   "peerDependencies": {
-    "react": ">=16.8.6",
-    "react-dom": ">=16.8.6"
+    "react": ">=18.2.0",
+    "react-dom": ">=18.2.0"
   }
 }

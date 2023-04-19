@@ -187,3 +187,5 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
 if (__DEV__) {
   ZebraTable.displayName = 'ZebraTable';
 }
+
+export default ZebraTable;

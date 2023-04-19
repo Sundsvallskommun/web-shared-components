@@ -116,3 +116,4 @@ if (__DEV__) {
 }
 
 export const useMessage = createToast(Message);
+export default useMessage;

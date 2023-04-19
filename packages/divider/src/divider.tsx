@@ -1,5 +1,5 @@
 import { cx, __DEV__ } from '@sk-web-gui/utils';
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import * as React from 'react';
 
 interface IDividerProps extends DefaultProps {
@@ -20,3 +20,5 @@ export const Divider = React.forwardRef<HTMLHRElement, DividerProps>(
 if (__DEV__) {
   Divider.displayName = 'Divider';
 }
+
+export default Divider;

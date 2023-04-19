@@ -56,11 +56,11 @@ module.exports = Switch = (colors) => ({
         [`&[data-color="${color}"]`]: {
           [`@apply text-${color}`]: {},
 
-          'input[type=checkbox]:focus + &': {
-            borderColor: `theme('colors.${color}.DEFAULT')`,
-            boxShadow: `0 0 5px theme('colors.${color}.DEFAULT')`,
-            borderWidth: '0.1rem',
-          },
+          // 'input[type=checkbox]:focus + &': {
+          //   borderColor: `${theme(`colors.${color}.DEFAULT`)}`,
+          //   boxShadow: `0 0 5px ${theme(`colors.${color}.DEFAULT`)}`,
+          //   borderWidth: '0.1rem',
+          // },
         },
       }),
       {}

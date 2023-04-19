@@ -1,4 +1,4 @@
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 
@@ -20,3 +20,5 @@ export const FormHelperText = React.forwardRef<HTMLParagraphElement, FormHelperT
 if (__DEV__) {
   FormHelperText.displayName = 'FormHelperText';
 }
+
+export default FormHelperText;

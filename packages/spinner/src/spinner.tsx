@@ -1,4 +1,4 @@
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 
@@ -45,3 +45,5 @@ export const Spinner = React.forwardRef<SVGSVGElement, SpinProps>((props, ref) =
 if (__DEV__) {
   Spinner.displayName = 'Spinner';
 }
+
+export default Spinner;

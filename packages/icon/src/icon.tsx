@@ -1,4 +1,4 @@
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import VisuallyHidden from '@sk-web-gui/visually-hidden';
 import * as React from 'react';
@@ -38,3 +38,5 @@ export const Icon = React.forwardRef<any, IconProps>((props, ref) => {
 if (__DEV__) {
   Icon.displayName = 'Icon';
 }
+
+export default Icon;

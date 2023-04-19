@@ -1,4 +1,4 @@
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import { cx } from '@sk-web-gui/utils';
 import * as React from 'react';
 
@@ -13,3 +13,5 @@ export const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps
     </div>
   );
 });
+
+export default DialogContent;

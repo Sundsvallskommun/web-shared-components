@@ -75,3 +75,5 @@ export const Calendar = React.forwardRef<HTMLElement, CalendarProps>((props, ref
 if (__DEV__) {
   Calendar.displayName = 'Calendar';
 }
+
+export default Calendar;

@@ -1,4 +1,4 @@
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import { __DEV__ } from '@sk-web-gui/utils';
 import { Dialog as D, Transition } from '@headlessui/react';
 import { Button } from '@sk-web-gui/button';
@@ -296,3 +296,5 @@ export function CookieConsent({
 if (__DEV__) {
   CookieConsent.displayName = 'CookieConsent';
 }
+
+export default CookieConsent;

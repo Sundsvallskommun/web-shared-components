@@ -1,8 +1,8 @@
+import { DefaultProps } from '@sk-web-gui/utils';
+import { cx, __DEV__ } from '@sk-web-gui/utils';
+import React, { useEffect, useState } from 'react';
 import KeyboardDoubleArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftOutlined';
 import KeyboardDoubleArrowRightOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowRightOutlined';
-import { DefaultProps } from '@sk-web-gui/theme';
-import { __DEV__, cx } from '@sk-web-gui/utils';
-import React, { useEffect, useState } from 'react';
 import { usePaginationClass } from './styles';
 import { Select } from '@sk-web-gui/forms';
 
@@ -200,3 +200,5 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
 if (__DEV__) {
   Pagination.displayName = 'Pagination';
 }
+
+export default Pagination;

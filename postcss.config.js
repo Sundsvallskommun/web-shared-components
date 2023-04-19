@@ -1,10 +1,27 @@
+import { join } from 'path';
 // If you want to use other PostCSS plugins, see the following:
 // https://tailwindcss.com/docs/using-with-preprocessors
-module.exports = {
-  plugins: {
-    'postcss-import': {},
-    'tailwindcss/nesting': {},
-    tailwindcss: { config: './tailwind.config.js' },
-    autoprefixer: {},
-  },
+// module.exports = {
+//   plugins: {
+//     'postcss-import': {},
+//     'tailwindcss/nesting': {},
+//     tailwindcss: {
+//       config: join(__dirname, 'tailwind.config.js'),
+//     },
+//     // tailwindcss: {},
+//     autoprefixer: {},
+//   },
+// };
+
+export const plugins = {
+  'postcss-import': {},
+  'tailwindcss/nesting': {},
+  // tailwindcss: {
+  //   config: join(__dirname, 'tailwind.config.js'),
+  // },
+  // },
+  tailwindcss: {},
+  autoprefixer: {},
 };
+
+export default plugins;

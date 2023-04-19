@@ -144,6 +144,7 @@ export const ConfirmationDialogContextProvider: React.FC<ConfirmationDialogConte
 const useConfirm = (): DialogContextType => React.useContext(ConfirmationDialogContext);
 
 export { useConfirm, useDialogShow };
+export default useConfirm;
 
 if (__DEV__) {
   Dialog.displayName = 'Confirm';

@@ -1,5 +1,5 @@
 import { toaster, Position } from '@sk-web-gui/toasted-notes';
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import * as React from 'react';
 import { useCallback } from 'react';
 
@@ -88,3 +88,5 @@ export function createToast(Comp: React.ElementType) {
     return notify;
   };
 }
+
+export default createToast;

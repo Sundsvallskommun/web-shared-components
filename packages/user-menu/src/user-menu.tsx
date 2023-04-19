@@ -1,4 +1,4 @@
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 import { Menu } from '@headlessui/react';
@@ -221,3 +221,5 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>((props, 
 if (__DEV__) {
   UserMenu.displayName = 'UserMenu';
 }
+
+export default UserMenu;

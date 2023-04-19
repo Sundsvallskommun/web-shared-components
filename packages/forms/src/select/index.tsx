@@ -1,6 +1,6 @@
 import { Listbox } from '@headlessui/react';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import { Tag } from '@sk-web-gui/react';
+import { Tag } from '@sk-web-gui/tag';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 
@@ -23,20 +23,20 @@ export interface CommonProps extends Omit<InputProps, 'value' | 'onChange'> {
   dropDownIcon?: React.ReactNode;
 }
 
-interface SelectPropsRegular extends Omit<CommonProps, 'onChange'> {
+interface SelectPropsRegular extends CommonProps {
   multiple?: false | undefined;
   value?: OptionValueType;
   onChange: (value: OptionValueType) => void;
 }
-interface SelectPropsMultiple extends Omit<CommonProps, 'onChange'> {
+interface SelectPropsMultiple extends CommonProps {
   multiple: true;
   value?: OptionValueType[];
   onChange: (value: OptionValueType[]) => void;
 }
 
-export type SelectProps = SelectPropsMultiple | SelectPropsRegular;
+export type InternalSelectProps = SelectPropsMultiple | SelectPropsRegular;
 
-const InternalSelect = React.forwardRef<HTMLInputElement, SelectProps>((props, ref) => {
+const InternalSelect = React.forwardRef<HTMLInputElement, InternalSelectProps>((props, ref) => {
   const {
     className,
     listClassName = '',
@@ -175,12 +175,14 @@ if (__DEV__) {
   InternalSelect.displayName = 'Select';
 }
 
-interface Select extends React.ForwardRefExoticComponent<SelectProps & React.RefAttributes<HTMLElement>> {
+interface SelectProps extends React.ForwardRefExoticComponent<InternalSelectProps & React.RefAttributes<HTMLElement>> {
   Option: typeof Option;
 }
 
-const Select = InternalSelect as Select;
+const Select = InternalSelect as SelectProps;
 
 Select.Option = Option;
 
+export type { SelectProps };
 export { Select, Option };
+export default Select;
