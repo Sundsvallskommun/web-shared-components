@@ -1,7 +1,5 @@
-import { FormControl, FormLabel } from '@sk-web-gui/forms';
 import { useState } from 'react';
 import { Pagination } from '../src';
-import React from 'react';
 
 export default {
   title: 'Komponenter/Pagination/Komponent',
@@ -22,12 +20,7 @@ export const Template = ({ ...args }: any) => {
         </button>
       </div>
       <div className="w-full">
-        <Pagination
-          {...args}
-          className="flex justify-between"
-          activePage={paginationPage}
-          changePage={setPaginationPage}
-        />
+        <Pagination {...args} activePage={paginationPage} changePage={setPaginationPage} />
       </div>
     </div>
   );
@@ -126,5 +119,32 @@ Template.argTypes = {
     },
     control: 'text',
     defaultValue: 'Föregående',
+  },
+  fitContainer: {
+    type: { name: 'boolean', required: false },
+    description: 'Stretch pagination to fit container',
+    table: {
+      defaultValue: { summary: 'false' },
+    },
+    control: 'boolean',
+    defaultValue: false,
+  },
+  showConstantPages: {
+    type: { name: 'boolean', required: false },
+    description: 'Always show same number of pages',
+    table: {
+      defaultValue: { summary: 'false' },
+    },
+    control: 'boolean',
+    defaultValue: false,
+  },
+  asSelect: {
+    type: { name: 'boolean', required: false },
+    description: 'Show as Select',
+    table: {
+      defaultValue: { summary: 'false' },
+    },
+    control: 'boolean',
+    defaultValue: false,
   },
 };

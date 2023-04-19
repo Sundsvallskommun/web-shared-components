@@ -1,10 +1,10 @@
-import { DefaultProps } from '@sk-web-gui/theme';
-import { cx, __DEV__ } from '@sk-web-gui/utils';
-import React, { useEffect, useState } from 'react';
 import KeyboardDoubleArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftOutlined';
 import KeyboardDoubleArrowRightOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowRightOutlined';
-
+import { DefaultProps } from '@sk-web-gui/theme';
+import { __DEV__, cx } from '@sk-web-gui/utils';
+import React, { useEffect, useState } from 'react';
 import { usePaginationClass } from './styles';
+import { Select } from '@sk-web-gui/forms';
 
 export interface IPaginationProps extends DefaultProps {
   /* Total amount of pages */
@@ -27,6 +27,12 @@ export interface IPaginationProps extends DefaultProps {
   nextLabel?: string;
   /* Label on previous button */
   prevLabel?: string;
+  /* Stretch width to fit container */
+  fitContainer?: boolean;
+  /* Always show same number of pages */
+  showConstantPages?: boolean;
+  /* Show as select */
+  asSelect?: boolean;
 }
 
 export interface PaginationProps extends React.HTMLAttributes<HTMLDivElement>, IPaginationProps {}
@@ -45,11 +51,15 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
     className,
     nextLabel = 'Nästa',
     prevLabel = 'Föregående',
+    fitContainer = false,
+    showConstantPages,
+    asSelect = false,
     ...rest
   } = props;
 
   const classes = usePaginationClass({
     size,
+    fitContainer,
   });
 
   const minPage = 1;
@@ -60,13 +70,26 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
     }
   };
 
+  const extraEnd = showLast ? 1 : 0;
+  const shownBefore = showConstantPages
+    ? pages - (currentPage + extraEnd) < pagesAfter
+      ? pagesBefore + pagesAfter - (pages - (currentPage + extraEnd))
+      : pagesBefore
+    : pagesBefore;
+  const extraStart = showFirst ? 1 : 0;
+  const shownAfter = showConstantPages
+    ? currentPage - extraStart <= pagesBefore
+      ? pagesAfter + pagesBefore - (currentPage - (extraStart + 1))
+      : pagesAfter
+    : pagesAfter;
+
   const handleClick = (pageNumber: number) => {
     changePage(pageNumber);
     internalHandleChange(pageNumber);
   };
 
   const shouldShowLabel: (idx: number, cP: number, pBaA: number) => boolean = (idx) =>
-    idx !== 0 && idx !== pages - 1 && idx > currentPage - pagesBefore - 2 && idx < currentPage + pagesAfter;
+    idx !== 0 && idx !== pages - 1 && idx > currentPage - shownBefore - 2 && idx < currentPage + shownAfter;
 
   useEffect(() => {
     internalHandleChange(activePage);
@@ -113,42 +136,63 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
     );
   };
 
-  const ellipsis = <span className="pagination-prevNextButton-ellipsis">...</span>;
+  const ellipsis = <span className={cx('pagination-prevNextButton-ellipsis')}>…</span>;
 
   return (
     <nav className={cx(classes, className)} {...rest} aria-label="pagination">
-      <ul className="pagination-list">
-        <li className="inline">
-          {prevNextButton({
-            label: prevLabel,
-            icon: <KeyboardDoubleArrowLeftOutlinedIcon aria-hidden="true" />,
-            triggerNumber: minPage,
-            step: -1,
-            reverse: true,
+      {asSelect ? (
+        <Select
+          size={size}
+          aria-label="Gå till sida"
+          value={{ label: currentPage.toString(), data: currentPage }}
+          onChange={(value) => handleClick(value.data)}
+        >
+          {[...Array(pages)].map((_, idx: number) => (
+            <Select.Option key={`selectPage-${idx}`} value={{ label: (idx + 1).toString(), data: idx + 1 }}>
+              {idx + 1}
+            </Select.Option>
+          ))}
+        </Select>
+      ) : (
+        <ul className="pagination-list">
+          <li className="pagination-list-item prev-next">
+            {prevNextButton({
+              label: prevLabel,
+              icon: <KeyboardDoubleArrowLeftOutlinedIcon aria-hidden="true" />,
+              triggerNumber: minPage,
+              step: -1,
+              reverse: true,
+            })}
+          </li>
+          {(activePage === 1 || showFirst || pagesBefore >= currentPage - 1) && (
+            <li className="pagination-list-item">{pageLabel(1)}</li>
+          )}
+          {currentPage > pagesBefore + 2 && showFirst && <li className="pagination-list-item ellipsis">{ellipsis}</li>}
+          {[...Array(pages)].map((_, idx: number) => {
+            return (
+              shouldShowLabel(idx, currentPage, pagesBefore) && (
+                <li key={`pageLabel-${idx}`} className="pagination-list-item">
+                  {pageLabel(idx + 1)}
+                </li>
+              )
+            );
           })}
-        </li>
-        {(activePage === 1 || showFirst) && <li className="inline">{pageLabel(1)}</li>}
-        {currentPage > pagesBefore + 2 && showFirst && <li className="inline">{ellipsis}</li>}
-        {[...Array(pages)].map((_, idx: number) => {
-          return (
-            shouldShowLabel(idx, currentPage, pagesBefore) && (
-              <li key={`pageLabel-${idx}`} className="inline">
-                {pageLabel(idx + 1)}
-              </li>
-            )
-          );
-        })}
-        {currentPage < pages - pagesAfter - 1 && showLast && <li className="inline">{ellipsis}</li>}
-        {(showLast || activePage === pages) && <li className="inline">{pageLabel(pages)}</li>}
-        <li className="inline">
-          {prevNextButton({
-            label: nextLabel,
-            icon: <KeyboardDoubleArrowRightOutlinedIcon aria-hidden="true" />,
-            triggerNumber: pages,
-            step: 1,
-          })}
-        </li>
-      </ul>
+          {currentPage < pages - pagesAfter - 1 && showLast && (
+            <li className="pagination-list-item ellipsis">{ellipsis}</li>
+          )}
+          {(showLast || activePage === pages || pagesAfter > pages - (currentPage + 1)) && (
+            <li className="pagination-list-item">{pageLabel(pages)}</li>
+          )}
+          <li className="pagination-list-item  prev-next">
+            {prevNextButton({
+              label: nextLabel,
+              icon: <KeyboardDoubleArrowRightOutlinedIcon aria-hidden="true" />,
+              triggerNumber: pages,
+              step: 1,
+            })}
+          </li>
+        </ul>
+      )}
     </nav>
   );
 });
