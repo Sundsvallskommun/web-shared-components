@@ -63,6 +63,10 @@ export const Button = React.forwardRef(
       size = 'md',
       rounded = false,
       iconButton,
+      loadingText,
+      leftIcon,
+      rightIcon,
+      children,
       as,
       ...rest
     } = props;
