@@ -79,5 +79,8 @@
     "vite-plugin-dts": "^2.3.0",
     "vite-tsconfig-paths": "^4.2.0"
   },
+  "dependenciesComments": {
+    "tailwindcss": "Changes in @sk-web-gui/core components wont trigger rebuild of css after 3.2.7"
+  },
   "peerDependencies": {}
 }
