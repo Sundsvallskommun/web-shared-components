@@ -7,6 +7,9 @@ export default {
   title: 'Komponenter/Textfält/Komponent',
   component: Input,
   tags: ['autodocs'],
+  args: {
+    placeholder: 'Sök..',
+  },
 } as Meta;
 
 export const Template = (args: InputProps) => {

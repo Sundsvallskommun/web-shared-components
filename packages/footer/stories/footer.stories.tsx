@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import { Footer, FooterProps } from '../src';
-import { Link } from '@sk-web-gui/react';
+import { Link } from '@sk-web-gui/link';
 
 export default {
   title: 'Komponenter/Footer/Komponent',

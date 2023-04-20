@@ -35,30 +35,6 @@ export interface ButtonProps extends DefaultProps, React.ButtonHTMLAttributes<HT
 }
 
 type IButtonProps<C extends React.ElementType> = PolymorphicComponentPropsWithRef<C, ButtonProps>;
-// export type ButtonProps = CommonProps;
-// interface ButtonProps extends CommonProps{}
-
-// type ButtonComponent = <C extends React.ElementType = 'button'>(props: IButtonProps<C>) => React.ReactElement | null;
-
-// export interface ButtonRegularProps extends CommonProps, React.HTMLAttributes<HTMLButtonElement> {
-//   variant?: 'solid' | 'outline' | 'light' | 'ghost';
-//   // ref?: React.RefObject<HTMLButtonElement>;
-// }
-// export interface ButtonLinkProps extends CommonProps, LinkProps {
-//   variant: 'link';
-//   // ref?: React.RefObject<HTMLLinkElement>;
-// }
-
-// // export type IButtonProps = CommonProps extends {variant: 'link'} ? ButtonLinkProps : ButtonRegularProps
-// // export interface IButtonProps extends CommonProps<'link'> ? ButtonRegularProps : ButtonLinkProps {}
-
-// export type IButtonProps = ButtonRegularProps | ButtonLinkProps;
-
-// export interface IButtonProps extends React.HTMLAttributes<HTMLButtonElement>, IButtonProps {}
-
-// const isLink = (props: IButtonProps): props is ButtonLinkProps => {
-//   return props.variant == 'link';
-// };
 
 export const getButtonContent = (props: ButtonProps): JSX.Element => {
   const { loading, loadingText, leftIcon, rightIcon, children } = props;
@@ -73,11 +49,6 @@ export const getButtonContent = (props: ButtonProps): JSX.Element => {
     </>
   );
 };
-
-// type PolymorphicButton = {
-//   (props: ButtonLinkProps): JSX.Element;
-//   (props: ButtonRegularProps): JSX.Element;
-// };
 
 export const Button = React.forwardRef(
   <C extends React.ElementType = 'button'>(props: IButtonProps<C>, ref?: PolymorphicRef<C>) => {
