@@ -1,12 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
 import { Meta } from '@storybook/react';
-import { IDataObject, IMenuProps, SideMenu } from '../src/side-menu';
+import { IDataObject, IMenuProps, SideMenu, IMenu } from '../src/side-menu';
 import testData from './testData.json';
 import testDataNoPath from './testDataNoPath.json';
 import testDataNoPathDraggable from './testDataNoPathDraggable.json';
 import { Select } from '@sk-web-gui/forms';
-import { IMenu } from '@sk-web-gui/react';
 
 export default {
   title: 'Komponenter/Meny/Sidomeny',

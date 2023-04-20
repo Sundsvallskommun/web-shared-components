@@ -47,8 +47,8 @@ export const Link = React.forwardRef(
   }
 );
 
-// if (__DEV__) {
-//   Link.displayName = 'Link';
-// }
+if (__DEV__) {
+  Link.displayName = 'Link';
+}
 
 export default Link;

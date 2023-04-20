@@ -6,29 +6,6 @@ export default {
   title: 'Komponenter/Brödsmulor/Komponent',
   component: Breadcrumb,
   tags: ['autodocs'],
-  argTypes: {
-    separator: {
-      type: { name: 'string', required: false },
-      description: 'Seperator can be string or JSX',
-      table: {
-        defaultValue: { summary: '/' },
-      },
-      control: 'text',
-    },
-    addSeparator: {
-      type: { name: 'boolean', required: false },
-      description: 'Adds separator',
-      table: {
-        defaultValue: { summary: true },
-      },
-      control: 'boolean',
-    },
-    children: {
-      type: { name: 'string', required: false },
-      description: 'Children, e.g. Breadcrumb.Items',
-      control: 'text',
-    },
-  },
   args: {
     separator: '/',
   },

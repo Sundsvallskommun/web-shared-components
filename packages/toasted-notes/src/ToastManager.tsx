@@ -35,7 +35,7 @@ const defaultState: State = {
 
 type Keys = keyof State;
 
-export default class ToastManager extends React.Component<Props, State> {
+export class ToastManager extends React.Component<Props, State> {
   static idCounter = 0;
 
   state: State = defaultState;
@@ -117,7 +117,7 @@ export default class ToastManager extends React.Component<Props, State> {
   };
 
   getStyle = (position: PositionsType) => {
-    let style: React.CSSProperties = {
+    const style: React.CSSProperties = {
       maxWidth: `${window.innerWidth < 560 ? window.innerWidth : '560'}px`,
       position: 'fixed',
       zIndex: 5500,
@@ -162,3 +162,5 @@ export default class ToastManager extends React.Component<Props, State> {
     });
   }
 }
+
+export default ToastManager;

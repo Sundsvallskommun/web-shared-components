@@ -1,5 +1,3 @@
-// import core from './packages/core';
-
 module.exports = {
   content: [
     './packages/*/src/**/*.{ts,tsx}',
@@ -12,7 +10,5 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/forms'), require('@sk-web-gui/core')],
+  plugins: [require('@tailwindcss/forms'), require('./packages/core')],
 };
-
-// export default config;
