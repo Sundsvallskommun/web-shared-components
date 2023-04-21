@@ -217,3 +217,4 @@ export const MenuItem = (props: IMenuExtended) => {
     </div>
   );
 };
+export default MenuItem;

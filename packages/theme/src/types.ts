@@ -54,8 +54,4 @@ export interface GuiTheme {
   readonly config: Record<string, unknown>;
 }
 
-export interface DefaultProps {
-  className?: string;
-}
-
 export type GuiThemeOverride = DeepPartial<GuiTheme>;

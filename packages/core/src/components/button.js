@@ -9,6 +9,8 @@ function buttonSolid(colors) {
       /* keyboard active */
       '&.active': {
         '@apply text-white bg-hover border-primary-active': {},
+        /* dark */
+        '@apply dark:border-hover dark:bg-neutral-600': {},
       },
       /* focus */
       '@apply focus-visible:z-base': {},
@@ -22,10 +24,6 @@ function buttonSolid(colors) {
       '@apply dark:text-neutral-100 dark:bg-neutral-700': {},
       /* dark hover */
       '@apply dark:hover:border-hover dark:hover:bg-neutral-600': {},
-      /* dark keyboard active */
-      '&.active': {
-        '@apply dark:border-hover dark:bg-neutral-600': {},
-      },
       /* dark focus */
       '@apply dark:focus-visible:border-primary-500': {},
       /* dark active */
@@ -97,6 +95,8 @@ function buttonOutline(colors) {
       /* keyboard active */
       '&.active': {
         '@apply text-white bg-primary-active border-primary-active': {},
+        /* dark keyboard active */
+        '@apply dark:border-neutral-300 dark:bg-neutral-700': {},
       },
       /* focus */
       '@apply focus-visible:z-base': {},
@@ -109,10 +109,6 @@ function buttonOutline(colors) {
       '@apply dark:text-neutral-100 dark:bg-transparent': {},
       /* dark hover */
       '@apply dark:hover:border-neutral-300 dark:hover:bg-neutral-700': {},
-      /* dark keyboard active */
-      '&.active': {
-        '@apply dark:border-neutral-300 dark:bg-neutral-700': {},
-      },
       /* dark focus */
       '@apply dark:focus-visible:border-primary-500': {},
       /* dark active */
@@ -129,6 +125,10 @@ function buttonOutline(colors) {
             /* keyboard active */
             '&.active': {
               [`@apply text-white bg-${color}-active border-${color}-active`]: {},
+
+              /* dark keyboard active */
+              [`@apply dark:bg-${color}-200`]: {},
+              [`@apply dark:bg-opacity-15`]: {},
             },
             /* focus */
             [`@apply focus-visible:border-${color}-500`]: {},
@@ -142,11 +142,6 @@ function buttonOutline(colors) {
             /* dark hover */
             [`@apply dark:hover:bg-${color}-200`]: {},
             [`@apply dark:hover:bg-opacity-15`]: {},
-            /* dark keyboard active */
-            '&.active': {
-              [`@apply dark:bg-${color}-200`]: {},
-              [`@apply dark:bg-opacity-15`]: {},
-            },
             /* dark focus */
             [`@apply dark:focus-visible:border-${color}-500`]: {},
             [`@apply dark:focus-visible:ring-${color}-500`]: {},
@@ -335,35 +330,6 @@ module.exports = Button = (colors) => ({
       fontSize: 'inherit',
     },
 
-    '&[data-icon=true]': {
-      '@apply p-0': {},
-      "&[data-rounded='true']": {
-        '@apply rounded-full': {},
-      },
-      '&.btn-sm': {
-        minWidth: '4rem',
-        maxWidth: '4rem',
-      },
-
-      '&.btn-md': {
-        minWidth: '4.4rem',
-        maxWidth: '4.4rem',
-      },
-
-      '&.btn-lg': {
-        minWidth: '4.8rem',
-        maxWidth: '4.8rem',
-      },
-      '.btn-has-icon': {
-        '&-left .MuiSvgIcon-root': {
-          '@apply mr-0': {},
-        },
-        '&-right .MuiSvgIcon-root': {
-          '@apply ml-0': {},
-        },
-      },
-    },
-
     // State
 
     '&-disabled': {
@@ -389,6 +355,34 @@ module.exports = Button = (colors) => ({
     },
     '&-right .MuiSvgIcon-root': {
       '@apply ml-sm': {},
+    },
+  },
+  '[data-icon=true]': {
+    '@apply p-0': {},
+    "&[data-rounded='true']": {
+      '@apply rounded-full': {},
+    },
+    '&.btn-sm': {
+      minWidth: '4rem',
+      maxWidth: '4rem',
+    },
+
+    '&.btn-md': {
+      minWidth: '4.4rem',
+      maxWidth: '4.4rem',
+    },
+
+    '&.btn-lg': {
+      minWidth: '4.8rem',
+      maxWidth: '4.8rem',
+    },
+    '.btn-has-icon': {
+      '&-left .MuiSvgIcon-root': {
+        '@apply mr-0': {},
+      },
+      '&-right .MuiSvgIcon-root': {
+        '@apply ml-0': {},
+      },
     },
   },
 });

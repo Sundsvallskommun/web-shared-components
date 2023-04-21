@@ -17,10 +17,6 @@ module.exports = Calendar = () => ({
     '@apply border-solid border border-transparent focus:text-transparent hover:text-transparent focus:bg-transparent hover:bg-transparent focus:border-primary hover:border-primary':
       {},
   },
-  '.MuiCalendarPicker-root > div:first-of-type .MuiButtonBase-root': {
-    '@apply border-solid border border-transparent focus:text-transparent hover:text-transparent focus:bg-transparent hover:bg-transparent focus:border-primary hover:border-primary':
-      {},
-  },
   // Arrow spacer
   '.MuiCalendarPicker-root .MuiPickersArrowSwitcher-spacer': {
     '@apply w-11': {},

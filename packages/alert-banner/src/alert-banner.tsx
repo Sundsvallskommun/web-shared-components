@@ -4,7 +4,7 @@ import React from 'react';
 import { __DEV__ } from '@sk-web-gui/utils';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-interface AlertBannerProps {
+export interface AlertBannerProps {
   children?: React.ReactNode;
   className?: string;
   /** For example a max-width to match site content max-width */
@@ -16,8 +16,8 @@ interface AlertBannerProps {
   showClose?: boolean;
   fromDate?: Date;
   toDate?: Date;
-  openAriaLabel?: 'Öppna meddelandet';
-  closeAriaLabel?: 'Stäng meddelandet';
+  openAriaLabel?: string;
+  closeAriaLabel?: string;
   dropDownIcon?: React.ReactNode;
 }
 
@@ -30,17 +30,17 @@ export const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>((p
     contentType = 'fold',
     severity = 'info',
     showClose = true,
-    openAriaLabel,
-    closeAriaLabel,
+    openAriaLabel = 'Öppna meddelandet',
+    closeAriaLabel = 'Stäng meddelandet',
     fromDate,
     toDate,
     dropDownIcon,
   } = props;
 
   const localstorageKey = 'alert-banner-is-open';
-  const [open, setOpen] = useLocalStorageValue(localstorageKey, true, {
-    storeDefaultValue: true,
-    initializeWithStorageValue: true,
+  const { value: open, set: setOpen } = useLocalStorageValue(localstorageKey, {
+    defaultValue: true,
+    initializeWithValue: true,
   });
 
   if (fromDate && toDate) {
@@ -76,7 +76,7 @@ export const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>((p
       iconColor = 'text-info';
   }
 
-  const handleOnClose = (e: React.BaseSyntheticEvent) => {
+  const handleOnClose = () => {
     setOpen((val) => !val);
   };
 
@@ -90,9 +90,17 @@ export const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>((p
             !open ? '!py-[0px] !px-sm max-h-0 overflow-hidden' : `${bgColor} max-h-fit`
           } `}
           onClick={!open ? handleOnClose : undefined}
-          aria-expanded={open}
+          onKeyDown={
+            !open
+              ? (e) => {
+                  if (e.code == 'Space' || e.code == 'Enter') handleOnClose();
+                }
+              : undefined
+          }
+          aria-expanded={!open ? false : undefined}
           role={!open ? 'button' : undefined}
           aria-label={!open ? openAriaLabel : undefined}
+          tabIndex={!open ? 0 : undefined}
         >
           <div className={`${contentClassName} alert-banner-content`}>
             <div className="alert-banner-content-wrapper">
@@ -108,7 +116,7 @@ export const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>((p
             {showClose && (
               <button
                 className={`${open ? 'alert-banner-close' : 'hidden'}`}
-                aria-label={open ? openAriaLabel : closeAriaLabel}
+                aria-label={open ? closeAriaLabel : openAriaLabel}
                 onClick={handleOnClose}
               >
                 <div className={`alert-banner-close-icon ${open ? 'open rotate-180' : ''}`}>
@@ -131,9 +139,17 @@ export const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>((p
         <div
           className={`${className} alert-banner transition-height duration-300 ${bgColor} ${!open ? '!py-[2px]' : ''} `}
           onClick={!open ? handleOnClose : undefined}
-          aria-expanded={open}
+          onKeyDown={
+            !open
+              ? (e) => {
+                  if (e.code == 'Space' || e.code == 'Enter') handleOnClose();
+                }
+              : undefined
+          }
+          aria-expanded={!open ? false : undefined}
           role={!open ? 'button' : undefined}
           aria-label={!open ? openAriaLabel : undefined}
+          tabIndex={!open ? 0 : undefined}
         >
           <div className={`${contentClassName} alert-banner-content transition-all`}>
             <div className="alert-banner-content-wrapper">
@@ -162,9 +178,17 @@ export const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>((p
         <div
           className={`${className} alert-banner transition-height duration-300 ${bgColor} ${!open ? '!py-[2px]' : ''} `}
           onClick={!open ? handleOnClose : undefined}
-          aria-expanded={open}
+          onKeyDown={
+            !open
+              ? (e) => {
+                  if (e.code == 'Space' || e.code == 'Enter') handleOnClose();
+                }
+              : undefined
+          }
+          aria-expanded={!open ? false : undefined}
           role={!open ? 'button' : undefined}
           aria-label={!open ? openAriaLabel : undefined}
+          tabIndex={!open ? 0 : undefined}
         >
           <div className={`${contentClassName} alert-banner-content transition-all`}>
             <div className="alert-banner-content-wrapper">
@@ -195,3 +219,5 @@ export const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>((p
 if (__DEV__) {
   AlertBanner.displayName = 'AlertBanner';
 }
+
+export default AlertBanner;

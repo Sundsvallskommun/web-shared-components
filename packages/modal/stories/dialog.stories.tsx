@@ -7,9 +7,7 @@ import { Dialog } from '../src/dialog';
 export default {
   title: 'Komponenter/Modal/Komponent/Dialog',
   component: Dialog,
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
+  tags: ['autodocs'],
 } as Meta;
 
 const TestComponent: React.FC<{ onClose: (data: any) => void }> = ({ onClose }) => {
@@ -62,54 +60,3 @@ export const Template = ({ ...args }: any) => {
 };
 
 Template.storyName = 'Dialog';
-
-Template.argTypes = {
-  show: {
-    type: {
-      name: 'boolean',
-      required: true,
-    },
-    description: 'Show or hide dialog',
-    defaultValue: false,
-  },
-  onClose: {
-    type: {
-      name: 'function',
-      required: true,
-    },
-    description: 'Callback function for closing dialog',
-    defaultValue: null,
-  },
-  label: {
-    type: {
-      name: 'string',
-      required: false,
-    },
-    description: 'Label of dialog',
-    defaultValue: 'Dialog label',
-  },
-  className: {
-    type: {
-      name: 'string',
-      required: false,
-    },
-    description: 'Extra className',
-    defaultValue: '',
-  },
-  hideClosebutton: {
-    type: {
-      name: 'boolean',
-      required: false,
-    },
-    description: 'If you should hide the close button in the corner',
-    defaultValue: true,
-  },
-  disableCloseOutside: {
-    type: {
-      name: 'boolean',
-      required: false,
-    },
-    description: 'Disable close on click outside of modal',
-    defaultValue: true,
-  },
-};

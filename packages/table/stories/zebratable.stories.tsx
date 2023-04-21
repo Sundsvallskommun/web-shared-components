@@ -5,9 +5,7 @@ import { ZebraTable, ZebraTableColumn, ZebraTableHeader, ZebraTableProps } from 
 export default {
   title: 'Komponenter/Tabeller/ZebraTable',
   component: ZebraTable,
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
+  tags: ['autodocs'],
 } as Meta;
 
 const ongoingCaseLabels: any = [
@@ -92,6 +90,7 @@ const rows: ZebraTableColumn[][] = ongoingCases.data.map((r: any, idx: number) =
 
 export const Template = (args: ZebraTableProps) => (
   <ZebraTable
+    {...args}
     headers={headers}
     rows={[
       ...rows,
@@ -114,49 +113,8 @@ export const Template = (args: ZebraTableProps) => (
       ...rows,
     ]}
     defaultSort={{ idx: 1, sortMode: false }}
-    tableSortable={true}
     sortHandler={() => console.log('sort')}
-    {...args}
   />
 );
-
-Template.argTypes = {
-  captionTitle: {
-    type: { name: 'string', required: false },
-    description: 'Sets caption title for screen readers',
-    table: {
-      defaultValue: { summary: '' },
-    },
-    control: 'text',
-    defaultValue: '',
-  },
-  captionBody: {
-    type: { name: 'string', required: false },
-    description: 'Sets caption body for screen readers',
-    table: {
-      defaultValue: { summary: '' },
-    },
-    control: 'text',
-    defaultValue: '',
-  },
-  summary: {
-    type: { name: 'string', required: false },
-    description: 'Sets summary attribute on table for screen readers',
-    table: {
-      defaultValue: { summary: '' },
-    },
-    control: 'text',
-    defaultValue: '',
-  },
-  tableSortable: {
-    type: { name: 'string', required: false },
-    description: 'Sets table to be sortable',
-    table: {
-      defaultValue: { summary: 'true' },
-    },
-    control: 'boolean',
-    defaultValue: 'true',
-  },
-};
 
 Template.story = { name: 'ZebraTable' };

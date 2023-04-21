@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, TextProps } from '../src';
+import { Meta } from '@storybook/react';
 import CloseIcon from '@mui/icons-material/Close';
 import { Button } from '@sk-web-gui/button';
 const text =
@@ -7,7 +8,8 @@ const text =
 export default {
   title: 'WIP/Komponenter/Text/Komponent',
   component: Text,
-};
+  tags: ['autodocs'],
+} as Meta;
 
 export const Template = (args: TextProps) => (
   <Text {...args}>
@@ -16,26 +18,5 @@ export const Template = (args: TextProps) => (
     <Button iconButton rounded leftIcon={<CloseIcon />} />
   </Text>
 );
-
-Template.argTypes = {
-  urlAsLink: {
-    type: { name: 'boolean', required: false },
-    description: 'If urls should be clickable links',
-    table: {
-      defaultValue: { summary: 'true' },
-    },
-    control: 'boolean',
-    defaultValue: true,
-  },
-  externalLinks: {
-    type: { name: 'boolean', required: false },
-    description: 'If links should be external',
-    table: {
-      defaultValue: { summary: 'false' },
-    },
-    control: 'boolean',
-    defaultValue: false,
-  },
-};
 
 Template.storyName = 'Text';

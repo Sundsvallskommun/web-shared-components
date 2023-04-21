@@ -1,4 +1,4 @@
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 
@@ -25,7 +25,7 @@ export interface IInputProps<T = HTMLInputElement> extends DefaultProps {
    */
   as?: React.ElementType;
   /** */
-  type?: string;
+  type?: React.InputHTMLAttributes<T>['type'];
   /**
    * A11y: A label that describes the input
    */
@@ -35,9 +35,15 @@ export interface IInputProps<T = HTMLInputElement> extends DefaultProps {
    */
   'aria-describedby'?: string;
   /**
+   * A11y: describes the type of autocompletion
+   */
+  'aria-autocomplete'?: React.AriaAttributes['aria-autocomplete'];
+  /**
    * Border-radius is rounded
    */
   rounded?: boolean;
+  placeholder?: React.InputHTMLAttributes<T>['placeholder'];
+  value?: string;
 }
 
 export type OmittedTypes =
@@ -49,13 +55,17 @@ export type OmittedTypes =
   | 'readOnly'
   | 'nonce'
   | 'onResize'
-  | 'onResizeCapture';
+  | 'onResizeCapture'
+  | 'value';
 
-export type InputHTMLAttributes = Omit<React.InputHTMLAttributes<HTMLInputElement>, OmittedTypes>;
+// export type InputHTMLAttributes = Omit<React.InputHTMLAttributes<HTMLInputElement>, OmittedTypes>;
 
-export type InputProps<T = HTMLElement> = IInputProps & InputHTMLAttributes & React.RefAttributes<T>;
+export interface InputProps
+  extends IInputProps,
+    Omit<React.InputHTMLAttributes<HTMLInputElement>, OmittedTypes>,
+    React.RefAttributes<HTMLInputElement> {}
 
-export const Input = React.forwardRef<HTMLElement, InputProps>((props, ref) => {
+export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
     size = 'md',
     variant = 'outline',

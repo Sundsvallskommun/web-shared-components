@@ -1,6 +1,7 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 import { GuiProvider } from '../../theme';
 import { Breadcrumb } from '../src';
+import { ComponentPreview } from '../../../.storybook/preview';
 
 <Meta title="Komponenter/Brödsmulor/Översikt" />
 
@@ -26,18 +27,18 @@ Brödsmulor ska inte vara den enda vägen för en användare att navigera utan b
 
 ### Med bakgrund
 
-<GuiProvider>
+<ComponentPreview>
   <div className="p-24 flex flex-auto flex-col items-center" style={{ backgroundColor: '#ffffff' }}>
     <Template />
   </div>
-</GuiProvider>
+</ComponentPreview>
 
 ### Utan bakgrund
 
-<GuiProvider>
+<ComponentPreview>
   <div className="p-24 flex flex-auto flex-col items-center">
     <Template />
   </div>
-</GuiProvider>
+</ComponentPreview>
 
 </div>

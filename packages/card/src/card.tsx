@@ -1,5 +1,5 @@
 // import { Spinner } from "@sk-web-gui/spinner";
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import { Link, LinkProps } from '@sk-web-gui/link';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
@@ -133,7 +133,7 @@ if (__DEV__) {
 
 // NOTE: Card link component
 
-export const CardLink = React.forwardRef<unknown, LinkProps>((props, ref) => {
+export const CardLink = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
   const { children, external, className, ...rest } = props;
 
   return (
@@ -146,3 +146,5 @@ export const CardLink = React.forwardRef<unknown, LinkProps>((props, ref) => {
 if (__DEV__) {
   CardLink.displayName = 'CardLink';
 }
+
+export default Card;

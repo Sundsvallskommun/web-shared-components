@@ -1,9 +1,7 @@
+import React, { useRef } from 'react';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
-import { DefaultProps } from '@sk-web-gui/theme';
-import { cx, __DEV__ } from '@sk-web-gui/utils';
-import * as React from 'react';
-import { useRef } from 'react';
+import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 
 import { useAccordionClass } from './styles';
 
@@ -125,3 +123,5 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
 if (__DEV__) {
   Accordion.displayName = 'Accordion';
 }
+
+export default Accordion;

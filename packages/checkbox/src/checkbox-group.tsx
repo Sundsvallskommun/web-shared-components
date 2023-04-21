@@ -1,5 +1,5 @@
 import { useId } from '@reach/auto-id';
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, getValidChildren, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 import { cloneElement, useRef, useState } from 'react';

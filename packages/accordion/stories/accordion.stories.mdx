@@ -1,6 +1,6 @@
-import { Canvas, Meta, Story, Preview } from '@storybook/addon-docs';
-import { GuiProvider } from '../../theme';
+import { Meta, Story } from '@storybook/addon-docs';
 import { Accordion } from '../src/accordion.tsx';
+import { ComponentPreview } from '../../../.storybook/preview';
 
 <Meta title="Komponenter/Accordions/Översikt" />
 
@@ -12,7 +12,7 @@ Använd en tydlig och sammanfattande rubrik så att användaren förstår vilket
 
 **Icke utfälld, variant solid**
 
-<GuiProvider>
+<ComponentPreview>
   <Accordion accordionTitle="Sök skolskjuts innan den 30 april">
     <p>
       Har du barn som är i behov av skolskjuts måste du ansöka innan den 30 april inför hösten 2021. Detta gäller elever
@@ -20,11 +20,11 @@ Använd en tydlig och sammanfattande rubrik så att användaren förstår vilket
     </p>
     <p>Vilka regler som gäller kring skolskjuts hittar du på sidan om skolsjuts.</p>
   </Accordion>
-</GuiProvider>
+</ComponentPreview>
 
 **Icke utfälld, variant outline**
 
-<GuiProvider>
+<ComponentPreview>
   <Accordion
     variant="outline"
     accordionTitle="Sök skolskjuts innan den 30 april"
@@ -36,11 +36,11 @@ Använd en tydlig och sammanfattande rubrik så att användaren förstår vilket
     </p>
     <p>Vilka regler som gäller kring skolskjuts hittar du på sidan om skolsjuts.</p>
   </Accordion>
-</GuiProvider>
+</ComponentPreview>
 
 **Utfälld, variant solid**
 
-<GuiProvider>
+<ComponentPreview>
   <Accordion accordionTitle="Sök skolskjuts innan den 30 april" initalOpen={true}>
     <p>
       Har du barn som är i behov av skolskjuts måste du ansöka innan den 30 april inför hösten 2021. Detta gäller elever
@@ -48,11 +48,11 @@ Använd en tydlig och sammanfattande rubrik så att användaren förstår vilket
     </p>
     <p>Vilka regler som gäller kring skolskjuts hittar du på sidan om skolsjuts.</p>
   </Accordion>
-</GuiProvider>
+</ComponentPreview>
 
 **Utfälld, variant outline**
 
-<GuiProvider>
+<ComponentPreview>
   <Accordion
     variant="outline"
     accordionTitle="Sök skolskjuts innan den 30 april"
@@ -65,4 +65,4 @@ Använd en tydlig och sammanfattande rubrik så att användaren förstår vilket
     </p>
     <p>Vilka regler som gäller kring skolskjuts hittar du på sidan om skolsjuts.</p>
   </Accordion>
-</GuiProvider>
+</ComponentPreview>

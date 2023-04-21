@@ -1,23 +1,29 @@
 import React, { useState } from 'react';
 import { Meta } from '@storybook/react';
 import { Accordion, AccordionProps } from '../src';
-import { Button, cx, FormControl, FormLabel, Select } from '@sk-web-gui/react';
+import { FormControl, FormLabel, Select } from '@sk-web-gui/forms';
+import { Button } from '@sk-web-gui/button';
+import { cx } from '@sk-web-gui/utils';
 
 export default {
   title: 'Komponenter/Accordions/Komponent',
   component: Accordion,
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
+  tags: ['autodocs'],
 } as Meta;
 
 export const Template = (args: AccordionProps) => {
   const [extraContent, setExtraContent] = useState(false);
   const [extraExtraContent, setExtraExtraContent] = useState(false);
 
+  args = {
+    ...args,
+    accordionTitle: args?.accordionTitle ? args.accordionTitle : 'En vanlig fråga',
+    accordionSubTitle: args?.accordionSubTitle ? args.accordionSubTitle : 'En vanlig rubrik',
+  };
+
   return (
     <>
-      <Accordion {...args} color="yellow">
+      <Accordion {...args}>
         <h4>Lorem Ipsum</h4>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero placeat eveniet quas nulla saepe minus
@@ -26,7 +32,7 @@ export const Template = (args: AccordionProps) => {
         <form>
           <FormControl id="priority">
             <FormLabel>
-              <Select onChange={() => {}} placeholder="Välj">
+              <Select onChange={() => ({})} placeholder="Välj">
                 <option
                   className={cx(
                     `cursor-pointer select-none relative py-4 pl-10 pr-4
@@ -143,30 +149,4 @@ export const Template = (args: AccordionProps) => {
   );
 };
 
-Template.argTypes = {
-  accordionTitle: { control: 'text', defaultValue: 'En vanlig fråga' },
-  accordionSubTitle: { control: 'text', defaultValue: 'En vanlig underrubrik' },
-  initalOpen: { control: 'boolean', defaultValue: false },
-  variant: {
-    type: { name: 'string', required: false },
-    description: 'Sets variant',
-    table: {
-      defaultValue: { summary: 'solid' },
-    },
-    options: ['solid', 'outline', 'alert'],
-    control: 'select',
-    defaultValue: 'solid',
-  },
-  noMargin: { control: 'boolean', defaultValue: false },
-  disabled: {
-    type: { name: 'string', required: false },
-    description: 'Sets disabled',
-    table: {
-      defaultValue: { summary: 'false' },
-    },
-    control: 'boolean',
-    defaultValue: false,
-  },
-};
-
-Template.story = { name: 'Accordion' };
+Template.storyName = 'Accordion';

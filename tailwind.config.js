@@ -1,23 +1,14 @@
-// const colors = require("tailwindcss/colors");
-/* eslint @typescript-eslint/no-var-requires: "off" */
 module.exports = {
-  mode: 'jit',
   content: [
-    './public/**/*.html',
-    './packages/*/src/**/*.{js,jsx,ts,tsx}',
-    './packages/*/stories/**/*.{js,jsx,ts,tsx,mdx}',
-    './.storybook/stories/**/*.{js,jsx,ts,tsx,mdx}',
-    './.storybook/components/**/*.{js,jsx,ts,tsx,mdx}',
+    './packages/*/src/**/*.{ts,tsx}',
+    './packages/*/stories/**/*.{tsx,mdx}',
+    './.storybook/*.{tsx,mdx}',
+    './.storybook/stories/*.{tsx,mdx}',
+    './.storybook/components/*.{tsx,mdx}',
   ],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {},
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-    require('./packages/core')({
-      colors: [],
-      cssBase: true,
-    }),
-  ],
+  plugins: [require('@tailwindcss/forms'), require('./packages/core')],
 };

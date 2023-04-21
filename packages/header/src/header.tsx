@@ -1,7 +1,6 @@
-import { DefaultProps } from '@sk-web-gui/theme';
-import { Link } from '@sk-web-gui/react';
-import { cx, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
+import { Link } from '@sk-web-gui/link';
+import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 
 export interface HeaderProps extends DefaultProps {
   /* Title for main page */
@@ -26,7 +25,7 @@ export interface HeaderProps extends DefaultProps {
   userMenuClasses?: string;
 }
 
-export const Header = React.forwardRef<any, HeaderProps>((props, ref) => {
+export const Header = React.forwardRef<HTMLDivElement, HeaderProps>((props, ref) => {
   const {
     title,
     subtitle,
@@ -236,3 +235,5 @@ export const Header = React.forwardRef<any, HeaderProps>((props, ref) => {
 if (__DEV__) {
   Header.displayName = 'Header';
 }
+
+export default Header;

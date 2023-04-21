@@ -1,4 +1,4 @@
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import { __DEV__ } from '@sk-web-gui/utils';
 import { Dialog as D, Transition } from '@headlessui/react';
 import { Button } from '@sk-web-gui/button';
@@ -9,8 +9,6 @@ import * as React from 'react';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 export const defaultCookieConsentName = 'SKCookieConsent';
-
-import { useCookieConsentClass } from './styles';
 
 export interface ConsentCookie {
   optional: boolean;
@@ -55,7 +53,7 @@ export function getCheckableCookies(cookies: ConsentCookie[]): CheckableConsentC
   );
 }
 
-interface CookieConsentProps extends DefaultProps {
+interface ICookieConsentProps extends DefaultProps {
   isOpen?: boolean;
   // eslint-disable-next-line no-unused-vars
   onConsent: (cookies: ConsentCookie[]) => void;
@@ -63,14 +61,12 @@ interface CookieConsentProps extends DefaultProps {
   onDecline?: () => void;
   cookies: ConsentCookie[];
   title: string;
-  body: any;
+  body: React.ReactNode;
   resetConsentOnInit: boolean;
   options?: CookieSetOptions;
 }
 
-/* export interface CookieConsentProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    ICookieConsentProps {} */
+export interface CookieConsentProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>, ICookieConsentProps {}
 
 export function CookieConsent({
   title,
@@ -300,3 +296,5 @@ export function CookieConsent({
 if (__DEV__) {
   CookieConsent.displayName = 'CookieConsent';
 }
+
+export default CookieConsent;

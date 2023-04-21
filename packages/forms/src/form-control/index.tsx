@@ -1,5 +1,5 @@
 import { useId } from '@reach/auto-id';
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 
@@ -28,8 +28,6 @@ interface IFormControlProps extends DefaultProps, UseFormControlProps {
 
 export interface FormControlProps extends React.HTMLAttributes<HTMLDivElement>, IFormControlProps {}
 
-interface FormControlContext extends UseFormControlProps {}
-
 export const useFormControl = (props: UseFormControlProps & { [key: string]: any }): UseFormControlData => {
   const context = useFormControlContext();
   if (!context) {
@@ -50,7 +48,7 @@ export const useFormControl = (props: UseFormControlProps & { [key: string]: any
   }, {});
 };
 
-const FormControlContext = React.createContext<(FormControlContext & { [key: string]: any }) | undefined>(undefined);
+const FormControlContext = React.createContext<(UseFormControlProps & { [key: string]: any }) | undefined>(undefined);
 
 const useFormControlContext = () => React.useContext(FormControlContext);
 
@@ -87,3 +85,5 @@ export const FormControl = React.forwardRef<HTMLDivElement, FormControlProps>((p
 if (__DEV__) {
   FormControl.displayName = 'FormGroup';
 }
+
+export default FormControl;

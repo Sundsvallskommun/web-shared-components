@@ -1,4 +1,4 @@
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 
@@ -17,7 +17,7 @@ export interface FooterProps extends DefaultProps {
   wrapperClasses?: string;
 }
 
-export const Footer = React.forwardRef<any, FooterProps>((props, ref) => {
+export const Footer = React.forwardRef<HTMLDivElement, FooterProps>((props, ref) => {
   const {
     color = 'primary',
     bottomLinksColor = 'gray-middle',
@@ -47,3 +47,5 @@ export const Footer = React.forwardRef<any, FooterProps>((props, ref) => {
 if (__DEV__) {
   Footer.displayName = 'Footer';
 }
+
+export default Footer;

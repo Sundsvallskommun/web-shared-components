@@ -1,6 +1,6 @@
 import { useFormControl } from '@sk-web-gui/forms';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import * as React from 'react';
 
 import { useRadioClass, useRadioLabelClass } from './styles';

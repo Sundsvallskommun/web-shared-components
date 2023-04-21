@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { Meta } from '@storybook/react';
-import DropdownFilter from '../src/dropdown-filter';
+import DropdownFilter, { DropdownFilterProps, IFilterData } from '../src/dropdown-filter';
 
 export default {
   title: 'Komponenter/Dropdown/DropdownFilter',
   component: DropdownFilter,
-  parameters: { controls: { hideNoControlsWarning: true } },
+  tags: ['autodocs'],
+  args: {
+    label: 'Label',
+  },
 } as Meta;
 
-export const Template = (args: any) => {
+export const Template = (args: DropdownFilterProps) => {
   const cleanState = [
     {
       id: 1,
@@ -45,7 +48,7 @@ export const Template = (args: any) => {
     },
   ];
 
-  const [filterData, setFilterData] = useState(cleanState);
+  const [filterData, setFilterData] = useState<IFilterData[]>(cleanState);
 
   return (
     <div style={{ minHeight: 300 }}>
@@ -55,24 +58,3 @@ export const Template = (args: any) => {
 };
 
 Template.storyName = 'DropdownFilter';
-
-Template.argTypes = {
-  label: {
-    type: {
-      name: 'string',
-      required: false,
-    },
-    description: 'Label',
-    defaultValue: 'Filter label',
-  },
-  size: {
-    type: { name: 'string', required: false },
-    description: 'Sets size',
-    table: {
-      defaultValue: { summary: 'md' },
-    },
-    options: ['sm', 'md', 'lg'],
-    control: 'select',
-    defaultValue: 'md',
-  },
-};

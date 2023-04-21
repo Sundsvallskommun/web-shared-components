@@ -1,4 +1,4 @@
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, getValidChildren, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 
@@ -96,3 +96,5 @@ export const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>((pro
 if (__DEV__) {
   InputGroup.displayName = 'InputGroup';
 }
+
+export default InputGroup;

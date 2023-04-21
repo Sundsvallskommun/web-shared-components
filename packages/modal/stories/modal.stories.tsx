@@ -5,9 +5,7 @@ import { Modal } from '../src/modal/modal';
 export default {
   title: 'Komponenter/Modal/Komponent',
   component: Modal,
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
+  tags: ['autodocs'],
 } as Meta;
 
 const TestComponent = () => {
@@ -43,54 +41,3 @@ export const Template = ({ ...args }: any) => {
 };
 
 Template.storyName = 'Modal';
-
-Template.argTypes = {
-  show: {
-    type: {
-      name: 'boolean',
-      required: true,
-    },
-    description: 'Show or hide modal',
-    defaultValue: false,
-  },
-  onClose: {
-    type: {
-      name: 'function',
-      required: true,
-    },
-    description: 'Callback function for closing Modal',
-    defaultValue: null,
-  },
-  label: {
-    type: {
-      name: 'string',
-      required: false,
-    },
-    description: 'Name of modal',
-    defaultValue: 'Modal label',
-  },
-  className: {
-    type: {
-      name: 'string',
-      required: false,
-    },
-    description: 'Extra className',
-    defaultValue: '',
-  },
-  hideClosebutton: {
-    type: {
-      name: 'boolean',
-      required: false,
-    },
-    description: 'If you should hide the close button in the corner',
-    defaultValue: false,
-  },
-  disableCloseOutside: {
-    type: {
-      name: 'boolean',
-      required: false,
-    },
-    description: 'Disable close on click outside of modal',
-    defaultValue: false,
-  },
-};

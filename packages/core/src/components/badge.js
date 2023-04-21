@@ -27,7 +27,6 @@ function badgeSolid(colors) {
       "&[data-color='neutral']": {
         '@apply bg-neutral-400': {},
       },
-
     },
   };
 }
@@ -44,7 +43,6 @@ function badgeOutline(colors) {
           [`&[data-color="${color}"]`]: {
             [`@apply border-current`]: {},
             [`@apply text-${color}`]: {},
-
           },
         }),
         {}
@@ -59,7 +57,6 @@ function badgeOutline(colors) {
         },
       },
 
-      
       "&[data-color='primary']": {
         '@apply border-primary': {},
         '@apply text-primary': {},
@@ -74,13 +71,10 @@ function badgeOutline(colors) {
       },
       "&[data-color='neutral']": {
         '@apply border-neutral-300': {},
-        '@apply border-neutral-300': {},
-
       },
     },
   };
 }
-
 
 module.exports = badge = (colors) => ({
   '.badge': {
@@ -114,7 +108,7 @@ module.exports = badge = (colors) => ({
         minHeight: '6px',
         maxHeight: '6px',
         minWidth: '6px',
-      }
+      },
     },
 
     '&-md': {
@@ -128,8 +122,7 @@ module.exports = badge = (colors) => ({
         minHeight: '20px',
         maxHeight: '20px',
         minWidth: '20px',
-      }
-
+      },
     },
 
     '&-lg': {
@@ -143,77 +136,73 @@ module.exports = badge = (colors) => ({
         minHeight: '24px',
         maxHeight: '24px',
         minWidth: '24px',
-      }
-
+      },
     },
 
     '&-standard-sm': {
-      '@apply right-[-4px] self-center' : {},
+      '@apply right-[-4px] self-center': {},
       '&.noborder': {
         '@apply right-[-5px]': {},
-      }
+      },
     },
     '&-standard-md': {
       '@apply right-[-4px] self-center': {},
       '&.noborder': {
         '@apply right-[-5px]': {},
-      }
+      },
     },
     '&-standard-lg': {
       '@apply right-[-4px] self-center': {},
       '&.noborder': {
         '@apply right-[-5px]': {},
-      }
+      },
     },
 
     '&-super-sm': {
       '@apply right-[-2px] top-[-5px]': {},
       '&.noborder': {
         '@apply right-[-3px]': {},
-      }
+      },
     },
     '&-super-md': {
       '@apply right-[-3px] top-[-8px]': {},
       '&.noborder': {
         '@apply right-[-4px]': {},
-      }
+      },
     },
     '&-super-lg': {
       '@apply right-[-4px] top-[-8px]': {},
       '&.noborder': {
         '@apply right-[-5px]': {},
-      }
+      },
     },
 
     '&-superoverlap-sm': {
       '@apply right-[3px] top-[-5px]': {},
       '&.noborder': {
         '@apply right-[2px]': {},
-      }
+      },
     },
     '&-superoverlap-md': {
       '@apply right-[8px] top-[-6px]': {},
       '&.noborder': {
         '@apply right-[7px]': {},
-      }
+      },
     },
     '&-superoverlap-lg': {
       '@apply right-[8px] top-[-8px]': {},
       '&.noborder': {
         '@apply right-[7px]': {},
-      }
+      },
     },
-
 
     '&-fit-content': {
       '@apply p-0': {},
       fontSize: 'inherit',
     },
 
-
     // variants
     ...badgeSolid(colors),
     ...badgeOutline(colors),
-
   },
 });

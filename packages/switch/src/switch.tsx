@@ -1,5 +1,5 @@
 import { useFormControl } from '@sk-web-gui/forms';
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import VisuallyHidden from '@sk-web-gui/visually-hidden';
 import * as React from 'react';
@@ -115,3 +115,5 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>((props, re
 if (__DEV__) {
   Switch.displayName = 'Switch';
 }
+
+export default Switch;

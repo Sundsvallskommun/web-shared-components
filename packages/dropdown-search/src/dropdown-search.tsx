@@ -378,7 +378,9 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
         <Input
           {...rest}
           as={showResult && (selectedValue || selectedValues.length) ? 'button' : 'input'}
-          aria-expanded={showSuggestions}
+          aria-autocomplete={showSuggestions ? 'list' : undefined}
+          aria-controls="dropdown-search-results"
+          aria-haspopup="listbox"
           value={query}
           ref={inputRef}
           size={size}
@@ -422,62 +424,63 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
         )}
       </Input.Group>
 
-      {showSuggestions && (
-        <ul
-          className={cx('form-field-outline form-select-list', listClassName)}
-          onMouseOver={() => setDropdownActive(true)}
-          onMouseLeave={() => setDropdownActive(false)}
-        >
-          {multiple &&
-            selectedValues?.length > 0 &&
-            selectedValues.map((selected, index) => (
-              <li
-                aria-label="Ta bort val"
-                aria-selected
-                role="option"
-                onClick={() => handleRemoveSelected(index)}
-                title={selected.label}
-                onMouseOver={() => {
-                  setActiveSelectedOption(index);
-                  setActiveOption(null);
-                }}
-                key={`form-select-option-dropdown-${selected.data[idProperty]}`}
-                className={`form-select-option multiple selected truncate ${
-                  activeSelectedOption == index ? 'active' : ''
-                } ${classes}`}
-              >
-                <div className="form-select-option-remove-button">
-                  <div className="form-select-option-remove-button-text">
-                    {render ? render(selected) : selected.label}
-                  </div>
-                  <CloseIcon fontSize="large" />
+      <ul
+        aria-label="Sökförslag"
+        id="dropdown-search-results"
+        role="listbox"
+        className={cx('form-field-outline form-select-list', listClassName, { 'sr-only': !showSuggestions })}
+        onMouseOver={() => setDropdownActive(true)}
+        onMouseLeave={() => setDropdownActive(false)}
+      >
+        {multiple &&
+          selectedValues?.length > 0 &&
+          selectedValues.map((selected, index) => (
+            <li
+              aria-label="Ta bort val"
+              aria-selected
+              role="option"
+              onClick={() => handleRemoveSelected(index)}
+              title={selected.label}
+              onMouseOver={() => {
+                setActiveSelectedOption(index);
+                setActiveOption(null);
+              }}
+              key={`form-select-option-dropdown-${selected.data[idProperty]}`}
+              className={`form-select-option multiple selected truncate ${
+                activeSelectedOption == index ? 'active' : ''
+              } ${classes}`}
+            >
+              <div className="form-select-option-remove-button">
+                <div className="form-select-option-remove-button-text">
+                  {render ? render(selected) : selected.label}
                 </div>
+                <CloseIcon fontSize="large" />
+              </div>
+            </li>
+          ))}
+        {query && filteredData.length === 0 && notFoundLabel && query !== '' ? (
+          <div className={`${classes}  form-select-option`}>{notFoundLabel}</div>
+        ) : (
+          listData?.slice(0, maxAmount).map((option: any, index: number) => {
+            return (
+              <li
+                aria-label="Lägg till val"
+                role="option"
+                title={option[labelProperty]}
+                onMouseOver={() => {
+                  setActiveOption(index);
+                  setActiveSelectedOption(null);
+                }}
+                onClick={() => setSelected(option)}
+                key={`form-select-option-dropdown-${option[labelProperty]}-${index}`}
+                className={`form-select-option truncate ${activeOption == index ? 'active' : ''} ${classes}`}
+              >
+                {render ? render({ label: option[labelProperty], data: option }) : option[labelProperty]}
               </li>
-            ))}
-          {query && filteredData.length === 0 && notFoundLabel && query !== '' ? (
-            <div className={`${classes}  form-select-option`}>{notFoundLabel}</div>
-          ) : (
-            listData?.slice(0, maxAmount).map((option: any, index: number) => {
-              return (
-                <li
-                  aria-label="Lägg till val"
-                  role="option"
-                  title={option[labelProperty]}
-                  onMouseOver={() => {
-                    setActiveOption(index);
-                    setActiveSelectedOption(null);
-                  }}
-                  onClick={() => setSelected(option)}
-                  key={`form-select-option-dropdown-${option[labelProperty]}-${index}`}
-                  className={`form-select-option truncate ${activeOption == index ? 'active' : ''} ${classes}`}
-                >
-                  {render ? render({ label: option[labelProperty], data: option }) : option[labelProperty]}
-                </li>
-              );
-            })
-          )}
-        </ul>
-      )}
+            );
+          })
+        )}
+      </ul>
     </div>
   );
 });

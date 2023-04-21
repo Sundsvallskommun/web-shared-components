@@ -8,9 +8,9 @@ interface IDialogProps extends Omit<IModalProps, 'onClose'> {
   onClose?: (data?: any) => void;
 }
 
-export interface DialogProps extends React.HTMLAttributes<HTMLDivElement>, IDialogProps {}
+export interface InternalDialogProps extends React.HTMLAttributes<HTMLDivElement>, IDialogProps {}
 
-export const DialogComponent = React.forwardRef<HTMLDivElement, DialogProps>((props, ref) => {
+export const DialogComponent = React.forwardRef<HTMLDivElement, InternalDialogProps>((props, ref) => {
   const { className, hideClosebutton = true, disableCloseOutside = true, ...rest } = props;
 
   return (
@@ -24,12 +24,14 @@ export const DialogComponent = React.forwardRef<HTMLDivElement, DialogProps>((pr
   );
 });
 
-interface Dialog extends React.ForwardRefExoticComponent<DialogProps & React.RefAttributes<HTMLElement>> {
+interface DialogProps
+  extends InternalDialogProps,
+    React.ForwardRefExoticComponent<InternalDialogProps & React.RefAttributes<HTMLElement>> {
   Buttons: typeof DialogButtons;
   Content: typeof DialogContent;
 }
 
-export const Dialog = DialogComponent as Dialog;
+export const Dialog = DialogComponent as DialogProps;
 
 Dialog.Buttons = DialogButtons;
 Dialog.Content = DialogContent;
@@ -37,3 +39,6 @@ Dialog.Content = DialogContent;
 if (__DEV__) {
   Dialog.displayName = 'Dialog';
 }
+
+export type { DialogProps };
+export default Dialog;

@@ -34,7 +34,7 @@
     "lint:types": "tsc --noEmit"
   },
   "devDependencies": {
-    "react": "^17.0.2"
+    "react": "^18.2.0"
   },
   "dependencies": {
     "@sk-web-gui/link": "0.1.12",
@@ -42,6 +42,6 @@
     "@sk-web-gui/utils": "0.1.5"
   },
   "peerDependencies": {
-    "react": ">=16.8.6"
+    "react": ">=18.2.0"
   }
 }

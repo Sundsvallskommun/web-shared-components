@@ -22,3 +22,15 @@ h6 {
 pre.prismjs .tag {
   @apply px-[.05em];
 }
+
+.docblock-code-toggle--disabled[disabled=''] {
+  @apply hidden;
+}
+
+.docs-preview {
+  all: initial !important;
+}
+
+.docs-preview-canvas {
+  all: unset !important;
+}

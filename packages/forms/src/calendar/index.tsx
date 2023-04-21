@@ -1,7 +1,7 @@
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 import { Input, InputProps } from '../input/input';
@@ -9,11 +9,11 @@ import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined
 import dayjsLocale from 'dayjs/locale/sv';
 import { useCalendarClass } from './styles';
 
-export interface CalendarProps extends InputProps {
+export interface ICalendarProps extends Omit<InputProps, 'onChange'> {
   /* Sets value */
   value: string;
   /* Dayjs onChange */
-  onChange: (value: any) => void;
+  onChange: (value: string) => void;
   /* Dayjs locale instance, defaults to sv */
   localeInstance?: string | object;
   /* Format of date, default "YYYY-MM-DD" */
@@ -24,10 +24,11 @@ export interface CalendarProps extends InputProps {
   size?: 'sm' | 'md' | 'lg';
 }
 
-export const Calendar = React.forwardRef<HTMLSelectElement, CalendarProps>((props, ref) => {
+export interface CalendarProps extends Omit<React.HTMLAttributes<HTMLInputElement>, 'onChange'>, ICalendarProps {}
+
+export const Calendar = React.forwardRef<HTMLElement, CalendarProps>((props, ref) => {
   const {
     className,
-    placeholder,
     value,
     onChange,
     minDate = undefined,
@@ -48,9 +49,9 @@ export const Calendar = React.forwardRef<HTMLSelectElement, CalendarProps>((prop
           minDate={minDate ? dayjs(minDate) : undefined}
           inputFormat={inputFormat}
           value={minDate && value <= minDate ? minDate : value}
-          onChange={(value: any) => {
+          onChange={(value: Dayjs | null) => {
             if (onChange) {
-              onChange(value.format(inputFormat));
+              onChange(value ? value.format(inputFormat) : '');
             }
           }}
           componentsProps={{
@@ -74,3 +75,5 @@ export const Calendar = React.forwardRef<HTMLSelectElement, CalendarProps>((prop
 if (__DEV__) {
   Calendar.displayName = 'Calendar';
 }
+
+export default Calendar;

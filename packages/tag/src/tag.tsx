@@ -1,6 +1,6 @@
-import { DefaultProps } from '@sk-web-gui/theme';
+import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
-import { Button } from '@sk-web-gui/button';
+import Button from '@sk-web-gui/button';
 import * as React from 'react';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
@@ -74,3 +74,5 @@ export const Tag = React.forwardRef<any, TagProps>((props, ref) => {
 if (__DEV__) {
   Tag.displayName = 'Tag';
 }
+
+export default Tag;
