@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/switch",
-  "version": "0.1.27",
+  "version": "0.1.28",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -37,10 +37,10 @@
     "react": "^18.2.0"
   },
   "dependencies": {
-    "@sk-web-gui/forms": "0.1.26",
-    "@sk-web-gui/theme": "0.1.11",
-    "@sk-web-gui/utils": "0.1.5",
-    "@sk-web-gui/visually-hidden": "0.1.4"
+    "@sk-web-gui/forms": "0.1.27",
+    "@sk-web-gui/theme": "0.1.12",
+    "@sk-web-gui/utils": "0.1.6",
+    "@sk-web-gui/visually-hidden": "0.1.5"
   },
   "peerDependencies": {
     "react": ">=18.2.0"

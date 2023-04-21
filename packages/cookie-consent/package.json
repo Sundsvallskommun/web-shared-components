@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/cookie-consent",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -37,15 +37,15 @@
     "react": "^18.2.0"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
     "@headlessui/react": "^1.7.14",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.1",
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
-    "@sk-web-gui/button": "0.1.15",
-    "@sk-web-gui/switch": "0.1.27",
-    "@sk-web-gui/theme": "0.1.11",
-    "@sk-web-gui/utils": "0.1.5",
+    "@sk-web-gui/button": "0.1.16",
+    "@sk-web-gui/switch": "0.1.28",
+    "@sk-web-gui/theme": "0.1.12",
+    "@sk-web-gui/utils": "0.1.6",
     "universal-cookie": "^4.0.4"
   },
   "peerDependencies": {

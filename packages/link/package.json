@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/link",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -37,12 +37,12 @@
     "react": "^18.2.0"
   },
   "dependencies": {
-    "@mui/icons-material": "^5.11.16",
-    "@mui/material": "^5.12.1",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
-    "@sk-web-gui/theme": "0.1.11",
-    "@sk-web-gui/utils": "0.1.5"
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.12.1",
+    "@sk-web-gui/theme": "0.1.12",
+    "@sk-web-gui/utils": "0.1.6"
   },
   "peerDependencies": {
     "react": ">=18.2.0"

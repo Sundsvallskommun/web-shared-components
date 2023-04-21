@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.12](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/icon@0.1.11...@sk-web-gui/icon@0.1.12) (2023-04-21)
+
+**Note:** Version bump only for package @sk-web-gui/icon
+
 ## [0.1.11](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/icon@0.1.10...@sk-web-gui/icon@0.1.11) (2023-04-19)
 
 **Note:** Version bump only for package @sk-web-gui/icon
