@@ -6,6 +6,9 @@ export default {
   title: 'Komponenter/Dropdown/DropdownFilter',
   component: DropdownFilter,
   tags: ['autodocs'],
+  args: {
+    label: 'Label',
+  },
 } as Meta;
 
 export const Template = (args: DropdownFilterProps) => {

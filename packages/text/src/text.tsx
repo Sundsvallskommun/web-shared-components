@@ -1,9 +1,6 @@
-import { DefaultProps } from '@sk-web-gui/theme';
 import { Link } from '@sk-web-gui/link';
-import { cx, __DEV__ } from '@sk-web-gui/utils';
+import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 import * as React from 'react';
-
-// import { useCardClass } from "./styles";
 
 interface ITextProps extends DefaultProps {
   /* If text looking like urls should be clickable links */

@@ -16,9 +16,9 @@ export default {
 
 export const Template = ({ children, ...args }: AlertBannerProps) => {
   const localstorageKey = 'alert-banner-is-open';
-  const [open, setOpen] = useLocalStorageValue(localstorageKey, true, {
-    storeDefaultValue: true,
-    initializeWithStorageValue: true,
+  const { value: open, set: setOpen } = useLocalStorageValue(localstorageKey, {
+    defaultValue: true,
+    initializeWithValue: true,
   });
 
   const handleReset = () => {
