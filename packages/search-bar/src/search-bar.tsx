@@ -1,11 +1,11 @@
-import { __DEV__ } from '@sk-web-gui/utils';
-import React, { useEffect, useState } from 'react';
+import { DefaultProps, __DEV__ } from '@sk-web-gui/utils';
+import React, { HTMLAttributes, useEffect, useState } from 'react';
 import { Button } from '@sk-web-gui/button';
-import { Input, InputProps } from '@sk-web-gui/forms';
+import { Input } from '@sk-web-gui/forms';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
-export interface IISearchBarProps {
+export interface SearchbarProps extends DefaultProps, HTMLAttributes<HTMLInputElement> {
   // Parent should handle the state
   value: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
@@ -15,16 +15,13 @@ export interface IISearchBarProps {
   smallIcon?: boolean;
   rounded?: boolean;
   size?: 'sm' | 'md' | 'lg';
-  className?: string;
   searchAriaLabel?: string;
   closeAriaLabel?: string;
   searchIcon?: React.ReactNode;
   closeIcon?: React.ReactNode;
 }
 
-export type ISearchBarProps<T = HTMLInputElement> = IISearchBarProps & InputProps & React.RefAttributes<T>;
-
-export const SearchBar = React.forwardRef<HTMLInputElement, ISearchBarProps>((props, ref) => {
+export const SearchBar = React.forwardRef<HTMLInputElement, SearchbarProps>((props, ref) => {
   const {
     value,
     onChange,
