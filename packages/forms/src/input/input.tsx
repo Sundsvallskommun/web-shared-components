@@ -35,6 +35,10 @@ export interface IInputProps<T = HTMLInputElement> extends DefaultProps {
    */
   'aria-describedby'?: string;
   /**
+   * A11y: describes the type of autocompletion
+   */
+  'aria-autocomplete'?: React.AriaAttributes['aria-autocomplete'];
+  /**
    * Border-radius is rounded
    */
   rounded?: boolean;
