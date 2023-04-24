@@ -45,16 +45,20 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
     disabled,
   });
 
+  const [declaredObserver, setDeclaredObserver] = React.useState<{ disconnect: Function }>();
   const [accordionOpen, setAccordionOpen] = React.useState(initalOpen ?? false);
   const contentEl = useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
+    if (declaredObserver) {
+      declaredObserver.disconnect();
+    }
     const config = { childList: true, subtree: true };
     const callback: MutationCallback = (mutationList) => {
       for (const mutation of mutationList) {
         if (mutation.type === 'childList') {
           const newHeight = 'auto';
-          if (typeof newHeight !== 'undefined' && contentEl.current) {
+          if (typeof newHeight !== 'undefined' && contentEl.current && accordionOpen) {
             contentEl.current.style.height = newHeight;
           }
         }
@@ -64,10 +68,11 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
     if (contentEl.current) {
       observer.observe(contentEl.current, config);
     }
+    setDeclaredObserver(observer);
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [accordionOpen]);
 
   const onClick = () => {
     if (contentEl.current) {
@@ -79,44 +84,47 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
   };
 
   return (
-    <div
-      data-color={color ? color : undefined}
-      className={cx(
-        accordionOpen ? `${variant === 'alert' ? 'accordion-is-open-alert' : 'accordion-is-open'}` : undefined,
-        classes,
-        className
-      )}
-      {...rest}
-    >
-      <div className="accordion-header">
-        <button
-          aria-disabled={disabled ? disabled : undefined}
-          disabled={disabled}
-          type="button"
-          className="accordion-toggle"
-          aria-expanded={accordionOpen}
-          onClick={onClick}
-        >
-          <div>
-            <Comp className="accordion-title">{accordionTitle}</Comp>
-            {accordionSubTitle && <p className="accordion-subtitle">{accordionSubTitle}</p>}
-          </div>
-          {accordionOpen ? (
-            <RemoveOutlinedIcon className="accordion-header-icon" />
-          ) : (
-            <AddOutlinedIcon className="accordion-header-icon" />
-          )}
-        </button>
-      </div>
+    <>
+      {accordionOpen ? 'open' : 'noope'}
       <div
-        className={`accordion-body ${noMargin ? '' : 'm-lg'}`}
-        aria-hidden={!accordionOpen}
-        ref={contentEl}
-        style={accordionOpen ? { height: contentEl?.current?.scrollHeight } : { height: '0' }}
+        data-color={color ? color : undefined}
+        className={cx(
+          accordionOpen ? `${variant === 'alert' ? 'accordion-is-open-alert' : 'accordion-is-open'}` : undefined,
+          classes,
+          className
+        )}
+        {...rest}
       >
-        {children}
+        <div className="accordion-header">
+          <button
+            aria-disabled={disabled ? disabled : undefined}
+            disabled={disabled}
+            type="button"
+            className="accordion-toggle"
+            aria-expanded={accordionOpen}
+            onClick={onClick}
+          >
+            <div>
+              <Comp className="accordion-title">{accordionTitle}</Comp>
+              {accordionSubTitle && <p className="accordion-subtitle">{accordionSubTitle}</p>}
+            </div>
+            {accordionOpen ? (
+              <RemoveOutlinedIcon className="accordion-header-icon" />
+            ) : (
+              <AddOutlinedIcon className="accordion-header-icon" />
+            )}
+          </button>
+        </div>
+        <div
+          className={`accordion-body ${noMargin ? '' : 'm-lg'}`}
+          aria-hidden={!accordionOpen}
+          ref={contentEl}
+          style={accordionOpen ? { height: contentEl?.current?.scrollHeight } : { height: '0' }}
+        >
+          {children}
+        </div>
       </div>
-    </div>
+    </>
   );
 });
 
