@@ -85,7 +85,6 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
 
   return (
     <>
-      {accordionOpen ? 'open' : 'noope'}
       <div
         data-color={color ? color : undefined}
         className={cx(
