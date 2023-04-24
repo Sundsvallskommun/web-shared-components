@@ -45,7 +45,7 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
     disabled,
   });
 
-  const [declaredObserver, setDeclaredObserver] = React.useState<{ disconnect: Function }>();
+  const [declaredObserver, setDeclaredObserver] = React.useState<MutationObserver>();
   const [accordionOpen, setAccordionOpen] = React.useState(initalOpen ?? false);
   const contentEl = useRef<HTMLDivElement>(null);
 
