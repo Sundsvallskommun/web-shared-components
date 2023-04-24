@@ -45,16 +45,20 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
     disabled,
   });
 
+  const [declaredObserver, setDeclaredObserver] = React.useState<MutationObserver>();
   const [accordionOpen, setAccordionOpen] = React.useState(initalOpen ?? false);
   const contentEl = useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
+    if (declaredObserver) {
+      declaredObserver.disconnect();
+    }
     const config = { childList: true, subtree: true };
     const callback: MutationCallback = (mutationList) => {
       for (const mutation of mutationList) {
         if (mutation.type === 'childList') {
           const newHeight = 'auto';
-          if (typeof newHeight !== 'undefined' && contentEl.current) {
+          if (typeof newHeight !== 'undefined' && contentEl.current && accordionOpen) {
             contentEl.current.style.height = newHeight;
           }
         }
@@ -64,10 +68,11 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
     if (contentEl.current) {
       observer.observe(contentEl.current, config);
     }
+    setDeclaredObserver(observer);
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [accordionOpen]);
 
   const onClick = () => {
     if (contentEl.current) {
