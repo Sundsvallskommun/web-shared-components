@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 import { useTransition, animated, easings } from 'react-spring';
-import ReachAlert from '@reach/alert';
+import { Alert as ReachAlert } from '@reach/alert';
 import Alert from './Alert';
 import { useTimeout } from './useTimeout';
 import POSITIONS from './Positions';

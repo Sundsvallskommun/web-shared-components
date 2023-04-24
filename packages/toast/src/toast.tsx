@@ -1,7 +1,6 @@
 import { toaster, Position } from '@sk-web-gui/toasted-notes';
 import { DefaultProps } from '@sk-web-gui/utils';
-import * as React from 'react';
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 
 interface IToast extends DefaultProps {
   /**
