@@ -13,11 +13,11 @@ const ContextMenuComponent = React.forwardRef<HTMLDivElement, ContextMenuPropsIn
   const { className, classNameItems, children, ...rest } = props;
 
   const getButton = () => {
-    return React.Children.toArray(children).find((child: any) => child?.type?.name === 'ContextMenuButton');
+    return React.Children.toArray(children).find((child: any) => child?.type?.name === ContextMenuButton.name);
   };
 
   const getItems = () => {
-    return React.Children.toArray(children).filter((child: any) => child?.type?.name !== 'ContextMenuButton');
+    return React.Children.toArray(children).filter((child: any) => child?.type?.name !== ContextMenuButton.name);
   };
 
   return (
