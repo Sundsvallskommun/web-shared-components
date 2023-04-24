@@ -43,5 +43,3 @@ export const ContextMenuButton: React.FC<ButtonProps> = (props) => {
     </Menu.Button>
   );
 };
-
-ContextMenuButton.displayName = 'Context Menu Button';
