@@ -84,46 +84,44 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
   };
 
   return (
-    <>
-      <div
-        data-color={color ? color : undefined}
-        className={cx(
-          accordionOpen ? `${variant === 'alert' ? 'accordion-is-open-alert' : 'accordion-is-open'}` : undefined,
-          classes,
-          className
-        )}
-        {...rest}
-      >
-        <div className="accordion-header">
-          <button
-            aria-disabled={disabled ? disabled : undefined}
-            disabled={disabled}
-            type="button"
-            className="accordion-toggle"
-            aria-expanded={accordionOpen}
-            onClick={onClick}
-          >
-            <div>
-              <Comp className="accordion-title">{accordionTitle}</Comp>
-              {accordionSubTitle && <p className="accordion-subtitle">{accordionSubTitle}</p>}
-            </div>
-            {accordionOpen ? (
-              <RemoveOutlinedIcon className="accordion-header-icon" />
-            ) : (
-              <AddOutlinedIcon className="accordion-header-icon" />
-            )}
-          </button>
-        </div>
-        <div
-          className={`accordion-body ${noMargin ? '' : 'm-lg'}`}
-          aria-hidden={!accordionOpen}
-          ref={contentEl}
-          style={accordionOpen ? { height: contentEl?.current?.scrollHeight } : { height: '0' }}
+    <div
+      data-color={color ? color : undefined}
+      className={cx(
+        accordionOpen ? `${variant === 'alert' ? 'accordion-is-open-alert' : 'accordion-is-open'}` : undefined,
+        classes,
+        className
+      )}
+      {...rest}
+    >
+      <div className="accordion-header">
+        <button
+          aria-disabled={disabled ? disabled : undefined}
+          disabled={disabled}
+          type="button"
+          className="accordion-toggle"
+          aria-expanded={accordionOpen}
+          onClick={onClick}
         >
-          {children}
-        </div>
+          <div>
+            <Comp className="accordion-title">{accordionTitle}</Comp>
+            {accordionSubTitle && <p className="accordion-subtitle">{accordionSubTitle}</p>}
+          </div>
+          {accordionOpen ? (
+            <RemoveOutlinedIcon className="accordion-header-icon" />
+          ) : (
+            <AddOutlinedIcon className="accordion-header-icon" />
+          )}
+        </button>
       </div>
-    </>
+      <div
+        className={`accordion-body ${noMargin ? '' : 'm-lg'}`}
+        aria-hidden={!accordionOpen}
+        ref={contentEl}
+        style={accordionOpen ? { height: contentEl?.current?.scrollHeight } : { height: '0' }}
+      >
+        {children}
+      </div>
+    </div>
   );
 });
 
