@@ -28,15 +28,36 @@ const ContextMenuComponent = React.forwardRef<HTMLDivElement, ContextMenuPropsIn
   );
 });
 
-const ContextMenuItem: React.FC<{ children: JSX.Element; className?: string }> = ({ children, className }) => {
+interface ContextMenuItemProps {
+  children: JSX.Element;
+  className?: string;
+  as?: React.ElementType;
+  disabled?: boolean;
+  onClick?: () => void;
+}
+const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
+  disabled = false,
+  children,
+  className,
+  as = 'div',
+  onClick,
+}) => {
   const getItem = (child: JSX.Element, active: boolean) => {
     const classes = cx(child?.props?.className, active ? 'active' : '');
     const props = { ...child.props, className: classes };
     return React.cloneElement(child, props);
   };
 
+  const handleOnClick = () => {
+    if (onClick) {
+      onClick();
+    } else if (children?.props?.onClick) {
+      children.props.onClick();
+    }
+  };
+
   return (
-    <Menu.Item as="div" className={cx('context-menu-item', className)}>
+    <Menu.Item as={as} disabled={disabled} className={cx('context-menu-item', className)} onClick={handleOnClick}>
       {({ active }) => getItem(children, active)}
     </Menu.Item>
   );
