@@ -1,4 +1,4 @@
-import { DefaultProps } from '@sk-web-gui/utils';
+import { DefaultProps, cx } from '@sk-web-gui/utils';
 import { __DEV__ } from '@sk-web-gui/utils';
 import { Dialog as D, Transition } from '@headlessui/react';
 import { Button } from '@sk-web-gui/button';
@@ -76,6 +76,7 @@ export function CookieConsent({
   onDecline,
   closeable = false,
   resetConsentOnInit = false,
+  className,
   options = {
     maxAge: 31536000, // default 12 months according to ePrivacy, EU
     sameSite: 'strict',
@@ -204,7 +205,7 @@ export function CookieConsent({
         onClose={() => false}
         as="div"
         style={{ boxShadow: '0px -4px 14px rgba(27, 29, 31, 0.12)' }}
-        className="cookie-consent"
+        className={cx('cookie-consent', className)}
       >
         <div className="cookie-consent-content-wrapper">
           {closeable && (
