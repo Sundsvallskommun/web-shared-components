@@ -85,6 +85,7 @@ export const Button = React.forwardRef(
         ref={ref}
         disabled={disabled}
         aria-disabled={disabled ? disabled : undefined}
+        type={type}
         data-active={active ? 'true' : undefined}
         className={cx(className)}
         {...rest}

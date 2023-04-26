@@ -64,7 +64,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
   const [currentPages, setPages] = useState<number>(pages);
 
   const internalSortHandler = (idx: number) => {
-    setSortModeAscending(sortIndex === idx ? !sortModeAscending : defaultSort.sortMode);
+    setSortModeAscending(sortIndex === idx ? !sortModeAscending : sortAscending);
     setSortIndex(idx);
   };
   const [highlightedPage, setHighlightedPage] = useState<number>(0);
