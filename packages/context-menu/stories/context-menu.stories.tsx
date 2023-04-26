@@ -22,18 +22,28 @@ export const Template = () => {
             <ArrowDownwardIcon />
           </ContextMenu.Button>
           <ContextMenu.Item>
-            <Button variant="link" className="text-body" leftIcon={<EditOutlinedIcon />}>
+            <Button
+              variant="link"
+              className="text-body"
+              leftIcon={<EditOutlinedIcon />}
+              onClick={() => console.log('Edit')}
+            >
               Redigera
             </Button>
           </ContextMenu.Item>
           <ContextMenu.Item>
-            <Button variant="link" className="text-body" leftIcon={<DeleteOutlineOutlinedIcon />}>
+            <Button
+              variant="link"
+              className="text-body"
+              leftIcon={<DeleteOutlineOutlinedIcon />}
+              onClick={() => console.log('Delete')}
+            >
               Ta bort
             </Button>
           </ContextMenu.Item>
           <Divider orientation="horizontal" className="w-full" />
           <ContextMenu.Item>
-            <Button variant="link" className="text-body" leftIcon={<UndoIcon />}>
+            <Button variant="link" className="text-body" leftIcon={<UndoIcon />} onClick={() => console.log('Undo')}>
               Ångra
             </Button>
           </ContextMenu.Item>
