@@ -37,7 +37,7 @@ export const ZTableHeader: React.FC<ZTableHeaderProps> = ({
             <button
               className="zebratable-sortbutton"
               aria-label={`Sortera efter ${element.props.children} i ${
-                sortModeAscending ? 'stigande' : 'fallande'
+                sortModeAscending ? 'fallande' : 'stigande'
               } ordning`}
               onClick={() => {
                 tableSortable && isColumnSortable && handleSort(index);
