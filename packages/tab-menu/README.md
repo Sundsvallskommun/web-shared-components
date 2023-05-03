@@ -1,5 +1,5 @@
 ## Installation
 
 ```sh
-yarn add @sk-web-gui/accordion
+yarn add @sk-web-gui/tab-menu
 ```
