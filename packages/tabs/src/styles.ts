@@ -7,9 +7,10 @@ export const useTabsWrapperClass = createMemoClass(({ tabAlign }) => {
   return classes;
 });
 
-export const useTabsListClass = createMemoClass(({ tabAlign }) => {
+export const useTabsTabClass = createMemoClass(({ tabAlign, variant }) => {
   const classes = cx(
     'sk-tabs-tab',
+    { 'sk-tabs-tab-header': variant === 'headermenu' },
     { 'sk-tabs-tab-stretch': tabAlign === 'stretch' },
     { 'sk-tabs-tab-right': tabAlign === 'right' },
     { 'sk-tabs-tab-center': tabAlign === 'center' }
@@ -18,7 +19,7 @@ export const useTabsListClass = createMemoClass(({ tabAlign }) => {
   return classes;
 });
 
-export const useTabsTabClass = createMemoClass(({ tabAlign, hideLine }) => {
+export const useTabsListClass = createMemoClass(({ tabAlign, hideLine }) => {
   const classes = cx(
     'sk-tabs-list',
     { 'sk-tabs-list-line': !hideLine },

@@ -7,18 +7,23 @@ import { IMenuItem } from '../src/tab-item';
 const menuData = [
   {
     id: 1,
-    label: 'label 1',
+    label: 'Målbild och strategi',
     path: '/path/1',
   },
   {
     id: 2,
-    label: 'label 2',
+    label: 'Inlägg',
     path: '/path/2',
   },
   {
     id: 3,
-    label: 'label 3',
+    label: 'Exempel från vardagen',
     path: '/path/3',
+  },
+  {
+    id: 3,
+    label: 'Riktlinjer, modeller och metoder',
+    path: '/path/4',
   },
 ];
 

@@ -31,6 +31,7 @@ interface ITabsProps extends Omit<DefaultProps, 'children'> {
   hideLabel?: boolean;
   hideLine?: boolean;
   alertSettings?: alertSettings;
+  variant?: 'default' | 'headermenu';
 }
 
 export interface TabsProps extends React.HTMLAttributes<HTMLDivElement>, ITabsProps {}
@@ -39,7 +40,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => 
   const {
     className,
     activeIndex: _activeIndex,
-    hideLine = false,
+    hideLine: _hideLine,
     tabAlign = 'left',
     listClassName,
     tabClassName,
@@ -50,8 +51,11 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => 
     alertSettings,
     onTabClick,
     onTabChange,
+    variant = 'default',
     ...rest
   } = props;
+
+  const hideLine = _hideLine !== undefined ? _hideLine : variant === 'headermenu' ? true : false;
 
   const firstActive = typeof _activeIndex === 'number' ? _activeIndex : tabs.findIndex((tab) => !tab.disabled);
 
@@ -157,8 +161,8 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => 
   };
 
   const wrapperClasses = useTabsWrapperClass({ tabAlign });
-  const listClasses = useTabsListClass({ tabAlign });
-  const tabClasses = useTabsTabClass({ tabAlign, hideLine });
+  const listClasses = useTabsListClass({ tabAlign, hideLine });
+  const tabClasses = useTabsTabClass({ tabAlign, variant });
   const iconClasses = useTabsIconClass({ hideLabel });
 
   const renderTabLabel = (tab: TabItem) => {
@@ -186,7 +190,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => 
 
   return (
     <div className={cx(className, wrapperClasses)}>
-      <div role="tablist" aria-orientation="horizontal" className={cx(listClassName, tabClasses)} ref={ref} {...rest}>
+      <div role="tablist" aria-orientation="horizontal" className={cx(listClassName, listClasses)} ref={ref} {...rest}>
         {tabs.map((tab, index) => (
           <button
             id={`sk-tab-${index}-${tab.id}`}
@@ -199,7 +203,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => 
             tabIndex={activeIndex === index ? undefined : -1}
             aria-label={tab.label}
             aria-controls={`sk-tab-panel-${index}-${tab.id}`}
-            className={cx(tabClassName, listClasses, { disabled: tab.disabled }, { active: activeIndex === index })}
+            className={cx(tabClassName, tabClasses, { disabled: tab.disabled }, { active: activeIndex === index })}
             aria-selected={index === activeIndex}
             onKeyDown={handleKeyboard}
             onClick={(event) => handleOnClick(event, index)}

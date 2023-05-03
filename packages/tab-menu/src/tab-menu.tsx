@@ -12,7 +12,7 @@ export interface TabMenuProps {
   className?: string;
   itemClassName?: string;
   children: React.ReactNode;
-  variant?: 'submenu' | 'tabs';
+  variant?: 'submenu' | 'tabs' | 'headermenu';
   hideLine?: boolean;
   tabAlign?: 'left' | 'right' | 'center' | 'stretch';
 }
@@ -28,7 +28,7 @@ export const TabMenu = React.forwardRef<HTMLDivElement, TabMenuProps>((props, re
     className,
     itemClassName,
     variant = 'submenu',
-    hideLine,
+    hideLine: _hideLine,
     tabAlign = 'left',
   } = props;
 
@@ -36,6 +36,8 @@ export const TabMenu = React.forwardRef<HTMLDivElement, TabMenuProps>((props, re
     onTabChange && onTabChange(item);
     onTabClick && onTabClick(event, item);
   };
+
+  const hideLine = _hideLine !== undefined ? _hideLine : variant === 'headermenu' ? true : false;
 
   const active = _active || location.pathname;
   const wrapperClasses = useTabMenuWrapperClass({ variant, tabAlign });
