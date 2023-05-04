@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.77](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@0.1.76...@sk-web-gui/core@0.1.77) (2023-05-04)
+
+**Note:** Version bump only for package @sk-web-gui/core
+
 ## [0.1.76](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@0.1.75...@sk-web-gui/core@0.1.76) (2023-04-21)
 
 **Note:** Version bump only for package @sk-web-gui/core
