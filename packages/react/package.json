@@ -67,6 +67,7 @@
     "@sk-web-gui/spinner": "0.1.12",
     "@sk-web-gui/switch": "0.1.30",
     "@sk-web-gui/tab-menu": "0.1.7",
+    "@sk-web-gui/tabs": "0.1.0",
     "@sk-web-gui/table": "0.1.32",
     "@sk-web-gui/tag": "0.1.23",
     "@sk-web-gui/text": "0.1.2",

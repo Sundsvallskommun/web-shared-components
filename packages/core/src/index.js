@@ -38,6 +38,7 @@ const Divider = require('./components/divider');
 
 const SideMenu = require('./components/side-menu');
 const TabMenu = require('./components/tab-menu');
+const Tabs = require('./components/tabs');
 const UserMenu = require('./components/user-menu');
 
 const DropdownFilter = require('./components/dropdown-filter');
@@ -83,6 +84,7 @@ const components = [
 
   SideMenu,
   TabMenu,
+  Tabs,
   UserMenu,
 
   DropdownFilter,
