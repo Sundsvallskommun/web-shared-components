@@ -26,7 +26,7 @@ export interface IMenu extends IDataObject {
 interface CommonProps {
   menuData: Array<IMenu>;
   linkCallback: (data: IDataObject) => void;
-  active: string | number;
+  active: string | number | string[] | number[];
   loading?: boolean;
   headElement?: React.ReactNode;
   label?: string;

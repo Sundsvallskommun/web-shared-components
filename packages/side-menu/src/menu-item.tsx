@@ -7,7 +7,7 @@ import { IDataObject, IMenu } from './side-menu';
 import DragIndicatorOutlinedIcon from '@mui/icons-material/DragIndicatorOutlined';
 export interface IMenuExtended extends IMenu {
   itemData: any;
-  active: string | number;
+  active: string | number | string[] | number[];
   linkCallback: (data: IDataObject) => void;
   /* Closes non active trees in the menu. Default is true. */
   closeNoneActive: boolean;
@@ -56,12 +56,12 @@ export const MenuItem = (props: IMenuExtended) => {
     linkCallback(itemData);
   };
 
-  const hasActiveChild = (item: IMenu, activeId: number | string): boolean => {
-    if (item.id === activeId) {
+  const hasActiveChild = (item: IMenu, activeIds: string | number | string[] | number[]): boolean => {
+    if ((Array.isArray(activeIds) && activeIds.some((x) => x === item.id)) || item.id === activeIds) {
       return true;
     } else if (item.subItems && item.subItems.length > 0) {
       return item.subItems.some((subItem: IMenu) => {
-        return hasActiveChild(subItem, activeId);
+        return hasActiveChild(subItem, activeIds);
       });
     }
     return false;
@@ -80,7 +80,9 @@ export const MenuItem = (props: IMenuExtended) => {
   const getLabel = () => {
     return (
       <span className="menu-item-label">
-        {renderMenuItemLabel ? renderMenuItemLabel(itemData, active == id) : label}
+        {renderMenuItemLabel
+          ? renderMenuItemLabel(itemData, (Array.isArray(active) && active.some((x) => x == id)) || active == id)
+          : label}
       </span>
     );
   };
@@ -143,7 +145,7 @@ export const MenuItem = (props: IMenuExtended) => {
         'menu-item',
         'lvl-' + level,
         { open: open && subItems },
-        { active: active === id },
+        { active: (Array.isArray(active) && active.some((x) => x == id)) || active == id },
 
         /** Below are specific for draggable */
         { separator: separator },
@@ -169,7 +171,7 @@ export const MenuItem = (props: IMenuExtended) => {
           renderMenuItem(
             itemData,
             open,
-            active == id,
+            (Array.isArray(active) && active.some((x) => x == id)) || active == id,
             <>
               {getLabelItemType(itemData)}
               {getExpandButton()}
