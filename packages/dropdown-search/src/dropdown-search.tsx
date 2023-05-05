@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { cx, __DEV__ } from '@sk-web-gui/utils';
+import { cx } from '@sk-web-gui/utils';
 import { Button } from '@sk-web-gui/button';
 import { Badge } from '@sk-web-gui/badge';
 import { Input, InputProps, OptionValueType } from '@sk-web-gui/forms';
@@ -373,7 +373,7 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
       (multiple && selectedValues.length > 0));
 
   return (
-    <div ref={ref} className="dropdown-search ">
+    <div ref={ref} className={cx('dropdown-search', className)}>
       <Input.Group size={size}>
         <Input
           {...rest}
