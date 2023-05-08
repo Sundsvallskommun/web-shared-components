@@ -22,7 +22,7 @@ export interface IDropdownSearchProps extends InputPropsOmitted {
   className?: string;
   listClassName?: string;
   disabled?: boolean;
-  render?: (value: OptionValueType) => React.ReactNode;
+  render?: (value: OptionValueType, query: string) => React.ReactNode;
   filterFunction?: (query: string, option: OptionValueType) => boolean;
   nullable?: true | undefined;
   useDeleteButton?: boolean;
@@ -34,6 +34,7 @@ export interface IDropdownSearchProps extends InputPropsOmitted {
   defaultList?: any[];
   //** Defaults to id */
   idProperty?: string;
+  autoFocus?: boolean;
 }
 
 type OmittedHTMLInputElement = Omit<React.HTMLAttributes<HTMLDivElement>, 'onSelect'>;
@@ -350,7 +351,7 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
 
   const renderResults = () => {
     if (!showResult) return undefined;
-    if (!multiple) return selectedValue ? (render ? render(selectedValue) : selectedValue.label) : undefined;
+    if (!multiple) return selectedValue ? (render ? render(selectedValue, query) : selectedValue.label) : undefined;
     if (multiple) return selectedValues?.length ? selectedValues.map((value) => value.label).join(', ') : undefined;
   };
 
@@ -452,7 +453,7 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
             >
               <div className="form-select-option-remove-button">
                 <div className="form-select-option-remove-button-text">
-                  {render ? render(selected) : selected.label}
+                  {render ? render(selected, query) : selected.label}
                 </div>
                 <CloseIcon fontSize="large" />
               </div>
@@ -475,7 +476,7 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
                 key={`form-select-option-dropdown-${option[labelProperty]}-${index}`}
                 className={`form-select-option truncate ${activeOption == index ? 'active' : ''} ${classes}`}
               >
-                {render ? render({ label: option[labelProperty], data: option }) : option[labelProperty]}
+                {render ? render({ label: option[labelProperty], data: option }, query) : option[labelProperty]}
               </li>
             );
           })

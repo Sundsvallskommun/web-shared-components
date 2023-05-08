@@ -3,7 +3,7 @@ module.exports = Menu = () => ({
     '@apply w-[440px]': {},
 
     '.menu-header': {
-      '@apply py-[2rem] px-[1.6rem] rounded-t-[.2rem] bg-primary text-white': {},
+      '@apply relative py-[2rem] px-[1.6rem] rounded-t-[.2rem] bg-primary text-white': {},
 
       '.label-small': {
         '@apply text-[1.6rem]': {},

@@ -44,6 +44,7 @@ export interface IInputProps<T = HTMLInputElement> extends DefaultProps {
   rounded?: boolean;
   placeholder?: React.InputHTMLAttributes<T>['placeholder'];
   value?: string;
+  autoFocus?: boolean;
 }
 
 export type OmittedTypes =
