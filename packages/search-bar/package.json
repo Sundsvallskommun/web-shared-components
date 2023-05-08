@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/search-bar",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -39,7 +39,7 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.1",
     "@sk-web-gui/button": "0.1.18",
-    "@sk-web-gui/forms": "0.1.29",
+    "@sk-web-gui/forms": "0.1.30",
     "@sk-web-gui/utils": "0.1.6"
   },
   "devDependencies": {

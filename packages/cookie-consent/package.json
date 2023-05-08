@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/cookie-consent",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -43,7 +43,7 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.1",
     "@sk-web-gui/button": "0.1.18",
-    "@sk-web-gui/switch": "0.1.30",
+    "@sk-web-gui/switch": "0.1.31",
     "@sk-web-gui/theme": "0.1.12",
     "@sk-web-gui/utils": "0.1.6",
     "universal-cookie": "^4.0.4"
