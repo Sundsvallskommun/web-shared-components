@@ -1,0 +1,199 @@
+[
+  {
+    "id": 1276,
+    "label": "Midlanda flygplats AB",
+    "level": 2,
+    "lev2el": "lev2el",
+    "le3vel": "le3vel",
+    "le4vel": "le4vel",
+    "subItems": [
+      {
+        "id": 1277,
+        "label": "Midlanda flygplats AB",
+        "level": 3,
+        "subItems": [
+          {
+            "id": 1278,
+            "label": "Midlanda Ledning",
+            "level": 4,
+            "lev2el": "lev2el",
+            "le3vel": "le3vel",
+            "le4vel": "le4vel",
+            "subItems": [
+              {
+                "id": 1279,
+                "label": "Midlanda flygplats Ledning",
+                "level": 5,
+                "subItems": [
+                  {
+                    "id": 1280,
+                    "label": "Midlanda flygplats Ledning",
+                    "level": 6,
+                    "subItems": null
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": 1281,
+            "label": "Midlanda Driftenhet",
+            "level": 4,
+            "subItems": [
+              {
+                "id": 1282,
+                "label": "Midlanda Ramp/Verkstad",
+                "level": 5,
+                "subItems": [
+                  {
+                    "id": 1283,
+                    "label": "Midlanda Verkstad",
+                    "level": 6,
+                    "subItems": null
+                  },
+                  {
+                    "id": 1286,
+                    "label": "*Midlanda Team 5",
+                    "level": 6,
+                    "subItems": null
+                  },
+                  {
+                    "id": 1287,
+                    "label": "Midlanda Ramp/Verkstad",
+                    "level": 6,
+                    "subItems": null
+                  }
+                ]
+              },
+              {
+                "id": 1288,
+                "label": "Midlanda Operations",
+                "level": 5,
+                "subItems": [
+                  {
+                    "id": 1294,
+                    "label": "Midlanda Operations",
+                    "level": 6,
+                    "subItems": null
+                  }
+                ]
+              },
+              {
+                "id": 1289,
+                "label": "Midlanda Customer Service",
+                "level": 5,
+                "subItems": [
+                  {
+                    "id": 1295,
+                    "label": "Midlanda Customer Service",
+                    "level": 6,
+                    "subItems": null
+                  }
+                ]
+              },
+              {
+                "id": 1290,
+                "label": "Midlanda Enhet C",
+                "level": 5,
+                "subItems": [
+                  {
+                    "id": 1296,
+                    "label": "Midlanda Enhet C",
+                    "level": 6,
+                    "subItems": null
+                  }
+                ]
+              },
+              {
+                "id": 1292,
+                "label": "Midlanda Fält",
+                "level": 5,
+                "subItems": [
+                  {
+                    "id": 1298,
+                    "label": "Midlanda Fält",
+                    "level": 6,
+                    "subItems": null
+                  }
+                ]
+              },
+              {
+                "id": 1293,
+                "label": "Midlanda Tekniska",
+                "level": 5,
+                "subItems": [
+                  {
+                    "id": 1300,
+                    "label": "Midlanda Projekt o Underhåll",
+                    "level": 6,
+                    "subItems": null
+                  }
+                ]
+              },
+              {
+                "id": 1305,
+                "label": "MIdlanda VA Ledning",
+                "level": 5,
+                "subItems": [
+                  {
+                    "id": 1306,
+                    "label": "Midlanda VA Ledning",
+                    "level": 6,
+                    "subItems": null
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": 1284,
+            "label": "Midlanda FSK/Räddning",
+            "level": 4,
+            "subItems": [
+              {
+                "id": 1303,
+                "label": "Midlanda FSK/Räddning",
+                "level": 5,
+                "subItems": [
+                  {
+                    "id": 1304,
+                    "label": "Midlanda FSK/Räddning",
+                    "level": 6,
+                    "subItems": null
+                  },
+                  {
+                    "id": 4237,
+                    "label": "Midlanda FSK/Utbildning",
+                    "level": 6,
+                    "subItems": null
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": 1285,
+            "label": "Midlanda Adm",
+            "level": 4,
+            "movedAway": true,
+            "subItems": [
+              {
+                "id": 1301,
+                "label": "Midlanda Adm",
+                "level": 5,
+                "subItems": [
+                  {
+                    "id": 1302,
+                    "label": "Midlanda Adm/Marknad",
+                    "level": 6,
+                    "subItems": null
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

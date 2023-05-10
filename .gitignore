@@ -1,0 +1,25 @@
+# local changelog cache (lerna-changelog)
+.changelog/
+
+# Dependency directories
+node_modules/
+# dist
+packages/*/dist
+storybook-static
+
+docs/.next
+
+# Optional npm cache directory
+.npm
+
+# Mac files
+.DS_Store
+
+lerna-debug.log
+# Yarn
+yarn-error.log
+.pnp/
+.pnp.js
+# Yarn Integrity file
+.yarn-integrity
+.npmrc

@@ -1,0 +1,22 @@
+{
+    "extends": [
+        "plugin:storybook/recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "overrides": [
+        {
+            "files": [
+                "*.stories.@(ts|tsx|js|jsx|mjs|cjs)",
+                "*.@(ts|tsx|js|jsx|mjs|cjs)"
+            ],
+            "rules": {
+                "storybook/hierarchy-separator": "off"
+            }
+        }
+    ],
+    "ignorePatterns": [
+        "node_modules/",
+        "**/dist/"
+    ],
+    "parser": "@typescript-eslint/parser"
+}

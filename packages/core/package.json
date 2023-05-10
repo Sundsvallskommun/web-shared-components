@@ -1,0 +1,42 @@
+{
+  "name": "@sk-web-gui/core",
+  "version": "0.1.78",
+  "license": "MIT",
+  "main": "src/index.js",
+  "module": "dist/esm/index.js",
+  "files": [
+    "src/",
+    "dist/"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vechai/sk-web-gui.git"
+  },
+  "scripts": {
+    "build2": "node scripts/build.js",
+    "version": "yarn build",
+    "build": "concurrently yarn:build:*",
+    "build:esm": "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .js -d dist/esm --source-maps",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .js -d dist/cjs --source-maps"
+  },
+  "bugs": {
+    "url": "https://github.com/vechai/sk-web-gui/issues"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^3.2.7"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "clean-css": "^5.3.2",
+    "postcss": "^8.4.23",
+    "postcss-import": "^15.1.0",
+    "tailwindcss": "^3.2.7"
+  },
+  "dependencies": {
+    "@sk-web-gui/theme": "0.1.12",
+    "mini-svg-data-uri": "^1.4.4"
+  }
+}
