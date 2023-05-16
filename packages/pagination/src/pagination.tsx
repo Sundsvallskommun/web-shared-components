@@ -147,7 +147,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
   };
 
   const ellipsis = (
-    <span className={cx('pagination-prevNextButton-ellipsis')} aria-hidden={true} role="separator">
+    <span className={cx('pagination-prevNextButton-ellipsis')} role="separator">
       …
     </span>
   );
@@ -157,7 +157,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
       goToFirstButton(button, total);
     } else {
       const next = button?.parentElement?.nextSibling?.firstChild as HTMLElement;
-      if (next && next?.ariaHidden !== 'true' && next.ariaDisabled !== 'true') {
+      if (next && next?.role !== 'separator' && next.ariaDisabled !== 'true') {
         next.focus();
       } else {
         goToNextButton(next, index + 1, total);
@@ -170,7 +170,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
       goToLastButton(button, total);
     } else {
       const previous = button?.parentElement?.previousSibling?.firstChild as HTMLElement;
-      if (previous && previous.ariaHidden !== 'true' && previous.ariaDisabled !== 'true') {
+      if (previous && previous.role !== 'separator' && previous.ariaDisabled !== 'true') {
         previous.focus();
       } else {
         goToPreviousButton(previous, index - 1, total);
