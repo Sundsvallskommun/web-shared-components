@@ -157,7 +157,11 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
       goToFirstButton(button, total);
     } else {
       const next = button?.parentElement?.nextSibling?.firstChild as HTMLElement;
-      if (next && next?.role !== 'separator' && next.ariaDisabled !== 'true') {
+      if (
+        next &&
+        next.attributes.getNamedItem('role')?.value === 'menuitem' &&
+        next.attributes.getNamedItem('aria-disabled')?.value !== 'true'
+      ) {
         next.focus();
       } else {
         goToNextButton(next, index + 1, total);
@@ -170,7 +174,12 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
       goToLastButton(button, total);
     } else {
       const previous = button?.parentElement?.previousSibling?.firstChild as HTMLElement;
-      if (previous && previous.role !== 'separator' && previous.ariaDisabled !== 'true') {
+
+      if (
+        previous &&
+        previous.attributes.getNamedItem('role')?.value === 'menuitem' &&
+        previous.attributes.getNamedItem('aria-disabled')?.value !== 'true'
+      ) {
         previous.focus();
       } else {
         goToPreviousButton(previous, index - 1, total);
@@ -180,7 +189,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
 
   const goToFirstButton = (button: HTMLElement, total: number) => {
     const first = button?.parentElement?.parentElement?.firstChild?.firstChild as HTMLElement;
-    if (first && first.ariaDisabled !== 'true') {
+    if (first && first.attributes.getNamedItem('aria-disabled')?.value !== 'true') {
       first.focus();
     } else {
       goToNextButton(first, 0, total);
@@ -189,7 +198,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
 
   const goToLastButton = (button: HTMLElement, total: number) => {
     const last = button?.parentElement?.parentElement?.lastChild?.firstChild as HTMLElement;
-    if (last && last.ariaDisabled !== 'true') {
+    if (last && last.attributes.getNamedItem('aria-disabled')?.value !== 'true') {
       last.focus();
     } else {
       goToPreviousButton(last, total - 1, total);
