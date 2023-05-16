@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.32 (2023-05-16)
+
+**Note:** Version bump only for package @sk-web-gui/radio
+
 ## [0.1.31](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/radio@0.1.30...@sk-web-gui/radio@0.1.31) (2023-05-08)
 
 **Note:** Version bump only for package @sk-web-gui/radio

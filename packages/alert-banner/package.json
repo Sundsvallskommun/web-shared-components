@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/alert-banner",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -42,7 +42,7 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.1",
     "@react-hookz/web": "23.0.0",
-    "@sk-web-gui/utils": "0.1.6"
+    "@sk-web-gui/utils": "0.1.7"
   },
   "peerDependencies": {
     "react": ">=18.2.0"

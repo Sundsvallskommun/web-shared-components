@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/search-bar",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -38,9 +38,9 @@
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.1",
-    "@sk-web-gui/button": "0.1.18",
-    "@sk-web-gui/forms": "0.1.30",
-    "@sk-web-gui/utils": "0.1.6"
+    "@sk-web-gui/button": "0.1.19",
+    "@sk-web-gui/forms": "0.1.31",
+    "@sk-web-gui/utils": "0.1.7"
   },
   "devDependencies": {
     "react": "^18.2.0"

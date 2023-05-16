@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.20 (2023-05-16)
+
+**Note:** Version bump only for package @sk-web-gui/toast
+
 ## [0.1.19](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/toast@0.1.18...@sk-web-gui/toast@0.1.19) (2023-04-24)
 
 **Note:** Version bump only for package @sk-web-gui/toast

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.15 (2023-05-16)
+
+**Note:** Version bump only for package @sk-web-gui/badge
+
 ## [0.1.14](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/badge@0.1.13...@sk-web-gui/badge@0.1.14) (2023-04-21)
 
 **Note:** Version bump only for package @sk-web-gui/badge
