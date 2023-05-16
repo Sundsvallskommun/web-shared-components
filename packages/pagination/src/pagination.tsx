@@ -157,7 +157,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
       goToFirstButton(button, total);
     } else {
       const next = button?.parentElement?.nextSibling?.firstChild as HTMLElement;
-      if (next && !next?.ariaHidden && next.ariaDisabled !== 'true') {
+      if (next && next?.ariaHidden !== 'true' && next.ariaDisabled !== 'true') {
         next.focus();
       } else {
         goToNextButton(next, index + 1, total);
@@ -170,7 +170,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
       goToLastButton(button, total);
     } else {
       const previous = button?.parentElement?.previousSibling?.firstChild as HTMLElement;
-      if (previous && !previous.ariaHidden && previous.ariaDisabled !== 'true') {
+      if (previous && previous.ariaHidden !== 'true' && previous.ariaDisabled !== 'true') {
         previous.focus();
       } else {
         goToPreviousButton(previous, index - 1, total);
