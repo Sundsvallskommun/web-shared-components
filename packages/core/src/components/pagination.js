@@ -25,7 +25,7 @@ module.exports = Pagination = () => ({
       width: '1.5em',
       height: '1.75em',
 
-      "&[aria-disabled='true']": {
+      "&[aria-current='true']": {
         '@apply border-primary border-b cursor-default text-primary': {},
       },
     },
