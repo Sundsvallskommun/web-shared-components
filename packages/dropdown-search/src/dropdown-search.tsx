@@ -35,6 +35,8 @@ export interface IDropdownSearchProps extends InputPropsOmitted {
   //** Defaults to id */
   idProperty?: string;
   autoFocus?: boolean;
+  rounded?: boolean;
+  onSearch?: (query: string) => void;
 }
 
 type OmittedHTMLInputElement = Omit<React.HTMLAttributes<HTMLDivElement>, 'onSelect'>;
@@ -80,6 +82,8 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
     defaultList,
     multiple,
     idProperty = 'id',
+    rounded = false,
+    onSearch,
     ...rest
   } = props;
 
@@ -308,6 +312,9 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
           setActiveSelectedOption(null);
         }
       }
+      if (activeOption === null && activeSelectedOption === null) {
+        onSearch && onSearch(query);
+      }
     } else if (e.keyCode === 27) {
       // escape
       setDropdownActive(false);
@@ -374,8 +381,8 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
       (multiple && selectedValues.length > 0));
 
   return (
-    <div ref={ref} className={cx('dropdown-search', className)}>
-      <Input.Group size={size}>
+    <div ref={ref} className={cx('dropdown-search', className)} data-expanded={showSuggestions}>
+      <Input.Group size={size} rounded={rounded}>
         <Input
           {...rest}
           as={showResult && (selectedValue || selectedValues.length) ? 'button' : 'input'}

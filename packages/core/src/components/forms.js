@@ -289,6 +289,24 @@ module.exports = Forms = (colors) => ({
         '@apply grow-0': {},
       },
     },
+
+    '&[data-expanded=true]': {
+      '.form-input-group[data-rounded=true]': {
+        '@apply rounded-t-[2rem] rounded-bl-none rounded-br-none': {},
+
+        '> *:first-child': {
+          '@apply rounded-t-[2rem] rounded-bl-none rounded-br-none': {},
+        },
+
+        '> *:last-child': {
+          '@apply rounded-t-[2rem] rounded-bl-none rounded-br-none': {},
+        },
+
+        '& ~ #dropdown-search-results': {
+          '@apply rounded-b-[1.6rem]': {},
+        },
+      },
+    },
   },
 
   '.form-select': {

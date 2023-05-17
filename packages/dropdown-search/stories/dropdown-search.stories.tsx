@@ -41,6 +41,7 @@ export const Template = (args: DropdownSearchProps) => {
         useDeleteButton
         notFoundLabel="Inga resultat..."
         onSelect={console.log}
+        onSearch={console.log}
       />
     </form>
   );
