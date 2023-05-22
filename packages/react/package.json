@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/react",
-  "version": "0.1.117",
+  "version": "0.1.118",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -50,7 +50,7 @@
     "@sk-web-gui/cookie-consent": "0.1.20",
     "@sk-web-gui/divider": "0.1.16",
     "@sk-web-gui/dropdown-filter": "0.1.33",
-    "@sk-web-gui/dropdown-search": "0.1.25",
+    "@sk-web-gui/dropdown-search": "0.1.26",
     "@sk-web-gui/footer": "0.1.11",
     "@sk-web-gui/forms": "0.1.31",
     "@sk-web-gui/header": "0.1.12",
