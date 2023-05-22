@@ -1,10 +1,10 @@
 import { Dialog, Transition } from '@headlessui/react';
 import CloseIcon from '@mui/icons-material/Close';
-import { __DEV__ } from '@sk-web-gui/utils';
+import { DefaultProps, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 import { Fragment } from 'react';
 
-export interface IModalProps {
+export interface IModalProps extends DefaultProps {
   show: boolean;
   label?: string | JSX.Element;
   className?: string;
@@ -12,10 +12,25 @@ export interface IModalProps {
   hideClosebutton?: boolean;
   children?: React.ReactNode;
   disableCloseOutside?: boolean;
+  as?: React.ElementType;
+  labelAs?: React.ElementType;
+  hideLabel?: boolean;
 }
 
 export const Modal = React.forwardRef<HTMLDivElement, IModalProps>((props, ref) => {
-  const { show, label, className, hideClosebutton = false, onClose, children, disableCloseOutside = false } = props;
+  const {
+    show,
+    label,
+    className,
+    hideClosebutton = false,
+    onClose,
+    children,
+    disableCloseOutside = false,
+    as: Content = 'article',
+    labelAs = 'h4',
+    hideLabel = false,
+    ...rest
+  } = props;
 
   const onCloseHandler = () => {
     if (onClose) {
@@ -37,6 +52,7 @@ export const Modal = React.forwardRef<HTMLDivElement, IModalProps>((props, ref) 
           as="div"
           className="fixed inset-0 z-20 overflow-y-auto bg-opacity-50 bg-gray-500"
           onClose={onCloseOutsideHandler}
+          {...rest}
         >
           <div className="min-h-screen px-4 text-center">
             <Transition.Child
@@ -64,13 +80,17 @@ export const Modal = React.forwardRef<HTMLDivElement, IModalProps>((props, ref) 
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div
+              <Content
                 className={`${className} inline-block w-full px-md py-lg sm:px-16 my-8 text-left align-middle transition-all transform bg-white shadow-xl rounded`}
               >
                 <div className="flex flex-between w-full mb-lg">
-                  <Dialog.Title as="h4" className={`grow text-xl ${hideClosebutton ? 'text-center' : ''}`}>
-                    {label}
-                  </Dialog.Title>
+                  {!hideLabel ? (
+                    <Dialog.Title as={labelAs} className={`grow text-xl ${hideClosebutton ? 'text-center' : ''}`}>
+                      {label}
+                    </Dialog.Title>
+                  ) : (
+                    <div className="grow" />
+                  )}
 
                   {!hideClosebutton && (
                     <button className="p-4 -m-4" aria-label={`Stäng ${label}`} onClick={onCloseHandler}>
@@ -79,7 +99,7 @@ export const Modal = React.forwardRef<HTMLDivElement, IModalProps>((props, ref) 
                   )}
                 </div>
                 <div>{children}</div>
-              </div>
+              </Content>
             </Transition.Child>
           </div>
         </Dialog>
