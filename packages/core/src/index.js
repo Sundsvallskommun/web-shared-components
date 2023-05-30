@@ -12,7 +12,7 @@ const AlertBanner = require('./components/alert-banner');
 const Badge = require('./components/badge');
 const Breadcrumb = require('./components/breadcrumb');
 const ButtonGroup = require('./components/button-group');
-
+const Comments = require('./components/comments');
 const Checkbox = require('./components/checkbox');
 const ContextMenu = require('./components/context-menu');
 const Dialog = require('./components/dialog');
@@ -61,6 +61,7 @@ const components = [
   ButtonGroup,
   Button,
   Checkbox,
+  Comments,
   ContextMenu,
   Dialog,
   Dot,

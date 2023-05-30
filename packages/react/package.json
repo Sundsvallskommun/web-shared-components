@@ -47,6 +47,7 @@
     "@sk-web-gui/card": "0.1.15",
     "@sk-web-gui/checkbox": "0.1.31",
     "@sk-web-gui/context-menu": "0.1.10",
+    "@sk-web-gui/comments": "0.1.0",
     "@sk-web-gui/cookie-consent": "0.1.20",
     "@sk-web-gui/divider": "0.1.16",
     "@sk-web-gui/dropdown-filter": "0.1.33",

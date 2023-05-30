@@ -1,0 +1,16 @@
+[
+    {
+        "id": 123,
+        "commentorName": "Anders Andersson",
+        "userImage": "https://bit.ly/dan-abramov",
+        "commentText": "Vilket trevligt väder det är idag, tycker jag!",
+        "publishDate": "2023-xx-xx 16.00"
+    },
+    {
+        "id": 223,
+        "commentorName": "Birgitta Bengtsson",
+        "userImage": "",
+        "commentText": "Nä, det håller jag inte med om. Grått och tråkigt!",
+        "publishDate": "2023-xx-xx 16.30"
+    }
+]
