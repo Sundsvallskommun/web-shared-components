@@ -1,5 +1,4 @@
-import { Meta } from '@storybook/react';
-import { __DEV__, cx } from '@sk-web-gui/utils';
+import { __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 import { DefaultProps } from '@sk-web-gui/utils';
 import CommentItem from './comment-item';
@@ -17,22 +16,31 @@ export interface IDataObject {
 }
 
 interface ICommentsProps extends DefaultProps {
-  loading?: boolean;
   commentsData: Array<IDataObject>;
-  submitFunction: () => void;
+  submitFunction: (comment: string) => void;
   inputValue?: string;
-  setInputValue?: (arg: string) => void;
+  setInputValue?: (comment: string) => void;
+  loading?: boolean;
   header?: boolean;
+  placeholder?: string;
 }
 
 export interface CommentsProps extends Omit<React.HTMLAttributes<HTMLSpanElement>, 'color'>, ICommentsProps {}
 
-export const Comments = React.forwardRef<HTMLSpanElement, CommentsProps>((props) => {
+export const Comments = React.forwardRef<HTMLSpanElement, CommentsProps>((props, ref) => {
   const [input, setInput] = useState('');
-  const { commentsData, loading, submitFunction, inputValue = input, setInputValue = setInput, header = true } = props;
+  const {
+    commentsData,
+    loading,
+    submitFunction,
+    inputValue = input,
+    setInputValue = setInput,
+    header = true,
+    placeholder,
+  } = props;
 
   return (
-    <div className="flex flex-col w-full h-full">
+    <div className="flex flex-col w-full h-full" {...ref}>
       {header && (
         <div className="comment-header">
           <QuestionAnswerOutlinedIcon className="text-primary !text-2xl" />
@@ -44,7 +52,7 @@ export const Comments = React.forwardRef<HTMLSpanElement, CommentsProps>((props)
           commentsData &&
           commentsData.map((comment) => {
             return (
-              <div className="py-10 mt-4">
+              <div className="py-10 mt-4" key={`comment-item-${comment.id}`}>
                 <CommentItem
                   commentorName={comment.commentorName}
                   commentText={comment.commentText}
@@ -61,7 +69,12 @@ export const Comments = React.forwardRef<HTMLSpanElement, CommentsProps>((props)
         )}
       </div>
       <div className="mt-auto">
-        <InputComment submitFunction={submitFunction} inputValue={inputValue} setInputValue={setInputValue} />
+        <InputComment
+          submitFunction={submitFunction}
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+          placeholder={placeholder}
+        />
       </div>
     </div>
   );

@@ -1,4 +1,3 @@
-import { Button } from '@sk-web-gui/button';
 import { Meta } from '@storybook/react';
 import React, { useState } from 'react';
 import { Comments, CommentsProps } from '../src';
@@ -13,9 +12,8 @@ export default {
 export const Template = (args: CommentsProps) => {
   const [input, setInput] = useState('');
 
-  const submit = () => {
-    alert('Kommentar: ' + input);
-    setInput('');
+  const submit = (comment: string) => {
+    alert('Kommentar: ' + comment);
   };
   return (
     <div className="max-w-[800px] w-full shadow-md pb-8">
