@@ -1,5 +1,5 @@
 module.exports = Pagination = () => ({
-  '.pagination': {
+  '.sk-pagination': {
     '@apply select-none': {},
 
     '&-sm': {

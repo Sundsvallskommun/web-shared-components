@@ -1,5 +1,5 @@
-(module).exports = ZebraTable = () => ({
-  '.zebratable': {
+module.exports = ZebraTable = () => ({
+  '.sk-zebratable': {
     '@apply w-full text-left table-auto': {},
 
     '&-thead': {
@@ -68,6 +68,15 @@
 
     '&-paginationwrapper': {
       '@apply w-full text-lg flex justify-center lg:justify-start': {},
+    },
+    '&-pagination': {
+      '@apply grow': {},
+    },
+    '&.-pagination-pagesizes': {
+      '@apply grow-0': {},
+      '&.-select': {
+        '@apply w-auto': {},
+      },
     },
 
     '&-bottomwrapper': {
