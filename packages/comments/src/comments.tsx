@@ -7,7 +7,7 @@ import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlin
 import { useState } from 'react';
 import { Spinner } from '@sk-web-gui/spinner';
 
-export interface IDataObject {
+export interface ICommentData {
   id: string | number;
   commentorName: string;
   userImage: string;
@@ -16,7 +16,7 @@ export interface IDataObject {
 }
 
 interface ICommentsProps extends DefaultProps {
-  commentsData: Array<IDataObject>;
+  commentsData: Array<ICommentData>;
   submitFunction: (comment: string) => void;
   inputValue?: string;
   setInputValue?: (comment: string) => void;
