@@ -87,6 +87,12 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
   }, [page]);
 
   useEffect(() => {
+    if (_pageSize) {
+      setPageSize(_pageSize);
+    }
+  }, [_pageSize]);
+
+  useEffect(() => {
     if (_pageSizes.length) {
       setPageSizes(_pageSizes);
       if (_pageSizes?.length > 0 && !_pageSizes.includes(pageSize)) {
@@ -94,10 +100,6 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
       }
     }
   }, [_pageSizes]);
-
-  useEffect(() => {
-    setPageSize(_pageSize);
-  }, [_pageSize]);
 
   useEffect(() => {
     changePage && changePage(currentPage);
