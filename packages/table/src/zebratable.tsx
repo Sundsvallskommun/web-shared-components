@@ -4,7 +4,7 @@ import * as React from 'react';
 import { useZebraTableClass } from './styles';
 import { Pagination } from '@sk-web-gui/pagination';
 import { ZTableHeader } from './zebratable-header';
-
+import { Select } from '@sk-web-gui/forms';
 export interface ZebraTableHeader {
   element: JSX.Element;
   isColumnSortable?: boolean;
@@ -24,6 +24,7 @@ export interface IZebraTableProps {
   defaultSort?: { idx: number; sortMode: boolean };
   sortAscending?: boolean;
   pageSize?: number;
+  pageSizes?: number[];
   page?: number;
   pages?: number;
   captionTitle?: string;
@@ -44,9 +45,10 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
     sortHandler = () => ({}),
     defaultSort = { idx: 0, sortMode: true },
     sortAscending = true,
-    pageSize = 5,
+    pageSize: _pageSize = 5,
+    pageSizes: _pageSizes = [],
     page = 1,
-    pages = Math.ceil(rows.length / pageSize),
+    pages: _pages,
     captionTitle,
     captionBody,
     summary,
@@ -59,9 +61,11 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
   const zebraTableClasses = useZebraTableClass();
   const [managedRows, setManagedRows] = useState(rows);
   const [sortModeAscending, setSortModeAscending] = useState(defaultSort.sortMode);
+  const [pageSizes, setPageSizes] = useState<number[]>(_pageSizes);
+  const [pageSize, setPageSize] = useState<number>(pageSizes[0] || _pageSize);
   const [sortIndex, setSortIndex] = useState<number>(defaultSort.idx);
   const [currentPage, setCurrentPage] = useState<number>(page);
-  const [currentPages, setPages] = useState<number>(pages);
+  const [pages, setPages] = useState<number>(Math.ceil(_pages || rows.length / pageSize));
 
   const internalSortHandler = (idx: number) => {
     setSortModeAscending(sortIndex === idx ? !sortModeAscending : sortAscending);
@@ -83,6 +87,21 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
   }, [page]);
 
   useEffect(() => {
+    if (_pageSize) {
+      setPageSize(_pageSize);
+    }
+  }, [_pageSize]);
+
+  useEffect(() => {
+    if (_pageSizes.length) {
+      setPageSizes(_pageSizes);
+      if (_pageSizes?.length > 0 && !_pageSizes.includes(pageSize)) {
+        setPageSize(_pageSizes[0]);
+      }
+    }
+  }, [_pageSizes]);
+
+  useEffect(() => {
     changePage && changePage(currentPage);
   }, [currentPage]);
 
@@ -96,8 +115,13 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
 
   useEffect(() => {
     if (pages > 0) {
-      setPages(Math.ceil(rows.length / pageSize));
-      const startIndex = currentPage * pageSize - pageSize;
+      const newPages = Math.ceil(rows.length / pageSize);
+      setPages(newPages);
+      if (newPages < currentPage) {
+        setCurrentPage(newPages);
+      }
+      const pageNumber = newPages < currentPage ? newPages : currentPage;
+      const startIndex = pageNumber * pageSize - pageSize;
       setManagedRows(rows.slice(startIndex, startIndex + pageSize));
     } else {
       setManagedRows(rows);
@@ -111,7 +135,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
           ref={ref}
           {...rest}
           className={zebraTableClasses}
-          aria-label={`${rows.length} rader på ${currentPages} sidor`}
+          aria-label={`${rows.length} rader på ${pages} sidor`}
           summary={summary ?? summary}
         >
           {captionTitle && (
@@ -127,8 +151,8 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
             </caption>
           )}
 
-          <thead className="zebratable-thead">
-            <tr className={cx(`zebratable-thead-tr`)}>
+          <thead className="sk-zebratable-thead">
+            <tr className={cx(`sk-zebratable-thead-tr`)}>
               {headers.map((h, idx) => (
                 <ZTableHeader
                   key={`header${idx}`}
@@ -142,11 +166,11 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
               ))}
             </tr>
           </thead>
-          <tbody className="zebratable-tbody">
+          <tbody className="sk-zebratable-tbody">
             {managedRows.map((cols, idx) => (
               <tr
                 key={`row${idx}`}
-                className={`zebratable-tbody-tr ${
+                className={`sk-zebratable-tbody-tr ${
                   highlightedItemIndex !== undefined &&
                   highlightedItemIndex % pageSize === idx &&
                   highlightedPage === currentPage
@@ -156,7 +180,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
               >
                 {cols.map(({ element, isShown = true }, idx) =>
                   isShown ? (
-                    <td key={`col${idx}`} className="zebratable-tbody-td">
+                    <td key={`col${idx}`} className="sk-zebratable-tbody-td">
                       {element}
                     </td>
                   ) : null
@@ -166,15 +190,34 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
           </tbody>
         </table>
       )}
-      {(pages > 1 || BottomComponent) && (
-        <div className="zebratable-bottomwrapper">
-          {pages > 1 && (
-            <div className="zebratable-paginationwrapper">
+      {(pages > 1 || pageSizes?.length > 1 || BottomComponent) && (
+        <div className="sk-zebratable-bottomwrapper">
+          {(pages > 1 || pageSizes?.length > 1) && (
+            <div className="sk-zebratable-paginationwrapper">
               <Pagination
-                pages={currentPages}
+                className="sk-zebratable-paginationwrapper"
+                pages={pages}
                 activePage={currentPage}
                 changePage={(page: number) => setCurrentPage(page)}
               />
+              {pageSizes.length > 0 && (
+                <div className="sk-zebratable-pagination-pagesizes">
+                  <Select
+                    className="sk-zebratable-pagination-pagesizes-select"
+                    onChange={(value) => setPageSize(value.data)}
+                    value={{ label: pageSize.toString(), data: pageSize }}
+                  >
+                    {pageSizes?.map((size, sizeIndex) => (
+                      <Select.Option
+                        key={`pageSize-${sizeIndex}-${size}`}
+                        value={{ label: size.toString(), data: size }}
+                      >
+                        {size}
+                      </Select.Option>
+                    ))}
+                  </Select>
+                </div>
+              )}
             </div>
           )}
           {BottomComponent && BottomComponent}

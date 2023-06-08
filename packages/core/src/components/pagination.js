@@ -1,5 +1,5 @@
 module.exports = Pagination = () => ({
-  '.pagination': {
+  '.sk-pagination': {
     '@apply select-none': {},
 
     '&-sm': {
@@ -70,7 +70,7 @@ module.exports = Pagination = () => ({
     },
     '&.fit-content': {
       '@apply w-full max-w-full': {},
-      '.pagination-list': {
+      '.sk-pagination-list': {
         '@apply w-full flex justify-between': {},
         '&-item': {
           '@apply px-0  flex-shrink grow text-center': {},
@@ -80,7 +80,7 @@ module.exports = Pagination = () => ({
           '&.prev-next': {
             '@apply flex-shrink grow-0': {},
           },
-          '.pagination-pageLabel': {
+          '.sk-pagination-pageLabel': {
             '@apply w-full max-w-[1.5em] mx-xs': {},
           },
         },

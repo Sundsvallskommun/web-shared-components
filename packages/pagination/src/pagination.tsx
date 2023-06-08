@@ -108,7 +108,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
         role="menuitem"
         aria-current={active}
         aria-label={active ? `sida ${pageNumber}, Nuvarande sida` : `Gå till sida ${pageNumber}`}
-        className={cx(`pagination-pageLabel`)}
+        className={cx(`sk-pagination-pageLabel`)}
         onClick={() => handleClick(pageNumber)}
         key={`page${pageNumber}`}
       >
@@ -138,16 +138,16 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
         disabled={isDisabled}
         data-reverse={reverse}
         onClick={() => isDisabled || handleClick(currentPage + step)}
-        className={cx(`pagination-prevNextButton`)}
+        className={cx(`sk-pagination-prevNextButton`)}
       >
-        <span className={cx(`pagination-prevNextButton-label`)}>{hidePrevNextLabel ? '' : label}</span>
-        <span className={cx(`pagination-prevNextButton-icon`)}>{icon}</span>
+        <span className={cx(`sk-pagination-prevNextButton-label`)}>{hidePrevNextLabel ? '' : label}</span>
+        <span className={cx(`sk-pagination-prevNextButton-icon`)}>{icon}</span>
       </button>
     );
   };
 
   const ellipsis = (
-    <span className={cx('pagination-prevNextButton-ellipsis')} role="separator">
+    <span className={cx('sk-pagination-prevNextButton-ellipsis')} role="separator">
       …
     </span>
   );
@@ -257,8 +257,8 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
           ))}
         </Select>
       ) : (
-        <ul className="pagination-list" role="menubar" aria-orientation="horizontal">
-          <li className="pagination-list-item prev-next" role="none">
+        <ul className="sk-pagination-list" role="menubar" aria-orientation="horizontal">
+          <li className="sk-pagination-list-item prev-next" role="none">
             {prevNextButton({
               label: prevLabel,
               icon: <KeyboardDoubleArrowLeftOutlinedIcon aria-hidden="true" />,
@@ -270,34 +270,37 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
             })}
           </li>
           {(activePage === 1 || showFirst || pagesBefore >= currentPage - 1 || pages <= shownBefore + shownAfter) && (
-            <li className="pagination-list-item" role="none">
+            <li className="sk-pagination-list-item" role="none">
               {pageLabel(1)}
             </li>
           )}
-          {currentPage > pagesBefore + 2 && showFirst && <li className="pagination-list-item ellipsis">{ellipsis}</li>}
+          {currentPage > pagesBefore + 2 && showFirst && (
+            <li className="sk-pagination-list-item ellipsis">{ellipsis}</li>
+          )}
           {[...Array(pages)].map((_, idx: number) => {
             return (
               shouldShowLabel(idx, currentPage, pagesBefore) && (
-                <li key={`pageLabel-${idx}`} className="pagination-list-item" role="none">
+                <li key={`pageLabel-${idx}`} className="sk-pagination-list-item" role="none">
                   {pageLabel(idx + 1)}
                 </li>
               )
             );
           })}
           {currentPage < pages - pagesAfter - 1 && showLast && (
-            <li className="pagination-list-item ellipsis" role="none">
+            <li className="sk-pagination-list-item ellipsis" role="none">
               {ellipsis}
             </li>
           )}
           {(showLast ||
             activePage === pages ||
             pagesAfter > pages - (currentPage + 1) ||
-            pages <= shownBefore + shownAfter) && (
-            <li className="pagination-list-item" role="none">
-              {pageLabel(pages)}
-            </li>
-          )}
-          <li className="pagination-list-item  prev-next" role="none">
+            pages <= shownBefore + shownAfter) &&
+            pages > 1 && (
+              <li className="sk-pagination-list-item" role="none">
+                {pageLabel(pages)}
+              </li>
+            )}
+          <li className="sk-pagination-list-item  prev-next" role="none">
             {prevNextButton({
               label: nextLabel,
               icon: <KeyboardDoubleArrowRightOutlinedIcon aria-hidden="true" />,
