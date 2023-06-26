@@ -42,6 +42,7 @@ interface CommonProps {
   renderMenuItemExpand?: (data: IDataObject, active: boolean, defaultElement: React.ReactNode) => React.ReactNode;
   className?: string;
   ariaExpanded?: { open: string; close: string };
+  ariaMoveButton?: string;
   onDrop?: (draggedItem: IMenu, oldParent: IMenu, newParent: IMenu) => void;
 }
 
@@ -71,6 +72,7 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
     renderMenuItemExpand,
     className = '',
     ariaExpanded = { open: 'Visa undermeny', close: 'Dölj undermeny' },
+    ariaMoveButton = 'Flytta menyrad',
     draggable = false,
   } = props;
   const internalRef = React.useRef<HTMLDivElement | null>(null);
@@ -136,6 +138,7 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
                 closeNoneActive={closeNoneActive}
                 disabled={item.disabled}
                 ariaExpanded={ariaExpanded}
+                ariaMoveButton={ariaMoveButton}
                 renderMenuItem={renderMenuItem}
                 renderMenuItemLabel={renderMenuItemLabel}
                 renderMenuItemExpand={renderMenuItemExpand}
