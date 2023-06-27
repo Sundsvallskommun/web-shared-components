@@ -37,6 +37,7 @@ export interface IDropdownSearchProps extends InputPropsOmitted {
   autoFocus?: boolean;
   rounded?: boolean;
   onSearch?: (query: string) => void;
+  inputRef?: React.RefObject<HTMLInputElement>;
 }
 
 type OmittedHTMLInputElement = Omit<React.HTMLAttributes<HTMLDivElement>, 'onSelect'>;
@@ -84,6 +85,7 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
     idProperty = 'id',
     rounded = false,
     onSearch,
+    inputRef: _inputRef,
     ...rest
   } = props;
 
@@ -100,7 +102,7 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
 
   const classes = useDropdownSearchClass({ size, disabled });
 
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = _inputRef || useRef<HTMLInputElement>(null);
 
   const setInputFocus = () => {
     setTimeout(() => {
