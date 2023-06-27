@@ -41,8 +41,12 @@ module.exports = DropdownFilter = () => ({
         alignItems: 'center',
         borderBottom: '1px solid #939393',
 
-        '> label:first-child': {
-          '@apply flex-grow': {},
+        '> label': {
+          '@apply w-full': {},
+
+          '> .form-checkbox-label': {
+            '@apply flex-grow': {},
+          },
         },
 
         '&.disabled': {

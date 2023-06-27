@@ -20,8 +20,15 @@ export const FilterItem = ({ item, itemChange, size, className }: IFilterItemPro
 
   return (
     <li className={cx(classes, className)}>
-      <label htmlFor={'checkbox-' + item.id}>{item.name}</label>
-      <Checkbox id={'checkbox-' + item.id} checked={item.value} disabled={item.disabled} onChange={onClickHandler} />
+      <Checkbox
+        id={'checkbox-' + item.id}
+        checked={item.value}
+        disabled={item.disabled}
+        onChange={onClickHandler}
+        labelPosition="left"
+      >
+        {item.name}
+      </Checkbox>
     </li>
   );
 };

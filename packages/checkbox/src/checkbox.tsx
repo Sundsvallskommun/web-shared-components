@@ -56,6 +56,10 @@ interface ICheckboxProps<T = HTMLInputElement> extends DefaultProps {
    * The callback invoked when the checked state of the `Checkbox` changes..
    */
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  /**
+   * Position the label text (children) left or right of the checkbox. Defaults to right.
+   */
+  labelPosition?: 'left' | 'right';
 }
 
 export type CheckboxProps = ICheckboxProps & React.HTMLAttributes<HTMLInputElement>;
@@ -76,6 +80,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>((props
     indeterminate,
     children,
     className,
+    labelPosition = 'right',
     ...rest
   } = props;
 
@@ -102,7 +107,14 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>((props
   }, [indeterminate, _ref]);
 
   return (
-    <label className={cx('inline-flex align-top items-center cursor-base', disabled && 'cursor-not-allowed')}>
+    <label
+      className={cx(
+        'inline-flex align-top items-center cursor-base',
+        disabled && 'cursor-not-allowed',
+        labelPosition === 'left' ? 'form-checkbox-label-left' : 'form-checkbox-label-right'
+      )}
+    >
+      {children && labelPosition === 'left' && <span className={cx(checkboxLabelClasses)}>{children}</span>}
       <input
         type="checkbox"
         aria-label={ariaLabel}
@@ -122,23 +134,10 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>((props
         aria-invalid={invalid}
         aria-checked={indeterminate ? 'mixed' : checked}
         data-color={color ? color : undefined}
-        className={cx(
-          checkboxClasses,
-          //readOnly || disabled ? "opacity-80" : "opacity-100",
-          className
-        )}
+        className={cx(checkboxClasses, className)}
         {...rest}
       />
-      {children && (
-        <span
-          className={cx(
-            checkboxLabelClasses
-            //readOnly || disabled ? "opacity-40" : "opacity-100"
-          )}
-        >
-          {children}
-        </span>
-      )}
+      {children && labelPosition === 'right' && <span className={cx(checkboxLabelClasses)}>{children}</span>}
     </label>
   );
 });
