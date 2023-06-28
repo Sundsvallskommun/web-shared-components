@@ -12,6 +12,7 @@ export interface IMenuExtended extends IMenu {
   /* Closes non active trees in the menu. Default is true. */
   closeNoneActive: boolean;
   ariaExpanded: { open: string; close: string };
+  ariaMoveButton?: string;
   draggable?: boolean;
   renderMenuItem?: (
     data: IDataObject,
@@ -43,6 +44,7 @@ export const MenuItem = (props: IMenuExtended) => {
     draggable = false,
     separator = false,
     movedHere = false,
+    ariaMoveButton,
   } = props;
 
   const [open, setOpen] = React.useState<boolean>(false);
@@ -161,6 +163,7 @@ export const MenuItem = (props: IMenuExtended) => {
             draggable={draggable}
             className={`menu-item-move-button`}
             variant="link"
+            aria-label={ariaMoveButton}
             aria-disabled={disabled ? true : undefined}
             rightIcon={<DragIndicatorOutlinedIcon className="menu-item-move-button-icon !text-2xl" />}
           >
@@ -202,6 +205,7 @@ export const MenuItem = (props: IMenuExtended) => {
                 closeNoneActive={closeNoneActive}
                 disabled={item.disabled}
                 ariaExpanded={ariaExpanded}
+                ariaMoveButton={ariaMoveButton}
                 newItem={item.newItem}
                 renderMenuItem={renderMenuItem}
                 renderMenuItemLabel={renderMenuItemLabel}
