@@ -44,4 +44,8 @@ module.exports = {
     h6: { '@apply mt-lg': {} },
     p: { '@apply mt-sm leading-[1.5]': {} },
   },
+
+  '.custom-scrollbar': {
+    '@apply scrollbar scrollbar-h-5 scrollbar-w-4 scrollbar-thumb-gray-300 scrollbar-track-gray-100 scrollbar-thumb-rounded-full scrollbar-track-rounded-full': {},
+  },
 };

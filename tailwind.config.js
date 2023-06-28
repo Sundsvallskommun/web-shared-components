@@ -10,5 +10,9 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/forms'), require('./packages/core')],
+  plugins: [require('@tailwindcss/forms'), require('./packages/core'),
+  require('tailwind-scrollbar')({ nocompatible: true }),],
+  variants: {
+    scrollbar: ['rounded'],
+  },
 };
