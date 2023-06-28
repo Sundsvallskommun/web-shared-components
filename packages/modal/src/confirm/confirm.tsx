@@ -33,7 +33,8 @@ type DialogContextType = {
     confirmLabel?: string,
     dismissLabel?: string,
     dialogType?: 'warning' | 'error' | 'info',
-    icon?: 'info' | 'error' | 'question'
+    icon?: 'info' | 'error' | 'question',
+    labelAs?: React.ElementType
   ) => Promise<boolean>;
 };
 
@@ -50,6 +51,7 @@ interface ConfirmDialogProps {
   dismissLabel?: string;
   dialogType?: 'warning' | 'error' | 'info';
   icon?: 'info' | 'error' | 'question';
+  labelAs?: React.ElementType;
 }
 
 export const ConfirmationDialogContextProvider: React.FC<ConfirmationDialogContextProviderProps> = (props) => {
@@ -63,7 +65,8 @@ export const ConfirmationDialogContextProvider: React.FC<ConfirmationDialogConte
     confirmLabel?: string,
     dismissLabel?: string,
     dialogType?: 'warning' | 'error' | 'info',
-    icon?: 'info' | 'error' | 'question'
+    icon?: 'info' | 'error' | 'question',
+    labelAs?: React.ElementType
   ): Promise<boolean> => {
     setContent({
       title,
@@ -72,6 +75,7 @@ export const ConfirmationDialogContextProvider: React.FC<ConfirmationDialogConte
       dismissLabel: dismissLabel || 'Nej',
       dialogType: dialogType,
       icon: icon,
+      labelAs: labelAs || 'h4',
     });
     setShow(true);
     return new Promise(function (resolve) {
@@ -120,6 +124,7 @@ export const ConfirmationDialogContextProvider: React.FC<ConfirmationDialogConte
               {switchIcon(content.icon)} {content.title}
             </span>
           }
+          labelAs={content.labelAs}
           className={content.dialogType ? `border-2 border-${content.dialogType}` : ``}
         >
           <Dialog.Content>
