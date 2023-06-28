@@ -114,7 +114,7 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
         </button>
       </div>
       <div
-        className={`accordion-body ${noMargin ? '' : 'm-lg'}`}
+        className={`accordion-body ${accordionOpen && 'overflow-visible'} ${noMargin ? '' : 'm-lg'}`}
         aria-hidden={!accordionOpen}
         ref={contentEl}
         style={accordionOpen ? { height: contentEl?.current?.scrollHeight } : { height: '0' }}
