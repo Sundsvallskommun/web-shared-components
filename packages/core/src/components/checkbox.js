@@ -104,9 +104,16 @@ module.exports = Checkbox = (colors) => ({
     },
 
     // label
+    '&-label-left &-label': {
+      marginRight: '0.8rem',
+    },
+    '&-label-right &-label': {
+      marginLeft: '0.8rem',
+    },
+
     '&-label': {
       '@apply text-body select-none text-sm': {},
-      marginLeft: '0.8rem',
+      // marginLeft: '0.8rem',
       //"@apply text-black": {},
       // dark colors
       '@apply dark:text-neutral-100': {},
