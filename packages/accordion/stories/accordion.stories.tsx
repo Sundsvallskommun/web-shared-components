@@ -33,51 +33,42 @@ export const Template = (args: AccordionProps) => {
           <FormControl id="priority">
             <FormLabel>
               <Select onChange={() => ({})} placeholder="Välj">
-                <option
+                <Select.Option
+                  value={{ label: 'Först', data: '1' }}
                   className={cx(
                     `cursor-pointer select-none relative py-4 pl-10 pr-4
-                              `
+                    `
                   )}
-                  value="1"
-                >
-                  Först
-                </option>
-                <option
-                  className={cx(
-                    `cursor-pointer select-none relative py-4 pl-10 pr-4
-                              `
-                  )}
-                  value="1"
                 >
                   Andra
-                </option>
-                <option
+                </Select.Option>
+                <Select.Option
+                  value={{ label: 'Andra', data: '2' }}
                   className={cx(
                     `cursor-pointer select-none relative py-4 pl-10 pr-4
-                              `
+                    `
                   )}
-                  value="1"
                 >
-                  Andra
-                </option>
-                <option
+                  Tredje
+                </Select.Option>
+                <Select.Option
+                  value={{ label: 'Tredje', data: '3' }}
                   className={cx(
                     `cursor-pointer select-none relative py-4 pl-10 pr-4
-                              `
+                    `
                   )}
-                  value="1"
                 >
-                  Andra
-                </option>
-                <option
+                  Fjärde
+                </Select.Option>
+                <Select.Option
+                  value={{ label: 'Fjärde', data: '4' }}
                   className={cx(
                     `cursor-pointer select-none relative py-4 pl-10 pr-4
-                              `
+                    `
                   )}
-                  value="1"
                 >
-                  Andra
-                </option>
+                  Första
+                </Select.Option>
               </Select>
             </FormLabel>
           </FormControl>

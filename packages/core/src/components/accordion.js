@@ -84,7 +84,7 @@ module.exports = Accordion = (colors) => ({
       },
     },
 
-    '&-is-open &-body &-is-open-alert': {
+    '&-is-open &-body, &-is-open-alert &-body': {
       '@apply overflow-visible animate-reset-overflow': {},
     },
 
