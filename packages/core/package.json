@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/core",
-  "version": "0.1.82",
+  "version": "0.1.83",
   "license": "MIT",
   "main": "src/index.js",
   "module": "dist/esm/index.js",
@@ -33,8 +33,8 @@
     "clean-css": "^5.3.2",
     "postcss": "^8.4.23",
     "postcss-import": "^15.1.0",
-    "tailwindcss": "^3.2.7",
-    "tailwind-scrollbar": "^3.0.4"
+    "tailwind-scrollbar": "^3.0.4",
+    "tailwindcss": "^3.2.7"
   },
   "dependencies": {
     "@sk-web-gui/theme": "0.1.13",

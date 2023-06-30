@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/dropdown-search",
-  "version": "0.1.26",
+  "version": "0.1.27",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
