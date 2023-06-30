@@ -93,7 +93,11 @@ export const Modal = React.forwardRef<HTMLDivElement, IModalProps>((props, ref) 
                   )}
 
                   {!hideClosebutton && (
-                    <button className="p-4 -m-4" aria-label={`Stäng ${label}`} onClick={onCloseHandler}>
+                    <button
+                      className="p-4 -m-4"
+                      aria-label={`Stäng ${label ? label : 'modal'}`}
+                      onClick={onCloseHandler}
+                    >
                       <CloseIcon className="material-icon !text-2xl" />
                     </button>
                   )}
