@@ -1,4 +1,5 @@
 module.exports = {
+  presets: [require('./packages/core/src/preset')], // with support for custom-scrollbar
   content: [
     './packages/*/src/**/*.{ts,tsx}',
     './packages/*/stories/**/*.{tsx,mdx}',
@@ -7,8 +8,5 @@ module.exports = {
     './.storybook/components/*.{tsx,mdx}',
   ],
   darkMode: 'class', // or 'media' or 'class'
-  theme: {
-    extend: {},
-  },
-  plugins: [require('@tailwindcss/forms'), require('./packages/core')],
+  // plugins: [require('@tailwindcss/forms'), require('./packages/core/src/plugin')],
 };

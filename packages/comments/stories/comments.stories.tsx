@@ -16,7 +16,7 @@ export const Template = (args: CommentsProps) => {
     alert('Kommentar: ' + comment);
   };
   return (
-    <div className="max-w-[800px] w-full shadow-md pb-8">
+    <div className="max-w-[800px] h-[500px] w-full shadow-md pb-8">
       <Comments
         {...args}
         submitFunction={submit}

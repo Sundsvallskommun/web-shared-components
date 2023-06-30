@@ -47,7 +47,7 @@ export const Comments = React.forwardRef<HTMLSpanElement, CommentsProps>((props,
           <h2>Kommentarer</h2>
         </div>
       )}
-      <div className="[&>*:nth-child(even)]:border-t pl-10 pr-16">
+      <div className="[&>*:nth-child(even)]:border-t pl-10 pr-16 overflow-y-auto custom-scrollbar">
         {!loading &&
           commentsData &&
           commentsData.map((comment) => {

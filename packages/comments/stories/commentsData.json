@@ -12,5 +12,12 @@
         "userImage": "",
         "commentText": "Nä, det håller jag inte med om. Grått och tråkigt!",
         "publishDate": "2023-xx-xx 16.30"
+    },
+    {
+        "id": 33,
+        "commentorName": "Birgitta Bengtsson",
+        "userImage": "",
+        "commentText": "Eller, jag tror jag ändrar mig. Du har rätt",
+        "publishDate": "2023-xx-xx 16.30"
     }
 ]
