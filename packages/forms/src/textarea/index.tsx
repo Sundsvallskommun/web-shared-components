@@ -11,7 +11,7 @@ type ITextareaProps = {
   showCount?: boolean;
   maxLength?: number;
   value?: string;
-  onChange?: (e: React.BaseSyntheticEvent) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   maxLengthWarningText?: string;
 };
 
@@ -44,7 +44,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>((pr
   const [charCount, setCharCount] = React.useState<number>(0);
   const [text, setText] = React.useState<string>(value);
 
-  const handleOnChange = (e: React.BaseSyntheticEvent) => {
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
     if (maxLength && maxLength > 0) {
       if (e.target.value.length >= maxLength) {
