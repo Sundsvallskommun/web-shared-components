@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/dropdown-search",
-  "version": "0.1.27",
+  "version": "0.1.28",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -43,7 +43,7 @@
     "@mui/material": "^5.12.1",
     "@sk-web-gui/badge": "0.1.15",
     "@sk-web-gui/button": "0.1.19",
-    "@sk-web-gui/forms": "0.1.31",
+    "@sk-web-gui/forms": "0.1.32",
     "@sk-web-gui/theme": "0.1.13",
     "@sk-web-gui/utils": "0.1.7"
   },
