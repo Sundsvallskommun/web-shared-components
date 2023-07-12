@@ -8,7 +8,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { Input, InputProps } from '../input/input';
 import { useSelectClass } from './styles';
 
-export type OptionValueType = { label: string; data: any };
+export type OptionValueType<dataT = any> = { label: string; data: dataT };
 
 export interface OptionProps extends Omit<InputProps, 'value'> {
   value?: OptionValueType;
