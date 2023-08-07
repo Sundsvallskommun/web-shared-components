@@ -15,7 +15,7 @@ interface IAccordionProps extends DefaultProps {
   /* Set the accordion color */
   color?: string;
   /** Controls accordion appearance */
-  variant?: 'solid' | 'outline' | 'alert';
+  variant?: 'solid' | 'outline' | 'alert' | 'error';
   /* the element or component to use in place of `h2` */
   noMargin?: boolean;
   as?: React.ElementType;
@@ -83,14 +83,15 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>((props
     }, 0);
   };
 
+  let openType;
+  if (variant === 'alert') openType = 'accordion-is-open-alert';
+  else if (variant === 'error') openType = 'accordion-is-open-error';
+  else openType = 'accordion-is-open';
+
   return (
     <div
       data-color={color ? color : undefined}
-      className={cx(
-        accordionOpen ? `${variant === 'alert' ? 'accordion-is-open-alert' : 'accordion-is-open'}` : undefined,
-        classes,
-        className
-      )}
+      className={cx(accordionOpen ? openType : undefined, classes, className)}
       {...rest}
     >
       <div className="accordion-header">
