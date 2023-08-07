@@ -69,6 +69,16 @@ module.exports = Accordion = (colors) => ({
         },
       },
     },
+    '&-error': {
+      '@apply border border-error': {},
+      '.accordion-header': {
+        '@apply bg-error-light text-error': {},
+
+        '[aria-expanded="true"] &': {
+          '@apply bg-error-light': {},
+        },
+      },
+    },
 
     '&-is-open': {
       '@apply border border-gray-stroke': {},
@@ -84,7 +94,14 @@ module.exports = Accordion = (colors) => ({
       },
     },
 
-    '&-is-open &-body, &-is-open-alert &-body': {
+    '&-is-open-error': {
+      '@apply border border-error': {},
+      '& .accordion-header': {
+        '@apply border-b border-error': {},
+      },
+    },
+
+    '&-is-open &-body, &-is-open-alert &-body, &-is-open-error &-body': {
       '@apply overflow-visible animate-reset-overflow': {},
     },
 
