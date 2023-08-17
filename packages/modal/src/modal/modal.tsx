@@ -15,6 +15,7 @@ export interface IModalProps extends DefaultProps {
   as?: React.ElementType;
   labelAs?: React.ElementType;
   hideLabel?: boolean;
+  'aria-label'?: string;
 }
 
 export const Modal = React.forwardRef<HTMLDivElement, IModalProps>((props, ref) => {
@@ -27,10 +28,12 @@ export const Modal = React.forwardRef<HTMLDivElement, IModalProps>((props, ref) 
     children,
     disableCloseOutside = false,
     as: Content = 'article',
-    labelAs = 'h4',
+    labelAs = 'h1',
     hideLabel = false,
     ...rest
   } = props;
+
+  const modalRef = React.useRef<any>();
 
   const onCloseHandler = () => {
     if (onClose) {
@@ -38,20 +41,23 @@ export const Modal = React.forwardRef<HTMLDivElement, IModalProps>((props, ref) 
     }
   };
 
-  const onCloseOutsideHandler = () => {
-    if (onClose && !disableCloseOutside) {
-      onClose();
+  React.useEffect(() => {
+    if (show && props['aria-label']) {
+      setTimeout(() => {
+        modalRef.current && modalRef.current.removeAttribute('aria-labelledby');
+      });
     }
-  };
+  }, [show, props['aria-label']]);
 
   return (
     <div className="Modal">
       <Transition appear show={show} as={Fragment}>
         <Dialog
+          ref={modalRef}
           open={show}
           as="div"
           className="fixed inset-0 z-20 overflow-y-auto bg-opacity-50 bg-gray-500"
-          onClose={onCloseOutsideHandler}
+          onClose={onCloseHandler}
           {...rest}
         >
           <div className="min-h-screen px-4 text-center">
@@ -64,7 +70,10 @@ export const Modal = React.forwardRef<HTMLDivElement, IModalProps>((props, ref) 
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0" />
+              <Dialog.Overlay
+                className="fixed inset-0"
+                style={{ pointerEvents: disableCloseOutside ? 'none' : undefined }}
+              />
             </Transition.Child>
 
             {/* This element is to trick the browser into centering the modal contents. */}
