@@ -21,7 +21,7 @@ const menuData = [
     path: '/path/3',
   },
   {
-    id: 3,
+    id: 4,
     label: 'Riktlinjer, modeller och metoder',
     path: '/path/4',
   },
