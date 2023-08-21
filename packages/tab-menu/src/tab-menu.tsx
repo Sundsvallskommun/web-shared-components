@@ -36,7 +36,6 @@ export const TabMenu = React.forwardRef<HTMLDivElement, TabMenuProps>((props, re
   } = props;
 
   const onTabClickHandler = (event: React.MouseEvent | React.KeyboardEvent, item: IMenuItem) => {
-    console.log(location.pathname);
     onTabChange && onTabChange(item);
     onTabClick && onTabClick(event, item);
   };
