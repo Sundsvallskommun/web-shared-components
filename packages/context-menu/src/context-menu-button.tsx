@@ -37,6 +37,7 @@ export const ContextMenuButton: React.FC<ButtonProps> = (props) => {
       data-color={color ? color : undefined}
       data-icon={iconButton ? iconButton : undefined}
       className={cx(classes, className, 'inline')}
+      disabled={disabled}
       {...rest}
     >
       {getButtonContent(props)}
