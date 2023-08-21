@@ -18,7 +18,7 @@ export const Template = () => {
     <div className="h-60">
       <div>
         <ContextMenu>
-          <ContextMenu.Button disabled size="sm" variant="outline" color="primary" iconButton rounded>
+          <ContextMenu.Button size="sm" variant="outline" color="primary" iconButton rounded>
             <ArrowDownwardIcon />
           </ContextMenu.Button>
           <ContextMenu.Item>
