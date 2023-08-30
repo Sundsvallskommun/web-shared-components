@@ -7,6 +7,7 @@ import * as React from 'react';
 import { Fragment, useEffect, useState } from 'react';
 import { Input, InputProps } from '../input/input';
 import { useSelectClass } from './styles';
+import { useFormControl } from '../form-control';
 
 export type OptionValueType = { label: string; data: any };
 
@@ -46,7 +47,7 @@ const InternalSelect = React.forwardRef<HTMLInputElement, InternalSelectProps>((
     value,
     placeholder = '',
     children,
-    disabled,
+    disabled: _disabled,
     size = 'md',
     dropDownIcon,
     multiple = false,
@@ -56,6 +57,10 @@ const InternalSelect = React.forwardRef<HTMLInputElement, InternalSelectProps>((
   const [selectedValues, setSelectedValues] = useState<OptionValueType[] | undefined>(
     value as OptionValueType[] | undefined
   );
+
+  const { readOnly, disabled: contextDisabled, invalid, required, errorId, helpTextId, id } = useFormControl(props);
+
+  const disabled = _disabled || contextDisabled;
 
   useEffect(() => {
     if (multiple) {
@@ -104,6 +109,14 @@ const InternalSelect = React.forwardRef<HTMLInputElement, InternalSelectProps>((
               size={size}
               disabled={disabled ? disabled : undefined}
               className={cx('form-select', className)}
+              aria-disabled={disabled}
+              readOnly={readOnly}
+              aria-readonly={readOnly}
+              aria-invalid={invalid}
+              required={required}
+              aria-required={required}
+              aria-describedby={`${errorId} ${helpTextId}`}
+              id={id}
               {...rest}
             >
               {multiple ? (
@@ -131,7 +144,7 @@ const InternalSelect = React.forwardRef<HTMLInputElement, InternalSelectProps>((
           {open && (
             <Listbox.Options
               static
-              style={{ maxHeight: `${defaultOptionsAmount * 50 + 10}px` }}
+              style={{ maxHeight: `${defaultOptionsAmount * 5 + 1}rem` }}
               className={cx('form-select-list', listClassName)}
             >
               {children &&

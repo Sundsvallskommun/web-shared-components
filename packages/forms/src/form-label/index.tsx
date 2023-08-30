@@ -9,21 +9,43 @@ interface IFormLabelProps extends DefaultProps {
   children?: React.ReactNode;
   htmlFor?: string;
   showRequired?: boolean;
+  as?: React.ElementType;
 }
 
-export interface FormLabelProps extends React.HTMLAttributes<HTMLLabelElement>, IFormLabelProps {}
+interface IFormLabelRegularProps extends React.HTMLAttributes<HTMLLabelElement>, IFormLabelProps {}
+interface IFormLabelFieldsetProps extends React.HTMLAttributes<HTMLLegendElement>, IFormLabelProps {}
+export type FormLabelProps = IFormLabelFieldsetProps | IFormLabelRegularProps;
 
-export const FormLabel = React.forwardRef<HTMLLabelElement, FormLabelProps>((props, ref) => {
-  const { children, className, htmlFor, id, showRequired = false, ...rest } = props;
+export const FormLabel = React.forwardRef<any, FormLabelProps>((props, ref) => {
+  const { children, className, htmlFor, id, showRequired = false, as, ...rest } = props;
   const formControl = useFormControl(rest);
 
   const classes = cx('form-label', formControl.disabled && 'form-label-disabled', className);
 
+  const getComp = (): React.ElementType => {
+    switch (formControl.fieldset) {
+      case true:
+        return 'legend';
+      case false:
+        return 'label';
+      default:
+        return 'label';
+    }
+  };
+
+  const Comp = as || getComp();
+
   return (
-    <label ref={ref} className={classes} htmlFor={htmlFor || formControl.id} id={id || formControl.labelId} {...rest}>
+    <Comp
+      ref={ref}
+      className={classes}
+      htmlFor={htmlFor || (!formControl.fieldset ? formControl.id : undefined)}
+      id={id || formControl.labelId}
+      {...rest}
+    >
       {children}
       {formControl.required && showRequired && <RequiredIndicator />}
-    </label>
+    </Comp>
   );
 });
 

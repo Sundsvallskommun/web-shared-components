@@ -81,7 +81,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
     ...rest
   } = props;
 
-  const { readOnly, disabled, invalid, required, ...formControl } = useFormControl(props);
+  const { readOnly, disabled, invalid, required, errorId, helpTextId, ...formControl } = useFormControl(props);
   const classes = useInputClass({ size, variant, disabled });
 
   return (
@@ -95,7 +95,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
       aria-invalid={invalid}
       required={required}
       aria-required={required}
-      aria-describedby={ariaDescribedby}
+      aria-describedby={ariaDescribedby || `${errorId} ${helpTextId}`}
       data-color={color ? color : undefined}
       data-rounded={rounded ? rounded : undefined}
       className={cx(classes, className)}
