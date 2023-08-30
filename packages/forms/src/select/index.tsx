@@ -9,7 +9,7 @@ import { Input, InputProps } from '../input/input';
 import { useSelectClass } from './styles';
 import { useFormControl } from '../form-control';
 
-export type OptionValueType = { label: string; data: any };
+export type OptionValueType<dataT = any> = { label: string; data: dataT };
 
 export interface OptionProps extends Omit<InputProps, 'value'> {
   value?: OptionValueType;
