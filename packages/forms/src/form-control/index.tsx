@@ -14,6 +14,8 @@ interface UseFormControlProps {
   readOnly?: boolean;
   /** The `id` to use for the form control. */
   id?: string;
+  /** If this is a group, set to true. */
+  fieldset?: boolean;
 }
 
 interface UseFormControlData extends UseFormControlProps {
@@ -22,11 +24,19 @@ interface UseFormControlData extends UseFormControlProps {
   helpTextId?: string;
 }
 
-interface IFormControlProps extends DefaultProps, UseFormControlProps {
+interface IFormControlRegularProps extends DefaultProps, UseFormControlProps, React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
+  fieldset?: false | undefined;
+}
+interface IFormControlFieldsetProps
+  extends DefaultProps,
+    UseFormControlProps,
+    React.HTMLAttributes<HTMLFieldSetElement> {
+  children?: React.ReactNode;
+  fieldset: true;
 }
 
-export interface FormControlProps extends React.HTMLAttributes<HTMLDivElement>, IFormControlProps {}
+export type FormControlProps = IFormControlFieldsetProps | IFormControlRegularProps;
 
 export const useFormControl = (props: UseFormControlProps & { [key: string]: any }): UseFormControlData => {
   const context = useFormControlContext();
@@ -52,11 +62,11 @@ const FormControlContext = React.createContext<(UseFormControlProps & { [key: st
 
 const useFormControlContext = () => React.useContext(FormControlContext);
 
-export const FormControl = React.forwardRef<HTMLDivElement, FormControlProps>((props, ref) => {
-  const { children, className, required, disabled, invalid, readOnly, id: idProp, ...rest } = props;
+export const FormControl = React.forwardRef<any, FormControlProps>((props, ref) => {
+  const { children, className, required, disabled, invalid, readOnly, id: idProp, fieldset = false, ...rest } = props;
   const classes = cx('form-control', className);
 
-  const id = idProp || `field-${useId()}`;
+  const id = idProp || `sk-field-${useId()}`;
 
   const labelId = `${id}-label`;
   const errorId = `${id}-error`;
@@ -71,13 +81,34 @@ export const FormControl = React.forwardRef<HTMLDivElement, FormControlProps>((p
     labelId,
     errorId,
     helpTextId,
+    fieldset,
   };
+
+  const getComp = (): React.ElementType => {
+    switch (fieldset) {
+      case true:
+        return 'fieldset';
+      case false:
+        return 'div';
+      default:
+        return 'div';
+    }
+  };
+
+  const Comp = getComp();
 
   return (
     <FormControlContext.Provider value={context}>
-      <div role="group" ref={ref} className={classes} {...rest}>
+      <Comp
+        ref={ref}
+        aria-describedby={fieldset ? `${errorId} ${helpTextId}` : undefined}
+        aria-invalid={invalid}
+        className={classes}
+        required={required}
+        {...rest}
+      >
         {children}
-      </div>
+      </Comp>
     </FormControlContext.Provider>
   );
 });

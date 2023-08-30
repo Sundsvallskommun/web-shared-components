@@ -38,7 +38,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>((pr
     children,
     ...rest
   } = props;
-  const { readOnly, disabled, invalid, required, ...formControl } = useFormControl(props);
+  const { readOnly, disabled, invalid, required, errorId, helpTextId, ...formControl } = useFormControl(props);
   const classes = useInputClass({ size, disabled, variant });
   const [maxLengthWarning, setMaxCountWarning] = React.useState<boolean>(false);
   const [charCount, setCharCount] = React.useState<number>(0);
@@ -79,7 +79,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>((pr
         aria-invalid={invalid}
         required={required}
         aria-required={required}
-        aria-describedby={ariaDescribedby}
+        aria-describedby={ariaDescribedby || `${errorId} ${helpTextId}`}
         data-color={color ? color : undefined}
         className={cx('form-textarea', classes, className)}
         id={id || formControl.id}
