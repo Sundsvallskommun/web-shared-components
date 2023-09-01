@@ -56,7 +56,7 @@ export const Header = React.forwardRef<HTMLDivElement, HeaderProps>((props, ref)
 
   return (
     <>
-      <nav {...rest} className={cx('header', wrapperClasses)} data-color={borderColor}>
+      <nav ref={ref} {...rest} className={cx('header', wrapperClasses)} data-color={borderColor}>
         <div className={cx('header-container')}>
           <div className={cx('header-content', className)}>
             {title && (
