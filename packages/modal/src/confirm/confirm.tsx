@@ -1,10 +1,10 @@
+import ErrorSharpIcon from '@mui/icons-material/ErrorSharp';
+import HelpOutlineSharpIcon from '@mui/icons-material/HelpOutlineSharp';
+import InfoSharpIcon from '@mui/icons-material/InfoSharp';
 import { Button } from '@sk-web-gui/button';
 import { __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 import { Dialog } from '../dialog';
-import ErrorSharpIcon from '@mui/icons-material/ErrorSharp';
-import HelpOutlineSharpIcon from '@mui/icons-material/HelpOutlineSharp';
-import InfoSharpIcon from '@mui/icons-material/InfoSharp';
 
 type UseDialogShowReturnType = {
   show: boolean;
@@ -75,7 +75,7 @@ export const ConfirmationDialogContextProvider: React.FC<ConfirmationDialogConte
       dismissLabel: dismissLabel || 'Nej',
       dialogType: dialogType,
       icon: icon,
-      labelAs: labelAs || 'h4',
+      labelAs: labelAs || 'h1',
     });
     setShow(true);
     return new Promise(function (resolve) {
@@ -118,6 +118,7 @@ export const ConfirmationDialogContextProvider: React.FC<ConfirmationDialogConte
 
       {content && (
         <Dialog
+          aria-label={`${content.title} ${content.message}`}
           show={show}
           label={
             <span className="flex items-center justify-center gap-2">
@@ -125,6 +126,7 @@ export const ConfirmationDialogContextProvider: React.FC<ConfirmationDialogConte
             </span>
           }
           labelAs={content.labelAs}
+          onClose={handleDismiss}
           className={content.dialogType ? `border-2 border-${content.dialogType}` : ``}
         >
           <Dialog.Content>
