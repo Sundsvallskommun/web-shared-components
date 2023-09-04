@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/header",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
