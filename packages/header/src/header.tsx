@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link } from '@sk-web-gui/link';
 import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 
-export interface HeaderProps extends DefaultProps {
+export interface HeaderProps extends DefaultProps, React.HTMLProps<HTMLDivElement> {
   /* Title for main page */
   title?: string;
   /*Subtitle for page- optional */
@@ -38,6 +38,7 @@ export const Header = React.forwardRef<HTMLDivElement, HeaderProps>((props, ref)
     borderColor = 'primary',
     wrapperClasses,
     userMenuClasses,
+    'aria-label': ariaLabel,
     ...rest
   } = props;
 
@@ -55,7 +56,7 @@ export const Header = React.forwardRef<HTMLDivElement, HeaderProps>((props, ref)
 
   return (
     <>
-      <nav {...rest} className={cx('header', wrapperClasses)} data-color={borderColor}>
+      <nav ref={ref} {...rest} className={cx('header', wrapperClasses)} data-color={borderColor}>
         <div className={cx('header-container')}>
           <div className={cx('header-content', className)}>
             {title && (
@@ -64,14 +65,13 @@ export const Header = React.forwardRef<HTMLDivElement, HeaderProps>((props, ref)
                   href="/"
                   onClick={logoLinkOnClick ? handleLogoLinkOnClick : undefined}
                   className="no-underline"
-                  aria-label={`${
-                    subtitle ? `Till startsidan för ${title} ${subtitle}` : `Till startsidan för ${title}`
-                  }`}
+                  aria-label={ariaLabel || `${subtitle ? `${title} ${subtitle}` : `${title}`}. Gå till startsidan.`}
                 >
                   <div className="flex items-center cursor-pointer">
                     <div className="lg:hidden">
                       <svg
                         className="lg:hidden h-[36px]"
+                        aria-hidden
                         width="16"
                         height="30"
                         viewBox="0 0 16 30"
@@ -86,8 +86,7 @@ export const Header = React.forwardRef<HTMLDivElement, HeaderProps>((props, ref)
                     </div>
                     <div className="hidden lg:block h-[38px] lg:ml-0">
                       <svg
-                        focusable="true"
-                        aria-labelledby="page-title"
+                        aria-hidden
                         role="img"
                         className="hidden lg:block"
                         width="95"
