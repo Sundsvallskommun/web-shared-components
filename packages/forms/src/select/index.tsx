@@ -1,4 +1,4 @@
-import { Listbox } from '@headlessui/react';
+import { Listbox, Transition } from '@headlessui/react';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { Tag } from '@sk-web-gui/tag';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
@@ -62,6 +62,8 @@ const InternalSelect = React.forwardRef<HTMLInputElement, InternalSelectProps>((
 
   const disabled = _disabled || contextDisabled;
 
+  const [upwards, setUpwards] = useState(false);
+
   useEffect(() => {
     if (multiple) {
       setSelectedValues(value as OptionValueType[]);
@@ -90,6 +92,40 @@ const InternalSelect = React.forwardRef<HTMLInputElement, InternalSelectProps>((
         break;
     }
   };
+
+  useEffect(() => {
+    const targetNode = document.getElementsByTagName('body')[0];
+    if (targetNode) {
+      const config = { attributes: true, childList: true, subtree: true };
+      const mutationObserver = new MutationObserver((mutationList, observer) => {
+        for (const mutation of mutationList) {
+          if (mutation.type === 'childList') {
+            mutation.addedNodes.forEach((n) => {
+              if (n.nodeType === Node.ELEMENT_NODE) {
+                const ele = n as Element;
+                if (ele.classList.contains('form-select-list')) {
+                  const parentRect = n.parentElement?.getBoundingClientRect();
+                  const styles = window.getComputedStyle(ele);
+                  const margin = parseFloat(styles['marginTop']) + parseFloat(styles['marginBottom']);
+                  const height = ele.scrollHeight + margin;
+                  const wouldFitBelow =
+                    (parentRect?.bottom || 0) + height < (window.innerHeight || document.documentElement.clientHeight);
+                  const wouldFitAbove = (parentRect?.top || 0) - height > 0;
+                  if (!wouldFitBelow && wouldFitAbove) {
+                    setUpwards(true);
+                  } else {
+                    setUpwards(false);
+                  }
+                }
+              }
+            });
+          }
+        }
+      });
+      mutationObserver.observe(targetNode, config);
+      return () => mutationObserver?.disconnect();
+    }
+  }, []);
 
   return (
     <Listbox
@@ -142,41 +178,51 @@ const InternalSelect = React.forwardRef<HTMLInputElement, InternalSelectProps>((
             </Input>
           </Listbox.Button>
           {open && (
-            <Listbox.Options
-              static
-              style={{ maxHeight: `${defaultOptionsAmount * 5 + 1}rem` }}
-              className={cx('form-select-list', listClassName)}
+            <Transition
+              show={open}
+              as={Fragment}
+              leave="transition ease-in duration-100"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+              className={cx('form-select-list-transition', upwards ? 'showabove' : null)}
             >
-              {children &&
-                (children as any).map((option: any, index: number) => {
-                  const { value, disabled, className, ...rest } = option.props;
-                  return (
-                    <Listbox.Option
-                      key={`form-select-option-${index}`}
-                      value={option.props?.value}
-                      disabled={option.props.disabled}
-                      as={Fragment}
-                    >
-                      {({ active, selected }) => (
-                        <li
-                          className={cx(
-                            'form-select-option',
-                            classes,
-                            className,
-                            multiple ? 'multiple' : '',
-                            active ? 'active' : '',
-                            selected ? 'selected' : '',
-                            disabled ? 'disabled' : ''
-                          )}
-                          {...rest}
-                        >
-                          {option.props?.value?.label}
-                        </li>
-                      )}
-                    </Listbox.Option>
-                  );
-                })}
-            </Listbox.Options>
+              <Listbox.Options
+                id="listitems"
+                static
+                style={{ maxHeight: `${defaultOptionsAmount * 5 + 1}rem` }}
+                className={cx('form-select-list', listClassName, upwards ? 'showabovebox' : null)}
+              >
+                {children &&
+                  (children as any).map((option: any, index: number) => {
+                    const { value, disabled, className, ...rest } = option.props;
+                    return (
+                      <Listbox.Option
+                        key={`form-select-option-${index}`}
+                        value={option.props?.value}
+                        disabled={option.props.disabled}
+                        as={Fragment}
+                      >
+                        {({ active, selected }) => (
+                          <li
+                            className={cx(
+                              'form-select-option',
+                              classes,
+                              className,
+                              multiple ? 'multiple' : '',
+                              active ? 'active' : '',
+                              selected ? 'selected' : '',
+                              disabled ? 'disabled' : ''
+                            )}
+                            {...rest}
+                          >
+                            {option.props?.value?.label}
+                          </li>
+                        )}
+                      </Listbox.Option>
+                    );
+                  })}
+              </Listbox.Options>
+            </Transition>
           )}
         </div>
       )}

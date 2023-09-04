@@ -1,11 +1,12 @@
+import { Meta } from '@storybook/react';
 import React, { useState } from 'react';
 import { Select, SelectProps } from '../src';
 
 export default {
-  title: 'Komponenter/Dropdown/Komponent',
+  title: 'Komponenter/Dropdown/Select',
   component: Select,
   tags: ['autodocs'],
-};
+} as Meta;
 
 const people = [
   { id: 1, name: 'Durward Reynolds', unavailable: false },
@@ -63,6 +64,16 @@ export const Template = (args: SelectProps) => {
 };
 
 Template.storyName = 'Select';
+
+export const Ovanför = () => (
+  <>
+    <div className="h-[100px]"></div>
+    <Select onChange={() => ({})} placeholder="Välj hob">
+      <Select.Option value={{ label: 'Sam', data: {} }} />
+      <Select.Option value={{ label: 'Frodo', data: {} }} />
+    </Select>
+  </>
+);
 
 export const Inaktiverad = () => (
   <Select onChange={() => ({})} disabled placeholder="Outline">
