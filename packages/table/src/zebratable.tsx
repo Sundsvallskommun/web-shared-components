@@ -4,7 +4,7 @@ import * as React from 'react';
 import { useZebraTableClass } from './styles';
 import { Pagination } from '@sk-web-gui/pagination';
 import { ZTableHeader } from './zebratable-header';
-import { Select } from '@sk-web-gui/forms';
+import { FormControl, FormLabel, Select } from '@sk-web-gui/forms';
 export interface ZebraTableHeader {
   element: JSX.Element;
   isColumnSortable?: boolean;
@@ -194,22 +194,25 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
                 changePage={(page: number) => setCurrentPage(page)}
               />
               {pageSizes.length > 0 && (
-                <div className="sk-zebratable-pagination-pagesizes">
-                  <Select
-                    className="sk-zebratable-pagination-pagesizes-select"
-                    onChange={(value) => setPageSize(value.data)}
-                    value={{ label: pageSize.toString(), data: pageSize }}
-                  >
-                    {pageSizes?.map((size, sizeIndex) => (
-                      <Select.Option
-                        key={`pageSize-${sizeIndex}-${size}`}
-                        value={{ label: size.toString(), data: size }}
-                      >
-                        {size}
-                      </Select.Option>
-                    ))}
-                  </Select>
-                </div>
+                <FormControl className="sk-zebratable-pagination-pagesizes">
+                  <FormLabel className="sk-zebratable-pagination-pagesizes-label">Visa per sida:</FormLabel>
+                  <div className="sk-zebratable-pagination-pagesizes-select">
+                    <Select
+                      size="sm"
+                      onChange={(value) => setPageSize(value.data)}
+                      value={{ label: pageSize.toString(), data: pageSize }}
+                    >
+                      {pageSizes?.map((size, sizeIndex) => (
+                        <Select.Option
+                          key={`pageSize-${sizeIndex}-${size}`}
+                          value={{ label: size.toString(), data: size }}
+                        >
+                          {size}
+                        </Select.Option>
+                      ))}
+                    </Select>
+                  </div>
+                </FormControl>
               )}
             </div>
           )}
