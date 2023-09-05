@@ -78,6 +78,8 @@ const headers: Array<string | DataTableHeader> = [
   'id',
   'status',
   {
+    label: 'Ärendeknapp',
+    screenReaderOnly: true,
     renderColumn: (value, item) => (
       <button
         aria-label={`Till ärende ${item.id}`}
