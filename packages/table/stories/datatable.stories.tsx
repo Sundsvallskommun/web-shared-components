@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react';
 import { Meta } from '@storybook/react';
+import React from 'react';
 import { DataTable, DataTableHeader, DataTableProps } from '../src/datatable';
 
 export default {

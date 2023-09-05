@@ -131,21 +131,14 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
   return (
     <>
       {managedRows.length > 0 && (
-        <table
-          ref={ref}
-          {...rest}
-          className={zebraTableClasses}
-          aria-label={`${rows.length} rader på ${pages} sidor`}
-          summary={summary ?? summary}
-        >
+        <table ref={ref} {...rest} className={zebraTableClasses} summary={summary ?? summary}>
           {captionTitle && (
-            <caption className="sr-only">
-              {captionTitle}
-
+            <caption className="text-left">
+              {captionTitle}, sida {currentPage} av {pages}.
               {captionBody && (
                 <>
                   <br />
-                  <span>{captionBody}</span>
+                  <small>{captionBody}</small>
                 </>
               )}
             </caption>
@@ -220,6 +213,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
               )}
             </div>
           )}
+
           {BottomComponent && BottomComponent}
         </div>
       )}
