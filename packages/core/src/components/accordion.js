@@ -1,5 +1,46 @@
 module.exports = Accordion = (colors) => ({
-  '.accordion': {
+  '.sk-accordion': {
+    '&-item': {
+      '@apply border border-gray-stroke': {},
+      '&:has(.sk-disclosure-disabled)': {
+        '@apply border-x-gray-light border-y-transparent': {},
+      },
+      transitionProperty: 'margin',
+      transitionDuration: '180ms',
+      '&:has(.sk-disclosure-plain)': {
+        '@apply border-transparent': {},
+        '&:not(:last-child)': {
+          '@apply border-b-gray-stroke': {},
+        },
+      },
+
+      '&:has(.sk-disclosure-solid)': {
+        '@apply border-white': {},
+      },
+      '&:has(.sk-disclosure[data-open="true"]:not(.sk-disclosure-plain))': {
+        '@apply mt-md mb-md border-0': {},
+      },
+      '.sk-disclosure': {
+        '&[data-open="false"]': {
+          '@apply border-0': {},
+        },
+      },
+      '&:not(:first-child):has(.sk-disclosure[data-open="false"]:not(.sk-disclosure-plain))': {
+        '@apply mt-[-1px]': {},
+      },
+      '&:first-child:has(.sk-disclosure[data-open="true"]:not(.sk-disclosure-plain))': {
+        '@apply mt-0 mb-md': {},
+      },
+      '&:last-child:has(.sk-disclosure[data-open="true"]:not(.sk-disclosure-plain))': {
+        '@apply mt-md mb-0': {},
+      },
+    },
+  },
+
+  '.sk-disclosure': {
+    '&:has(&-header:focus-visible)': {
+      '@apply outline': {},
+    },
     '&-header': {
       '@apply flex flex-col text-left': {},
 
@@ -7,8 +48,15 @@ module.exports = Accordion = (colors) => ({
         '@apply bg-hover': {},
       },
 
+      '&:focus-visible': {
+        '@apply outline-0': {},
+      },
+
       '&-icon': {
         '@apply ml-auto !text-2xl': {},
+        svg: {
+          '@apply !text-2xl': {},
+        },
       },
     },
 
@@ -19,16 +67,11 @@ module.exports = Accordion = (colors) => ({
     '&-toggle': {
       '@apply flex items-center inline-block text-lg leading-lg text-left text-lg mx-md sm:mx-lg my-md': {},
       fontWeight: 'bold',
-      //"@apply focus-visible:shadow shadow-lg": {},
-      '&:focus-visible': {
-        boxShadow: '0 0 0 0.4rem #fff!important',
-        outline: '0',
-        //"@apply border-4": {},
-      },
-      '.accordion-title': {
+
+      '.sk-disclosure-title': {
         '@apply mr-md text-base leading-base md:text-lg md:leading-lg': {},
       },
-      '.accordion-subtitle': {
+      '.sk-disclosure-subtitle': {
         '@apply m-0 mr-md text-sm font-normal': {},
       },
     },
@@ -50,7 +93,7 @@ module.exports = Accordion = (colors) => ({
 
     '&-solid': {
       '@apply border border-primary': {},
-      '.accordion-header': {
+      '.sk-disclosure-header': {
         '@apply bg-primary text-white': {},
 
         '[aria-expanded="true"] &': {
@@ -59,9 +102,10 @@ module.exports = Accordion = (colors) => ({
       },
     },
 
-    '&-alert': {
+    '&-solid[data-alert="true"], &-outline[data-alert="true"]': {
       '@apply border border-warning': {},
-      '.accordion-header': {
+
+      '.sk-disclosure-header:not([data-disabled="true"])': {
         '@apply bg-warning-light text-warning': {},
 
         '[aria-expanded="true"] &': {
@@ -69,9 +113,9 @@ module.exports = Accordion = (colors) => ({
         },
       },
     },
-    '&-error': {
+    '&-solid[data-error="true"], &-outline[data-error="true"]': {
       '@apply border border-error': {},
-      '.accordion-header': {
+      '.sk-disclosure-header:not([data-disabled="true"])': {
         '@apply bg-error-light text-error': {},
 
         '[aria-expanded="true"] &': {
@@ -82,41 +126,35 @@ module.exports = Accordion = (colors) => ({
 
     '&-is-open': {
       '@apply border border-gray-stroke': {},
-      '& .accordion-header': {
+      '& .sk-disclosure-header': {
         '@apply bg-hover text-white': {},
       },
-    },
 
-    '&-is-open-alert': {
-      '@apply border border-warning': {},
-      '& .accordion-header': {
-        '@apply border-b border-warning': {},
+      '&[data-alert="true"]': {
+        '@apply border border-warning': {},
+        '& .sk-disclosure-header': {
+          '@apply border-b border-warning': {},
+        },
+      },
+
+      '&[data-error="true"]': {
+        '@apply border border-error': {},
+        '& .sk-disclosure-header': {
+          '@apply border-b border-error': {},
+        },
       },
     },
-
-    '&-is-open-error': {
-      '@apply border border-error': {},
-      '& .accordion-header': {
-        '@apply border-b border-error': {},
-      },
-    },
-
-    '&-is-open &-body, &-is-open-alert &-body, &-is-open-error &-body': {
+    '&-is-open &-body': {
       '@apply overflow-visible animate-reset-overflow': {},
     },
 
     '&-outline': {
       '@apply border border-gray-stroke': {},
-      '.accordion-body': {
+      '&:not([data-error="true"]):not([data-alert="true"]) .sk-disclosure-body': {
         '@apply mt-0': {},
       },
-      '.accordion-toggle': {
-        '&:focus-visible': {
-          boxShadow: '0 0 0 0.4rem #4b4b4b!important',
-          outline: '0',
-        },
-      },
-      '.accordion-header': {
+      '.sk-disclosure-toggle': {},
+      '.sk-disclosure-header': {
         '@apply bg-transparent text-body': {},
 
         '[aria-expanded="true"] &': {
@@ -125,12 +163,47 @@ module.exports = Accordion = (colors) => ({
       },
     },
 
-    '&-disabled, &-disabled button': {
+    '&-plain': {
+      '@apply border-0': {},
+      '&:has(.sk-disclosure-header:focus-visible)': {
+        '@apply outline-offset-4': {},
+      },
+      '.sk-disclosure-header': {
+        '@apply bg-transparent text-body': {},
+
+        '[aria-expanded="true"] &': {
+          '@apply bg-hover': {},
+        },
+        '&[data-disabled="true"]': {
+          '@apply bg-transparent text-gray-stroke': {},
+        },
+        '.sk-disclosure-toggle': {
+          '@apply mx-0': {},
+        },
+      },
+      '.sk-disclosure-body': {
+        '@apply m-0': {},
+      },
+      '&[data-alert="true"]': {
+        '@apply border-0': {},
+        '.sk-disclosure-header': {
+          '@apply border-0 text-warning': {},
+        },
+      },
+      '&[data-error="true"]': {
+        '@apply border-0': {},
+        '.sk-disclosure-header': {
+          '@apply border-0 text-error': {},
+        },
+      },
+    },
+
+    '&-disabled, &-disabled [role="button"]': {
       '@apply disabled:cursor-not-allowed cursor-not-allowed': {},
     },
 
-    '&-disabled &-header': {
-      '@apply bg-gray-lighter text-gray': {},
+    '&-header[data-disabled="true"]': {
+      '@apply bg-gray-lighter text-gray-stroke': {},
     },
 
     '&-disabled, &&-disabled': {
