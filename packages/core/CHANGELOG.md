@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.85](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@0.1.84...@sk-web-gui/core@0.1.85) (2023-09-07)
+
+### Bug Fixes
+
+- added label for page sizes select ([bf99f64](https://github.com/vechai/sk-web-gui/commit/bf99f64e13adffe1f0b1e137de38f861f17945f1))
+
 ## [0.1.84](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@0.1.83...@sk-web-gui/core@0.1.84) (2023-09-04)
 
 **Note:** Version bump only for package @sk-web-gui/core

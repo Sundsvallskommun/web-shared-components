@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.23](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/pagination@0.1.22...@sk-web-gui/pagination@0.1.23) (2023-09-07)
+
+### Bug Fixes
+
+- updated confusing aria-labels in pagi ([25d609e](https://github.com/Sundsvallskommun/web-shared-components/commit/25d609e17b8676786793bccf04cc922be09e241f))
+
 ## [0.1.22](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/pagination@0.1.21...@sk-web-gui/pagination@0.1.22) (2023-06-08)
 
 **Note:** Version bump only for package @sk-web-gui/pagination

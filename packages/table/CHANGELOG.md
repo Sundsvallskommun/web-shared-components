@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.35](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@0.1.34...@sk-web-gui/table@0.1.35) (2023-09-07)
+
+### Bug Fixes
+
+- added label for page sizes select ([bf99f64](https://github.com/Sundsvallskommun/web-shared-components/commit/bf99f64e13adffe1f0b1e137de38f861f17945f1))
+- better labels and descriptions for screenreaders in zebra table ([9ae4fa0](https://github.com/Sundsvallskommun/web-shared-components/commit/9ae4fa0376ed1ad986a70ef5664b46725187ebd7))
+- responsive labels and screenreaderoption for datatable ([2fafe51](https://github.com/Sundsvallskommun/web-shared-components/commit/2fafe5103804e7494c9b4dfeacddbefb452fe846))
+
 ## [0.1.34](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@0.1.33...@sk-web-gui/table@0.1.34) (2023-06-08)
 
 **Note:** Version bump only for package @sk-web-gui/table
