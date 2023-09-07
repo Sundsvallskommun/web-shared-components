@@ -72,8 +72,11 @@ module.exports = ZebraTable = () => ({
     '&-pagination': {
       '@apply grow': {},
     },
-    '&.-pagination-pagesizes': {
-      '@apply grow-0': {},
+    '&-pagination-pagesizes': {
+      '@apply grow-0 flex gap-xs flex-row justify-end items-center': {},
+      '&-label': {
+        '@apply font-bold': {},
+      },
       '&.-select': {
         '@apply w-auto': {},
       },

@@ -107,7 +107,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
         type="button"
         role="menuitem"
         aria-current={active}
-        aria-label={active ? `sida ${pageNumber}, Nuvarande sida` : `Gå till sida ${pageNumber}`}
+        aria-label={active ? `sida ${pageNumber}, Nuvarande sida` : `Gå till sida ${pageNumber} av ${pages}.`}
         className={cx(`sk-pagination-pageLabel`)}
         onClick={() => handleClick(pageNumber)}
         key={`page${pageNumber}`}
@@ -118,6 +118,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
   };
 
   const prevNextButton: (props: {
+    next: boolean;
     label: string;
     icon: JSX.Element;
     triggerNumber: number;
@@ -125,7 +126,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
     reverse?: boolean;
     tabIndex?: number;
     index: number;
-  }) => JSX.Element = ({ label, icon, triggerNumber = 1, step = 1, reverse = false, tabIndex, index }) => {
+  }) => JSX.Element = ({ next, label, icon, triggerNumber = 1, step = 1, reverse = false, tabIndex, index }) => {
     const isDisabled = currentPage === triggerNumber;
     return (
       <button
@@ -133,7 +134,9 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
         tabIndex={tabIndex}
         role="menuitem"
         type="button"
-        aria-label={`${label} sida`}
+        aria-label={`Gå till ${next ? 'nästa' : 'föregående'} sida ${
+          next ? currentPage + 1 : currentPage - 1
+        } av ${pages}.`}
         aria-disabled={isDisabled}
         disabled={isDisabled}
         data-reverse={reverse}
@@ -260,6 +263,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
         <ul className="sk-pagination-list" role="menubar" aria-orientation="horizontal">
           <li className="sk-pagination-list-item prev-next" role="none">
             {prevNextButton({
+              next: false,
               label: prevLabel,
               icon: <KeyboardDoubleArrowLeftOutlinedIcon aria-hidden="true" />,
               triggerNumber: minPage,
@@ -302,6 +306,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
             )}
           <li className="sk-pagination-list-item  prev-next" role="none">
             {prevNextButton({
+              next: true,
               label: nextLabel,
               icon: <KeyboardDoubleArrowRightOutlinedIcon aria-hidden="true" />,
               triggerNumber: pages,

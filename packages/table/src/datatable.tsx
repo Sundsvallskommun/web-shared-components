@@ -8,6 +8,7 @@ export interface DataTableHeader {
   label?: string;
   isColumnSortable?: boolean;
   isShown?: boolean;
+  screenReaderOnly?: boolean;
   columnPosition?: 'left' | 'center' | 'right';
   renderColumn?: (value: any, item: any) => JSX.Element;
 }
@@ -45,27 +46,39 @@ export const DataTable = React.forwardRef<HTMLTableElement, DataTableProps>((pro
     return value;
   };
 
-  const getLabel = (header: DataTableHeader) => {
-    const headerParts = header?.property ? header.property.split('.') : [];
-    return headerParts.length ? _.upperFirst(_.lowerCase(headerParts[headerParts.length - 1])) : '';
+  const getLabel = (header: DataTableHeader | string) => {
+    let headerparts;
+    switch (typeof header) {
+      case 'string':
+        headerparts = header.split('.');
+        return _.upperFirst(_.lowerCase(headerparts[headerparts.length - 1]));
+
+      default:
+        if (header?.label) {
+          return header.label;
+        }
+        headerparts = header?.property ? header.property.split('.') : [];
+        return headerparts.length ? _.upperFirst(_.lowerCase(headerparts[headerparts.length - 1])) : '';
+    }
   };
 
   const zebraTableHeaders: ZebraTableHeader[] = headers.map((header) => {
     let label: string;
     let isSortable = true;
     let show = true;
+    let isScreenReaderOnly = false;
 
     switch (typeof header) {
       case 'string':
-        const headerParts = header.split('.');
-        label = _.upperFirst(_.lowerCase(headerParts[headerParts.length - 1]));
+        label = getLabel(header);
         break;
 
       default:
-        const { isColumnSortable = true, isShown = true } = header;
-        label = header.label || getLabel(header);
+        const { isColumnSortable = true, isShown = true, screenReaderOnly = false } = header;
+        label = getLabel(header);
         isSortable = isColumnSortable;
         show = isShown;
+        isScreenReaderOnly = screenReaderOnly;
         break;
     }
 
@@ -73,6 +86,7 @@ export const DataTable = React.forwardRef<HTMLTableElement, DataTableProps>((pro
       element: <span>{label}</span>,
       isColumnSortable: isSortable,
       isShown: show,
+      screenReaderOnly: isScreenReaderOnly,
     };
   });
 
@@ -82,20 +96,28 @@ export const DataTable = React.forwardRef<HTMLTableElement, DataTableProps>((pro
       return headers.map((header) => {
         let position = 'left';
         let show = true;
+        let label;
         switch (typeof header) {
           case 'string':
+            label = getLabel(header);
             break;
 
           default:
             const { isShown = true } = header;
             show = isShown;
             position = header?.columnPosition || 'left';
+            label = getLabel(header);
             break;
         }
 
         const value = getValue(item, header);
 
-        let element = <div className={`w-full text-${position}`}>{value}</div>;
+        let element = (
+          <div className={`w-full lg:text-${position}`}>
+            <span className="inline lg:hidden">{label}: </span>
+            {value}
+          </div>
+        );
         if (typeof header !== 'string' && header.renderColumn) {
           element = header.renderColumn(value, item);
         }
