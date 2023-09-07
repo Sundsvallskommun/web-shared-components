@@ -184,13 +184,17 @@ const InternalSelect = React.forwardRef<HTMLInputElement, InternalSelectProps>((
               leave="transition ease-in duration-100"
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
-              className={cx('form-select-list-transition', upwards ? 'showabove' : null)}
             >
               <Listbox.Options
                 id="listitems"
                 static
                 style={{ maxHeight: `${defaultOptionsAmount * 5 + 1}rem` }}
-                className={cx('form-select-list', listClassName, upwards ? 'showabovebox' : null)}
+                className={cx(
+                  'form-select-list',
+                  'form-select-list-transition',
+                  listClassName,
+                  upwards ? 'showabove' : null
+                )}
               >
                 {children &&
                   (children as any).map((option: any, index: number) => {

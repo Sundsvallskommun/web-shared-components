@@ -332,7 +332,7 @@ module.exports = Forms = (colors) => ({
     '&-list': {
       '@apply z-10 absolute overflow-y-auto w-full bg-white mt-0 border border-gray-stroke border-t-0 border-b': {
       },
-      '&.showabovebox': {
+      '&.showabove': {
         '@apply border-t border-b-0': {}
       }
     },
