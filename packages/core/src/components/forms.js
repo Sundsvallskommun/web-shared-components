@@ -309,6 +309,16 @@ module.exports = Forms = (colors) => ({
     },
   },
 
+  '.form-select-list-transition': {
+    '@apply absolute z-50 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm': {},
+    '&.showabove': {
+      '@apply mb-1 bottom-full': {}
+    },
+    '&:not(.showabove)': {
+      '@apply mt-1 top-full': {}
+    }
+  },
+
   '.form-select': {
     '@apply justify-between items-center grow text-body bg-white caret-transparent select-none cursor-pointer border-gray-stroke':
       {},
@@ -320,7 +330,11 @@ module.exports = Forms = (colors) => ({
       '@apply grow-0': {},
     },
     '&-list': {
-      '@apply z-10 absolute overflow-y-auto w-full bg-white mt-0 border border-gray-stroke border-t-0': {},
+      '@apply z-10 absolute overflow-y-auto w-full bg-white mt-0 border border-gray-stroke border-t-0 border-b': {
+      },
+      '&.showabove': {
+        '@apply border-t border-b-0': {}
+      }
     },
     '&-has-multiple-choices': {
       '@apply flex w-full h-full justify-between items-center pr-md': {},
