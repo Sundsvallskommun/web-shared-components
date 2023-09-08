@@ -1,7 +1,7 @@
 import { useId } from '@reach/auto-id';
 import React from 'react';
 import Disclosure, { DisclosureProps } from '../disclosure/disclosure';
-import { DefaultProps, __DEV__, cx } from '../../../utils/';
+import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 
 interface UseAccordionProps
   extends Pick<
