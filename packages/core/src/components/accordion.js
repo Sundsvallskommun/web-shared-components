@@ -1,42 +1,4 @@
 module.exports = Accordion = (colors) => ({
-  '.sk-accordion': {
-    '&-item': {
-      '@apply border border-gray-stroke': {},
-      '&:has(.sk-disclosure-disabled)': {
-        '@apply border-x-gray-light border-y-transparent': {},
-      },
-      transitionProperty: 'margin',
-      transitionDuration: '180ms',
-      '&:has(.sk-disclosure-plain)': {
-        '@apply border-transparent': {},
-        '&:not(:last-child)': {
-          '@apply border-b-gray-stroke': {},
-        },
-      },
-
-      '&:has(.sk-disclosure-solid)': {
-        '@apply border-white': {},
-      },
-      '&:has(.sk-disclosure[data-open="true"]:not(.sk-disclosure-plain))': {
-        '@apply mt-md mb-md border-0': {},
-      },
-      '.sk-disclosure': {
-        '&[data-open="false"]': {
-          '@apply border-0': {},
-        },
-      },
-      '&:not(:first-child):has(.sk-disclosure[data-open="false"]:not(.sk-disclosure-plain))': {
-        '@apply mt-[-1px]': {},
-      },
-      '&:first-child:has(.sk-disclosure[data-open="true"]:not(.sk-disclosure-plain))': {
-        '@apply mt-0 mb-md': {},
-      },
-      '&:last-child:has(.sk-disclosure[data-open="true"]:not(.sk-disclosure-plain))': {
-        '@apply mt-md mb-0': {},
-      },
-    },
-  },
-
   '.sk-disclosure': {
     '&:has(&-header:focus-visible)': {
       '@apply outline': {},
@@ -208,6 +170,42 @@ module.exports = Accordion = (colors) => ({
 
     '&-disabled, &&-disabled': {
       '@apply border-gray': {},
+    },
+  },
+  '.sk-accordion': {
+    '&-item': {
+      '.sk-disclosure': {
+        transitionProperty: 'margin',
+        transitionDuration: '180ms',
+        '&-disabled': {
+          '@apply border-x-transparent border-y-transparent': {},
+        },
+        '&-plain, &-plain[data-disabled="true"]': {
+          '@apply border border-transparent border-b-gray-stroke': {},
+        },
+
+        '&-solid[data-open="false"]': {
+          '@apply border-white': {},
+          '&[data-disabled="true"]': {
+            '@apply border-x-transparent border-y-transparent': {},
+          },
+        },
+        '&[data-open="true"]:not(&-plain)': {
+          '@apply mt-md mb-md': {},
+        },
+      },
+      '&:not(:first-child)': {
+        '@apply mt-[-1px]': {},
+      },
+      '&:first-child .sk-disclosure[data-open="true"]:not(.sk-disclosure-plain)': {
+        '@apply mt-0 mb-md': {},
+      },
+      '&:last-child .sk-disclosure[data-open="true"]:not(.sk-disclosure-plain)': {
+        '@apply mt-md mb-0': {},
+      },
+      '&:last-child .sk-disclosure-plain': {
+        '@apply border-b-transparent': {},
+      },
     },
   },
 });
