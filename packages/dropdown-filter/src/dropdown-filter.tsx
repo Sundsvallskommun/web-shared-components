@@ -22,6 +22,7 @@ interface IDropdownFilter {
   className?: string;
   dropDownIcon?: React.ReactNode;
   size?: 'sm' | 'md' | 'lg';
+  hideHideAllButton?: boolean;
 }
 
 export interface DropdownFilterProps extends React.HTMLAttributes<HTMLDivElement>, IDropdownFilter {}
@@ -36,6 +37,7 @@ export const DropdownFilter = React.forwardRef<HTMLDivElement, DropdownFilterPro
     className = '',
     dropDownIcon,
     size = 'md',
+    hideHideAllButton = false,
   } = props;
 
   const wrapperRef = useRef<HTMLInputElement>(null);
@@ -118,9 +120,11 @@ export const DropdownFilter = React.forwardRef<HTMLDivElement, DropdownFilterPro
             <button type="button" onClick={showAllHandler}>
               Visa alla
             </button>
-            <button type="button" onClick={hideAllHandler}>
-              Dölj alla
-            </button>
+            {hideHideAllButton ? null : (
+              <button type="button" onClick={hideAllHandler}>
+                Dölj alla
+              </button>
+            )}
           </div>
           <ul>
             {filterData &&
