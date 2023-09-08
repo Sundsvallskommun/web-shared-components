@@ -120,11 +120,11 @@ export const DropdownFilter = React.forwardRef<HTMLDivElement, DropdownFilterPro
             <button type="button" onClick={showAllHandler}>
               Visa alla
             </button>
-            {hideHideAllButton ? (
+            {hideHideAllButton ? null : (
               <button type="button" onClick={hideAllHandler}>
                 Dölj alla
               </button>
-            ) : null}
+            )}
           </div>
           <ul>
             {filterData &&
