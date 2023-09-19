@@ -488,10 +488,12 @@ export const AriaMenuKeyboard = class {
         break;
       case 'Home':
       case 'PageUp':
+        this.toFirstItem();
         this.options.onHome && this.options.onHome(event);
         break;
       case 'End':
       case 'PageDown':
+        this.toLastItem();
         this.options.onEnd && this.options.onEnd(event);
         break;
       default:
