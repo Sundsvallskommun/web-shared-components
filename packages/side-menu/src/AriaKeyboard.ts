@@ -11,7 +11,7 @@
  * - toggleOnSpace: false
  * - aria-current: 'true'
  */
-export interface AriaMenuKeyboardOptions {
+export interface AriaMenuKeyboardOptionsCommon {
   /** Handles tabIndex, aria-expanded and focus */
   modifyStates?: boolean;
   autoCloseMenus?: boolean;
@@ -24,10 +24,17 @@ export interface AriaMenuKeyboardOptions {
   selectMenu?: string;
   selectFirstNestedMenuItem?: string;
 
+  /** Set tabIndex */
+  onSetFocusableItem?: (currentFocusedMenuItem: HTMLElement) => void;
+  /** Set tabIndex and focus */
   onSetFocusItem?: (currentFocusedMenuItem: HTMLElement) => void;
+  /** Set aria-current */
   onSetActiveItem?: (currentFocusedMenuItem: HTMLElement) => void;
+  /** Set aria-expanded */
   onExpandPopup?: (currentFocusedMenuItem: HTMLElement, expandedMenuElement: HTMLElement) => void;
+  /** Set aria-expanded */
   onClosePopup?: (currentFocusedMenuItem: HTMLElement) => void;
+
   onNextItem?: (currentFocusedMenuItem: HTMLElement) => void;
   onPreviousItem?: (currentFocusedMenuItem: HTMLElement) => void;
 
@@ -45,8 +52,28 @@ export interface AriaMenuKeyboardOptions {
   onFirstLetter?: (event: KeyboardEvent) => void;
 }
 
+interface AriaMenuKeyboardOptionsRegular extends AriaMenuKeyboardOptionsCommon {
+  modifyStates?: true;
+}
+
+interface AriaMenuKeyboardOptionsModifyStates extends AriaMenuKeyboardOptionsCommon {
+  modifyStates: false;
+  /** Set tabIndex */
+  onSetFocusableItem: (currentFocusedMenuItem: HTMLElement) => void;
+  /** Set tabIndex and focus */
+  onSetFocusItem: (currentFocusedMenuItem: HTMLElement) => void;
+  /** Set aria-current */
+  onSetActiveItem: (currentFocusedMenuItem: HTMLElement) => void;
+  /** Set aria-expanded */
+  onExpandPopup: (currentFocusedMenuItem: HTMLElement, expandedMenuElement: HTMLElement) => void;
+  /** Set aria-expanded */
+  onClosePopup: (currentFocusedMenuItem: HTMLElement) => void;
+}
+
+export type AriaMenuKeyboardOptions = AriaMenuKeyboardOptionsRegular | AriaMenuKeyboardOptionsModifyStates;
+
 /** These are always set internally */
-interface AriaMenuKeyboardOptionsInternal extends AriaMenuKeyboardOptions {
+interface AriaMenuKeyboardOptionsInternal extends AriaMenuKeyboardOptionsCommon {
   modifyStates: boolean;
   autoCloseMenus: boolean;
   toggleOnSpace: boolean;
@@ -107,6 +134,8 @@ export const AriaMenuKeyboard = class {
       });
       this.currentFocusedMenuItem?.setAttribute('tabIndex', '0');
     }
+
+    this.options.onSetFocusableItem && this.options.onSetFocusableItem(this.currentFocusedMenuItem);
   };
 
   getMenuElement = (id: string) => {
@@ -171,14 +200,13 @@ export const AriaMenuKeyboard = class {
     }
   };
 
-  setFocusItem = (menuItem: HTMLElement) => {
+  setFocusItem = async (menuItem: HTMLElement) => {
     if (this.options.modifyStates) {
       menuItem?.setAttribute('tabIndex', '0');
       menuItem?.focus();
       this.leaveCurrentFocusedItem();
     }
-
-    this.options.onSetFocusItem && this.options.onSetFocusItem(menuItem);
+    this.options.onSetFocusItem && (await this.options.onSetFocusItem(menuItem));
   };
 
   setActiveItem = (menuItem: HTMLElement) => {

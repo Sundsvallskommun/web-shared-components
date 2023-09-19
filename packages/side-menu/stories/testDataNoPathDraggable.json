@@ -1,5 +1,14 @@
 [
   {
+    "id": 12761,
+    "label": "First item",
+    "level": 2,
+    "lev2el": "lev2el",
+    "le3vel": "le3vel",
+    "le4vel": "le4vel",
+    "subItems": null
+  },
+  {
     "id": 1276,
     "label": "Midlanda flygplats AB",
     "level": 2,

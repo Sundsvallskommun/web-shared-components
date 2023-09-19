@@ -9,7 +9,8 @@ export interface IMenuExtended extends IMenu {
   itemData: any & IDataObject;
   activeId: string | number | null;
   openIds: string[];
-  focusId: string;
+  focusableId: string;
+  focusedId: string;
   setOpenIds: React.Dispatch<React.SetStateAction<string[]>>;
   linkCallback: (data: IDataObject) => void;
   /* Closes non active trees in the menu. Default is true. */
@@ -38,7 +39,8 @@ export const MenuItem = (props: IMenuExtended) => {
     linkCallback,
     activeId,
     openIds,
-    focusId,
+    focusableId,
+    focusedId,
     setOpenIds,
     closeNoneActive = true,
     ariaExpanded,
@@ -54,7 +56,8 @@ export const MenuItem = (props: IMenuExtended) => {
   } = props;
   const isActive = itemData.id === activeId;
   const open = openIds.some((x) => x === itemData.id.toString());
-  const isFocused = focusId === itemData.id.toString();
+  const isFocusable = focusableId === itemData.id.toString();
+  const hasFocus = focusedId === itemData.id.toString();
 
   const expandHandler = () => {
     setOpenIds((ids: string[]) =>
@@ -88,9 +91,9 @@ export const MenuItem = (props: IMenuExtended) => {
       <Comp
         role="menuitem"
         className="sk-sidemenu-item-link"
-        tabIndex={isFocused ? 0 : !focusId && isActive ? 0 : -1}
-        autoFocus={isFocused ? isFocused : undefined}
-        aria-current={isActive ? 'page' : undefined}
+        tabIndex={isFocusable ? 0 : !focusableId && isActive ? 0 : -1}
+        autoFocus={hasFocus ? hasFocus : undefined}
+        aria-current={isActive ? 'true' : undefined}
         aria-haspopup={subItems ? true : false}
         aria-expanded={subItems ? open : undefined}
         aria-disabled={disabled ? true : undefined}
@@ -185,7 +188,8 @@ export const MenuItem = (props: IMenuExtended) => {
           {subItems.map((item) => (
             <MenuItem
               key={item.id}
-              focusId={focusId}
+              focusableId={focusableId}
+              focusedId={focusedId}
               itemData={item}
               id={item.id}
               label={item.label}

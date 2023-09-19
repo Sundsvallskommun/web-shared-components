@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Meta } from '@storybook/react';
 import { IDataObject, IMenuProps, SideMenu, IMenu } from '../src/side-menu';
@@ -135,6 +135,7 @@ TemplateLoadingBlock.storyName = 'SideMenu with loading block';
 
 export const TemplateDraggable = ({ ...args }: IMenuProps) => {
   const [activeId, setActiveId] = useState<number | null>(null);
+  const [menuData, setMenuData] = useState([]);
   const linkCallbackHandler = (data: IDataObject) => {
     setActiveId(parseInt(data.id.toString()));
     console.log('link click', data);
@@ -142,12 +143,19 @@ export const TemplateDraggable = ({ ...args }: IMenuProps) => {
   const handleOnDrop = (draggedItem: IMenu, oldParent: IMenu, newParent: IMenu) => {
     console.log('handleOnDrop', draggedItem, oldParent, newParent);
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setMenuData(testDataNoPathDraggable as any);
+    }, 1000);
+  }, []);
+
   return (
     <div className="pb-xl">
       <SideMenu
         {...args}
         label="Menu label (254)"
-        menuData={testDataNoPathDraggable}
+        menuData={menuData}
         linkCallback={linkCallbackHandler}
         activeId={activeId}
         className="ml-[100px]"

@@ -153,7 +153,7 @@ module.exports = Menu = () => ({
           '@apply h-[64px] max-h-[64px]': {},
         },
 
-        '& + .menu-item > .sk-sidemenu-wrapper': {
+        '& + .sk-sidemenu-item > .sk-sidemenu-wrapper': {
           '@apply border-t-0': {},
         },
 
@@ -163,6 +163,12 @@ module.exports = Menu = () => ({
 
         '&.open > .items': {
           '@apply border-b border-svartvik-200': {},
+        },
+
+        '&.separator': {
+          '& + .lvl-0': {
+            '@apply border-t border-svartvik-200': {},
+          },
         },
 
         '&.separator > .sk-sidemenu-wrapper': {

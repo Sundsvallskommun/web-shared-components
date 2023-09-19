@@ -88,7 +88,8 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
   React.useImperativeHandle<HTMLDivElement | null, HTMLDivElement | null>(ref, () => internalRef.current);
   const [mounted, setMounted] = React.useState(false);
   const [activeId, setActiveId] = React.useState<CommonProps['activeId']>(_activeId ? _activeId : null);
-  const [focusId, setFocusId] = React.useState<string>(_activeId ? _activeId.toString() : '');
+  const [focusableId, setFocusableId] = React.useState<string>(_activeId ? _activeId.toString() : '');
+  const [focusedId, setFocusedId] = React.useState<string>(_activeId ? _activeId.toString() : '');
 
   React.useEffect(() => {
     setMounted(true);
@@ -144,43 +145,6 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
     }
   }, [_openIds]);
 
-  React.useEffect(() => {
-    let ariaKeyboard: InstanceType<typeof AriaMenuKeyboard>;
-    if (mounted) {
-      ariaKeyboard = new AriaMenuKeyboard(_menuId, {
-        modifyStates: false,
-        onExpandPopup: (currentFocusedMenuItem: HTMLElement, expandedMenuItem: HTMLElement) => {
-          const id = expandedMenuItem.closest('li')?.getAttribute('data-id');
-          if (id) {
-            setOpenIds((ids) => ids.concat([id]));
-          }
-        },
-        onClosePopup: (currentFocusedMenuItem: HTMLElement) => {
-          const id = currentFocusedMenuItem.closest('li')?.getAttribute('data-id');
-          if (id) {
-            setOpenIds((ids) => ids.filter((x) => x !== id));
-          }
-        },
-        onSetFocusItem: (currentFocusedMenuItem: HTMLElement) => {
-          const id = currentFocusedMenuItem.closest('li')?.getAttribute('data-id');
-          if (id) {
-            setFocusId(id || (activeId ? activeId.toString() : ''));
-          }
-        },
-        onSetActiveItem: (currentFocusedMenuItem: HTMLElement) => {
-          const id = currentFocusedMenuItem.closest('li')?.getAttribute('data-id');
-          if (id) {
-            setActiveId(parseInt(id));
-          }
-        },
-      });
-    }
-
-    return () => {
-      ariaKeyboard?.destroy();
-    };
-  }, [mounted]);
-
   const handleDrop = (draggedItem: IMenu, oldParent: IMenu, newParent: IMenu) => {
     draggable && props.onDrop && props.onDrop(draggedItem, oldParent, newParent);
   };
@@ -200,6 +164,52 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
       }
     };
   }, [menuDataMemo]);
+
+  React.useEffect(() => {
+    let ariaKeyboard: InstanceType<typeof AriaMenuKeyboard>;
+    if (mounted && menuDataMemo.length) {
+      ariaKeyboard = new AriaMenuKeyboard(_menuId, {
+        modifyStates: true,
+        onExpandPopup: (currentFocusedMenuItem: HTMLElement, expandedMenuItem: HTMLElement) => {
+          const id = expandedMenuItem.closest('li')?.getAttribute('data-id');
+          if (id) {
+            setOpenIds((ids) => ids.concat([id]));
+          }
+        },
+        onClosePopup: (currentFocusedMenuItem: HTMLElement) => {
+          const id = currentFocusedMenuItem.closest('li')?.getAttribute('data-id');
+          if (id) {
+            setOpenIds((ids) => ids.filter((x) => x !== id));
+          }
+        },
+        onSetFocusableItem: (currentFocusedMenuItem: HTMLElement) => {
+          const id = currentFocusedMenuItem.closest('li')?.getAttribute('data-id');
+          if (id) {
+            setFocusableId(id || (activeId ? activeId.toString() : ''));
+          }
+          return false;
+        },
+        onSetFocusItem: (currentFocusedMenuItem: HTMLElement) => {
+          const id = currentFocusedMenuItem.closest('li')?.getAttribute('data-id');
+          if (id) {
+            setFocusableId(id || (activeId ? activeId.toString() : ''));
+            setFocusedId(id || (activeId ? activeId.toString() : ''));
+          }
+          return false;
+        },
+        onSetActiveItem: (currentFocusedMenuItem: HTMLElement) => {
+          const id = currentFocusedMenuItem.closest('li')?.getAttribute('data-id');
+          if (id) {
+            setActiveId(parseInt(id));
+          }
+        },
+      });
+    }
+
+    return () => {
+      ariaKeyboard?.destroy();
+    };
+  }, [mounted, menuDataMemo]);
 
   return (
     <nav className={`sk-sidemenu ${className}`} ref={internalRef}>
@@ -237,7 +247,8 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
           menuData.map((item) => {
             return (
               <MenuItem
-                focusId={focusId}
+                focusableId={focusableId}
+                focusedId={focusedId}
                 itemData={item}
                 key={item.id}
                 id={item.id}
