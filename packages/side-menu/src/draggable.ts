@@ -1,11 +1,11 @@
 import { IDataObject, IMenu } from './side-menu';
 
 export const Draggable = class {
-  public dragging: boolean = false;
+  public dragging = false;
   public draggedElement: Element | null | undefined;
   public draggedElementData: IMenu | undefined;
   public draggedElementDataParent: IMenu | undefined;
-  public dropSuccess: boolean = false;
+  public dropSuccess = false;
   public draggedElementGhost: any;
 
   public menuElement: HTMLDivElement;
