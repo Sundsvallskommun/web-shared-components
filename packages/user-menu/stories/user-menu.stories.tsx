@@ -23,11 +23,12 @@ const menuGroups: MenuItemGroup[] = [
     showLabel: false,
     showOnDesktop: false,
     showOnMobile: true,
+    showDivider: true,
     elements: [
       {
         label: 'Pågående',
         element: (active: boolean) => (
-          <Link href="/pagaende" className={`usermenu-item ${active ? 'active' : ''}`}>
+          <Link href="/pagaende" className={` ${active ? 'active' : ''}`}>
             Pågående
           </Link>
         ),
@@ -35,7 +36,7 @@ const menuGroups: MenuItemGroup[] = [
       {
         label: 'Beslutade',
         element: (active: boolean) => (
-          <Link href="/beslutade" className={`usermenu-item ${active ? 'active' : ''}`}>
+          <Link href="/beslutade" className={` ${active ? 'active' : ''}`}>
             Beslutade
           </Link>
         ),
@@ -43,7 +44,7 @@ const menuGroups: MenuItemGroup[] = [
       {
         label: 'Handlingsplan',
         element: (active: boolean) => (
-          <Link href="/handlingsplan" className={`usermenu-item ${active ? 'active' : ''}`}>
+          <Link href="/handlingsplan" className={` ${active ? 'active' : ''}`}>
             Handlingsplan
           </Link>
         ),
@@ -51,7 +52,7 @@ const menuGroups: MenuItemGroup[] = [
       {
         label: 'Företagsuppgifter',
         element: (active: boolean) => (
-          <Link href="/foretagsuppgifter" className={`usermenu-item ${active ? 'active' : ''}`}>
+          <Link href="/foretagsuppgifter" className={` ${active ? 'active' : ''}`}>
             Företagsuppgifter
           </Link>
         ),
@@ -63,11 +64,12 @@ const menuGroups: MenuItemGroup[] = [
     showLabel: true,
     showOnDesktop: true,
     showOnMobile: true,
+    showDivider: true,
     elements: [
       {
         label: 'E-tjänster',
         element: (active: boolean) => (
-          <a href="https://www.sundsvall.se/" className={`usermenu-item ${active ? 'active' : ''}`}>
+          <a href="https://www.sundsvall.se/" className={` ${active ? 'active' : ''}`}>
             E-tjänster
           </a>
         ),
@@ -76,7 +78,7 @@ const menuGroups: MenuItemGroup[] = [
       {
         label: 'Företagscenter Sundsvall',
         element: (active: boolean) => (
-          <a href="https://www.sundsvall.se/" className={`usermenu-item ${active ? 'active' : ''}`}>
+          <a href="https://www.sundsvall.se/" className={` ${active ? 'active' : ''}`}>
             Företagscenter Sundsvall
           </a>
         ),
@@ -85,14 +87,15 @@ const menuGroups: MenuItemGroup[] = [
   },
   {
     label: 'Inställningar',
-    showLabel: true,
+    showLabel: false,
     showOnDesktop: true,
     showOnMobile: true,
+
     elements: [
       {
         label: 'Mina uppgifter',
         element: (active: boolean) => (
-          <Link href="/myaccount" className={`usermenu-item ${active ? 'active' : ''}`}>
+          <Link href="/myaccount" className={` ${active ? 'active' : ''}`}>
             <span className="material-icons-outlined align-middle mr-sm" aria-hidden="true">
               account_circle
             </span>
@@ -106,7 +109,7 @@ const menuGroups: MenuItemGroup[] = [
       {
         label: 'Inställningar som har en riktigt lång text',
         element: (active: boolean) => (
-          <Link href="/myaccount" className={`usermenu-item ${active ? 'active' : ''}`}>
+          <Link href="/myaccount" className={` ${active ? 'active' : ''}`}>
             <span className="material-icons-outlined align-middle mr-sm" aria-hidden="true">
               settings
             </span>
@@ -120,7 +123,7 @@ const menuGroups: MenuItemGroup[] = [
       {
         label: 'Meddelanden',
         element: (active: boolean) => (
-          <Link href="/messages" className={`usermenu-item ${active ? 'active' : ''}`}>
+          <Link href="/messages" className={` ${active ? 'active' : ''}`}>
             <span className="material-icons-outlined align-middle mr-sm" aria-hidden="true">
               email
             </span>
@@ -134,7 +137,7 @@ const menuGroups: MenuItemGroup[] = [
       {
         label: 'Logga ut',
         element: (active: boolean) => (
-          <Link href="/logout" className={`usermenu-item ${active ? 'active' : ''}`}>
+          <Link href="/logout" className={` ${active ? 'active' : ''}`}>
             <span className="material-icons-outlined align-middle mr-sm" aria-hidden="true">
               logout
             </span>
