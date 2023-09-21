@@ -134,8 +134,9 @@ export const TemplateLoadingBlock = ({ ...args }: IMenuProps) => {
 TemplateLoadingBlock.storyName = 'SideMenu with loading block';
 
 export const TemplateDraggable = ({ ...args }: IMenuProps) => {
-  const [activeId, setActiveId] = useState<number | null>(null);
+  const [activeId, setActiveId] = useState<number | null>(1280);
   const [menuData, setMenuData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const linkCallbackHandler = (data: IDataObject) => {
     setActiveId(parseInt(data.id.toString()));
     console.log('link click', data);
@@ -147,6 +148,7 @@ export const TemplateDraggable = ({ ...args }: IMenuProps) => {
   useEffect(() => {
     setTimeout(() => {
       setMenuData(testDataNoPathDraggable as any);
+      setLoading(false);
     }, 1000);
   }, []);
 
@@ -154,6 +156,7 @@ export const TemplateDraggable = ({ ...args }: IMenuProps) => {
     <div className="pb-xl">
       <SideMenu
         {...args}
+        loading={loading}
         label="Menu label (254)"
         menuData={menuData}
         linkCallback={linkCallbackHandler}

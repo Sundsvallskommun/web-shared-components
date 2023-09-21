@@ -90,6 +90,7 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
   const [activeId, setActiveId] = React.useState<CommonProps['activeId']>(_activeId ? _activeId : null);
   const [focusableId, setFocusableId] = React.useState<string>(_activeId ? _activeId.toString() : '');
   const [focusedId, setFocusedId] = React.useState<string>(_activeId ? _activeId.toString() : '');
+  const menuRef = React.useRef<HTMLUListElement>(null);
 
   React.useEffect(() => {
     setMounted(true);
@@ -127,13 +128,15 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
     }
   };
 
-  React.useEffect(() => {
+  const setActiveOpen = (activeId: IMenuProps['activeId']) => {
+    setActiveId(activeId);
     setOpenItemsFromActiveId(activeId);
-  }, [activeId]);
+    setFocusableId(activeId ? activeId.toString() : '');
+  };
 
   React.useEffect(() => {
-    setActiveId(_activeId);
-  }, [_activeId]);
+    setActiveOpen(_activeId);
+  }, [_activeId, loading]);
 
   React.useEffect(() => {
     if (_openIds) {
@@ -143,7 +146,7 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
         setOpenIds(_openIds);
       }
     }
-  }, [_openIds]);
+  }, [_openIds, loading]);
 
   const handleDrop = (draggedItem: IMenu, oldParent: IMenu, newParent: IMenu) => {
     draggable && props.onDrop && props.onDrop(draggedItem, oldParent, newParent);
@@ -167,8 +170,8 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
 
   React.useEffect(() => {
     let ariaKeyboard: InstanceType<typeof AriaMenuKeyboard>;
-    if (mounted && menuDataMemo.length) {
-      ariaKeyboard = new AriaMenuKeyboard(_menuId, {
+    if (mounted && menuDataMemo.length && menuRef?.current && !loading) {
+      ariaKeyboard = new AriaMenuKeyboard(menuRef.current, {
         modifyStates: true,
         onExpandPopup: (currentFocusedMenuItem: HTMLElement, expandedMenuItem: HTMLElement) => {
           const id = expandedMenuItem.closest('li')?.getAttribute('data-id');
@@ -200,7 +203,8 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
         onSetActiveItem: (currentFocusedMenuItem: HTMLElement) => {
           const id = currentFocusedMenuItem.closest('li')?.getAttribute('data-id');
           if (id) {
-            setActiveId(parseInt(id));
+            setActiveOpen(parseInt(id));
+            setFocusedId(activeId ? activeId.toString() : '');
           }
         },
       });
@@ -209,7 +213,7 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
     return () => {
       ariaKeyboard?.destroy();
     };
-  }, [mounted, menuDataMemo]);
+  }, [mounted, menuDataMemo, loading]);
 
   return (
     <nav className={`sk-sidemenu ${className}`} ref={internalRef}>
@@ -236,9 +240,9 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
         )}
       </header>
       <ul
+        ref={menuRef}
         className="sk-sidemenu-body"
         role="menubar"
-        id={_menuId}
         aria-orientation="vertical"
         aria-label={ariaMenuLabel}
       >

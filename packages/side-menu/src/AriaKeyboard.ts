@@ -9,14 +9,12 @@
  * - modifyStates: true
  * - autoCloseMenus: true
  * - toggleOnSpace: false
- * - aria-current: 'true'
  */
 export interface AriaMenuKeyboardOptionsCommon {
   /** Handles tabIndex, aria-expanded and focus */
   modifyStates?: boolean;
   autoCloseMenus?: boolean;
   toggleOnSpace?: boolean;
-  ariaCurrent?: 'true' | 'page';
 
   selectMenuItem?: string;
   selectAriaCurrent?: string;
@@ -77,7 +75,6 @@ interface AriaMenuKeyboardOptionsInternal extends AriaMenuKeyboardOptionsCommon 
   modifyStates: boolean;
   autoCloseMenus: boolean;
   toggleOnSpace: boolean;
-  ariaCurrent: 'true' | 'page';
 }
 
 export const AriaMenuKeyboard = class {
@@ -88,23 +85,27 @@ export const AriaMenuKeyboard = class {
     modifyStates: true,
     autoCloseMenus: true,
     toggleOnSpace: false,
-    ariaCurrent: 'true',
   };
   public currentFocusedParentElement: HTMLElement;
   public currentFocusedChildrenElements: HTMLCollection;
   public currentFocusedChildIndex: number;
 
   // Query-Selects
+  public ariaCurrent = 'true';
   public selectMenuItem = `[role="menuitem"]`;
-  public selectAriaCurrent = `[aria-current="${this.options.ariaCurrent}"]`;
+  public selectAriaCurrent = `[aria-current="true"],[aria-current="page"]`;
   public selectNestedMenuItem = `li ${this.selectMenuItem}`;
-  public selectMenu = `ul[role="menu"], ul[role="menubar"]`;
+  public selectMenu = `ul[role="menu"],ul[role="menubar"]`;
   public selectFirstNestedMenuItem = `ul li:first-child ${this.selectMenuItem}`;
 
   public firstCharMenuItemIndex: number | null = null;
 
-  constructor(id: string, options?: AriaMenuKeyboardOptions) {
-    this.menuElement = this.getMenuElement(id);
+  constructor(menuElement: HTMLElement, options?: AriaMenuKeyboardOptions) {
+    this.menuElement = menuElement;
+
+    if (!menuElement) {
+      throw Error(`menuElement does not exist`);
+    }
 
     // Currently focusable menuitem
     this.currentFocusedMenuItem = this.getFocusedMenuItem();
@@ -138,12 +139,12 @@ export const AriaMenuKeyboard = class {
     this.options.onSetFocusableItem && this.options.onSetFocusableItem(this.currentFocusedMenuItem);
   };
 
-  getMenuElement = (id: string) => {
-    const menuElement = document.getElementById(id);
-    if (!menuElement) {
-      throw Error(`Element for id '${id}' does not exist`);
+  getSelect = (select: string, modifierFn?: (select: string) => string) => {
+    const selectArray = select.split(',');
+    if (selectArray.length > 1 && modifierFn) {
+      return selectArray.map((x) => modifierFn(x)).join(',');
     }
-    return menuElement;
+    return select;
   };
 
   getFirstMenuItemInMenu = () => {
@@ -151,9 +152,13 @@ export const AriaMenuKeyboard = class {
   };
 
   getFocusedMenuItem = () => {
-    this.currentFocusedMenuItem =
-      this.menuElement.querySelector(`:scope ${this.selectAriaCurrent}`) ||
-      (this.getFirstMenuItemInMenu() as HTMLElement);
+    const currentItem = this.menuElement.querySelector(
+      this.getSelect(this.selectAriaCurrent, (x) => `:scope ${x}`)
+    ) as HTMLElement;
+    if (currentItem) {
+      this.ariaCurrent = currentItem.getAttribute('aria-current') as string;
+    }
+    this.currentFocusedMenuItem = currentItem || (this.getFirstMenuItemInMenu() as HTMLElement);
     if (!this.currentFocusedMenuItem) {
       throw Error('Faulty menu structure');
     }
@@ -211,7 +216,7 @@ export const AriaMenuKeyboard = class {
 
   setActiveItem = (menuItem: HTMLElement) => {
     if (this.options.modifyStates) {
-      menuItem.setAttribute('aria-current', this.options.ariaCurrent);
+      menuItem.setAttribute('aria-current', this.ariaCurrent);
     }
 
     this.options.onSetActiveItem && this.options.onSetActiveItem(menuItem);

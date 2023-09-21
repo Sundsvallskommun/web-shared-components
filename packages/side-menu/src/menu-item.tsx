@@ -54,6 +54,7 @@ export const MenuItem = (props: IMenuExtended) => {
     movedHere = false,
     ariaMoveButton,
   } = props;
+  const menuItemRef = React.useRef<any>(null);
   const isActive = itemData.id === activeId;
   const open = openIds.some((x) => x === itemData.id.toString());
   const isFocusable = focusableId === itemData.id.toString();
@@ -89,10 +90,10 @@ export const MenuItem = (props: IMenuExtended) => {
 
     return (
       <Comp
+        ref={menuItemRef}
         role="menuitem"
         className="sk-sidemenu-item-link"
-        tabIndex={isFocusable ? 0 : !focusableId && isActive ? 0 : -1}
-        autoFocus={hasFocus ? hasFocus : undefined}
+        tabIndex={isFocusable ? 0 : -1}
         aria-current={isActive ? 'true' : undefined}
         aria-haspopup={subItems ? true : false}
         aria-expanded={subItems ? open : undefined}
@@ -104,6 +105,12 @@ export const MenuItem = (props: IMenuExtended) => {
       </Comp>
     );
   };
+
+  React.useEffect(() => {
+    if (menuItemRef?.current && hasFocus) {
+      menuItemRef.current.focus();
+    }
+  }, [hasFocus, isActive]);
 
   const ExpandButton = () => {
     return (
