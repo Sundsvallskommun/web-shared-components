@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@0.1.30...@sk-web-gui/accordion@0.2.0) (2023-09-21)
+
+### Features
+
+- new accordion ([6761c4f](https://github.com/Sundsvallskommun/web-shared-components/commit/6761c4f4cbb03a3c966a06479811fae21698ddc0))
+
+### BREAKING CHANGES
+
+- Old accordion is now called disclosure. The new accordion is a list of disclosures with some additional features.
+
 ## [0.1.30](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@0.1.29...@sk-web-gui/accordion@0.1.30) (2023-09-04)
 
 **Note:** Version bump only for package @sk-web-gui/accordion
