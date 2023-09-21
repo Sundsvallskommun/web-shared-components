@@ -80,7 +80,6 @@ interface AriaMenuKeyboardOptionsInternal extends AriaMenuKeyboardOptionsCommon 
 export const AriaMenuKeyboard = class {
   public menuElement: HTMLElement;
   public currentFocusedMenuItem: HTMLElement;
-  public menuOpen = false;
   public options: AriaMenuKeyboardOptionsInternal = {
     modifyStates: true,
     autoCloseMenus: true,

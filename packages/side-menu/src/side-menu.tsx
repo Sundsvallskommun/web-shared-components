@@ -5,7 +5,7 @@ import { Button } from '@sk-web-gui/button';
 import EastIcon from '@mui/icons-material/East';
 import { Draggable } from './draggable';
 import * as React from 'react';
-import { AriaMenuKeyboard } from './AriaKeyboard';
+import { AriaMenuKeyboard } from '@sk-web-gui/keyboard-navigation';
 import { findIdPathsForObject } from './utils';
 export interface IDataObject {
   id: string | number;
