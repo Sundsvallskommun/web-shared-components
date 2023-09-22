@@ -33,6 +33,8 @@ interface IDisclosureProps extends DefaultProps {
   alert?: boolean;
   /* Gives error colors */
   error?: boolean;
+  /* Returns true if opened, false if closed */
+  onToggleOpen?: (open: boolean) => void;
 }
 
 export interface DisclosureProps extends React.HTMLAttributes<HTMLDivElement>, IDisclosureProps {}
@@ -54,6 +56,7 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
     closeIcon: _closeIcon,
     alert: _alert,
     error: _error,
+    onToggleOpen,
     ...rest
   } = props;
   const { open, onClose, onOpen, ...context } = useAccordion();
@@ -125,8 +128,10 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
     if (!disabled) {
       if (disclosureOpen) {
         onClose && onClose(id);
+        onToggleOpen && onToggleOpen(false);
       } else {
         onOpen && onOpen(id);
+        onToggleOpen && onToggleOpen(true);
       }
 
       if (contentEl.current) {
