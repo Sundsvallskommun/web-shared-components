@@ -184,7 +184,7 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
         className={`sk-disclosure-body ${disclosureOpen && 'overflow-visible'} ${noMargin ? '' : 'm-lg'}`}
         aria-hidden={!disclosureOpen}
         ref={contentEl}
-        style={disclosureOpen ? { height: contentEl?.current?.scrollHeight } : { height: '0' }}
+        style={disclosureOpen ? { height: 'auto' } : { height: '0' }}
       >
         <div role="region" aria-labelledby={`${id}-header`} id={`${id}-content`}>
           {children}
