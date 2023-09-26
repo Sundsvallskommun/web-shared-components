@@ -7,7 +7,9 @@ import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import { Profile } from '@sk-web-gui/profile';
-
+import { useGui } from '@sk-web-gui/theme';
+import theme from 'tailwindcss/defaultTheme';
+import { useMediaQuery } from '@mui/material';
 export interface MenuItemGroup {
   label: string;
   showLabel: boolean;
@@ -24,6 +26,8 @@ interface IUserMenuProps extends DefaultProps {
   imageAlt?: string;
   placeholderImage?: string;
   imageElem?: React.ReactElement;
+  /** Defaults to lg breakpoint of current or default theme if possible. Else '1024px' */
+  mobileBreakpoint?: string;
 }
 
 export interface UserMenuProps extends React.HTMLAttributes<HTMLDivElement>, IUserMenuProps {
@@ -40,10 +44,17 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>((props, 
     imageAlt = 'Bild på användare',
     placeholderImage,
     imageElem,
+    mobileBreakpoint,
     ...rest
   } = props;
 
   const menuWidthClass = imageElem || image || placeholderImage ? 'lg:w-[30rem]' : 'lg:w-96';
+
+  const context = useGui();
+
+  const breakpoint = mobileBreakpoint || context?.theme?.screens?.lg || theme?.screens?.lg || '1024px';
+
+  const isMobile = !useMediaQuery(`(min-width:${breakpoint})`);
 
   return (
     <Menu as="div" className={cx(className, 'sk-usermenu-wrapper')} {...rest}>
@@ -83,10 +94,8 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>((props, 
               <div className="sk-usermenu-first-row"></div>
             </div>
             {menuGroups.map((g: MenuItemGroup, gidx: number) => {
-              return (
+              return (g.showOnMobile && isMobile) || (g.showOnDesktop && !isMobile) ? (
                 <div
-                  data-show-on-mobile={g.showOnMobile}
-                  data-show-on-desktop={g.showOnDesktop}
                   role="group"
                   key={`sk-usermenu-group-${gidx}`}
                   aria-labelledby={g.showLabel ? `sk-usermenu-label-${gidx}` : undefined}
@@ -115,6 +124,8 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>((props, 
                     ),
                   ]}
                 </div>
+              ) : (
+                <></>
               );
             })}
           </Menu.Items>
