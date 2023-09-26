@@ -1,8 +1,7 @@
-import React from 'react';
-import { Meta } from '@storybook/react';
-import { UserMenu } from '../src';
 import { cx } from '@sk-web-gui/utils';
+import { Meta } from '@storybook/react';
 import { Link } from '../../react';
+import { UserMenu } from '../src';
 import { MenuItemGroup, UserMenuProps } from '../src/user-menu';
 
 export default {
