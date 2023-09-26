@@ -2,12 +2,6 @@ module.exports = UserMenu = (colors) => ({
   '.sk-usermenu': {
     '@apply text-body mx-auto lg:mx-sm lg:relative': {},
 
-    '[data-show-on-mobile="false"]': {
-      '@apply max-lg:hidden': {},
-    },
-    '[data-show-on-desktop="false"]': {
-      '@apply lg:hidden': {},
-    },
     '&-wrapper': {
       '@apply block max-lg:-mr-md': {},
     },
