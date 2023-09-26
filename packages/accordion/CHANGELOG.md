@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@0.2.0...@sk-web-gui/accordion@0.3.0) (2023-09-26)
+
+### Bug Fixes
+
+- changed default height to auto ([58369b0](https://github.com/Sundsvallskommun/web-shared-components/commit/58369b0dd5a7785501086f0983e45f9262d2747a))
+
+### Features
+
+- added onToggle callback ([69b236f](https://github.com/Sundsvallskommun/web-shared-components/commit/69b236f942eb1d05d4b7522697809b845a7b07a3))
+
 # [0.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@0.1.30...@sk-web-gui/accordion@0.2.0) (2023-09-21)
 
 ### Features
