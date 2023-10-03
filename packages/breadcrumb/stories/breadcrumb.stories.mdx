@@ -5,19 +5,21 @@ import { ComponentPreview } from '../../../.storybook/preview';
 
 <Meta title="Komponenter/Brödsmulor/Översikt" />
 
-export const Template = (args) => (
-  <Breadcrumb {...args}>
-    <Breadcrumb.Item>
-      <Breadcrumb.Link href="#">Start</Breadcrumb.Link>
-    </Breadcrumb.Item>
-    <Breadcrumb.Item>
-      <Breadcrumb.Link href="#">Inlägg</Breadcrumb.Link>
-    </Breadcrumb.Item>
-    <Breadcrumb.Item currentPage>
-      <Breadcrumb.Link href="#">Amet minim mollit non</Breadcrumb.Link>
-    </Breadcrumb.Item>
-  </Breadcrumb>
-);
+export const Template = (args) => {
+  return (
+    <Breadcrumb {...args}>
+      <Breadcrumb.Item>
+        <Breadcrumb.Link href="#">Start</Breadcrumb.Link>
+      </Breadcrumb.Item>
+      <Breadcrumb.Item>
+        <Breadcrumb.Link href="#">Inlägg</Breadcrumb.Link>
+      </Breadcrumb.Item>
+      <Breadcrumb.Item currentPage>
+        <Breadcrumb.Link href="#">Amet minim mollit non</Breadcrumb.Link>
+      </Breadcrumb.Item>
+    </Breadcrumb>
+  );
+};
 
 # Brödsmulor
 

@@ -20,7 +20,7 @@ module.exports = function (api) {
     '@babel/preset-react',
   ];
 
-  const plugins = [['@babel/plugin-proposal-class-properties', { loose: true }]];
+  const plugins = [['@babel/plugin-transform-class-properties', { loose: true }]];
 
   return {
     presets,
