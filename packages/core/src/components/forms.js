@@ -156,7 +156,7 @@ function formInputGroup() {
 
     '.form-input-addon': {
       '@apply flex items-center w-auto shadow-sm whitespace-nowrap': {},
-      '@apply text-neutral-600 bg-neutral-50': {},
+      '@apply text-gray bg-neutral-50': {},
       // dark colors
       '@apply dark:border-neutral-700': {},
       '@apply dark:text-neutral-100 dark:bg-white/30': {},
@@ -310,13 +310,14 @@ module.exports = Forms = (colors) => ({
   },
 
   '.form-select-list-transition': {
-    '@apply absolute z-50 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm': {},
+    '@apply absolute z-50 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm':
+      {},
     '&.showabove': {
-      '@apply mb-1 bottom-full': {}
+      '@apply mb-1 bottom-full': {},
     },
     '&:not(.showabove)': {
-      '@apply mt-1 top-full': {}
-    }
+      '@apply mt-1 top-full': {},
+    },
   },
 
   '.form-select': {
@@ -330,11 +331,10 @@ module.exports = Forms = (colors) => ({
       '@apply grow-0': {},
     },
     '&-list': {
-      '@apply z-10 absolute overflow-y-auto w-full bg-white mt-0 border border-gray-stroke border-t-0 border-b': {
-      },
+      '@apply z-10 absolute overflow-y-auto w-full bg-white mt-0 border border-gray-stroke border-t-0 border-b': {},
       '&.showabove': {
-        '@apply border-t border-b-0': {}
-      }
+        '@apply border-t border-b-0': {},
+      },
     },
     '&-has-multiple-choices': {
       '@apply flex w-full h-full justify-between items-center pr-md': {},
