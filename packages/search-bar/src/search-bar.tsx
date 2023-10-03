@@ -1,11 +1,11 @@
 import { DefaultProps, __DEV__ } from '@sk-web-gui/utils';
 import React, { HTMLAttributes, useEffect, useState } from 'react';
 import { Button } from '@sk-web-gui/button';
-import { Input } from '@sk-web-gui/forms';
+import { Input, InputProps } from '@sk-web-gui/forms';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
-export interface SearchbarProps extends DefaultProps, HTMLAttributes<HTMLInputElement> {
+export interface SearchbarProps extends DefaultProps, InputProps, HTMLAttributes<HTMLInputElement> {
   // Parent should handle the state
   value: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
