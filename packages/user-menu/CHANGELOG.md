@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/user-menu@0.1.30...@sk-web-gui/user-menu@0.2.0) (2023-10-03)
+
+### Features
+
+- added divider between menu groups ([ac5cf8c](https://github.com/Sundsvallskommun/web-shared-components/commit/ac5cf8cdc3eda095c034c9973ff260e0b30d24d1))
+- added mobile breakpoint ([bc478dc](https://github.com/Sundsvallskommun/web-shared-components/commit/bc478dc24e8ec0d03274dfa99745f0d038b5b467))
+
 ## 0.1.30 (2023-05-16)
 
 **Note:** Version bump only for package @sk-web-gui/user-menu
