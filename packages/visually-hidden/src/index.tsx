@@ -12,7 +12,6 @@
 
 import * as React from 'react';
 import { __DEV__ } from '@sk-web-gui/utils';
-import PropTypes from 'prop-types';
 
 // interface VisuallyHiddenProps extends DefaultProps {
 //   /* React node */
@@ -67,10 +66,6 @@ interface VisuallyHiddenProps extends React.InputHTMLAttributes<HTMLInputElement
 
 if (__DEV__) {
   VisuallyHidden.displayName = 'VisuallyHidden';
-  VisuallyHidden.propTypes = {
-    as: PropTypes.any,
-    children: PropTypes.node,
-  };
 }
 
 ////////////////////////////////////////////////////////////////////////////////
