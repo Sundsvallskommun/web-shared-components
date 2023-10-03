@@ -61,18 +61,6 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => 
 
   const [activeIndex, setActiveIndex] = React.useState(firstActive);
 
-  const initialFocus = React.useRef<HTMLButtonElement>(null);
-
-  const setInitialFocus = () => {
-    setTimeout(() => {
-      initialFocus?.current && initialFocus.current.focus();
-    });
-  };
-
-  React.useEffect(() => {
-    setInitialFocus();
-  }, []);
-
   React.useEffect(() => {
     if (typeof _activeIndex === 'number') {
       setActiveIndex(_activeIndex);
@@ -198,7 +186,6 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => 
             role="tab"
             disabled={tab.disabled}
             aria-disabled={tab.disabled}
-            ref={index === activeIndex ? initialFocus : undefined}
             type="button"
             tabIndex={activeIndex === index ? undefined : -1}
             aria-label={tab.label}
