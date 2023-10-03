@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Meta } from '@storybook/react';
 import { IDataObject, IMenuProps, SideMenu, IMenu } from '../src/side-menu';
@@ -18,18 +18,18 @@ export default {
 } as Meta;
 
 export const Template = ({ ...args }: IMenuProps) => {
-  const [active, setActive] = useState<number | string>(1280);
+  const [activeId, setActiveId] = useState<number | string>(1280);
 
   const goDeepHandler = () => {
-    setActive(1277);
+    setActiveId(1277);
   };
 
   const goShallowHandler = () => {
-    setActive(1295);
+    setActiveId(1295);
   };
 
   const linkCallbackHandler = (data: IDataObject) => {
-    setActive(data.id);
+    setActiveId(data.id);
 
     console.log('link click', data);
   };
@@ -50,7 +50,7 @@ export const Template = ({ ...args }: IMenuProps) => {
       <SideMenu
         {...args}
         linkCallback={linkCallbackHandler}
-        active={active}
+        activeId={activeId}
         labelCallback={() => console.log('labelCallback')}
         onDrop={handleOnDrop}
       />
@@ -60,19 +60,19 @@ export const Template = ({ ...args }: IMenuProps) => {
 
 Template.storyName = 'SideMenu';
 
-export const TemplateHeadElement = () => {
-  const [active, setActive] = useState<number>(1280);
+export const TemplateHeadElement = ({ ...args }: IMenuProps) => {
+  const [activeId, setActiveId] = useState<number>(1280);
 
   const goDeepHandler = () => {
-    setActive(1277);
+    setActiveId(1277);
   };
 
   const goShallowHandler = () => {
-    setActive(1295);
+    setActiveId(1295);
   };
 
   const linkCallbackHandler = (data: IDataObject) => {
-    setActive(parseInt(data.id.toString()));
+    setActiveId(parseInt(data.id.toString()));
 
     console.log('link click', data);
   };
@@ -91,9 +91,10 @@ export const TemplateHeadElement = () => {
       </button>
 
       <SideMenu
+        {...args}
         menuData={testData}
         linkCallback={linkCallbackHandler}
-        active={active}
+        activeId={activeId}
         headElement={
           <div className="mb-[20px]">
             <label className="label-small">Select in head</label>
@@ -111,42 +112,55 @@ export const TemplateHeadElement = () => {
 
 TemplateHeadElement.storyName = 'SideMenu With headElement';
 
-export const TemplateLoadingBlock = () => {
-  const [active, setActive] = useState<number>(1280);
+export const TemplateLoadingBlock = ({ ...args }: IMenuProps) => {
+  const [activeId, setActiveId] = useState<number>(1280);
   const linkCallbackHandler = (data: IDataObject) => {
-    setActive(parseInt(data.id.toString()));
+    setActiveId(parseInt(data.id.toString()));
     console.log('link click', data);
   };
   return (
     <div>
       <SideMenu
+        {...args}
         label="Menu label (254)"
         menuData={testData}
         linkCallback={linkCallbackHandler}
         loading={true}
-        active={active}
+        activeId={activeId}
       />
     </div>
   );
 };
 TemplateLoadingBlock.storyName = 'SideMenu with loading block';
 
-export const TemplateDraggable = () => {
-  const [active, setActive] = useState<number>(1280);
+export const TemplateDraggable = ({ ...args }: IMenuProps) => {
+  const [activeId, setActiveId] = useState<number | null>(1280);
+  const [menuData, setMenuData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const linkCallbackHandler = (data: IDataObject) => {
-    setActive(parseInt(data.id.toString()));
+    setActiveId(parseInt(data.id.toString()));
     console.log('link click', data);
   };
   const handleOnDrop = (draggedItem: IMenu, oldParent: IMenu, newParent: IMenu) => {
     console.log('handleOnDrop', draggedItem, oldParent, newParent);
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setMenuData(testDataNoPathDraggable as any);
+      setLoading(false);
+    }, 1000);
+  }, []);
+
   return (
     <div className="pb-xl">
       <SideMenu
+        {...args}
+        loading={loading}
         label="Menu label (254)"
-        menuData={testDataNoPathDraggable}
+        menuData={menuData}
         linkCallback={linkCallbackHandler}
-        active={active}
+        activeId={activeId}
         className="ml-[100px]"
         draggable
         onDrop={handleOnDrop}

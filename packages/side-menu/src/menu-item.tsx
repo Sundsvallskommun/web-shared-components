@@ -6,8 +6,12 @@ import PlusIcon from './assets/plus-icon';
 import { IDataObject, IMenu } from './side-menu';
 import DragIndicatorOutlinedIcon from '@mui/icons-material/DragIndicatorOutlined';
 export interface IMenuExtended extends IMenu {
-  itemData: any;
-  active: string | number | string[] | number[];
+  itemData: any & IDataObject;
+  activeId: string | number | null;
+  openIds: string[];
+  focusableId: string;
+  focusedId: string;
+  setOpenIds: React.Dispatch<React.SetStateAction<string[]>>;
   linkCallback: (data: IDataObject) => void;
   /* Closes non active trees in the menu. Default is true. */
   closeNoneActive: boolean;
@@ -33,7 +37,11 @@ export const MenuItem = (props: IMenuExtended) => {
     level,
     subItems,
     linkCallback,
-    active,
+    activeId,
+    openIds,
+    focusableId,
+    focusedId,
+    setOpenIds,
     closeNoneActive = true,
     ariaExpanded,
     disabled = false,
@@ -46,11 +54,18 @@ export const MenuItem = (props: IMenuExtended) => {
     movedHere = false,
     ariaMoveButton,
   } = props;
-
-  const [open, setOpen] = React.useState<boolean>(false);
+  const menuItemRef = React.useRef<any>(null);
+  const isActive = itemData.id === activeId;
+  const open = openIds.some((x) => x === itemData.id.toString());
+  const isFocusable = focusableId === itemData.id.toString();
+  const hasFocus = focusedId === itemData.id.toString();
 
   const expandHandler = () => {
-    setOpen((open: boolean) => !open);
+    setOpenIds((ids: string[]) =>
+      ids.includes(itemData.id.toString())
+        ? ids.filter((x) => x !== itemData.id.toString())
+        : ids.concat([itemData.id.toString()])
+    );
   };
 
   // send back onclick
@@ -58,66 +73,50 @@ export const MenuItem = (props: IMenuExtended) => {
     linkCallback(itemData);
   };
 
-  const hasActiveChild = (item: IMenu, activeIds: string | number | string[] | number[]): boolean => {
-    if ((Array.isArray(activeIds) && activeIds.some((x) => x === item.id)) || item.id === activeIds) {
-      return true;
-    } else if (item.subItems && item.subItems.length > 0) {
-      return item.subItems.some((subItem: IMenu) => {
-        return hasActiveChild(subItem, activeIds);
-      });
-    }
-    return false;
-  };
-
-  React.useEffect(() => {
-    if (hasActiveChild(itemData, active)) {
-      setOpen(true);
-    } else {
-      if (closeNoneActive) {
-        setOpen(false);
-      }
-    }
-  }, [active]);
-
-  const getLabel = () => {
+  const LabelRender = () => {
     return (
-      <span className="menu-item-label">
-        {renderMenuItemLabel
-          ? renderMenuItemLabel(itemData, (Array.isArray(active) && active.some((x) => x == id)) || active == id)
-          : label}
+      <span className="sk-sidemenu-item-label">
+        {renderMenuItemLabel ? renderMenuItemLabel(itemData, isActive) : label}
       </span>
     );
   };
 
-  const getLabelItemType = (item: IDataObject) => {
-    if (item.path) {
-      return (
-        <a className="menu-item-link" href={path} aria-disabled={disabled ? true : undefined}>
-          {getLabel()}
-        </a>
-      );
-    }
+  const LabelItem = ({ item }: { item: IDataObject }) => {
+    const Comp: React.ElementType = item.path ? 'a' : 'button';
+
     if (separator) {
-      return <div className="menu-item-separator"></div>;
+      return <div className="sk-sidemenu-item-separator" role="separator"></div>;
     }
+
     return (
-      <button className="menu-item-link" onClick={linkCallbackhandler} aria-disabled={disabled ? true : undefined}>
-        {getLabel()}
-      </button>
+      <Comp
+        ref={menuItemRef}
+        role="menuitem"
+        className="sk-sidemenu-item-link"
+        tabIndex={isFocusable ? 0 : -1}
+        aria-current={isActive ? 'true' : undefined}
+        aria-haspopup={subItems ? true : false}
+        aria-expanded={subItems ? open : undefined}
+        aria-disabled={disabled ? true : undefined}
+        href={Comp === 'a' ? path : undefined}
+        onClick={Comp === 'button' ? linkCallbackhandler : undefined}
+      >
+        <LabelRender />
+      </Comp>
     );
   };
 
-  const getExpandButton = () => {
+  React.useEffect(() => {
+    if (menuItemRef?.current && hasFocus) {
+      menuItemRef.current.focus();
+    }
+  }, [hasFocus, isActive]);
+
+  const ExpandButton = () => {
     return (
       <>
         {subItems && (
-          <button
-            className="expand"
-            onClick={expandHandler}
-            aria-expanded={open}
-            aria-disabled={disabled ? true : undefined}
-            aria-label={open ? ariaExpanded.close : ariaExpanded.open}
-          >
+          <button className="expand" onClick={expandHandler} aria-hidden={true} tabIndex={-1}>
             <span className="expand-button">
               {renderMenuItemExpand ? (
                 renderMenuItemExpand(
@@ -142,12 +141,13 @@ export const MenuItem = (props: IMenuExtended) => {
   };
 
   return (
-    <div
+    <li
+      role="none"
       className={cx(
-        'menu-item',
+        'sk-sidemenu-item',
         'lvl-' + level,
         { open: open && subItems },
-        { active: (Array.isArray(active) && active.some((x) => x == id)) || active == id },
+        { active: isActive },
 
         /** Below are specific for draggable */
         { separator: separator },
@@ -156,71 +156,76 @@ export const MenuItem = (props: IMenuExtended) => {
       )}
       data-id={id}
     >
-      <div className={cx('wrapper')}>
+      <div className={cx('sk-sidemenu-wrapper')}>
         {draggable && !separator && (
           /** Specific for draggable */
           <Button
             draggable={draggable}
-            className={`menu-item-move-button`}
+            className={`sk-sidemenu-menuitem-movebutton`}
             variant="link"
-            aria-label={ariaMoveButton}
-            aria-disabled={disabled ? true : undefined}
-            rightIcon={<DragIndicatorOutlinedIcon className="menu-item-move-button-icon !text-2xl" />}
+            aria-hidden={true}
+            tabIndex={-1}
+            // aria-label={ariaMoveButton}
+            // aria-disabled={disabled ? true : undefined}
+            rightIcon={<DragIndicatorOutlinedIcon className="sk-sidemenu-menuitem-movebutton-icon !text-2xl" />}
           >
-            {movedHere && <span className="menu-item-move-button-label">Flyttad</span>}
+            {movedHere && <span className="sk-sidemenu-menuitem-movebutton-label">Flyttad</span>}
           </Button>
         )}
         {renderMenuItem ? (
           renderMenuItem(
             itemData,
             open,
-            (Array.isArray(active) && active.some((x) => x == id)) || active == id,
+            isActive,
             <>
-              {getLabelItemType(itemData)}
-              {getExpandButton()}
+              <LabelItem item={itemData} />
+              <ExpandButton />
             </>
           )
         ) : (
           <>
-            {getLabelItemType(itemData)}
-            {getExpandButton()}
+            <LabelItem item={itemData} />
+            <ExpandButton />
           </>
         )}
       </div>
 
-      {open && (
-        <div className="items">
-          {subItems &&
-            subItems.map((item) => (
-              <MenuItem
-                itemData={item}
-                key={item.id}
-                id={item.id}
-                label={item.label}
-                path={item.path}
-                active={active}
-                level={level + 1}
-                subItems={item.subItems}
-                linkCallback={linkCallback}
-                closeNoneActive={closeNoneActive}
-                disabled={item.disabled}
-                ariaExpanded={ariaExpanded}
-                ariaMoveButton={ariaMoveButton}
-                newItem={item.newItem}
-                renderMenuItem={renderMenuItem}
-                renderMenuItemLabel={renderMenuItemLabel}
-                renderMenuItemExpand={renderMenuItemExpand}
-                /** Below are specific for draggable */
-                separator={item.separator}
-                draggable={draggable}
-                movedHere={item.movedHere}
-                error={item.error}
-                changes={item.changes}
-              />
-            ))}
-        </div>
+      {subItems && (
+        <ul className="items" role="menu" aria-label={`${label}-meny`}>
+          {subItems.map((item) => (
+            <MenuItem
+              key={item.id}
+              focusableId={focusableId}
+              focusedId={focusedId}
+              itemData={item}
+              id={item.id}
+              label={item.label}
+              path={item.path}
+              activeId={activeId}
+              openIds={openIds}
+              setOpenIds={setOpenIds}
+              level={level + 1}
+              subItems={item.subItems}
+              linkCallback={linkCallback}
+              closeNoneActive={closeNoneActive}
+              disabled={item.disabled}
+              ariaExpanded={ariaExpanded}
+              ariaMoveButton={ariaMoveButton}
+              newItem={item.newItem}
+              renderMenuItem={renderMenuItem}
+              renderMenuItemLabel={renderMenuItemLabel}
+              renderMenuItemExpand={renderMenuItemExpand}
+              /** Below are specific for draggable */
+              separator={item.separator}
+              draggable={draggable}
+              movedHere={item.movedHere}
+              error={item.error}
+              changes={item.changes}
+            />
+          ))}
+        </ul>
       )}
-    </div>
+    </li>
   );
 };
 export default MenuItem;
