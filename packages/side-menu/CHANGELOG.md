@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.23](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/side-menu@0.1.22...@sk-web-gui/side-menu@0.1.23) (2023-10-03)
+
+**Note:** Version bump only for package @sk-web-gui/side-menu
+
 ## [0.1.22](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/side-menu@0.1.21...@sk-web-gui/side-menu@0.1.22) (2023-06-30)
 
 **Note:** Version bump only for package @sk-web-gui/side-menu
