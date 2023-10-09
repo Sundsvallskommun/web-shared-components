@@ -1,6 +1,6 @@
+import { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
-import { ISearchBarProps, SearchBar } from '../src/search-bar';
-import { Meta } from '@storybook/react';
+import { SearchBar, SearchbarProps } from '../src/search-bar';
 
 export default {
   title: 'Komponenter/Sök/Komponent',
@@ -9,9 +9,9 @@ export default {
   args: {
     placeholder: 'Sök..',
   },
-} as Meta;
+} as Meta<typeof SearchBar>;
 
-export const Template = (args: ISearchBarProps) => {
+export const Template: StoryObj<typeof SearchBar> = (args: SearchbarProps) => {
   const [term, setTerm] = useState('');
 
   const onChangeHandler = (event: React.BaseSyntheticEvent) => {

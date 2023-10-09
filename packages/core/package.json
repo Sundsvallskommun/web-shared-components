@@ -29,12 +29,12 @@
     "tailwindcss": "^3.2.7"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.14",
+    "autoprefixer": "^10.4.16",
     "clean-css": "^5.3.2",
-    "postcss": "^8.4.23",
+    "postcss": "^8.4.31",
     "postcss-import": "^15.1.0",
-    "tailwind-scrollbar": "^3.0.4",
-    "tailwindcss": "^3.2.7"
+    "tailwind-scrollbar": "^3.0.5",
+    "tailwindcss": "^3.3.3"
   },
   "dependencies": {
     "@sk-web-gui/theme": "0.1.13",

@@ -37,10 +37,10 @@
     "react": "^18.2.0"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.6",
-    "@emotion/styled": "^11.10.6",
-    "@mui/icons-material": "^5.11.16",
-    "@mui/material": "^5.12.1",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.12",
+    "@mui/material": "^5.14.12",
     "@sk-web-gui/button": "0.1.19",
     "@sk-web-gui/spinner": "0.1.13",
     "@sk-web-gui/utils": "0.1.7"

@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@reach/alert": "^0.18.0",
-    "react-spring": "^9.7.1"
+    "react-spring": "^9.7.3"
   },
   "peerDependencies": {
     "react": ">=18.2.0",

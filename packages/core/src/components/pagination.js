@@ -47,7 +47,7 @@ module.exports = Pagination = () => ({
       },
 
       "&[disabled='false']": {
-        '&-label, &-icon': {
+        '.sk-pagination-prevNextButton-label, .sk-pagination-prevNextButton-icon': {
           '@apply cursor-pointer': {},
         },
       },

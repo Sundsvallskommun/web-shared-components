@@ -1,15 +1,15 @@
-import React from 'react';
-import { Meta } from '@storybook/react';
-import { Header, HeaderProps } from '../src';
 import { UserMenu } from '@sk-web-gui/user-menu';
+import { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
+import { Header, HeaderProps } from '../src';
 
 export default {
   title: 'Komponenter/Header/Komponent',
   component: Header,
   tags: ['autodocs'],
-} as Meta;
+} as Meta<typeof Header>;
 
-export const Template = ({ ...args }: HeaderProps) => {
+export const Template: StoryObj<typeof Header> = (args: HeaderProps) => {
   return (
     <Header
       {...args}

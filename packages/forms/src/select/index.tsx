@@ -22,6 +22,7 @@ export interface CommonProps extends Omit<InputProps, 'value' | 'onChange'> {
   defaultOptionsAmount?: number;
   classNameWrapper?: string;
   dropDownIcon?: React.ReactNode;
+  multiple?: boolean;
 }
 
 interface SelectPropsRegular extends CommonProps {
@@ -239,6 +240,7 @@ if (__DEV__) {
 }
 
 interface SelectProps extends React.ForwardRefExoticComponent<InternalSelectProps & React.RefAttributes<HTMLElement>> {
+  multiple: any;
   Option: typeof Option;
 }
 

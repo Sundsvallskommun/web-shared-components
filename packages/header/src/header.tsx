@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link } from '@sk-web-gui/link';
 import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 
-export interface HeaderProps extends DefaultProps, React.HTMLProps<HTMLDivElement> {
+export interface HeaderProps extends DefaultProps, React.HTMLAttributes<HTMLDivElement> {
   /* Title for main page */
   title?: string;
   /*Subtitle for page- optional */

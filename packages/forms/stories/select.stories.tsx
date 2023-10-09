@@ -1,12 +1,12 @@
-import { Meta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
-import { Select, SelectProps } from '../src';
+import { OptionValueType, Select, SelectProps } from '../src';
 
 export default {
   title: 'Komponenter/Dropdown/Select',
   component: Select,
   tags: ['autodocs'],
-} as Meta;
+} as Meta<typeof Select>;
 
 const people = [
   { id: 1, name: 'Durward Reynolds', unavailable: false },
@@ -16,9 +16,9 @@ const people = [
   { id: 5, name: 'Katelyn Rohan', unavailable: false },
 ];
 
-export const Template = (args: SelectProps) => {
-  const [selectedValue, setSelectedValue] = useState<{ label: string; data: any }>();
-  const [selectedValues, setSelectedValues] = useState<{ label: string; data: any }[]>([]);
+export const Template: StoryObj<typeof Select> = (args: SelectProps) => {
+  const [selectedValue, setSelectedValue] = useState<OptionValueType>();
+  const [selectedValues, setSelectedValues] = useState<OptionValueType[]>([]);
   return (
     <div className="h-80">
       <button

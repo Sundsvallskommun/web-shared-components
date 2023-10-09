@@ -1,8 +1,7 @@
-import { useFormControl } from '@sk-web-gui/forms';
-import { DefaultProps } from '@sk-web-gui/utils';
-import { cx, __DEV__ } from '@sk-web-gui/utils';
-import VisuallyHidden from '@sk-web-gui/visually-hidden';
 import * as React from 'react';
+import { useFormControl } from '@sk-web-gui/forms';
+import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
+import VisuallyHidden from '@sk-web-gui/visually-hidden';
 
 import { useSwitchClass, useSwitchBoxClass } from './styles';
 

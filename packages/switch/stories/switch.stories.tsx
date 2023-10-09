@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormControl, FormLabel } from '@sk-web-gui/forms';
-import { Switch, SwitchProps } from '../src';
+import { Switch, SwitchProps } from '@sk-web-gui/switch';
 import { Meta } from '@storybook/react';
 
 export default {
