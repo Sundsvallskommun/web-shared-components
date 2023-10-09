@@ -30,7 +30,6 @@ interface CommonProps {
   activeId: string | number | null;
   openIds?: string[];
   ariaMenuLabel: string;
-  menuId?: string;
   loading?: boolean;
   headElement?: React.ReactNode;
   label?: string;
@@ -64,7 +63,6 @@ export type IMenuProps = IMenuPropsRegular | IMenuPropsDraggable;
 
 export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref) => {
   const {
-    menuId: _menuId = `sk-sidemenu`,
     loading,
     headElement,
     menuData,
@@ -158,7 +156,7 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
     let draggables: InstanceType<typeof Draggable>;
     if (internalRef && internalRef.current && menuData?.length > 0) {
       if (draggable) {
-        draggables = new Draggable(internalRef.current as HTMLDivElement, menuData, handleDrop);
+        draggables = new Draggable(internalRef.current as HTMLDivElement, menuData, '.sk-sidemenu-item', handleDrop);
       }
     }
     return () => {
