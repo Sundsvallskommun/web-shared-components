@@ -23,6 +23,7 @@ export * from '@sk-web-gui/card';
 export * from '@sk-web-gui/divider';
 
 export * from '@sk-web-gui/side-menu';
+export * from '@sk-web-gui/keyboard-navigation';
 export * from '@sk-web-gui/user-menu';
 export * from '@sk-web-gui/tab-menu';
 export * from '@sk-web-gui/tabs';

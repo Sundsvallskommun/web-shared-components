@@ -43,7 +43,8 @@
     "@mui/material": "^5.14.12",
     "@sk-web-gui/button": "0.1.19",
     "@sk-web-gui/spinner": "0.1.13",
-    "@sk-web-gui/utils": "0.1.7"
+    "@sk-web-gui/utils": "0.1.7",
+    "@sk-web-gui/keyboard-navigation": "0.0.1"
   },
   "peerDependencies": {
     "react": ">=18.2.0"
