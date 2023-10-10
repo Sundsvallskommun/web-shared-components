@@ -8,7 +8,11 @@ module.exports = Comments = () => ({
         '@apply w-full': {},
 
         '&-container': {
-            '@apply flex gap-2': {},
+            '@apply flex justify-between': {},
+
+            '&-textpic': {
+                '@apply flex gap-2': {},
+            },
         },
         '&-text': {
             '@apply text-base font-bold mx-0 mb-0 mt-4': {},

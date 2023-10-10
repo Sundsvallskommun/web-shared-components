@@ -4,7 +4,7 @@ import { DefaultProps } from '@sk-web-gui/utils';
 import CommentItem from './comment-item';
 import InputComment from './input-comment';
 import QuestionAnswerOutlinedIcon from '@mui/icons-material/QuestionAnswerOutlined';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Spinner } from '@sk-web-gui/spinner';
 
 export interface ICommentData {
@@ -18,26 +18,40 @@ export interface ICommentData {
 interface ICommentsProps extends DefaultProps {
   commentsData: Array<ICommentData>;
   submitFunction: (comment: string) => void;
+  editFunction: (comment: string, id: string | number) => void;
   inputValue?: string;
   setInputValue?: (comment: string) => void;
   loading?: boolean;
   header?: boolean;
   placeholder?: string;
+  doDelete: (id: string | number) => void;
 }
 
 export interface CommentsProps extends Omit<React.HTMLAttributes<HTMLSpanElement>, 'color'>, ICommentsProps {}
 
 export const Comments = React.forwardRef<HTMLSpanElement, CommentsProps>((props, ref) => {
   const [input, setInput] = useState('');
+  const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [itemToEdit, setItemToEdit] = useState<{ id: string | number | undefined; comment: string } | undefined>();
   const {
     commentsData,
     loading,
     submitFunction,
+    editFunction,
     inputValue = input,
     setInputValue = setInput,
     header = true,
     placeholder,
+    doDelete,
   } = props;
+
+  const scrollEl = document.getElementById('commentscroll');
+
+  useEffect(() => {
+    if (scrollEl) {
+      scrollEl.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [commentsData]);
 
   return (
     <div className="flex flex-col w-full h-full" {...ref}>
@@ -47,17 +61,24 @@ export const Comments = React.forwardRef<HTMLSpanElement, CommentsProps>((props,
           <h2>Kommentarer</h2>
         </div>
       )}
-      <div className="[&>*:nth-child(even)]:border-t pl-10 pr-16 overflow-y-auto custom-scrollbar">
+      <div className="pl-10 pr-16 overflow-y-auto custom-scrollbar">
         {!loading &&
           commentsData &&
           commentsData.map((comment) => {
             return (
-              <div className="py-10 mt-4" key={`comment-item-${comment.id}`}>
+              <div className="border-b py-10 mt-4" key={`comment-item-${comment.id}`}>
                 <CommentItem
                   commentorName={comment.commentorName}
                   commentText={comment.commentText}
                   publishDate={comment.publishDate}
                   imageSrc={comment.userImage}
+                  id={comment.id}
+                  setIsEdit={setIsEdit}
+                  isEdit={isEdit}
+                  itemToEdit={itemToEdit}
+                  setItemToEdit={setItemToEdit}
+                  setInputValue={setInputValue}
+                  doDelete={doDelete}
                 />
               </div>
             );
@@ -67,13 +88,18 @@ export const Comments = React.forwardRef<HTMLSpanElement, CommentsProps>((props,
             <Spinner size="xl" />
           </div>
         )}
+        <div id="commentscroll" />
       </div>
       <div className="mt-auto">
         <InputComment
           submitFunction={submitFunction}
+          editFunction={editFunction}
           inputValue={inputValue}
           setInputValue={setInputValue}
           placeholder={placeholder}
+          isEdit={isEdit}
+          setIsEdit={setIsEdit}
+          itemToEdit={itemToEdit}
         />
       </div>
     </div>
