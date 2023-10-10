@@ -215,6 +215,7 @@ export const AriaMenuKeyboard = class {
 
   setActiveItem = (menuItem: HTMLElement) => {
     if (this.options.modifyStates) {
+      this.currentFocusedMenuItem.setAttribute('aria-current', 'false');
       menuItem.setAttribute('aria-current', this.ariaCurrent);
     }
 
@@ -255,8 +256,10 @@ export const AriaMenuKeyboard = class {
         ) as HTMLElement;
       }
     }
-    this.setFocusItem(item);
-    this.options.onNextItem && this.options.onNextItem(item);
+    if (item) {
+      this.setFocusItem(item);
+      this.options.onNextItem && this.options.onNextItem(item);
+    }
   };
 
   toPreviousItem = () => {
@@ -276,8 +279,10 @@ export const AriaMenuKeyboard = class {
         ) as HTMLElement;
       }
     }
-    this.setFocusItem(item);
-    this.options.onPreviousItem && this.options.onPreviousItem(item);
+    if (item) {
+      this.setFocusItem(item);
+      this.options.onPreviousItem && this.options.onPreviousItem(item);
+    }
   };
 
   togglePopup = () => {
@@ -301,37 +306,40 @@ export const AriaMenuKeyboard = class {
       return;
     }
 
-    if (this.options.modifyStates) {
-      this.currentFocusedMenuItem.setAttribute('aria-expanded', 'true');
-    }
-
     const expandedMenuItem = this.currentFocusedMenuItem;
     const expandedLI = expandedMenuItem.closest('li');
     const item = expandedLI?.querySelector(`:scope ${this.selectFirstNestedMenuItem}`) as HTMLElement;
 
-    this.setFocusItem(item);
+    if (item) {
+      if (this.options.modifyStates) {
+        this.currentFocusedMenuItem.setAttribute('aria-expanded', 'true');
+      }
 
-    this.options.onExpandPopup && this.options.onExpandPopup(item, expandedMenuItem);
+      this.setFocusItem(item);
+      this.options.onExpandPopup && this.options.onExpandPopup(item, expandedMenuItem);
+    }
   };
 
   focusToParent = () => {
     if (this.getParentMenu(this.currentFocusedMenuItem) === this.menuElement) return;
 
     const parentMenuItem = this.getParentMenuItem();
-    this.setFocusItem(parentMenuItem);
+    if (parentMenuItem) {
+      this.setFocusItem(parentMenuItem);
+    }
 
     return parentMenuItem;
   };
 
   closePopup = () => {
     const parentMenuItem = this.focusToParent();
-    if (!parentMenuItem) return;
+    if (parentMenuItem) {
+      if (this.options.modifyStates) {
+        this.currentFocusedMenuItem.setAttribute('aria-expanded', 'false');
+      }
 
-    if (this.options.modifyStates) {
-      this.currentFocusedMenuItem.setAttribute('aria-expanded', 'false');
+      this.options.onClosePopup && this.options.onClosePopup(parentMenuItem);
     }
-
-    this.options.onClosePopup && this.options.onClosePopup(parentMenuItem);
   };
 
   leaveCurrentFocusedItem = () => {
