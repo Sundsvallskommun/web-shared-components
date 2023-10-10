@@ -7,6 +7,7 @@ export const Draggable = class {
   public draggedElementDataParent: IMenu | undefined;
   public dropSuccess = false;
   public draggedElementGhost: any;
+  public menuItemClass = '.sk-sidemenu-item';
 
   public menuElement: HTMLDivElement;
   public menuElementData: Array<IMenu>;
@@ -15,10 +16,12 @@ export const Draggable = class {
   constructor(
     menuElement: HTMLDivElement,
     menuElementData: Array<IMenu>,
+    menuItemClass: string,
     onDrop: (draggedItem: IMenu, oldParent: IMenu, newParent: IMenu) => void
   ) {
     this.menuElement = menuElement;
     this.menuElementData = menuElementData;
+    this.menuItemClass = menuItemClass;
     this.dropFunction = onDrop;
     this.document = this.menuElement.closest('html') as HTMLHtmlElement;
 
@@ -123,7 +126,7 @@ export const Draggable = class {
 
   getClosestMenuItem = (e: MouseEvent) => {
     if (e.target !== null) {
-      return (e.target as Element).closest('.menu-item');
+      return (e.target as Element).closest(this.menuItemClass);
     }
     return null;
   };
