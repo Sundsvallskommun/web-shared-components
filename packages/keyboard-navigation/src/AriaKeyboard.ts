@@ -125,7 +125,6 @@ export const AriaMenuKeyboard = class {
   init = () => {
     this.menuElement.addEventListener('keydown', this.onKeyDown);
     this.menuElement.addEventListener('onfocusout', this.onFocusOut);
-    this.menuElement.addEventListener('mouseup', this.onPointerClick);
 
     if (this.options.modifyStates) {
       const menuItems = this.menuElement.querySelectorAll(`:scope ${this.selectNestedMenuItem}`);
@@ -542,16 +541,8 @@ export const AriaMenuKeyboard = class {
     this.getFocusedMenuItem();
   };
 
-  onPointerClick = (event: MouseEvent) => {
-    const newMenuItemFocus = (event.target as HTMLElement)?.closest(`${this.selectMenuItem}`) as HTMLElement;
-    if (!newMenuItemFocus) return;
-
-    this.setActiveItem(newMenuItemFocus);
-  };
-
   destroy = () => {
     this.menuElement.removeEventListener('keydown', this.onKeyDown);
     this.menuElement.removeEventListener('onfocusout', this.onFocusOut);
-    this.menuElement.removeEventListener('mouseup', this.onPointerClick);
   };
 };
