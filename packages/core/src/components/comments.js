@@ -8,7 +8,7 @@ module.exports = Comments = () => ({
         '@apply w-full': {},
 
         '&-container': {
-            '@apply flex justify-between': {},
+            '@apply flex justify-between relative': {},
 
             '&-textpic': {
                 '@apply flex gap-2': {},

@@ -45,13 +45,15 @@ export const Comments = React.forwardRef<HTMLSpanElement, CommentsProps>((props,
     doDelete,
   } = props;
 
-  const scrollEl = document.getElementById('commentscroll');
-
+  const scrollEl = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (scrollEl) {
-      scrollEl.scrollIntoView({ behavior: 'smooth' });
+      scrollEl?.current?.scroll({
+        top: scrollEl?.current?.scrollHeight,
+        behavior: 'smooth',
+      });
     }
-  }, [commentsData]);
+  });
 
   return (
     <div className="flex flex-col w-full h-full" {...ref}>
@@ -61,7 +63,7 @@ export const Comments = React.forwardRef<HTMLSpanElement, CommentsProps>((props,
           <h2>Kommentarer</h2>
         </div>
       )}
-      <div className="pl-10 pr-16 overflow-y-auto custom-scrollbar">
+      <div className="pl-10 pr-16 overflow-y-auto custom-scrollbar" ref={scrollEl}>
         {!loading &&
           commentsData &&
           commentsData.map((comment) => {
@@ -88,7 +90,7 @@ export const Comments = React.forwardRef<HTMLSpanElement, CommentsProps>((props,
             <Spinner size="xl" />
           </div>
         )}
-        <div id="commentscroll" />
+        <div /*ref={scrollEl}*/ />
       </div>
       <div className="mt-auto">
         <InputComment
