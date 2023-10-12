@@ -8,30 +8,32 @@ import { useButtonClass } from './styles';
 export interface ButtonProps extends DefaultProps, React.ButtonHTMLAttributes<HTMLButtonElement> {
   /* Shows loading spinner */
   loading?: boolean;
-  /* Makes button disabled */
+  /** Makes button disabled */
   disabled?: boolean;
-  /* Makes button active */
+  /** Makes button active */
   active?: boolean;
-  /* The label to show in the button when loading is true */
+  /** The label to show in the button when loading is true */
   loadingText?: string;
-  /* Set the original html type of button */
+  /** Set the original html type of button */
   // type?: 'button' | 'reset' | 'submit';
-  /* Adds icon before button label */
+  /** Adds icon before button label */
   leftIcon?: React.ReactElement;
-  /* Adds icon after button label */
+  /** Adds icon after button label */
   rightIcon?: React.ReactElement;
-  /* Set the button color */
+  /** Set the button color */
   color?: string;
-  /* Size of the button */
+  /** Size of the button */
   size?: 'sm' | 'md' | 'lg' | 'fit';
   /** Controls button appearance */
-  variant?: 'link' | 'solid' | 'outline' | 'light' | 'ghost';
-  /* React node */
+  variant?: 'link' | 'solid' | 'outline' | 'ghost';
+  /** React node */
   children?: React.ReactNode;
-  /* Sets the button to the rounded variant */
+  /** Sets the button to the rounded variant */
   rounded?: boolean;
-  /* Sets if this is an icon button */
+  /** Sets if this is an icon button */
   iconButton?: boolean;
+  /** Make sure to use aria-describedby or such for accessibility */
+  'aria-disabled'?: React.ButtonHTMLAttributes<HTMLButtonElement>['aria-disabled'];
 }
 
 type IButtonProps<C extends React.ElementType> = PolymorphicComponentPropsWithRef<C, ButtonProps>;
@@ -54,6 +56,7 @@ export const Button = React.forwardRef(
   <C extends React.ElementType = 'button'>(props: IButtonProps<C>, ref?: PolymorphicRef<C>) => {
     const {
       disabled: _disabled,
+      'aria-disabled': ariaDisabled,
       loading,
       active,
       type,
@@ -97,7 +100,7 @@ export const Button = React.forwardRef(
         {...rest}
         ref={ref}
         disabled={disabled}
-        aria-disabled={disabled ? disabled : undefined}
+        aria-disabled={disabled ? disabled : ariaDisabled ? ariaDisabled : undefined}
         type={type}
         data-rounded={rounded ? rounded : undefined}
         data-active={active ? 'true' : undefined}
