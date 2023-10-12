@@ -15,7 +15,7 @@
     "clean-dist": "yarn lerna exec rimraf dist",
     "boot": "yarn && yarn build",
     "dev": "concurrently --kill-others \"yarn dev-storybook\" \"yarn lerna-watch\"",
-    "lerna-watch": "lerna watch -- lerna run build --scope=%LERNA_PACKAGE_NAME%",
+    "lerna-watch": "lerna watch -- lerna run build --verbose --scope=%LERNA_PACKAGE_NAME%",
     "build": "lerna run build --no-private --stream",
     "build:types": "lerna run build:types",
     "build:nocache": "yarn build --skip-nx-cache",
