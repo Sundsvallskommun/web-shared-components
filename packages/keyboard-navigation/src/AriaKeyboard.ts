@@ -89,7 +89,7 @@ export const AriaMenuKeyboard = class {
   };
   public currentFocusedParentElement: HTMLElement;
   public currentFocusedChildrenElements: NodeListOf<Element>;
-  public currentFocusedChildIndex: number;
+  public currentFocusedChildIndex: number = 0;
 
   // Query-Selects
   public ariaCurrent = 'true';
@@ -109,12 +109,21 @@ export const AriaMenuKeyboard = class {
       throw Error(`menuElement does not exist`);
     }
 
-    // Currently focusable menuitem
-    this.currentFocusedMenuItem = this.getFocusedMenuItem();
-
     // Parentdata
     this.currentFocusedParentElement = this.menuElement;
     this.currentFocusedChildrenElements = this.menuElement.querySelectorAll(`:scope ${this.selectNestedLI}`);
+
+    // Currently focusable menuitem
+    this.currentFocusedMenuItem = this.getFocusedMenuItem();
+    if (!this.currentFocusedMenuItem) {
+      if (this.currentFocusedChildrenElements.length === 0) {
+        console.warn(`Faulty menu structure: no listitems found`);
+        return;
+      } else {
+        throw Error(`Faulty menu structure: missing menuitems`);
+      }
+    }
+
     this.currentFocusedChildIndex = this.getChildIndex(
       this.currentFocusedParentElement,
       this.currentFocusedMenuItem.closest('li') as HTMLElement
@@ -160,10 +169,9 @@ export const AriaMenuKeyboard = class {
     if (currentItem) {
       this.ariaCurrent = currentItem.getAttribute('aria-current') as string;
     }
-    this.currentFocusedMenuItem = currentItem || (this.getFirstMenuItemInMenu() as HTMLElement);
-    if (!this.currentFocusedMenuItem) {
-      throw Error('Faulty menu structure');
-    }
+    const firstMenuItem = this.getFirstMenuItemInMenu() as HTMLElement;
+    this.currentFocusedMenuItem = currentItem || firstMenuItem;
+
     return this.currentFocusedMenuItem;
   };
 
@@ -185,7 +193,7 @@ export const AriaMenuKeyboard = class {
   getParentData = (menuItem = this.currentFocusedMenuItem) => {
     const closestLI = menuItem.closest('li');
     if (!closestLI) {
-      throw Error('Faulty menu structure');
+      throw Error('Faulty menu structure: missing wrapping li');
     }
     this.currentFocusedParentElement = closestLI?.closest('ul') as HTMLElement;
     this.currentFocusedChildrenElements = this.currentFocusedParentElement?.querySelectorAll(
