@@ -227,7 +227,7 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
             {labelCallback ? (
               <LabelAs className="label">
                 <Button
-                  variant="light"
+                  variant="ghost"
                   size="fit"
                   rightIcon={<EastIcon className="material-icon label-button-icon" />}
                   className="label-button label focus-visible:outline-white"
