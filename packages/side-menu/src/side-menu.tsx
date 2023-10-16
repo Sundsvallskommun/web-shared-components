@@ -87,7 +87,7 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
   const [mounted, setMounted] = React.useState(false);
   const [activeId, setActiveId] = React.useState<CommonProps['activeId']>(_activeId ? _activeId : null);
   const [focusableId, setFocusableId] = React.useState<string>(_activeId ? _activeId.toString() : '');
-  const [focusedId, setFocusedId] = React.useState<string>(_activeId ? _activeId.toString() : '');
+  const [focusedId, setFocusedId] = React.useState<string>('');
   const menuRef = React.useRef<HTMLUListElement>(null);
 
   React.useEffect(() => {
@@ -126,10 +126,10 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
     }
   };
 
-  const setActiveOpen = (activeId: IMenuProps['activeId']) => {
-    setActiveId(activeId);
-    setOpenItemsFromActiveId(activeId);
-    setFocusableId(activeId ? activeId.toString() : '');
+  const setActiveOpen = (id: IMenuProps['activeId']) => {
+    setActiveId(id);
+    setOpenItemsFromActiveId(id);
+    setFocusableId(id ? id.toString() : '');
   };
 
   React.useEffect(() => {
@@ -164,13 +164,13 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
         draggables.destroy();
       }
     };
-  }, [menuDataMemo]);
+  }, [mounted, menuDataMemo, loading, _activeId]);
 
   React.useEffect(() => {
     let ariaKeyboard: InstanceType<typeof AriaMenuKeyboard>;
     if (mounted && menuDataMemo.length && menuRef?.current && !loading) {
       ariaKeyboard = new AriaMenuKeyboard(menuRef.current, {
-        modifyStates: true,
+        modifyStates: false,
         onExpandPopup: (currentFocusedMenuItem: HTMLElement, expandedMenuItem: HTMLElement) => {
           const id = expandedMenuItem.closest('li')?.getAttribute('data-id');
           if (id) {
@@ -201,15 +201,20 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
         onSetActiveItem: (currentFocusedMenuItem: HTMLElement) => {
           const id = currentFocusedMenuItem.closest('li')?.getAttribute('data-id');
           if (id) {
-            setActiveOpen(parseInt(id));
-            setFocusedId(activeId ? activeId.toString() : '');
+            // when onPointerClick is run its 'click'-event cancels the childelements linkCallbackhandler, so it has to be delayed
+            setTimeout(() => {
+              setFocusableId(id || (activeId ? activeId.toString() : ''));
+              setFocusedId(id || (activeId ? activeId.toString() : ''));
+            }, 150);
           }
         },
       });
     }
 
     return () => {
-      ariaKeyboard?.destroy();
+      if (ariaKeyboard) {
+        ariaKeyboard.destroy();
+      }
     };
   }, [mounted, menuDataMemo, loading]);
 
@@ -222,7 +227,7 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
             {labelCallback ? (
               <LabelAs className="label">
                 <Button
-                  variant="light"
+                  variant="ghost"
                   size="fit"
                   rightIcon={<EastIcon className="material-icon label-button-icon" />}
                   className="label-button label focus-visible:outline-white"
