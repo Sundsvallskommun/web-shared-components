@@ -63,7 +63,7 @@ export const Comments = React.forwardRef<HTMLSpanElement, CommentsProps>((props,
           <h2>Kommentarer</h2>
         </div>
       )}
-      <div className="pl-10 pr-16 overflow-y-auto custom-scrollbar" ref={scrollEl}>
+      <div className="pl-10 pr-16 overflow-y-auto custom-scrollbar h-full" ref={scrollEl}>
         {!loading &&
           commentsData &&
           commentsData.map((comment) => {

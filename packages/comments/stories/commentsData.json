@@ -19,19 +19,5 @@
         "userImage": "",
         "commentText": "Eller, jag tror jag ändrar mig. Du har rätt",
         "publishDate": "2023-xx-xx 16.30"
-    },
-    {
-        "id": 34,
-        "commentorName": "Birgitta Bengtsson",
-        "userImage": "",
-        "commentText": "Eller, jag tror jag ändrar mig. Du har rätt",
-        "publishDate": "2023-xx-xx 16.30"
-    },
-    {
-        "id": 35,
-        "commentorName": "Birgitta Bengtsson",
-        "userImage": "",
-        "commentText": "Eller, jag tror jag ändrar mig. Du har rätt",
-        "publishDate": "2023-xx-xx 16.30"
     }
 ]

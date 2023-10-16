@@ -29,11 +29,13 @@ export const CommentItemContextmenu = React.forwardRef<HTMLDivElement, ICommentC
   };
 
   const onHandleDelete = () => {
-    onDeleteCallback(commentItem.id as string | number);
+    if (commentItem && commentItem.id) {
+      onDeleteCallback(commentItem.id);
+    }
   };
 
   return (
-    <ContextMenu classNameItems="p-0 absolute right-20">
+    <ContextMenu classNameItems="p-0 absolute right-10">
       <ContextMenu.Button title="Redigera Kommentar" variant="ghost" size="lg" className="border-0" iconButton>
         <MoreVertIcon />
       </ContextMenu.Button>
