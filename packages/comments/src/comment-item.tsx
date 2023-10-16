@@ -1,6 +1,6 @@
 import { ProfilePicture } from '@sk-web-gui/profile';
-import { DefaultProps, cx } from '@sk-web-gui/utils';
-import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import { DefaultProps } from '@sk-web-gui/utils';
+import React, { Dispatch, SetStateAction } from 'react';
 import CommentItemContextmenu from './comment-itemcontextmenu';
 
 interface IItemProps extends DefaultProps {
@@ -23,10 +23,10 @@ interface IItemProps extends DefaultProps {
       }
     | undefined;
   setInputValue: (comment: string) => void;
-  doDelete: (id: string | number) => void;
+  onDeleteCallback: (id: string | number) => void;
 }
 
-export const CommentItem = React.forwardRef<HTMLDivElement, IItemProps>((props, ref) => {
+export const CommentItem = React.forwardRef<HTMLDivElement, IItemProps>((props) => {
   const {
     commentorName,
     commentText,
@@ -39,7 +39,7 @@ export const CommentItem = React.forwardRef<HTMLDivElement, IItemProps>((props, 
     setInputValue,
     setItemToEdit,
     itemToEdit,
-    doDelete,
+    onDeleteCallback,
   } = props;
 
   return (
@@ -58,7 +58,7 @@ export const CommentItem = React.forwardRef<HTMLDivElement, IItemProps>((props, 
           setInputValue={setInputValue}
           commentValue={commentText}
           setIsEdit={setIsEdit}
-          doDelete={doDelete}
+          onDeleteCallback={onDeleteCallback}
           commentItem={{
             id: id,
             comment: commentText,

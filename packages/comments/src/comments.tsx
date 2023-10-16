@@ -17,14 +17,14 @@ export interface ICommentData {
 
 interface ICommentsProps extends DefaultProps {
   commentsData: Array<ICommentData>;
-  submitFunction: (comment: string) => void;
-  editFunction: (comment: string, id: string | number) => void;
+  onSubmitCallback: (comment: string) => void;
+  onEditCallback: (comment: string, id: string | number) => void;
   inputValue?: string;
   setInputValue?: (comment: string) => void;
   loading?: boolean;
   header?: boolean;
   placeholder?: string;
-  doDelete: (id: string | number) => void;
+  onDeleteCallback: (id: string | number) => void;
 }
 
 export interface CommentsProps extends Omit<React.HTMLAttributes<HTMLSpanElement>, 'color'>, ICommentsProps {}
@@ -36,18 +36,18 @@ export const Comments = React.forwardRef<HTMLSpanElement, CommentsProps>((props,
   const {
     commentsData,
     loading,
-    submitFunction,
-    editFunction,
+    onSubmitCallback,
+    onEditCallback,
     inputValue = input,
     setInputValue = setInput,
     header = true,
     placeholder,
-    doDelete,
+    onDeleteCallback,
   } = props;
 
   const scrollEl = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (scrollEl) {
+    if (scrollEl && !isEdit) {
       scrollEl?.current?.scroll({
         top: scrollEl?.current?.scrollHeight,
         behavior: 'smooth',
@@ -80,7 +80,7 @@ export const Comments = React.forwardRef<HTMLSpanElement, CommentsProps>((props,
                   itemToEdit={itemToEdit}
                   setItemToEdit={setItemToEdit}
                   setInputValue={setInputValue}
-                  doDelete={doDelete}
+                  onDeleteCallback={onDeleteCallback}
                 />
               </div>
             );
@@ -94,8 +94,8 @@ export const Comments = React.forwardRef<HTMLSpanElement, CommentsProps>((props,
       </div>
       <div className="mt-auto">
         <InputComment
-          submitFunction={submitFunction}
-          editFunction={editFunction}
+          onSubmitCallback={onSubmitCallback}
+          onEditCallback={onEditCallback}
           inputValue={inputValue}
           setInputValue={setInputValue}
           placeholder={placeholder}

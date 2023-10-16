@@ -27,9 +27,9 @@ export const Template = (args: CommentsProps) => {
     <div className="max-w-[800px] h-[500px] w-full shadow-md pb-8">
       <Comments
         {...args}
-        submitFunction={submit}
-        editFunction={edit}
-        doDelete={remove}
+        onSubmitCallback={submit}
+        onEditCallback={edit}
+        onDeleteCallback={remove}
         commentsData={commentsData}
         inputValue={input}
         setInputValue={setInput}
@@ -58,9 +58,9 @@ export const CommentsWrapped = () => {
     <div className="max-w-[500px] w-full h-[800px] shadow-md pb-8">
       <Comments
         commentsData={commentsData}
-        submitFunction={submit}
-        doDelete={remove}
-        editFunction={editFunc}
+        onSubmitCallback={submit}
+        onDeleteCallback={remove}
+        onEditCallback={editFunc}
         inputValue={input}
         setInputValue={setInput}
       />

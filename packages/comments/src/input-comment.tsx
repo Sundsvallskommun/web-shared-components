@@ -2,11 +2,11 @@ import { DefaultProps } from '@sk-web-gui/utils';
 import { Input } from '@sk-web-gui/forms';
 import { Button } from '@sk-web-gui/button';
 import SendIcon from '@mui/icons-material/Send';
-import React, { isValidElement, useRef } from 'react';
+import React, { useRef } from 'react';
 
 interface InputProps extends DefaultProps {
-  submitFunction: (comment: string) => void;
-  editFunction: (comment: string, id: string | number) => void;
+  onSubmitCallback: (comment: string) => void;
+  onEditCallback: (comment: string, id: string | number) => void;
   isEdit: boolean;
   setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
   itemToEdit:
@@ -23,8 +23,8 @@ interface InputProps extends DefaultProps {
 const InputComment = (props: InputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const {
-    submitFunction,
-    editFunction,
+    onSubmitCallback,
+    onEditCallback,
     isEdit,
     setIsEdit,
     itemToEdit,
@@ -37,12 +37,12 @@ const InputComment = (props: InputProps) => {
     setInputValue(e.target.value);
   };
 
-  const submitFunctionHandler = () => {
+  const onSubmitCallbackHandler = () => {
     if (isEdit && itemToEdit) {
-      editFunction(inputValue, itemToEdit.id as string | number);
+      onEditCallback(inputValue, itemToEdit.id as string | number);
       setIsEdit(false);
     } else {
-      submitFunction(inputValue);
+      onSubmitCallback(inputValue);
     }
     setInputValue('');
 
@@ -52,6 +52,7 @@ const InputComment = (props: InputProps) => {
   return (
     <div className="comment-input">
       <Input
+        id="comment-input"
         ref={inputRef}
         onChange={inputOnChangeHandler}
         value={inputValue}
@@ -59,8 +60,19 @@ const InputComment = (props: InputProps) => {
         className={`${isEdit && 'bg-warning-light'}`}
         placeholder={placeholder}
       />
-      <Button onClick={submitFunctionHandler} iconButton variant="ghost" disabled={inputValue.length === 0}>
-        <SendIcon className={inputValue.length === 0 ? 'comment-input-inactive' : 'comment-input-active'} />
+      <Button
+        onClick={inputValue.length === 0 ? undefined : onSubmitCallbackHandler}
+        iconButton
+        variant="solid"
+        className="border-none p-0 hover:bg-transparent"
+        aria-disabled={inputValue.length === 0}
+        aria-describedby="comment-input"
+      >
+        <SendIcon
+          className={`${inputValue.length === 0 ? 'comment-input-inactive' : 'comment-input-active'} ${
+            inputValue.length >= 1 && 'hover:text-hover'
+          }`}
+        />
       </Button>
     </div>
   );

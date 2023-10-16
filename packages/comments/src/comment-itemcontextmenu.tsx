@@ -1,4 +1,6 @@
-import { Button, ContextMenu, DefaultProps } from '@sk-web-gui/react';
+import { Button } from '@sk-web-gui/button';
+import { ContextMenu } from '@sk-web-gui/context-menu';
+import { DefaultProps } from '@sk-web-gui/utils';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -7,15 +9,15 @@ import React, { Dispatch, SetStateAction } from 'react';
 interface ICommentContextProps extends DefaultProps {
   /* React node */
   setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
-  doDelete: (id: string | number) => void;
+  onDeleteCallback: (id: string | number) => void;
   setInputValue: (comment: string) => void;
   commentValue: string;
   commentItem: { id: string | number | undefined; comment: string };
   setItemToEdit: Dispatch<SetStateAction<{ id: string | number | undefined; comment: string } | undefined>>;
 }
 
-export const CommentItemContextmenu = React.forwardRef<HTMLDivElement, ICommentContextProps>((props, ref) => {
-  const { doDelete, setIsEdit, setInputValue, commentValue, commentItem, setItemToEdit } = props;
+export const CommentItemContextmenu = React.forwardRef<HTMLDivElement, ICommentContextProps>((props) => {
+  const { onDeleteCallback, setIsEdit, setInputValue, commentValue, commentItem, setItemToEdit } = props;
 
   const onHandleEdit = () => {
     setIsEdit(true);
@@ -27,19 +29,21 @@ export const CommentItemContextmenu = React.forwardRef<HTMLDivElement, ICommentC
   };
 
   const onHandleDelete = () => {
-    doDelete(commentItem.id as string | number);
+    onDeleteCallback(commentItem.id as string | number);
   };
+
   return (
-    <ContextMenu>
-      <ContextMenu.Button title="Redigera anställning" variant="ghost" size="lg" className="border-0" iconButton>
+    <ContextMenu classNameItems="p-0 absolute right-20">
+      <ContextMenu.Button title="Redigera Kommentar" variant="solid" size="lg" className="border-0" iconButton>
         <MoreVertIcon />
       </ContextMenu.Button>
 
       <ContextMenu.Item className="w-full">
         <Button
           onClick={onHandleEdit}
-          className="flex items-center text-body w-full"
-          variant="link"
+          className="flex border-none text-body w-full px-4"
+          variant="outline"
+          size="md"
           type="button"
           leftIcon={<EditOutlinedIcon fontSize="large" />}
         >
@@ -50,8 +54,9 @@ export const CommentItemContextmenu = React.forwardRef<HTMLDivElement, ICommentC
       <ContextMenu.Item className="w-full">
         <Button
           onClick={onHandleDelete}
-          className="flex items-center text-body w-full"
-          variant="link"
+          className="flex border-none text-body w-full px-4"
+          variant="solid"
+          size="md"
           type="button"
           leftIcon={<DeleteOutlineIcon fontSize="large" />}
         >
