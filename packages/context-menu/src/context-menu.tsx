@@ -35,29 +35,15 @@ interface ContextMenuItemProps {
   disabled?: boolean;
   onClick?: () => void;
 }
-const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
-  disabled = false,
-  children,
-  className,
-  as = 'div',
-  onClick,
-}) => {
+const ContextMenuItem: React.FC<ContextMenuItemProps> = ({ disabled = false, children, className, as = 'div' }) => {
   const getItem = (child: JSX.Element, active: boolean) => {
     const classes = cx(child?.props?.className, active ? 'active' : '');
     const props = { ...child.props, className: classes };
     return React.cloneElement(child, props);
   };
 
-  const handleOnClick = () => {
-    if (onClick) {
-      onClick();
-    } else if (children?.props?.onClick) {
-      children.props.onClick();
-    }
-  };
-
   return (
-    <Menu.Item as={as} disabled={disabled} className={cx('context-menu-item', className)} onClick={handleOnClick}>
+    <Menu.Item as={as} disabled={disabled} className={cx('context-menu-item', className)}>
       {({ active }) => getItem(children, active)}
     </Menu.Item>
   );
