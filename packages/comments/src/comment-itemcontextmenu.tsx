@@ -30,7 +30,7 @@ export const CommentItemContextmenu = React.forwardRef<HTMLDivElement, ICommentC
 
   const onHandleDelete = () => {
     if (commentItem && commentItem.id) {
-      onDeleteCallback(commentItem.id as string | number);
+      onDeleteCallback(commentItem.id);
     }
   };
 
