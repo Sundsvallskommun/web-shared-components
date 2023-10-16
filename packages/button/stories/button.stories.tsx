@@ -57,7 +57,7 @@ export default {
       table: {
         defaultValue: { summary: 'outline' },
       },
-      options: ['link', 'solid', 'outline', 'light', 'ghost'],
+      options: ['link', 'solid', 'outline', 'ghost'],
       control: 'select',
       defaultValue: 'outline',
     },
@@ -99,8 +99,18 @@ export default {
       control: 'boolean',
       defaultValue: false,
     },
+    'aria-disabled': {
+      type: { name: 'string', required: false },
+      description: 'Sets aria-disabled',
+      table: {
+        defaultValue: { summary: undefined },
+      },
+      options: [undefined, 'true', 'false'],
+      control: 'select',
+      defaultValue: undefined,
+    },
   },
-} as Meta;
+} as Meta<typeof Button>;
 
 export const Template = ({ children, ...args }: ButtonProps) => (
   <div className="flex flex-col items-start space-y-2">

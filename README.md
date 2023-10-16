@@ -53,6 +53,19 @@ module.exports = {
   ],
 };
 ```
+eller använd som preset med valbara inställningar:
+```Typescript
+// tailwind.config.js
+module.exports = {
+  ...
+  content: [
+    // ...
+    './node_modules/@sk-web-gui/*/dist/**/*.js', // path to sk-web-gui
+  ],
+  presets: [require('@sk-web-gui/core').preset({ customScrollbar: true, tailwindForms: true, plugin: { colors: [], cssBase: true } })],
+  ...
+}
+```
 
 Wrappa din React-app med `GuiProvider` för att få stylingen.
 
@@ -76,7 +89,7 @@ function App() {
 Efter kloning, kör:
 
 1. `yarn boot` för att installera alla beroenden samt för att bygga paketen.
-2. `yarn start` för att köra Storybook
+2. `yarn dev` för att köra Storybook
 
 ## För att skapa nya komponenter
 
