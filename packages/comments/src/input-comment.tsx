@@ -5,7 +5,16 @@ import SendIcon from '@mui/icons-material/Send';
 import React, { useRef } from 'react';
 
 interface InputProps extends DefaultProps {
-  submitFunction: (comment: string) => void;
+  onSubmitCallback: (comment: string) => void;
+  onEditCallback: (comment: string, id: string | number) => void;
+  isEdit: boolean;
+  setIsEdit: React.Dispatch<React.SetStateAction<boolean>>;
+  itemToEdit:
+    | {
+        id: string | number | undefined;
+        comment: string;
+      }
+    | undefined;
   inputValue: string;
   setInputValue: (comment: string) => void;
   placeholder?: string;
@@ -13,23 +22,57 @@ interface InputProps extends DefaultProps {
 
 const InputComment = (props: InputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { submitFunction, inputValue, setInputValue, placeholder = 'Skriv en kommentar..' } = props;
+  const {
+    onSubmitCallback,
+    onEditCallback,
+    isEdit,
+    setIsEdit,
+    itemToEdit,
+    inputValue,
+    setInputValue,
+    placeholder = 'Skriv en kommentar..',
+  } = props;
 
   const inputOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
-  const submitFunctionHandler = () => {
+  const onSubmitCallbackHandler = () => {
+    if (isEdit && itemToEdit) {
+      onEditCallback(inputValue, itemToEdit.id as string | number);
+      setIsEdit(false);
+    } else {
+      onSubmitCallback(inputValue);
+    }
     setInputValue('');
-    submitFunction(inputValue);
+
     inputRef?.current && inputRef.current.focus();
   };
 
   return (
     <div className="comment-input">
-      <Input ref={inputRef} onChange={inputOnChangeHandler} value={inputValue} rounded placeholder={placeholder} />
-      <Button onClick={submitFunctionHandler} iconButton variant="ghost" disabled={inputValue.length === 0}>
-        <SendIcon className={inputValue.length === 0 ? 'comment-input-inactive' : 'comment-input-active'} />
+      <Input
+        id="comment-input"
+        ref={inputRef}
+        onChange={inputOnChangeHandler}
+        value={inputValue}
+        rounded
+        className={`${isEdit && 'bg-warning-light'}`}
+        placeholder={placeholder}
+      />
+      <Button
+        onClick={inputValue.length === 0 ? undefined : onSubmitCallbackHandler}
+        iconButton
+        variant="solid"
+        className="border-none p-0 hover:bg-transparent"
+        aria-disabled={inputValue.length === 0}
+        aria-describedby="comment-input"
+      >
+        <SendIcon
+          className={`${inputValue.length === 0 ? 'comment-input-inactive' : 'comment-input-active'} ${
+            inputValue.length >= 1 && 'hover:text-hover'
+          }`}
+        />
       </Button>
     </div>
   );

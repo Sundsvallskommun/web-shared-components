@@ -15,11 +15,21 @@ export const Template = (args: CommentsProps) => {
   const submit = (comment: string) => {
     alert('Kommentar: ' + comment);
   };
+
+  const edit = (comment: string, id: string | number) => {
+    alert('Kommentar: ' + comment + ' id: ' + id);
+  };
+
+  const remove = (id: string | number) => {
+    alert('tar bort id: ' + id);
+  };
   return (
     <div className="max-w-[800px] h-[500px] w-full shadow-md pb-8">
       <Comments
         {...args}
-        submitFunction={submit}
+        onSubmitCallback={submit}
+        onEditCallback={edit}
+        onDeleteCallback={remove}
         commentsData={commentsData}
         inputValue={input}
         setInputValue={setInput}
@@ -37,9 +47,23 @@ export const CommentsWrapped = () => {
     alert('Kommentar: ' + input);
     setInput('');
   };
+
+  const editFunc = (comment: string, id: string | number) => {
+    alert('Kommentar: ' + comment + ' ' + id);
+  };
+  const remove = (id: string | number) => {
+    alert('tar bort id: ' + id);
+  };
   return (
     <div className="max-w-[500px] w-full h-[800px] shadow-md pb-8">
-      <Comments commentsData={commentsData} submitFunction={submit} inputValue={input} setInputValue={setInput} />
+      <Comments
+        commentsData={commentsData}
+        onSubmitCallback={submit}
+        onDeleteCallback={remove}
+        onEditCallback={editFunc}
+        inputValue={input}
+        setInputValue={setInput}
+      />
     </div>
   );
 };
