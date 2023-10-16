@@ -34,7 +34,7 @@ export const CommentItemContextmenu = React.forwardRef<HTMLDivElement, ICommentC
 
   return (
     <ContextMenu classNameItems="p-0 absolute right-20">
-      <ContextMenu.Button title="Redigera Kommentar" variant="solid" size="lg" className="border-0" iconButton>
+      <ContextMenu.Button title="Redigera Kommentar" variant="ghost" size="lg" className="border-0" iconButton>
         <MoreVertIcon />
       </ContextMenu.Button>
 
