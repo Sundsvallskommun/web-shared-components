@@ -74,8 +74,8 @@ function buttonSolid(colors) {
       },
 
       '&.btn': {
-        '&-disabled': {
-          '@apply disabled:border-gray-stroke hover:border-gray-stroke': {},
+        '&-disabled, &[aria-disabled="true"]': {
+          '@apply disabled:border-gray-stroke border-gray-stroke hover:border-gray-stroke': {},
           '&.active': {
             '@apply border-gray-stroke': {},
           },
@@ -154,8 +154,8 @@ function buttonOutline(colors) {
       ),
 
       '&.btn': {
-        '&-disabled': {
-          '@apply disabled:border-gray-stroke hover:border-gray-stroke': {},
+        '&-disabled, &[aria-disabled="true"]': {
+          '@apply disabled:border-gray-stroke border-gray-stroke hover:border-gray-stroke': {},
           '&.active': {
             '@apply border-gray-stroke': {},
           },
@@ -168,91 +168,16 @@ function buttonOutline(colors) {
 function buttonGhost(colors) {
   return {
     '&-ghost': {
-      '@apply text-body bg-transparent': {},
-      '@apply hover:bg-neutral-100': {},
       /* focus */
       '@apply focus-visible:z-base': {},
       '@apply focus-visible:ring-4 focus-visible:ring-primary-500': {},
-      /* active */
-      '@apply active:bg-neutral-200': {},
-      /* dark mode */
-      '@apply dark:text-neutral-100 dark:bg-transparent': {},
-      /* dark hover */
-      '@apply dark:hover:border-neutral-300 dark:hover:bg-neutral-700': {},
-      /* dark active */
-      '@apply dark:active:bg-neutral-600 dark:active:border-neutral-400': {},
 
       ...colors.reduce(
         (styles, color) => ({
           ...styles,
           [`&[data-color="${color}"]`]: {
-            [`@apply text-${color}-600`]: {},
-            [`@apply hover:bg-${color}-50`]: {},
             /* focus */
             [`@apply focus-visible:ring-${color}-500`]: {},
-            [`@apply active:bg-${color}-100`]: {},
-            // dark colors
-            [`@apply dark:text-${color}-200 dark:bg-transparent`]: {},
-            [`@apply dark:border-${color}-300 dark:hover:bg-${color}-200`]: {},
-            [`@apply dark:hover:bg-opacity-15`]: {},
-            [`@apply dark:active:bg-${color}-200`]: {},
-            [`@apply dark:active:bg-opacity-25`]: {},
-          },
-        }),
-        {}
-      ),
-    },
-  };
-}
-
-function buttonLight(colors) {
-  return {
-    '&-light': {
-      '@apply shadow-sm': {},
-      '@apply border border-transparent': {},
-      '@apply text-body bg-neutral-100': {},
-      /* hover */
-      '@apply hover:bg-neutral-200': {},
-      /* focus */
-      '@apply focus-visible:z-base': {},
-      '@apply focus-visible:border-primary-500': {},
-      '@apply focus-visible:ring-4 focus-visible:ring-primary-500': {},
-      /* active */
-      '@apply active:bg-neutral-300': {},
-      /* dark mode */
-      '@apply dark:border-transparent': {},
-      '@apply dark:text-neutral-100 dark:bg-neutral-700': {},
-      /* dark hover */
-      '@apply dark:hover:bg-neutral-600': {},
-      /* dark focus */
-      '@apply dark:focus-visible:border-primary-500': {},
-      /* dark active */
-      '@apply dark:active:bg-neutral-600': {},
-
-      ...colors.reduce(
-        (styles, color) => ({
-          ...styles,
-          [`&[data-color="${color}"]`]: {
-            [`@apply text-${color}-600 bg-${color}-50`]: {},
-            /* hover */
-            [`@apply hover:bg-${color}-100`]: {},
-            /* focus */
-            [`@apply focus-visible:border-${color}-500`]: {},
-            [`@apply focus-visible:ring-${color}-500`]: {},
-            /* active */
-            [`@apply active:bg-${color}-200`]: {},
-            /* dark mode */
-            [`@apply dark:text-${color}-300 dark:bg-${color}-500`]: {},
-            [`@apply dark:bg-opacity-15`]: {},
-            /* dark hover */
-            [`@apply dark:hover:bg-${color}-500`]: {},
-            [`@apply dark:hover:bg-opacity-25`]: {},
-            /* dark focus */
-            [`@apply dark:focus-visible:border-${color}-500`]: {},
-            [`@apply dark:focus-visible:ring-${color}-500`]: {},
-            /* dark active */
-            [`@apply dark:active:bg-${color}-500`]: {},
-            [`@apply dark:active:bg-opacity-30`]: {},
           },
         }),
         {}
@@ -332,9 +257,9 @@ module.exports = Button = (colors) => ({
 
     // State
 
-    '&-disabled': {
-      '@apply disabled:shadow-none disabled:cursor-not-allowed': {},
-      '@apply disabled:text-gray disabled:bg-gray-light !important': {},
+    '&-disabled, &[aria-disabled="true"]': {
+      '@apply shadow-none disabled:shadow-none disabled:cursor-not-allowed cursor-not-allowed': {},
+      '@apply disabled:text-gray text-gray disabled:bg-gray-light bg-gray-light !important': {},
     },
     '.MuiSvgIcon-root': {
       fontSize: '1.5em',
@@ -345,8 +270,7 @@ module.exports = Button = (colors) => ({
     // variants
     ...buttonSolid(colors),
     ...buttonOutline(colors),
-    //...buttonGhost(colors),
-    //...buttonLight(colors),
+    ...buttonGhost(colors),
     ...buttonLink(colors),
   },
   '.btn-has-icon': {
