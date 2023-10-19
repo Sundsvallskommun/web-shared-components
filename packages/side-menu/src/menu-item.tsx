@@ -142,7 +142,7 @@ export const MenuItem = (props: IMenuExtended) => {
 
   return (
     <li
-      role="none"
+      role={`${separator ? 'separator' : 'none'}`}
       className={cx(
         'sk-sidemenu-item',
         'lvl-' + level,
