@@ -154,6 +154,14 @@ export const TemplateDraggable = ({ ...args }: IMenuProps) => {
 
   return (
     <div className="pb-xl">
+      <button
+        className="bg-black rounded-xl text-white m-10 p-10"
+        onClick={() => {
+          setActiveId(null);
+        }}
+      >
+        Set null
+      </button>
       <SideMenu
         {...args}
         loading={loading}

@@ -129,7 +129,7 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
   const setActiveOpen = (id: IMenuProps['activeId']) => {
     setActiveId(id);
     setOpenItemsFromActiveId(id);
-    setFocusableId(id ? id.toString() : '');
+    setFocusableId(id ? id.toString() : menuData ? menuData[0].id.toString() : '');
   };
 
   React.useEffect(() => {
