@@ -13,12 +13,7 @@ export interface IDataObject {
   label: string;
   path?: string;
   disabled?: boolean;
-  /* Below at draggable specific */
   separator?: boolean;
-  movedHere?: boolean;
-  newItem?: boolean;
-  error?: boolean;
-  changes?: number;
 }
 export interface IMenu extends IDataObject {
   subItems?: Array<IMenu> | null | [];
@@ -34,7 +29,9 @@ interface CommonProps {
   headElement?: React.ReactNode;
   label?: string;
   closeNoneActive?: boolean;
+  classNameMenuItemWrapperFunction?: (data: IDataObject, active: boolean) => string;
   labelCallback?: () => void;
+  menuItemProps?: (data: IDataObject, active: boolean) => { [key: string]: string };
   renderMenuItem?: (
     data: IDataObject,
     open: boolean,
@@ -43,6 +40,7 @@ interface CommonProps {
   ) => React.ReactNode;
   renderMenuItemLabel?: (data: IDataObject, active: boolean) => React.ReactNode;
   renderMenuItemExpand?: (data: IDataObject, active: boolean, defaultElement: React.ReactNode) => React.ReactNode;
+  renderMenuItemDragLabel?: (data: IDataObject, active: boolean, defaultElement: React.ReactNode) => React.ReactNode;
   className?: string;
   ariaExpanded?: { open: string; close: string };
   ariaMoveButton?: string;
@@ -71,10 +69,13 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
     activeId: _activeId,
     openIds: _openIds,
     closeNoneActive = true,
+    classNameMenuItemWrapperFunction,
     labelCallback,
+    menuItemProps,
     renderMenuItem,
     renderMenuItemLabel,
     renderMenuItemExpand,
+    renderMenuItemDragLabel,
     className = '',
     ariaExpanded = { open: 'Visa undermeny', close: 'Dölj undermeny' },
     ariaMoveButton = 'Flytta menyrad',
@@ -129,7 +130,7 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
   const setActiveOpen = (id: IMenuProps['activeId']) => {
     setActiveId(id);
     setOpenItemsFromActiveId(id);
-    setFocusableId(id ? id.toString() : menuData ? menuData[0].id.toString() : '');
+    setFocusableId(id ? id.toString() : menuData?.length ? menuData[0].id.toString() : '');
   };
 
   React.useEffect(() => {
@@ -271,13 +272,15 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
                 disabled={item.disabled}
                 ariaExpanded={ariaExpanded}
                 ariaMoveButton={ariaMoveButton}
+                classNameMenuItemWrapperFunction={classNameMenuItemWrapperFunction}
+                menuItemProps={menuItemProps}
                 renderMenuItem={renderMenuItem}
                 renderMenuItemLabel={renderMenuItemLabel}
                 renderMenuItemExpand={renderMenuItemExpand}
+                renderMenuItemDragLabel={renderMenuItemDragLabel}
                 /** Below are specific for draggable */
                 separator={item.separator}
                 draggable={draggable}
-                movedHere={item.movedHere}
               />
             );
           })}

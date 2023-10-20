@@ -37,7 +37,9 @@ export const Draggable = class {
     const elementData = this.getElementDataFromEvent(e);
     if (elementData && this.draggedElementData?.id == elementData.id) return;
     const closestMenuItem = this.getClosestMenuItem(e);
-    if (closestMenuItem !== null) {
+    const dragButtonDisabled =
+      closestMenuItem?.querySelector('button[draggable="true"]')?.getAttribute('aria-disabled') == 'true';
+    if (closestMenuItem !== null && !dragButtonDisabled) {
       closestMenuItem.classList.add('dragenter');
     }
   };
@@ -50,7 +52,7 @@ export const Draggable = class {
   handleDragStart = (e: MouseEvent) => {
     this.dropSuccess = false;
     const isMoveButton = (e.target as HTMLElement).closest("[draggable='true']");
-    if (!isMoveButton) return;
+    if (!isMoveButton || isMoveButton.getAttribute('aria-disabled') == 'true') return;
     const closestMenuItem = this.getClosestMenuItem(e);
     if (closestMenuItem) {
       this.dragging = true;

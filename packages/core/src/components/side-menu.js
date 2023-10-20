@@ -54,23 +54,39 @@ module.exports = Menu = () => ({
         },
       },
 
-      '.expand path': {
-        '@apply fill-primary': {},
-      },
-
       '& .sk-sidemenu-wrapper': {
         '@apply min-h-[48px] max-h-[48px] relative flex flex-wrap items-center': {},
 
         '.sk-sidemenu-item-link': {
           '@apply flex-grow relative flex items-center text-base text-left justify-start pr-sm h-full': {},
           '@apply focus-visible:z-base': {},
+
+          '&[aria-disabled="true"]': {
+            '@apply text-neutral-600 cursor-not-allowed': {},
+
+            '.sk-sidemenu-item-label': {
+              '@apply text-neutral-600': {},
+            },
+          },
         },
 
         '.expand': {
           '@apply w-[50px] h-full flex justify-center items-center ml-auto p-0': {},
 
+          '&[aria-disabled="true"]': {
+            '@apply !text-gray-stroke cursor-not-allowed !bg-transparent': {},
+
+            path: {
+              '@apply fill-gray-stroke': {},
+            },
+          },
+
+          path: {
+            '@apply fill-primary': {},
+          },
+
           '&-button': {
-            '@apply flex justify-center items-center border-l border-gray-stroke h-[24px] w-[45px]': {},
+            '@apply fill-primary flex justify-center items-center border-l border-gray-stroke h-[24px] w-[45px]': {},
           },
         },
       },
@@ -106,14 +122,9 @@ module.exports = Menu = () => ({
           svg: {
             '@apply h-full': {},
           },
-          '&-label': {
-            '@apply text-[#B65A06]': {},
-          },
-        },
 
-        '&.moved-here': {
-          "[draggable='true']": {
-            '@apply text-warning': {},
+          '&[aria-disabled="true"]': {
+            '@apply !text-gray-stroke cursor-not-allowed !bg-transparent': {},
           },
         },
 

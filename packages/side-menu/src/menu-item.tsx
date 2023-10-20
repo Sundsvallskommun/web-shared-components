@@ -5,6 +5,8 @@ import MinusIcon from './assets/minus-icon';
 import PlusIcon from './assets/plus-icon';
 import { IDataObject, IMenu } from './side-menu';
 import DragIndicatorOutlinedIcon from '@mui/icons-material/DragIndicatorOutlined';
+import BlockIcon from '@mui/icons-material/Block';
+
 export interface IMenuExtended extends IMenu {
   itemData: any & IDataObject;
   activeId: string | number | null;
@@ -18,6 +20,8 @@ export interface IMenuExtended extends IMenu {
   ariaExpanded: { open: string; close: string };
   ariaMoveButton?: string;
   draggable?: boolean;
+  classNameMenuItemWrapperFunction?: (data: IDataObject, active: boolean) => string;
+  menuItemProps?: (data: IDataObject, active: boolean) => { [key: string]: string };
   renderMenuItem?: (
     data: IDataObject,
     open: boolean,
@@ -26,6 +30,7 @@ export interface IMenuExtended extends IMenu {
   ) => React.ReactNode;
   renderMenuItemLabel?: (data: IDataObject, active: boolean) => React.ReactNode;
   renderMenuItemExpand?: (data: IDataObject, active: boolean, defaultElement: React.ReactNode) => React.ReactNode;
+  renderMenuItemDragLabel?: (data: IDataObject, active: boolean, defaultElement: React.ReactNode) => React.ReactNode;
 }
 
 export const MenuItem = (props: IMenuExtended) => {
@@ -45,13 +50,15 @@ export const MenuItem = (props: IMenuExtended) => {
     closeNoneActive = true,
     ariaExpanded,
     disabled = false,
+    menuItemProps,
+    classNameMenuItemWrapperFunction,
     renderMenuItem,
     renderMenuItemLabel,
     renderMenuItemExpand,
+    renderMenuItemDragLabel,
     /* Below at draggable specific */
     draggable = false,
     separator = false,
-    movedHere = false,
     ariaMoveButton,
   } = props;
   const menuItemRef = React.useRef<any>(null);
@@ -81,11 +88,41 @@ export const MenuItem = (props: IMenuExtended) => {
     );
   };
 
+  const DragRender = () => {
+    if (!draggable || separator) return <></>;
+
+    const DefaultLabel = () => {
+      return (
+        <>
+          {!disabled ? (
+            <DragIndicatorOutlinedIcon className="sk-sidemenu-menuitem-movebutton-icon !text-2xl" />
+          ) : (
+            <BlockIcon className="sk-sidemenu-menuitem-movebutton-icon !text-2xl" />
+          )}
+        </>
+      );
+    };
+
+    return (
+      <Button
+        draggable={draggable}
+        className={`sk-sidemenu-menuitem-movebutton`}
+        variant="ghost"
+        iconButton
+        aria-hidden={true}
+        aria-disabled={disabled ? 'true' : undefined}
+        tabIndex={-1}
+      >
+        {renderMenuItemDragLabel ? renderMenuItemDragLabel(itemData, isActive, <DefaultLabel />) : <DefaultLabel />}
+      </Button>
+    );
+  };
+
   const LabelItem = ({ item }: { item: IDataObject }) => {
     const Comp: React.ElementType = item.path ? 'a' : 'button';
 
     if (separator) {
-      return <div className="sk-sidemenu-item-separator" role="separator"></div>;
+      return <div className="sk-sidemenu-item-separator"></div>;
     }
 
     return (
@@ -99,7 +136,8 @@ export const MenuItem = (props: IMenuExtended) => {
         aria-expanded={subItems ? open : undefined}
         aria-disabled={disabled ? true : undefined}
         href={Comp === 'a' ? path : undefined}
-        onClick={Comp === 'button' ? linkCallbackhandler : undefined}
+        onClick={Comp === 'button' && !disabled ? linkCallbackhandler : undefined}
+        {...(menuItemProps ? menuItemProps(itemData, isActive) : {})}
       >
         <LabelRender />
       </Comp>
@@ -116,7 +154,13 @@ export const MenuItem = (props: IMenuExtended) => {
     return (
       <>
         {subItems && (
-          <button className="expand" onClick={expandHandler} aria-hidden={true} tabIndex={-1}>
+          <button
+            className="expand"
+            onClick={!disabled ? expandHandler : undefined}
+            aria-hidden={true}
+            tabIndex={-1}
+            aria-disabled={disabled ? 'true' : undefined}
+          >
             <span className="expand-button">
               {renderMenuItemExpand ? (
                 renderMenuItemExpand(
@@ -151,39 +195,30 @@ export const MenuItem = (props: IMenuExtended) => {
 
         /** Below are specific for draggable */
         { separator: separator },
-        { draggable: draggable },
-        { 'moved-here': movedHere }
+        { draggable: draggable }
       )}
       data-id={id}
     >
-      <div className={cx('sk-sidemenu-wrapper')}>
-        {draggable && !separator && (
-          /** Specific for draggable */
-          <Button
-            draggable={draggable}
-            className={`sk-sidemenu-menuitem-movebutton`}
-            variant="link"
-            aria-hidden={true}
-            tabIndex={-1}
-            // aria-label={ariaMoveButton}
-            // aria-disabled={disabled ? true : undefined}
-            rightIcon={<DragIndicatorOutlinedIcon className="sk-sidemenu-menuitem-movebutton-icon !text-2xl" />}
-          >
-            {movedHere && <span className="sk-sidemenu-menuitem-movebutton-label">Flyttad</span>}
-          </Button>
+      <div
+        className={cx(
+          'sk-sidemenu-wrapper',
+          classNameMenuItemWrapperFunction && classNameMenuItemWrapperFunction(itemData, isActive)
         )}
+      >
         {renderMenuItem ? (
           renderMenuItem(
             itemData,
             open,
             isActive,
             <>
+              <DragRender />
               <LabelItem item={itemData} />
               <ExpandButton />
             </>
           )
         ) : (
           <>
+            <DragRender />
             <LabelItem item={itemData} />
             <ExpandButton />
           </>
@@ -211,16 +246,14 @@ export const MenuItem = (props: IMenuExtended) => {
               disabled={item.disabled}
               ariaExpanded={ariaExpanded}
               ariaMoveButton={ariaMoveButton}
-              newItem={item.newItem}
+              menuItemProps={menuItemProps}
               renderMenuItem={renderMenuItem}
               renderMenuItemLabel={renderMenuItemLabel}
               renderMenuItemExpand={renderMenuItemExpand}
+              renderMenuItemDragLabel={renderMenuItemDragLabel}
               /** Below are specific for draggable */
               separator={item.separator}
               draggable={draggable}
-              movedHere={item.movedHere}
-              error={item.error}
-              changes={item.changes}
             />
           ))}
         </ul>
