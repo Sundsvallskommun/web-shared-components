@@ -59,7 +59,7 @@ export const Button = React.forwardRef(
       'aria-disabled': ariaDisabled,
       loading,
       active,
-      type,
+      type = 'button',
       className,
       color,
       variant = 'outline',
@@ -87,7 +87,7 @@ export const Button = React.forwardRef(
         as="button"
         ref={ref}
         disabled={disabled}
-        aria-disabled={disabled ? disabled : undefined}
+        aria-disabled={disabled ? disabled : ariaDisabled === 'true' ? ariaDisabled : undefined}
         type={type}
         data-active={active ? 'true' : undefined}
         className={cx(className)}
@@ -100,7 +100,7 @@ export const Button = React.forwardRef(
         {...rest}
         ref={ref}
         disabled={disabled}
-        aria-disabled={disabled ? disabled : ariaDisabled ? ariaDisabled : undefined}
+        aria-disabled={disabled ? disabled : ariaDisabled === 'true' ? ariaDisabled : undefined}
         type={type}
         data-rounded={rounded ? rounded : undefined}
         data-active={active ? 'true' : undefined}
