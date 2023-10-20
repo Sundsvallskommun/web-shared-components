@@ -18,6 +18,7 @@ export const Template = (args: MessageProps) => {
     message({
       message: 'Toast message goes here.',
       status: status,
+      ...{ ...args },
     });
   };
 
