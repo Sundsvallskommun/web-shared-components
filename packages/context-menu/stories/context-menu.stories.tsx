@@ -16,7 +16,7 @@ export default {
 
 export const Template = () => {
   return (
-    <div className="h-60">
+    <div className="h-96">
       <div>
         <ContextMenu>
           <ContextMenu.Button size="sm" variant="outline" color="primary" iconButton rounded>
@@ -65,7 +65,7 @@ Template.storyName = 'ContextMenu';
 
 export const solid = () => {
   return (
-    <div className="h-60">
+    <div className="h-96">
       <div>
         <ContextMenu>
           <ContextMenu.Button size="sm" variant="outline" color="primary" iconButton rounded>
