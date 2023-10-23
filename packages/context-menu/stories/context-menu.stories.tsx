@@ -46,7 +46,7 @@ export const Template = () => {
           <Divider orientation="horizontal" className="w-full" />
           <ContextMenu.Item>
             <Link external className="text-body" leftIcon={<EditOutlinedIcon />} onClick={() => console.log('Edit')}>
-              Redigera
+              Externsida
             </Link>
           </ContextMenu.Item>
           <Divider orientation="horizontal" className="w-full" />
@@ -89,7 +89,7 @@ export const solid = () => {
           <Divider orientation="horizontal" className="w-full" />
           <ContextMenu.Item>
             <Link external leftIcon={<EditOutlinedIcon />} onClick={() => console.log('Edit')}>
-              Redigera
+              Externsida
             </Link>
           </ContextMenu.Item>
           <Divider orientation="horizontal" className="w-full" />
