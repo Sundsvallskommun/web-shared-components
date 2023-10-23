@@ -6,6 +6,7 @@ import { Button } from '@sk-web-gui/button';
 import { Divider } from '@sk-web-gui/divider';
 import React from 'react';
 import { ContextMenu } from '../src';
+import { Link } from '@sk-web-gui/link';
 
 export default {
   title: 'Komponenter/Meny/Kontextmeny',
@@ -31,6 +32,7 @@ export const Template = () => {
               Redigera
             </Button>
           </ContextMenu.Item>
+
           <ContextMenu.Item>
             <Button
               variant="link"
@@ -40,6 +42,12 @@ export const Template = () => {
             >
               Ta bort
             </Button>
+          </ContextMenu.Item>
+          <Divider orientation="horizontal" className="w-full" />
+          <ContextMenu.Item>
+            <Link external className="text-body" leftIcon={<EditOutlinedIcon />} onClick={() => console.log('Edit')}>
+              Redigera
+            </Link>
           </ContextMenu.Item>
           <Divider orientation="horizontal" className="w-full" />
           <ContextMenu.Item>
@@ -54,3 +62,44 @@ export const Template = () => {
 };
 
 Template.storyName = 'ContextMenu';
+
+export const solid = () => {
+  return (
+    <div className="h-60">
+      <div>
+        <ContextMenu>
+          <ContextMenu.Button size="sm" variant="outline" color="primary" iconButton rounded>
+            <ArrowDownwardIcon />
+          </ContextMenu.Button>
+          <ContextMenu.Item>
+            <Button leftIcon={<EditOutlinedIcon />} onClick={() => console.log('Edit')}>
+              Redigera
+            </Button>
+          </ContextMenu.Item>
+          <ContextMenu.Item>
+            <Button
+              variant="solid"
+              color="error"
+              leftIcon={<DeleteOutlineOutlinedIcon />}
+              onClick={() => console.log('Delete')}
+            >
+              Ta bort
+            </Button>
+          </ContextMenu.Item>
+          <Divider orientation="horizontal" className="w-full" />
+          <ContextMenu.Item>
+            <Link external leftIcon={<EditOutlinedIcon />} onClick={() => console.log('Edit')}>
+              Redigera
+            </Link>
+          </ContextMenu.Item>
+          <Divider orientation="horizontal" className="w-full" />
+          <ContextMenu.Item>
+            <Button variant="ghost" leftIcon={<UndoIcon />} onClick={() => console.log('Undo')}>
+              Ångra
+            </Button>
+          </ContextMenu.Item>
+        </ContextMenu>
+      </div>
+    </div>
+  );
+};
