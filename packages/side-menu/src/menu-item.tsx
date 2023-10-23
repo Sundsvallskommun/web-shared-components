@@ -251,6 +251,7 @@ export const MenuItem = (props: IMenuExtended) => {
               renderMenuItemLabel={renderMenuItemLabel}
               renderMenuItemExpand={renderMenuItemExpand}
               renderMenuItemDragLabel={renderMenuItemDragLabel}
+              classNameMenuItemWrapperFunction={classNameMenuItemWrapperFunction}
               /** Below are specific for draggable */
               separator={item.separator}
               draggable={draggable}
