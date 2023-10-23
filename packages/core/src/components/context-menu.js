@@ -1,5 +1,11 @@
 module.exports = ContextMenu = () => ({
   '.context-menu-wrapper': {
+    '@apply relative inline': {},
+
+    '> a, > button': {
+      '@apply inline-flex': {},
+    },
+
     '.context-menu-items': {
       '@apply absolute rounded-md bg-white border border-body z-10 drop-shadow-md mt-sm flex flex-col justify-start items-start':
         {},
@@ -27,6 +33,10 @@ module.exports = ContextMenu = () => ({
 
       hr: {
         '@apply mx-sm w-[calc(100%_-_16px)]': {},
+      },
+
+      '&.right': {
+        '@apply right-0': {},
       },
     },
   },

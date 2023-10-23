@@ -7,6 +7,7 @@ import { Divider } from '@sk-web-gui/divider';
 import React from 'react';
 import { ContextMenu } from '../src';
 import { Link } from '@sk-web-gui/link';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export default {
   title: 'Komponenter/Meny/Kontextmeny',
@@ -21,6 +22,48 @@ export const Template = () => {
         <ContextMenu>
           <ContextMenu.Button size="sm" variant="outline" color="primary" iconButton rounded>
             <ArrowDownwardIcon />
+          </ContextMenu.Button>
+          <ContextMenu.Item>
+            <Button
+              variant="link"
+              className="text-body"
+              leftIcon={<EditOutlinedIcon />}
+              onClick={() => console.log('Edit')}
+            >
+              Redigera
+            </Button>
+          </ContextMenu.Item>
+
+          <ContextMenu.Item>
+            <Button
+              variant="link"
+              className="text-body"
+              leftIcon={<DeleteOutlineOutlinedIcon />}
+              onClick={() => console.log('Delete')}
+            >
+              Ta bort
+            </Button>
+          </ContextMenu.Item>
+          <Divider orientation="horizontal" className="w-full" />
+          <ContextMenu.Item>
+            <Link external className="text-body" leftIcon={<EditOutlinedIcon />} onClick={() => console.log('Edit')}>
+              Externsida
+            </Link>
+          </ContextMenu.Item>
+          <Divider orientation="horizontal" className="w-full" />
+          <ContextMenu.Item>
+            <Button variant="link" className="text-body" leftIcon={<UndoIcon />} onClick={() => console.log('Undo')}>
+              Ångra
+            </Button>
+          </ContextMenu.Item>
+        </ContextMenu>
+      </div>
+
+      <div className="mt-lg">
+        <h2>Textknapp</h2>
+        <ContextMenu menuSide="right">
+          <ContextMenu.Button variant="outline" rightIcon={<ExpandMoreIcon />}>
+            Kontextmeny
           </ContextMenu.Button>
           <ContextMenu.Item>
             <Button
