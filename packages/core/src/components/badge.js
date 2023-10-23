@@ -19,7 +19,7 @@ function badgeSolid(colors) {
         '@apply bg-primary': {},
       },
       "&[data-color='warning']": {
-        '@apply bg-warning': {},
+        '@apply bg-[#B05F03]': {},
       },
       "&[data-color='error']": {
         '@apply bg-error': {},
@@ -62,8 +62,8 @@ function badgeOutline(colors) {
         '@apply text-primary': {},
       },
       "&[data-color='warning']": {
-        '@apply border-warning': {},
-        '@apply text-warning': {},
+        '@apply border-[#B05F03]': {},
+        '@apply text-[#B05F03]': {},
       },
       "&[data-color='error']": {
         '@apply border-error': {},
