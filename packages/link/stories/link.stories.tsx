@@ -9,6 +9,26 @@ export default {
   args: {
     href: '#',
   },
+  argTypes: {
+    external: {
+      type: { name: 'string', required: false },
+      description: 'Sets external',
+      table: {
+        defaultValue: { summary: 'false' },
+      },
+      control: 'boolean',
+      defaultValue: false,
+    },
+    hideExternalIcon: {
+      type: { name: 'string', required: false },
+      description: 'Sets hideExternalIcon',
+      table: {
+        defaultValue: { summary: 'false' },
+      },
+      control: 'boolean',
+      defaultValue: false,
+    },
+  },
 } as Meta;
 
 export const Template = (args: LinkProps) => (
