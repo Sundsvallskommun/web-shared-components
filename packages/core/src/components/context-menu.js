@@ -27,7 +27,10 @@ module.exports = ContextMenu = () => ({
         },
 
         '&:first-child a,&:first-child button': {
-          '@apply pt-[0.875rem]': {},
+          '@apply pt-[0.675rem] pb-[0.525rem]': {},
+        },
+        '&:last-child a,&:last-child button': {
+          '@apply pt-[0.525rem] pb-[0.675rem]': {},
         },
       },
 
