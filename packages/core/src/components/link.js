@@ -16,6 +16,10 @@ module.exports = Link = () => ({
       verticalAlign: 'text-top',
     },
 
+    '&[type="button"]': {
+      '@apply inline-flex items-center align-bottom': {},
+    },
+
     '&-disabled': {
       '@apply disabled:opacity-60 disabled:cursor-not-allowed disabled:no-underline': {},
     },
