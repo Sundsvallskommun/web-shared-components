@@ -36,7 +36,7 @@ export interface ButtonProps extends DefaultProps, React.ButtonHTMLAttributes<HT
   'aria-disabled'?: React.ButtonHTMLAttributes<HTMLButtonElement>['aria-disabled'];
 }
 
-type IButtonProps<C extends React.ElementType> = PolymorphicComponentPropsWithRef<C, ButtonProps>;
+export type IButtonProps<C extends React.ElementType> = PolymorphicComponentPropsWithRef<C, ButtonProps>;
 
 export const getButtonContent = (props: ButtonProps): JSX.Element => {
   const { loading, loadingText, leftIcon, rightIcon, children } = props;

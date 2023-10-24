@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-import { Button as InternalButton, ButtonProps, getButtonContent } from './button';
+import { Button as InternalButton, ButtonProps, getButtonContent, IButtonProps } from './button';
 import { ButtonGroup, ButtonGroupProps } from './button-group';
 
 interface ButtonPropsComplex
   extends ButtonProps,
-    React.ForwardRefExoticComponent<ButtonProps & React.RefAttributes<HTMLButtonElement>> {
+    React.ForwardRefExoticComponent<IButtonProps<React.ElementType> & React.RefAttributes<HTMLButtonElement>> {
   Group: typeof ButtonGroup;
 }
 
