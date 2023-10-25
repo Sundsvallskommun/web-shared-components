@@ -7,10 +7,14 @@ import { ContextMenuButton } from './context-menu-button';
 
 export interface ContextMenuPropsInternal extends React.HTMLAttributes<HTMLDivElement>, DefaultProps {
   classNameItems?: string;
+  /**
+   * @default 'left'
+   */
+  menuSide?: 'left' | 'right';
 }
 
 const ContextMenuComponent = React.forwardRef<HTMLDivElement, ContextMenuPropsInternal>((props, ref) => {
-  const { className, classNameItems, children, ...rest } = props;
+  const { className, classNameItems, children, menuSide = 'left', ...rest } = props;
 
   const getButton = () => {
     return React.Children.toArray(children).find((child: any) => child?.type?.name === ContextMenuButton.name);
@@ -23,7 +27,7 @@ const ContextMenuComponent = React.forwardRef<HTMLDivElement, ContextMenuPropsIn
   return (
     <Menu as="div" ref={ref} className={cx('context-menu-wrapper', className)} {...rest}>
       {getButton()}
-      <Menu.Items className={`context-menu-items ${classNameItems}`}>{getItems()}</Menu.Items>
+      <Menu.Items className={`context-menu-items ${menuSide} ${classNameItems}`}>{getItems()}</Menu.Items>
     </Menu>
   );
 });

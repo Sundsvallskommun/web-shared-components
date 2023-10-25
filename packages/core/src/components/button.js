@@ -274,11 +274,19 @@ module.exports = Button = (colors) => ({
     ...buttonLink(colors),
   },
   '.btn-has-icon': {
-    '&-left .MuiSvgIcon-root': {
-      '@apply mr-sm': {},
+    '&-left': {
+      '@apply h-full flex items-center justify-center': {},
+
+      '.MuiSvgIcon-root': {
+        '@apply mr-sm': {},
+      },
     },
-    '&-right .MuiSvgIcon-root': {
-      '@apply ml-sm': {},
+    '&-right': {
+      '@apply h-full flex items-center justify-center': {},
+
+      '.MuiSvgIcon-root': {
+        '@apply ml-sm': {},
+      },
     },
   },
   '[data-icon=true]': {
@@ -301,11 +309,15 @@ module.exports = Button = (colors) => ({
       maxWidth: '4.8rem',
     },
     '.btn-has-icon': {
-      '&-left .MuiSvgIcon-root': {
-        '@apply mr-0': {},
+      '&-left': {
+        '.MuiSvgIcon-root': {
+          '@apply mr-0': {},
+        },
       },
-      '&-right .MuiSvgIcon-root': {
-        '@apply ml-0': {},
+      '&-right': {
+        '.MuiSvgIcon-root': {
+          '@apply ml-0': {},
+        },
       },
     },
   },
