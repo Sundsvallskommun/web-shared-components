@@ -7,6 +7,7 @@ import { Fragment } from 'react';
 export interface IModalProps extends DefaultProps {
   show: boolean;
   label?: string | JSX.Element;
+  closeLabel?: string;
   className?: string;
   onClose?: () => void;
   hideClosebutton?: boolean;
@@ -22,6 +23,7 @@ export const Modal = React.forwardRef<HTMLDivElement, IModalProps>((props, ref) 
   const {
     show,
     label,
+    closeLabel,
     className,
     hideClosebutton = false,
     onClose,
@@ -104,7 +106,9 @@ export const Modal = React.forwardRef<HTMLDivElement, IModalProps>((props, ref) 
                   {!hideClosebutton && (
                     <button
                       className="p-4 -m-4"
-                      aria-label={`Stäng ${label ? label : 'modal'}`}
+                      aria-label={
+                        closeLabel ? closeLabel : `Stäng ${label && label !== typeof 'object' ? label : 'modal'}`
+                      }
                       onClick={onCloseHandler}
                     >
                       <CloseIcon className="material-icon !text-2xl" />
