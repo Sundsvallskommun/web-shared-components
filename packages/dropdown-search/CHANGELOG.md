@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.33](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/dropdown-search@0.1.32...@sk-web-gui/dropdown-search@0.1.33) (2023-10-25)
+
+**Note:** Version bump only for package @sk-web-gui/dropdown-search
+
 ## [0.1.32](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/dropdown-search@0.1.31...@sk-web-gui/dropdown-search@0.1.32) (2023-10-16)
 
 **Note:** Version bump only for package @sk-web-gui/dropdown-search

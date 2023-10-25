@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.39](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/switch@0.1.38...@sk-web-gui/switch@0.1.39) (2023-10-25)
+
+**Note:** Version bump only for package @sk-web-gui/switch
+
 ## [0.1.38](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/switch@0.1.37...@sk-web-gui/switch@0.1.38) (2023-10-16)
 
 **Note:** Version bump only for package @sk-web-gui/switch
