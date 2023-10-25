@@ -8,26 +8,25 @@ export interface LinkProps extends DefaultProps, React.AnchorHTMLAttributes<HTML
   disabled?: boolean;
   /* Makes link open in new tab */
   external?: boolean;
-  /* The element or component to use in place of `a` */
-  // as?: React.ElementType;
-  // /* Action to perform when clicked */
-  // onClick?: React.HTMLAttributes<HTMLAnchorElement>['onClick'];
   /* React node */
   children?: React.ReactNode;
-  // /* href */
-  // href?: React.HTMLAttributes<HTMLAnchorElement>['href'];
+  hideExternalIcon?: boolean;
 }
 
-// export interface LinkProps extends ILinkProps, Omit<React.HTMLAttributes<HTMLAnchorElement>, 'as'> {}
-
 type ILinkProps<C extends React.ElementType> = PolymorphicComponentPropsWithRef<C, LinkProps>;
-// export type LinkProps = ILinkProps<'a'> & CommonProps;
-
-// type LinkComponent = <C extends React.ElementType = 'a'>(props: ILinkProps<C>) => React.ReactElement | null;
 
 export const Link = React.forwardRef(
   <C extends React.ElementType = 'a'>(props: ILinkProps<C>, ref?: PolymorphicRef<C>) => {
-    const { disabled, external, onClick, className, as: Comp = 'a', children, ...rest } = props;
+    const {
+      disabled,
+      external,
+      onClick,
+      className,
+      as: Comp = 'a',
+      children,
+      hideExternalIcon = false,
+      ...rest
+    } = props;
     const externalProps = external ? { target: '_blank', rel: 'noopener noreferrer' } : null;
 
     return (
@@ -41,7 +40,7 @@ export const Link = React.forwardRef(
         {...rest}
       >
         {children}
-        {external && <LaunchIcon className="link-external-icon" />}
+        {!hideExternalIcon && external && <LaunchIcon className="link-external-icon" />}
       </Comp>
     );
   }
