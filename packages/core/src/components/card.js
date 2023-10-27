@@ -1,6 +1,6 @@
 module.exports = Card = () => ({
   '.avatar': {
-    '@apply bg-primary-light text-primary rounded-full p-4': {},
+    '@apply bg-background-200 text-primary rounded-full p-4': {},
   },
 
   '.card-list': {

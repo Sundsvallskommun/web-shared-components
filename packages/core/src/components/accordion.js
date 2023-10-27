@@ -68,20 +68,20 @@ module.exports = Accordion = (colors) => ({
       '@apply border border-warning': {},
 
       '.sk-disclosure-header:not([data-disabled="true"])': {
-        '@apply bg-warning-light text-warning': {},
+        '@apply bg-warning-surface-accent text-warning': {},
 
         '[aria-expanded="true"] &': {
-          '@apply bg-warning-light': {},
+          '@apply bg-warning-surface-accent': {},
         },
       },
     },
     '&-solid[data-error="true"], &-outline[data-error="true"]': {
       '@apply border border-error': {},
       '.sk-disclosure-header:not([data-disabled="true"])': {
-        '@apply bg-error-light text-error': {},
+        '@apply bg-error-surface-accent text-error': {},
 
         '[aria-expanded="true"] &': {
-          '@apply bg-error-light': {},
+          '@apply bg-error-surface-accent': {},
         },
       },
     },

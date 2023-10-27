@@ -15,13 +15,12 @@ export interface ColorHues {
   700: string;
   800: string;
   900: string;
+  lightest?: string;
+  darkest?: string;
 }
 
 export interface Color {
-  DEFAULT: string;
-  light: string;
-  dark: string;
-  active: string;
+  [key: string]: 'string' | Color;
 }
 
 export type Colors = RecursiveObject<Record<string, Partial<ColorHues>> | string>;
@@ -42,9 +41,6 @@ export interface ColorScheme {
       warning: Color;
       info: Color;
     };
-    primary: Color;
-    secondary: Color;
-    neutral: ColorHues;
   } & Colors;
 }
 export interface GuiTheme {
