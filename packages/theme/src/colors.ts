@@ -141,6 +141,7 @@ export const primitives = {
 export const colors = {
   lightmode: {
     primitives,
+    body: primitives.gray[900],
     black: primitives.gray[900],
     white: primitives.gray.lightest,
 
@@ -334,6 +335,7 @@ export const colors = {
 
   darkmode: {
     primitives,
+    body: primitives.gray[900],
     black: primitives.gray[900],
     white: primitives.gray.lightest,
     primary: {
