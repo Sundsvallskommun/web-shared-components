@@ -52,15 +52,15 @@ export const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>((p
 
   switch (severity) {
     case 'info':
-      bgColor = 'bg-info-light';
+      bgColor = 'bg-info-surface-accent';
       iconColor = 'text-info';
       break;
     case 'warning':
-      bgColor = 'bg-warning-light';
+      bgColor = 'bg-warning-surface-accent';
       iconColor = 'text-warning';
       break;
     case 'error':
-      bgColor = 'bg-error-light';
+      bgColor = 'bg-error-surface-accent';
       iconColor = 'text-error';
       break;
     case 'success':
@@ -72,7 +72,7 @@ export const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>((p
       iconColor = 'text-info';
       break;
     default:
-      bgColor = 'bg-info-light';
+      bgColor = 'bg-info-surface-accent';
       iconColor = 'text-info';
   }
 

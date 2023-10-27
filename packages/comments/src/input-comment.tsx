@@ -57,7 +57,7 @@ const InputComment = (props: InputProps) => {
         onChange={inputOnChangeHandler}
         value={inputValue}
         rounded
-        className={`${isEdit && 'bg-warning-light'}`}
+        className={`${isEdit && 'bg-warning-surface-accent'}`}
         placeholder={placeholder}
       />
       <Button

@@ -107,7 +107,7 @@ module.exports = Menu = () => ({
           },
 
           '& > .sk-sidemenu-wrapper::after': {
-            '@apply bg-info-light block relative w-full h-[44px]': {},
+            '@apply bg-info-surface-accent block relative w-full h-[44px]': {},
             content: "''",
           },
         },
@@ -138,7 +138,7 @@ module.exports = Menu = () => ({
       },
 
       '&-separator': {
-        '@apply text-svartvik-200': {},
+        '@apply text-divider': {},
         height: '1px',
         width: '100%',
         backgroundImage: `repeating-linear-gradient(0deg, currentColor, currentColor 19px, transparent 19px, transparent 38px, currentColor 38px), repeating-linear-gradient(90deg, currentColor, currentColor 19px, transparent 19px, transparent 38px, currentColor 38px), repeating-linear-gradient(180deg, currentColor, currentColor 19px, transparent 19px, transparent 38px, currentColor 38px), repeating-linear-gradient(270deg, currentColor, currentColor 19px, transparent 19px, transparent 38px, currentColor 38px)`,
@@ -152,7 +152,7 @@ module.exports = Menu = () => ({
           '@apply border-t-0': {},
         },
         '> .sk-sidemenu-wrapper': {
-          '@apply h-[64px] max-h-[64px] border border-svartvik-200': {},
+          '@apply h-[64px] max-h-[64px] border border-divider': {},
 
           '> .sk-sidemenu-item-link': {
             '@apply  py-md': {},
@@ -169,16 +169,16 @@ module.exports = Menu = () => ({
         },
 
         '> .items': {
-          '@apply border-l border-r border-svartvik-200': {},
+          '@apply border-l border-r border-divider': {},
         },
 
         '&.open > .items': {
-          '@apply border-b border-svartvik-200': {},
+          '@apply border-b border-divider': {},
         },
 
         '&.separator': {
           '& + .lvl-0': {
-            '@apply border-t border-svartvik-200': {},
+            '@apply border-t border-divider': {},
           },
         },
 
@@ -195,7 +195,7 @@ module.exports = Menu = () => ({
         },
 
         '&.open > .sk-sidemenu-wrapper': {
-          '@apply border-b border-svartvik-200': {},
+          '@apply border-b border-divider': {},
         },
 
         '> .sk-sidemenu-wrapper > .sk-sidemenu-item-link': {

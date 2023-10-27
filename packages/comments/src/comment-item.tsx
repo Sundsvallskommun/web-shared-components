@@ -47,7 +47,7 @@ export const CommentItem = React.forwardRef<HTMLDivElement, IItemProps>((props) 
       <div className="comment-item-container">
         <div className="comment-item-container-textpic">
           <ProfilePicture imageAlt={imageAlt} className="object-cover" image={imageSrc} />
-          <div className={`${itemToEdit?.id === id && isEdit && 'p-sm rounded-lg bg-warning-light'} w-full`}>
+          <div className={`${itemToEdit?.id === id && isEdit && 'p-sm rounded-lg bg-warning-surface-accent'} w-full`}>
             <p className="comment-item-text">{commentText}</p>
             <p className="comment-item-commentorpublished">
               / {commentorName} {publishDate}

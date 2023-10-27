@@ -18,6 +18,21 @@ module.exports = {
     colors: {
       ...colors.lightmode,
       current: 'currentColor',
+      gray: { 
+        DEFAULT: colors.lightmode.primitives.gray[600], 
+        stroke:  colors.lightmode.divider, 
+        middle: colors.lightmode.primitives.gray[600], 
+        light: colors.lightmode.primitives.gray[300], 
+        lighter: colors.lightmode.primitives.gray[200], 
+        ...colors.lightmode.primitives.gray
+      },
+      hover: colors.lightmode.primitives.gray[600],
+      background: {
+        ...colors.lightmode.background,
+        one: colors.lightmode.background[100],
+        two: colors.lightmode.background[200],
+      },
+
     },
     cursor: {
       base: 'var(--vc-cursor)',

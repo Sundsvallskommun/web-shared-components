@@ -141,20 +141,23 @@ export const primitives = {
 export const colors = {
   lightmode: {
     primitives,
-    body: primitives.gray[900],
+    body: { DEFAULT: primitives.gray[900] },
     black: primitives.gray[900],
     white: primitives.gray.lightest,
 
     primary: {
       DEFAULT: primitives.gray[900],
+      active: primitives.gray[900],
       surface: {
         DEFAULT: primitives.overlay.darken[9],
         hover: primitives.overlay.darken[10],
         disabled: primitives.overlay.darken[3],
       },
+      ...primitives.gray,
     },
     secondary: {
       DEFAULT: primitives.gray[700],
+      active: primitives.gray[700],
       outline: {
         default: primitives.overlay.darken[5],
         hover: primitives.overlay.darken[6],
@@ -164,6 +167,7 @@ export const colors = {
         hover: primitives.overlay.lighten[3],
         disabled: primitives.overlay.darken[2],
       },
+      ...primitives.gray,
     },
     tertiary: {
       surface: {
@@ -288,6 +292,7 @@ export const colors = {
       },
     },
     error: {
+      DEFAULT: primitives.red[800],
       background: {
         100: primitives.red[50],
         200: primitives.red[100],
@@ -310,6 +315,7 @@ export const colors = {
       },
     },
     warning: {
+      DEFAULT: primitives.orange[800],
       background: {
         100: primitives.orange[50],
         200: primitives.orange[100],
@@ -331,11 +337,57 @@ export const colors = {
         secondary: primitives.orange[100],
       },
     },
+    info: {
+      DEFAULT: primitives.blue[800],
+      background: {
+        100: primitives.blue[50],
+        200: primitives.blue[100],
+        300: primitives.blue[300],
+      },
+      surface: {
+        primary: {
+          DEFAULT: primitives.blue[600],
+          hover: primitives.blue[700],
+        },
+        accent: {
+          DEFAULT: primitives.blue[200],
+          hover: primitives.blue[100],
+        },
+      },
+      text: {
+        DEFAULT: primitives.blue[800],
+        primary: primitives.blue[800],
+        secondary: primitives.blue[100],
+      },
+    },
+    success: {
+      DEFAULT: primitives.green[800],
+      background: {
+        100: primitives.green[50],
+        200: primitives.green[100],
+        300: primitives.green[300],
+      },
+      surface: {
+        primary: {
+          DEFAULT: primitives.green[600],
+          hover: primitives.green[700],
+        },
+        accent: {
+          DEFAULT: primitives.green[200],
+          hover: primitives.green[100],
+        },
+      },
+      text: {
+        DEFAULT: primitives.green[800],
+        primary: primitives.green[800],
+        secondary: primitives.green[100],
+      },
+    },
   },
 
   darkmode: {
     primitives,
-    body: primitives.gray[900],
+    body: { DEFAULT: primitives.gray[900] },
     black: primitives.gray[900],
     white: primitives.gray.lightest,
     primary: {
@@ -345,6 +397,7 @@ export const colors = {
         hover: primitives.gray.lightest,
         disabled: primitives.overlay.lighten[3],
       },
+      ...primitives.gray,
     },
     secondary: {
       DEFAULT: primitives.gray[200],
@@ -357,6 +410,7 @@ export const colors = {
         hover: primitives.overlay.darken[3],
         disabled: primitives.overlay.lighten[2],
       },
+      ...primitives.gray,
     },
     tertiary: {
       surface: {
@@ -482,6 +536,7 @@ export const colors = {
       },
     },
     error: {
+      DEFAULT: primitives.red[100],
       background: {
         100: primitives.red[900],
         200: primitives.red[800],
@@ -504,6 +559,7 @@ export const colors = {
       },
     },
     warning: {
+      DEFAULT: primitives.orange[100],
       background: {
         100: primitives.orange[900],
         200: primitives.orange[800],
@@ -523,6 +579,52 @@ export const colors = {
         DEFAULT: primitives.orange[100],
         primary: primitives.orange[100],
         secondary: primitives.orange[800],
+      },
+    },
+    info: {
+      DEFAULT: primitives.blue[100],
+      background: {
+        100: primitives.blue[900],
+        200: primitives.blue[800],
+        300: primitives.blue[700],
+      },
+      surface: {
+        primary: {
+          DEFAULT: primitives.blue[400],
+          hover: primitives.blue[300],
+        },
+        accent: {
+          DEFAULT: primitives.blue[700],
+          hover: primitives.blue[600],
+        },
+      },
+      text: {
+        DEFAULT: primitives.blue[100],
+        primary: primitives.blue[100],
+        secondary: primitives.blue[800],
+      },
+    },
+    success: {
+      DEFAULT: primitives.green[100],
+      background: {
+        100: primitives.green[900],
+        200: primitives.green[800],
+        300: primitives.green[700],
+      },
+      surface: {
+        primary: {
+          DEFAULT: primitives.green[400],
+          hover: primitives.green[300],
+        },
+        accent: {
+          DEFAULT: primitives.green[700],
+          hover: primitives.green[600],
+        },
+      },
+      text: {
+        DEFAULT: primitives.green[100],
+        primary: primitives.green[100],
+        secondary: primitives.green[800],
       },
     },
   },
