@@ -6,14 +6,14 @@ export const lightScheme: ColorScheme = {
   id: 'light',
   type: 'light',
   colors: {
-    ...colors,
+    ...colors.lightmode,
     bg: {
-      base: '#ffffff',
-      fill: colors.background.two,
+      base: colors.lightmode.background.content,
+      fill: colors.lightmode.background[200],
     },
     text: {
-      foreground: '#000000',
-      muted: '#E4E4E5',
+      foreground: colors.lightmode.dark.primary,
+      muted: colors.lightmode.dark.secondary,
     },
   },
 };
@@ -23,14 +23,14 @@ export const darkScheme: ColorScheme = {
   id: 'dark',
   type: 'dark',
   colors: {
-    ...colors,
+    ...colors.darkmode,
     bg: {
-      base: '#ffffff',
-      fill: colors.background.two,
+      base: colors.darkmode.background.content,
+      fill: colors.darkmode.background[200],
     },
     text: {
-      foreground: colors.svartvik['100'],
-      muted: colors.svartvik['300'],
+      foreground: colors.darkmode.dark.primary,
+      muted: colors.darkmode.dark.secondary,
     },
   },
 };

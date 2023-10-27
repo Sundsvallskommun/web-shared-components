@@ -9,11 +9,11 @@ import { useSafeEffect } from './use-safe-effect';
 import { isBrowser } from './utils';
 import { GuiTheme, GuiThemeOverride } from './types';
 
-interface DictGuiTheme extends Dict {}
+// interface DictGuiTheme extends Dict {}
 
 export const GuiContext = createContext<
   | {
-      theme: WithCSSVar<DictGuiTheme>;
+      theme: WithCSSVar<Dict>;
     }
   | undefined
 >(undefined);
@@ -29,24 +29,26 @@ export interface GuiProviderProps {
 export function GuiProvider({ theme = defaultTheme, colorScheme = 'light', children }: GuiProviderProps) {
   const computedTheme = useMemo(() => {
     const omittedTheme = omit(theme, ['colorSchemes']);
-    const { colors, type } = theme.colorSchemes[colorScheme] || {};
+     const { colors, type } = theme.colorSchemes[colorScheme] || {};
     if (isBrowser) {
       if (type === 'dark') document.documentElement.classList.add('dark');
       else document.documentElement.classList.remove('dark');
     }
 
-    walkObject(colors, (value, path) => {
-      if (typeof value !== 'string') return;
-      const rgb = toRGB(value);
-      if (rgb) set(colors, path, rgb.join(','));
-    });
+    // walkObject(colors, (value, path) => {
+    //   if (typeof value !== 'string') return;
+    //   const rgb = toRGB(value);
+    //   if (rgb) set(colors, path, rgb.join(','));
+    // });
 
     const normalizedTheme = {
       ...omittedTheme,
-      colors,
+     colors,
     };
 
-    return toCSSVar(normalizedTheme);
+    console.log(normalizedTheme);
+
+     return toCSSVar(normalizedTheme);
   }, [theme, colorScheme]);
 
   useSafeEffect(() => {

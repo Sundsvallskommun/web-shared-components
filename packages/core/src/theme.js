@@ -16,7 +16,7 @@ module.exports = {
   },
   extend: {
     colors: {
-      ...colors,
+      ...colors.lightmode,
       current: 'currentColor',
     },
     cursor: {
