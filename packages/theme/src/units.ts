@@ -55,10 +55,20 @@ export const screens = {
   lg: breakpoints['large-device'].DEFAULT,
   xl: breakpoints.desktop.DEFAULT,
   phone: breakpoints.phone.DEFAULT,
+  'phone-min': breakpoints.phone.min,
+  'phone-max': breakpoints.phone.max,
   'small-device': breakpoints['small-device'].DEFAULT,
+  'small-device-min': breakpoints['small-device'].min,
+  'small-device-max': breakpoints['small-device'].max,
   'medium-device': breakpoints['medium-device'].DEFAULT,
+  'medium-device-min': breakpoints['medium-device'].min,
+  'medium-device-max': breakpoints['medium-device'].max,
   'large-device': breakpoints['large-device'].DEFAULT,
+  'large-device-min': breakpoints['large-device'].min,
+  'large-device-max': breakpoints['large-device'].max,
   desktop: breakpoints.desktop.DEFAULT,
+  'desktop-min': breakpoints.desktop.min,
+  'desktop-max': breakpoints.desktop.DEFAULT,
 };
 
 export const fontSizes = {
@@ -185,4 +195,37 @@ export const lineHeights = {
   base: '2.4rem',
   lg: '2.6rem',
   sm: '2.2rem',
+};
+
+export const radius = {
+  circular: {
+    DEFAULT: '1000000rem',
+    lg: '1000000rem',
+    md: '1000000rem',
+    sm: '1000000rem',
+  },
+  button: {
+    DEFAULT: spacing[12],
+    lg: spacing[12],
+    md: spacing[12],
+    sm: spacing[10],
+  },
+  cards: {
+    DEFAULT: spacing[20],
+    lg: spacing[20],
+    md: spacing[20],
+    sm: spacing[20],
+  },
+  utility: {
+    DEFAULT: spacing[8],
+    lg: spacing[8],
+    md: spacing[8],
+    sm: spacing[8],
+  },
+  groups: {
+    DEFAULT: spacing[16],
+    lg: spacing[16],
+    md: spacing[16],
+    sm: spacing[16],
+  },
 };

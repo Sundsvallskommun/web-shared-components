@@ -310,7 +310,7 @@ module.exports = Forms = (colors) => ({
   },
 
   '.form-select-list-transition': {
-    '@apply absolute z-50 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm':
+    '@apply absolute z-50 w-full bg-white shadow-lg max-h-60 rounded-utility py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm':
       {},
     '&.showabove': {
       '@apply mb-1 bottom-full': {},
