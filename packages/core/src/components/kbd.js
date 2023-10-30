@@ -4,6 +4,6 @@ module.exports = Kbd = () => ({
     minWidth: '1.25rem',
     '@apply bg-blackAlpha-100 text-body': {},
     // dark
-    '@apply dark:bg-white/30 dark:text-neutral-300': {},
+    // '@apply dark:bg-white/30 dark:text-neutral-300': {},
   },
 });

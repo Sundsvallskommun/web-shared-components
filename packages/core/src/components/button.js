@@ -5,10 +5,10 @@ function buttonSolid(colors) {
       '@apply font-semibold border border-gray-stroke': {},
       '@apply text-body bg-white': {},
       /* hover */
-      '@apply hover:text-white hover:bg-hover hover:border-primary-active': {},
+      '@apply hover:text-white hover:bg-hover hover:border-primary-surface-hover': {},
       /* keyboard active */
       '&.active': {
-        '@apply text-white bg-hover border-primary-active': {},
+        '@apply text-white bg-hover border-primary-surface-hover': {},
         /* dark */
         '@apply dark:border-hover dark:bg-neutral-600': {},
       },
@@ -36,13 +36,13 @@ function buttonSolid(colors) {
             //[`@apply border-${color}`]: {},
             [`@apply text-white bg-${color}`]: {},
             // hover
-            [`@apply hover:text-white hover:bg-${color}-active`]: {},
+            [`@apply hover:text-white hover:bg-${color}`]: {},
             // keyboard active
             '&.active': {
-              [`@apply text-white bg-${color}-active`]: {},
+              [`@apply text-white bg-${color}`]: {},
             },
 
-            [`@apply active:text-white active:bg-${color}-active`]: {},
+            [`@apply active:text-white active:bg-${color}`]: {},
             [`@apply focus-visible:ring-4 focus-visible:ring-black`]: {},
 
             // focus
@@ -67,9 +67,9 @@ function buttonSolid(colors) {
       ),
 
       "&[data-color='primary']": {
-        '@apply border-primary hover:border-primary-active': {},
+        '@apply border-primary hover:border-primary-surface-hover': {},
         '&.active': {
-          '@apply border-primary-active': {},
+          '@apply border-primary-surface-hover': {},
         },
       },
 
@@ -91,10 +91,10 @@ function buttonOutline(colors) {
       '@apply font-semibold border border-gray-stroke': {},
       '@apply text-body bg-transparent': {},
       /* hover */
-      '@apply hover:text-white hover:bg-primary-active hover:border-primary-active': {},
+      '@apply hover:text-white hover:bg-primary-surface-hover hover:border-primary-surface-hover': {},
       /* keyboard active */
       '&.active': {
-        '@apply text-white bg-primary-active border-primary-active': {},
+        '@apply text-white bg-primary-surface-hover border-primary-surface-hover': {},
         /* dark keyboard active */
         '@apply dark:border-neutral-300 dark:bg-neutral-700': {},
       },
@@ -121,10 +121,10 @@ function buttonOutline(colors) {
             [`@apply border-current`]: {},
             [`@apply text-${color}-600 bg-transparent`]: {},
             /* hover */
-            [`@apply hover:text-white hover:bg-${color}-active hover:border-${color}-active`]: {},
+            [`@apply hover:text-white hover:bg-${color} hover:border-${color}`]: {},
             /* keyboard active */
             '&.active': {
-              [`@apply text-white bg-${color}-active border-${color}-active`]: {},
+              [`@apply text-white bg-${color} border-${color}`]: {},
 
               /* dark keyboard active */
               [`@apply dark:bg-${color}-200`]: {},

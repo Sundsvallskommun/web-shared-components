@@ -1,6 +1,6 @@
 module.exports = {
   html: {
-    '@apply text-foreground antialiased bg-base': {},
+    '@apply text-base antialiased': {},
     fontSize: '62.5%',
     lineHeight: '1.5',
     textRendering: 'optimizeLegibility',

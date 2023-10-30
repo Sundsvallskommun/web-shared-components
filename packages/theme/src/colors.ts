@@ -1,139 +1,141 @@
 // https://github.com/tailwindlabs/tailwindcss/blob/master/colors.js
 
+import { toRGB } from '@sk-web-gui/utils';
+
 // let warned = false;
 
 /* Convert hex to rgba */
 // based on https://stackoverflow.com/a/21648508
-function hexToRgbA(hex: string, opacity: string) {
-  let c: any;
-  if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
-    c = hex.substring(1).split('');
-    if (c.length == 3) {
-      c = [c[0], c[0], c[1], c[1], c[2], c[2]];
-    }
-    c = '0x' + c.join('');
-    return 'rgba(' + [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(',') + `,${opacity})`;
-  }
-  throw new Error('Bad Hex');
-}
+// function hex`rgb(${ToRgbA(hex: string, opacity: string) {
+//   let c: any;
+//   if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
+//     c = hex.substring(1).split('');
+//     if (c.length == 3) {
+//       c = [c[0], c[0], c[1], c[1], c[2], c[2]];
+//     }
+//     c = '0x' + c.join('');
+//     return 'rgba(' + [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(')?.join(',')})`,') + `,${opacity})`;
+//   }
+//   throw new Error('Bad Hex');
+// }
 
 // /* Base colors */
 export const primitives = {
   // NEUTRALS
   gray: {
-    lightest: '#FFFFFF',
-    50: '#FAFAFA',
-    100: '#F0F0F0',
-    200: '#E5E5E5',
-    300: '#B7B7BA',
-    400: '#A2A2A8',
-    500: '#68686D',
-    600: '#51515C',
-    700: '#444450',
-    800: '#2F2F3C',
-    900: '#1C1C28',
-    darkest: '#1C1C28',
+    lightest: `rgb(${toRGB('#FFFFFF')?.join(',')})`,
+    50: `rgb(${toRGB('#FAFAFA')?.join(',')})`,
+    100: `rgb(${toRGB('#F0F0F0')?.join(',')})`,
+    200: `rgb(${toRGB('#E5E5E5')?.join(',')})`,
+    300: `rgb(${toRGB('#B7B7BA')?.join(',')})`,
+    400: `rgb(${toRGB('#A2A2A8')?.join(',')})`,
+    500: `rgb(${toRGB('#68686D')?.join(',')})`,
+    600: `rgb(${toRGB('#51515C')?.join(',')})`,
+    700: `rgb(${toRGB('#444450')?.join(',')})`,
+    800: `rgb(${toRGB('#2F2F3C')?.join(',')})`,
+    900: `rgb(${toRGB('#1C1C28')?.join(',')})`,
+    darkest: `rgb(${toRGB('#1C1C28')?.join(',')})`,
   },
 
   overlay: {
     darken: {
-      1: hexToRgbA('#1C1C28', '0.04'),
-      2: hexToRgbA('#1C1C28', '0.08'),
-      3: hexToRgbA('#1C1C28', '0.12'),
-      4: hexToRgbA('#1C1C28', '0.18'),
-      5: hexToRgbA('#1C1C28', '0.3'),
-      6: hexToRgbA('#1C1C28', '0.5'),
-      7: hexToRgbA('#1C1C28', '0.64'),
-      8: hexToRgbA('#1C1C28', '0.8'),
-      9: hexToRgbA('#1C1C28', '0.88'),
-      10: hexToRgbA('#1C1C28', '0.95'),
+      1: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.04)`,
+      2: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.08)`,
+      3: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.12)`,
+      4: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.18)`,
+      5: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.3)`,
+      6: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.5)`,
+      7: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.64)`,
+      8: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.8)`,
+      9: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.88)`,
+      10: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.95)`,
     },
     lighten: {
-      1: hexToRgbA('#FFFFFF', '0.04'),
-      2: hexToRgbA('#FFFFFF', '0.08'),
-      3: hexToRgbA('#FFFFFF', '0.12'),
-      4: hexToRgbA('#FFFFFF', '0.2'),
-      5: hexToRgbA('#FFFFFF', '0.3'),
-      6: hexToRgbA('#FFFFFF', '0.5'),
-      7: hexToRgbA('#FFFFFF', '0.64'),
-      8: hexToRgbA('#FFFFFF', '0.8'),
-      9: hexToRgbA('#FFFFFF', '0.88'),
-      10: hexToRgbA('#FFFFFF', '0.95'),
+      1: `rgba(${toRGB('#FFFFFF')?.join(',')}, 0.04)`,
+      2: `rgba(${toRGB('#FFFFFF')?.join(',')}, 0.08)`,
+      3: `rgba(${toRGB('#FFFFFF')?.join(',')}, 0.12)`,
+      4: `rgba(${toRGB('#FFFFFF')?.join(',')}, 0.2)`,
+      5: `rgba(${toRGB('#FFFFFF')?.join(',')}, 0.3)`,
+      6: `rgba(${toRGB('#FFFFFF')?.join(',')}, 0.5)`,
+      7: `rgba(${toRGB('#FFFFFF')?.join(',')}, 0.64)`,
+      8: `rgba(${toRGB('#FFFFFF')?.join(',')}, 0.8)`,
+      9: `rgba(${toRGB('#FFFFFF')?.join(',')}, 0.88)`,
+      10: `rgba(${toRGB('#FFFFFF')?.join(',')}, 0.95)`,
     },
   },
 
   //COLORS
   blue: {
-    50: '#F0F5F9',
-    100: '#E1ECF4',
-    200: '#CFE0EC',
-    300: '#B5CFE3',
-    400: '#73ACD6',
-    500: '#4293D1',
-    600: '#1472B8',
-    700: '#005595',
-    800: '#004C85',
-    900: '#004070',
+    50: `rgb(${toRGB('#F0F5F9')?.join(',')})`,
+    100: `rgb(${toRGB('#E1ECF4')?.join(',')})`,
+    200: `rgb(${toRGB('#CFE0EC')?.join(',')})`,
+    300: `rgb(${toRGB('#B5CFE3')?.join(',')})`,
+    400: `rgb(${toRGB('#73ACD6')?.join(',')})`,
+    500: `rgb(${toRGB('#4293D1')?.join(',')})`,
+    600: `rgb(${toRGB('#1472B8')?.join(',')})`,
+    700: `rgb(${toRGB('#005595')?.join(',')})`,
+    800: `rgb(${toRGB('#004C85')?.join(',')})`,
+    900: `rgb(${toRGB('#004070')?.join(',')})`,
   },
   green: {
-    50: '#F1F9F5',
-    100: '#E1EFE9',
-    200: '#C9E4D7',
-    300: '#AAD4BF',
-    400: '#65B88F',
-    500: '#16A25E',
-    600: '#12874E',
-    700: '#00733B',
-    800: '#00592D',
-    900: '#004222',
+    50: `rgb(${toRGB('#F1F9F5')?.join(',')})`,
+    100: `rgb(${toRGB('#E1EFE9')?.join(',')})`,
+    200: `rgb(${toRGB('#C9E4D7')?.join(',')})`,
+    300: `rgb(${toRGB('#AAD4BF')?.join(',')})`,
+    400: `rgb(${toRGB('#65B88F')?.join(',')})`,
+    500: `rgb(${toRGB('#16A25E')?.join(',')})`,
+    600: `rgb(${toRGB('#12874E')?.join(',')})`,
+    700: `rgb(${toRGB('#00733B')?.join(',')})`,
+    800: `rgb(${toRGB('#00592D')?.join(',')})`,
+    900: `rgb(${toRGB('#004222')?.join(',')})`,
   },
   purple: {
-    50: '#F6F1F9',
-    100: '#EFE8F3',
-    200: '#E4D8E9',
-    300: '#D6C4DE',
-    400: '#BA90CE',
-    500: '#8C42AE',
-    600: '#722796',
-    700: '#5B1F78',
-    800: '#4D1A65',
-    900: '#2E103D',
+    50: `rgb(${toRGB('#F6F1F9')?.join(',')})`,
+    100: `rgb(${toRGB('#EFE8F3')?.join(',')})`,
+    200: `rgb(${toRGB('#E4D8E9')?.join(',')})`,
+    300: `rgb(${toRGB('#D6C4DE')?.join(',')})`,
+    400: `rgb(${toRGB('#BA90CE')?.join(',')})`,
+    500: `rgb(${toRGB('#8C42AE')?.join(',')})`,
+    600: `rgb(${toRGB('#722796')?.join(',')})`,
+    700: `rgb(${toRGB('#5B1F78')?.join(',')})`,
+    800: `rgb(${toRGB('#4D1A65')?.join(',')})`,
+    900: `rgb(${toRGB('#2E103D')?.join(',')})`,
   },
   pink: {
-    50: '#FAEFF8',
-    100: '#F6E4F2',
-    200: '#F1D5EA',
-    300: '#E9BEE0',
-    400: '#DF83CD',
-    500: '#D558AE',
-    600: '#BF1D8C',
-    700: '#A90074',
-    800: '#8A005E',
-    900: '#6B004A',
+    50: `rgb(${toRGB('#FAEFF8')?.join(',')})`,
+    100: `rgb(${toRGB('#F6E4F2')?.join(',')})`,
+    200: `rgb(${toRGB('#F1D5EA')?.join(',')})`,
+    300: `rgb(${toRGB('#E9BEE0')?.join(',')})`,
+    400: `rgb(${toRGB('#DF83CD')?.join(',')})`,
+    500: `rgb(${toRGB('#D558AE')?.join(',')})`,
+    600: `rgb(${toRGB('#BF1D8C')?.join(',')})`,
+    700: `rgb(${toRGB('#A90074')?.join(',')})`,
+    800: `rgb(${toRGB('#8A005E')?.join(',')})`,
+    900: `rgb(${toRGB('#6B004A')?.join(',')})`,
   },
   orange: {
-    50: '#FFF5EB',
-    100: '#FFE7D1',
-    200: '#FFD3A8',
-    300: '#FFC68F',
-    400: '#FFA34D',
-    500: '#FF840F',
-    600: '#DB6900',
-    700: '#B94E18',
-    800: '#8C3B12',
-    900: '#5C2100',
+    50: `rgb(${toRGB('#FFF5EB')?.join(',')})`,
+    100: `rgb(${toRGB('#FFE7D1')?.join(',')})`,
+    200: `rgb(${toRGB('#FFD3A8')?.join(',')})`,
+    300: `rgb(${toRGB('#FFC68F')?.join(',')})`,
+    400: `rgb(${toRGB('#FFA34D')?.join(',')})`,
+    500: `rgb(${toRGB('#FF840F')?.join(',')})`,
+    600: `rgb(${toRGB('#DB6900')?.join(',')})`,
+    700: `rgb(${toRGB('#B94E18')?.join(',')})`,
+    800: `rgb(${toRGB('#8C3B12')?.join(',')})`,
+    900: `rgb(${toRGB('#5C2100')?.join(',')})`,
   },
   red: {
-    50: '#FFEBEB',
-    100: '#FEE2E2',
-    200: '#FCD4D4',
-    300: '#FBC1C1',
-    400: '#F78282',
-    500: '#F44E4E',
-    600: '#D62E2E',
-    700: '#B92424',
-    800: '#971A1A',
-    900: '#6D0303',
+    50: `rgb(${toRGB('#FFEBEB')?.join(',')})`,
+    100: `rgb(${toRGB('#FEE2E2')?.join(',')})`,
+    200: `rgb(${toRGB('#FCD4D4')?.join(',')})`,
+    300: `rgb(${toRGB('#FBC1C1')?.join(',')})`,
+    400: `rgb(${toRGB('#F78282')?.join(',')})`,
+    500: `rgb(${toRGB('#F44E4E')?.join(',')})`,
+    600: `rgb(${toRGB('#D62E2E')?.join(',')})`,
+    700: `rgb(${toRGB('#B92424')?.join(',')})`,
+    800: `rgb(${toRGB('#971A1A')?.join(',')})`,
+    900: `rgb(${toRGB('#6D0303')?.join(',')})`,
   },
 };
 
@@ -159,7 +161,7 @@ export const colors = {
       DEFAULT: primitives.gray[700],
       active: primitives.gray[700],
       outline: {
-        default: primitives.overlay.darken[5],
+        DEFAULT: primitives.overlay.darken[5],
         hover: primitives.overlay.darken[6],
       },
       surface: {

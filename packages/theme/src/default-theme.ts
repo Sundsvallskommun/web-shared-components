@@ -1,4 +1,5 @@
 import { colors } from './colors';
+import { fontSizes, lineHeights, spacing, screens } from './units';
 import { GuiTheme, ColorScheme } from './types';
 
 // light theme
@@ -43,4 +44,12 @@ export const defaultTheme: GuiTheme = {
     dark: darkScheme,
   },
   config: {},
+  fontSize: {
+    ...fontSizes,
+  },
+  lineHeight: {
+    ...lineHeights,
+  },
+  spacing,
+  screens,
 };

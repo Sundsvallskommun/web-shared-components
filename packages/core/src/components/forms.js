@@ -60,7 +60,7 @@ function formControl() {
       '@apply w-full relative': {},
     },
     '.form-helper-text': {
-      '@apply mt-1.5 leading-none text-gray dark:text-white/60': {},
+      '@apply mt-1.5 leading-none text-gray': {},
     },
     '.form-error-message': {
       '@apply mt-1.5 leading-none flex items-center text-sm text-error': {},
@@ -158,8 +158,8 @@ function formInputGroup() {
       '@apply flex items-center w-auto shadow-sm whitespace-nowrap': {},
       '@apply text-gray bg-neutral-50': {},
       // dark colors
-      '@apply dark:border-neutral-700': {},
-      '@apply dark:text-neutral-100 dark:bg-white/30': {},
+      // '@apply dark:border-neutral-700': {},
+      // '@apply dark:text-neutral-100 dark:bg-white/30': {},
 
       '&-sm': {
         '@apply px-3 text-xs': {},

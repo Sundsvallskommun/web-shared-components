@@ -1,7 +1,7 @@
 module.exports = Footer = (colors) => ({
   '.footer': {
     '&-innerwrapper': {
-      '@apply bg-gray text-white py-12': {},
+      '@apply bg-background-100 text-white py-12': {},
 
       ...colors.reduce(
         (styles, color) => ({
@@ -19,7 +19,7 @@ module.exports = Footer = (colors) => ({
     },
 
     '&-bottomlinks': {
-      '@apply bg-gray-middle text-body py-md': {},
+      '@apply  bg-background-100 text-body py-md': {},
 
       ...colors.reduce(
         (styles, color) => ({

@@ -1,6 +1,6 @@
 import { Dict, pick } from '@sk-web-gui/utils';
 
-const tokens = ['colors', 'cursor', 'rounded'] as const;
+const tokens = ['colors', 'cursor', 'rounded', 'fontSize', 'lineHeight', 'spacing', 'screens'] as const;
 
 export type ThemeScale = typeof tokens[number] | 'transition.duration' | 'transition.property' | 'transition.easing';
 

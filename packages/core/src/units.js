@@ -1,0 +1,148 @@
+module.exports = {
+  spacing: {
+    0: 'var(--sk-spacing-0)',
+    2: 'var(--sk-spacing-2)',
+    4: 'var(--sk-spacing-4)',
+    6: 'var(--sk-spacing-6)',
+    8: 'var(--sk-spacing-8)',
+    10: 'var(--sk-spacing-10)',
+    12: 'var(--sk-spacing-12)',
+    14: 'var(--sk-spacing-14)',
+    16: 'var(--sk-spacing-16)',
+    18: 'var(--sk-spacing-18)',
+    20: 'var(--sk-spacing-20)',
+    24: 'var(--sk-spacing-24)',
+    32: 'var(--sk-spacing-32)',
+    40: 'var(--sk-spacing-40)',
+    48: 'var(--sk-spacing-48)',
+    56: 'var(--sk-spacing-56)',
+    64: 'var(--sk-spacing-64)',
+    72: 'var(--sk-spacing-72)',
+    80: 'var(--sk-spacing-80)',
+  },
+
+  fontSizes: {
+    display: {
+      1: {
+        DEFAULT: 'var(--sk-fontSize-display-1-DEFAULT)',
+        lg: 'var(--sk-fontSize-display-1-lg)',
+        md: 'var(--sk-fontSize-display-1-md)',
+        sm: 'var(--sk-fontSize-display-1-sm)',
+      },
+      2: {
+        DEFAULT: 'var(--sk-fontSize-display-2-DEFAULT)',
+        lg: 'var(--sk-fontSize-display-2-lg)',
+        md: 'var(--sk-fontSize-display-2-md)',
+        sm: 'var(--sk-fontSize-display-2-sm)',
+      },
+      3: {
+        DEFAULT: 'var(--sk-fontSize-display-3-DEFAULT)',
+        lg: 'var(--sk-fontSize-display-3-lg)',
+        md: 'var(--sk-fontSize-display-3-md)',
+        sm: 'var(--sk-fontSize-display-3-sm)',
+      },
+    },
+    heading: {
+      1: {
+        DEFAULT: 'var(--sk-fontSize-heading-1-DEFAULT)',
+        lg: 'var(--sk-fontSize-heading-1-lg)',
+        md: 'var(--sk-fontSize-heading-1-md)',
+        sm: 'var(--sk-fontSize-heading-1-sm)',
+      },
+      2: {
+        DEFAULT: 'var(--sk-fontSize-heading-2-DEFAULT)',
+        lg: 'var(--sk-fontSize-heading-2-lg)',
+        md: 'var(--sk-fontSize-heading-2-md)',
+        sm: 'var(--sk-fontSize-heading-2-sm)',
+      },
+      3: {
+        DEFAULT: 'var(--sk-fontSize-heading-3-DEFAULT)',
+        lg: 'var(--sk-fontSize-heading-3-lg)',
+        md: 'var(--sk-fontSize-heading-3-md)',
+        sm: 'var(--sk-fontSize-heading-3-sm)',
+      },
+      4: {
+        DEFAULT: 'var(--sk-fontSize-heading-4-DEFAULT)',
+        lg: 'var(--sk-fontSize-heading-4-lg)',
+        md: 'var(--sk-fontSize-heading-4-md)',
+        sm: 'var(--sk-fontSize-heading-4-sm)',
+      },
+    },
+    label: {
+      lg: 'var(--sk-fontSize-label-lg)',
+      md: 'var(--sk-fontSize-label-md)',
+      sm: 'var(--sk-fontSize-label-sm)',
+    },
+    input: {
+      lg: 'var(--sk-fontSize-input-lg)',
+      md: 'var(--sk-fontSize-input-md)',
+      sm: 'var(--sk-fontSize-input-sm)',
+    },
+    lead: 'var(--sk-fontSize-lead)',
+    base: 'var(--sk-fontSize-base)',
+    lg: 'var(--sk-fontSize-lg)',
+    sm: 'var(--sk-fontSize-sm)',
+  },
+  lineHeights: {
+    display: {
+      1: {
+        DEFAULT: 'var(--sk-lineHeight-display-1-DEFAULT)',
+        lg: 'var(--sk-lineHeight-display-1-lg)',
+        md: 'var(--sk-lineHeight-display-1-md)',
+        sm: 'var(--sk-lineHeight-display-1-sm)',
+      },
+      2: {
+        DEFAULT: 'var(--sk-lineHeight-display-2-DEFAULT)',
+        lg: 'var(--sk-lineHeight-display-2-lg)',
+        md: 'var(--sk-lineHeight-display-2-md)',
+        sm: 'var(--sk-lineHeight-display-2-sm)',
+      },
+      3: {
+        DEFAULT: 'var(--sk-lineHeight-display-3-DEFAULT)',
+        lg: 'var(--sk-lineHeight-display-3-lg)',
+        md: 'var(--sk-lineHeight-display-3-md)',
+        sm: 'var(--sk-lineHeight-display-3-sm)',
+      },
+    },
+    heading: {
+      1: {
+        DEFAULT: 'var(--sk-lineHeight-heading-1-DEFAULT)',
+        lg: 'var(--sk-lineHeight-heading-1-lg)',
+        md: 'var(--sk-lineHeight-heading-1-md)',
+        sm: 'var(--sk-lineHeight-heading-1-sm)',
+      },
+      2: {
+        DEFAULT: 'var(--sk-lineHeight-heading-2-DEFAULT)',
+        lg: 'var(--sk-lineHeight-heading-2-lg)',
+        md: 'var(--sk-lineHeight-heading-2-md)',
+        sm: 'var(--sk-lineHeight-heading-2-sm)',
+      },
+      3: {
+        DEFAULT: 'var(--sk-lineHeight-heading-3-DEFAULT)',
+        lg: 'var(--sk-lineHeight-heading-3-lg)',
+        md: 'var(--sk-lineHeight-heading-3-md)',
+        sm: 'var(--sk-lineHeight-heading-3-sm)',
+      },
+      4: {
+        DEFAULT: 'var(--sk-lineHeight-heading-4-DEFAULT)',
+        lg: 'var(--sk-lineHeight-heading-4-lg)',
+        md: 'var(--sk-lineHeight-heading-4-md)',
+        sm: 'var(--sk-lineHeight-heading-4-sm)',
+      },
+    },
+    label: {
+      lg: 'var(--sk-lineHeight-label-lg)',
+      md: 'var(--sk-lineHeight-label-md)',
+      sm: 'var(--sk-lineHeight-label-sm)',
+    },
+    input: {
+      lg: 'var(--sk-lineHeight-input-lg)',
+      md: 'var(--sk-lineHeight-input-md)',
+      sm: 'var(--sk-lineHeight-input-sm)',
+    },
+    lead: 'var(--sk-lineHeight-lead)',
+    base: 'var(--sk-lineHeight-base)',
+    lg: 'var(--sk-lineHeight-lg)',
+    sm: 'var(--sk-lineHeight-sm)',
+  },
+};
