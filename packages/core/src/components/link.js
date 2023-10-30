@@ -4,10 +4,8 @@ module.exports = Link = () => ({
     '@apply text-primary dark:text-primary': {},
     '@apply focus-visible:ring-4 focus-visible:ring-primary': {},
 
-    '@apply hover:text-primary-active': {},
-
     '&.active': {
-      '@apply underline text-primary-active': {},
+      '@apply underline': {},
     },
     '&-external-icon': {
       fontSize: '0.875em !important',

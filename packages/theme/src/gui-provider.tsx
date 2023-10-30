@@ -1,13 +1,12 @@
-import { walkObject, omit, toRGB, deepmerge, WithCSSVar, Dict } from '@sk-web-gui/utils';
+import { Dict, WithCSSVar, deepmerge, omit } from '@sk-web-gui/utils';
 import * as React from 'react';
 import { createContext, useContext, useMemo } from 'react';
-import set from 'lodash.set';
 
-import { defaultTheme } from './default-theme';
 import { toCSSVar } from './create-theme-vars';
+import { defaultTheme } from './default-theme';
+import { GuiTheme, GuiThemeOverride } from './types';
 import { useSafeEffect } from './use-safe-effect';
 import { isBrowser } from './utils';
-import { GuiTheme, GuiThemeOverride } from './types';
 
 // interface DictGuiTheme extends Dict {}
 
@@ -26,29 +25,21 @@ export interface GuiProviderProps {
   colorScheme?: string;
 }
 
-export function GuiProvider({ theme = defaultTheme, colorScheme = 'light', children }: GuiProviderProps) {
+export function GuiProvider({ theme = defaultTheme, colorScheme = 'dark', children }: GuiProviderProps) {
   const computedTheme = useMemo(() => {
     const omittedTheme = omit(theme, ['colorSchemes']);
-     const { colors, type } = theme.colorSchemes[colorScheme] || {};
+    const { colors, type } = theme.colorSchemes[colorScheme] || {};
     if (isBrowser) {
       if (type === 'dark') document.documentElement.classList.add('dark');
       else document.documentElement.classList.remove('dark');
     }
 
-    // walkObject(colors, (value, path) => {
-    //   if (typeof value !== 'string') return;
-    //   const rgb = toRGB(value);
-    //   if (rgb) set(colors, path, rgb.join(','));
-    // });
-
     const normalizedTheme = {
       ...omittedTheme,
-     colors,
+      colors,
     };
 
-    console.log(normalizedTheme);
-
-     return toCSSVar(normalizedTheme);
+    return toCSSVar(normalizedTheme);
   }, [theme, colorScheme]);
 
   useSafeEffect(() => {

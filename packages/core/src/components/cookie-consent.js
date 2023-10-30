@@ -3,7 +3,7 @@ module.exports = CookieConsent = () => ({
     '@apply min-w-full fixed flex justify-center z-10 bottom-0 left-0 right-0 bg-white': {},
 
     '&-close-btn': {
-      '@apply cursor-pointer hover:text-primary-active absolute right-8 top-6 border border-transparent focus-visible:border-black flex self-center':
+      '@apply cursor-pointer hover:text-dark-secondary absolute right-8 top-6 border border-transparent focus-visible:border-black flex self-center':
         {},
 
       '&-icon': {

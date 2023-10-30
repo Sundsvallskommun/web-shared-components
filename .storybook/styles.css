@@ -29,6 +29,7 @@ pre.prismjs .tag {
 
 .docs-preview {
   all: initial !important;
+  @apply bg-background;
 }
 
 .docs-preview-canvas {

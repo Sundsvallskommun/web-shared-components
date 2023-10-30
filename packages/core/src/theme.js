@@ -1,74 +1,73 @@
-const { colors } = require('@sk-web-gui/theme');
-const withOpacity = require('./with-opacity');
+import withOpacity from './with-opacity';
+import colors from './colors';
+import units from './units';
+import { screens } from '@sk-web-gui/theme';
 
 module.exports = {
   fontSize: {
+    ...units.fontSizes,
     tiny: '1rem',
     xs: '1.2rem',
-    sm: '1.4rem',
-    base: '1.6rem',
-    lg: '1.8rem',
-    xl: '2.0rem',
-    '2xl': '2.4rem',
-    '3xl': '3.2rem',
-    '4xl': '4.0rem',
-    '5xl': '5.2rem',
+    xl: units.fontSizes.heading[4],
+    '2xl': units.fontSizes.heading[3],
+    '3xl': units.fontSizes.heading[2],
+    '4xl': units.fontSizes.heading[1],
+    '5xl': units.fontSizes.display[3],
   },
+  screens,
   extend: {
     colors: {
-      ...colors.lightmode,
+      ...colors,
       current: 'currentColor',
-      gray: { 
-        DEFAULT: colors.lightmode.primitives.gray[600], 
-        stroke:  colors.lightmode.divider, 
-        middle: colors.lightmode.primitives.gray[600], 
-        light: colors.lightmode.primitives.gray[300], 
-        lighter: colors.lightmode.primitives.gray[200], 
-        ...colors.lightmode.primitives.gray
+      gray: {
+        DEFAULT: colors.primitives.gray[600],
+        stroke: colors.divider,
+        middle: colors.primitives.gray[600],
+        light: colors.primitives.gray[300],
+        lighter: colors.primitives.gray[200],
+        ...colors.primitives.gray,
       },
-      hover: colors.lightmode.primitives.gray[600],
+      hover: colors.primitives.gray[600],
       background: {
-        ...colors.lightmode.background,
-        one: colors.lightmode.background[100],
-        two: colors.lightmode.background[200],
+        ...colors.background,
+        one: colors.background[100],
+        two: colors.background[200],
       },
-
     },
     cursor: {
-      base: 'var(--vc-cursor)',
+      base: 'var(--tw-cursor)',
     },
     spacing: {
-      xs: '4px',
-      sm: '8px',
-      md: '16px',
-      lg: '24px',
-      xl: '48px',
+      ...units.spacing,
+      xs: units.spacing[4],
+      sm: units.spacing[8],
+      md: units.spacing[16],
+      lg: units.spacing[24],
+      xl: units.spacing[48],
     },
+
     lineHeight: {
-      tiny: '1.4rem',
+      ...units.lineHeights,
       xs: '1.6rem',
-      sm: '2rem',
-      base: '2.4rem',
-      lg: '2.4rem',
-      xl: '3.2rem',
-      '2xl': '3.2rem',
-      '3xl': '4rem',
-      '4xl': '4.8rem',
-      '5xl': '5.8rem',
+      xl: units.lineHeights.heading[4],
+      '2xl': units.lineHeights.heading[3],
+      '3xl': units.lineHeights.heading[2],
+      '4xl': units.lineHeights.heading[1],
+      '5xl': units.lineHeights.display[3],
     },
     opacity: {
       15: '0.15',
     },
     backgroundColor: {
-      base: withOpacity('--vc-colors-bg-base'),
-      fill: withOpacity('--vc-colors-bg-fill'),
+      base: withOpacity('--sk-colors-primary-surface'),
+      fill: withOpacity('--sk-colors-bg-fill'),
     },
     textColor: {
-      foreground: withOpacity('--vc-colors-text-foreground'),
-      muted: withOpacity('--vc-colors-text-muted'),
+      foreground: withOpacity('--sk-colors-primary-DEFAULT'),
+      muted: withOpacity('--sk-colors-xt-muted'),
     },
     borderRadius: {
-      base: 'var(--vc-rounded)',
+      base: 'var(--sk-rounded)',
     },
     zIndex: {
       hide: -1,

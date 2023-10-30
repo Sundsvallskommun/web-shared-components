@@ -19,8 +19,8 @@ export interface ColorHues {
   darkest?: string;
 }
 
-export interface Color {
-  [key: string]: 'string' | Color;
+export interface ThemeOption {
+  [key: string | number]: string | ThemeOption;
 }
 
 export type Colors = RecursiveObject<Record<string, Partial<ColorHues>> | string>;
@@ -37,9 +37,9 @@ export interface ColorScheme {
       muted: string;
     };
     severity?: {
-      error: Color;
-      warning: Color;
-      info: Color;
+      error: ThemeOption;
+      warning: ThemeOption;
+      info: ThemeOption;
     };
   } & Colors;
 }
@@ -47,6 +47,10 @@ export interface GuiTheme {
   readonly cursor: 'default' | 'pointer';
   readonly rounded: string;
   readonly colorSchemes: Record<string, ColorScheme>;
+  readonly fontSize: ThemeOption;
+  readonly lineHeight: ThemeOption;
+  readonly spacing: ThemeOption;
+  readonly screens: ThemeOption;
   readonly config: Record<string, unknown>;
 }
 
