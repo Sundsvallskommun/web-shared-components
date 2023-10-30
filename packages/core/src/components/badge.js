@@ -89,11 +89,11 @@ module.exports = badge = (colors) => ({
 
     //rounding
     '&-roundedcorners-md': {
-      '@apply rounded-3xl px-sm': {},
+      '@apply rounded-full px-sm': {},
     },
 
     '&-roundedcorners-lg': {
-      '@apply rounded-3xl px-sm': {},
+      '@apply rounded-full px-sm': {},
     },
 
     // sizing

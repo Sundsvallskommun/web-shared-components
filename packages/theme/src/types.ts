@@ -51,6 +51,7 @@ export interface GuiTheme {
   readonly lineHeight: ThemeOption;
   readonly spacing: ThemeOption;
   readonly screens: ThemeOption;
+  readonly radius: ThemeOption;
   readonly config: Record<string, unknown>;
 }
 

@@ -78,7 +78,7 @@ const withGui = (StoryFn: Function) => {
   );
 
   return (
-    <GuiProvider colorScheme={colorScheme} theme={theme}>
+    <GuiProvider theme={theme}>
       <div id="story-wrapper">
         <StoryFn />
       </div>

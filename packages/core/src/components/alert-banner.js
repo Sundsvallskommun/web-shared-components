@@ -24,7 +24,6 @@ module.exports = Modal = () => ({
   },
 
   '.tab': {
-    '@apply mr-[10px] bg-white pt-4 pb-3 px-4 rounded-b-3xl shadow-[rgba(0,_0,_0,_0.24)_0px_1.5px_4px]': {},
+    '@apply mr-[10px] bg-white pt-4 pb-3 px-4 rounded-b-button shadow-[rgba(0,_0,_0,_0.24)_0px_1.5px_4px]': {},
   },
-  
 });

@@ -15,6 +15,10 @@ module.exports = {
     '5xl': units.fontSizes.display[3],
   },
   screens,
+  borderRadius: {
+    ...units.radius,
+    base: 'var(--sk-spacing-0)',
+  },
   extend: {
     colors: {
       ...colors,
@@ -45,7 +49,10 @@ module.exports = {
       lg: units.spacing[24],
       xl: units.spacing[48],
     },
-
+    borderRadius: {
+      ...units.radius,
+      base: 'var(--sk-spacing-0)',
+    },
     lineHeight: {
       ...units.lineHeights,
       xs: '1.6rem',
@@ -66,9 +73,7 @@ module.exports = {
       foreground: withOpacity('--sk-colors-primary-DEFAULT'),
       muted: withOpacity('--sk-colors-xt-muted'),
     },
-    borderRadius: {
-      base: 'var(--sk-rounded)',
-    },
+
     zIndex: {
       hide: -1,
       none: 0,

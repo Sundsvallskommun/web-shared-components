@@ -13,6 +13,7 @@ import { isBrowser } from './utils';
 export const GuiContext = createContext<
   | {
       theme: WithCSSVar<Dict>;
+      preferredColorScheme: 'light' | 'dark';
     }
   | undefined
 >(undefined);
@@ -25,7 +26,12 @@ export interface GuiProviderProps {
   colorScheme?: string;
 }
 
-export function GuiProvider({ theme = defaultTheme, colorScheme = 'dark', children }: GuiProviderProps) {
+export function GuiProvider({ theme = defaultTheme, colorScheme: _colorScheme, children }: GuiProviderProps) {
+  const preferredColorScheme: 'light' | 'dark' = window.matchMedia('(prefers-color-scheme: dark)').matches
+    ? 'dark'
+    : 'light';
+  const colorScheme = _colorScheme || preferredColorScheme;
+
   const computedTheme = useMemo(() => {
     const omittedTheme = omit(theme, ['colorSchemes']);
     const { colors, type } = theme.colorSchemes[colorScheme] || {};
@@ -49,8 +55,9 @@ export function GuiProvider({ theme = defaultTheme, colorScheme = 'dark', childr
   const value = useMemo(
     () => ({
       theme: computedTheme,
+      preferredColorScheme,
     }),
-    [computedTheme]
+    [computedTheme, preferredColorScheme]
   );
 
   return <GuiContext.Provider value={value}>{children}</GuiContext.Provider>;

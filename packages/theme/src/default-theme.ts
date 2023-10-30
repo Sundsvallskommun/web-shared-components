@@ -1,5 +1,5 @@
 import { colors } from './colors';
-import { fontSizes, lineHeights, spacing, screens } from './units';
+import { fontSizes, lineHeights, spacing, screens, radius } from './units';
 import { GuiTheme, ColorScheme } from './types';
 
 // light theme
@@ -52,4 +52,5 @@ export const defaultTheme: GuiTheme = {
   },
   spacing,
   screens,
+  radius,
 };
