@@ -8,9 +8,8 @@ function alertSubtle(colors) {
         (styles, color) => ({
           ...styles,
           [`&[data-color="${color}"]`]: {
-            [`@apply bg-${color}-50 border-${color}-500`]: {},
+            [`@apply bg-${color}-background-100 border-${color}-surface-primary`]: {},
 
-            [`@apply dark:text-${color}-300 dark:bg-${color}-500`]: {},
             '@apply dark:bg-opacity-15': {},
             '@apply dark:border-opacity-40': {},
           },
@@ -31,10 +30,7 @@ function alertSolid(colors) {
         (styles, color) => ({
           ...styles,
           [`&[data-color="${color}"]`]: {
-            [`@apply bg-${color}-500 border-${color}-700 border-opacity-20`]: {},
-
-            [`@apply dark:bg-${color}-600 dark:border-${color}-500`]: {},
-            '@apply dark:border-opacity-40': {},
+            [`@apply bg-${color}-surface-primary border-${color}-surface-primary border-opacity-20`]: {},
           },
         }),
         {}
@@ -53,9 +49,7 @@ function alertLeftAccent(colors) {
         (styles, color) => ({
           ...styles,
           [`&[data-color="${color}"]`]: {
-            [`@apply bg-transparent border-${color}-500`]: {},
-
-            [`@apply dark:text-${color}-300`]: {},
+            [`@apply bg-transparent border-${color}-surface-primary`]: {},
           },
         }),
         {}
@@ -73,9 +67,7 @@ function alertCloseButton(colors) {
       ...colors.reduce(
         (styles, color) => ({
           ...styles,
-          [`&[data-color="${color}"]`]: {
-            [`@apply dark:text-${color}-300 dark:hover:text-${color}-400`]: {},
-          },
+          [`&[data-color="${color}"]`]: {},
         }),
         {}
       ),

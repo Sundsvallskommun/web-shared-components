@@ -119,6 +119,7 @@ module.exports = {
   body: { DEFAULT: `var(--sk-colors-body-DEFAULT)` },
   black: `var(--sk-colors-black)`,
   white: `var(--sk-colors-white)`,
+  ring: `var(--sk-colors-ring)`,
   primary: {
     DEFAULT: `var(--sk-colors-primary-DEFAULT)`,
     surface: {
@@ -375,6 +376,270 @@ module.exports = {
       DEFAULT: `var(--sk-colors-success-text-DEFAULT)`,
       primary: `var(--sk-colors-success-text-primary)`,
       secondary: `var(--sk-colors-success-text-secondary)`,
+    },
+  },
+  inverted: {
+    body: { DEFAULT: `var(--sk-colors-inverted-body-DEFAULT)` },
+    black: `var(--sk-colors-inverted-black)`,
+    white: `var(--sk-colors-inverted-white)`,
+    ring: `var(--sk-colors-inverted-ring)`,
+    primary: {
+      DEFAULT: `var(--sk-colors-inverted-primary-DEFAULT)`,
+      surface: {
+        DEFAULT: `var(--sk-colors-inverted-primary-surface-DEFAULT)`,
+        hover: `var(--sk-colors-inverted-primary-surface-hover)`,
+        disabled: `var(--sk-colors-inverted-primary-surface-disabled)`,
+      },
+      lightest: `var(--sk-colors-inverted-primary-lightest)`,
+      50: `var(--sk-colors-inverted-primary-50)`,
+      100: `var(--sk-colors-inverted-primary-100)`,
+      200: `var(--sk-colors-inverted-primary-200)`,
+      300: `var(--sk-colors-inverted-primary-300)`,
+      400: `var(--sk-colors-inverted-primary-400)`,
+      500: `var(--sk-colors-inverted-primary-500)`,
+      600: `var(--sk-colors-inverted-primary-600)`,
+      700: `var(--sk-colors-inverted-primary-700)`,
+      800: `var(--sk-colors-inverted-primary-800)`,
+      900: `var(--sk-colors-inverted-primary-900)`,
+      darkest: `var(--sk-colors-inverted-primary-darkest)`,
+    },
+    secondary: {
+      DEFAULT: `var(--sk-colors-inverted-secondary-DEFAULT)`,
+      outline: {
+        DEFAULT: `var(--sk-colors-inverted-secondary-outline-DEFAULT)`,
+        hover: `var(--sk-colors-inverted-secondary-outline-hover)`,
+      },
+      surface: {
+        DEFAULT: `var(--sk-colors-inverted-secondary-surface-DEFAULT)`,
+        hover: `var(--sk-colors-inverted-secondary-surface-hover)`,
+        disabled: `var(--sk-colors-inverted-secondary-surface-disabled)`,
+      },
+      lightest: `var(--sk-colors-inverted-secondary-lightest)`,
+      50: `var(--sk-colors-inverted-secondary-50)`,
+      100: `var(--sk-colors-inverted-secondary-100)`,
+      200: `var(--sk-colors-inverted-secondary-200)`,
+      300: `var(--sk-colors-inverted-secondary-300)`,
+      400: `var(--sk-colors-inverted-secondary-400)`,
+      500: `var(--sk-colors-inverted-secondary-500)`,
+      600: `var(--sk-colors-inverted-secondary-600)`,
+      700: `var(--sk-colors-inverted-secondary-700)`,
+      800: `var(--sk-colors-inverted-secondary-800)`,
+      900: `var(--sk-colors-inverted-secondary-900)`,
+      darkest: `var(--sk-colors-inverted-secondary-darkest)`,
+    },
+    tertiary: {
+      surface: {
+        DEFAULT: `var(--sk-colors-inverted-tertiary-surface-DEFAULT)`,
+        hover: `var(--sk-colors-inverted-tertiary-surface-hover)`,
+        disabled: `var(--sk-colors-inverted-tertiary-surface-disabled)`,
+      },
+    },
+    dark: {
+      DEFAULT: `var(--sk-colors-inverted-dark-DEFAULT)`,
+      primary: `var(--sk-colors-inverted-dark-primary)`,
+      secondary: `var(--sk-colors-inverted-dark-secondary)`,
+      disabled: `var(--sk-colors-inverted-dark-disabled)`,
+      placeholder: `var(--sk-colors-inverted-dark-placeholder)`,
+      ghost: `var(--sk-colors-inverted-dark-ghost)`,
+    },
+    light: {
+      DEFAULT: `var(--sk-colors-inverted-light-DEFAULT)`,
+      primary: `var(--sk-colors-inverted-light-primary)`,
+      secondary: `var(--sk-colors-inverted-light-secondary)`,
+      disabled: `var(--sk-colors-inverted-light-disabled)`,
+      placeholder: `var(--sk-colors-inverted-light-placeholder)`,
+      ghost: `var(--sk-colors-inverted-light-ghost)`,
+    },
+    divider: `var(--sk-colors-inverted-divider)`,
+    background: {
+      DEFAULT: `var(--sk-colors-inverted-backgrouhnd-DEFUALT)`,
+      content: `var(--sk-colors-inverted-background-content)`,
+      100: `var(--sk-colors-inverted-background-100)`,
+      200: `var(--sk-colors-inverted-background-200)`,
+      'color-mixin': {
+        1: `var(--sk-colors-inverted-background-color-mixin-1)`,
+        2: `var(--sk-colors-inverted-background-color-mixin-2)`,
+      },
+    },
+    vattjom: {
+      background: {
+        100: `var(--sk-colors-inverted-vattjom-background-100)`,
+        200: `var(--sk-colors-inverted-vattjom-background-200)`,
+        300: `var(--sk-colors-inverted-vattjom-background-300)`,
+      },
+      surface: {
+        primary: {
+          DEFAULT: `var(--sk-colors-inverted-vattjom-surface-primary-DEFAULT)`,
+          hover: `var(--sk-colors-inverted-vattjom-surface-primary-hover)`,
+        },
+        accent: {
+          DEFAULT: `var(--sk-colors-inverted-vattjom-surface-accent-DEFAULT)`,
+          hover: `var(--sk-colors-inverted-vattjom-surface-accent-hover)`,
+        },
+      },
+      text: {
+        DEFAULT: `var(--sk-colors-inverted-vattjom-text-DEFAULT)`,
+        primary: `var(--sk-colors-inverted-vattjom-text-primary)`,
+        secondary: `var(--sk-colors-inverted-vattjom-text-secondary)`,
+      },
+    },
+    gronsta: {
+      background: {
+        100: `var(--sk-colors-inverted-gronsta-background-100)`,
+        200: `var(--sk-colors-inverted-gronsta-background-200)`,
+        300: `var(--sk-colors-inverted-gronsta-background-300)`,
+      },
+      surface: {
+        primary: {
+          DEFAULT: `var(--sk-colors-inverted-gronsta-surface-primary-DEFAULT)`,
+          hover: `var(--sk-colors-inverted-gronsta-surface-primary-hover)`,
+        },
+        accent: {
+          DEFAULT: `var(--sk-colors-inverted-gronsta-surface-accent-DEFAULT)`,
+          hover: `var(--sk-colors-inverted-gronsta-surface-accent-hover)`,
+        },
+      },
+      text: {
+        DEFAULT: `var(--sk-colors-inverted-gronsta-text-DEFAULT)`,
+        primary: `var(--sk-colors-inverted-gronsta-text-primary)`,
+        secondary: `var(--sk-colors-inverted-gronsta-text-secondary)`,
+      },
+    },
+    juniskar: {
+      background: {
+        100: `var(--sk-colors-inverted-juniskar-background-100)`,
+        200: `var(--sk-colors-inverted-juniskar-background-200)`,
+        300: `var(--sk-colors-inverted-juniskar-background-300)`,
+      },
+      surface: {
+        primary: {
+          DEFAULT: `var(--sk-colors-inverted-juniskar-surface-primary-DEFAULT)`,
+          hover: `var(--sk-colors-inverted-juniskar-surface-primary-hover)`,
+        },
+        accent: {
+          DEFAULT: `var(--sk-colors-inverted-juniskar-surface-accent-DEFAULT)`,
+          hover: `var(--sk-colors-inverted-juniskar-surface-accent-hover)`,
+        },
+      },
+      text: {
+        DEFAULT: `var(--sk-colors-inverted-juniskar-text-DEFAULT)`,
+        primary: `var(--sk-colors-inverted-juniskar-text-primary)`,
+        secondary: `var(--sk-colors-inverted-juniskar-text-secondary)`,
+      },
+    },
+    bjornstigen: {
+      background: {
+        100: `var(--sk-colors-inverted-bjornstigen-background-100)`,
+        200: `var(--sk-colors-inverted-bjornstigen-background-200)`,
+        300: `var(--sk-colors-inverted-bjornstigen-background-300)`,
+      },
+      surface: {
+        primary: {
+          DEFAULT: `var(--sk-colors-inverted-bjornstigen-surface-primary-DEFAULT)`,
+          hover: `var(--sk-colors-inverted-bjornstigen-surface-primary-hover)`,
+        },
+        accent: {
+          DEFAULT: `var(--sk-colors-inverted-bjornstigen-surface-accent-DEFAULT)`,
+          hover: `var(--sk-colors-inverted-bjornstigen-surface-accent-hover)`,
+        },
+      },
+      text: {
+        DEFAULT: `var(--sk-colors-inverted-bjornstigen-text-DEFAULT)`,
+        primary: `var(--sk-colors-inverted-bjornstigen-text-primary)`,
+        secondary: `var(--sk-colors-inverted-bjornstigen-text-secondary)`,
+      },
+    },
+    error: {
+      DEFAULT: `var(--sk-colors-inverted-error-DEFAULT)`,
+      background: {
+        100: `var(--sk-colors-inverted-error-background-100)`,
+        200: `var(--sk-colors-inverted-error-background-200)`,
+        300: `var(--sk-colors-inverted-error-background-300)`,
+      },
+      surface: {
+        primary: {
+          DEFAULT: `var(--sk-colors-inverted-error-surface-primary-DEFAULT)`,
+          hover: `var(--sk-colors-inverted-error-surface-primary-hover)`,
+        },
+        accent: {
+          DEFAULT: `var(--sk-colors-inverted-error-surface-accent-DEFAULT)`,
+          hover: `var(--sk-colors-inverted-error-surface-accent-hover)`,
+        },
+      },
+      text: {
+        DEFAULT: `var(--sk-colors-inverted-error-text-DEFAULT)`,
+        primary: `var(--sk-colors-inverted-error-text-primary)`,
+        secondary: `var(--sk-colors-inverted-error-text-secondary)`,
+      },
+    },
+    warning: {
+      DEFAULT: `var(--sk-colors-inverted-warning-DEFAULT)`,
+      background: {
+        100: `var(--sk-colors-inverted-warning-background-100)`,
+        200: `var(--sk-colors-inverted-warning-background-200)`,
+        300: `var(--sk-colors-inverted-warning-background-300)`,
+      },
+      surface: {
+        primary: {
+          DEFAULT: `var(--sk-colors-inverted-warning-surface-primary-DEFAULT)`,
+          hover: `var(--sk-colors-inverted-warning-surface-primary-hover)`,
+        },
+        accent: {
+          DEFAULT: `var(--sk-colors-inverted-warning-surface-accent-DEFAULT)`,
+          hover: `var(--sk-colors-inverted-warning-surface-accent-hover)`,
+        },
+      },
+      text: {
+        DEFAULT: `var(--sk-colors-inverted-warning-text-DEFAULT)`,
+        primary: `var(--sk-colors-inverted-warning-text-primary)`,
+        secondary: `var(--sk-colors-inverted-warning-text-secondary)`,
+      },
+    },
+    info: {
+      DEFAULT: `var(--sk-colors-inverted-info-DEFAULT)`,
+      background: {
+        100: `var(--sk-colors-inverted-info-background-100)`,
+        200: `var(--sk-colors-inverted-info-background-200)`,
+        300: `var(--sk-colors-inverted-info-background-300)`,
+      },
+      surface: {
+        primary: {
+          DEFAULT: `var(--sk-colors-inverted-info-surface-primary-DEFAULT)`,
+          hover: `var(--sk-colors-inverted-info-surface-primary-hover)`,
+        },
+        accent: {
+          DEFAULT: `var(--sk-colors-inverted-info-surface-accent-DEFAULT)`,
+          hover: `var(--sk-colors-inverted-info-surface-accent-hover)`,
+        },
+      },
+      text: {
+        DEFAULT: `var(--sk-colors-inverted-info-text-DEFAULT)`,
+        primary: `var(--sk-colors-inverted-info-text-primary)`,
+        secondary: `var(--sk-colors-inverted-info-text-secondary)`,
+      },
+    },
+    success: {
+      DEFAULT: `var(--sk-colors-inverted-success-DEFAULT)`,
+      background: {
+        100: `var(--sk-colors-inverted-success-background-100)`,
+        200: `var(--sk-colors-inverted-success-background-200)`,
+        300: `var(--sk-colors-inverted-success-background-300)`,
+      },
+      surface: {
+        primary: {
+          DEFAULT: `var(--sk-colors-inverted-success-surface-primary-DEFAULT)`,
+          hover: `var(--sk-colors-inverted-success-surface-primary-hover)`,
+        },
+        accent: {
+          DEFAULT: `var(--sk-colors-inverted-success-surface-accent-DEFAULT)`,
+          hover: `var(--sk-colors-inverted-success-surface-accent-hover)`,
+        },
+      },
+      text: {
+        DEFAULT: `var(--sk-colors-inverted-success-text-DEFAULT)`,
+        primary: `var(--sk-colors-inverted-success-text-primary)`,
+        secondary: `var(--sk-colors-inverted-success-text-secondary)`,
+      },
     },
   },
 };

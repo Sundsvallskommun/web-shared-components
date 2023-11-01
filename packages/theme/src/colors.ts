@@ -2,23 +2,6 @@
 
 import { toRGB } from '@sk-web-gui/utils';
 
-// let warned = false;
-
-/* Convert hex to rgba */
-// based on https://stackoverflow.com/a/21648508
-// function hex`rgb(${ToRgbA(hex: string, opacity: string) {
-//   let c: any;
-//   if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
-//     c = hex.substring(1).split('');
-//     if (c.length == 3) {
-//       c = [c[0], c[0], c[1], c[1], c[2], c[2]];
-//     }
-//     c = '0x' + c.join('');
-//     return 'rgba(' + [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(')?.join(',')})`,') + `,${opacity})`;
-//   }
-//   throw new Error('Bad Hex');
-// }
-
 // /* Base colors */
 export const primitives = {
   // NEUTRALS
@@ -137,497 +120,508 @@ export const primitives = {
     800: `rgb(${toRGB('#971A1A')?.join(',')})`,
     900: `rgb(${toRGB('#6D0303')?.join(',')})`,
   },
+  ring: `rgb(${toRGB('#0C8CED')?.join(',')})`,
+};
+
+const lightmode = {
+  body: { DEFAULT: primitives.gray[900] },
+  black: primitives.gray[900],
+  white: primitives.gray.lightest,
+  ring: primitives.ring,
+  primary: {
+    DEFAULT: primitives.gray[900],
+    active: primitives.gray[900],
+    surface: {
+      DEFAULT: primitives.overlay.darken[9],
+      hover: primitives.overlay.darken[10],
+      disabled: primitives.overlay.darken[3],
+    },
+    ...primitives.gray,
+  },
+  secondary: {
+    DEFAULT: primitives.gray[700],
+    active: primitives.gray[700],
+    outline: {
+      DEFAULT: primitives.overlay.darken[5],
+      hover: primitives.overlay.darken[6],
+    },
+    surface: {
+      DEFAULT: 'transparent',
+      hover: primitives.overlay.lighten[3],
+      disabled: primitives.overlay.darken[2],
+    },
+    ...primitives.gray,
+  },
+  tertiary: {
+    surface: {
+      DEFAULT: primitives.overlay.darken[2],
+      hover: primitives.overlay.darken[3],
+      disabled: primitives.overlay.darken[2],
+    },
+  },
+  dark: {
+    DEFAULT: primitives.gray[900],
+    primary: primitives.gray[900],
+    secondary: primitives.gray[700],
+    disabled: primitives.overlay.darken[6],
+    placeholder: primitives.overlay.darken[6],
+    ghost: primitives.overlay.darken[4],
+  },
+  light: {
+    DEFAULT: primitives.gray.lightest,
+    primary: primitives.gray.lightest,
+    secondary: primitives.overlay.lighten[9],
+    disabled: primitives.overlay.lighten[6],
+    placeholder: primitives.overlay.lighten[5],
+    ghost: primitives.overlay.lighten[4],
+  },
+  divider: primitives.overlay.darken[5],
+  background: {
+    DEFAULT: primitives.gray.lightest,
+    content: primitives.gray.lightest,
+    100: primitives.gray[50],
+    200: primitives.gray[100],
+    'color-mixin': {
+      1: primitives.overlay.darken[1],
+      2: primitives.overlay.darken[3],
+    },
+  },
+  vattjom: {
+    background: {
+      100: primitives.blue[50],
+      200: primitives.blue[100],
+      300: primitives.blue[300],
+    },
+    surface: {
+      primary: {
+        DEFAULT: primitives.blue[700],
+        hover: primitives.blue[800],
+      },
+      accent: {
+        DEFAULT: primitives.blue[200],
+        hover: primitives.blue[100],
+      },
+    },
+    text: {
+      DEFAULT: primitives.blue[800],
+      primary: primitives.blue[800],
+      secondary: primitives.blue[100],
+    },
+  },
+  gronsta: {
+    background: {
+      100: primitives.green[50],
+      200: primitives.green[200],
+      300: primitives.green[300],
+    },
+    surface: {
+      primary: {
+        DEFAULT: primitives.green[700],
+        hover: primitives.green[800],
+      },
+      accent: {
+        DEFAULT: primitives.green[200],
+        hover: primitives.green[100],
+      },
+    },
+    text: {
+      DEFAULT: primitives.green[800],
+      primary: primitives.green[800],
+      secondary: primitives.green[100],
+    },
+  },
+  juniskar: {
+    background: {
+      100: primitives.pink[50],
+      200: primitives.pink[100],
+      300: primitives.pink[300],
+    },
+    surface: {
+      primary: {
+        DEFAULT: primitives.pink[700],
+        hover: primitives.pink[800],
+      },
+      accent: {
+        DEFAULT: primitives.pink[200],
+        hover: primitives.pink[100],
+      },
+    },
+    text: {
+      DEFAULT: primitives.pink[800],
+      primary: primitives.pink[800],
+      secondary: primitives.pink[100],
+    },
+  },
+  bjornstigen: {
+    background: {
+      100: primitives.purple[50],
+      200: primitives.purple[100],
+      300: primitives.purple[300],
+    },
+    surface: {
+      primary: {
+        DEFAULT: primitives.purple[700],
+        hover: primitives.purple[800],
+      },
+      accent: {
+        DEFAULT: primitives.purple[200],
+        hover: primitives.purple[100],
+      },
+    },
+    text: {
+      DEFAULT: primitives.purple[800],
+      primary: primitives.purple[800],
+      secondary: primitives.purple[100],
+    },
+  },
+  error: {
+    DEFAULT: primitives.red[800],
+    background: {
+      100: primitives.red[50],
+      200: primitives.red[100],
+      300: primitives.red[300],
+    },
+    surface: {
+      primary: {
+        DEFAULT: primitives.red[600],
+        hover: primitives.red[700],
+      },
+      accent: {
+        DEFAULT: primitives.red[300],
+        hover: primitives.red[200],
+      },
+    },
+    text: {
+      DEFAULT: primitives.red[800],
+      primary: primitives.red[800],
+      secondary: primitives.red[100],
+    },
+  },
+  warning: {
+    DEFAULT: primitives.orange[800],
+    background: {
+      100: primitives.orange[50],
+      200: primitives.orange[100],
+      300: primitives.orange[300],
+    },
+    surface: {
+      primary: {
+        DEFAULT: primitives.orange[600],
+        hover: primitives.orange[700],
+      },
+      accent: {
+        DEFAULT: primitives.orange[200],
+        hover: primitives.orange[100],
+      },
+    },
+    text: {
+      DEFAULT: primitives.orange[800],
+      primary: primitives.orange[800],
+      secondary: primitives.orange[100],
+    },
+  },
+  info: {
+    DEFAULT: primitives.blue[800],
+    background: {
+      100: primitives.blue[50],
+      200: primitives.blue[100],
+      300: primitives.blue[300],
+    },
+    surface: {
+      primary: {
+        DEFAULT: primitives.blue[600],
+        hover: primitives.blue[700],
+      },
+      accent: {
+        DEFAULT: primitives.blue[200],
+        hover: primitives.blue[100],
+      },
+    },
+    text: {
+      DEFAULT: primitives.blue[800],
+      primary: primitives.blue[800],
+      secondary: primitives.blue[100],
+    },
+  },
+  success: {
+    DEFAULT: primitives.green[800],
+    background: {
+      100: primitives.green[50],
+      200: primitives.green[100],
+      300: primitives.green[300],
+    },
+    surface: {
+      primary: {
+        DEFAULT: primitives.green[600],
+        hover: primitives.green[700],
+      },
+      accent: {
+        DEFAULT: primitives.green[200],
+        hover: primitives.green[100],
+      },
+    },
+    text: {
+      DEFAULT: primitives.green[800],
+      primary: primitives.green[800],
+      secondary: primitives.green[100],
+    },
+  },
+};
+
+const darkmode = {
+  body: { DEFAULT: primitives.gray[900] },
+  black: primitives.gray[900],
+  white: primitives.gray.lightest,
+  ring: primitives.ring,
+  primary: {
+    DEFAULT: primitives.gray.lightest,
+    surface: {
+      DEFAULT: primitives.overlay.lighten[10],
+      hover: primitives.gray.lightest,
+      disabled: primitives.overlay.lighten[3],
+    },
+    ...primitives.gray,
+  },
+  secondary: {
+    DEFAULT: primitives.gray[200],
+    outline: {
+      default: primitives.overlay.lighten[5],
+      hover: primitives.overlay.lighten[6],
+    },
+    surface: {
+      DEFAULT: 'transparent',
+      hover: primitives.overlay.darken[3],
+      disabled: primitives.overlay.lighten[2],
+    },
+    ...primitives.gray,
+  },
+  tertiary: {
+    surface: {
+      DEFAULT: primitives.overlay.lighten[4],
+      hover: primitives.overlay.lighten[5],
+      disabled: primitives.overlay.lighten[2],
+    },
+  },
+  dark: {
+    DEFAULT: primitives.gray.lightest,
+    primary: primitives.gray.lightest,
+    secondary: primitives.gray[200],
+    disabled: primitives.overlay.lighten[7],
+    placeholder: primitives.overlay.lighten[5],
+    ghost: primitives.overlay.lighten[4],
+  },
+
+  light: {
+    DEFAULT: primitives.gray[900],
+    primary: primitives.gray[900],
+    secondary: primitives.overlay.darken[9],
+    disabled: primitives.overlay.darken[7],
+    placeholder: primitives.overlay.darken[6],
+    ghost: primitives.overlay.darken[4],
+  },
+  divider: primitives.overlay.lighten[5],
+  background: {
+    DEFAULT: primitives.gray[800],
+    content: primitives.gray[800],
+    100: primitives.gray[700],
+    200: primitives.gray[900],
+    'color-mixin': {
+      1: primitives.overlay.lighten[1],
+      2: primitives.overlay.lighten[3],
+    },
+  },
+  vattjom: {
+    background: {
+      100: primitives.blue[900],
+      200: primitives.blue[700],
+      300: primitives.blue[600],
+    },
+    surface: {
+      primary: {
+        DEFAULT: primitives.blue[200],
+        hover: primitives.blue[300],
+      },
+      accent: {
+        DEFAULT: primitives.blue[700],
+        hover: primitives.blue[600],
+      },
+    },
+    text: {
+      DEFAULT: primitives.blue[100],
+      primary: primitives.blue[100],
+      secondary: primitives.blue[800],
+    },
+  },
+  gronsta: {
+    background: {
+      100: primitives.green[900],
+      200: primitives.green[800],
+      300: primitives.green[700],
+    },
+    surface: {
+      primary: {
+        DEFAULT: primitives.green[300],
+        hover: primitives.green[200],
+      },
+      accent: {
+        DEFAULT: primitives.green[700],
+        hover: primitives.green[600],
+      },
+    },
+    text: {
+      DEFAULT: primitives.green[100],
+      primary: primitives.green[100],
+      secondary: primitives.green[800],
+    },
+  },
+  juniskar: {
+    background: {
+      100: primitives.pink[900],
+      200: primitives.pink[800],
+      300: primitives.pink[700],
+    },
+    surface: {
+      primary: {
+        DEFAULT: primitives.pink[300],
+        hover: primitives.pink[200],
+      },
+      accent: {
+        DEFAULT: primitives.pink[700],
+        hover: primitives.pink[600],
+      },
+    },
+    text: {
+      DEFAULT: primitives.pink[100],
+      primary: primitives.pink[100],
+      secondary: primitives.pink[800],
+    },
+  },
+  bjornstigen: {
+    background: {
+      100: primitives.purple[900],
+      200: primitives.purple[800],
+      300: primitives.purple[700],
+    },
+    surface: {
+      primary: {
+        DEFAULT: primitives.purple[300],
+        hover: primitives.purple[200],
+      },
+      accent: {
+        DEFAULT: primitives.purple[700],
+        hover: primitives.purple[600],
+      },
+    },
+    text: {
+      DEFAULT: primitives.purple[100],
+      primary: primitives.purple[100],
+      secondary: primitives.purple[800],
+    },
+  },
+  error: {
+    DEFAULT: primitives.red[100],
+    background: {
+      100: primitives.red[900],
+      200: primitives.red[800],
+      300: primitives.red[700],
+    },
+    surface: {
+      primary: {
+        DEFAULT: primitives.red[300],
+        hover: primitives.red[200],
+      },
+      accent: {
+        DEFAULT: primitives.red[700],
+        hover: primitives.red[600],
+      },
+    },
+    text: {
+      DEFAULT: primitives.red[100],
+      primary: primitives.red[100],
+      secondary: primitives.red[800],
+    },
+  },
+  warning: {
+    DEFAULT: primitives.orange[100],
+    background: {
+      100: primitives.orange[900],
+      200: primitives.orange[800],
+      300: primitives.orange[700],
+    },
+    surface: {
+      primary: {
+        DEFAULT: primitives.orange[400],
+        hover: primitives.orange[300],
+      },
+      accent: {
+        DEFAULT: primitives.orange[700],
+        hover: primitives.orange[600],
+      },
+    },
+    text: {
+      DEFAULT: primitives.orange[100],
+      primary: primitives.orange[100],
+      secondary: primitives.orange[800],
+    },
+  },
+  info: {
+    DEFAULT: primitives.blue[100],
+    background: {
+      100: primitives.blue[900],
+      200: primitives.blue[800],
+      300: primitives.blue[700],
+    },
+    surface: {
+      primary: {
+        DEFAULT: primitives.blue[400],
+        hover: primitives.blue[300],
+      },
+      accent: {
+        DEFAULT: primitives.blue[700],
+        hover: primitives.blue[600],
+      },
+    },
+    text: {
+      DEFAULT: primitives.blue[100],
+      primary: primitives.blue[100],
+      secondary: primitives.blue[800],
+    },
+  },
+  success: {
+    DEFAULT: primitives.green[100],
+    background: {
+      100: primitives.green[900],
+      200: primitives.green[800],
+      300: primitives.green[700],
+    },
+    surface: {
+      primary: {
+        DEFAULT: primitives.green[400],
+        hover: primitives.green[300],
+      },
+      accent: {
+        DEFAULT: primitives.green[700],
+        hover: primitives.green[600],
+      },
+    },
+    text: {
+      DEFAULT: primitives.green[100],
+      primary: primitives.green[100],
+      secondary: primitives.green[800],
+    },
+  },
 };
 
 // App setup
 export const colors = {
   lightmode: {
     primitives,
-    body: { DEFAULT: primitives.gray[900] },
-    black: primitives.gray[900],
-    white: primitives.gray.lightest,
-
-    primary: {
-      DEFAULT: primitives.gray[900],
-      active: primitives.gray[900],
-      surface: {
-        DEFAULT: primitives.overlay.darken[9],
-        hover: primitives.overlay.darken[10],
-        disabled: primitives.overlay.darken[3],
-      },
-      ...primitives.gray,
-    },
-    secondary: {
-      DEFAULT: primitives.gray[700],
-      active: primitives.gray[700],
-      outline: {
-        DEFAULT: primitives.overlay.darken[5],
-        hover: primitives.overlay.darken[6],
-      },
-      surface: {
-        DEFAULT: 'transparent',
-        hover: primitives.overlay.lighten[3],
-        disabled: primitives.overlay.darken[2],
-      },
-      ...primitives.gray,
-    },
-    tertiary: {
-      surface: {
-        DEFAULT: primitives.overlay.darken[2],
-        hover: primitives.overlay.darken[3],
-        disabled: primitives.overlay.darken[2],
-      },
-    },
-    dark: {
-      DEFAULT: primitives.gray[900],
-      primary: primitives.gray[900],
-      secondary: primitives.gray[700],
-      disabled: primitives.overlay.darken[6],
-      placeholder: primitives.overlay.darken[6],
-      ghost: primitives.overlay.darken[4],
-    },
-    light: {
-      DEFAULT: primitives.gray.lightest,
-      primary: primitives.gray.lightest,
-      secondary: primitives.overlay.lighten[9],
-      disabled: primitives.overlay.lighten[6],
-      placeholder: primitives.overlay.lighten[5],
-      ghost: primitives.overlay.lighten[4],
-    },
-    divider: primitives.overlay.darken[5],
-    background: {
-      DEFAULT: primitives.gray.lightest,
-      content: primitives.gray.lightest,
-      100: primitives.gray[50],
-      200: primitives.gray[100],
-      'color-mixin': {
-        1: primitives.overlay.darken[1],
-        2: primitives.overlay.darken[3],
-      },
-    },
-    vattjom: {
-      background: {
-        100: primitives.blue[50],
-        200: primitives.blue[100],
-        300: primitives.blue[300],
-      },
-      surface: {
-        primary: {
-          DEFAULT: primitives.blue[700],
-          hover: primitives.blue[800],
-        },
-        accent: {
-          DEFAULT: primitives.blue[200],
-          hover: primitives.blue[100],
-        },
-      },
-      text: {
-        DEFAULT: primitives.blue[800],
-        primary: primitives.blue[800],
-        secondary: primitives.blue[100],
-      },
-    },
-    gronsta: {
-      background: {
-        100: primitives.green[50],
-        200: primitives.green[200],
-        300: primitives.green[300],
-      },
-      surface: {
-        primary: {
-          DEFAULT: primitives.green[700],
-          hover: primitives.green[800],
-        },
-        accent: {
-          DEFAULT: primitives.green[200],
-          hover: primitives.green[100],
-        },
-      },
-      text: {
-        DEFAULT: primitives.green[800],
-        primary: primitives.green[800],
-        secondary: primitives.green[100],
-      },
-    },
-    juniskar: {
-      background: {
-        100: primitives.pink[50],
-        200: primitives.pink[100],
-        300: primitives.pink[300],
-      },
-      surface: {
-        primary: {
-          DEFAULT: primitives.pink[700],
-          hover: primitives.pink[800],
-        },
-        accent: {
-          DEFAULT: primitives.pink[200],
-          hover: primitives.pink[100],
-        },
-      },
-      text: {
-        DEFAULT: primitives.pink[800],
-        primary: primitives.pink[800],
-        secondary: primitives.pink[100],
-      },
-    },
-    bjornstigen: {
-      background: {
-        100: primitives.purple[50],
-        200: primitives.purple[100],
-        300: primitives.purple[300],
-      },
-      surface: {
-        primary: {
-          DEFAULT: primitives.purple[700],
-          hover: primitives.purple[800],
-        },
-        accent: {
-          DEFAULT: primitives.purple[200],
-          hover: primitives.purple[100],
-        },
-      },
-      text: {
-        DEFAULT: primitives.purple[800],
-        primary: primitives.purple[800],
-        secondary: primitives.purple[100],
-      },
-    },
-    error: {
-      DEFAULT: primitives.red[800],
-      background: {
-        100: primitives.red[50],
-        200: primitives.red[100],
-        300: primitives.red[300],
-      },
-      surface: {
-        primary: {
-          DEFAULT: primitives.red[600],
-          hover: primitives.red[700],
-        },
-        accent: {
-          DEFAULT: primitives.red[300],
-          hover: primitives.red[200],
-        },
-      },
-      text: {
-        DEFAULT: primitives.red[800],
-        primary: primitives.red[800],
-        secondary: primitives.red[100],
-      },
-    },
-    warning: {
-      DEFAULT: primitives.orange[800],
-      background: {
-        100: primitives.orange[50],
-        200: primitives.orange[100],
-        300: primitives.orange[300],
-      },
-      surface: {
-        primary: {
-          DEFAULT: primitives.orange[600],
-          hover: primitives.orange[700],
-        },
-        accent: {
-          DEFAULT: primitives.orange[200],
-          hover: primitives.orange[100],
-        },
-      },
-      text: {
-        DEFAULT: primitives.orange[800],
-        primary: primitives.orange[800],
-        secondary: primitives.orange[100],
-      },
-    },
-    info: {
-      DEFAULT: primitives.blue[800],
-      background: {
-        100: primitives.blue[50],
-        200: primitives.blue[100],
-        300: primitives.blue[300],
-      },
-      surface: {
-        primary: {
-          DEFAULT: primitives.blue[600],
-          hover: primitives.blue[700],
-        },
-        accent: {
-          DEFAULT: primitives.blue[200],
-          hover: primitives.blue[100],
-        },
-      },
-      text: {
-        DEFAULT: primitives.blue[800],
-        primary: primitives.blue[800],
-        secondary: primitives.blue[100],
-      },
-    },
-    success: {
-      DEFAULT: primitives.green[800],
-      background: {
-        100: primitives.green[50],
-        200: primitives.green[100],
-        300: primitives.green[300],
-      },
-      surface: {
-        primary: {
-          DEFAULT: primitives.green[600],
-          hover: primitives.green[700],
-        },
-        accent: {
-          DEFAULT: primitives.green[200],
-          hover: primitives.green[100],
-        },
-      },
-      text: {
-        DEFAULT: primitives.green[800],
-        primary: primitives.green[800],
-        secondary: primitives.green[100],
-      },
-    },
+    ...lightmode,
+    inverted: darkmode,
   },
-
   darkmode: {
     primitives,
-    body: { DEFAULT: primitives.gray[900] },
-    black: primitives.gray[900],
-    white: primitives.gray.lightest,
-    primary: {
-      DEFAULT: primitives.gray.lightest,
-      surface: {
-        DEFAULT: primitives.overlay.lighten[10],
-        hover: primitives.gray.lightest,
-        disabled: primitives.overlay.lighten[3],
-      },
-      ...primitives.gray,
-    },
-    secondary: {
-      DEFAULT: primitives.gray[200],
-      outline: {
-        default: primitives.overlay.lighten[5],
-        hover: primitives.overlay.lighten[6],
-      },
-      surface: {
-        DEFAULT: 'transparent',
-        hover: primitives.overlay.darken[3],
-        disabled: primitives.overlay.lighten[2],
-      },
-      ...primitives.gray,
-    },
-    tertiary: {
-      surface: {
-        DEFAULT: primitives.overlay.lighten[4],
-        hover: primitives.overlay.lighten[5],
-        disabled: primitives.overlay.lighten[2],
-      },
-    },
-    dark: {
-      DEFAULT: primitives.gray.lightest,
-      primary: primitives.gray.lightest,
-      secondary: primitives.gray[200],
-      disabled: primitives.overlay.lighten[7],
-      placeholder: primitives.overlay.lighten[5],
-      ghost: primitives.overlay.lighten[4],
-    },
-
-    light: {
-      DEFAULT: primitives.gray[900],
-      primary: primitives.gray[900],
-      secondary: primitives.overlay.darken[9],
-      disabled: primitives.overlay.darken[7],
-      placeholder: primitives.overlay.darken[6],
-      ghost: primitives.overlay.darken[4],
-    },
-    divider: primitives.overlay.lighten[5],
-    background: {
-      DEFAULT: primitives.gray[800],
-      content: primitives.gray[800],
-      100: primitives.gray[700],
-      200: primitives.gray[900],
-      'color-mixin': {
-        1: primitives.overlay.lighten[1],
-        2: primitives.overlay.lighten[3],
-      },
-    },
-    vattjom: {
-      background: {
-        100: primitives.blue[900],
-        200: primitives.blue[700],
-        300: primitives.blue[600],
-      },
-      surface: {
-        primary: {
-          DEFAULT: primitives.blue[200],
-          hover: primitives.blue[300],
-        },
-        accent: {
-          DEFAULT: primitives.blue[700],
-          hover: primitives.blue[600],
-        },
-      },
-      text: {
-        DEFAULT: primitives.blue[100],
-        primary: primitives.blue[100],
-        secondary: primitives.blue[800],
-      },
-    },
-    gronsta: {
-      background: {
-        100: primitives.green[900],
-        200: primitives.green[800],
-        300: primitives.green[700],
-      },
-      surface: {
-        primary: {
-          DEFAULT: primitives.green[300],
-          hover: primitives.green[200],
-        },
-        accent: {
-          DEFAULT: primitives.green[700],
-          hover: primitives.green[600],
-        },
-      },
-      text: {
-        DEFAULT: primitives.green[100],
-        primary: primitives.green[100],
-        secondary: primitives.green[800],
-      },
-    },
-    juniskar: {
-      background: {
-        100: primitives.pink[900],
-        200: primitives.pink[800],
-        300: primitives.pink[700],
-      },
-      surface: {
-        primary: {
-          DEFAULT: primitives.pink[300],
-          hover: primitives.pink[200],
-        },
-        accent: {
-          DEFAULT: primitives.pink[700],
-          hover: primitives.pink[600],
-        },
-      },
-      text: {
-        DEFAULT: primitives.pink[100],
-        primary: primitives.pink[100],
-        secondary: primitives.pink[800],
-      },
-    },
-    bjornstigen: {
-      background: {
-        100: primitives.purple[900],
-        200: primitives.purple[800],
-        300: primitives.purple[700],
-      },
-      surface: {
-        primary: {
-          DEFAULT: primitives.purple[300],
-          hover: primitives.purple[200],
-        },
-        accent: {
-          DEFAULT: primitives.purple[700],
-          hover: primitives.purple[600],
-        },
-      },
-      text: {
-        DEFAULT: primitives.purple[100],
-        primary: primitives.purple[100],
-        secondary: primitives.purple[800],
-      },
-    },
-    error: {
-      DEFAULT: primitives.red[100],
-      background: {
-        100: primitives.red[900],
-        200: primitives.red[800],
-        300: primitives.red[700],
-      },
-      surface: {
-        primary: {
-          DEFAULT: primitives.red[300],
-          hover: primitives.red[200],
-        },
-        accent: {
-          DEFAULT: primitives.red[700],
-          hover: primitives.red[600],
-        },
-      },
-      text: {
-        DEFAULT: primitives.red[100],
-        primary: primitives.red[100],
-        secondary: primitives.red[800],
-      },
-    },
-    warning: {
-      DEFAULT: primitives.orange[100],
-      background: {
-        100: primitives.orange[900],
-        200: primitives.orange[800],
-        300: primitives.orange[700],
-      },
-      surface: {
-        primary: {
-          DEFAULT: primitives.orange[400],
-          hover: primitives.orange[300],
-        },
-        accent: {
-          DEFAULT: primitives.orange[700],
-          hover: primitives.orange[600],
-        },
-      },
-      text: {
-        DEFAULT: primitives.orange[100],
-        primary: primitives.orange[100],
-        secondary: primitives.orange[800],
-      },
-    },
-    info: {
-      DEFAULT: primitives.blue[100],
-      background: {
-        100: primitives.blue[900],
-        200: primitives.blue[800],
-        300: primitives.blue[700],
-      },
-      surface: {
-        primary: {
-          DEFAULT: primitives.blue[400],
-          hover: primitives.blue[300],
-        },
-        accent: {
-          DEFAULT: primitives.blue[700],
-          hover: primitives.blue[600],
-        },
-      },
-      text: {
-        DEFAULT: primitives.blue[100],
-        primary: primitives.blue[100],
-        secondary: primitives.blue[800],
-      },
-    },
-    success: {
-      DEFAULT: primitives.green[100],
-      background: {
-        100: primitives.green[900],
-        200: primitives.green[800],
-        300: primitives.green[700],
-      },
-      surface: {
-        primary: {
-          DEFAULT: primitives.green[400],
-          hover: primitives.green[300],
-        },
-        accent: {
-          DEFAULT: primitives.green[700],
-          hover: primitives.green[600],
-        },
-      },
-      text: {
-        DEFAULT: primitives.green[100],
-        primary: primitives.green[100],
-        secondary: primitives.green[800],
-      },
-    },
+    ...darkmode,
+    inverted: lightmode,
   },
 };

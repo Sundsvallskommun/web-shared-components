@@ -6,7 +6,7 @@ function tagOutline(colors) {
       '&[href]': {
         [`@apply hover:border-hover hover:text-white hover:bg-hover`]: {},
         [`@apply active:text-white active:bg-hover`]: {},
-        [`@apply focus-visible:text-white focus-visible:ring-4 focus-visible:ring-black focus-visible:bg-hover`]: {},
+        [`@apply focus-visible:text-white focus-visible:ring focus-visible:bg-hover`]: {},
       },
     },
   };
@@ -20,7 +20,7 @@ function tagSolid(colors) {
       '&[href]': {
         [`@apply hover:text-white hover:bg-hover`]: {},
         [`@apply active:text-white active:bg-hover`]: {},
-        [`@apply focus-visible:text-white focus-visible:ring-4 focus-visible:ring-black focus-visible:bg-hover`]: {},
+        [`@apply focus-visible:text-white focus-visible:ring focus-visible:bg-hover`]: {},
       },
 
       '.tag-close-button': {
@@ -38,7 +38,7 @@ function tagLight(colors) {
       '&[href]': {
         [`@apply hover:border-hover`]: {},
         [`@apply active:border-hover`]: {},
-        [`@apply focus-visible:border-hover focus-visible:ring-4 focus-visible:ring-black`]: {},
+        [`@apply focus-visible:border-hover focus-visible:ring`]: {},
       },
     },
   };

@@ -38,7 +38,7 @@ module.exports = Checkbox = (colors) => ({
 
     '&:checked': {
       '@apply text-white bg-white border-primary': {},
-      [`@apply focus-visible:border-primary focus-visible:ring-primary`]: {},
+      [`@apply focus-visible:border-primary focus-visible:ring`]: {},
 
       backgroundImage: `url("${svgToDataUri(
         `<svg viewBox="0 0 16 16" fill="#005595" xmlns="http://www.w3.org/2000/svg"><path d="M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z"/></svg>`
@@ -75,8 +75,6 @@ module.exports = Checkbox = (colors) => ({
       }),
       {}
     ),*/
-
-    '@apply dark:focus-visible:ring-offset-neutral-900': {},
 
     // sizing
     '&-sm': {

@@ -98,7 +98,7 @@ const components = [
   Profile,
 ];
 
-const defaultColors = ['primary', 'secondary'];
+const defaultColors = ['warning', 'error', 'success', 'info', 'vattjom', 'juniskar', 'bjornstigen', 'gronsta'];
 
 module.exports = plugin.withOptions(
   function (options = { colors: [], cssBase: true }) {

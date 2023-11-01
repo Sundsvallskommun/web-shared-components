@@ -8,8 +8,7 @@ function fieldOutline(colors) {
         (styles, color) => ({
           ...styles,
           [`&[data-color="${color}"]`]: {
-            [`@apply focus-visible:border-${color} focus-visible:ring-${color}`]: {},
-            [`@apply dark:focus-visible:border-${color} dark:focus-visible:ring-${color}`]: {},
+            [`@apply focus-visible:border-${color}-text`]: {},
           },
         }),
         {}
@@ -36,8 +35,7 @@ function fieldSolid(colors) {
         (styles, color) => ({
           ...styles,
           [`&[data-color="${color}"]`]: {
-            [`@apply focus-visible:border-${color} focus-visible:ring-${color}`]: {},
-            [`@apply dark:focus-visible:border-${color} dark:focus-visible:ring-${color}`]: {},
+            [`@apply focus-visible:border-${color}-text`]: {},
           },
         }),
         {}
@@ -310,7 +308,7 @@ module.exports = Forms = (colors) => ({
   },
 
   '.form-select-list-transition': {
-    '@apply absolute z-50 w-full bg-white shadow-lg max-h-60 rounded-utility py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm':
+    '@apply absolute z-50 w-full bg-white shadow-lg max-h-60 rounded-utility py-1 text-base ring overflow-auto focus:outline-none sm:text-sm':
       {},
     '&.showabove': {
       '@apply mb-1 bottom-full': {},

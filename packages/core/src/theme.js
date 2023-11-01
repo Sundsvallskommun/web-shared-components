@@ -8,18 +8,33 @@ module.exports = {
     ...units.fontSizes,
     tiny: '1rem',
     xs: '1.2rem',
-    xl: units.fontSizes.heading[4],
-    '2xl': units.fontSizes.heading[3],
-    '3xl': units.fontSizes.heading[2],
-    '4xl': units.fontSizes.heading[1],
-    '5xl': units.fontSizes.display[3],
+    xl: units.fontSizes['h4'],
+    '2xl': units.fontSizes['h3'],
+    '3xl': units.fontSizes['h2'],
+    '4xl': units.fontSizes['h1'],
+    '5xl': units.fontSizes['h3'],
   },
   screens,
   borderRadius: {
     ...units.radius,
     base: 'var(--sk-spacing-0)',
   },
+  ringColor: {
+    DEFAULT: colors.ring,
+    ...colors,
+  },
   extend: {
+    ringOffsetWidth: {
+      DEFAULT: '0.2rem',
+    },
+    ringWidth: {
+      DEFAULT: '0.3rem',
+      0: '0px',
+    },
+
+    ringOpacity: {
+      DEFAULT: 1,
+    },
     colors: {
       ...colors,
       current: 'currentColor',
@@ -56,11 +71,11 @@ module.exports = {
     lineHeight: {
       ...units.lineHeights,
       xs: '1.6rem',
-      xl: units.lineHeights.heading[4],
-      '2xl': units.lineHeights.heading[3],
-      '3xl': units.lineHeights.heading[2],
-      '4xl': units.lineHeights.heading[1],
-      '5xl': units.lineHeights.display[3],
+      xl: units.lineHeights['h4'],
+      '2xl': units.lineHeights['h3'],
+      '3xl': units.lineHeights['h2'],
+      '4xl': units.lineHeights['h1'],
+      '5xl': units.lineHeights['display-3'],
     },
     opacity: {
       15: '0.15',

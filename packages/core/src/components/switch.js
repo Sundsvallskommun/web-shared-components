@@ -34,15 +34,15 @@ module.exports = Switch = (colors) => ({
     'input[type=checkbox]:focus-visible + &': {
       '@apply z-base !important': {},
       '@apply border-primary !important': {},
-      '@apply ring-4 ring-black !important': {},
+      '@apply ring': {},
     },
 
     'input[type=checkbox]:checked:focus-visible + &, input[type=checkbox][aria-checked=mixed]:focus-visible + &': {
-      '@apply ring-black !important': {},
+      '@apply ring': {},
     },
     '.dark input[type=checkbox]:checked:focus-visible + &,.dark input[type=checkbox][aria-checked=mixed]:focus-visible + &':
       {
-        '@apply ring-black !important': {},
+        '@apply ring': {},
       },
     'input[type=checkbox]:checked:hover:not(:disabled) + &, input[type=checkbox][aria-checked=mixed]:hover:not(:disabled) + &':
       {
@@ -54,7 +54,7 @@ module.exports = Switch = (colors) => ({
       (styles, color) => ({
         ...styles,
         [`&[data-color="${color}"]`]: {
-          [`@apply text-${color}`]: {},
+          [`@apply text-${color}-text`]: {},
 
           // 'input[type=checkbox]:focus + &': {
           //   borderColor: `${theme(`colors.${color}.DEFAULT`)}`,

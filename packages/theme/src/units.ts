@@ -92,7 +92,7 @@ export const fontSizes = {
       sm: '3.2rem',
     },
   },
-  heading: {
+  h: {
     1: {
       DEFAULT: '4rem',
       lg: '4rem',
@@ -155,7 +155,7 @@ export const lineHeights = {
       sm: '3.6rem',
     },
   },
-  heading: {
+  h: {
     1: {
       DEFAULT: '5.6rem',
       lg: '5.6rem',

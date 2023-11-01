@@ -2,7 +2,7 @@ module.exports = Link = () => ({
   '.link': {
     '@apply cursor-base underline outline-none hover:underline': {},
     '@apply text-primary dark:text-primary': {},
-    '@apply focus-visible:ring-4 focus-visible:ring-primary': {},
+    '@apply focus-visible:ring': {},
 
     '&.active': {
       '@apply underline': {},
