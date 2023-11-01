@@ -98,7 +98,7 @@ export const SearchBar = React.forwardRef<HTMLInputElement, SearchbarProps>((pro
               aria-label={closeAriaLabel}
               iconButton
               rounded
-              size="fit"
+              size="sm"
             >
               <div className="form-button-icon">
                 {closeIcon ? (
@@ -116,7 +116,7 @@ export const SearchBar = React.forwardRef<HTMLInputElement, SearchbarProps>((pro
               aria-label={searchAriaLabel}
               iconButton
               rounded
-              size="fit"
+              size="sm"
             >
               <div className="form-button-icon">
                 {searchIcon ? (

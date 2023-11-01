@@ -426,7 +426,7 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
               aria-label={deleteAriaLabel}
               iconButton
               rounded
-              size="fit"
+              size="sm"
             >
               <div className="form-button-icon">{closeIcon ? closeIcon : <CloseOutlinedIcon aria-hidden="true" />}</div>
             </Button>

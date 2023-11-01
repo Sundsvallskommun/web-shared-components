@@ -138,7 +138,7 @@ export const ConfirmationDialogContextProvider: React.FC<ConfirmationDialogConte
           </Dialog.Content>
           <Dialog.Buttons>
             <Button onClick={handleDismiss}>{content.dismissLabel}</Button>
-            <Button variant="solid" color="primary" onClick={handleConfirm}>
+            <Button variant="primary" color="primary" onClick={handleConfirm}>
               {content.confirmLabel}
             </Button>
           </Dialog.Buttons>

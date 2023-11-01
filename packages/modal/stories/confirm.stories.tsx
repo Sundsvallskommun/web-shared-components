@@ -149,7 +149,7 @@ const ConfirmTypeComponent: React.FC<{
       <span className="block border-b border-gray-400 mb-md font-semibold text-gray-600">
         Warning type and question icon
       </span>
-      <Button variant="solid" color="primary" onClick={openHandler}>
+      <Button variant="primary" color="primary" onClick={openHandler}>
         Open me
       </Button>
     </div>

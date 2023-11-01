@@ -107,7 +107,7 @@ export const MenuItem = (props: IMenuExtended) => {
       <Button
         draggable={draggable}
         className={`sk-sidemenu-menuitem-movebutton`}
-        variant="ghost"
+        variant="tertiary"
         iconButton
         aria-hidden={true}
         aria-disabled={disabled ? 'true' : undefined}

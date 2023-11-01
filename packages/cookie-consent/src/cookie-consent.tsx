@@ -249,12 +249,12 @@ export function CookieConsent({
                 <Button
                   onClick={() => handleonConsent(ConsentType.All)}
                   color="primary"
-                  variant="solid"
+                  variant="primary"
                   ref={initialFocus}
                 >
                   Godkänn alla
                 </Button>
-                <Button onClick={() => handleonConsent(ConsentType.Necessary)} color="primary" variant="solid">
+                <Button onClick={() => handleonConsent(ConsentType.Necessary)} color="primary" variant="primary">
                   Godkänn endast nödvändiga
                 </Button>
                 <Button
@@ -273,7 +273,7 @@ export function CookieConsent({
                   ref={settingsFocus}
                   onClick={() => handleonConsent(ConsentType.Custom)}
                   color="primary"
-                  variant="solid"
+                  variant="primary"
                 >
                   Spara mina val
                 </Button>

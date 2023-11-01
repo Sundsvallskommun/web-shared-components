@@ -1,6 +1,6 @@
 module.exports = Divider = () => ({
   '.divider': {
-    '@apply border-0 border-gray-stroke': {},
+    '@apply border-0 border-divider': {},
     //borderColor: "inherit",
     '&-vertical': {
       '@apply border-l border-solid h-auto mx-2': {},

@@ -31,7 +31,7 @@ export const BadgeOnElement = () => {
           Standard md
           <Badge size="md" variant="solid" color="warning" max={99} counter={4} position={'standard'} />
         </Button>
-        <Button variant="solid" className="bg-gray-200">
+        <Button variant="primary" className="bg-gray-200">
           Standard no border md
           <Badge size="md" variant="solid" color="warning" max={99} counter={4} position={'standard'} noBorder />
         </Button>
@@ -53,7 +53,7 @@ export const BadgeOnElement = () => {
           Super lg
           <Badge size="lg" variant="solid" color="warning" max={99} counter={4} position={'super'} />
         </Button>
-        <Button variant="solid" className="bg-gray-200">
+        <Button variant="primary" className="bg-gray-200">
           Super lg no border
           <Badge size="lg" variant="solid" color="warning" max={99} counter={4} position={'super'} noBorder />
         </Button>
@@ -71,7 +71,7 @@ export const BadgeOnElement = () => {
           Superoverlap lg
           <Badge size="lg" variant="solid" color="warning" max={99} counter={4} position={'super-overlap'} />
         </Button>
-        <Button variant="solid" className="bg-gray-200">
+        <Button variant="primary" className="bg-gray-200">
           Superoverlap lg no border
           <Badge size="lg" variant="solid" color="warning" max={99} counter={4} position={'super-overlap'} noBorder />
         </Button>

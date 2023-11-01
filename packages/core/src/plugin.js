@@ -42,6 +42,7 @@ const DropdownFilter = require('./components/dropdown-filter');
 
 const Tag = require('./components/tag');
 const Pagination = require('./components/pagination');
+const PopupMenu = require('./components/popup-menu');
 const Footer = require('./components/footer');
 const Header = require('./components/header');
 
@@ -91,6 +92,7 @@ const components = [
 
   Tag,
   Pagination,
+  PopupMenu,
   Footer,
   Header,
 

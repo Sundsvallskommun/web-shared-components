@@ -26,7 +26,7 @@ const TestComponent: React.FC<{ onClose: (data: any) => void }> = ({ onClose }) 
       <Dialog.Buttons>
         <Button onClick={() => onClose(false)}>Nej</Button>
         <Button onClick={() => onClose('maybe')}>Kanske</Button>
-        <Button variant="solid" color="primary" onClick={() => onClose(true)}>
+        <Button variant="primary" color="primary" onClick={() => onClose(true)}>
           Ja
         </Button>
       </Dialog.Buttons>

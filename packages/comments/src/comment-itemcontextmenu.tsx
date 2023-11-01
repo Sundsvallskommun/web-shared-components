@@ -36,7 +36,7 @@ export const CommentItemContextmenu = React.forwardRef<HTMLDivElement, ICommentC
 
   return (
     <ContextMenu classNameItems="p-0 absolute right-10">
-      <ContextMenu.Button title="Redigera Kommentar" variant="ghost" size="lg" className="border-0" iconButton>
+      <ContextMenu.Button title="Redigera Kommentar" variant="tertiary" size="lg" className="border-0" iconButton>
         <MoreVertIcon />
       </ContextMenu.Button>
 
@@ -44,7 +44,7 @@ export const CommentItemContextmenu = React.forwardRef<HTMLDivElement, ICommentC
         <Button
           onClick={onHandleEdit}
           className="flex border-none text-body w-full px-4"
-          variant="outline"
+          variant="secondary"
           size="md"
           type="button"
           leftIcon={<EditOutlinedIcon fontSize="large" />}
@@ -57,7 +57,7 @@ export const CommentItemContextmenu = React.forwardRef<HTMLDivElement, ICommentC
         <Button
           onClick={onHandleDelete}
           className="flex border-none text-body w-full px-4"
-          variant="solid"
+          variant="primary"
           size="md"
           type="button"
           leftIcon={<DeleteOutlineIcon fontSize="large" />}
