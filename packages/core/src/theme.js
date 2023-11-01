@@ -24,6 +24,20 @@ module.exports = {
     ...colors,
   },
   extend: {
+    boxShadow: {
+      100: [
+        '0 0.6rem 1.6rem 0 rgba(13,13,14, 0.7)',
+        '0 0.181rem 1.2rem 0 rgba(13,13,14, 0.15)',
+        '0 0.075rem 0.2rem 0 rgba(13,13,14, 0.085)',
+        '0 0.027rem 0.072rem 0 rgba(13,13,14, 0.0583)',
+      ],
+      200: [
+        '0 1.5rem 2.7rem 0 rgba(13,13,14, 0.1)',
+        '0 0.452rem 1.2rem 0 rgba(13,13,14, 0.06)',
+        '0 0.188rem 0.338rem 0 rgba(13,13,14, 0.03)',
+        '0 0.068rem 0.122rem 0 rgba(13,13,14, 0.02)',
+      ],
+    },
     ringOffsetWidth: {
       DEFAULT: '0.2rem',
     },

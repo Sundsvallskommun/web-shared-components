@@ -56,7 +56,7 @@ export const Tag = React.forwardRef<any, TagProps>((props, ref) => {
       <span className="tag-text">{children}</span>
       {useDeleteButton && (
         <Button
-          size="fit"
+          size="sm"
           type="button"
           iconButton
           rounded

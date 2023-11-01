@@ -63,7 +63,7 @@ const InputComment = (props: InputProps) => {
       <Button
         onClick={inputValue.length === 0 ? undefined : onSubmitCallbackHandler}
         iconButton
-        variant="solid"
+        variant="primary"
         className="border-none p-0 hover:bg-transparent"
         aria-disabled={inputValue.length === 0}
         aria-describedby="comment-input"

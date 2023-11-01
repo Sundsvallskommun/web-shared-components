@@ -121,6 +121,7 @@ export const primitives = {
     900: `rgb(${toRGB('#6D0303')?.join(',')})`,
   },
   ring: `rgb(${toRGB('#0C8CED')?.join(',')})`,
+  shadow: `${toRGB('#0D0D0E')?.join(',')}`,
 };
 
 const lightmode = {
