@@ -1,85 +1,40 @@
-module.exports = Avatar = () => ({
-  '.avatar': {
-    '@apply relative inline-flex items-center justify-center flex-shrink-0 align-top rounded-full': {},
-    '@apply bg-neutral-300 text-neutral-800': {},
-    // dark colors
-    '@apply dark:bg-neutral-600 dark:text-neutral-100': {},
-
-    '&-2xs': {
-      '@apply w-4 h-4': {},
+module.exports = Avatar = (colors) => ({
+  '.sk-avatar': {
+    '@apply inline-flex': {},
+    '@apply justify-center items-center': {},
+    '@apply rounded-button': {},
+    '@apply font-bold': {},
+    '@apply overflow-hidden': {},
+    '&[data-rounded="true"]': {
+      '@apply rounded-circular': {},
     },
-
-    '&-xs': {
-      '@apply w-5 h-5': {},
+    '&&-sm': {
+      '@apply h-[3.2rem] w-[3.2rem] min-h-[2.4rem] max-h-[3.2rem] min-w-[2.4rem] max-w-[3.2rem]': {},
+      '@apply text-label-sm leading-label-sm': {},
     },
-
-    '&-sm': {
-      '@apply w-6 h-6': {},
+    '&&-md': {
+      '@apply h-[4rem] w-[4rem] min-h-[3.2rem] max-h-[4rem] min-w-[3.2rem] max-w-[4rem]': {},
+      '@apply text-label-md leading-label-md': {},
     },
-
-    '&-md': {
-      '@apply w-7 h-7': {},
+    '&&-lg': {
+      '@apply h-[6.4rem] w-[6.4rem] min-h-[4rem] max-h-[6.4rem] min-w-[4rem] max-w-[6.4rem]': {},
+      '@apply text-label-lg leading-label-lg': {},
     },
+    ...colors.reduce(
+      (styles, color) => ({
+        ...styles,
+        [`&[data-color="${color}"]`]: {
+          [`@apply bg-${color}-surface-primary  text-${color}-text-secondary`]: {},
 
-    '&-lg': {
-      '@apply w-8 h-8': {},
+          '&[data-accent="true"]': {
+            [`@apply bg-${color}-surface-accent  text-${color}-text-primary`]: {},
+          },
+        },
+      }),
+      {}
+    ),
+    '&-img': {
+      '@apply min-w-full min-h-full object-cover': {},
     },
-
-    '&-xl': {
-      '@apply w-10 h-10': {},
-    },
-
-    '&-2xl': {
-      '@apply w-12 h-12': {},
-    },
-
-    '&-3xl': {
-      '@apply w-16 h-16': {},
-    },
-  },
-
-  '.avatar-bordered': {
-    '@apply border-2 border-white': {},
-    '@apply dark:border-neutral-800': {},
-  },
-
-  '.avatar-name': {
-    '@apply font-medium text-center uppercase': {},
-
-    '&-2xs': {
-      '@apply w-4 h-4': {},
-    },
-
-    '&-xs': {
-      '@apply w-5 h-5': {},
-    },
-
-    '&-sm': {
-      '@apply w-6 h-6': {},
-    },
-
-    '&-md': {
-      '@apply w-7 h-7': {},
-    },
-
-    '&-lg': {
-      '@apply w-8 h-8': {},
-    },
-
-    '&-xl': {
-      '@apply w-10 h-10': {},
-    },
-
-    '&-2xl': {
-      '@apply w-12 h-12': {},
-    },
-
-    '&-3xl': {
-      '@apply w-16 h-16': {},
-    },
-  },
-
-  '.avatar-group': {
-    '@apply flex items-center justify-end flex-row-reverse': {},
   },
 });
