@@ -1,187 +1,121 @@
-function buttonSolid(colors) {
+function buttonPrimary(colors) {
   return {
-    '&-solid': {
-      //"@apply text-": {},
-      '@apply font-semibold border border-gray-stroke': {},
-      '@apply text-body bg-white': {},
+    '&-primary': {
+      '@apply text-light-primary': {},
       /* hover */
-      '@apply hover:text-white hover:bg-hover hover:border-primary-surface-hover': {},
-      /* keyboard active */
-      '&.active': {
-        '@apply text-white bg-hover border-primary-surface-hover': {},
-        /* dark */
-        '@apply dark:border-hover dark:bg-neutral-600': {},
-      },
-      /* focus */
-      '@apply focus-visible:z-base': {},
-      '@apply focus-visible:border-primary': {},
-      '@apply focus-visible:ring-4 focus-visible:ring-black': {},
-      /* active */
-      '@apply active:bg-hover active:text-white': {},
-
-      /* dark mode */
-      '@apply dark:border-neutral-600': {},
-      '@apply dark:text-neutral-100 dark:bg-neutral-700': {},
-      /* dark hover */
-      '@apply dark:hover:border-hover dark:hover:bg-neutral-600': {},
-      /* dark focus */
-      '@apply dark:focus-visible:border-primary-500': {},
-      /* dark active */
-      '@apply dark:active:bg-neutral-900 dark:active:border-neutral-600': {},
+      '@apply hover:bg-primary-surface-hover': {},
 
       ...colors.reduce(
         (styles, color) => ({
           ...styles,
           [`&[data-color="${color}"]`]: {
-            //[`@apply border-${color}`]: {},
-            [`@apply text-white bg-${color}`]: {},
+            [`@apply bg-${color}-surface-primary  text-${color}-text-secondary`]: {},
             // hover
-            [`@apply hover:text-white hover:bg-${color}`]: {},
+            [`@apply hover:bg-${color}-surface-primary-hover hover:text-light-primary`]: {},
             // keyboard active
             '&.active': {
-              [`@apply text-white bg-${color}`]: {},
+              [`@apply bg-${color}-surface-primary-hover`]: {},
             },
+            [`@apply active:bg-${color}-surface-primary-hover`]: {},
 
-            [`@apply active:text-white active:bg-${color}`]: {},
-            [`@apply focus-visible:ring-4 focus-visible:ring-black`]: {},
-
-            // focus
-            //[`@apply focus-visible:bg-${color}-700`]: {},
-            //[`@apply focus-visible:border-${color}-500`]: {},
-            //[`@apply focus-visible:ring-${color}-500`]: {},
-            // active
-            //[`@apply active:bg-${color}-600`]: {},
-            // dark mode
-            //[`@apply dark:border-${color}-500`]: {},
-            //[`@apply dark:bg-${color}-600`]: {},
-            // dark hover
-            //[`@apply dark:hover:border-${color}-400 dark:hover:bg-${color}-500`]: {},
-            // dark focus
-            //[`@apply dark:focus-visible:border-${color}-500`]: {},
-            //[`@apply dark:focus-visible:ring-${color}-500`]: {},
-            // dark active
-            //[`@apply dark:active:bg-${color}-800 dark:active:border-${color}-600`]: {},
+            '&[data-inverted="true"]': {
+              '@apply text-inverted-light-primary': {},
+              [`@apply bg-inverted-${color}-surface-primary text-inverted-${color}-text-secondary`]: {},
+              // hover
+              [`@apply hover:bg-inverted-${color}-surface-primary-hover hover:text-inverted-light-primary`]: {},
+              // keyboard active
+              '&.active': {
+                [`@apply bg-inverted-${color}-surface-primary-hover`]: {},
+              },
+              [`@apply active:bg-inverted-${color}-surface-primary-hover`]: {},
+            },
           },
         }),
         {}
       ),
 
       "&[data-color='primary']": {
-        '@apply border-primary hover:border-primary-surface-hover': {},
+        '@apply bg-primary-surface': {},
+        '@apply hover:bg-primary-surface-hover': {},
         '&.active': {
-          '@apply border-primary-surface-hover': {},
+          '@apply bg-primary-surface-hover': {},
         },
-      },
+        [`@apply active:bg-primary-surface-hover`]: {},
 
-      '&.btn': {
-        '&-disabled, &[aria-disabled="true"]': {
-          '@apply disabled:border-gray-stroke border-gray-stroke hover:border-gray-stroke': {},
+        '&[data-inverted="true"]': {
+          '@apply text-inverted-light-primary': {},
+          '@apply bg-inverted-primary-surface': {},
+          '@apply hover:bg-inverted-primary-surface-hover': {},
           '&.active': {
-            '@apply border-gray-stroke': {},
+            '@apply bg-inverted-primary-surface-hover': {},
           },
+          [`@apply active:bg-inverted-primary-surface-hover`]: {},
         },
       },
     },
   };
 }
-
-function buttonOutline(colors) {
+function buttonSecondary() {
   return {
-    '&-outline': {
-      '@apply font-semibold border border-gray-stroke': {},
-      '@apply text-body bg-transparent': {},
+    '&-secondary': {
+      '@apply border-secondary-outline': {},
+      '@apply text-dark-secondary': {},
+      '@apply bg-secondary-surface': {},
       /* hover */
-      '@apply hover:text-white hover:bg-primary-surface-hover hover:border-primary-surface-hover': {},
-      /* keyboard active */
-      '&.active': {
-        '@apply text-white bg-primary-surface-hover border-primary-surface-hover': {},
-        /* dark keyboard active */
-        '@apply dark:border-neutral-300 dark:bg-neutral-700': {},
-      },
+      '@apply hover:border-secondary-outline-hover': {},
+      '@apply hover:bg-secondary-surface-hover': {},
       /* focus */
-      '@apply focus-visible:z-base': {},
-      '@apply focus-visible:border-primary-500': {},
-      '@apply focus-visible:ring-4 focus-visible:ring-primary-500': {},
-      /* active */
-      '@apply active:bg-neutral-200': {},
-      /* dark mode */
-      '@apply dark:border-neutral-600': {},
-      '@apply dark:text-neutral-100 dark:bg-transparent': {},
-      /* dark hover */
-      '@apply dark:hover:border-neutral-300 dark:hover:bg-neutral-700': {},
-      /* dark focus */
-      '@apply dark:focus-visible:border-primary-500': {},
-      /* dark active */
-      '@apply dark:active:bg-neutral-600 dark:active:border-neutral-600': {},
+      '@apply focus-visible:border-background-content': {},
 
-      ...colors.reduce(
-        (styles, color) => ({
-          ...styles,
-          [`&[data-color="${color}"]`]: {
-            [`@apply border-current`]: {},
-            [`@apply text-${color}-600 bg-transparent`]: {},
-            /* hover */
-            [`@apply hover:text-white hover:bg-${color} hover:border-${color}`]: {},
-            /* keyboard active */
-            '&.active': {
-              [`@apply text-white bg-${color} border-${color}`]: {},
+      // State
+      '&.sk-btn-disabled, &[aria-disabled="true"]': {
+        '@apply disabled:bg-secondary-surface-disabled bg-secondary-surface-disabled disabled:border-transparent border-transparent !important':
+          {},
+      },
 
-              /* dark keyboard active */
-              [`@apply dark:bg-${color}-200`]: {},
-              [`@apply dark:bg-opacity-15`]: {},
-            },
-            /* focus */
-            [`@apply focus-visible:border-${color}-500`]: {},
-            [`@apply focus-visible:ring-${color}-500`]: {},
-            /* active */
-            [`@apply active:bg-${color}-100`]: {},
-            /* dark mode */
-            [`@apply dark:border-${color}-200`]: {},
-            [`@apply dark:text-${color}-200 dark:bg-transparent`]: {},
-            [`@apply dark:border-${color}-300`]: {},
-            /* dark hover */
-            [`@apply dark:hover:bg-${color}-200`]: {},
-            [`@apply dark:hover:bg-opacity-15`]: {},
-            /* dark focus */
-            [`@apply dark:focus-visible:border-${color}-500`]: {},
-            [`@apply dark:focus-visible:ring-${color}-500`]: {},
-            /* dark active */
-            [`@apply dark:active:bg-${color}-200`]: {},
-            [`@apply dark:active:bg-opacity-25`]: {},
-          },
-        }),
-        {}
-      ),
+      '&[data-inverted="true"]': {
+        '@apply border-inverted-secondary-outline': {},
+        '@apply text-inverted-dark-secondary': {},
+        '@apply bg-inverted-secondary-surface': {},
+        /* hover */
+        '@apply hover:border-inverted-secondary-outline-hover': {},
+        '@apply hover:bg-inverted-secondary-surface-hover': {},
+        /* focus */
+        '@apply focus-visible:border-inverted-background-content': {},
 
-      '&.btn': {
-        '&-disabled, &[aria-disabled="true"]': {
-          '@apply disabled:border-gray-stroke border-gray-stroke hover:border-gray-stroke': {},
-          '&.active': {
-            '@apply border-gray-stroke': {},
-          },
+        // State
+        '&.sk-btn-disabled, &[aria-disabled="true"]': {
+          '@apply disabled:bg-inverted-secondary-surface-disabled bg-inverted-secondary-surface-disabled disabled:border-transparent border-transparent !important':
+            {},
         },
       },
     },
   };
 }
 
-function buttonGhost(colors) {
+function buttonTertiary() {
   return {
-    '&-ghost': {
-      /* focus */
-      '@apply focus-visible:z-base': {},
-      '@apply focus-visible:ring-4 focus-visible:ring-primary-500': {},
+    '&-tertiary': {
+      '@apply text-dark-secondary': {},
+      '@apply bg-tertiary-surface': {},
+      /* hover */
+      '@apply hover:bg-tertiary-surface-hover': {},
 
-      ...colors.reduce(
-        (styles, color) => ({
-          ...styles,
-          [`&[data-color="${color}"]`]: {
-            /* focus */
-            [`@apply focus-visible:ring-${color}-500`]: {},
-          },
-        }),
-        {}
-      ),
+      // State
+      '&.sk-btn-disabled, &[aria-disabled="true"]': {
+        '@apply disabled:bg-tertiary-surface-disabled bg-tertiary-surface-disabled disabled:border-transparent border-transparent !important':
+          {},
+      },
+
+      '&[data-inverted="true"]': {
+        '@apply bg-inverted-tertiary-surface': {},
+        /* hover */
+        '@apply hover:bg-inverted-tertiary-surface-hover': {},
+        '&.sk-btn-disabled, &[aria-disabled="true"]': {
+          '@apply disabled:bg-inverted-tertiary-surface-disabled bg-inverted-tertiary-surface-disabled disabled:border-transparent border-transparent !important':
+            {},
+        },
+      },
     },
   };
 }
@@ -193,7 +127,6 @@ function buttonLink(colors) {
       '&.active': {
         '@apply underline': {},
       },
-      '@apply focus-visible:z-base focus-visible:ring-4 focus-visible:ring-primary-500': {},
       // dark colors
       '@apply dark:text-neutral-200': {},
       '@apply dark:active:text-neutral-500': {},
@@ -202,11 +135,8 @@ function buttonLink(colors) {
         (styles, color) => ({
           ...styles,
           [`&[data-color="${color}"]`]: {
-            [`@apply text-${color}-600 active:text-${color}-700`]: {},
-            [`@apply focus-visible:ring-${color}-500`]: {},
+            [`@apply text-${color}-text active:text-${color}-text`]: {},
             // dark colors
-            [`@apply dark:text-${color}-200`]: {},
-            [`@apply dark:active:text-${color}-500`]: {},
           },
         }),
         {}
@@ -216,107 +146,110 @@ function buttonLink(colors) {
 }
 
 module.exports = Button = (colors) => ({
-  '.btn': {
+  '.sk-btn': {
+    '@apply box-border': {},
+    '@apply border-2 border-transparent': {},
+    '@apply cursor-pointer': {},
     '@apply relative': {},
     '@apply m-0': {},
-    '@apply px-[3.2rem]': {},
-    '@apply py-0': {},
-    '@apply rounded-[0.4rem] inline-flex items-center justify-center flex-shrink-0 align-middle': {},
-    '@apply font-medium leading-tight': {},
+    '@apply px-24 py-8 gap-8': {},
+    '@apply font-bold': {},
+    '@apply inline-flex items-center justify-center flex-shrink-0 align-middle': {},
+    '@apply rounded-button-sm md:rounded-button': {},
     transitionProperty: 'background-color, border-color, color, fill, stroke, box-shadow',
     '@apply	duration-75 ease-out': {},
-    '@apply outline-none appearance-none cursor-base select-none whitespace-nowrap': {},
+    '@apply outline-none appearance-none select-none whitespace-nowrap': {},
     '@apply focus-visible:outline-none': {},
+    '@apply focus-visible:ring': {},
 
     "&[data-rounded='true']": {
-      borderRadius: '3.2rem',
+      '@apply rounded-circular': {},
     },
 
     // sizing
     '&-sm': {
-      '@apply text-xs': {},
-      minHeight: '4rem',
-      maxHeight: '4rem',
+      '@apply text-label-sm leading-label-sm': {},
+      '@apply px-14 py-8 gap-6': {},
+      '@apply max-h-[3.2rem] min-h-[3.2rem]': {},
+      svg: {
+        '@apply !h-[1.6rem] !w-[1.6rem]': {},
+      },
     },
 
     '&-md': {
-      '@apply text-sm': {},
-      minHeight: '4.4rem',
-      maxHeight: '4.4rem',
+      '@apply text-label-md leading-label-md': {},
+      '@apply px-18 py-8 gap-8': {},
+      '@apply max-h-[4rem] min-h-[4rem]': {},
+      svg: {
+        '@apply !h-[1.8rem] !w-[1.8rem]': {},
+      },
     },
 
     '&-lg': {
-      '@apply text-base': {},
-      minHeight: '4.8rem',
-      maxHeight: '4.8rem',
-    },
-    '&-fit-content': {
-      '@apply p-0': {},
-      fontSize: 'inherit',
+      '@apply text-label-lg leading-label-lg': {},
+      '@apply px-24 py-8 gap-8': {},
+      '@apply max-h-[4.8rem] min-h-[4.8rem]': {},
+      svg: {
+        '@apply !h-[2rem] !w-[2rem]': {},
+      },
     },
 
     // State
-
     '&-disabled, &[aria-disabled="true"]': {
       '@apply shadow-none disabled:shadow-none disabled:cursor-not-allowed cursor-not-allowed': {},
-      '@apply disabled:text-gray text-gray disabled:bg-gray-light bg-gray-light !important': {},
-    },
-    '.MuiSvgIcon-root': {
-      fontSize: '1.5em',
-      width: '1em',
-      height: '1em',
+      '@apply disabled:text-dark-disabled text-dark-disabled disabled:bg-primary-surface-disabled bg-primary-surface-disabled disabled:border-transparent border-transparent !important':
+        {},
+      '&[data-inverted="true"]': {
+        '@apply disabled:text-inverted-dark-disabled text-inverted-dark-disabled disabled:bg-inverted-primary-surface-disabled bg-inverted-primary-surface-disabled disabled:border-transparent border-transparent !important':
+          {},
+      },
     },
 
     // variants
-    ...buttonSolid(colors),
-    ...buttonOutline(colors),
-    ...buttonGhost(colors),
+    ...buttonPrimary(colors),
+    ...buttonSecondary(),
+    ...buttonTertiary(),
     ...buttonLink(colors),
-  },
-  '.btn-has-icon': {
-    '&-left': {
-      '@apply h-full flex items-center justify-center': {},
 
-      '.MuiSvgIcon-root': {
-        '@apply mr-sm': {},
-      },
-    },
-    '&-right': {
-      '@apply h-full flex items-center justify-center': {},
-
-      '.MuiSvgIcon-root': {
-        '@apply ml-sm': {},
-      },
-    },
-  },
-  '[data-icon=true]': {
-    '@apply p-0': {},
-    "&[data-rounded='true']": {
-      '@apply rounded-full': {},
-    },
-    '&.btn-sm': {
-      minWidth: '4rem',
-      maxWidth: '4rem',
-    },
-
-    '&.btn-md': {
-      minWidth: '4.4rem',
-      maxWidth: '4.4rem',
-    },
-
-    '&.btn-lg': {
-      minWidth: '4.8rem',
-      maxWidth: '4.8rem',
-    },
     '.btn-has-icon': {
       '&-left': {
-        '.MuiSvgIcon-root': {
-          '@apply mr-0': {},
-        },
+        '@apply h-full flex items-center justify-center -ml-2': {},
       },
       '&-right': {
-        '.MuiSvgIcon-root': {
-          '@apply ml-0': {},
+        '@apply h-full flex items-center justify-center -mr-2': {},
+      },
+    },
+    '&-lg .btn-has-icon-left': {
+      '@apply -ml-4': {},
+    },
+    '&-lg .btn-has-icon-right': {
+      '@apply -mr-4': {},
+    },
+    '&[data-icon=true]': {
+      '@apply p-0': {},
+      "&[data-rounded='true']": {
+        '@apply rounded-full': {},
+      },
+      '&.sk-btn-sm': {
+        minWidth: '3.2rem',
+        maxWidth: '3.2rem',
+      },
+
+      '&.sk-btn-md': {
+        minWidth: '4rem',
+        maxWidth: '4rem',
+      },
+
+      '&.sk-btn-lg': {
+        minWidth: '4.8rem',
+        maxWidth: '4.8rem',
+      },
+      '.btn-has-icon': {
+        '&-left': {
+          '@apply m-0': {},
+        },
+        '&-right': {
+          '@apply m-0': {},
         },
       },
     },

@@ -7,7 +7,7 @@ module.exports = Footer = (colors) => ({
         (styles, color) => ({
           ...styles,
           [`&[data-color="${color}"]`]: {
-            [`@apply bg-${color}`]: {},
+            [`@apply bg-${color}-surface-primary`]: {},
           },
         }),
         {}
@@ -25,7 +25,7 @@ module.exports = Footer = (colors) => ({
         (styles, color) => ({
           ...styles,
           [`&[data-color="${color}"]`]: {
-            [`@apply bg-${color}`]: {},
+            [`@apply bg-${color}-surface-primary`]: {},
           },
         }),
         {}

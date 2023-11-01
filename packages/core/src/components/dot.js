@@ -8,7 +8,7 @@ module.exports = Dot = (colors) => ({
         (styles, color) => ({
           ...styles,
           [`&[data-color="${color}"]`]: {
-            [`@apply bg-${color}-500`]: {},
+            [`@apply bg-${color}-surface-primary`]: {},
           },
         }),
         {}
@@ -23,8 +23,7 @@ module.exports = Dot = (colors) => ({
         (styles, color) => ({
           ...styles,
           [`&.dot-bordered[data-color="${color}"]`]: {
-            [`@apply border-${color}-100`]: {},
-            [`@apply dark:border-${color}-300`]: {},
+            [`@apply border-${color}-background-200`]: {},
           },
         }),
         {}
@@ -38,7 +37,7 @@ module.exports = Dot = (colors) => ({
         (styles, color) => ({
           ...styles,
           [`&[data-color="${color}"]`]: {
-            [`@apply border-${color}-500`]: {},
+            [`@apply border-${color}-surface-primary`]: {},
           },
         }),
         {}

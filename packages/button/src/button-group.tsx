@@ -18,11 +18,12 @@ interface IButtonGroupProps extends DefaultProps {
   variant?: ButtonProps['variant'];
   /* Set all wrapped button color */
   color?: ButtonProps['color'];
+  inverted?: boolean;
   /* React node */
   children?: React.ReactNode;
 }
 
-export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement>, IButtonGroupProps {}
+export interface ButtonGroupProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'>, IButtonGroupProps {}
 
 export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>((props, ref) => {
   const { size, color, variant, attached, disabled, children, className, ...rest } = props;

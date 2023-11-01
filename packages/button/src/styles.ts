@@ -3,23 +3,19 @@ import { cx } from '@sk-web-gui/utils';
 
 export const useButtonClass = createMemoClass((props) => {
   const variantClasses: { [key: string]: string } = {
-    outline: 'btn-outline',
-    solid: 'btn-solid',
-    ghost: 'btn-ghost',
-    light: 'btn-light',
-    link: 'btn-link',
+    primary: 'sk-btn-primary',
+    secondary: 'sk-btn-secondary',
+    tertiary: 'sk-btn-tertiary',
+    link: 'sk-btn-link',
   };
 
   const sizes: { [key: string]: string } = {
-    fit: 'btn-fit-content',
-    xs: 'btn-xs',
-    sm: 'btn-sm',
-    md: 'btn-md',
-    lg: 'btn-lg',
-    xl: 'btn-xl',
+    sm: 'sk-btn-sm',
+    md: 'sk-btn-md',
+    lg: 'sk-btn-lg',
   };
 
-  const classes = cx('btn', sizes[props.size], variantClasses[props.variant], props.disabled && 'btn-disabled');
+  const classes = cx('sk-btn', sizes[props.size], variantClasses[props.variant], props.disabled && 'sk-btn-disabled');
 
   return classes;
 });

@@ -9,7 +9,7 @@ function badgeSolid(colors) {
           ...styles,
           [`&[data-color="${color}"]`]: {
             //[`@apply border-${color}`]: {},
-            [`@apply text-white bg-${color}`]: {},
+            [`@apply text-white bg-${color}-surface-primary`]: {},
           },
         }),
         {}
@@ -42,7 +42,7 @@ function badgeOutline(colors) {
           ...styles,
           [`&[data-color="${color}"]`]: {
             [`@apply border-current`]: {},
-            [`@apply text-${color}`]: {},
+            [`@apply text-${color}-text`]: {},
           },
         }),
         {}

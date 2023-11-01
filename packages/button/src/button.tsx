@@ -21,15 +21,17 @@ export interface ButtonProps extends DefaultProps, React.ButtonHTMLAttributes<HT
   /** Adds icon after button label */
   rightIcon?: React.ReactElement;
   /** Set the button color */
-  color?: string;
+  color?: 'primary' | 'waring' | 'error' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
   /** Size of the button */
-  size?: 'sm' | 'md' | 'lg' | 'fit';
+  size?: 'sm' | 'md' | 'lg';
   /** Controls button appearance */
-  variant?: 'link' | 'solid' | 'outline' | 'ghost';
+  variant?: 'link' | 'primary' | 'secondary' | 'tertiary';
   /** React node */
   children?: React.ReactNode;
   /** Sets the button to the rounded variant */
   rounded?: boolean;
+  /** Sets if inverted look */
+  inverted?: boolean;
   /** Sets if this is an icon button */
   iconButton?: boolean;
   /** Make sure to use aria-describedby or such for accessibility */
@@ -61,8 +63,8 @@ export const Button = React.forwardRef(
       active,
       type = 'button',
       className,
-      color,
-      variant = 'outline',
+      color = 'primary',
+      variant = 'primary',
       size = 'md',
       rounded = false,
       iconButton,
@@ -70,6 +72,7 @@ export const Button = React.forwardRef(
       leftIcon,
       rightIcon,
       children,
+      inverted,
       as,
       ...rest
     } = props;
@@ -93,7 +96,7 @@ export const Button = React.forwardRef(
         className={cx(className)}
         {...rest}
       >
-        {getButtonContent(props)}
+        {getButtonContent({ loading, loadingText, leftIcon, rightIcon, children })}
       </Link>
     ) : (
       <Component
@@ -105,10 +108,11 @@ export const Button = React.forwardRef(
         data-rounded={rounded ? rounded : undefined}
         data-active={active ? 'true' : undefined}
         data-color={color ? color : undefined}
+        data-inverted={inverted ? inverted : undefined}
         data-icon={iconButton ? iconButton : undefined}
         className={cx(classes, className)}
       >
-        {getButtonContent(props)}
+        {getButtonContent({ loading, loadingText, leftIcon, rightIcon, children })}
       </Component>
     );
   }

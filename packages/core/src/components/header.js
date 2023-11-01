@@ -6,7 +6,7 @@ module.exports = Header = (colors) => ({
       (styles, color) => ({
         ...styles,
         [`&[data-color="${color}"]`]: {
-          [`@apply border-${color}`]: {},
+          [`@apply border-${color}-text`]: {},
         },
       }),
       {}

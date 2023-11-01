@@ -42,16 +42,12 @@ module.exports = Radio = (colors) => ({
       (styles, color) => ({
         ...styles,
         [`&[data-color="${color}"]`]: {
-          [`@apply text-${color}-600`]: {},
-          [`@apply focus-visible:border-${color}-600 focus-visible:ring-${color}-600`]: {},
-          [`@apply dark:text-${color}-500`]: {},
-          [`@apply dark:focus-visible:border-${color}-400 dark:focus-visible:ring-${color}-400`]: {},
+          [`@apply text-${color}-text`]: {},
+          [`@apply focus-visible:border-${color}-text`]: {},
         },
       }),
       {}
     ),
-
-    '@apply dark:focus-visible:ring-offset-neutral-900': {},
 
     // sizing
     '&-sm': {
