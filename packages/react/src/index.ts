@@ -45,3 +45,4 @@ export * from '@sk-web-gui/context-menu';
 export * from '@sk-web-gui/badge';
 
 export * from '@sk-web-gui/profile';
+export * from '@sk-web-gui/avatar';

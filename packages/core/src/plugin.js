@@ -25,6 +25,7 @@ const Switch = require('./components/switch');
 
 const Button = require('./components/button');
 const Accordion = require('./components/accordion');
+const Avatar = require('./components/avatar');
 const Card = require('./components/card');
 const Table = require('./components/table');
 const ZebraTable = require('./components/zebratable');
@@ -78,6 +79,7 @@ const components = [
   Modal,
 
   Accordion,
+  Avatar,
   Card,
   Divider,
 
