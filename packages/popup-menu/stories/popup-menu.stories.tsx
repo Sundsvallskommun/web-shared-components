@@ -47,9 +47,9 @@ export const Template = () => {
         </PopupMenu>
       </div>
 
-      <div className="mt-lg">
+      <div className="mt-lg w-max">
         <h2>Textknapp</h2>
-        <PopupMenu menuSide="right">
+        <PopupMenu>
           <PopupMenu.Button variant="tertiary" rightIcon={<ExpandMoreIcon />}>
             Kontextmeny
           </PopupMenu.Button>

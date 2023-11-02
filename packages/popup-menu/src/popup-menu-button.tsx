@@ -5,7 +5,7 @@ import { cx } from '@sk-web-gui/utils';
 import * as React from 'react';
 import { useButtonClass } from './styles';
 
-export const PopupMenuButton: React.FC<ButtonProps> = (props) => {
+export const PopupMenuButton = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   const {
     disabled: _disabled,
     loading,
@@ -33,6 +33,7 @@ export const PopupMenuButton: React.FC<ButtonProps> = (props) => {
 
   return (
     <Menu.Button
+      ref={ref}
       data-rounded={rounded ? rounded : undefined}
       data-active={active ? 'true' : undefined}
       data-color={color ? color : undefined}
@@ -45,4 +46,4 @@ export const PopupMenuButton: React.FC<ButtonProps> = (props) => {
       {getButtonContent({ loadingText, loading, leftIcon, rightIcon, children })}
     </Menu.Button>
   );
-};
+});

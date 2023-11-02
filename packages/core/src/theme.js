@@ -45,7 +45,6 @@ module.exports = {
       DEFAULT: '0.3rem',
       0: '0px',
     },
-
     ringOpacity: {
       DEFAULT: 1,
     },

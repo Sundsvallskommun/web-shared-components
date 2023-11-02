@@ -16,7 +16,7 @@ interface ICommentContextProps extends DefaultProps {
   setItemToEdit: Dispatch<SetStateAction<{ id: string | number | undefined; comment: string } | undefined>>;
 }
 
-export const CommentItemContextmenu = React.forwardRef<HTMLDivElement, ICommentContextProps>((props) => {
+export const CommentItemContextmenu = React.forwardRef<HTMLDivElement, ICommentContextProps>((props, ref) => {
   const { onDeleteCallback, setIsEdit, setInputValue, commentValue, commentItem, setItemToEdit } = props;
 
   const onHandleEdit = () => {
@@ -35,7 +35,7 @@ export const CommentItemContextmenu = React.forwardRef<HTMLDivElement, ICommentC
   };
 
   return (
-    <ContextMenu classNameItems="p-0 absolute right-10">
+    <ContextMenu classNameItems="p-0 absolute right-10" ref={ref}>
       <ContextMenu.Button title="Redigera Kommentar" variant="tertiary" size="lg" className="border-0" iconButton>
         <MoreVertIcon />
       </ContextMenu.Button>

@@ -15,6 +15,8 @@ module.exports = {
   },
   '*': {
     '@apply focus-visible:ring-ring': {},
+    '@apply focus-visible:ring-offset-background-content': {},
+    '@apply focus-visible:outline-0': {},
   },
   small: {
     fontSize: '@apply font-small',
