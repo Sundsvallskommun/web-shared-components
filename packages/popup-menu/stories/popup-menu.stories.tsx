@@ -4,7 +4,7 @@ import { Button } from '@sk-web-gui/button';
 import { Divider } from '@sk-web-gui/divider';
 import { Link } from '@sk-web-gui/link';
 import { LogOut, Settings2, User, Wallet } from 'lucide-react';
-import { PopupMenu } from '../src';
+import { PopupMenu, PopupMenuProps } from '../src';
 
 export default {
   title: 'Komponenter/Meny/Popupmeny',
@@ -12,72 +12,81 @@ export default {
   tags: ['autodocs'],
 };
 
-export const Template = () => {
+export const Template = (args: PopupMenuProps) => {
   return (
-    <div className="h-[50rem]">
-      <div>
-        <PopupMenu size="sm">
-          <PopupMenu.Button size="sm" variant="primary" color="bjornstigen" iconButton rounded>
+    <div className="h-[50rem] flex flex-col items-center">
+      <div className="relative w-min h-[3.2rem]">
+        <PopupMenu {...args}>
+          <PopupMenu.Button
+            size="sm"
+            variant="primary"
+            aria-label="More options"
+            color="bjornstigen"
+            iconButton
+            rounded
+          >
             <ArrowDownwardIcon />
           </PopupMenu.Button>
-          <PopupMenu.Item>
-            <Button leftIcon={<User />} onClick={() => console.log('Profile')}>
-              Profil
-            </Button>
-          </PopupMenu.Item>
+          <PopupMenu.Group>
+            <PopupMenu.Item>
+              <Button leftIcon={<User />} onClick={() => console.log('Profile')}>
+                Profil
+              </Button>
+            </PopupMenu.Item>
 
-          <PopupMenu.Item>
-            <Button leftIcon={<Wallet />} onClick={() => console.log('Account')}>
-              Konto
-            </Button>
-          </PopupMenu.Item>
-          <PopupMenu.Item>
-            <Link onClick={() => console.log('Edit')}>
-              <>
-                <Settings2 /> Inställningar
-              </>
-            </Link>
-          </PopupMenu.Item>
-          <Divider orientation="horizontal" className="w-full" />
-          <PopupMenu.Item>
-            <Button leftIcon={<LogOut />} onClick={() => console.log('Logout')}>
-              Logga ut
-            </Button>
-          </PopupMenu.Item>
+            <PopupMenu.Item>
+              <Button leftIcon={<Wallet />} onClick={() => console.log('Account')}>
+                Konto
+              </Button>
+            </PopupMenu.Item>
+            <PopupMenu.Item>
+              <Link onClick={() => console.log('Edit')}>
+                <>
+                  <Settings2 /> Inställningar
+                </>
+              </Link>
+            </PopupMenu.Item>
+          </PopupMenu.Group>
+          <PopupMenu.Group>
+            <PopupMenu.Item>
+              <Button leftIcon={<LogOut />} onClick={() => console.log('Logout')}>
+                Logga ut
+              </Button>
+            </PopupMenu.Item>
+          </PopupMenu.Group>
         </PopupMenu>
       </div>
 
-      <div className="mt-lg w-max">
+      <div className="mt-32 w-full">
         <h2>Textknapp</h2>
-        <PopupMenu>
-          <PopupMenu.Button variant="tertiary" rightIcon={<ExpandMoreIcon />}>
-            Kontextmeny
-          </PopupMenu.Button>
-          <PopupMenu.Item>
-            <Button leftIcon={<User />} onClick={() => console.log('Profile')}>
-              Profil
-            </Button>
-          </PopupMenu.Item>
+        <div className="w-min relative h-[4rem]">
+          <PopupMenu {...args}>
+            <PopupMenu.Button variant="tertiary" rightIcon={<ExpandMoreIcon />}>
+              Kontextmeny
+            </PopupMenu.Button>
+            <PopupMenu.Item>
+              <Button leftIcon={<User />} onClick={() => console.log('Profile')}>
+                Profil
+              </Button>
+            </PopupMenu.Item>
 
-          <PopupMenu.Item>
-            <Button leftIcon={<Wallet />} onClick={() => console.log('Account')}>
-              Konto
-            </Button>
-          </PopupMenu.Item>
-          <PopupMenu.Item>
-            <Link onClick={() => console.log('Edit')}>
-              <>
+            <PopupMenu.Item>
+              <Button leftIcon={<Wallet />} onClick={() => console.log('Account')}>
+                Konto
+              </Button>
+            </PopupMenu.Item>
+            <PopupMenu.Item>
+              <Link onClick={() => console.log('Edit')}>
                 <Settings2 /> Inställningar
-              </>
-            </Link>
-          </PopupMenu.Item>
-          <Divider orientation="horizontal" className="w-full" />
-          <PopupMenu.Item>
-            <Button leftIcon={<LogOut />} onClick={() => console.log('Logout')}>
-              Logga ut
-            </Button>
-          </PopupMenu.Item>
-        </PopupMenu>
+              </Link>
+            </PopupMenu.Item>
+            <PopupMenu.Item>
+              <Button leftIcon={<LogOut />} onClick={() => console.log('Logout')}>
+                Logga ut
+              </Button>
+            </PopupMenu.Item>
+          </PopupMenu>
+        </div>
       </div>
     </div>
   );

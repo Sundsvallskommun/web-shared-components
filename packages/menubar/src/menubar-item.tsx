@@ -23,8 +23,9 @@ export const MenuBarItem = React.forwardRef<HTMLLIElement, MenuBarItemProps>((pr
   const [mounted, setMounted] = React.useState<boolean>(false);
   const color = propsColor || contextColor;
   const menuRef = React.useRef<HTMLElement>();
+
   React.useEffect(() => {
-    if (thisCurrent && menuIndex && menuIndex !== current) {
+    if (thisCurrent && typeof menuIndex === 'number') {
       setCurrent && setCurrent(menuIndex);
     }
   }, [thisCurrent]);

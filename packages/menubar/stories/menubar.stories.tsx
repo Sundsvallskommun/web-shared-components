@@ -15,7 +15,7 @@ export default {
 } as Meta;
 
 export const Template = (args: MenuBarProps) => {
-  const [current, setCurrent] = React.useState<number | undefined>(undefined);
+  const [current, setCurrent] = React.useState<number | undefined>(1);
   return (
     <div className="h-[50rem]">
       <MenuBar {...args} current={current}>

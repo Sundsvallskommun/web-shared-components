@@ -7,6 +7,41 @@ module.exports = PopupMenu = () => ({
     },
   },
   '.sk-popup-menu-items': {
+    '&[data-position="left"]': {
+      '@apply mt-0 mr-8 right-[100%]': {},
+      '&[data-align="end"]': {
+        '@apply bottom-0': {},
+      },
+      '&[data-align="start"]': {
+        '@apply top-0': {},
+      },
+    },
+    '&[data-position="right"]': {
+      '@apply mt-0 ml-8 left-[100%]': {},
+      '&[data-align="end"]': {
+        '@apply bottom-0': {},
+      },
+      '&[data-align="start"]': {
+        '@apply top-0': {},
+      },
+    },
+    '&[data-position="over"]': {
+      '@apply mt-0 mb-8 bottom-[100%]': {},
+      '&[data-align="end"]': {
+        '@apply right-0': {},
+      },
+      '&[data-align="start"]': {
+        '@apply left-0': {},
+      },
+    },
+    '&[data-position="under"]': {
+      '&[data-align="end"]': {
+        '@apply right-0': {},
+      },
+      '&[data-align="start"]': {
+        '@apply left-0': {},
+      },
+    },
     '@apply absolute flex flex-col justify-start items-start mt-8': {},
     '@apply w-max': {},
     '@apply rounded-utility': {},
@@ -43,25 +78,31 @@ module.exports = PopupMenu = () => ({
       '@apply items-center': {},
       '@apply no-underline': {},
     },
+    '&-group': {
+      '@apply w-full flex flex-col border-b border-divider pb-4 gap-4': {},
+      '&:first-child': {
+        '@apply pt-0': {},
+      },
+      '&:last-child': {
+        '@apply border-0 pb-0': {},
+      },
+    },
     '&-sm': {
       '@apply p-8 gap-6': {},
       '.sk-popup-menu-item': {
         '@apply h-[3.2rem]': {},
         '@apply min-h-[3.2rem]': {},
 
-        '@apply gap-10 pl-4 pr-24 py-0': {},
+        '@apply gap-10 pl-8 pr-24 py-4': {},
         '@apply text-sm': {},
-
+        '&-group': {
+          '@apply gap-6 pb-6': {},
+        },
         svg: {
           '@apply w-[1.8rem] h-[1.8rem]': {},
         },
       },
     },
-
-    hr: {
-      '@apply w-full mx-sm w-[calc(100%_-_16px)]': {},
-    },
-
     '&.right': {
       '@apply right-0': {},
     },
