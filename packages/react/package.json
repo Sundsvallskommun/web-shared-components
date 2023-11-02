@@ -60,6 +60,7 @@
     "@sk-web-gui/image": "0.1.14",
     "@sk-web-gui/keyboard-navigation": "0.0.3",
     "@sk-web-gui/link": "0.1.16",
+    "@sk-web-gui/menubar": "0.1.00",
     "@sk-web-gui/message": "0.1.27",
     "@sk-web-gui/modal": "0.1.21",
     "@sk-web-gui/pagination": "0.1.24",

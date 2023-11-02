@@ -15,10 +15,10 @@ function fieldOutline(colors) {
       ),
 
       '&[aria-invalid=true]': {
-        '@apply border-error ring-error': {},
+        '@apply border-error ring': {},
 
         '&:focus-visible': {
-          '@apply border-error ring-error': {},
+          '@apply border-error ring': {},
         },
       },
     },
@@ -42,10 +42,10 @@ function fieldSolid(colors) {
       ),
 
       '&[aria-invalid=true]': {
-        '@apply border-error ring-error': {},
+        '@apply border-error ring': {},
 
         '&:focus-visible': {
-          '@apply border-error ring-error': {},
+          '@apply border-error ring': {},
         },
       },
     },
@@ -84,7 +84,7 @@ function formInputGroup() {
       '@apply flex relative bg-white h-fit w-full rounded-[0.2rem] border border-gray-stroke': {},
 
       '&:focus-within': {
-        '@apply border border-primary ring-primary ring-1': {},
+        '@apply border border-primary ring': {},
       },
 
       '> *': {

@@ -18,6 +18,7 @@ const Forms = require('./components/forms');
 const Calendar = require('./components/calendar');
 const Icon = require('./components/icon');
 const Link = require('./components/link');
+const Menubar = require('./components/menubar');
 const Message = require('./components/message');
 const Notification = require('./components/notification');
 const Radio = require('./components/radio');
@@ -68,6 +69,7 @@ const components = [
   Calendar,
   Icon,
   Link,
+  Menubar,
   Message,
   Notification,
   Radio,

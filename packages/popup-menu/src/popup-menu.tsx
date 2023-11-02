@@ -5,20 +5,23 @@ import { cx, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 import { PopupMenuButton } from './popup-menu-button';
 
-export interface PopupMenuPropsInternal extends React.HTMLAttributes<HTMLDivElement>, DefaultProps {
-  classNameItems?: string;
-  /**
-   * @default 'left'
-   */
-  menuSide?: 'left' | 'right';
+export interface PopupMenuPropsInternal extends React.HTMLAttributes<HTMLButtonElement>, DefaultProps {
   size?: 'md' | 'sm';
 }
 
-const PopupMenuComponent = React.forwardRef<HTMLDivElement, PopupMenuPropsInternal>((props, ref) => {
-  const { className, classNameItems, children, menuSide = 'left', size = 'medium', ...rest } = props;
+const PopupMenuComponent = React.forwardRef<HTMLButtonElement, PopupMenuPropsInternal>((props, ref) => {
+  const { className, children, size = 'medium', ...rest } = props;
 
   const getButton = () => {
-    return React.Children.toArray(children).find((child: any) => child?.type?.name === PopupMenuButton.name);
+    const button = React.Children.toArray(children).find(
+      (child: any) => child?.type?.name === PopupMenuButton.name
+    ) as React.ReactElement;
+
+    if (button) {
+      return React.cloneElement(button, { ...button.props, ref, ...rest });
+    } else {
+      throw new Error('No PopupMenu.Button found');
+    }
   };
 
   const getItems = () => {
@@ -26,39 +29,30 @@ const PopupMenuComponent = React.forwardRef<HTMLDivElement, PopupMenuPropsIntern
   };
 
   return (
-    <Menu as="div" ref={ref} className={cx('sk-popup-menu-wrapper', className)} {...rest}>
+    <Menu>
       {getButton()}
-      <Menu.Items className={`sk-popup-menu-items ${menuSide} ${classNameItems} sk-popup-menu-items-${size}`}>
-        {getItems()}
-      </Menu.Items>
+      <Menu.Items className={`sk-popup-menu-items ${className} sk-popup-menu-items-${size}`}>{getItems()}</Menu.Items>
     </Menu>
   );
 });
 
 interface PopupMenuItemProps {
   children: JSX.Element;
-  className?: string;
-  as?: React.ElementType;
   disabled?: boolean;
-  onClick?: () => void;
 }
 
 //TODO: Add function for expandable menues.
 
-const PopupMenuItem: React.FC<PopupMenuItemProps> = ({ disabled = false, children, className, as = 'div' }) => {
+const PopupMenuItem: React.FC<PopupMenuItemProps> = ({ disabled = false, children }) => {
+  const itemRef = React.useRef<HTMLElement>(null);
+
   const getItem = (child: JSX.Element, active: boolean) => {
     const classes = cx(child?.props?.className, active ? 'active' : '');
-    const props = { ...child.props, className: classes };
+    const props = { ...child.props, className: cx('sk-popup-menu-item', classes), ref: itemRef };
     return React.cloneElement(child, props);
   };
 
-  return (
-    <Menu.Item as={as} disabled={disabled} className={cx('sk-popup-menu-item', className)}>
-      {({ active }) => (
-        <span className={cx('sk-popup-menu-item-content', active ? 'active' : '')}>{getItem(children, active)}</span>
-      )}
-    </Menu.Item>
-  );
+  return <Menu.Item disabled={disabled}>{({ active }) => getItem(children, active)}</Menu.Item>;
 };
 
 interface PopupMenuProps
