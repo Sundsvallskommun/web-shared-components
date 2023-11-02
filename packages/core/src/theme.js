@@ -14,6 +14,12 @@ module.exports = {
     '4xl': units.fontSizes['h1'],
     '5xl': units.fontSizes['h3'],
   },
+  fontFamily: {
+    DEFAULT: ['Arial', 'Helvetica', 'sans-serif'],
+    sans: ['Arial', 'Helvetica', 'sans-serif'],
+    header: ['Raleway', 'Arial', 'Helvetica', 'sans-serif'],
+    display: ['Raleway', 'Arial', 'Helvetica', 'sans-serif'],
+  },
   screens,
   borderRadius: {
     ...units.radius,
@@ -26,7 +32,7 @@ module.exports = {
   extend: {
     boxShadow: {
       100: [
-        '0 0.6rem 1.6rem 0 rgba(13,13,14, 0.7)',
+        '0 0.6rem 1.6rem 0 rgba(13,13,14, 0.07)',
         '0 0.181rem 1.2rem 0 rgba(13,13,14, 0.15)',
         '0 0.075rem 0.2rem 0 rgba(13,13,14, 0.085)',
         '0 0.027rem 0.072rem 0 rgba(13,13,14, 0.0583)',

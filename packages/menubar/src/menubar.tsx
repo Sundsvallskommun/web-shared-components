@@ -40,15 +40,24 @@ export const MenuBarComponent = React.forwardRef<HTMLUListElement, MenuBarCompon
   } = props;
   const [current, setCurrent] = useState<number | undefined>(_current);
   const [active, setActive] = useState<number>(_current || 0);
-
+  const [mounted, setMounted] = useState<boolean>(false);
   const autoId = React.useId();
   const id = _id || `sk-menubar-${autoId}`;
 
   const total = React.Children.count(children);
 
   React.useEffect(() => {
-    setCurrent(_current);
+    if (mounted) {
+      handleSetCurrent(_current);
+    } else {
+      setMounted(true);
+    }
   }, [_current]);
+
+  const handleSetCurrent = (index: number | undefined) => {
+    setCurrent(index);
+    setActive(index || 0);
+  };
 
   const next = () => {
     if (active === total - 1) {
@@ -70,7 +79,7 @@ export const MenuBarComponent = React.forwardRef<HTMLUListElement, MenuBarCompon
     next,
     prev,
     current,
-    setCurrent,
+    setCurrent: handleSetCurrent,
     color,
     active,
   };

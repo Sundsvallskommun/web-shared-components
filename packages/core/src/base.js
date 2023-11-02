@@ -8,7 +8,7 @@ module.exports = {
     touchAction: 'manipulation',
   },
   body: {
-    '@apply text-base leading-base': {},
+    '@apply text-base leading-base bg-background-content': {},
     position: 'relative',
     minHeight: '100%',
     fontFeatureSettings: "'kern'",
@@ -21,6 +21,7 @@ module.exports = {
   small: {
     fontSize: '@apply font-small',
   },
+  a: { '@apply rounded-button': {} },
   h1: {
     '@apply text-h1-sm md:text-h1-md xl:text-h1-lg leading-h1-sm md:leading-h1-md xl:leading-h1-lg': {},
     '@apply font-bold': {},
