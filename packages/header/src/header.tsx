@@ -3,6 +3,7 @@ import { Link } from '@sk-web-gui/link';
 import { Divider } from '@sk-web-gui/divider';
 import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 import { Logo } from './assets/logo';
+import { useGui } from '@sk-web-gui/theme';
 
 export interface HeaderProps extends DefaultProps, React.HTMLAttributes<HTMLDivElement> {
   /* Title for main page */
@@ -54,6 +55,8 @@ export const Header = React.forwardRef<HTMLDivElement, HeaderProps>((props, ref)
     return children;
   };
 
+  const context = useGui();
+
   const handleLogoLinkOnClick = (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
     logoLinkOnClick && logoLinkOnClick();
@@ -74,7 +77,7 @@ export const Header = React.forwardRef<HTMLDivElement, HeaderProps>((props, ref)
                 >
                   <div className="flex flex-row items-center gap-6 cursor-pointer">
                     <div>
-                      <Logo />
+                      <Logo color={context.theme.colors.dark.primary} />
                     </div>
                     <Divider orientation="vertical" className="h-[4.4rem]" />
                     <span id="page-title" className="text-h4 font-header leading-lg font-bold text-dark-primary">

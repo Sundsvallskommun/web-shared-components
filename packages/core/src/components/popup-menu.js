@@ -1,11 +1,4 @@
 module.exports = PopupMenu = () => ({
-  '.sk-popup-menu-wrapper': {
-    '@apply relative inline': {},
-
-    '> a, > button': {
-      '@apply inline-flex': {},
-    },
-  },
   '.sk-popup-menu-items': {
     '&[data-position="left"]': {
       '@apply mt-0 mr-8 right-[100%]': {},
@@ -45,7 +38,8 @@ module.exports = PopupMenu = () => ({
     '@apply absolute flex flex-col justify-start items-start mt-8': {},
     '@apply w-max': {},
     '@apply rounded-utility': {},
-    '@apply bg-white': {},
+    '@apply bg-background-content': {},
+    '@apply dark:bg-background-100': {},
     '@apply z-10': {},
     '@apply p-8 gap-4': {},
     '@apply shadow-100': {},

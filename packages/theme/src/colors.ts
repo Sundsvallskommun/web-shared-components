@@ -370,7 +370,7 @@ const lightmode = {
 };
 
 const darkmode = {
-  body: { DEFAULT: primitives.gray[900] },
+  body: { DEFAULT: primitives.gray.lightest },
   black: primitives.gray[900],
   white: primitives.gray.lightest,
   ring: primitives.ring,
