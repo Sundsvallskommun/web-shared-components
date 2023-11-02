@@ -56,6 +56,7 @@ module.exports = PopupMenu = () => ({
       '@apply cursor-pointer': {},
       '@apply flex flex-row shrink-0': {},
       '@apply pl-8 pr-32 py-4 gap-12': {},
+
       '@apply rounded-utility': {},
       '@apply text-body font-normal': {},
       '&.active, &:active': {
@@ -80,17 +81,24 @@ module.exports = PopupMenu = () => ({
       '&:last-child': {
         '@apply border-0 pb-0': {},
       },
+      '> *': {
+        '@apply pl-8 pr-32 py-4 gap-12': {},
+      },
     },
     '&-sm': {
       '@apply p-8 gap-6': {},
+
       '.sk-popup-menu-item': {
         '@apply h-[3.2rem]': {},
         '@apply min-h-[3.2rem]': {},
-
         '@apply gap-10 pl-8 pr-24 py-4': {},
+
         '@apply text-sm': {},
         '&-group': {
           '@apply gap-6 pb-6': {},
+          '> *': {
+            '@apply gap-10 pl-8 pr-24 py-4': {},
+          },
         },
         svg: {
           '@apply w-[1.8rem] h-[1.8rem]': {},

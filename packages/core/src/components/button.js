@@ -170,7 +170,7 @@ module.exports = Button = (colors) => ({
     '&-sm': {
       '@apply text-label-sm leading-label-sm': {},
       '@apply px-14 py-8 gap-6': {},
-      '@apply max-h-[3.2rem] min-h-[3.2rem]': {},
+      '@apply max-h-[3.2rem] h-[3.2rem]': {},
       svg: {
         '@apply !h-[1.6rem] !w-[1.6rem]': {},
       },
@@ -179,7 +179,7 @@ module.exports = Button = (colors) => ({
     '&-md': {
       '@apply text-label-md leading-label-md': {},
       '@apply px-18 py-8 gap-8': {},
-      '@apply max-h-[4rem] min-h-[4rem]': {},
+      '@apply max-h-[4rem] h-[4rem]': {},
       svg: {
         '@apply !h-[1.8rem] !w-[1.8rem]': {},
       },
@@ -188,7 +188,7 @@ module.exports = Button = (colors) => ({
     '&-lg': {
       '@apply text-label-lg leading-label-lg': {},
       '@apply px-24 py-8 gap-8': {},
-      '@apply max-h-[4.8rem] min-h-[4.8rem]': {},
+      '@apply max-h-[4.8rem] h-[4.8rem]': {},
       svg: {
         '@apply !h-[2rem] !w-[2rem]': {},
       },
@@ -232,16 +232,19 @@ module.exports = Button = (colors) => ({
       },
       '&.sk-btn-sm': {
         minWidth: '3.2rem',
+        width: '3.2rem',
         maxWidth: '3.2rem',
       },
 
       '&.sk-btn-md': {
         minWidth: '4rem',
+        width: '4rem',
         maxWidth: '4rem',
       },
 
       '&.sk-btn-lg': {
         minWidth: '4.8rem',
+        width: '4.8rem',
         maxWidth: '4.8rem',
       },
       '.btn-has-icon': {

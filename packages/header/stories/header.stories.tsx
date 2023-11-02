@@ -1,6 +1,7 @@
-import { Button, MenuBar, PopupMenu } from '@sk-web-gui/react';
+import { Button, MenuBar, MenuItemGroup, PopupMenu, UserMenu } from '@sk-web-gui/react';
 import { Meta, StoryObj } from '@storybook/react';
-import { Menu, User, ChevronDown } from 'lucide-react';
+import { ChevronDown, LogOut, Menu, Settings2, User, Wallet } from 'lucide-react';
+import { Link } from '../../react';
 import { Header, HeaderProps } from '../src';
 
 export default {
@@ -9,19 +10,63 @@ export default {
   tags: ['autodocs'],
 } as Meta<typeof Header>;
 
+const menuGroups: MenuItemGroup[] = [
+  {
+    label: 'Main',
+    elements: [
+      {
+        label: 'Min profil',
+        element: () => (
+          <Link href="/pagaende">
+            <User />
+            Profil
+          </Link>
+        ),
+      },
+      {
+        label: 'Konto',
+        element: () => (
+          <Link href="/beslutade">
+            <Wallet />
+            Konto
+          </Link>
+        ),
+      },
+      {
+        label: 'Inställningar',
+        element: () => (
+          <Link href="/handlingsplan">
+            <Settings2 />
+            Inställningar
+          </Link>
+        ),
+      },
+    ],
+  },
+  {
+    label: 'Logga ut',
+    elements: [
+      {
+        label: 'Logga ut',
+        element: () => (
+          <Link href="/logout">
+            <LogOut />
+            Logga ut
+          </Link>
+        ),
+      },
+    ],
+  },
+];
+
 export const Template: StoryObj<typeof Header> = (args: HeaderProps) => {
   return (
     <div className="h-[40rem] overflow-hidden">
       <Header
         {...args}
-        className=" !max-w-[156rem]"
         title="E-tjänster"
         subtitle="Sundsvalls kommun"
-        userMenu={
-          <Button variant="tertiary" leftIcon={<User />}>
-            Logga in
-          </Button>
-        }
+        userMenu={<UserMenu menuGroups={menuGroups} />}
         mobileMenu={
           <Button iconButton>
             <Menu />

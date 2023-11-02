@@ -46,6 +46,10 @@ module.exports = {
     '@apply font-bold': {},
     '@apply mt-lg': {},
   },
+  label: {
+    '@apply font-bold': {},
+    '@apply text-label-sm leading-label-sm': {},
+  },
   p: { '@apply my-4': {} },
 
   '.text-content': {
