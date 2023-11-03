@@ -14,7 +14,7 @@ module.exports = Avatar = (colors) => ({
       '@apply h-40': {},
 
       '> *:first-child': {
-        '@apply rounded-button': {},
+        '@apply rounded-button-sm md:rounded-button-md xl:rounded-button-lg': {},
         '@apply cursor-pointer': {},
         '@apply bg-transparent text-dark-primary': {},
         '@apply hover:bg-tertiary-surface': {},

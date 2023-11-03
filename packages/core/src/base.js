@@ -1,10 +1,8 @@
 module.exports = {
   html: {
     '@apply text-base antialiased': {},
-    fontSize: '62.5%',
-    lineHeight: '1.5',
+    fontSize: '10px',
     textRendering: 'optimizeLegibility',
-    textSizeAdjust: '100%',
     touchAction: 'manipulation',
   },
   body: {
@@ -19,9 +17,9 @@ module.exports = {
     '@apply focus-visible:outline-0': {},
   },
   small: {
-    fontSize: '@apply font-small',
+    '@apply text-sm leading-sm': {},
   },
-  a: { '@apply rounded-button': {} },
+  a: { '@apply rounded-button-sm md:rounded-button-md xl:rounded-button-lg': {} },
   h1: {
     '@apply text-h1-sm md:text-h1-md xl:text-h1-lg leading-h1-sm md:leading-h1-md xl:leading-h1-lg': {},
     '@apply font-bold': {},
@@ -33,8 +31,8 @@ module.exports = {
   },
   h2: {
     '@apply text-h2-sm md:text-h2-md xl:text-h2-lg leading-h2-sm md:leading-h2-md xl:leading-h2-lg': {},
-    '@apply mt-lg': {},
     '@apply font-bold': {},
+    '@apply mt-lg': {},
   },
   h3: {
     '@apply text-h3-sm md:text-h3-md xl:text-h3-lg leading-h3-sm md:leading-h3-md xl:leading-h3-lg': {},
@@ -48,7 +46,7 @@ module.exports = {
   },
   label: {
     '@apply font-bold': {},
-    '@apply text-label-sm leading-label-sm': {},
+    '@apply text-label-md leading-label-md': {},
   },
   p: { '@apply my-4': {} },
 
