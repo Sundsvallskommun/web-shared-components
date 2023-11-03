@@ -44,7 +44,9 @@
     "@mui/material": "^5.14.12",
     "@sk-web-gui/profile": "0.1.5",
     "@sk-web-gui/theme": "0.1.14",
-    "@sk-web-gui/utils": "0.1.8"
+    "@sk-web-gui/utils": "0.1.8",
+    "@sk-web-gui/avatar": "0.1.0",
+    "@sk-web-gui/popup-menu": "0.1.0"
   },
   "peerDependencies": {
     "react": ">=18.2.0"

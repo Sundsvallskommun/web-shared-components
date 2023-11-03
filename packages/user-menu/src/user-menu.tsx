@@ -1,4 +1,5 @@
-import { Avatar, PopupMenu } from '@sk-web-gui/react';
+import { Avatar } from '@sk-web-gui/avatar';
+import { PopupMenu } from '@sk-web-gui/popup-menu';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 import * as React from 'react';
 export interface MenuItemGroup {
