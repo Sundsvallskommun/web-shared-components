@@ -189,7 +189,7 @@ module.exports = {
   },
   divider: `var(--sk-colors-divider)`,
   background: {
-    DEFAULT: `var(--sk-colors-backgrouhnd-DEFUALT)`,
+    DEFAULT: `var(--sk-colors-background-DEFUALT)`,
     content: `var(--sk-colors-background-content)`,
     100: `var(--sk-colors-background-100)`,
     200: `var(--sk-colors-background-200)`,
@@ -452,7 +452,7 @@ module.exports = {
     },
     divider: `var(--sk-colors-inverted-divider)`,
     background: {
-      DEFAULT: `var(--sk-colors-inverted-backgrouhnd-DEFUALT)`,
+      DEFAULT: `var(--sk-colors-inverted-background-DEFUALT)`,
       content: `var(--sk-colors-inverted-background-content)`,
       100: `var(--sk-colors-inverted-background-100)`,
       200: `var(--sk-colors-inverted-background-200)`,

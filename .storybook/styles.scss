@@ -27,6 +27,38 @@ pre.prismjs .tag {
   @apply hidden;
 }
 
+#docs-wrapper {
+  .sbdocs-wrapper,
+  .sbdocs-preview,
+  .docblock-argstable-body td,
+  .docblock-argstable-head th,
+  th,
+  td,
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  ul,
+  li,
+  .material-icons,
+  .docblock-typeset,
+  .docblock-typeset > * > * {
+    @apply bg-background text-body;
+  }
+
+  a {
+    @apply text-vattjom-surface-primary;
+  }
+}
+
+body.dark {
+  tr:nth-of-type(2n) {
+    @apply bg-gray-700;
+  }
+}
+
 .docs-preview {
   all: initial !important;
   @apply bg-background;

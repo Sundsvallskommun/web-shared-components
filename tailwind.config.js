@@ -3,7 +3,7 @@ module.exports = {
   content: [
     './packages/*/src/**/*.{ts,tsx}',
     './packages/*/stories/**/*.{tsx,mdx}',
-    './.storybook/*.{tsx,mdx}',
+    './.storybook/*.{tsx,mdx,scss}',
     './.storybook/stories/*.{tsx,mdx}',
     './.storybook/components/*.{tsx,mdx}',
   ],
