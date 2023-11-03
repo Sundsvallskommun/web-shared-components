@@ -108,6 +108,7 @@ function buttonTertiary() {
       },
 
       '&[data-inverted="true"]': {
+        '@apply text-inverted-dark-secondary': {},
         '@apply bg-inverted-tertiary-surface': {},
         /* hover */
         '@apply hover:bg-inverted-tertiary-surface-hover': {},
@@ -115,6 +116,27 @@ function buttonTertiary() {
           '@apply disabled:bg-inverted-tertiary-surface-disabled bg-inverted-tertiary-surface-disabled disabled:border-transparent border-transparent !important':
             {},
         },
+      },
+    },
+  };
+}
+function buttonGhost() {
+  return {
+    '&-ghost': {
+      '@apply text-dark-secondary': {},
+      '@apply bg-transparent': {},
+      '@apply border-transparent': {},
+      /* hover */
+      '@apply hover:bg-transparent': {},
+      '@apply hover:border-transparent': {},
+
+      // State
+      '&.sk-btn-disabled, &[aria-disabled="true"]': {
+        '@apply disabled:bg-transparent bg-transparent disabled:border-transparent border-transparent !important': {},
+      },
+
+      '&[data-inverted="true"]': {
+        '@apply text-inverted-dark-secondary': {},
       },
     },
   };
@@ -209,6 +231,7 @@ module.exports = Button = (colors) => ({
     ...buttonPrimary(colors),
     ...buttonSecondary(),
     ...buttonTertiary(),
+    ...buttonGhost(),
     ...buttonLink(colors),
 
     '.btn-has-icon': {

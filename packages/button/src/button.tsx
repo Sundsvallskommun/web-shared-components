@@ -25,7 +25,7 @@ export interface ButtonProps extends DefaultProps, React.ButtonHTMLAttributes<HT
   /** Size of the button */
   size?: 'sm' | 'md' | 'lg';
   /** Controls button appearance */
-  variant?: 'link' | 'primary' | 'secondary' | 'tertiary';
+  variant?: 'link' | 'primary' | 'secondary' | 'tertiary' | 'ghost';
   /** React node */
   children?: React.ReactNode;
   /** Sets the button to the rounded variant */

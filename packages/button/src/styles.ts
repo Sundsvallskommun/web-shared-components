@@ -6,6 +6,7 @@ export const useButtonClass = createMemoClass((props) => {
     primary: 'sk-btn-primary',
     secondary: 'sk-btn-secondary',
     tertiary: 'sk-btn-tertiary',
+    ghost: 'sk-btn-ghost',
     link: 'sk-btn-link',
   };
 

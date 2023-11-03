@@ -3,11 +3,7 @@ import React from 'react';
 import Disclosure, { DisclosureProps } from '../disclosure/disclosure';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 
-interface UseAccordionProps
-  extends Pick<
-    DisclosureProps,
-    'color' | 'variant' | 'noMargin' | 'headerAs' | 'expandIcon' | 'closeIcon' | 'alert' | 'error'
-  > {
+interface UseAccordionProps extends Pick<DisclosureProps, 'headerAs'> {
   /** Default false, will close any item open when another is opened */
   allowMultipleOpen?: boolean;
 }
@@ -48,21 +44,7 @@ export const AccordionComponent = React.forwardRef<HTMLDivElement, AccordionInte
     setOpen((open) => open.filter((openId) => openId !== id));
   };
 
-  const {
-    className,
-    children,
-    allowMultipleOpen,
-    variant = 'outline',
-    id: _id,
-    color,
-    noMargin,
-    headerAs = 'label',
-    expandIcon,
-    closeIcon,
-    alert,
-    error,
-    ...rest
-  } = props;
+  const { className, children, allowMultipleOpen, id: _id, headerAs = 'label', ...rest } = props;
   const id = _id || `sk-accordion-${useId()}`;
   const labelId = `${id}-label`;
 
@@ -71,14 +53,7 @@ export const AccordionComponent = React.forwardRef<HTMLDivElement, AccordionInte
     open,
     onOpen,
     onClose,
-    variant,
-    color,
-    noMargin,
     headerAs,
-    expandIcon,
-    closeIcon,
-    alert,
-    error,
   };
 
   const getChildren = (): React.ReactNode => {
