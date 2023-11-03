@@ -17,4 +17,4 @@ export const Template = (args: AvatarProps) => (
   </div>
 );
 
-Template.storyName = 'Breadcrumb';
+Template.storyName = 'Avatar';
