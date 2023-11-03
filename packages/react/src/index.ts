@@ -3,7 +3,6 @@ export * from '@sk-web-gui/alert-banner';
 export * from '@sk-web-gui/breadcrumb';
 export * from '@sk-web-gui/button';
 export * from '@sk-web-gui/checkbox';
-export * from '@sk-web-gui/comments';
 export * from '@sk-web-gui/forms';
 export * from '@sk-web-gui/icon';
 export * from '@sk-web-gui/image';
@@ -44,6 +43,5 @@ export * from '@sk-web-gui/footer';
 export * from '@sk-web-gui/header';
 export * from '@sk-web-gui/context-menu';
 export * from '@sk-web-gui/badge';
-
-export * from '@sk-web-gui/profile';
 export * from '@sk-web-gui/avatar';
+export * from '@sk-web-gui/progress-stepper';

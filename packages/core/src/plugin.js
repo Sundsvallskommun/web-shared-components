@@ -50,8 +50,7 @@ const Header = require('./components/header');
 
 const SearchBar = require('./components/search-bar');
 
-const ProfilePicture = require('./components/profile-picture');
-const Profile = require('./components/profile');
+const ProgressStepper = require('./components/progress-stepper');
 
 const components = [
   Alert,
@@ -99,9 +98,7 @@ const components = [
   PopupMenu,
   Footer,
   Header,
-
-  ProfilePicture,
-  Profile,
+  ProgressStepper,
 ];
 
 const defaultColors = ['warning', 'error', 'success', 'info', 'vattjom', 'juniskar', 'bjornstigen', 'gronsta'];

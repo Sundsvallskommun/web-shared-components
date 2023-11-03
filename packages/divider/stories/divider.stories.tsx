@@ -13,11 +13,6 @@ export const Template = (args: DividerProps) => (
       <p className="">Ljus bakgrund</p>
       <Divider {...args} className="flex-1" />
     </div>
-
-    <div className="flex items-center gap-12 p-6 bg-gray text-white">
-      <p className="">Mörk bakgrund</p>
-      <Divider {...args} className="flex-1" />
-    </div>
   </div>
 );
 
