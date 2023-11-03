@@ -25,7 +25,7 @@ export const Template = (args: AccordionProps) => {
               gäller elever som går i förskoleklass, grundskola och gymnasiesärskola.
             </p>
           </Accordion.Item>
-          <Accordion.Item header="Sök skolskjuts innan den 30 november" subTitle="öppnar snart" disabled>
+          <Accordion.Item header="Sök skolskjuts innan den 30 november" disabled>
             <p>Hej hej</p>
           </Accordion.Item>
           <Accordion.Item header="Regler kring skolskjutsar">

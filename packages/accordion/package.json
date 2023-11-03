@@ -39,10 +39,9 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.14.12",
-    "@mui/material": "^5.14.12",
     "@sk-web-gui/theme": "0.1.14",
     "@sk-web-gui/utils": "0.1.8",
+    "@sk-web-gui/button": "^0.1.22",
     "lucide-react": "^0.291.0"
   },
   "peerDependencies": {
