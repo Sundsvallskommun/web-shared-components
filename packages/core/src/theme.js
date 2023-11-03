@@ -99,6 +99,11 @@ module.exports = {
     opacity: {
       15: '0.15',
     },
+    borderWidth: {
+      DEFAULT: '0.2rem',
+      1: '0.1rem',
+      2: '0.2rem',
+    },
     backgroundColor: {
       base: withOpacity('--sk-colors-primary-surface'),
       fill: withOpacity('--sk-colors-bg-fill'),

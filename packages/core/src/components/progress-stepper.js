@@ -20,6 +20,7 @@ module.exports = ProgressStepper = () => ({
         },
       },
       '&-box': {
+        '@apply box-border': {},
         '@apply shrink-0': {},
         '@apply h-[4rem] w-[4rem]': {},
         '@apply bg-secondary-surface': {},
