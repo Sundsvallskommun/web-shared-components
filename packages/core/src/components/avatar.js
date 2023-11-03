@@ -2,7 +2,7 @@ module.exports = Avatar = (colors) => ({
   '.sk-avatar': {
     '@apply inline-flex': {},
     '@apply justify-center items-center': {},
-    '@apply rounded-button': {},
+    '@apply rounded-button-sm md:rounded-button-md xl:rounded-button-lg': {},
     '@apply font-bold': {},
     '@apply overflow-hidden': {},
     '&[data-rounded="true"]': {
