@@ -4,14 +4,14 @@ module.exports = Header = () => ({
     '@apply shadow-100': {},
 
     '&-container': {
-      '@apply flex flex-col gap-24': {},
+      '@apply flex flex-col gap-20 lg:gap-24': {},
     },
 
     '&-top-content': {
       '@apply flex items-center w-full justify-between m-auto flex-shrink-0 py-4 gap-20': {},
     },
     '&-bottom-content': {
-      '@apply flex items-center w-full justify-start p-8 lg:p-0': {},
+      '@apply hidden md:flex items-center w-full justify-start p-8 lg:p-0': {},
     },
 
     '&-usermenu': {

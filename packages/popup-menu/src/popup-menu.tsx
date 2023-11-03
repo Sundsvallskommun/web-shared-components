@@ -64,7 +64,7 @@ const PopupMenuItem: React.FC<PopupMenuItemProps> = ({ disabled = false, childre
 const PopupMenuGroup: React.FC<React.HTMLAttributes<HTMLDivElement>> = (props) => {
   const { className, ...rest } = props;
 
-  return <div className={cx('sk-popup-menu-items-group', className)} {...rest} />;
+  return <div role="group" className={cx('sk-popup-menu-items-group', className)} {...rest} />;
 };
 
 interface PopupMenuProps

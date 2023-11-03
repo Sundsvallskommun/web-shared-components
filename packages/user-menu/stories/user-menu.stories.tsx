@@ -3,6 +3,7 @@ import { Meta } from '@storybook/react';
 import { Link } from '../../react';
 import { UserMenu } from '../src';
 import { MenuItemGroup, UserMenuProps } from '../src/user-menu';
+import { LogOut, Settings2, User, Wallet } from 'lucide-react';
 
 export default {
   title: 'Komponenter/Meny/Användarmeny',
@@ -19,131 +20,44 @@ const isMobileMenuOpen = false;
 const menuGroups: MenuItemGroup[] = [
   {
     label: 'Main',
-    showLabel: false,
-    showOnDesktop: false,
-    showOnMobile: true,
-    showDivider: true,
     elements: [
       {
-        label: 'Pågående',
-        element: (active: boolean) => (
-          <Link href="/pagaende" className={` ${active ? 'active' : ''}`}>
-            Pågående
+        label: 'Min profil',
+        element: () => (
+          <Link href="/pagaende">
+            <User />
+            Profil
           </Link>
         ),
       },
       {
-        label: 'Beslutade',
-        element: (active: boolean) => (
-          <Link href="/beslutade" className={` ${active ? 'active' : ''}`}>
-            Beslutade
+        label: 'Konto',
+        element: () => (
+          <Link href="/beslutade">
+            <Wallet />
+            Konto
           </Link>
         ),
       },
       {
-        label: 'Handlingsplan',
-        element: (active: boolean) => (
-          <Link href="/handlingsplan" className={` ${active ? 'active' : ''}`}>
-            Handlingsplan
-          </Link>
-        ),
-      },
-      {
-        label: 'Företagsuppgifter',
-        element: (active: boolean) => (
-          <Link href="/foretagsuppgifter" className={` ${active ? 'active' : ''}`}>
-            Företagsuppgifter
+        label: 'Inställningar',
+        element: () => (
+          <Link href="/handlingsplan">
+            <Settings2 />
+            Inställningar
           </Link>
         ),
       },
     ],
   },
   {
-    label: 'Relaterade webbplatser',
-    showLabel: true,
-    showOnDesktop: true,
-    showOnMobile: true,
-    showDivider: true,
+    label: 'Logga ut',
     elements: [
-      {
-        label: 'E-tjänster',
-        element: (active: boolean) => (
-          <a href="https://www.sundsvall.se/" className={` ${active ? 'active' : ''}`}>
-            E-tjänster
-          </a>
-        ),
-      },
-
-      {
-        label: 'Företagscenter Sundsvall',
-        element: (active: boolean) => (
-          <a href="https://www.sundsvall.se/" className={` ${active ? 'active' : ''}`}>
-            Företagscenter Sundsvall
-          </a>
-        ),
-      },
-    ],
-  },
-  {
-    label: 'Inställningar',
-    showLabel: false,
-    showOnDesktop: true,
-    showOnMobile: true,
-
-    elements: [
-      {
-        label: 'Mina uppgifter',
-        element: (active: boolean) => (
-          <Link href="/myaccount" className={` ${active ? 'active' : ''}`}>
-            <span className="material-icons-outlined align-middle mr-sm" aria-hidden="true">
-              account_circle
-            </span>
-
-            <span className="inline" aria-hidden="true">
-              Mina uppgifter
-            </span>
-          </Link>
-        ),
-      },
-      {
-        label: 'Inställningar som har en riktigt lång text',
-        element: (active: boolean) => (
-          <Link href="/myaccount" className={` ${active ? 'active' : ''}`}>
-            <span className="material-icons-outlined align-middle mr-sm" aria-hidden="true">
-              settings
-            </span>
-
-            <span className="inline" aria-hidden="true">
-              Inställningar som har en riktigt lång text
-            </span>
-          </Link>
-        ),
-      },
-      {
-        label: 'Meddelanden',
-        element: (active: boolean) => (
-          <Link href="/messages" className={` ${active ? 'active' : ''}`}>
-            <span className="material-icons-outlined align-middle mr-sm" aria-hidden="true">
-              email
-            </span>
-
-            <span className="inline" aria-hidden="true">
-              Meddelanden
-            </span>
-          </Link>
-        ),
-      },
       {
         label: 'Logga ut',
-        element: (active: boolean) => (
-          <Link href="/logout" className={` ${active ? 'active' : ''}`}>
-            <span className="material-icons-outlined align-middle mr-sm" aria-hidden="true">
-              logout
-            </span>
-
-            <span className="inline" aria-hidden="true">
-              Logga ut
-            </span>
+        element: () => (
+          <Link href="/myaccount">
+            <LogOut /> Mina uppgifter{' '}
           </Link>
         ),
       },
@@ -274,18 +188,7 @@ export const Template = (args: UserMenuProps) => (
           </div>
 
           <div className="block lg:flex justify-end lg:items-center lg:w-auto">
-            {/* <div className="text-lg lg:flex-grow lg:flex lg:items-center lg:justify-center hidden"></div> */}
-
-            {/* <div className="block lg:block"> */}
-            <UserMenu
-              {...args}
-              // menuTitle="Företagsbolaget AB "
-              // menuSubTitle="Förnamn Efternamn som är lite längre"
-              menuGroups={menuGroups}
-              imageElem={<img src="https://placehold.co/48x48" alt="" />}
-              // image={PlaceholderImage}
-              // placeholderImage="https://placehold.co/600x400"
-            ></UserMenu>
+            <UserMenu {...args} menuGroups={menuGroups}></UserMenu>
             {/* </div> */}
           </div>
         </div>
