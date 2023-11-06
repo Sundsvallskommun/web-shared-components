@@ -74,7 +74,7 @@ module.exports = PopupMenu = () => ({
       '@apply no-underline': {},
     },
     '&-group': {
-      '@apply w-full flex flex-col border-b border-divider pb-4 gap-4': {},
+      '@apply w-full flex flex-col border-b-1 border-divider pb-4 gap-4': {},
       '&:first-child': {
         '@apply pt-0': {},
       },
