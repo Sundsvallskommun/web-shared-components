@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { cx } from '@sk-web-gui/utils';
 import { Button } from '@sk-web-gui/button';
-import { Badge } from '@sk-web-gui/badge';
 import { Input, InputProps, OptionValueType } from '@sk-web-gui/forms';
 import { useEffect, useRef, useState } from 'react';
 import { useDropdownSearchClass } from './styles';
@@ -408,11 +407,6 @@ export const DropdownSearch = React.forwardRef<HTMLInputElement, DropdownSearchP
             showResult && (selectedValue || selectedValues.length > 0) ? (
               <div className="dropdown-search-results">
                 <div className="dropdown-search-results-text">{renderResults()}</div>
-                <div className="dropdown-search-results-counter">
-                  {selectedValues.length > 0 && (
-                    <Badge counter={selectedValues.length} size="lg" position="standard" color="neutral" />
-                  )}
-                </div>
               </div>
             ) : undefined
           }
