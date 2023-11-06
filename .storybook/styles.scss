@@ -7,6 +7,9 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  a {
+    @apply text-vattjom-text-primary;
+  }
 }
 
 h1,
@@ -46,10 +49,6 @@ pre.prismjs .tag {
   .docblock-typeset,
   .docblock-typeset > * > * {
     @apply bg-background text-body;
-  }
-
-  a {
-    @apply text-vattjom-surface-primary;
   }
 }
 
