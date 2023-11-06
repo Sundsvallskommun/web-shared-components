@@ -41,7 +41,6 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.12",
     "@mui/material": "^5.14.12",
-    "@sk-web-gui/badge": "0.1.16",
     "@sk-web-gui/button": "0.1.22",
     "@sk-web-gui/forms": "0.1.37",
     "@sk-web-gui/theme": "0.1.14",

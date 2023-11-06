@@ -21,7 +21,7 @@ export interface ButtonProps extends DefaultProps, React.ButtonHTMLAttributes<HT
   /** Adds icon after button label */
   rightIcon?: React.ReactElement;
   /** Set the button color */
-  color?: 'primary' | 'waring' | 'error' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
+  color?: 'primary' | 'warning' | 'error' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
   /** Size of the button */
   size?: 'sm' | 'md' | 'lg';
   /** Controls button appearance */
