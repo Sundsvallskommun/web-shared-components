@@ -12,7 +12,7 @@ export interface TabItem {
   disabled?: boolean;
 }
 
-type alertSettings = Pick<BadgeProps, 'size' | 'position' | 'color' | 'variant' | 'max' | 'noBorder' | 'className'>;
+type alertSettings = Pick<BadgeProps, 'color' | 'className'>;
 
 interface ITabsProps extends Omit<DefaultProps, 'children'> {
   /* Set active tab */
@@ -160,14 +160,10 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => 
         {tab.label && !hideLabel ? tab.label : <></>}
         {tab.alert ? (
           <Badge
-            counter={typeof tab.alert === 'number' ? tab.alert : undefined}
+            counter={typeof tab.alert === 'number' ? tab.alert.toString() : undefined}
             color={alertSettings?.color || 'error'}
-            noBorder={alertSettings?.noBorder}
-            max={alertSettings?.max}
-            variant={alertSettings?.variant}
-            position={alertSettings?.position}
-            size={alertSettings?.size || (typeof tab.alert === 'number' ? 'md' : 'sm')}
-            className={alertSettings?.className}
+            className={cx(alertSettings?.className, 'ml-xs')}
+            rounded
           />
         ) : (
           <></>

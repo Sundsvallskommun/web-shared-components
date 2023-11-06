@@ -3,7 +3,7 @@ import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 
 interface IBadgeProps extends DefaultProps {
   color?: 'primary' | 'warning' | 'error' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
-  counter?: string;
+  counter?: string | number;
   inverted?: boolean;
   rounded?: boolean;
 }
