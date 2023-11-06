@@ -125,7 +125,7 @@ export const primitives = {
 };
 
 const lightmode = {
-  body: { DEFAULT: primitives.gray[900] },
+  body: primitives.gray[900],
   black: primitives.gray[900],
   white: primitives.gray.lightest,
   ring: primitives.ring,
@@ -370,7 +370,7 @@ const lightmode = {
 };
 
 const darkmode = {
-  body: { DEFAULT: primitives.gray.lightest },
+  body: primitives.gray.lightest,
   black: primitives.gray[900],
   white: primitives.gray.lightest,
   ring: primitives.ring,

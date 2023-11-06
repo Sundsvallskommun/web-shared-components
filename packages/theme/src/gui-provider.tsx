@@ -27,9 +27,13 @@ export interface GuiProviderProps {
 }
 
 export function GuiProvider({ theme = defaultTheme, colorScheme: _colorScheme, children }: GuiProviderProps) {
-  const preferredColorScheme: 'light' | 'dark' = window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? 'dark'
-    : 'light';
+  const [preferredColorScheme, setPreferredColorScheme] = React.useState<'light' | 'dark'>('light');
+
+  useSafeEffect(() => {
+    const scheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    setPreferredColorScheme(scheme);
+  }, []);
+
   const colorScheme = _colorScheme || preferredColorScheme;
 
   const computedTheme = useMemo(() => {

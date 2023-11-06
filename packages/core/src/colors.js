@@ -116,7 +116,7 @@ module.exports = {
       900: `var(--sk-colors-primitives-red-900)`,
     },
   },
-  body: { DEFAULT: `var(--sk-colors-body-DEFAULT)` },
+  body: `var(--sk-colors-body)`,
   black: `var(--sk-colors-black)`,
   white: `var(--sk-colors-white)`,
   ring: `var(--sk-colors-ring)`,
@@ -379,7 +379,7 @@ module.exports = {
     },
   },
   inverted: {
-    body: { DEFAULT: `var(--sk-colors-inverted-body-DEFAULT)` },
+    body: `var(--sk-colors-inverted-body)`,
     black: `var(--sk-colors-inverted-black)`,
     white: `var(--sk-colors-inverted-white)`,
     ring: `var(--sk-colors-inverted-ring)`,

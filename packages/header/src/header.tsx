@@ -77,7 +77,7 @@ export const Header = React.forwardRef<HTMLDivElement, HeaderProps>((props, ref)
                 >
                   <div className="flex flex-row items-center gap-6 cursor-pointer">
                     <div>
-                      <Logo color={context.theme.colors.dark.primary} />
+                      <Logo color={context?.theme?.colors?.body || undefined} />
                     </div>
                     <Divider orientation="vertical" className="h-[4.4rem]" />
                     <span id="page-title" className="text-h4 font-header leading-lg font-bold text-dark-primary">
