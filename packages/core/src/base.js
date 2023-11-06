@@ -7,6 +7,7 @@ module.exports = {
   },
   body: {
     '@apply text-base leading-base bg-background-content': {},
+    '@apply text-body': {},
     position: 'relative',
     minHeight: '100%',
     fontFeatureSettings: "'kern'",
