@@ -7,6 +7,9 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  a {
+    @apply text-vattjom-text-primary;
+  }
 }
 
 h1,
@@ -25,6 +28,34 @@ pre.prismjs .tag {
 
 .docblock-code-toggle--disabled[disabled=''] {
   @apply hidden;
+}
+
+#docs-wrapper {
+  .sbdocs-wrapper,
+  .sbdocs-preview,
+  .docblock-argstable-body td,
+  .docblock-argstable-head th,
+  th,
+  td,
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  ul,
+  li,
+  .material-icons,
+  .docblock-typeset,
+  .docblock-typeset > * > * {
+    @apply bg-background text-body;
+  }
+}
+
+body.dark {
+  tr:nth-of-type(2n) {
+    @apply bg-gray-700;
+  }
 }
 
 .docs-preview {

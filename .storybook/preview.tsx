@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { GuiProvider, extendTheme, defaultTheme } from '@sk-web-gui/theme';
 import { useState, useMemo } from 'react';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import updateLocale from 'dayjs/plugin/updateLocale';
-import './styles.css';
+import './styles.scss';
 import { Canvas, DocsContainer, DocsContainerProps } from '@storybook/addon-docs';
 import type { Preview } from '@storybook/react';
+import { useDarkMode } from 'storybook-dark-mode';
 
 export const ComponentPreview = ({ children }) => {
   return (
@@ -26,6 +27,9 @@ const parameters: Preview['parameters'] = {
       order: ['Intro', 'Identitet', 'Sidor', 'Komponenter', 'Design System'],
     },
   },
+  darkMode: {
+    stylePreview: true,
+  },
   controls: { hideNoControlsWarning: true },
   docs: {
     //
@@ -33,11 +37,33 @@ const parameters: Preview['parameters'] = {
     //
     // container: DocsContainer,
     container: (props: DocsContainerProps) => {
-      return (
-        <div id="docs-wrapper">
-          <DocsContainer {...props} />
-        </div>
+      const [colorScheme, setColorScheme] = useState(useDarkMode() ? 'dark' : 'light');
+      const theme = useMemo(
+        () =>
+          extendTheme({
+            cursor: colorScheme === 'light' ? 'pointer' : 'default',
+            colorSchemes: defaultTheme.colorSchemes,
+          }),
+        [colorScheme]
       );
+      const darkMode = useDarkMode();
+
+      useEffect(() => {
+        setColorScheme(darkMode ? 'dark' : 'light');
+      }, [darkMode]);
+
+      return (
+        <GuiProvider theme={theme} colorScheme={colorScheme}>
+          <div id="docs-wrapper">
+            <DocsContainer {...props} />
+          </div>
+        </GuiProvider>
+      );
+      // return (
+      //   <div id="docs-wrapper">
+      //     <DocsContainer {...props} />
+      //   </div>
+      // );
     },
   },
 };
@@ -67,7 +93,7 @@ dayjs.updateLocale('sv', {
 });
 
 const withGui = (StoryFn: Function) => {
-  const [colorScheme, setColorScheme] = useState('light');
+  const [colorScheme, setColorScheme] = useState(useDarkMode() ? 'dark' : 'light');
   const theme = useMemo(
     () =>
       extendTheme({
@@ -76,9 +102,16 @@ const withGui = (StoryFn: Function) => {
       }),
     [colorScheme]
   );
+  const darkMode = useDarkMode();
+
+  useEffect(() => {
+    setColorScheme(darkMode ? 'dark' : 'light');
+  }, [darkMode]);
+
+  console.log('darkMode', darkMode, colorScheme);
 
   return (
-    <GuiProvider theme={theme}>
+    <GuiProvider theme={theme} colorScheme={colorScheme}>
       <div id="story-wrapper">
         <StoryFn />
       </div>
