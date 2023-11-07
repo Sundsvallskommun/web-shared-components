@@ -1,10 +1,10 @@
-import { cx, __DEV__ } from '@sk-web-gui/utils';
-import { useEffect, useState } from 'react';
-import * as React from 'react';
-import { useZebraTableClass } from './styles';
+import { Input, Select } from '@sk-web-gui/forms';
 import { Pagination } from '@sk-web-gui/pagination';
+import { __DEV__, cx } from '@sk-web-gui/utils';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
+import { useZebraTableClass } from './styles';
 import { ZTableHeader } from './zebratable-header';
-import { FormControl, FormLabel, Select } from '@sk-web-gui/forms';
 export interface ZebraTableHeader {
   element: JSX.Element;
   isColumnSortable?: boolean;
@@ -24,7 +24,6 @@ export interface IZebraTableProps {
   defaultSort?: { idx: number; sortMode: boolean };
   sortAscending?: boolean;
   pageSize?: number;
-  pageSizes?: number[];
   page?: number;
   pages?: number;
   captionTitle?: string;
@@ -33,6 +32,8 @@ export interface IZebraTableProps {
   highlightedItemIndex?: number;
   changePage?: (page: number) => void;
   BottomComponent?: JSX.Element;
+  headerBackground?: boolean;
+  dense?: boolean;
 }
 
 export type ZebraTableProps = IZebraTableProps & React.HTMLAttributes<HTMLTableElement>;
@@ -45,8 +46,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
     sortHandler = () => ({}),
     defaultSort = { idx: 0, sortMode: true },
     sortAscending = true,
-    pageSize: _pageSize = 5,
-    pageSizes: _pageSizes = [],
+    pageSize: _propsPageSize = 5,
     page = 1,
     pages: _pages,
     captionTitle,
@@ -55,17 +55,20 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
     highlightedItemIndex,
     changePage,
     BottomComponent,
+    headerBackground = false,
+    dense: _dense = false,
     ...rest
   } = props;
 
   const zebraTableClasses = useZebraTableClass();
   const [managedRows, setManagedRows] = useState(rows);
   const [sortModeAscending, setSortModeAscending] = useState(defaultSort.sortMode);
-  const [pageSizes, setPageSizes] = useState<number[]>(_pageSizes);
-  const [pageSize, setPageSize] = useState<number>(pageSizes[0] || _pageSize);
+  const [_pageSize, setPageSize] = useState<number>(_propsPageSize);
+  const pageSize = _pageSize || 1;
   const [sortIndex, setSortIndex] = useState<number>(defaultSort.idx);
   const [currentPage, setCurrentPage] = useState<number>(page);
   const [pages, setPages] = useState<number>(Math.ceil(_pages || rows.length / pageSize));
+  const [rowHeight, setRowHeight] = useState<string>(_dense ? 'dense' : 'normal');
 
   const internalSortHandler = (idx: number) => {
     setSortModeAscending(sortIndex === idx ? !sortModeAscending : sortAscending);
@@ -91,15 +94,6 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
       setPageSize(_pageSize);
     }
   }, [_pageSize]);
-
-  useEffect(() => {
-    if (_pageSizes.length) {
-      setPageSizes(_pageSizes);
-      if (_pageSizes?.length > 0 && !_pageSizes.includes(pageSize)) {
-        setPageSize(_pageSizes[0]);
-      }
-    }
-  }, [_pageSizes]);
 
   useEffect(() => {
     changePage && changePage(currentPage);
@@ -129,98 +123,113 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
   }, [pageSize, currentPage, rows, pages]);
 
   return (
-    <>
-      {managedRows.length > 0 && (
-        <table ref={ref} {...rest} className={zebraTableClasses} summary={summary ?? summary}>
-          {captionTitle && (
-            <caption className="text-left">
-              {captionTitle}, sida {currentPage} av {pages}.
-              {captionBody && (
-                <>
-                  <br />
-                  <small>{captionBody}</small>
-                </>
-              )}
-            </caption>
-          )}
-
-          <thead className="sk-zebratable-thead">
-            <tr className={cx(`sk-zebratable-thead-tr`)}>
-              {headers.map((h, idx) => (
-                <ZTableHeader
-                  key={`header${idx}`}
-                  {...h}
-                  handleSort={internalSortHandler}
-                  index={idx}
-                  tableSortable={tableSortable}
-                  sortIndex={sortIndex}
-                  sortModeAscending={sortModeAscending}
-                />
-              ))}
-            </tr>
-          </thead>
-          <tbody className="sk-zebratable-tbody">
-            {managedRows.map((cols, idx) => (
-              <tr
-                key={`row${idx}`}
-                className={`sk-zebratable-tbody-tr ${
-                  highlightedItemIndex !== undefined &&
-                  highlightedItemIndex % pageSize === idx &&
-                  highlightedPage === currentPage
-                    ? `highlighted`
-                    : ``
-                }`}
-              >
-                {cols.map(({ element, isShown = true }, idx) =>
-                  isShown ? (
-                    <td key={`col${idx}`} className="sk-zebratable-tbody-td">
-                      {element}
-                    </td>
-                  ) : null
+    <div className="sk-zebratable-wrapper">
+      <div className="sk-zebratable-wrapper-inside">
+        {managedRows.length > 0 && (
+          <table
+            ref={ref}
+            {...rest}
+            className={zebraTableClasses}
+            summary={summary ?? summary}
+            data-dense={rowHeight === 'dense'}
+          >
+            {captionTitle && (
+              <caption className="text-left">
+                {captionTitle}, sida {currentPage} av {pages}.
+                {captionBody && (
+                  <>
+                    <br />
+                    <small>{captionBody}</small>
+                  </>
                 )}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-      {(pages > 1 || pageSizes?.length > 1 || BottomComponent) && (
-        <div className="sk-zebratable-bottomwrapper">
-          {(pages > 1 || pageSizes?.length > 1) && (
-            <div className="sk-zebratable-paginationwrapper">
-              <Pagination
-                className="sk-zebratable-paginationwrapper"
-                pages={pages}
-                activePage={currentPage}
-                changePage={(page: number) => setCurrentPage(page)}
-              />
-              {pageSizes.length > 0 && (
-                <FormControl className="sk-zebratable-pagination-pagesizes">
-                  <FormLabel className="sk-zebratable-pagination-pagesizes-label">Visa per sida:</FormLabel>
-                  <div className="sk-zebratable-pagination-pagesizes-select">
-                    <Select
-                      size="sm"
-                      onChange={(value) => setPageSize(value.data)}
-                      value={{ label: pageSize.toString(), data: pageSize }}
-                    >
-                      {pageSizes?.map((size, sizeIndex) => (
-                        <Select.Option
-                          key={`pageSize-${sizeIndex}-${size}`}
-                          value={{ label: size.toString(), data: size }}
-                        >
-                          {size}
-                        </Select.Option>
-                      ))}
-                    </Select>
-                  </div>
-                </FormControl>
-              )}
-            </div>
-          )}
+              </caption>
+            )}
 
-          {BottomComponent && BottomComponent}
+            <thead className="sk-zebratable-thead" data-background={headerBackground}>
+              <tr className={cx(`sk-zebratable-thead-tr`)}>
+                {headers.map((h, idx) => (
+                  <ZTableHeader
+                    key={`header${idx}`}
+                    {...h}
+                    handleSort={internalSortHandler}
+                    index={idx}
+                    tableSortable={tableSortable}
+                    sortIndex={sortIndex}
+                    sortModeAscending={sortModeAscending}
+                  />
+                ))}
+              </tr>
+            </thead>
+            <tbody className="sk-zebratable-tbody">
+              {managedRows.map((cols, idx) => (
+                <tr
+                  key={`row${idx}`}
+                  className={`sk-zebratable-tbody-tr ${
+                    highlightedItemIndex !== undefined &&
+                    highlightedItemIndex % pageSize === idx &&
+                    highlightedPage === currentPage
+                      ? `highlighted`
+                      : ``
+                  }`}
+                >
+                  {cols.map(({ element, isShown = true }, idx) =>
+                    isShown ? (
+                      <td key={`col${idx}`} className="sk-zebratable-tbody-td">
+                        {element}
+                      </td>
+                    ) : null
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+
+      <div className="sk-zebratable-bottom">
+        <>
+          <div className="sk-zebratable-bottom-section">
+            <label className="sk-zebratable-bottom-section-label" htmlFor="pagiPageSize">
+              Rader per sida:
+            </label>
+            <Input
+              size="sm"
+              id="pagePageSize"
+              type="number"
+              min={1}
+              max={100}
+              step={5}
+              className="max-w-[10rem]"
+              value={`${_pageSize}`}
+              onChange={(event) => setPageSize(parseInt(event.target.value))}
+            />
+          </div>
+
+          <Pagination
+            className="sk-zebratable-pagination"
+            pages={pages}
+            activePage={currentPage}
+            changePage={(page: number) => setCurrentPage(page)}
+          />
+        </>
+        <div className="sk-zebratable-bottom-section">
+          <label className="sk-zebratable-bottom-section-label" htmlFor="pagiRowHeight">
+            Radhöjd:
+          </label>
+          <Select
+            id="pagiRowHeight"
+            size="sm"
+            value={{ label: rowHeight === 'dense' ? 'Tät' : 'Normal', data: rowHeight }}
+            onChange={(option) => setRowHeight(option.data)}
+          >
+            <Select.Option value={{ label: 'Normal', data: 'normal' }} />
+            <Select.Option value={{ label: 'Tät', data: 'dense' }} />
+          </Select>
         </div>
-      )}
-    </>
+
+        {BottomComponent && BottomComponent}
+      </div>
+    </div>
   );
 });
 

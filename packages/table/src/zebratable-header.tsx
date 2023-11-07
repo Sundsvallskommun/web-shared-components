@@ -1,8 +1,7 @@
 import { ZebraTableHeader } from './zebratable';
-import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
-import UnfoldMoreOutlinedIcon from '@mui/icons-material/UnfoldMoreOutlined';
 import { cx } from '@sk-web-gui/utils';
 import * as React from 'react';
+import { ChevronUp, ChevronDown } from 'lucide-react';
 
 interface ZTableHeaderProps extends ZebraTableHeader {
   sortIndex: number;
@@ -42,16 +41,15 @@ export const ZTableHeader: React.FC<ZTableHeaderProps> = ({
             >
               {element}
               <div className="sk-zebratable-sortbutton-icon">
-                {tableSortable &&
-                  isColumnSortable &&
-                  (index === sortIndex ? (
-                    <ChevronRightOutlinedIcon
-                      className="sk-zebratable-sortbutton-icon-sort"
-                      data-sortmodeascending={sortModeAscending}
-                    />
-                  ) : (
-                    <UnfoldMoreOutlinedIcon className="sk-zebratable-sortbutton-icon-more" />
-                  ))}
+                {tableSortable && isColumnSortable && (
+                  <span
+                    className="sk-zebratable-sortbutton-icon-sort"
+                    data-sortmodeascending={index === sortIndex ? sortModeAscending : undefined}
+                  >
+                    <ChevronUp />
+                    <ChevronDown />
+                  </span>
+                )}
               </div>
             </button>
           </>
