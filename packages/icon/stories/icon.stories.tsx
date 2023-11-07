@@ -1,20 +1,19 @@
 import React from 'react';
-import { Icon, InfoIcon, XCricleIcon, CheckCircleIcon, ExclamationIcon } from '../src';
+import { Icon, IconProps } from '../src';
 import { Meta } from '@storybook/react';
 
 export default {
-  title: 'WIP/Komponenter/Ikoner',
+  title: 'Komponenter/Ikoner/Komponent',
   component: Icon,
   tags: ['autodocs'],
+  args: {
+    name: 'check',
+  },
 } as Meta;
 
-export const Template = () => (
+export const Template = (props: IconProps) => (
   <div className="flex space-x-6">
-    <Icon as={() => <span className="material-icons">check</span>} label="test" />
-    <Icon as={InfoIcon} label="info" className="w-6 h-6 text-blue-500" />
-    <Icon as={XCricleIcon} label="x-circle" className="w-6 h-6 text-green-500" />
-    <Icon as={CheckCircleIcon} label="check-circle" className="w-6 h-6 text-red-500" />
-    <Icon as={ExclamationIcon} label="exclamationI" className="w-6 h-6 text-yellow-500" />
+    <Icon {...props} />
   </div>
 );
 

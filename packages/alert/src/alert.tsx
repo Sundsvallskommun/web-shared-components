@@ -1,5 +1,5 @@
 import { cx, __DEV__ } from '@sk-web-gui/utils';
-import { Icon, XIcon } from '@sk-web-gui/icon';
+import { Icon } from '@sk-web-gui/icon';
 import { DefaultProps } from '@sk-web-gui/utils';
 import * as React from 'react';
 
@@ -27,7 +27,7 @@ export const AlertCloseButton = React.forwardRef<HTMLButtonElement, AlertCloseBu
 
   return (
     <button ref={ref} data-color={color ? color : undefined} className={cx(classes, className)}>
-      <Icon as={XIcon} label="x" className="inline-block w-4 h-4 text-current align-text-bottom fill-current" />
+      <Icon name="close" />
     </button>
   );
 });

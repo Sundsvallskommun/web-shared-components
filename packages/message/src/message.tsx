@@ -1,38 +1,32 @@
-import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import { Button } from '@sk-web-gui/button';
-import { CheckCircleIcon, ExclamationIcon, Icon, InfoIcon, XCricleIcon } from '@sk-web-gui/icon';
+import { Icon } from '@sk-web-gui/icon';
 import { createToast, useToastOptions } from '@sk-web-gui/toast';
-import { cx as clsx, __DEV__ } from '@sk-web-gui/utils';
+import { __DEV__, cx as clsx } from '@sk-web-gui/utils';
 import * as React from 'react';
 
 interface Status {
   [key: string]: {
     icon: any;
     cx: string;
-    label: string;
   };
 }
 
 const statuses: Status = {
   info: {
-    icon: InfoIcon,
+    icon: 'info',
     cx: 'message-info',
-    label: 'info',
   },
   success: {
-    icon: CheckCircleIcon,
+    icon: 'check-circle-2',
     cx: 'message-success',
-    label: 'check-circle',
   },
   error: {
-    icon: XCricleIcon,
+    icon: 'x-circle',
     cx: 'message-error',
-    label: 'x-circle',
   },
   warning: {
-    icon: ExclamationIcon,
+    icon: 'alert-circle',
     cx: 'message-warning',
-    label: 'exclamationIcon',
   },
 };
 
@@ -56,7 +50,7 @@ export const Message = React.forwardRef<any, MessageProps>((props, ref) => {
     closeCallback,
     onClose,
   } = props;
-  const { icon, cx, label } = statuses[status] || {};
+  const { icon, cx } = statuses[status] || {};
   const closeRef = React.useRef<any>(null);
 
   React.useImperativeHandle(ref, () => ({
@@ -92,19 +86,20 @@ export const Message = React.forwardRef<any, MessageProps>((props, ref) => {
       style={{ width: `${window.innerWidth < 520 ? window.innerWidth - 10 : '520'}px` }}
     >
       {((icon && cx) || customIcon) &&
-        (customIcon ? customIcon : <Icon as={icon} label={label} className={clsx('message-icon')} />)}
+        (customIcon ? customIcon : <Icon name={icon} className={clsx('message-icon')} />)}
       <span className={clsx('message-text')}>{message}</span>
       {closeable && (
         <Button
           ref={closeRef}
           type="button"
-          size="lg"
+          variant="ghost"
+          size="sm"
           onClick={handleCloseCallback}
           className="message-close-button"
           iconButton
           aria-label={closeAriaLabel}
         >
-          <CloseOutlinedIcon className="message-close-button-icon" aria-hidden="true" />
+          <Icon variant="ghost" className="message-close-button-icon" name="x" />
         </Button>
       )}
     </div>
