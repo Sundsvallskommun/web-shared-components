@@ -26,6 +26,11 @@ export const Template = (args: MenuBarProps) => {
           <Button onClick={() => setCurrent(1)}>Menyval 2</Button>
         </MenuBar.Item>
         <MenuBar.Item>
+          <>
+            <a href="#">Menyval 3</a>
+          </>
+        </MenuBar.Item>
+        <MenuBar.Item>
           <PopupMenu>
             <PopupMenu.Button rightIcon={<ChevronDown />}>Flervals</PopupMenu.Button>
             <PopupMenu.Item>

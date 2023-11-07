@@ -1,4 +1,4 @@
-import { DefaultProps, cx } from '@sk-web-gui/utils';
+import { DefaultProps, cx, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
 import { useMenuBar } from './menubar';
 
@@ -11,6 +11,8 @@ interface IMenuBarItemProps extends DefaultProps {
   menuIndex?: number;
   /** Use <a> or <button>. For dropdown, use <PopupMenu> */
   children: JSX.Element;
+  /** For e.g. Next Links to work, they need to wrapped this way */
+  wrapper?: JSX.Element;
 }
 
 export interface MenuBarItemProps
@@ -18,7 +20,7 @@ export interface MenuBarItemProps
     IMenuBarItemProps {}
 
 export const MenuBarItem = React.forwardRef<HTMLLIElement, MenuBarItemProps>((props, ref) => {
-  const { color: propsColor, className, current: thisCurrent, children, menuIndex, ...rest } = props;
+  const { color: propsColor, className, current: thisCurrent, children, menuIndex, wrapper, ...rest } = props;
   const { color: contextColor, current, setCurrent, next, prev, active } = useMenuBar();
   const [mounted, setMounted] = React.useState<boolean>(false);
   const color = propsColor || contextColor;
@@ -54,7 +56,13 @@ export const MenuBarItem = React.forwardRef<HTMLLIElement, MenuBarItemProps>((pr
     }
   };
 
-  const getClonedChild = (child: JSX.Element) => {
+  const getClonedChild = (child: JSX.Element): React.ReactNode => {
+    if (child.type === React.Fragment) {
+      const grandchild = getValidChildren(child.props.children)[0];
+      if (grandchild) {
+        return React.cloneElement(child, { ...child.props, children: getClonedChild(grandchild) });
+      }
+    }
     return React.cloneElement(child, {
       ...children.props,
       onKeyDown: handleKeyboard,
@@ -65,9 +73,17 @@ export const MenuBarItem = React.forwardRef<HTMLLIElement, MenuBarItemProps>((pr
     });
   };
 
+  const getChildWithWrapper = () => {
+    if (wrapper) {
+      return React.cloneElement(wrapper, { ...wrapper.props, children: getClonedChild(children) });
+    } else {
+      return getClonedChild(children);
+    }
+  };
+
   return (
     <li data-color={color} ref={ref} className={cx('sk-menubar-item', className)} role="none" {...rest}>
-      {getClonedChild(children)}
+      {getChildWithWrapper()}
     </li>
   );
 });
