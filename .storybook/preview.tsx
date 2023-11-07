@@ -108,8 +108,6 @@ const withGui = (StoryFn: Function) => {
     setColorScheme(darkMode ? 'dark' : 'light');
   }, [darkMode]);
 
-  console.log('darkMode', darkMode, colorScheme);
-
   return (
     <GuiProvider theme={theme} colorScheme={colorScheme}>
       <div id="story-wrapper">

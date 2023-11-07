@@ -1,8 +1,12 @@
-import React from 'react';
 import { cx, DefaultProps } from '@sk-web-gui/utils';
+import { icons } from 'lucide-react';
+import React from 'react';
+import dynamicIconImports from 'lucide-react/dynamicIconImports';
+
+type IconNames = keyof typeof dynamicIconImports;
 
 export interface IconProps extends DefaultProps {
-  name?: string;
+  name: IconNames;
   /** @default primary */
   color?: 'primary' | 'warning' | 'error' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
   icon?: React.ReactElement;
@@ -10,8 +14,16 @@ export interface IconProps extends DefaultProps {
   inverted?: boolean;
   /** @default tertiary */
   variant?: 'tertiary' | 'ghost';
-  /** @default normal */
-  size?: 'normal' | 'fit';
+  /** @default 24 */
+  size?: number | 'fit';
+}
+
+function toPascalCase(text: string) {
+  return text.replace(/(^\w|-\w)/g, clearAndUpper);
+}
+
+function clearAndUpper(text: string) {
+  return text.replace(/-/, '').toUpperCase();
 }
 
 export const Icon = (props: IconProps) => {
@@ -22,23 +34,25 @@ export const Icon = (props: IconProps) => {
     rounded,
     inverted,
     variant = 'tertiary',
-    size = 'normal',
+    size = 24,
     className,
     ...rest
   } = props;
+  const LucideIcon = name ? icons[toPascalCase(name) as keyof typeof icons] : undefined;
   return (
     <span
-      className={cx('sk-icon', !icon && `icon-${name}`, className)}
+      className={cx('sk-icon', className)}
+      style={{ width: typeof size == 'number' ? size : undefined, height: typeof size == 'number' ? size : undefined }}
       aria-hidden={true}
       data-variant={variant}
       data-color={color ? color : undefined}
       data-rounded={rounded ? rounded : undefined}
       data-inverted={inverted ? inverted : undefined}
       data-size={size ? size : undefined}
-      data-testid={`sk-icon-${name}`}
+      data-testid={`sk-icon-${name as string}`}
       {...rest}
     >
-      {icon ? icon : undefined}
+      {icon ? icon : LucideIcon ? <LucideIcon size={typeof size == 'number' ? size : undefined} /> : undefined}
     </span>
   );
 };

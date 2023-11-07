@@ -27,7 +27,7 @@ export const AlertCloseButton = React.forwardRef<HTMLButtonElement, AlertCloseBu
 
   return (
     <button ref={ref} data-color={color ? color : undefined} className={cx(classes, className)}>
-      <Icon name="close" />
+      <Icon name="x" />
     </button>
   );
 });

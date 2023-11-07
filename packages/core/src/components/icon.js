@@ -5,7 +5,6 @@ module.exports = Icon = (colors) => ({
     '@apply rounded-utility': {},
 
     // size
-    '@apply h-[2.4rem] w-[2.4rem]': {},
     '@apply p-[0.4rem]': {},
 
     '&[data-size="fit"]': {

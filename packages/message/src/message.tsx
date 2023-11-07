@@ -3,10 +3,11 @@ import { Icon } from '@sk-web-gui/icon';
 import { createToast, useToastOptions } from '@sk-web-gui/toast';
 import { __DEV__, cx as clsx } from '@sk-web-gui/utils';
 import * as React from 'react';
+import dynamicIconImports from 'lucide-react/dynamicIconImports';
 
 interface Status {
   [key: string]: {
-    icon: any;
+    icon: keyof typeof dynamicIconImports;
     cx: string;
   };
 }
@@ -43,7 +44,7 @@ export const Message = React.forwardRef<any, MessageProps>((props, ref) => {
   const {
     message,
     className,
-    icon: customIcon,
+    icon: CustomIcon,
     status = '',
     closeable = true,
     closeAriaLabel,
@@ -85,8 +86,8 @@ export const Message = React.forwardRef<any, MessageProps>((props, ref) => {
       ref={ref}
       style={{ width: `${window.innerWidth < 520 ? window.innerWidth - 10 : '520'}px` }}
     >
-      {((icon && cx) || customIcon) &&
-        (customIcon ? customIcon : <Icon name={icon} className={clsx('message-icon')} />)}
+      {((icon && cx) || CustomIcon) &&
+        (CustomIcon ? <CustomIcon /> : <Icon name={icon} className={clsx('message-icon')} />)}
       <span className={clsx('message-text')}>{message}</span>
       {closeable && (
         <Button
