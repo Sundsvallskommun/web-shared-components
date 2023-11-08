@@ -28,6 +28,7 @@ export interface IZebraTableProps {
   pages?: number;
   captionTitle?: string;
   captionBody?: string;
+  captionClassName?: string;
   summary?: string;
   highlightedItemIndex?: number;
   changePage?: (page: number) => void;
@@ -52,6 +53,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
     pages: _pages,
     captionTitle,
     captionBody,
+    captionClassName,
     summary,
     highlightedItemIndex,
     changePage,
@@ -59,6 +61,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
     background = false,
     dense: _dense = false,
     variant = 'table',
+    className,
     ...rest
   } = props;
 
@@ -125,114 +128,139 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
   }, [pageSize, currentPage, rows, pages]);
 
   return (
-    <div className="sk-zebratable-wrapper" data-variant={variant} data-background={background}>
-      <div className="sk-zebratable-wrapper-inside">
-        {managedRows.length > 0 && (
-          <table
-            ref={ref}
-            {...rest}
-            className={zebraTableClasses}
-            summary={summary ?? summary}
-            data-dense={rowHeight === 'dense'}
-          >
-            {captionTitle && (
-              <caption className="text-left">
-                {captionTitle}, sida {currentPage} av {pages}.
-                {captionBody && (
-                  <>
-                    <br />
-                    <small>{captionBody}</small>
-                  </>
-                )}
-              </caption>
-            )}
-
-            <thead className="sk-zebratable-thead" data-background={background}>
-              <tr className={cx(`sk-zebratable-thead-tr`)}>
-                {headers.map((h, idx) => (
-                  <ZTableHeader
-                    key={`header${idx}`}
-                    {...h}
-                    handleSort={internalSortHandler}
-                    index={idx}
-                    tableSortable={tableSortable}
-                    sortIndex={sortIndex}
-                    sortModeAscending={sortModeAscending}
-                  />
-                ))}
-              </tr>
-            </thead>
-            <tbody className="sk-zebratable-tbody">
-              {managedRows.map((cols, idx) => (
-                <tr
-                  key={`row${idx}`}
-                  className={`sk-zebratable-tbody-tr ${
-                    highlightedItemIndex !== undefined &&
-                    highlightedItemIndex % pageSize === idx &&
-                    highlightedPage === currentPage
-                      ? `highlighted`
-                      : ``
-                  }`}
-                >
-                  {cols.map(({ element, isShown = true }, idx) =>
-                    isShown ? (
-                      <td key={`col${idx}`} className="sk-zebratable-tbody-td">
-                        {element}
-                      </td>
-                    ) : null
+    <>
+      {captionTitle && (
+        <caption className={cx('text-left', captionClassName)} aria-hidden={true}>
+          {variant === 'datatable' ? (
+            <>
+              {captionTitle}, sida {currentPage} av {pages}.
+            </>
+          ) : (
+            captionTitle
+          )}
+          {captionBody && (
+            <>
+              <br />
+              <small>{captionBody}</small>
+            </>
+          )}
+        </caption>
+      )}
+      <div className={cx('sk-zebratable-wrapper', className)} data-variant={variant} data-background={background}>
+        <div className="sk-zebratable-wrapper-inside">
+          {managedRows.length > 0 && (
+            <table
+              ref={ref}
+              {...rest}
+              className={zebraTableClasses}
+              summary={summary ?? summary}
+              data-dense={rowHeight === 'dense'}
+            >
+              {captionTitle && (
+                <caption className="sr-only">
+                  {variant === 'datatable' ? (
+                    <>
+                      {captionTitle}, sida {currentPage} av {pages}.
+                    </>
+                  ) : (
+                    captionTitle
                   )}
+                  {captionBody && (
+                    <>
+                      <br />
+                      <small>{captionBody}</small>
+                    </>
+                  )}
+                </caption>
+              )}
+
+              <thead className="sk-zebratable-thead" data-background={background}>
+                <tr className={cx(`sk-zebratable-thead-tr`)}>
+                  {headers.map((h, idx) => (
+                    <ZTableHeader
+                      key={`header${idx}`}
+                      {...h}
+                      handleSort={internalSortHandler}
+                      index={idx}
+                      tableSortable={tableSortable}
+                      sortIndex={sortIndex}
+                      sortModeAscending={sortModeAscending}
+                    />
+                  ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </div>
-      {variant === 'datatable' && (
-        <div className="sk-zebratable-bottom">
-          <>
-            <div className="sk-zebratable-bottom-section">
-              <label className="sk-zebratable-bottom-section-label" htmlFor="pagiPageSize">
-                Rader per sida:
-              </label>
-              <Input
-                size="sm"
-                id="pagePageSize"
-                type="number"
-                min={1}
-                max={100}
-                step={5}
-                className="max-w-[10rem]"
-                value={`${_pageSize}`}
-                onChange={(event) => setPageSize(parseInt(event.target.value))}
+              </thead>
+              <tbody className="sk-zebratable-tbody">
+                {managedRows.map((cols, idx) => (
+                  <tr
+                    key={`row${idx}`}
+                    className={`sk-zebratable-tbody-tr ${
+                      highlightedItemIndex !== undefined &&
+                      highlightedItemIndex % pageSize === idx &&
+                      highlightedPage === currentPage
+                        ? `highlighted`
+                        : ``
+                    }`}
+                  >
+                    {cols.map(({ element, isShown = true }, idx) =>
+                      isShown ? (
+                        <td key={`col${idx}`} className="sk-zebratable-tbody-td">
+                          {element}
+                        </td>
+                      ) : null
+                    )}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+        {variant === 'datatable' && (
+          <div className="sk-zebratable-bottom">
+            <>
+              <div className="sk-zebratable-bottom-section">
+                <label className="sk-zebratable-bottom-section-label" htmlFor="pagiPageSize">
+                  Rader per sida:
+                </label>
+                <Input
+                  size="sm"
+                  id="pagePageSize"
+                  type="number"
+                  min={1}
+                  max={100}
+                  step={5}
+                  className="max-w-[10rem]"
+                  value={`${_pageSize}`}
+                  onChange={(event) => setPageSize(parseInt(event.target.value))}
+                />
+              </div>
+
+              <Pagination
+                className="sk-zebratable-pagination"
+                pages={pages}
+                activePage={currentPage}
+                changePage={(page: number) => setCurrentPage(page)}
               />
+            </>
+            <div className="sk-zebratable-bottom-section">
+              <label className="sk-zebratable-bottom-section-label" htmlFor="pagiRowHeight">
+                Radhöjd:
+              </label>
+              <Select
+                id="pagiRowHeight"
+                size="sm"
+                value={{ label: rowHeight === 'dense' ? 'Tät' : 'Normal', data: rowHeight }}
+                onChange={(option) => setRowHeight(option.data)}
+              >
+                <Select.Option value={{ label: 'Normal', data: 'normal' }} />
+                <Select.Option value={{ label: 'Tät', data: 'dense' }} />
+              </Select>
             </div>
 
-            <Pagination
-              className="sk-zebratable-pagination"
-              pages={pages}
-              activePage={currentPage}
-              changePage={(page: number) => setCurrentPage(page)}
-            />
-          </>
-          <div className="sk-zebratable-bottom-section">
-            <label className="sk-zebratable-bottom-section-label" htmlFor="pagiRowHeight">
-              Radhöjd:
-            </label>
-            <Select
-              id="pagiRowHeight"
-              size="sm"
-              value={{ label: rowHeight === 'dense' ? 'Tät' : 'Normal', data: rowHeight }}
-              onChange={(option) => setRowHeight(option.data)}
-            >
-              <Select.Option value={{ label: 'Normal', data: 'normal' }} />
-              <Select.Option value={{ label: 'Tät', data: 'dense' }} />
-            </Select>
+            {BottomComponent && BottomComponent}
           </div>
-
-          {BottomComponent && BottomComponent}
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 });
 
