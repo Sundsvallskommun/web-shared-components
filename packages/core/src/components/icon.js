@@ -32,7 +32,7 @@ module.exports = Icon = (colors) => ({
     ),
 
     "&[data-color='primary']": {
-      '@apply bg-primary-surface': {},
+      '@apply bg-primary-surface text-light-primary fill-light-primary': {},
 
       '&[data-inverted="true"]': {
         '@apply text-inverted-light-primary fill-inverted-light-primary': {},
@@ -41,20 +41,22 @@ module.exports = Icon = (colors) => ({
     },
 
     '&[data-variant="ghost"]': {
-      '@apply bg-transparent text-primary-surface fill-primary-surface': {},
+      '@apply bg-transparent': {},
+      '@apply text-inverted-light-primary fill-inverted-light-primary': {},
 
       '&[data-inverted="true"]': {
         [`@apply bg-transparent`]: {},
+        '@apply text-light-primary fill-light-primary': {},
       },
 
       ...colors.reduce(
         (styles, color) => ({
           ...styles,
           [`&[data-color="${color}"]`]: {
-            [`@apply bg-transparent text-${color}-surface-primary fill-${color}-surface-primary`]: {},
+            [`@apply text-${color}-surface-primary fill-${color}-surface-primary`]: {},
 
             '&[data-inverted="true"]': {
-              [`@apply bg-transparent text-${color}-surface-primary fill-${color}-surface-primary`]: {},
+              [`@apply text-inverted-${color}-surface-primary fill-inverted-${color}-surface-primary`]: {},
             },
           },
         }),
