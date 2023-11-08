@@ -12,6 +12,9 @@ module.exports = Avatar = (colors) => ({
       '@apply inline-block': {},
       '@apply relative': {},
       '@apply h-40': {},
+      'a, button': {
+        color: 'unset',
+      },
 
       '> *:first-child': {
         '@apply rounded-button-sm md:rounded-button-md xl:rounded-button-lg': {},
@@ -28,8 +31,7 @@ module.exports = Avatar = (colors) => ({
         '@apply focus-visible:bg-background-content focus-visible:ring': {},
         '&[aria-current="page"]:not(:hover)': {
           '@apply bg-primary-surface text-light-primary': {},
-          '@apply focus-visible:bg-background-content focus-visible:ring': {},
-          '@apply focus-visible:text-dark-primary': {},
+          '@apply focus-visible:ring': {},
         },
       },
       ...colors.reduce(
@@ -40,10 +42,9 @@ module.exports = Avatar = (colors) => ({
               [`@apply hover:bg-${color}-surface-accent`]: {},
               [`@apply hover:text-${color}-text-primary`]: {},
               '@apply focus-visible:bg-background-content focus-visible:ring': {},
-              [`@apply focus-visible:!text-${color}-text-primary`]: {},
               '&[aria-current="page"]:not(:hover)': {
                 [`@apply bg-${color}-surface-primary`]: {},
-                '@apply focus-visible:bg-background-content focus-visible:ring': {},
+                '@apply focus-visible:ring': {},
               },
             },
           },

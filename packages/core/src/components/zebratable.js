@@ -1,18 +1,44 @@
 module.exports = ZebraTable = () => ({
+  '.sk-zebratable-wrapper': {
+    '@apply rounded-groups': {},
+    '@apply border-1': {},
+    '@apply bg-background-content': {},
+    '&-inside': {
+      '@apply border-0 rounded-t-groups': {},
+      '@apply overflow-hidden': {},
+    },
+    '&[data-variant="table"]': {
+      '&:not([data-background="true"])': {
+        '@apply border-0': {},
+        '@apply bg-transparent': {},
+      },
+      '.sk-zebratable-wrapper-inside': {
+        '@apply border-0 rounded-b-groups': {},
+      },
+    },
+  },
   '.sk-zebratable': {
     '@apply w-full text-left table-auto': {},
+    '@apply text-dark-secondary': {},
 
     '&-thead': {
+      '@apply border-b-1 border-dark-primary': {},
       '&-tr': {
-        '@apply text-sm hidden lg:table-row': {},
+        '@apply hidden lg:table-row': {},
+        '@apply text-label-sm leading-label-sm': {},
+        '@apply font-bold': {},
       },
 
       '&-th': {
-        '@apply py-sm first-of-type:pl-lg': {},
+        '@apply py-16 px-16': {},
 
         "&[data-isColumnSortable='true']": {
-          '@apply py-sm cursor-pointer': {},
+          '@apply cursor-pointer': {},
         },
+      },
+      '@apply bg-transparent': {},
+      '&[data-background="true"]': {
+        '@apply bg-vattjom-background-200 border-b-transparent': {},
       },
     },
 
@@ -22,68 +48,84 @@ module.exports = ZebraTable = () => ({
       '&-icon': {
         '@apply inline-flex pl-sm': {},
 
-        '.MuiSvgIcon-root': {
-          '@apply !text-lg': {},
-        },
-
         '&-sort': {
-          '@apply text-black transform': {},
+          '@apply text-dark-secondary': {},
+          '@apply flex flex-col': {},
+
+          svg: {
+            '@apply h-16 w-16': {},
+            '@apply first-of-type:-mb-4': {},
+            '@apply last-of-type:-mt-4': {},
+          },
 
           "&[data-sortmodeascending='true']": {
-            '@apply -rotate-90': {},
+            svg: {
+              '@apply last-of-type:text-dark-ghost': {},
+            },
           },
 
           "&[data-sortmodeascending='false']": {
-            '@apply rotate-90': {},
+            svg: {
+              '@apply first-of-type:text-dark-ghost': {},
+            },
           },
         },
-
-        '&-more': {
-          '@apply text-gray': {},
-        },
       },
-    },
-
-    '.material-icons-outlined': {
-      fontSize: '1.25em',
     },
 
     '&-tbody': {
-      '@apply text-body lg:bg-white': {},
+      '@apply text-dark-secondary bg-transparent': {},
 
       '&-tr': {
-        '@apply transition-all bg-white lg:even:bg-white lg:odd:bg-gray-100 px-md py-md md:px-lg md:py-lg my-lg first-of-type:mt-0 block shadow-md lg:shadow-none lg:table-row lg:my-0 lg:py-0 lg:px-lg':
-          {},
-
-        '&.highlighted': {
-          '@apply lg:border-4 lg:border-hover': {},
-        },
+        '@apply bg-transparent': {},
+        '@apply hover:bg-background-100': {},
+        '@apply border-b-1': {},
+        '@apply last-of-type:border-b-transparent': {},
       },
 
       '&-td': {
-        '@apply empty:hidden py-4 px-sm lg:px-0 first-of-type:pl-sm lg:first-of-type:pl-lg last-of-type:px-0 lg:last-of-type:pr-lg last-of-type:text-right block lg:table-cell even:bg-white odd:bg-gray-100 last-of-type:bg-transparent lg:even:bg-transparent lg:odd:bg-transparent':
-          {},
+        '@apply py-20 px-18': {},
+        '@apply text-sm leading-sm': {},
+      },
+    },
+
+    '&[data-dense="true"]': {
+      '.sk-zebratable': {
+        '&-thead': {
+          '&-th': {
+            '@apply py-12': {},
+          },
+        },
+        '&-tbody': {
+          '&-td': {
+            '@apply py-12': {},
+          },
+        },
       },
     },
 
     '&-paginationwrapper': {
-      '@apply w-full text-lg flex justify-center lg:justify-start': {},
-    },
-    '&-pagination': {
-      '@apply grow': {},
-    },
-    '&-pagination-pagesizes': {
-      '@apply grow-0 flex gap-xs flex-row justify-end items-center': {},
-      '&-label': {
-        '@apply font-bold': {},
-      },
-      '&.-select': {
-        '@apply w-auto': {},
-      },
+      '@apply w-full text-sm leading-sm flex justify-between': {},
     },
 
-    '&-bottomwrapper': {
-      '@apply mt-lg px-lg flex items-center justify-end': {},
+    '&-bottom': {
+      '@apply py-14 px-16': {},
+      '@apply border-t-1': {},
+      '@apply flex flex-row': {},
+      '@apply justify-between items-center': {},
+      '&-section': {
+        '@apply flex flex-row': {},
+        '@apply justify-start items-center': {},
+        '@apply gap-8': {},
+        '&-label': {
+          '@apply font-normal': {},
+          '@apply text-sm leading-sm': {},
+          '@apply shrink-0': {},
+        },
+      },
+      '&-pagination': {
+        '@apply grow': {},
+      },
     },
   },
 });

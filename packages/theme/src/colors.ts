@@ -386,7 +386,7 @@ const darkmode = {
   secondary: {
     DEFAULT: primitives.gray[200],
     outline: {
-      default: primitives.overlay.lighten[5],
+      DEFAULT: primitives.overlay.lighten[5],
       hover: primitives.overlay.lighten[6],
     },
     surface: {

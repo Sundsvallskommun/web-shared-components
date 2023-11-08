@@ -1,6 +1,8 @@
 import { Meta } from '@storybook/react';
 import React from 'react';
 import { DataTable, DataTableHeader, DataTableProps } from '../src/datatable';
+import { Button } from '@sk-web-gui/button';
+import { MoreHorizontal } from 'lucide-react';
 
 export default {
   title: 'Komponenter/Tabeller/DataTable',
@@ -81,19 +83,26 @@ const headers: Array<string | DataTableHeader> = [
     label: 'Ärendeknapp',
     screenReaderOnly: true,
     renderColumn: (value, item) => (
-      <button
-        aria-label={`Till ärende ${item.id}`}
-        color="primary"
-        className="w-full bg-primary p-3 text-white lg:w-64 rounded-lg"
-        onClick={() => console.log(item)}
-      >
-        Till ärendet
-      </button>
+      <div className="text-right">
+        <Button
+          aria-label={`Till ärende ${item.id}`}
+          variant="tertiary"
+          onClick={() => console.log(item)}
+          size="sm"
+          iconButton
+        >
+          <MoreHorizontal />
+        </Button>
+      </div>
     ),
     isColumnSortable: false,
   },
 ];
 
-export const Template = (args: DataTableProps) => <DataTable {...args} data={ongoingCases.data} headers={headers} />;
+export const Template = (args: DataTableProps) => (
+  <div className="flex flex-col gap-16">
+    <DataTable {...args} data={ongoingCases.data} headers={headers} />
+  </div>
+);
 
 Template.story = { name: 'DataTable' };
