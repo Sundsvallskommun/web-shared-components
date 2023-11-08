@@ -2,9 +2,19 @@ module.exports = ZebraTable = () => ({
   '.sk-zebratable-wrapper': {
     '@apply rounded-groups': {},
     '@apply border-1': {},
+    '@apply bg-background-content': {},
     '&-inside': {
       '@apply border-0 rounded-t-groups': {},
       '@apply overflow-hidden': {},
+    },
+    '&[data-variant="table"]': {
+      '&:not([data-background="true"])': {
+        '@apply border-0': {},
+        '@apply bg-transparent': {},
+      },
+      '.sk-zebratable-wrapper-inside': {
+        '@apply border-0 rounded-b-groups': {},
+      },
     },
   },
   '.sk-zebratable': {
@@ -63,16 +73,13 @@ module.exports = ZebraTable = () => ({
     },
 
     '&-tbody': {
-      '@apply text-dark-secondary bg-background-content': {},
+      '@apply text-dark-secondary bg-transparent': {},
 
       '&-tr': {
         '@apply bg-transparent': {},
         '@apply hover:bg-background-100': {},
         '@apply border-b-1': {},
         '@apply last-of-type:border-b-transparent': {},
-        // '&.highlighted': {
-        //   '@apply lg:border-4 lg:border-hover': {},
-        // },
       },
 
       '&-td': {
