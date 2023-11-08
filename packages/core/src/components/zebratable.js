@@ -22,6 +22,7 @@ module.exports = ZebraTable = () => ({
     '@apply text-dark-secondary': {},
 
     '&-thead': {
+      '@apply border-b-1 border-dark-primary': {},
       '&-tr': {
         '@apply hidden lg:table-row': {},
         '@apply text-label-sm leading-label-sm': {},
@@ -37,7 +38,7 @@ module.exports = ZebraTable = () => ({
       },
       '@apply bg-transparent': {},
       '&[data-background="true"]': {
-        '@apply bg-vattjom-background-200': {},
+        '@apply bg-vattjom-background-200 border-b-transparent': {},
       },
     },
 
