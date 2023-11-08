@@ -56,10 +56,9 @@ body.dark .docblock-argstable {
   tr:nth-of-type(2n) {
     @apply bg-gray-700;
   }
-}
-
-.docblock-argstable-head {
-  @apply bg-gray-500;
+  .docblock-argstable-head {
+    @apply bg-gray-500;
+  }
 }
 
 .docs-preview {

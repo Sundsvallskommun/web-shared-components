@@ -32,8 +32,9 @@ export interface IZebraTableProps {
   highlightedItemIndex?: number;
   changePage?: (page: number) => void;
   BottomComponent?: JSX.Element;
-  headerBackground?: boolean;
+  background?: boolean;
   dense?: boolean;
+  variant?: 'table' | 'datatable';
 }
 
 export type ZebraTableProps = IZebraTableProps & React.HTMLAttributes<HTMLTableElement>;
@@ -55,8 +56,9 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
     highlightedItemIndex,
     changePage,
     BottomComponent,
-    headerBackground = false,
+    background = false,
     dense: _dense = false,
+    variant = 'table',
     ...rest
   } = props;
 
@@ -123,7 +125,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
   }, [pageSize, currentPage, rows, pages]);
 
   return (
-    <div className="sk-zebratable-wrapper">
+    <div className="sk-zebratable-wrapper" data-variant={variant} data-background={background}>
       <div className="sk-zebratable-wrapper-inside">
         {managedRows.length > 0 && (
           <table
@@ -145,7 +147,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
               </caption>
             )}
 
-            <thead className="sk-zebratable-thead" data-background={headerBackground}>
+            <thead className="sk-zebratable-thead" data-background={background}>
               <tr className={cx(`sk-zebratable-thead-tr`)}>
                 {headers.map((h, idx) => (
                   <ZTableHeader
@@ -185,50 +187,51 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
           </table>
         )}
       </div>
+      {variant === 'datatable' && (
+        <div className="sk-zebratable-bottom">
+          <>
+            <div className="sk-zebratable-bottom-section">
+              <label className="sk-zebratable-bottom-section-label" htmlFor="pagiPageSize">
+                Rader per sida:
+              </label>
+              <Input
+                size="sm"
+                id="pagePageSize"
+                type="number"
+                min={1}
+                max={100}
+                step={5}
+                className="max-w-[10rem]"
+                value={`${_pageSize}`}
+                onChange={(event) => setPageSize(parseInt(event.target.value))}
+              />
+            </div>
 
-      <div className="sk-zebratable-bottom">
-        <>
-          <div className="sk-zebratable-bottom-section">
-            <label className="sk-zebratable-bottom-section-label" htmlFor="pagiPageSize">
-              Rader per sida:
-            </label>
-            <Input
-              size="sm"
-              id="pagePageSize"
-              type="number"
-              min={1}
-              max={100}
-              step={5}
-              className="max-w-[10rem]"
-              value={`${_pageSize}`}
-              onChange={(event) => setPageSize(parseInt(event.target.value))}
+            <Pagination
+              className="sk-zebratable-pagination"
+              pages={pages}
+              activePage={currentPage}
+              changePage={(page: number) => setCurrentPage(page)}
             />
+          </>
+          <div className="sk-zebratable-bottom-section">
+            <label className="sk-zebratable-bottom-section-label" htmlFor="pagiRowHeight">
+              Radhöjd:
+            </label>
+            <Select
+              id="pagiRowHeight"
+              size="sm"
+              value={{ label: rowHeight === 'dense' ? 'Tät' : 'Normal', data: rowHeight }}
+              onChange={(option) => setRowHeight(option.data)}
+            >
+              <Select.Option value={{ label: 'Normal', data: 'normal' }} />
+              <Select.Option value={{ label: 'Tät', data: 'dense' }} />
+            </Select>
           </div>
 
-          <Pagination
-            className="sk-zebratable-pagination"
-            pages={pages}
-            activePage={currentPage}
-            changePage={(page: number) => setCurrentPage(page)}
-          />
-        </>
-        <div className="sk-zebratable-bottom-section">
-          <label className="sk-zebratable-bottom-section-label" htmlFor="pagiRowHeight">
-            Radhöjd:
-          </label>
-          <Select
-            id="pagiRowHeight"
-            size="sm"
-            value={{ label: rowHeight === 'dense' ? 'Tät' : 'Normal', data: rowHeight }}
-            onChange={(option) => setRowHeight(option.data)}
-          >
-            <Select.Option value={{ label: 'Normal', data: 'normal' }} />
-            <Select.Option value={{ label: 'Tät', data: 'dense' }} />
-          </Select>
+          {BottomComponent && BottomComponent}
         </div>
-
-        {BottomComponent && BottomComponent}
-      </div>
+      )}
     </div>
   );
 });
