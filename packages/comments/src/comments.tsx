@@ -29,7 +29,7 @@ interface ICommentsProps extends DefaultProps {
 
 export interface CommentsProps extends Omit<React.HTMLAttributes<HTMLSpanElement>, 'color'>, ICommentsProps {}
 
-export const Comments = React.forwardRef<HTMLSpanElement, CommentsProps>((props, ref) => {
+export const Comments = React.forwardRef<HTMLDivElement, CommentsProps>((props, ref) => {
   const [input, setInput] = useState('');
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [itemToEdit, setItemToEdit] = useState<{ id: string | number | undefined; comment: string } | undefined>();
@@ -56,7 +56,7 @@ export const Comments = React.forwardRef<HTMLSpanElement, CommentsProps>((props,
   });
 
   return (
-    <div className="flex flex-col w-full h-full" {...ref}>
+    <div className="flex flex-col w-full h-full" ref={ref}>
       {header && (
         <div className="comment-header">
           <QuestionAnswerOutlinedIcon className="text-primary !text-2xl" />

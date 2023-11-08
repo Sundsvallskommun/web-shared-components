@@ -26,7 +26,7 @@ interface IItemProps extends DefaultProps {
   onDeleteCallback: (id: string | number) => void;
 }
 
-export const CommentItem = React.forwardRef<HTMLDivElement, IItemProps>((props) => {
+export const CommentItem = React.forwardRef<HTMLDivElement, IItemProps>((props, ref) => {
   const {
     commentorName,
     commentText,
@@ -43,7 +43,7 @@ export const CommentItem = React.forwardRef<HTMLDivElement, IItemProps>((props) 
   } = props;
 
   return (
-    <div className="comment-item">
+    <div className="comment-item" ref={ref}>
       <div className="comment-item-container">
         <div className="comment-item-container-textpic">
           <ProfilePicture imageAlt={imageAlt} className="object-cover" image={imageSrc} />
