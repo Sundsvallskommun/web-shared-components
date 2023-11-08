@@ -1,3 +1,4 @@
+import React from 'react';
 import { Meta } from '@storybook/react';
 import { TabItem, Tabs, TabsProps } from '../src';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';

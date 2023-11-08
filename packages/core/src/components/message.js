@@ -43,18 +43,5 @@ module.exports = Message = () => ({
     '@apply mr-4 flex-shrink-0 w-10 h-10': {},
   },
 
-  '.message-close-button': {
-    '@apply text-body border-transparent flex items-center justify-center transition-all duration-150 rounded-full outline-none cursor-base':
-      {},
-    marginLeft: '0.25em',
-    marginRight: '-0.55em',
-
-    '&-icon': {
-      '@apply !text-xl': {},
-    },
-
-    '&-disabled': {
-      '@apply disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none': {},
-    },
-  },
+  '.message-close-button': {},
 });
