@@ -80,9 +80,12 @@ export const Header = React.forwardRef<HTMLDivElement, HeaderProps>((props, ref)
                       <Logo color={context?.theme?.colors?.body || undefined} />
                     </div>
                     <Divider orientation="vertical" className="h-[4.4rem]" />
-                    <span id="page-title" className="text-h4 font-header leading-lg font-bold text-dark-primary">
+                    <span
+                      id="page-title"
+                      className="text-h4-sm md:text-h4-md xl:text-h4-lg font-header leading-large text-dark-primary"
+                    >
                       {title}
-                      {subtitle && <span className="text-sm font-normal leading-sm block">{subtitle}</span>}
+                      {subtitle && <span className="text-small font-normal block">{subtitle}</span>}
                     </span>
                   </div>
                 </Link>

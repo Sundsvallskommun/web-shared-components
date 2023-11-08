@@ -119,19 +119,19 @@ export const fontSizes = {
     },
   },
   label: {
-    lg: '1.8rem',
-    md: '1.6rem',
-    sm: '1.4rem',
+    large: '1.8rem',
+    medium: '1.6rem',
+    small: '1.4rem',
   },
   input: {
-    lg: '1.8rem',
-    md: '1.6rem',
-    sm: '1.4rem',
+    large: '1.8rem',
+    medium: '1.6rem',
+    small: '1.4rem',
   },
   lead: '2rem',
   base: '1.6rem',
-  lg: '1.8rem',
-  sm: '1.4rem',
+  large: '1.8rem',
+  small: '1.4rem',
 };
 
 export const lineHeights = {
@@ -182,19 +182,19 @@ export const lineHeights = {
     },
   },
   label: {
-    lg: '3.2rem',
-    md: '2.4rem',
-    sm: '1.6rem',
+    large: '3.2rem',
+    medium: '2.4rem',
+    small: '1.6rem',
   },
   input: {
-    lg: '2.4rem',
-    md: '2.4rem',
-    sm: '2rem',
+    large: '2.4rem',
+    medium: '2.4rem',
+    small: '2rem',
   },
   lead: '2.8rem',
   base: '2.4rem',
-  lg: '2.6rem',
-  sm: '2.2rem',
+  large: '2.6rem',
+  small: '2.2rem',
 };
 
 export const radius = {

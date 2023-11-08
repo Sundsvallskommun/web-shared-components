@@ -1,6 +1,6 @@
 module.exports = Notification = () => ({
   '.notification': {
-    '@apply relative flex p-4 text-sm w-96 m-2 max-w-full rounded-base shadow-sm sm:max-w-md': {},
+    '@apply relative flex p-4 text-small w-96 m-2 max-w-full rounded-base shadow-sm sm:max-w-md': {},
     '@apply text-body bg-white border border-neutral-200': {},
     // dark
     '@apply dark:text-neutral-100 dark:bg-neutral-700 dark:border-neutral-600': {},
@@ -45,7 +45,7 @@ module.exports = Notification = () => ({
     top: 16,
 
     '&-undo': {
-      '@apply h-auto p-0 text-sm': {},
+      '@apply h-auto p-0 text-small': {},
     },
 
     '&-close-button': {

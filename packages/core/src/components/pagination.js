@@ -7,7 +7,7 @@ module.exports = Pagination = () => ({
     },
 
     '&-md': {
-      '@apply text-lg': {},
+      '@apply text-large': {},
     },
 
     '&-lg': {

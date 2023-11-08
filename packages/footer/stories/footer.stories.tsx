@@ -104,7 +104,7 @@ export const Template = ({ ...args }: FooterProps) => {
       </div>
 
       <div className="footer-contact mt-8 md:mt-0 md:ml-32">
-        <h2 className="text-base leading-lg hidden md:block">Kontakt</h2>
+        <h2 className="text-base leading-large hidden md:block">Kontakt</h2>
         <div className="mt-12 md:mt-2">
           Epost: <Link className="text-white">example@sundsvall.se</Link>
         </div>

@@ -63,7 +63,7 @@ module.exports = Tag = (colors) => ({
     },
 
     '&-md': {
-      '@apply text-sm': {},
+      '@apply text-small': {},
       minWidth: '1.5rem',
     },
 

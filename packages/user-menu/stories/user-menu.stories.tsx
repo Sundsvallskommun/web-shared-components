@@ -182,7 +182,7 @@ export const Template = (args: UserMenuProps) => (
                     fill="#212121"
                   />
                 </svg>
-                <span className="text-sm tracking-tight lg:hidden">Mina sidor</span>
+                <span className="text-small tracking-tight lg:hidden">Mina sidor</span>
               </a>
             </Link>
           </div>

@@ -1,7 +1,7 @@
 module.exports = Snackbar = () => ({
   '.sk-snackbar': {
-    '@apply flex items-center gap-12 font-bold py-8 pl-16 pr-8 rounded-groups break-words max-w-[40rem]': {},
-    '@apply text-label-sm text-vattjom-text-secondary': {},
+    '@apply flex items-center gap-12 py-8 pl-16 pr-8 rounded-groups break-words max-w-[40rem]': {},
+    '@apply text-label-small text-vattjom-text-secondary': {},
 
     '&-text': {
       '@apply flex-grow': {},

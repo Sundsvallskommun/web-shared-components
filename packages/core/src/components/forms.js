@@ -61,13 +61,13 @@ function formControl() {
       '@apply mt-1.5 leading-none text-gray': {},
     },
     '.form-error-message': {
-      '@apply mt-1.5 leading-none flex items-center text-sm text-error': {},
+      '@apply mt-1.5 leading-none flex items-center text-small text-error': {},
     },
     '.form-label': {
-      '@apply text-sm font-medium text-left align-middle block mb-1.5': {},
+      '@apply text-small font-medium text-left align-middle block mb-1.5': {},
     },
     '.form-required-indicator': {
-      '@apply ml-1 text-sm': {},
+      '@apply ml-1 text-small': {},
       '--tw-text-opacity': '1',
       color: 'rgba(239, 68, 68, var(--tw-text-opacity))',
       '.dark &': {
@@ -144,7 +144,7 @@ function formInputGroup() {
       },
 
       '&-md': {
-        '@apply text-sm h-8 w-8': {},
+        '@apply text-small h-8 w-8': {},
       },
 
       '&-lg': {
@@ -164,7 +164,7 @@ function formInputGroup() {
       },
 
       '&-md': {
-        '@apply px-4 text-sm': {},
+        '@apply px-4 text-small': {},
       },
 
       '&-lg': {
@@ -188,7 +188,7 @@ function formInputGroup() {
       },
 
       '&-md': {
-        '@apply px-[1.6rem] text-sm': {},
+        '@apply px-[1.6rem] text-small': {},
       },
 
       '&-lg': {
@@ -213,7 +213,7 @@ module.exports = Forms = (colors) => ({
     '@apply transition-colors	duration-75 ease-out': {},
 
     '&-sm': {
-      '@apply text-sm leading-sm': {},
+      '@apply text-small': {},
       '@apply py-0 px-[1.44rem] min-h-[4rem] max-h-[4rem]': {},
     },
 
@@ -223,7 +223,7 @@ module.exports = Forms = (colors) => ({
     },
 
     '&-lg': {
-      '@apply text-base leading-lg': {},
+      '@apply text-base leading-large': {},
       '@apply py-0 px-[1.76rem] min-h-[4.8rem] max-h-[4.8rem]': {},
     },
 
@@ -308,7 +308,7 @@ module.exports = Forms = (colors) => ({
   },
 
   '.form-select-list-transition': {
-    '@apply absolute z-50 w-full bg-white shadow-lg max-h-60 rounded-utility py-1 text-base ring overflow-auto focus:outline-none sm:text-sm':
+    '@apply absolute z-50 w-full bg-white shadow-lg max-h-60 rounded-utility py-1 text-base ring overflow-auto focus:outline-none sm:text-small':
       {},
     '&.showabove': {
       '@apply mb-1 bottom-full': {},

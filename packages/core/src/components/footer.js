@@ -34,7 +34,7 @@ module.exports = Footer = (colors) => ({
       '&-container': {
         '@apply px-md flex items-center items-center justify-center m-auto md:space-x-10 flex-col md:flex-row': {},
         '> *': {
-          '@apply text-body text-sm leading-sm py-sm': {},
+          '@apply text-body text-small py-sm': {},
         },
       },
     },

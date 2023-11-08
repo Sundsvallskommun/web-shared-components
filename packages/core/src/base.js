@@ -6,7 +6,7 @@ module.exports = {
     touchAction: 'manipulation',
   },
   body: {
-    '@apply text-base leading-base bg-background-content': {},
+    '@apply text-base bg-background-content': {},
     '@apply text-body': {},
     position: 'relative',
     minHeight: '100%',
@@ -18,12 +18,11 @@ module.exports = {
     '@apply focus-visible:outline-0': {},
   },
   small: {
-    '@apply text-sm leading-sm': {},
+    '@apply text-small': {},
   },
   a: { '@apply rounded-button-sm md:rounded-button-md xl:rounded-button-lg': {} },
   h1: {
-    '@apply text-h1-sm md:text-h1-md xl:text-h1-lg leading-h1-sm md:leading-h1-md xl:leading-h1-lg': {},
-    '@apply font-bold': {},
+    '@apply text-h1-sm md:text-h1-md xl:text-h1-lg': {},
     '@apply mb-md': {},
 
     '+ p': {
@@ -31,29 +30,22 @@ module.exports = {
     },
   },
   h2: {
-    '@apply text-h2-sm md:text-h2-md xl:text-h2-lg leading-h2-sm md:leading-h2-md xl:leading-h2-lg': {},
-    '@apply font-bold': {},
-    '@apply mt-lg': {},
+    '@apply text-h2-sm md:text-h2-md xl:text-h2-lg': {},
   },
   h3: {
-    '@apply text-h3-sm md:text-h3-md xl:text-h3-lg leading-h3-sm md:leading-h3-md xl:leading-h3-lg': {},
-    '@apply font-bold': {},
-    '@apply mt-lg': {},
+    '@apply text-h3-sm md:text-h3-md xl:text-h3-lg': {},
   },
   'h4,h5,h6': {
-    '@apply text-h4-sm md:text-h4-md xl:text-h4-lg leading-h4-sm md:leading-h4-md xl:leading-h4-lg': {},
-    '@apply font-bold': {},
-    '@apply mt-lg': {},
+    '@apply text-h4-sm md:text-h4-md xl:text-h4-lg': {},
   },
   label: {
-    '@apply font-bold': {},
-    '@apply text-label-md leading-label-md': {},
+    '@apply text-label-medium': {},
   },
   p: { '@apply my-4': {} },
 
   '.text-content': {
     '@apply max-w-[80rem]': {},
 
-    p: { '@apply mt-sm leading-[1.5]': {} },
+    p: { '@apply mt-sm text-base': {} },
   },
 };

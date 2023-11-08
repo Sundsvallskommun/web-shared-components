@@ -75,7 +75,7 @@ module.exports = Radio = (colors) => ({
 
     // label
     '&-label': {
-      '@apply ml-2 select-none text-sm': {},
+      '@apply ml-2 select-none text-small': {},
       '@apply text-body': {},
       // dark colors
       '@apply dark:text-neutral-100': {},
@@ -85,7 +85,7 @@ module.exports = Radio = (colors) => ({
       },
 
       '&-md': {
-        '@apply text-sm': {},
+        '@apply text-small': {},
       },
 
       '&-lg': {
@@ -93,7 +93,7 @@ module.exports = Radio = (colors) => ({
       },
 
       '&-xl': {
-        '@apply text-lg': {},
+        '@apply text-large': {},
       },
     },
   },

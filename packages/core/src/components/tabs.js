@@ -39,7 +39,7 @@ module.exports = Tabs = () => ({
         '@apply mr-0': {},
       },
       '&-header': {
-        '@apply text-lg font-normal': {},
+        '@apply text-large font-normal': {},
       },
       '&-right': {
         '@apply mr-0 ml-lg': {},

@@ -77,7 +77,7 @@ function alertCloseButton(colors) {
 
 module.exports = Alert = (colors) => ({
   '.alert': {
-    '@apply w-full flex items-center px-4 py-3 relative overflow-hidden text-sm': {},
+    '@apply w-full flex items-center px-4 py-3 relative overflow-hidden text-small': {},
   },
 
   // variants
