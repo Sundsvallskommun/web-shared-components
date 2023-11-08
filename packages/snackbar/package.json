@@ -1,5 +1,5 @@
 {
-  "name": "@sk-web-gui/message",
+  "name": "@sk-web-gui/snackbar",
   "version": "0.1.27",
   "sideEffects": false,
   "license": "MIT",
@@ -37,10 +37,6 @@
     "react": "^18.2.0"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.14.12",
-    "@mui/material": "^5.14.12",
     "@sk-web-gui/button": "0.1.22",
     "@sk-web-gui/icon": "0.1.15",
     "@sk-web-gui/toast": "0.1.21",
