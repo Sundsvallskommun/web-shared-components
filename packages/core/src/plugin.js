@@ -19,7 +19,7 @@ const Calendar = require('./components/calendar');
 const Icon = require('./components/icon');
 const Link = require('./components/link');
 const Menubar = require('./components/menubar');
-const Message = require('./components/message');
+const Snackbar = require('./components/snackbar');
 const Notification = require('./components/notification');
 const Radio = require('./components/radio');
 const Switch = require('./components/switch');
@@ -69,7 +69,7 @@ const components = [
   Icon,
   Link,
   Menubar,
-  Message,
+  Snackbar,
   Notification,
   Radio,
   Switch,

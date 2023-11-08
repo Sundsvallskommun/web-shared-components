@@ -54,23 +54,21 @@ export const Message = ({ id, message, position, onRequestRemove, requestClose =
   const [timeout, setTimeout] = React.useState(duration);
   const [localShow, setLocalShow] = React.useState(true);
 
-  const isFromTop = position === 'top-left' || position === 'top-right' || position === 'top';
-
   useTimeout(close, timeout);
 
   const animation = {
     config: { duration: 200, easings: easings.easeInBack },
     from: {
       opacity: 0.5,
-      marginTop: '-20px',
+      marginTop: '4px',
     },
     enter: {
       opacity: 1,
-      marginTop: '0px',
+      marginTop: '24px',
     },
     leave: {
       opacity: 0,
-      marginTop: '-10px',
+      marginTop: '14px',
     },
     onRest,
   } as any;

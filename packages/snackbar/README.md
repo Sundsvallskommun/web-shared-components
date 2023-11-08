@@ -1,5 +1,5 @@
 ## Installation
 
 ```sh
-yarn add @sk-web-gui/message
+yarn add @sk-web-gui/snackbar
 ```
