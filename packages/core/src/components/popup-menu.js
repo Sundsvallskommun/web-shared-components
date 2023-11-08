@@ -92,7 +92,7 @@ module.exports = PopupMenu = () => ({
         '@apply min-h-[3.2rem]': {},
         '@apply gap-10 pl-8 pr-24 py-4': {},
 
-        '@apply text-sm': {},
+        '@apply text-small': {},
         '&-group': {
           '@apply gap-6 pb-6': {},
           '> *': {

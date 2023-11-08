@@ -11,7 +11,7 @@ module.exports = Calendar = () => ({
 
   // Arrow switchers
   '.MuiCalendarPicker-root > div:first-of-type .MuiButtonBase-root .MuiSvgIcon-root': {
-    '@apply text-body text-lg': {},
+    '@apply text-body text-large': {},
   },
   '.MuiCalendarPicker-root > div:first-of-type .MuiButtonBase-root': {
     '@apply border-solid border border-transparent focus:text-transparent hover:text-transparent focus:bg-transparent hover:bg-transparent focus:border-primary hover:border-primary':

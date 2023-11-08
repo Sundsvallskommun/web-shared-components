@@ -4,12 +4,11 @@ module.exports = Badge = (colors) => ({
     '@apply justify-center items-center': {},
     '@apply text-light-primary': {},
     '@apply rounded-utility': {},
-    '@apply font-bold': {},
     '@apply overflow-hidden': {},
 
     // size
     '@apply h-[2.4rem] w-[2.4rem]': {},
-    '@apply text-label-sm leading-label-sm': {},
+    '@apply text-label-small': {},
 
     '&[data-rounded="true"]': {
       '@apply rounded-circular': {},

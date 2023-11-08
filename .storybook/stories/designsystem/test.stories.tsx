@@ -6,7 +6,7 @@ export default {
 } as Meta;
 
 export const Template = () => (
-  <div className="text-lg text-content mb-11">
+  <div className="text-large text-content mb-11">
     <h1>Heading One</h1>
     <p>
       This is a paragraph of text that should be long enough to wrap. If not, we can repeat it over and over again until

@@ -175,7 +175,6 @@ module.exports = Button = (colors) => ({
     '@apply relative': {},
     '@apply m-0': {},
     '@apply px-24 py-8 gap-8': {},
-    '@apply font-bold': {},
     '@apply inline-flex items-center justify-center flex-shrink-0 align-middle': {},
     '@apply rounded-button-sm md:rounded-button': {},
     transitionProperty: 'background-color, border-color, color, fill, stroke, box-shadow',
@@ -190,7 +189,7 @@ module.exports = Button = (colors) => ({
 
     // sizing
     '&-sm': {
-      '@apply text-label-sm leading-label-sm': {},
+      '@apply text-label-small': {},
       '@apply px-14 py-8 gap-6': {},
       '@apply max-h-[3.2rem] h-[3.2rem]': {},
       svg: {
@@ -199,7 +198,7 @@ module.exports = Button = (colors) => ({
     },
 
     '&-md': {
-      '@apply text-label-md leading-label-md': {},
+      '@apply text-label-medium': {},
       '@apply px-18 py-8 gap-8': {},
       '@apply max-h-[4rem] h-[4rem]': {},
       svg: {
@@ -208,7 +207,7 @@ module.exports = Button = (colors) => ({
     },
 
     '&-lg': {
-      '@apply text-label-lg leading-label-lg': {},
+      '@apply text-label-large': {},
       '@apply px-24 py-8 gap-8': {},
       '@apply max-h-[4.8rem] h-[4.8rem]': {},
       svg: {

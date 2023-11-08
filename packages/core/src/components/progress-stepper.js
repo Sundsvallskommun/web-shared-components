@@ -25,7 +25,7 @@ module.exports = ProgressStepper = () => ({
         '@apply h-[4rem] w-[4rem]': {},
         '@apply bg-secondary-surface': {},
         '@apply flex justify-center items-center': {},
-        '@apply text-label-md leading-label-md font-bold': {},
+        '@apply text-label-medium': {},
         '@apply border-2 border-secondary-outline': {},
         '@apply text-dark-secondary': {},
         '@apply rounded-button-sm md:rounded-button-md xl:rounded-button-lg': {},
