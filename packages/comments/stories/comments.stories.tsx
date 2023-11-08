@@ -57,6 +57,7 @@ export const CommentsWrapped = () => {
   return (
     <div className="max-w-[500px] w-full h-[800px] shadow-md pb-8">
       <Comments
+        currentUserName={'And013And'}
         commentsData={commentsData}
         onSubmitCallback={submit}
         onDeleteCallback={remove}

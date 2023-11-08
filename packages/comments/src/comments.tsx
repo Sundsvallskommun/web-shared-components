@@ -10,7 +10,8 @@ import { Spinner } from '@sk-web-gui/spinner';
 export interface ICommentData {
   id: string | number;
   commentorName: string;
-  userImage: string;
+  commentorImage: string;
+  commentorUserName?: string | number;
   commentText: string;
   publishDate: string;
 }
@@ -19,12 +20,15 @@ interface ICommentsProps extends DefaultProps {
   commentsData: Array<ICommentData>;
   onSubmitCallback: (comment: string) => void;
   onEditCallback: (comment: string, id: string | number) => void;
+  onDeleteCallback: (id: string | number) => void;
+  currentUserName?: string | number;
   inputValue?: string;
   setInputValue?: (comment: string) => void;
   loading?: boolean;
   header?: boolean;
   placeholder?: string;
-  onDeleteCallback: (id: string | number) => void;
+  restrictUserEdit?: boolean;
+  readonly?: boolean;
 }
 
 export interface CommentsProps extends Omit<React.HTMLAttributes<HTMLSpanElement>, 'color'>, ICommentsProps {}
@@ -38,11 +42,14 @@ export const Comments = React.forwardRef<HTMLDivElement, CommentsProps>((props, 
     loading,
     onSubmitCallback,
     onEditCallback,
+    onDeleteCallback,
     inputValue = input,
     setInputValue = setInput,
+    currentUserName,
+    readonly = !currentUserName ? true : false,
     header = true,
     placeholder,
-    onDeleteCallback,
+    restrictUserEdit = true,
   } = props;
 
   const scrollEl = useRef<HTMLDivElement>(null);
@@ -71,9 +78,10 @@ export const Comments = React.forwardRef<HTMLDivElement, CommentsProps>((props, 
               <div className="border-b py-10 mt-4" key={`comment-item-${comment.id}`}>
                 <CommentItem
                   commentorName={comment.commentorName}
+                  commentorUserName={comment.commentorUserName}
                   commentText={comment.commentText}
                   publishDate={comment.publishDate}
-                  imageSrc={comment.userImage}
+                  imageSrc={comment.commentorImage}
                   id={comment.id}
                   setIsEdit={setIsEdit}
                   isEdit={isEdit}
@@ -81,6 +89,9 @@ export const Comments = React.forwardRef<HTMLDivElement, CommentsProps>((props, 
                   setItemToEdit={setItemToEdit}
                   setInputValue={setInputValue}
                   onDeleteCallback={onDeleteCallback}
+                  currentUserName={currentUserName}
+                  restrictUserEdit={restrictUserEdit}
+                  readonly={readonly}
                 />
               </div>
             );
