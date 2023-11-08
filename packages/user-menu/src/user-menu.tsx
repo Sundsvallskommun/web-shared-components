@@ -125,7 +125,7 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>((props, 
                   ]}
                 </div>
               ) : (
-                <></>
+                <div key={`sk-usermenu-group-${gidx}`}></div>
               );
             })}
           </Menu.Items>
