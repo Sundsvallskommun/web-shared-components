@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/react",
-  "version": "0.1.134",
+  "version": "0.1.135",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -46,7 +46,7 @@
     "@sk-web-gui/button": "0.1.22",
     "@sk-web-gui/card": "0.1.17",
     "@sk-web-gui/checkbox": "0.1.38",
-    "@sk-web-gui/comments": "0.1.6",
+    "@sk-web-gui/comments": "0.1.7",
     "@sk-web-gui/context-menu": "0.1.15",
     "@sk-web-gui/cookie-consent": "0.1.27",
     "@sk-web-gui/divider": "0.1.17",
@@ -74,7 +74,7 @@
     "@sk-web-gui/tag": "0.1.27",
     "@sk-web-gui/text": "0.1.5",
     "@sk-web-gui/theme": "0.1.14",
-    "@sk-web-gui/user-menu": "0.2.1",
+    "@sk-web-gui/user-menu": "0.2.2",
     "@sk-web-gui/utils": "0.1.8"
   },
   "peerDependencies": {
