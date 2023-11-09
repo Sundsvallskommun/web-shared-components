@@ -6,6 +6,7 @@ export * from '@sk-web-gui/checkbox';
 export * from '@sk-web-gui/forms';
 export * from '@sk-web-gui/icon';
 export * from '@sk-web-gui/image';
+export * from '@sk-web-gui/label';
 export * from '@sk-web-gui/link';
 export * from '@sk-web-gui/snackbar';
 export * from '@sk-web-gui/radio';
@@ -32,8 +33,6 @@ export * from '@sk-web-gui/dropdown-filter';
 export * from '@sk-web-gui/dropdown-search';
 
 export * from '@sk-web-gui/table';
-
-export * from '@sk-web-gui/tag';
 
 export * from '@sk-web-gui/search-bar';
 
