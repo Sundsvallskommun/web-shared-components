@@ -36,14 +36,17 @@ export const DataTable = React.forwardRef<HTMLTableElement, DataTableProps>((pro
         break;
     }
     const value = headerparts.reduce((value: any, headerpart) => {
-      if (value) {
-        return value[headerpart];
+      if (value !== null) {
+        if (value) {
+          return value[headerpart] ? value[headerpart] : undefined;
+        }
+        return undefined;
       }
 
       return item[headerpart];
     }, null);
 
-    return value;
+    return value || '';
   };
 
   const getLabel = (header: DataTableHeader | string) => {
