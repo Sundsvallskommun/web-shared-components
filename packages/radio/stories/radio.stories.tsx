@@ -1,7 +1,6 @@
-import React from 'react';
 import { FormControl, FormHelperText, FormLabel } from '@sk-web-gui/forms';
-import { Radio, RadioProps } from '../src';
 import { Meta } from '@storybook/react';
+import { Radio, RadioProps } from '../src';
 
 export default {
   title: 'Komponenter/Radioknappar/Komponent',
@@ -10,17 +9,17 @@ export default {
 } as Meta;
 
 export const Template = (args: RadioProps) => (
-  <>
-    <Radio {...args} className="m-2" name="example">
+  <fieldset className="flex flex-row gap-12">
+    <Radio {...args} name="sk-example">
       Exempel 1
     </Radio>
-    <Radio {...args} className="m-2" name="example">
+    <Radio {...args} name="sk-example">
       Exempel 2
     </Radio>
-    <Radio {...args} className="m-2" name="example">
+    <Radio {...args} name="sk-example">
       Exempel 2
     </Radio>
-  </>
+  </fieldset>
 );
 
 Template.storyName = 'Radio';
@@ -60,9 +59,6 @@ export const Storlekar = () => (
       Radio
     </Radio>
     <Radio size="md" name="size">
-      Radio
-    </Radio>
-    <Radio size="lg" name="size">
       Radio
     </Radio>
     <Radio size="lg" name="size">

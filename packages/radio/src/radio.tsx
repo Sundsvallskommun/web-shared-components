@@ -34,9 +34,7 @@ interface IRadioProps<T = HTMLInputElement> extends DefaultProps {
   /* Radio value */
   value?: string | number;
   /* Size of the radio */
-  size?: 'sm' | 'md' | 'lg' | 'xl';
-  /* Set the radio color */
-  color?: string;
+  size?: 'sm' | 'md' | 'lg';
   /**
    * A11y: A label that describes the input
    */
@@ -65,7 +63,6 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref)
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
     'aria-describedby': ariaDescribedby,
-    color = 'primary',
     defaultChecked,
     checked,
     size = 'md',
@@ -80,20 +77,12 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref)
   const radioClasses = useRadioClass({
     size,
     disabled,
-    color,
   });
 
   const radioLabelClasses = useRadioLabelClass({ size });
 
   return (
-    <label
-      className={cx(
-        'inline-flex align-top items-center',
-        disabled && 'cursor-not-allowed',
-        radioLabelClasses,
-        disabled ? 'opacity-40' : 'opacity-100'
-      )}
-    >
+    <label className={cx(disabled && 'cursor-not-allowed', radioLabelClasses, className)} data-disabled={disabled}>
       <input
         type="radio"
         aria-label={ariaLabel}
@@ -109,8 +98,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref)
         checked={checked}
         disabled={disabled}
         aria-disabled={disabled}
-        data-color={color ? color : undefined}
-        className={cx(radioClasses, disabled ? 'opacity-80' : 'opacity-100', className)}
+        className={cx(radioClasses)}
         {...rest}
       />
       {children}
