@@ -1,45 +1,30 @@
-// TODO: how it works with prefix?
 module.exports = ButtonGroup = () => ({
-  '.btn-group': {
-    '@apply inline-block': {},
+  '.sk-btn-group': {
+    '@apply inline-flex items-center': {},
 
-    '&.btn-group-attached': {
-      '> .btn-icon': {
-        boxSizing: 'content-box',
-      },
-      '> *:first-of-type:not(:last-of-type)': {
-        borderTopRightRadius: '0px',
-        borderBottomRightRadius: '0px',
-      },
+    '&.sk-btn-group-attached': {
+      '@apply rounded-groups': {},
+      '@apply bg-tertiary-surface': {},
+      '@apply py-6 px-12': {},
 
-      '> *:not(:first-of-type):not(:last-of-type)': {
-        borderRadius: '0px',
+      '> *': {
+        '@apply bg-transparent': {},
       },
 
-      '> *:not(:first-of-type):last-of-type': {
-        borderTopLeftRadius: '0px',
-        borderBottomLeftRadius: '0px',
+      '.sk-btn[data-icon="true"] .sk-icon': {
+        '@apply bg-transparent text-dark-secondary': {},
       },
 
-      '> .btn-solid:not(:last-child), > .btn-outline:not(:last-child)': {
-        borderRightWidth: '0px',
+      '.sk-icon': {
+        '@apply p-0 w-fit h-fit': {},
       },
+    },
 
-      '> .btn-solid:hover, > .btn-outline:hover': {
-        borderRightWidth: '1px',
-      },
+    '&-divider': {
+      '@apply grow bg-tertiary-surface px-6': {},
 
-      '> *:not(:last-of-type):hover + .btn-solid, > *:not(:last-of-type):hover + .btn-outline': {
-        borderLeftWidth: '0px',
-      },
-
-      '> .btn-solid:focus, > .btn-outline:focus': {
-        zIndex: '1px',
-        borderRightWidth: '1px',
-      },
-
-      '> *:not(:last-of-type):focus + .btn-solid, > *:not(:last-of-type):focus + .btn-outline': {
-        borderLeftWidth: '0px',
+      hr: {
+        '@apply h-[2rem]': {},
       },
     },
   },
