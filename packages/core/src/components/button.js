@@ -193,7 +193,7 @@ module.exports = Button = (colors) => ({
       '@apply px-14 py-8 gap-6': {},
       '@apply max-h-[3.2rem] h-[3.2rem]': {},
       svg: {
-        '@apply !h-[1.6rem] !w-[1.6rem]': {},
+        '@apply h-[1.6rem] w-[1.6rem]': {},
       },
     },
 
@@ -202,7 +202,7 @@ module.exports = Button = (colors) => ({
       '@apply px-18 py-8 gap-8': {},
       '@apply max-h-[4rem] h-[4rem]': {},
       svg: {
-        '@apply !h-[1.8rem] !w-[1.8rem]': {},
+        '@apply h-[1.8rem] w-[1.8rem]': {},
       },
     },
 
@@ -211,7 +211,7 @@ module.exports = Button = (colors) => ({
       '@apply px-24 py-8 gap-8': {},
       '@apply max-h-[4.8rem] h-[4.8rem]': {},
       svg: {
-        '@apply !h-[2rem] !w-[2rem]': {},
+        '@apply h-[2rem] w-[2rem]': {},
       },
     },
 
@@ -249,25 +249,36 @@ module.exports = Button = (colors) => ({
     },
     '&[data-icon=true]': {
       '@apply p-0': {},
+
       "&[data-rounded='true']": {
         '@apply rounded-full': {},
       },
+
       '&.sk-btn-sm': {
         minWidth: '3.2rem',
         width: '3.2rem',
         maxWidth: '3.2rem',
+        svg: {
+          '@apply h-[2rem] w-[2rem]': {},
+        },
       },
 
       '&.sk-btn-md': {
         minWidth: '4rem',
         width: '4rem',
         maxWidth: '4rem',
+        svg: {
+          '@apply h-[2rem] w-[2rem]': {},
+        },
       },
 
       '&.sk-btn-lg': {
         minWidth: '4.8rem',
         width: '4.8rem',
         maxWidth: '4.8rem',
+        svg: {
+          '@apply h-[2.4rem] w-[2.4rem]': {},
+        },
       },
       '.btn-has-icon': {
         '&-left': {
