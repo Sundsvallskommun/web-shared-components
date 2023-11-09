@@ -3,7 +3,7 @@ import { SnackbarProps, useSnackbar, Snackbar } from '../src';
 import { Meta } from '@storybook/react';
 
 export default {
-  title: 'Komponenter/Meddelanden/Snackbar',
+  title: 'Komponenter/Snackbar/Komponent',
   component: Snackbar,
   tags: ['autodocs'],
   args: {
