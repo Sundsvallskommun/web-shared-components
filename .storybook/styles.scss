@@ -51,6 +51,12 @@ pre.prismjs .tag {
   }
 }
 
+[type='radio']:checked {
+  background-image: unset;
+}
+input {
+  margin: unset;
+}
 body.dark .docblock-argstable {
   tr:nth-of-type(2n) {
     @apply bg-gray-700;

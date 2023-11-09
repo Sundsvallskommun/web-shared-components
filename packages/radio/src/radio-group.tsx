@@ -5,6 +5,7 @@ import * as React from 'react';
 import { cloneElement, useImperativeHandle, useRef, useState } from 'react';
 
 import { RadioProps } from './radio';
+import { useRadioGroupClass } from './styles';
 
 interface IRadioGroupProps extends DefaultProps {
   /**
@@ -51,7 +52,18 @@ type RadioGroupElement =
 export type RadioGroupProps = IRadioGroupProps;
 
 export const RadioGroup = React.forwardRef<RadioGroupElement, RadioGroupProps>((props, ref) => {
-  const { onChange, name, color, size, defaultValue, inline, value: valueProp, children, ...rest } = props;
+  const {
+    onChange,
+    name,
+    color,
+    size = 'md',
+    defaultValue,
+    inline,
+    value: valueProp,
+    children,
+    className,
+    ...rest
+  } = props;
   const { current: isControlled } = useRef(valueProp != null);
   const [value, setValue] = useState(defaultValue || null);
   const _value = isControlled ? valueProp : value;
@@ -76,7 +88,7 @@ export const RadioGroup = React.forwardRef<RadioGroupElement, RadioGroupProps>((
 
   const clones = validChildren.map((child, index) => {
     return (
-      <div key={index} className={cx(inline ? 'inline-block' : 'block')}>
+      <div key={index}>
         {cloneElement(child, {
           size: child.props.size || size,
           color: child.props.color || color,
@@ -107,8 +119,16 @@ export const RadioGroup = React.forwardRef<RadioGroupElement, RadioGroupProps>((
     []
   );
 
+  const classes = useRadioGroupClass({ size });
+
   return (
-    <div ref={rootRef} role="radiogroup" {...rest}>
+    <div
+      ref={rootRef}
+      role="radiogroup"
+      className={cx(classes, className)}
+      data-direction={inline ? 'row' : 'column'}
+      {...rest}
+    >
       {clones}
     </div>
   );
