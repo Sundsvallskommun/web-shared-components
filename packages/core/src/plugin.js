@@ -17,6 +17,7 @@ const Dot = require('./components/dot');
 const Forms = require('./components/forms');
 const Calendar = require('./components/calendar');
 const Icon = require('./components/icon');
+const Label = require('./components/label');
 const Link = require('./components/link');
 const Menubar = require('./components/menubar');
 const Snackbar = require('./components/snackbar');
@@ -42,7 +43,6 @@ const UserMenu = require('./components/user-menu');
 
 const DropdownFilter = require('./components/dropdown-filter');
 
-const Tag = require('./components/tag');
 const Pagination = require('./components/pagination');
 const PopupMenu = require('./components/popup-menu');
 const Footer = require('./components/footer');
@@ -67,6 +67,7 @@ const components = [
   Forms,
   Calendar,
   Icon,
+  Label,
   Link,
   Menubar,
   Snackbar,
@@ -93,7 +94,6 @@ const components = [
 
   SearchBar,
 
-  Tag,
   Pagination,
   PopupMenu,
   Footer,
