@@ -30,8 +30,7 @@ export type { BreadcrumbLinkProps };
 
 export const BreadcrumbLink = React.forwardRef<any, any>(({ currentPage, ...props }, ref) => {
   const Comp = currentPage ? 'span' : Link;
-
-  return <Comp ref={ref} aria-current={currentPage ? 'page' : undefined} {...props} />;
+  return <Comp ref={ref} aria-current={currentPage ? 'page' : undefined} {...props}/>;
 });
 
 if (__DEV__) {
@@ -48,8 +47,9 @@ export interface BreadcrumbItemProps extends BreadcrumbProps {
 }
 
 export const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProps>((props, ref) => {
-  const { currentPage, separator, lastChild, addSeparator, children, className, ...rest } = props;
-
+  const separator     = '/';
+  const addSeparator  = true;
+  const { currentPage, lastChild, children, color, className, ...rest } = props;
   const validChildren = getValidChildren(children);
   const clones = validChildren.map((child) => {
     if (child.type === BreadcrumbLink) {
@@ -66,31 +66,28 @@ export const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProp
   });
 
   return (
-    <li ref={ref} className={cx('breadcrumb-item', className)} {...rest}>
+    <li ref={ref} className={cx('breadcrumb-item', className)} {...rest} data-color={color ? color : undefined}>
       {clones}
-      {!lastChild && addSeparator && <BreadcrumbSeparator children={separator} />}
+      {!lastChild && addSeparator && <BreadcrumbSeparator children={separator}/>}
     </li>
   );
 });
 
 interface IBreadcrumbProps extends DefaultProps {
-  /* The visual separator between each breadcrumb item */
-  separator?: string | React.ReactElement;
-  /* Add the breadcrumb separator automatically */
-  addSeparator?: boolean;
-  /* React Node */
+  /** @default primary */ 
+  color?: 'primary' | 'vattjom';
+  /** React Node */
   children?: React.ReactNode;
 }
 
-export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement>, IBreadcrumbProps {}
+export interface BreadcrumbProps extends Omit<React.HTMLAttributes<HTMLElement>, 'color'>, IBreadcrumbProps {}
 
 export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>((props, ref) => {
-  const { children, addSeparator = true, separator = '/', className, ...rest } = props;
+  const { children, color = "primary", className, ...rest } = props;
   const validChildren = getValidChildren(children);
   const clones = validChildren.map((child, index) => {
     return cloneElement(child, {
-      addSeparator,
-      separator,
+      color,
       lastChild: validChildren.length === index + 1,
     });
   });

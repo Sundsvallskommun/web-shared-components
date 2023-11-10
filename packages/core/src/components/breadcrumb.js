@@ -1,4 +1,4 @@
-module.exports = Breadcrumb = () => ({
+module.exports = Breadcrumb = (colors) => ({
   '.breadcrumb': {
     '@apply text-body relative': {},
 
@@ -7,7 +7,29 @@ module.exports = Breadcrumb = () => ({
     },
 
     '&-separator': {
-      '@apply mx-2': {},
+      '@apply mx-6': {},
     },
   },
+
+
+  '.breadcrumb-item': {
+
+    'span': {
+      '&[aria-current="page"]': {
+        '@apply font-bold': {},
+      },  
+    },
+    
+    ...colors.reduce(
+      (styles, color) => ({
+        ...styles,
+        [`&[data-color="${color}"]`]: {
+          'a.link': {
+            [`@apply text-${color}-text-primary`]: {},
+          }
+        },
+      }),
+      {}
+    ),
+  }
 });
