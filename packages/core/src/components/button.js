@@ -250,6 +250,10 @@ module.exports = Button = (colors) => ({
     '&[data-icon=true]': {
       '@apply p-0': {},
 
+      '.sk-icon': {
+        '@apply bg-transparent': {},
+      },
+
       "&[data-rounded='true']": {
         '@apply rounded-full': {},
       },
