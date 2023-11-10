@@ -11,8 +11,8 @@ export default {
     activePage: 1,
     showFirst: true,
     showLast: true,
-    pagesBefore: 2,
-    pagesAfter: 2,
+    pagesBefore: 1,
+    pagesAfter: 1,
   },
 };
 

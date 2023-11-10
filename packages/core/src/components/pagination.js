@@ -3,42 +3,71 @@ module.exports = Pagination = () => ({
     '@apply select-none': {},
 
     '&-sm': {
-      '@apply text-xs': {},
+      '@apply text-small': {},
     },
 
     '&-md': {
-      '@apply text-large': {},
+      '@apply text-base': {},
     },
 
     '&-lg': {
-      '@apply text-xl': {},
+      '@apply text-large': {},
     },
 
     '&-list': {
-      '@apply flex items-center': {},
+      '@apply flex justify-between items-center': {},
+
+      '.sk-pagination[data-hideprevnextlabel="true"] &': {
+        '@apply w-[41.2rem]': {},
+      },
+
+      li: {
+        '@apply min-w-[4rem] text-center': {},
+      },
+
+      'li:first-child': {
+        '@apply text-left': {},
+      },
+
+      'li:last-child': {
+        '@apply text-right': {},
+      },
     },
     '.form-select-wrapper': {
       '@apply w-fit': {},
     },
     '&-pageLabel': {
-      '@apply cursor-pointer m-sm box-content': {},
-      width: '1.5em',
-      height: '1.75em',
+      '@apply leading-base cursor-pointer underline text-vattjom-surface-primary': {},
 
       "&[aria-current='true']": {
-        '@apply border-primary border-b cursor-default text-primary': {},
+        '@apply font-bold no-underline text-dark-primary': {},
+      },
+
+      '&:hover': {
+        '@apply no-underline': {},
       },
     },
 
     '&-prevNextButton': {
-      '@apply text-body ml-4 my-sm inline-flex items-center sm:w-auto inline-flex flex-row leading-none': {},
-      height: '1.75em',
+      '@apply text-dark-secondary': {},
 
-      '&[data-reverse=true]': {
-        '@apply mr-4 ml-0 flex-row-reverse': {},
+      '&.sk-btn': {
+        '@apply bg-transparent text-dark-secondary font-normal': {},
 
-        '.pagination-prevNextButton-label': {
-          '@apply mr-sm ml-0': {},
+        '&.sk-btn-disabled:disabled, .sk-btn[aria-disabled="true"]:disabled': {
+          '@apply bg-transparent !important': {},
+        },
+
+        '.sk-icon': {
+          '@apply bg-transparent text-dark-secondary': {},
+        },
+
+        '&:hover': {
+          '@apply text-white': {},
+
+          '.sk-icon': {
+            '@apply text-white': {},
+          },
         },
       },
 
@@ -58,10 +87,6 @@ module.exports = Pagination = () => ({
 
       '&-icon': {
         '@apply m-1 leading-none flex items-center': {},
-
-        '.MuiSvgIcon-root': {
-          fontSize: '1em',
-        },
       },
     },
 
