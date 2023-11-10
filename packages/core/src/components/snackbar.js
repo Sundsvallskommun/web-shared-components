@@ -11,6 +11,9 @@ module.exports = Snackbar = () => ({
       '@apply flex-grow gap-12 py-4 flex items-center': {},
     },
 
+    '&-primary': {
+      '@apply text-light-secondary bg-dark-primary': {},
+    },
     '&-info': {
       '@apply text-vattjom-text-secondary bg-vattjom-surface-primary': {},
     },

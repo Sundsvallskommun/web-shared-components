@@ -13,6 +13,10 @@ interface Status {
 }
 
 const statuses: Status = {
+  primary: {
+    icon: 'lightbulb',
+    cx: 'sk-snackbar-primary',
+  },
   info: {
     icon: 'lightbulb',
     cx: 'sk-snackbar-info',
@@ -44,7 +48,7 @@ export const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>((props, 
     message,
     className,
     icon: CustomIcon,
-    status = 'info',
+    status = 'primary',
     closeable = true,
     leadingIcon = true,
     action = 'Stäng',
