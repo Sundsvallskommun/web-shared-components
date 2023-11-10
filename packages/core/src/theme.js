@@ -1,7 +1,7 @@
-import withOpacity from './with-opacity';
-import colors from './colors';
-import units from './units';
-import { screens } from '@sk-web-gui/theme';
+const withOpacity = require('./with-opacity');
+const colors = require('./colors');
+const units = require('./units');
+const { screens } = require('@sk-web-gui/theme');
 
 module.exports = {
   fontSize: {
