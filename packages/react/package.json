@@ -46,7 +46,6 @@
     "@sk-web-gui/breadcrumb": "0.1.16",
     "@sk-web-gui/button": "0.1.22",
     "@sk-web-gui/card": "0.1.17",
-    "@sk-web-gui/checkbox": "0.1.38",
     "@sk-web-gui/context-menu": "0.1.15",
     "@sk-web-gui/cookie-consent": "0.1.27",
     "@sk-web-gui/divider": "0.1.17",

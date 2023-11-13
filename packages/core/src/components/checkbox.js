@@ -1,132 +1,133 @@
-const svgToDataUri = require('mini-svg-data-uri');
-
-module.exports = Checkbox = (colors) => ({
-  '.form-checkbox': {
-    //"@apply rounded shadow-sm": {},
-    backgroundColor: 'inherit',
-    '@apply border-gray-stroke focus:bg-white': {},
-
-    '&[aria-invalid=true]': {
-      '--tw-border-opacity': '1',
-      borderColor: 'rgba(220, 38, 38, var(--tw-border-opacity))',
-    },
-    '&[aria-invalid=true]:hover': {
-      '--tw-border-opacity': '1',
-      'border-color': 'rgba(220, 38, 38, var(--tw-border-opacity))',
-    },
-    // dark colors
-    '@apply dark:border-neutral-400': {},
-    '.dark &[aria-invalid=true]': {
-      '--tw-border-opacity': '1',
-      borderColor: 'rgba(248, 113, 113, var(--tw-border-opacity))',
-    },
-    '.dark &[aria-invalid=true]:hover': {
-      '--tw-border-opacity': '1',
-      borderColor: 'rgba(248, 113, 113, var(--tw-border-opacity))',
-    },
-
-    '@media (prefers-color-scheme: dark)': {
-      '&[aria-invalid=true]': {
-        '--tw-border-opacity': '1',
-        borderColor: 'rgba(220, 38, 38, var(--tw-border-opacity))',
-      },
-      '&[aria-invalid=true]:hover': {
-        '--tw-border-opacity': '1',
-        'border-color': 'rgba(220, 38, 38, var(--tw-border-opacity))',
-      },
-    },
-
-    '&:checked': {
-      '@apply text-white bg-white border-primary': {},
-      [`@apply focus-visible:border-primary focus-visible:ring`]: {},
-
-      backgroundImage: `url("${svgToDataUri(
-        `<svg viewBox="0 0 16 16" fill="#005595" xmlns="http://www.w3.org/2000/svg"><path d="M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z"/></svg>`
-      )}")`,
-      //borderColor: "transparent",
-    },
-
-    [`&[data-color="primary"]`]: {
-      //[`@apply text-primary`]: {},
-      // dark
-      //[`@apply dark:text-primary`]: {},
-      //[`@apply dark:focus-visible:border-primary-400 dark:focus-visible:ring-primary-400`]: {},
-    },
-
-    // Fix focus stylign
-    '&:checked:hover, &:checked:focus': {
-      '@apply bg-white border-primary': {},
-    },
-
-    // colors
-    /*...colors.reduce(
-      (styles, color) => ({
-        ...styles,
-        [`&[data-color="${color}"]`]: {
-          [`@apply text-${color}`]: {},
-          [`@apply focus-visible:border-${color} focus-visible:ring-${color}`]: {},
-          backgroundImage: `url("${svgToDataUri(
-            `<svg viewBox="0 0 16 16" fill="${theme(`colors.primary_raw.DEFAULT`)}" xmlns="http://www.w3.org/2000/svg"><path d="M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z"/></svg>`
-          )}")`,
-          // dark
-          [`@apply dark:text-${color}`]: {},
-          [`@apply dark:focus-visible:border-${color}-400 dark:focus-visible:ring-${color}-400`]: {},
-        },
-      }),
-      {}
-    ),*/
+module.exports = Checkbox = () => ({
+  '.sk-form-checkbox': {
+    '@apply bg-inherit': {},
+    '@apply rounded-utility': {},
+    '@apply bg-transparent border-transparent': {},
 
     // sizing
     '&-sm': {
-      width: '1.4rem',
-      height: '1.4rem',
+      '@apply w-[2.4rem] h-[2.4rem]': {},
     },
 
     '&-md': {
-      width: '1.6rem',
-      height: '1.6rem',
-      //"@apply w-4 h-4": {},
+      '@apply w-[2.4rem] h-[2.4rem]': {},
     },
 
     '&-lg': {
-      width: '1.8rem',
-      height: '1.8rem',
+      '@apply w-[2.4rem] h-[2.4rem]': {},
+    },
+
+    '+ .sk-icon': {
+      '@apply absolute inset-0 my-auto bg-transparent': {},
+      '@apply border-[0.1rem] p-2 border-primitives-overlay-darken-6 dark:border-primitives-overlay-lighten-6': {},
+      '@apply bg-primitives-overlay-lighten-10 dark:bg-primitives-overlay-darken-6': {},
+
+      svg: {
+        '@apply hidden': {},
+      },
+    },
+
+    '&&:checked': {
+      '@apply text-light-primary bg-none': {},
+
+      '& + .sk-icon': {
+        '@apply text-light-primary bg-dark-primary border-dark-primary': {},
+
+        svg: {
+          '@apply block': {},
+        },
+      },
+    },
+
+    '&&:hover:not(&&-disabled,&&:checked,&&[aria-invalid=true]),&&:hover:focus:not(&&-disabled,&&:checked,&&[aria-invalid=true])':
+      {
+        '& + .sk-icon, &:focus + .sk-icon': {
+          '@apply text-primitives-overlay-darken-6 dark:text-primitives-overlay-lighten-5 border-primitives-overlay-darken-8 dark:border-primitives-overlay-lighten-4':
+            {},
+
+          svg: {
+            '@apply block': {},
+          },
+        },
+      },
+
+    '&&[aria-invalid=true]': {
+      '& + .sk-icon': {
+        '@apply border-2 border-error-surface-primary': {},
+      },
+
+      '&&:checked': {
+        '& + .sk-icon': {
+          '@apply p-2 bg-background-content text-dark-primary': {},
+
+          svg: {
+            '@apply block': {},
+          },
+        },
+      },
     },
 
     // disabled
-    '&-disabled, &-disabled:checked': {
-      '@apply grayscale cursor-not-allowed bg-gray-middle hover:bg-gray-middle': {},
-      //"@apply disabled:bg-gray-stroke": {},
-      //"@apply disabled:shadow-none disabled:border-neutral-300 disabled:bg-neutral-300 disabled:hover:text-neutral-300": {},
-      //"@apply dark:disabled:border-transparent dark:disabled:bg-white/20 dark:disabled:hover:text-white/20": {},
+    '&&-disabled,&&-disabled:hover': {
+      '@apply cursor-not-allowed': {},
+
+      '& + .sk-icon': {
+        '@apply bg-background-200 border-primitives-overlay-darken-3': {},
+      },
+
+      '&:checked': {
+        '& + .sk-icon': {
+          '@apply bg-dark-disabled text-light-primary border-0': {},
+        },
+      },
+
+      '& ~ .sk-form-checkbox-label': {
+        '@apply text-dark-disabled': {},
+      },
     },
 
     // label
     '&-label-left &-label': {
-      marginRight: '0.8rem',
+      '@apply mr-[.8rem]': {},
     },
     '&-label-right &-label': {
-      marginLeft: '0.8rem',
+      '@apply ml-[.8rem]': {},
+    },
+
+    '&-label-left': {
+      '.sk-icon': {
+        '@apply left-auto right-0': {},
+      },
+    },
+
+    '&-label-right': {
+      '.sk-icon': {
+        '@apply right-auto left-0': {},
+      },
     },
 
     '&-label': {
-      '@apply text-body select-none text-small': {},
-      // marginLeft: '0.8rem',
-      //"@apply text-black": {},
-      // dark colors
-      '@apply dark:text-neutral-100': {},
+      '@apply font-normal text-body select-none text-small': {},
 
-      '&-sm': {
-        '@apply text-xs': {},
+      '&-wrapper': {
+        '@apply relative inline-flex align-top items-center cursor-base': {},
       },
 
-      '&-md': {
+      '&-sm': {
         '@apply text-small': {},
       },
 
-      '&-lg': {
+      '&-md': {
         '@apply text-base': {},
       },
+
+      '&-lg': {
+        '@apply text-large': {},
+      },
+    },
+
+    '&-group': {
+      '@apply flex flex-col gap-12 my-12': {},
     },
   },
 });

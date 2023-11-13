@@ -3064,6 +3064,16 @@
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.27.8.tgz#6667fac16c436b5434a387a34dedb013198f6e6e"
   integrity sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==
 
+"@sk-web-gui/checkbox@0.1.38":
+  version "0.1.38"
+  resolved "https://registry.yarnpkg.com/@sk-web-gui/checkbox/-/checkbox-0.1.38.tgz#7d6126f71cffae7a337df208c9ef7e9b8a312037"
+  integrity sha512-knU/OR9jdsmJ6foFTEcUVbLTqQPipMMxRhVAKWnrKXpmHXxepyQHeMfoX7auCXyiVC5twQgMeCWISI+L4j56CQ==
+  dependencies:
+    "@reach/auto-id" "^0.15.0"
+    "@sk-web-gui/forms" "0.1.37"
+    "@sk-web-gui/theme" "0.1.14"
+    "@sk-web-gui/utils" "0.1.8"
+
 "@sk-web-gui/profile@0.1.5":
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/@sk-web-gui/profile/-/profile-0.1.5.tgz#17988b68a0940ffef1f812214fa9e5814f2c8c38"

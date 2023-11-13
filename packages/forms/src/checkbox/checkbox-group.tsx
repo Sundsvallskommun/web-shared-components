@@ -1,6 +1,5 @@
 import { useId } from '@reach/auto-id';
-import { DefaultProps } from '@sk-web-gui/utils';
-import { cx, getValidChildren, __DEV__ } from '@sk-web-gui/utils';
+import { cx, getValidChildren, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 import * as React from 'react';
 import { cloneElement, useRef, useState } from 'react';
 
@@ -82,7 +81,7 @@ export const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupProps
   });
 
   return (
-    <div role="group" ref={ref} {...rest}>
+    <div className="sk-form-checkbox-group" role="group" ref={ref} {...rest}>
       {clones}
     </div>
   );
