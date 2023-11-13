@@ -4,7 +4,7 @@ import { Check } from './check';
 import { Meta } from '@storybook/react';
 
 export default {
-  title: 'Komponenter/Textfält/Komponent',
+  title: 'Komponenter/Input',
   component: Input,
   tags: ['autodocs'],
   args: {
@@ -21,7 +21,7 @@ Template.storyName = 'Input';
 export const Disabled = () => (
   <div className="flex space-x-2">
     <Input placeholder="jon@gmail.com" disabled />
-    <Input placeholder="jon@gmail.com" disabled variant="solid" />
+    <Input placeholder="jon@gmail.com" disabled />
   </div>
 );
 Disabled.storyName = 'Inaktiverad';
@@ -30,7 +30,7 @@ export const Invalid = () => (
   <div>
     <div className="flex space-x-2">
       <Input placeholder="jon@gmail.com" invalid />
-      <Input placeholder="jon@gmail.com" invalid variant="solid" />
+      <Input placeholder="jon@gmail.com" invalid />
     </div>
     <div className="flex mt-md space-x-2">
       <Input.Group invalid>
@@ -47,13 +47,6 @@ export const Invalid = () => (
   </div>
 );
 Invalid.storyName = 'Invaliderad';
-
-export const Variant = () => (
-  <div className="flex space-x-2">
-    <Input placeholder="jon@gmail.com" />
-    <Input placeholder="jon@gmail.com" variant="solid" />
-  </div>
-);
 
 export const Storlekar = () => (
   <div className="flex space-x-2">

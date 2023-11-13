@@ -54,17 +54,26 @@ function fieldSolid(colors) {
 
 function formControl() {
   return {
-    '.form-control': {
-      '@apply w-full relative': {},
+    '.sk-form-control': {
+      '@apply w-full relative flex flex-col gap-8': {},
     },
     '.form-helper-text': {
-      '@apply mt-1.5 leading-none text-gray': {},
+      '@apply leading-none text-gray': {},
     },
     '.form-error-message': {
-      '@apply mt-1.5 leading-none flex items-center text-small text-error': {},
+      '@apply leading-none flex items-center text-small text-error': {},
     },
-    '.form-label': {
-      '@apply text-small font-medium text-left align-middle block mb-1.5': {},
+    '.sk-form-label': {
+      '@apply text-left align-middle block': {},
+      '&&-lg': {
+        '@apply text-label-large': {},
+      },
+      '&&-md': {
+        '@apply text-label-medium': {},
+      },
+      '&&-sm': {
+        '@apply text-label-small': {},
+      },
     },
     '.form-required-indicator': {
       '@apply ml-1 text-small': {},
@@ -155,9 +164,6 @@ function formInputGroup() {
     '.form-input-addon': {
       '@apply flex items-center w-auto shadow-sm whitespace-nowrap': {},
       '@apply text-gray bg-neutral-50': {},
-      // dark colors
-      // '@apply dark:border-neutral-700': {},
-      // '@apply dark:text-neutral-100 dark:bg-white/30': {},
 
       '&-sm': {
         '@apply px-3 text-xs': {},

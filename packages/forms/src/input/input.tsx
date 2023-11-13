@@ -14,12 +14,8 @@ export interface IInputProps<T = HTMLInputElement> extends DefaultProps {
   required?: React.InputHTMLAttributes<T>['required'];
   /* Makes input readOnly */
   readOnly?: React.InputHTMLAttributes<T>['readOnly'];
-  /* Set the input color */
-  color?: string;
   /* Size of the input */
   size?: 'sm' | 'md' | 'lg';
-  /** Controls input appearance */
-  variant?: 'outline' | 'solid';
   /**
    * The element or component to use in place of `input`
    */
@@ -59,8 +55,6 @@ export type OmittedTypes =
   | 'onResizeCapture'
   | 'value';
 
-// export type InputHTMLAttributes = Omit<React.InputHTMLAttributes<HTMLInputElement>, OmittedTypes>;
-
 export interface InputProps
   extends IInputProps,
     Omit<React.InputHTMLAttributes<HTMLInputElement>, OmittedTypes>,
@@ -68,9 +62,7 @@ export interface InputProps
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
-    size = 'md',
-    variant = 'outline',
-    color = 'primary',
+    size: _size,
     as: Comp = 'input',
     'aria-label': ariaLabel,
     'aria-describedby': ariaDescribedby,
@@ -82,8 +74,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
   } = props;
 
   const { readOnly, disabled, invalid, required, errorId, helpTextId, ...formControl } = useFormControl(props);
-  const classes = useInputClass({ size, variant, disabled });
 
+  const size = _size || formControl.size || 'md';
+
+  const classes = useInputClass({ size, disabled });
   return (
     <Comp
       ref={ref}
@@ -96,7 +90,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
       required={required}
       aria-required={required}
       aria-describedby={ariaDescribedby || `${errorId} ${helpTextId}`}
-      data-color={color ? color : undefined}
       data-rounded={rounded ? rounded : undefined}
       className={cx(classes, className)}
       type={type}

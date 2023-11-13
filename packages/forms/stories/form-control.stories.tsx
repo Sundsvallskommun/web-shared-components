@@ -11,9 +11,7 @@ export default {
 export const Template = (args: FormControlProps) => {
   return (
     <FormControl {...args} id="firstname">
-      <FormLabel>
-        <strong>Förnamn</strong>
-      </FormLabel>
+      <FormLabel>Förnamn</FormLabel>
       <Input placeholder="Leif" />
     </FormControl>
   );
@@ -51,20 +49,20 @@ export const Solid = () => (
       <FormLabel>
         <strong>E-Post</strong>
       </FormLabel>
-      <Input variant="solid" placeholder="mail@example.com" />
+      <Input placeholder="mail@example.com" />
       <FormHelperText>Hjälptext, Lorem ipsum dolor sit amet..</FormHelperText>
     </FormControl>
     <FormControl id="firstname">
       <FormLabel>
         <strong>Förnamn</strong>
       </FormLabel>
-      <Input variant="solid" placeholder="Leif" />
+      <Input placeholder="Leif" />
     </FormControl>
     <FormControl disabled aria-disabled id="disabled">
       <FormLabel>
         <strong>Disabled</strong>
       </FormLabel>
-      <Input variant="solid" placeholder="Disabled" />
+      <Input placeholder="Disabled" />
     </FormControl>
   </>
 );
@@ -72,27 +70,21 @@ export const Solid = () => (
 export const Storlekar = () => (
   <>
     <h6>Small</h6>
-    <FormControl id="firstname">
-      <FormLabel>
-        <strong>Förnamn</strong>
-      </FormLabel>
-      <Input size="sm" variant="outline" placeholder="Leif" />
+    <FormControl id="firstname" size="sm">
+      <FormLabel>Förnamn</FormLabel>
+      <Input placeholder="Leif" />
     </FormControl>
 
     <h6>medium</h6>
     <FormControl id="firstname_md">
-      <FormLabel>
-        <strong>Förnamn</strong>
-      </FormLabel>
-      <Input variant="outline" placeholder="Leif" />
+      <FormLabel>Förnamn</FormLabel>
+      <Input placeholder="Leif" />
     </FormControl>
 
     <h6>Large</h6>
-    <FormControl id="firstname_lg">
-      <FormLabel>
-        <strong>Förnamn</strong>
-      </FormLabel>
-      <Input size="lg" variant="outline" placeholder="Leif" />
+    <FormControl id="firstname_lg" size="lg">
+      <FormLabel>Förnamn</FormLabel>
+      <Input placeholder="Leif" />
     </FormControl>
   </>
 );
@@ -104,7 +96,7 @@ export const Invaliderad = () => (
       <FormErrorMessage>Förnamn måste vara ifylld!</FormErrorMessage>
     </FormControl>
     <FormControl invalid aria-invalid id="first-name" required>
-      <Input variant="solid" placeholder="Förnamn *" aria-describedby="first-name-error" />
+      <Input placeholder="Förnamn *" aria-describedby="first-name-error" />
       <FormErrorMessage>Förnamn måste vara ifylld!</FormErrorMessage>
     </FormControl>
   </>
