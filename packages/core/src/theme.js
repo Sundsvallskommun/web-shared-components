@@ -2,6 +2,7 @@ const withOpacity = require('./with-opacity');
 const colors = require('./colors');
 const units = require('./units');
 const { screens } = require('@sk-web-gui/theme');
+const { space } = require('postcss/lib/list');
 
 module.exports = {
   fontSize: {
@@ -27,6 +28,18 @@ module.exports = {
   },
 
   extend: {
+    backgroundPosition: {
+      ...Object.keys(units.spacing).reduce(
+        (positions, spaceKey) => ({
+          ...positions,
+          [`top-${spaceKey}`]: `center top ${units.spacing[spaceKey]}`,
+          [`right-${spaceKey}`]: `center right ${units.spacing[spaceKey]}`,
+          [`bottom-${spaceKey}`]: `center bottom ${units.spacing[spaceKey]}`,
+          [`left-${spaceKey}`]: `center left ${units.spacing[spaceKey]}`,
+        }),
+        {}
+      ),
+    },
     boxShadow: {
       100: [
         '0 0.6rem 1.6rem 0 rgba(13,13,14, 0.07)',

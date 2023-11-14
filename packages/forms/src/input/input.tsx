@@ -54,19 +54,9 @@ export interface InputProps
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const {
-    size: _size,
-    as: Comp = 'input',
-    'aria-label': ariaLabel,
-    'aria-describedby': ariaDescribedby,
-    className,
-    type = 'text',
-    hideExtra = true,
-    id,
-    ...rest
-  } = props;
+  const { size: _size, as: Comp = 'input', className, type = 'text', hideExtra = true, ...rest } = props;
 
-  const { readOnly, disabled, invalid, required, errorId, helpTextId, ...formControl } = useFormControl(props);
+  const { readOnly, disabled, invalid, required, errorId, helpTextId, id, ...formControl } = useFormControl(props);
 
   const size = _size || formControl.size || 'md';
 
@@ -78,15 +68,14 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
       aria-readonly={readOnly}
       disabled={disabled}
       aria-disabled={disabled}
-      aria-label={ariaLabel}
       aria-invalid={invalid}
       required={required}
       aria-required={required}
-      aria-describedby={ariaDescribedby || `${errorId} ${helpTextId}`}
+      aria-describedby={errorId && helpTextId ? `${errorId} ${helpTextId}` : errorId || helpTextId}
       data-hideextra={hideExtra}
       className={cx(classes, className)}
       type={type}
-      id={id || formControl.id}
+      id={id}
       {...rest}
     />
   );

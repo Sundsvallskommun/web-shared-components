@@ -5,7 +5,7 @@ import dynamicIconImports from 'lucide-react/dynamicIconImports';
 
 type IconNames = keyof typeof dynamicIconImports;
 
-export interface IconProps extends DefaultProps {
+export interface IconProps extends DefaultProps, React.HTMLAttributes<HTMLElement> {
   name: IconNames;
   /** @default primary */
   color?: 'primary' | 'warning' | 'error' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
