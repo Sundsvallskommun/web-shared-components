@@ -1,7 +1,6 @@
 export * from './input';
 export * from './textarea';
 export * from './select';
-export * from './calendar';
 export * from './form-control';
 export * from './form-error-message';
 export * from './form-helper-text';

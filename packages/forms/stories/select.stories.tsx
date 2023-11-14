@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { OptionValueType, Select, SelectProps } from '../src';
 
 export default {
-  title: 'Komponenter/Dropdown/Select',
+  title: 'Komponenter/Formulär/Select',
   component: Select,
   tags: ['autodocs'],
 } as Meta<typeof Select>;
