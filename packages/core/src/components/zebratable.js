@@ -24,7 +24,7 @@ module.exports = ZebraTable = () => ({
     '&-thead': {
       '@apply border-b-1 border-dark-primary': {},
       '&-tr': {
-        '@apply hidden lg:table-row': {},
+        '@apply table-row': {},
         '@apply text-label-small': {},
       },
 
@@ -111,8 +111,10 @@ module.exports = ZebraTable = () => ({
       '@apply py-14 px-16': {},
       '@apply border-t-1': {},
       '@apply flex flex-row': {},
+      '@apply gap-32': {},
       '@apply justify-between items-center': {},
       '&-section': {
+        '@apply shrink-0': {},
         '@apply flex flex-row': {},
         '@apply justify-start items-center': {},
         '@apply gap-8': {},
@@ -124,6 +126,7 @@ module.exports = ZebraTable = () => ({
       },
       '&-pagination': {
         '@apply grow': {},
+        '@apply shrink': {},
       },
     },
   },

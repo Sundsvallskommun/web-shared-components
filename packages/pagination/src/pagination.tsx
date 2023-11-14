@@ -12,8 +12,6 @@ export interface IPaginationProps extends DefaultProps {
   activePage: number;
   /* Handles page number change */
   changePage: (page: number) => void;
-  /* Size of the button */
-  size?: 'sm' | 'md' | 'lg';
   /* Number of pages shown before current page */
   pagesBefore?: number;
   /* Number of pages shown after current page */
@@ -43,8 +41,6 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
     pages = 1,
     activePage = 1,
     changePage,
-    children,
-    size = 'md',
     showFirst = true,
     showLast = true,
     pagesBefore = 1,
@@ -60,7 +56,6 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
   } = props;
 
   const classes = usePaginationClass({
-    size,
     fitContainer,
   });
 
@@ -127,8 +122,6 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
     index: number;
   }) => JSX.Element = ({ next, label, icon, triggerNumber = 1, step = 1, tabIndex }) => {
     const isDisabled = currentPage === triggerNumber;
-    console.log('next', next);
-    console.log('label', label);
     return (
       <Button
         onKeyDown={keyboardHandler}
@@ -146,7 +139,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
         rightIcon={next === true ? icon : undefined}
         iconButton={hidePrevNextLabel}
         rounded
-        size={size}
+        size="sm"
       >
         {!hidePrevNextLabel && <span className={cx(`sk-pagination-prevNextButton-label`)}>{label}</span>}
       </Button>
@@ -257,13 +250,13 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
     >
       {asSelect ? (
         <Select
-          size={size}
+          size="sm"
           aria-label="Gå till sida"
-          value={{ label: currentPage.toString(), data: currentPage }}
-          onChange={(value) => handleClick(value.data)}
+          value={currentPage.toString()}
+          onSelectValue={(value: string) => handleClick(parseInt(value, 10))}
         >
           {[...Array(pages)].map((_, idx: number) => (
-            <Select.Option key={`selectPage-${idx}`} value={{ label: (idx + 1).toString(), data: idx + 1 }}>
+            <Select.Option key={`selectPage-${idx}`} value={(idx + 1).toString()}>
               {idx + 1}
             </Select.Option>
           ))}
