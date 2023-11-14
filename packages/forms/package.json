@@ -39,10 +39,8 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@headlessui/react": "^1.7.17",
-    "@mui/icons-material": "^5.14.12",
-    "@mui/material": "^5.14.12",
     "@reach/auto-id": "^0.18.0",
+    "@sk-web-gui/icon": "0.1.15",
     "@sk-web-gui/tag": "0.1.27",
     "@sk-web-gui/theme": "0.1.14",
     "@sk-web-gui/utils": "0.1.8",

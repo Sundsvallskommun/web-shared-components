@@ -20,6 +20,7 @@ const Input = require('./components/input');
 const Label = require('./components/label');
 const Link = require('./components/link');
 const Menubar = require('./components/menubar');
+const Select = require('./components/select');
 const Snackbar = require('./components/snackbar');
 const Notification = require('./components/notification');
 const Radio = require('./components/radio');
@@ -70,6 +71,7 @@ const components = [
   Label,
   Link,
   Menubar,
+  Select,
   Snackbar,
   Notification,
   Radio,
