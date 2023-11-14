@@ -20,24 +20,11 @@ export interface IInputProps<T = HTMLInputElement> extends DefaultProps {
    * The element or component to use in place of `input`
    */
   as?: React.ElementType;
-  /** */
+
+  /**
+   * Input type
+   */
   type?: React.InputHTMLAttributes<T>['type'];
-  /**
-   * A11y: A label that describes the input
-   */
-  'aria-label'?: string;
-  /**
-   * A11y: The id of the element that describes the input
-   */
-  'aria-describedby'?: string;
-  /**
-   * A11y: describes the type of autocompletion
-   */
-  'aria-autocomplete'?: React.AriaAttributes['aria-autocomplete'];
-  /**
-   * Border-radius is rounded
-   */
-  rounded?: boolean;
   placeholder?: React.InputHTMLAttributes<T>['placeholder'];
   value?: string;
   autoFocus?: boolean;
@@ -58,7 +45,13 @@ export type OmittedTypes =
 export interface InputProps
   extends IInputProps,
     Omit<React.InputHTMLAttributes<HTMLInputElement>, OmittedTypes>,
-    React.RefAttributes<HTMLInputElement> {}
+    React.RefAttributes<HTMLInputElement> {
+  /**
+   * If you want to hide native extra apperances, such as number arrows and icons
+   * @default true
+   */
+  hideExtra?: boolean;
+}
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const {
@@ -68,8 +61,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
     'aria-describedby': ariaDescribedby,
     className,
     type = 'text',
+    hideExtra = true,
     id,
-    rounded = false,
     ...rest
   } = props;
 
@@ -90,7 +83,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
       required={required}
       aria-required={required}
       aria-describedby={ariaDescribedby || `${errorId} ${helpTextId}`}
-      data-rounded={rounded ? rounded : undefined}
+      data-hideextra={hideExtra}
       className={cx(classes, className)}
       type={type}
       id={id || formControl.id}

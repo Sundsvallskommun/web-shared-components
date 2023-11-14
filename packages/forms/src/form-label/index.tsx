@@ -18,7 +18,7 @@ interface IFormLabelFieldsetProps extends React.HTMLAttributes<HTMLLegendElement
 export type FormLabelProps = IFormLabelFieldsetProps | IFormLabelRegularProps;
 
 export const FormLabel = React.forwardRef<HTMLElement, FormLabelProps>((props, ref) => {
-  const { children, className, htmlFor, id, showRequired = false, as, size: _size, ...rest } = props;
+  const { children, className, htmlFor, id, showRequired = true, as, size: _size, ...rest } = props;
   const formControl = useFormControl(rest);
   const size = _size || formControl.size || 'md';
 
@@ -26,7 +26,7 @@ export const FormLabel = React.forwardRef<HTMLElement, FormLabelProps>((props, r
   const classes = cx(
     'sk-form-label',
     `sk-form-label-${size}`,
-    formControl.disabled && 'form-label-disabled',
+    formControl.disabled && 'sk-form-label-disabled',
     className
   );
 

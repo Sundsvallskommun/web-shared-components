@@ -25,10 +25,7 @@ module.exports = {
     ...units.radius,
     base: 'var(--sk-spacing-0)',
   },
-  ringColor: {
-    DEFAULT: colors.ring,
-    ...colors,
-  },
+
   extend: {
     boxShadow: {
       100: [
@@ -43,6 +40,10 @@ module.exports = {
         '0 0.188rem 0.338rem 0 rgba(13,13,14, 0.03)',
         '0 0.068rem 0.122rem 0 rgba(13,13,14, 0.02)',
       ],
+    },
+    ringColor: {
+      DEFAULT: colors.ring,
+      ...colors,
     },
     ringOffsetWidth: {
       DEFAULT: '0.2rem',

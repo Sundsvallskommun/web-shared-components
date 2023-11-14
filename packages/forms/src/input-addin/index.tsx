@@ -11,27 +11,27 @@ export interface IInputAddinProps extends DefaultProps {
   placement?: Placement;
   /* Size of the input addin */
   size?: InputProps['size'];
+  /* Set true if Icon addIn */
+  icon?: boolean;
 }
 
 const _placement = {
-  left: 'form-input-addin-left',
-  right: 'form-input-addin-right',
+  left: 'sk-input-addin-left',
+  right: 'sk-input-addin-right',
 };
 
 const sizes = {
-  xs: 'form-input-addin-xs',
-  sm: 'form-input-addin-sm',
-  md: 'form-input-addin-md',
-  lg: 'form-input-addin-lg',
-  xl: 'form-input-addin-xl',
+  sm: 'sk-input-addin-sm',
+  md: 'sk-input-addin-md',
+  lg: 'sk-input-addin-lg',
 };
 
 export interface InputAddinProps extends React.HTMLAttributes<HTMLDivElement>, IInputAddinProps {}
 
-const InputAddin: React.FC<InputAddinProps> = ({ placement = 'left', size = 'md', className, ...props }) => {
-  const classes = cx('form-input-addin', sizes[size], _placement[placement], className);
+const InputAddin: React.FC<InputAddinProps> = ({ placement = 'left', size = 'md', className, icon, ...props }) => {
+  const classes = cx('sk-input-addin', sizes[size], _placement[placement], className);
 
-  return <div className={classes} {...props} />;
+  return <div className={classes} data-icon={icon} {...props} />;
 };
 
 if (__DEV__) {
