@@ -1,5 +1,5 @@
 module.exports = Breadcrumb = (colors) => ({
-  '.breadcrumb': {
+  '.sk-breadcrumb': {
     '@apply text-body relative': {},
 
     '&-item': {
@@ -12,7 +12,7 @@ module.exports = Breadcrumb = (colors) => ({
   },
 
 
-  '.breadcrumb-item': {
+  '.sk-breadcrumb-item': {
 
     'span': {
       '&[aria-current="page"]': {
