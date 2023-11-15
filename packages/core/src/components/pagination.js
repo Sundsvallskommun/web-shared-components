@@ -1,24 +1,13 @@
 module.exports = Pagination = () => ({
   '.sk-pagination': {
     '@apply select-none': {},
-
-    '&-sm': {
-      '@apply text-small': {},
-    },
-
-    '&-md': {
-      '@apply text-base': {},
-    },
-
-    '&-lg': {
-      '@apply text-large': {},
-    },
+    '@apply text-base': {},
 
     '&-list': {
       '@apply flex justify-between items-center': {},
 
       '.sk-pagination[data-hideprevnextlabel="true"] &': {
-        '@apply w-[41.2rem]': {},
+        '@apply w-fit': {},
       },
 
       li: {
@@ -56,6 +45,10 @@ module.exports = Pagination = () => ({
 
         '&.sk-btn-disabled:disabled, .sk-btn[aria-disabled="true"]:disabled': {
           '@apply bg-transparent !important': {},
+          '@apply text-dark-disabled hover:text-dark-disabled': {},
+          '.sk-icon': {
+            '@apply text-dark-disabled hover:text-dark-disabled': {},
+          },
         },
 
         '.sk-icon': {
@@ -72,7 +65,7 @@ module.exports = Pagination = () => ({
       },
 
       '&[disabled]': {
-        '@apply opacity-50 cursor-default': {},
+        '@apply cursor-default': {},
       },
 
       "&[disabled='false']": {

@@ -4,8 +4,8 @@ import { IModalProps, Modal } from '../modal';
 import { DialogButtons } from './dialog-buttons';
 import { DialogContent } from './dialog-content';
 
-interface IDialogProps extends Omit<IModalProps, 'onClose'> {
-  onClose?: (data?: any) => void;
+interface IDialogProps<T = boolean | string | undefined> extends Omit<IModalProps, 'onClose'> {
+  onClose?: (data?: T) => void;
 }
 
 export interface InternalDialogProps extends React.HTMLAttributes<HTMLDivElement>, IDialogProps {}
@@ -18,7 +18,7 @@ export const DialogComponent = React.forwardRef<HTMLDivElement, InternalDialogPr
       ref={ref}
       hideClosebutton={hideClosebutton}
       disableCloseOutside={disableCloseOutside}
-      className={cx('dialog', className)}
+      className={cx('sk-dialog', className)}
       {...rest}
     ></Modal>
   );
@@ -26,7 +26,7 @@ export const DialogComponent = React.forwardRef<HTMLDivElement, InternalDialogPr
 
 interface DialogProps
   extends InternalDialogProps,
-    React.ForwardRefExoticComponent<InternalDialogProps & React.RefAttributes<HTMLElement>> {
+    React.ForwardRefExoticComponent<InternalDialogProps & React.RefAttributes<HTMLDivElement>> {
   Buttons: typeof DialogButtons;
   Content: typeof DialogContent;
 }

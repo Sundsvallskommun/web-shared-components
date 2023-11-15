@@ -15,11 +15,12 @@ const ContextMenu = require('./components/context-menu');
 const Dialog = require('./components/dialog');
 const Dot = require('./components/dot');
 const Forms = require('./components/forms');
-const Calendar = require('./components/calendar');
 const Icon = require('./components/icon');
+const Input = require('./components/input');
 const Label = require('./components/label');
 const Link = require('./components/link');
 const Menubar = require('./components/menubar');
+const Select = require('./components/select');
 const Snackbar = require('./components/snackbar');
 const Notification = require('./components/notification');
 const Radio = require('./components/radio');
@@ -65,11 +66,12 @@ const components = [
   Dialog,
   Dot,
   Forms,
-  Calendar,
   Icon,
+  Input,
   Label,
   Link,
   Menubar,
+  Select,
   Snackbar,
   Notification,
   Radio,

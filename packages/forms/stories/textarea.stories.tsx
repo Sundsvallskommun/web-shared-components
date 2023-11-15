@@ -3,31 +3,22 @@ import React from 'react';
 import { Textarea, TextareaProps } from '../src';
 
 export default {
-  title: 'Komponenter/Textfält/Textarea',
+  title: 'Komponenter/Textarea',
   component: Textarea,
   tags: ['autodocs'],
 } as Meta;
 
-export const Template = (args: TextareaProps) => <Textarea {...args} placeholder="name@example.com" />;
+export const Template = (args: TextareaProps) => <Textarea {...args} placeholder="Beskriv ditt ärende..." />;
 
 Template.storyName = 'Textarea';
 
-export const Disabled = () => <Textarea disabled placeholder="name@example.com" />;
+export const Disabled = () => <Textarea disabled placeholder="Beskriv ditt ärende..." />;
 
-export const Invalid = () => <Textarea invalid placeholder="name@example.com" />;
-
-export const Variant = () => (
-  <div className="flex flex-col space-y-4">
-    <Textarea placeholder="name@example.com" />
-    <Textarea placeholder="name@example.com" variant="solid" />
-  </div>
-);
-
-export const Colored = () => <Textarea placeholder="name@example.com" color="secondary" />;
+export const Invalid = () => <Textarea invalid placeholder="Beskriv ditt ärende..." />;
 
 export const Counter = () => (
   <Textarea
-    placeholder="name@example.com"
+    placeholder="Beskriv ditt ärende..."
     color="secondary"
     showCount={true}
     maxLength={50}

@@ -10,17 +10,25 @@ interface IFormLabelProps extends DefaultProps {
   htmlFor?: string;
   showRequired?: boolean;
   as?: React.ElementType;
+  size?: 'sm' | 'md' | 'lg';
 }
 
 interface IFormLabelRegularProps extends React.HTMLAttributes<HTMLLabelElement>, IFormLabelProps {}
 interface IFormLabelFieldsetProps extends React.HTMLAttributes<HTMLLegendElement>, IFormLabelProps {}
 export type FormLabelProps = IFormLabelFieldsetProps | IFormLabelRegularProps;
 
-export const FormLabel = React.forwardRef<any, FormLabelProps>((props, ref) => {
-  const { children, className, htmlFor, id, showRequired = false, as, ...rest } = props;
+export const FormLabel = React.forwardRef<HTMLElement, FormLabelProps>((props, ref) => {
+  const { children, className, htmlFor, id, showRequired = true, as, size: _size, ...rest } = props;
   const formControl = useFormControl(rest);
+  const size = _size || formControl.size || 'md';
 
-  const classes = cx('form-label', formControl.disabled && 'form-label-disabled', className);
+  console.log(size);
+  const classes = cx(
+    'sk-form-label',
+    `sk-form-label-${size}`,
+    formControl.disabled && 'sk-form-label-disabled',
+    className
+  );
 
   const getComp = (): React.ElementType => {
     switch (formControl.fieldset) {
@@ -56,7 +64,7 @@ if (__DEV__) {
 export const RequiredIndicator = React.forwardRef<HTMLSpanElement, React.HTMLAttributes<HTMLSpanElement>>(
   (props, ref) => {
     const { className, ...rest } = props;
-    const classes = cx('form-required-indicator', className);
+    const classes = cx('sk-form-required-indicator', className);
 
     return <span ref={ref} className={classes} aria-hidden="true" children="*" {...rest} />;
   }

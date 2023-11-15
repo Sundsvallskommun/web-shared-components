@@ -29,6 +29,7 @@ export interface IZebraTableProps {
   captionTitle?: string;
   captionBody?: string;
   captionClassName?: string;
+  captionShowPages?: boolean;
   summary?: string;
   highlightedItemIndex?: number;
   changePage?: (page: number) => void;
@@ -54,6 +55,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
     captionTitle,
     captionBody,
     captionClassName,
+    captionShowPages: _captionShowPages,
     summary,
     highlightedItemIndex,
     changePage,
@@ -74,6 +76,8 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
   const [currentPage, setCurrentPage] = useState<number>(page);
   const [pages, setPages] = useState<number>(Math.ceil(_pages || rows.length / pageSize));
   const [rowHeight, setRowHeight] = useState<string>(_dense ? 'dense' : 'normal');
+
+  const captionShowPages = _captionShowPages || variant === 'datatable' ? true : false;
 
   const internalSortHandler = (idx: number) => {
     setSortModeAscending(sortIndex === idx ? !sortModeAscending : sortAscending);
@@ -131,7 +135,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
     <>
       {captionTitle && (
         <caption className={cx('text-left', captionClassName)} aria-hidden={true}>
-          {variant === 'datatable' ? (
+          {captionShowPages ? (
             <>
               {captionTitle}, sida {currentPage} av {pages}.
             </>
@@ -158,7 +162,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
             >
               {captionTitle && (
                 <caption className="sr-only">
-                  {variant === 'datatable' ? (
+                  {captionShowPages ? (
                     <>
                       {captionTitle}, sida {currentPage} av {pages}.
                     </>
@@ -216,31 +220,30 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
         </div>
         {variant === 'datatable' && (
           <div className="sk-zebratable-bottom">
-            <>
-              <div className="sk-zebratable-bottom-section">
-                <label className="sk-zebratable-bottom-section-label" htmlFor="pagiPageSize">
-                  Rader per sida:
-                </label>
-                <Input
-                  size="sm"
-                  id="pagePageSize"
-                  type="number"
-                  min={1}
-                  max={100}
-                  step={5}
-                  className="max-w-[10rem]"
-                  value={`${_pageSize}`}
-                  onChange={(event) => setPageSize(parseInt(event.target.value))}
-                />
-              </div>
-
-              <Pagination
-                className="sk-zebratable-pagination"
-                pages={pages}
-                activePage={currentPage}
-                changePage={(page: number) => setCurrentPage(page)}
+            <div className="sk-zebratable-bottom-section">
+              <label className="sk-zebratable-bottom-section-label" htmlFor="pagiPageSize">
+                Rader per sida:
+              </label>
+              <Input
+                size="sm"
+                id="pagePageSize"
+                type="number"
+                min={1}
+                max={100}
+                className="max-w-[6rem]"
+                value={`${_pageSize}`}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => setPageSize(parseInt(event.target.value))}
               />
-            </>
+            </div>
+
+            <Pagination
+              className="sk-zebratable-pagination"
+              pages={pages}
+              activePage={currentPage}
+              changePage={(page: number) => setCurrentPage(page)}
+              fitContainer
+            />
+
             <div className="sk-zebratable-bottom-section">
               <label className="sk-zebratable-bottom-section-label" htmlFor="pagiRowHeight">
                 Radhöjd:
@@ -248,11 +251,11 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
               <Select
                 id="pagiRowHeight"
                 size="sm"
-                value={{ label: rowHeight === 'dense' ? 'Tät' : 'Normal', data: rowHeight }}
-                onChange={(option) => setRowHeight(option.data)}
+                value={rowHeight}
+                onSelectValue={(value: string) => setRowHeight(value)}
               >
-                <Select.Option value={{ label: 'Normal', data: 'normal' }} />
-                <Select.Option value={{ label: 'Tät', data: 'dense' }} />
+                <Select.Option value={'normal'}>Normal</Select.Option>
+                <Select.Option value={'dense'}>Tät</Select.Option>
               </Select>
             </div>
 

@@ -28,18 +28,16 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>((pr
     onChange,
     maxLengthWarningText,
     size = 'md',
-    variant = 'outline',
     color = 'primary',
     as: Comp = 'textarea',
     'aria-label': ariaLabel,
     'aria-describedby': ariaDescribedby,
     className,
     id,
-    children,
     ...rest
   } = props;
   const { readOnly, disabled, invalid, required, errorId, helpTextId, ...formControl } = useFormControl(props);
-  const classes = useInputClass({ size, disabled, variant });
+  const classes = useInputClass({ size, disabled });
   const [maxLengthWarning, setMaxCountWarning] = React.useState<boolean>(false);
   const [charCount, setCharCount] = React.useState<number>(0);
   const [text, setText] = React.useState<string>(value);

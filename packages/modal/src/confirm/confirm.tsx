@@ -2,7 +2,8 @@ import ErrorSharpIcon from '@mui/icons-material/ErrorSharp';
 import HelpOutlineSharpIcon from '@mui/icons-material/HelpOutlineSharp';
 import InfoSharpIcon from '@mui/icons-material/InfoSharp';
 import { Button } from '@sk-web-gui/button';
-import { __DEV__ } from '@sk-web-gui/utils';
+import { Icon } from '@sk-web-gui/icon';
+import { __DEV__, cx } from '@sk-web-gui/utils';
 import * as React from 'react';
 import { Dialog } from '../dialog';
 
@@ -100,15 +101,26 @@ export const ConfirmationDialogContextProvider: React.FC<ConfirmationDialogConte
   const switchIcon = (parameter: any) => {
     switch (parameter) {
       case 'info':
-        return <InfoSharpIcon fontSize="large" className={content?.dialogType ? `text-${content.dialogType}` : ``} />;
+        return <Icon rounded name="lightbulb" color={content?.dialogType} />;
       case 'error':
-        return <ErrorSharpIcon fontSize="large" className={content?.dialogType ? `text-${content.dialogType}` : ``} />;
+        return <Icon rounded name="alert-circle" color={content?.dialogType} />;
       case 'question':
-        return (
-          <HelpOutlineSharpIcon fontSize="large" className={content?.dialogType ? `text-${content.dialogType}` : ``} />
-        );
+        return <Icon rounded name="help-circle" color={content?.dialogType} />;
       default:
         return null;
+    }
+  };
+
+  const getIconLabel = () => {
+    switch (content?.icon) {
+      case 'info':
+        return 'Information';
+      case 'error':
+        return 'Fel';
+      case 'question':
+        return 'Fråga';
+      default:
+        return undefined;
     }
   };
 
@@ -118,27 +130,28 @@ export const ConfirmationDialogContextProvider: React.FC<ConfirmationDialogConte
 
       {content && (
         <Dialog
-          aria-label={`${content.title} ${content.message}`}
+          aria-label={`${getIconLabel()} ${content.title} ${content.message}`}
           show={show}
           label={
-            <span className="flex items-center justify-center gap-2">
-              {switchIcon(content.icon)} {content.title}
+            <span
+              className={cx(`text-${content.dialogType || 'dark-primary'}`, 'flex items-center justify-start gap-4')}
+            >
+              {switchIcon(content.icon)} {getIconLabel()}
             </span>
           }
+          hideLabel={!content.icon}
           labelAs={content.labelAs}
           onClose={handleDismiss}
-          className={content.dialogType ? `border-2 border-${content.dialogType}` : ``}
         >
           <Dialog.Content>
-            {content.dialogType ? (
-              <span className={`font-bold text-${content.dialogType}`}>{content.message}</span>
-            ) : (
-              <span>{content.message}</span>
-            )}
+            <h1 className={cx('text-h3')}>{content.title}</h1>
+            <p>{content.message}</p>
           </Dialog.Content>
           <Dialog.Buttons>
-            <Button onClick={handleDismiss}>{content.dismissLabel}</Button>
-            <Button variant="primary" color="primary" onClick={handleConfirm}>
+            <Button variant="secondary" onClick={handleDismiss}>
+              {content.dismissLabel}
+            </Button>
+            <Button variant="primary" color={content?.dialogType || 'gronsta'} onClick={handleConfirm}>
               {content.confirmLabel}
             </Button>
           </Dialog.Buttons>

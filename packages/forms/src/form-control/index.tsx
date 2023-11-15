@@ -16,6 +16,8 @@ interface UseFormControlProps {
   id?: string;
   /** If this is a group, set to true. */
   fieldset?: boolean;
+  /** Set size for all children */
+  size?: 'sm' | 'md' | 'lg';
 }
 
 interface UseFormControlData extends UseFormControlProps {
@@ -62,9 +64,20 @@ const FormControlContext = React.createContext<(UseFormControlProps & { [key: st
 
 const useFormControlContext = () => React.useContext(FormControlContext);
 
-export const FormControl = React.forwardRef<any, FormControlProps>((props, ref) => {
-  const { children, className, required, disabled, invalid, readOnly, id: idProp, fieldset = false, ...rest } = props;
-  const classes = cx('form-control', className);
+export const FormControl = React.forwardRef<HTMLElement, FormControlProps>((props, ref) => {
+  const {
+    children,
+    className,
+    required,
+    disabled,
+    invalid,
+    readOnly,
+    id: idProp,
+    fieldset = false,
+    size = 'md',
+    ...rest
+  } = props;
+  const classes = cx('sk-form-control', className);
 
   const id = idProp || `sk-field-${useId()}`;
 
@@ -82,6 +95,7 @@ export const FormControl = React.forwardRef<any, FormControlProps>((props, ref) 
     errorId,
     helpTextId,
     fieldset,
+    size,
   };
 
   const getComp = (): React.ElementType => {

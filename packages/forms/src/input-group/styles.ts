@@ -3,12 +3,12 @@ import { cx } from '@sk-web-gui/utils';
 
 export const useInputGroupClass = createMemoClass((props) => {
   const sizes: { [key: string]: string } = {
-    sm: 'form-input-group-sm',
-    md: 'form-input-group-md',
-    lg: 'form-input-group-lg',
+    sm: 'sk-input-group-sm',
+    md: 'sk-input-group-md',
+    lg: 'sk-input-group-lg',
   };
 
-  const classes = cx('form-input-group', sizes[props.size]);
+  const classes = cx('sk-input-group', sizes[props.size]);
 
   return classes;
 });

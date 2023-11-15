@@ -24,10 +24,6 @@ module.exports = {
   h1: {
     '@apply text-h1-sm md:text-h1-md xl:text-h1-lg': {},
     '@apply mb-md': {},
-
-    '+ p': {
-      '@apply mb-[40px] mt-0': {},
-    },
   },
   h2: {
     '@apply text-h2-sm md:text-h2-md xl:text-h2-lg': {},

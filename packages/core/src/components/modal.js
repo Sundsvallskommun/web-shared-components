@@ -1,30 +1,47 @@
 module.exports = Modal = () => ({
-  '.modal': {
-    '@apply fixed inset-0 z-10 flex items-center justify-center overflow-y-auto': {},
-
-    '&-backdrop': {
-      '@apply bg-black bg-opacity-30': {},
-    },
+  '.sk-modal': {
+    // '@apply fixed inset-0 z-10 flex items-center justify-center overflow-y-auto': {},
 
     '&-wrapper': {
-      '@apply flex flex-col container py-8 px-4 text-center bg-white max-w-screen-sm relative': {},
+      '@apply fixed inset-0 z-20 overflow-y-auto': {},
+      '@apply bg-primitives-overlay-darken-6': {},
+      '@apply dark:bg-primitives-overlay-darken-8': {},
+
+      '&-inner': {
+        '@apply min-h-screen px-4 text-center': {},
+      },
     },
 
-    '&-close-btn': {
-      '@apply cursor-pointer absolute right-8 top-6 border border-transparent focus-visible:border-black flex self-center':
-        {},
+    '&-overlay': {
+      '@apply fixed inset-0': {},
     },
 
-    '&-title': {
-      '@apply text-3xl p-4': {},
-    },
+    '&-dialog': {
+      '@apply inline-flex flex-col': {},
+      '@apply text-left': {},
+      '@apply align-middle': {},
+      '@apply transition-all transform': {},
+      '@apply rounded-cards': {},
+      '@apply bg-background-content': {},
+      '@apply dark:bg-background-100': {},
+      '@apply px-24 pt-24 pb-40': {},
+      '@apply gap-16': {},
 
-    '&-description': {
-      '@apply text-base p-4': {},
+      '&-header': {
+        '@apply flex justify-between items-center w-full': {},
+        '&-title': {
+          '@apply grow': {},
+          '@apply text-label-medium': {},
+        },
+      },
     },
-
-    '&-content-wrapper': {
-      '@apply p-4 space-y-10': {},
+    '&-content': {
+      '@apply flex flex-col': {},
+      '@apply py-8 pb-16 gap-12': {},
+    },
+    '&-footer': {
+      '@apply flex flex-row justify-start': {},
+      '@apply p-0 gap-12': {},
     },
   },
 });

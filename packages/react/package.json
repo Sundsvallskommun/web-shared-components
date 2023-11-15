@@ -50,7 +50,6 @@
     "@sk-web-gui/cookie-consent": "0.1.27",
     "@sk-web-gui/divider": "0.1.17",
     "@sk-web-gui/dropdown-filter": "0.1.41",
-    "@sk-web-gui/dropdown-search": "0.1.33",
     "@sk-web-gui/footer": "0.1.12",
     "@sk-web-gui/forms": "0.1.37",
     "@sk-web-gui/header": "0.1.15",
