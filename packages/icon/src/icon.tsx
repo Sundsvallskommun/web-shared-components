@@ -8,7 +8,7 @@ type IconNames = keyof typeof dynamicIconImports;
 export interface IconProps extends DefaultProps, React.HTMLAttributes<HTMLElement> {
   name: IconNames;
   /** @default primary */
-  color?: 'primary' | 'warning' | 'error' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
+  color?: 'info' | 'success' | 'primary' | 'warning' | 'error' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
   icon?: React.ReactElement;
   rounded?: boolean;
   inverted?: boolean;

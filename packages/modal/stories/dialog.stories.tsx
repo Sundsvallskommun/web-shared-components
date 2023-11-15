@@ -18,15 +18,17 @@ const TestComponent: React.FC<{ onClose: (data: any) => void }> = ({ onClose }) 
   return (
     <>
       <Dialog.Content>
-        <p>
-          Det här är en enkel dialog.
-          <br /> Har du läst och förstått att det här är en dialog?
-        </p>
+        <h1 className="text-h4">Det här är en enkel dialog.</h1>
+        <p>Har du läst och förstått att det här är en dialog?</p>
       </Dialog.Content>
       <Dialog.Buttons>
-        <Button onClick={() => onClose(false)}>Nej</Button>
-        <Button onClick={() => onClose('maybe')}>Kanske</Button>
-        <Button variant="primary" color="primary" onClick={() => onClose(true)}>
+        <Button variant="secondary" onClick={() => onClose(false)}>
+          Nej
+        </Button>
+        <Button variant="secondary" onClick={() => onClose('maybe')}>
+          Kanske
+        </Button>
+        <Button variant="primary" color="gronsta" onClick={() => onClose(true)}>
           Ja
         </Button>
       </Dialog.Buttons>
