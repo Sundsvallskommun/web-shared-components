@@ -1,3 +1,10 @@
+function calendar() {
+  return `<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect width='18' height='18' x='3' y='4' rx='2' ry='2' /><line x1='16' x2='16' y1='2' y2='6' /><line x1='8' x2='8' y1='2' y2='6' /><line x1='3' x2='21' y1='10' y2='10' /></svg>`;
+}
+function clock() {
+  return `<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10' /><polyline points='12 6 12 12 16 14' /></svg>`;
+}
+
 function inputStandards() {
   return {
     '@apply rounded-button-sm md:rounded-button-md xl:rounded-button-lg': {},
@@ -123,20 +130,22 @@ function timeAndDatePicker() {
       '@apply bg-dark-secondary': {},
     },
     '&[type="date"]::-webkit-inner-spin-button, &[type="date"]::-webkit-calendar-picker-indicator': {
-      mask: 'url("lucide-static/icons/calendar.svg") no-repeat 100% 100%',
-      '-webkit-mask': 'url("lucide-static/icons/calendar.svg") no-repeat 100% 100%',
+      mask: [`url("data:image/svg+xml;utf-8,${calendar()}") no-repeat 100% 100%`],
+      '-webkit-mask': [`url("data:image/svg+xml;utf-8,${calendar()}") no-repeat 100% 100%`],
       maskSize: 'contain',
       '-webkit-mask-size': 'contain',
     },
     '&[type="datetime-local"]::-webkit-inner-spin-button, &[type="datetime-local"]::-webkit-calendar-picker-indicator':
       {
-        mask: 'url("lucide-static/icons/calendar.svg") no-repeat 50% 50%',
+        mask: [`url("data:image/svg+xml;utf-8,${calendar()}") no-repeat 100% 100%`],
+        '-webkit-mask': [`url("data:image/svg+xml;utf-8,${calendar()}") no-repeat 100% 100%`],
         maskSize: 'contain',
         '-webkit-mask-size': 'contain',
         '@apply -mr-6 md:-mr-8 xl:-mr-8': {},
       },
     '&[type="time"]::-webkit-inner-spin-button, &[type="time"]::-webkit-calendar-picker-indicator': {
-      mask: 'url("lucide-static/icons/clock.svg") no-repeat 100% 100%',
+      mask: [`url("data:image/svg+xml;utf-8,${clock()}") no-repeat 100% 100%`],
+      '-webkit-mask': [`url("data:image/svg+xml;utf-8,${clock()}") no-repeat 100% 100%`],
       maskSize: 'contain',
       '-webkit-mask-size': 'contain',
     },
