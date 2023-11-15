@@ -40,12 +40,11 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@reach/auto-id": "^0.18.0",
-    "@sk-web-gui/icon": "0.1.15",
     "@sk-web-gui/tag": "0.1.27",
     "@sk-web-gui/theme": "0.1.14",
     "@sk-web-gui/utils": "0.1.8",
-    "dayjs": "^1.11.10",
-    "lucide-static": "^0.292.0"
+    "@sk-web-gui/icon": "0.1.15",
+    "dayjs": "^1.11.10"
   },
   "peerDependencies": {
     "react": ">=18.2.0"

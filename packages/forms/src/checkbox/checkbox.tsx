@@ -1,8 +1,8 @@
-import { useFormControl } from '@sk-web-gui/forms';
-import { cx, useForkRef, __DEV__ } from '@sk-web-gui/utils';
-import { DefaultProps } from '@sk-web-gui/utils';
+import { useFormControl } from '../form-control';
+import { cx, useForkRef, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 import * as React from 'react';
 import { useEffect, useRef } from 'react';
+import { Icon } from '@sk-web-gui/icon';
 
 import { useCheckboxClass, useCheckboxLabelClass } from './styles';
 
@@ -18,23 +18,27 @@ interface ICheckboxProps<T = HTMLInputElement> extends DefaultProps {
   /* Makes checkbox indeterminate */
   indeterminate?: boolean;
   /**
-   * If `true`, the checkbox will be initially checked.
+   * If true, the checkbox will be initially checked.
    */
   defaultChecked?: boolean;
   /**
-   * If `true`, the checkbox will be checked.
+   * If true, the checkbox will be checked.
    * You'll need to pass `onChange` to update it's value (since it's now controlled)
    */
   checked?: boolean;
-  /* Checkbox id */
+  /** Checkbox id */
   id?: string;
-  /* Checkbox name */
+  /** Checkbox name */
   name?: string;
-  /* Checkbox value */
+  /** Checkbox value */
   value?: string | number;
-  /* Set the checkbox color */
+  /** Set the checkbox color
+   * @default primary
+   */
   color?: string;
-  /* Size of the checkbox */
+  /** Size of the checkbox
+   * @default md
+   */
   size?: 'sm' | 'md' | 'lg';
   /**
    * A11y: A label that describes the input
@@ -58,6 +62,7 @@ interface ICheckboxProps<T = HTMLInputElement> extends DefaultProps {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   /**
    * Position the label text (children) left or right of the checkbox. Defaults to right.
+   * @default right
    */
   labelPosition?: 'left' | 'right';
 }
@@ -109,9 +114,9 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>((props
   return (
     <label
       className={cx(
-        'inline-flex align-top items-center cursor-base',
+        'sk-form-checkbox-label-wrapper',
         disabled && 'cursor-not-allowed',
-        labelPosition === 'left' ? 'form-checkbox-label-left' : 'form-checkbox-label-right'
+        labelPosition === 'left' ? 'sk-form-checkbox-label-left' : 'sk-form-checkbox-label-right'
       )}
     >
       {children && labelPosition === 'left' && <span className={cx(checkboxLabelClasses)}>{children}</span>}
@@ -137,6 +142,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>((props
         className={cx(checkboxClasses, className)}
         {...rest}
       />
+      <Icon variant="ghost" name={indeterminate ? 'minus' : 'check'} />
       {children && labelPosition === 'right' && <span className={cx(checkboxLabelClasses)}>{children}</span>}
     </label>
   );
