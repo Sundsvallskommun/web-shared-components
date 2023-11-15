@@ -252,6 +252,7 @@ module.exports = Button = (colors) => ({
 
       '.sk-icon': {
         '@apply bg-transparent': {},
+        color: 'currentColor',
       },
 
       "&[data-rounded='true']": {
