@@ -29,8 +29,8 @@ pre.prismjs .tag {
   @apply hidden;
 }
 
-#docs-wrapper {
-  .sbdocs-wrapper,
+.sbdocs {
+  &.sbdocs-wrapper,
   .sbdocs-preview,
   .docblock-argstable-body td,
   .docblock-argstable-head th,
@@ -47,7 +47,7 @@ pre.prismjs .tag {
   .material-icons,
   .docblock-typeset,
   .docblock-typeset > * > * {
-    @apply bg-background text-body;
+      @apply bg-background text-body;
   }
 }
 

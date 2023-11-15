@@ -1,50 +1,47 @@
-// import { Spinner } from "@sk-web-gui/spinner";
 import { DefaultProps } from '@sk-web-gui/utils';
 import { Link, LinkProps } from '@sk-web-gui/link';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
+import { Icon } from '@sk-web-gui/icon';
 import * as React from 'react';
 
-// import { useCardClass } from "./styles";
+// NOTE: Card component
 
 interface ICardProps extends DefaultProps {
+  /** If the card should be clickable, will apply :hover style */
   clickable?: boolean;
-  outlined?: boolean;
-  borderTop?: boolean;
-  /* The element or component to use in place of `a` */
-  as?: React.ElementType;
-  /* React node */
+  /** React node */
   children?: React.ReactNode;
+  /** Set background color to card */
+  color?: 'mono' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
+  /** false */
+  inverted?: boolean;
+  /** vertical */
+  layout?: 'vertical' | 'horizontal';
 }
 
-export interface CardProps extends React.HTMLAttributes<HTMLDivElement>, ICardProps {}
+export interface CardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'>, ICardProps {}
 
 export const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   const {
     children,
     className,
-    color,
-    borderTop = false,
-    outlined = false,
+    color = 'vattjom',
+    inverted = false,
     clickable = false,
-    as: Comp = 'div',
+    layout = 'vertical',
     ...rest
   } = props;
-
   return (
-    <Comp
+    <div
       data-color={color ? color : undefined}
-      className={cx(
-        'card',
-        { 'card-outlined': outlined },
-        { 'card-border-top': borderTop },
-        { 'card-clickable': clickable },
-        className
-      )}
+      data-inverted={inverted ? inverted : undefined}
+      data-layout={layout ? layout : undefined}
+      className={cx('sk-card', { 'sk-card-clickable': clickable }, className)}
       ref={ref}
       {...rest}
     >
       {children}
-    </Comp>
+    </div>
   );
 });
 
@@ -55,9 +52,9 @@ if (__DEV__) {
 // NOTE: Card List component
 
 interface ICardListProps extends DefaultProps {
-  /* The element or component to use in place of `a` */
+  /** The element or component to use in place of `a` */
   as?: React.ElementType;
-  /* React node */
+  /** React Node */
   children?: React.ReactNode;
 }
 
@@ -67,7 +64,7 @@ export const CardList = React.forwardRef<HTMLDivElement, CardListProps>((props, 
   const { children, className, color, as: Comp = 'div', ...rest } = props;
 
   return (
-    <Comp data-color={color ? color : undefined} className={cx('card-list', className)} ref={ref} {...rest}>
+    <Comp data-color={color ? color : undefined} className={cx('sk-card-list', className)} ref={ref} {...rest}>
       {children}
     </Comp>
   );
@@ -77,41 +74,16 @@ if (__DEV__) {
   CardList.displayName = 'CardList';
 }
 
-// NOTE: Card body component
-
-interface ICardBodyProps extends DefaultProps {
-  /* The element or component to use in place of `a` */
-  as?: React.ElementType;
-  /* React node */
-  children?: React.ReactNode;
-}
-
-export interface CardBodyProps extends React.HTMLAttributes<HTMLDivElement>, ICardBodyProps {}
-
-export const CardBody = React.forwardRef<HTMLDivElement, CardBodyProps>((props, ref) => {
-  const { children, className, color, as: Comp = 'div', ...rest } = props;
-
-  return (
-    <Comp data-color={color ? color : undefined} className={cx('card-body', className)} ref={ref} {...rest}>
-      {children}
-    </Comp>
-  );
-});
-
-if (__DEV__) {
-  CardBody.displayName = 'CardBody';
-}
-
 // NOTE: Card image component
 
 interface ICardImageProps extends DefaultProps {
-  /* The element or component to use in place of `a` */
+  /** The element or component to use in place of `a` */
   as?: React.ElementType;
-  /* React node */
+  /** React node */
   children?: React.ReactNode;
-  /* The image `src` attribute */
+  /** The image `src` attribute */
   src?: string;
-  /* The alt text for the image */
+  /** The alt text for the image */
   alt?: string;
 }
 
@@ -121,7 +93,7 @@ export const CardImage = React.forwardRef<HTMLImageElement, CardImageProps>((pro
   const { children, className, color, as: Comp = 'img', ...rest } = props;
 
   return (
-    <Comp data-color={color ? color : undefined} className={cx('card-image', className)} ref={ref} {...rest}>
+    <Comp data-color={color ? color : undefined} className={cx('sk-card-image', className)} ref={ref} {...rest}>
       {children}
     </Comp>
   );
@@ -131,13 +103,86 @@ if (__DEV__) {
   CardImage.displayName = 'CardImage';
 }
 
-// NOTE: Card link component
+// NOTE: Card Header component
+
+interface ICardHeaderProps extends DefaultProps {
+  /** React node */
+  children?: React.ReactNode;
+}
+
+export interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement>, ICardHeaderProps {}
+
+export const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>((props, ref) => {
+  const { children, className, ...rest } = props;
+  return (
+    <div className={cx('sk-card-body-header', className)} ref={ref} {...rest}>
+      {children}
+    </div>
+  );
+});
+
+// NOTE: Card body component
+
+interface ICardBodyProps extends DefaultProps {
+  /** The element or component to use in place of `a` */
+  as?: React.ElementType;
+  /** React node */
+  children?: React.ReactNode;
+}
+
+export interface CardBodyProps extends React.HTMLAttributes<HTMLDivElement>, ICardBodyProps {}
+
+export const CardBody = React.forwardRef<HTMLDivElement, CardBodyProps>((props, ref) => {
+  const { children, className, color, as: Comp = 'div', ...rest } = props;
+  return (
+    <Comp data-color={color ? color : undefined} className={cx('sk-card-body', className)} ref={ref} {...rest}>
+      {children}
+    </Comp>
+  );
+});
+
+if (__DEV__) {
+  CardBody.displayName = 'CardBody';
+}
+
+// NOTE: Card body component
+
+interface ICardPreambleProps extends DefaultProps {
+  /** The element or component to use in place of `a` */
+  as?: React.ElementType;
+  /** React node */
+  children?: React.ReactNode;
+}
+
+export interface CardPreambleProps extends React.HTMLAttributes<HTMLDivElement>, ICardPreambleProps {}
+
+export const CardPreamble = React.forwardRef<HTMLDivElement, CardPreambleProps>((props, ref) => {
+  const { children, className, color, as: Comp = 'div', ...rest } = props;
+
+  return (
+    <div className="sk-card-body-wrapper">
+      <Comp
+        data-color={color ? color : undefined}
+        className={cx('sk-card-body-content', className)}
+        ref={ref}
+        {...rest}
+      >
+        {children}
+      </Comp>
+      <Icon name="arrow-right" size={40} rounded className="sk-card-body-icon" />
+    </div>
+  );
+});
+
+if (__DEV__) {
+  CardPreamble.displayName = 'CardBody';
+}
 
 export const CardLink = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
   const { children, external, className, ...rest } = props;
 
   return (
-    <Link className={cx('card-link', { 'card-link-external': external }, className)} ref={ref} {...rest}>
+    <Link className={cx('sk-card-link', { 'sk-card-link-external': external }, className)} ref={ref} {...rest}>
       {children}
     </Link>
   );
