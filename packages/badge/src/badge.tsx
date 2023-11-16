@@ -2,7 +2,7 @@ import * as React from 'react';
 import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 
 interface IBadgeProps extends DefaultProps {
-  color?: 'primary' | 'warning' | 'error' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
+  color?: 'tertiary' | 'warning' | 'error' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
   counter?: string | number;
   inverted?: boolean;
   rounded?: boolean;
@@ -11,7 +11,7 @@ interface IBadgeProps extends DefaultProps {
 export interface BadgeProps extends Omit<React.HTMLAttributes<HTMLSpanElement>, 'color'>, IBadgeProps {}
 
 export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
-  const { color = 'primary', rounded, counter, inverted = false, className, ...rest } = props;
+  const { color = 'tertiary', rounded, counter, inverted = false, className, ...rest } = props;
 
   return (
     <span
