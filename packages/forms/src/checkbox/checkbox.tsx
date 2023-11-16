@@ -67,9 +67,9 @@ interface ICheckboxProps<T = HTMLInputElement> extends DefaultProps {
   labelPosition?: 'left' | 'right';
 }
 
-export type CheckboxProps = ICheckboxProps & React.HTMLAttributes<HTMLInputElement>;
+export type CheckboxItemProps = ICheckboxProps & React.HTMLAttributes<HTMLInputElement>;
 
-export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
+export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxItemProps>((props, ref) => {
   const {
     id,
     name,

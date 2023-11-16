@@ -3,17 +3,17 @@ import { cx, getValidChildren, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 import * as React from 'react';
 import { cloneElement, useRef, useState } from 'react';
 
-import { CheckboxProps } from './checkbox';
+import { CheckboxItemProps } from './checkbox';
 
 export interface CheckboxGroupProps extends DefaultProps {
   /**
    * The id of the checkbox group.
    */
-  id?: CheckboxProps['id'];
+  id?: CheckboxItemProps['id'];
   /**
    * The name of the checkbox group. This prop is passed to each checbox
    */
-  name?: CheckboxProps['name'];
+  name?: CheckboxItemProps['name'];
   /**
    * The content of the checkbox group. Must be the `Checkbox` component
    */
@@ -21,26 +21,26 @@ export interface CheckboxGroupProps extends DefaultProps {
   /**
    * The initial value of the checkbox group
    */
-  defaultValue?: Array<CheckboxProps['value']>;
+  defaultValue?: Array<CheckboxItemProps['value']>;
   /**
    * The value of the checkbox group
    */
-  value?: Array<CheckboxProps['value']>;
+  value?: Array<CheckboxItemProps['value']>;
   /**
    * The callback fired when any children Checkbox is checked or unchecked
    */
-  onChange?: (value: Array<CheckboxProps['value']>) => void;
+  onChange?: (value: Array<CheckboxItemProps['value']>) => void;
   /**
    * If `true`, the checkboxes will aligned horizontally.
    */
   inline?: boolean;
   /* Size of all wrapped checkbox */
-  size?: CheckboxProps['size'];
+  size?: CheckboxItemProps['size'];
   /* Color of all wrapped checkbox */
-  color?: CheckboxProps['color'];
+  color?: CheckboxItemProps['color'];
 }
 
-export const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupProps>((props, ref) => {
+export const CheckboxGroup = React.forwardRef<HTMLUListElement, CheckboxGroupProps>((props, ref) => {
   const { onChange, name, color, size, defaultValue, inline, value: valueProp, children, ...rest } = props;
   const [values, setValues] = useState(defaultValue || []);
 
@@ -68,7 +68,7 @@ export const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupProps
 
   const clones = validChildren.map((child, index) => {
     return (
-      <div key={index} className={cx(inline ? 'inline-block' : 'block', child.props.className)}>
+      <li key={index} className={cx(inline ? 'inline-block' : 'block', child.props.className)}>
         {cloneElement(child, {
           size: size,
           color: child.props.color || color,
@@ -76,14 +76,14 @@ export const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupProps
           onChange: _onChange,
           checked: (_values || []).includes(child.props.value),
         })}
-      </div>
+      </li>
     );
   });
 
   return (
-    <div className="sk-form-checkbox-group" role="group" ref={ref} {...rest}>
+    <ul className="sk-form-checkbox-group" role="group" ref={ref} {...rest}>
       {clones}
-    </div>
+    </ul>
   );
 });
 
