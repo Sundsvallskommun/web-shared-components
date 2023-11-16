@@ -12,6 +12,9 @@ import {
   CardHeaderProps,
   CardPreamble,
   CardPreambleProps,
+  CardLink,
+  CardMeta,
+  CardMetaProps,
 } from './card';
 
 interface CardProps
@@ -21,14 +24,18 @@ interface CardProps
   Body: typeof CardBody;
   Header: typeof CardHeader;
   Preamble: typeof CardPreamble;
+  Link: typeof CardLink;
+  Meta: typeof CardMeta;
 }
 const Card = InternalCard as CardProps;
 Card.Image = CardImage;
 Card.Body = CardBody;
 Card.Header = CardHeader;
 Card.Preamble = CardPreamble;
+Card.Link = CardLink;
+Card.Meta = CardMeta;
 
-export type { CardProps, CardImageProps, CardBodyProps, CardHeaderProps, CardPreambleProps };
-export { Card, CardImage, CardBody, CardHeader, CardPreamble };
+export type { CardProps, CardImageProps, CardBodyProps, CardHeaderProps, CardPreambleProps, CardMetaProps };
+export { Card, CardImage, CardBody, CardHeader, CardPreamble, CardLink, CardMeta };
 
 export default Card;

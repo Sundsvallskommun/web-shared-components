@@ -32,46 +32,18 @@ import PlaceholderImage from '../../../.storybook/public/placeholder_2.png';
 - Datum tid och plats (Nyheter/Evenemang)
 
   <CardList>
-    <Card clickable>
-      <CardImage className="h-80" src={PlaceholderImage} alt="placeholder" />
-      <CardBody>
-        <h4>
-          <CardLink href="https://example.com" external={true}>
-            Lorem ipsum dolor sit.
-          </CardLink>
-        </h4>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos soluta eligendi libero? Illo odio, sint
-          accusamus deserunt distinctio commodi suscipit.
-        </p>
-      </CardBody>
-    </Card>
-    <Card clickable>
-      <CardImage className="h-80" src={PlaceholderImage} alt="placeholder" />
-      <CardBody>
-        <h4>
-          <CardLink href="https://example.com" external={true}>
-            Lorem ipsum dolor sit.
-          </CardLink>
-        </h4>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos soluta eligendi libero? Illo odio, sint
-          accusamus deserunt distinctio commodi suscipit.
-        </p>
-      </CardBody>
-    </Card>
-    <Card clickable>
-      <CardImage className="h-80" src={PlaceholderImage} alt="placeholder" />
-      <CardBody>
-        <h4>
-          <CardLink href="https://example.com" external={true}>
-            Lorem ipsum dolor sit.
-          </CardLink>
-        </h4>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos soluta eligendi libero? Illo odio, sint
-          accusamus deserunt distinctio commodi suscipit.
-        </p>
-      </CardBody>
+    <Card>
+      <Card.Image src={PlaceholderImage} alt="placeholder" />
+      <Card.Body>
+        <Card.Header>
+          <h2>Rubrik</h2>
+        </Card.Header>
+        <Card.Preamble>
+          <p>
+            Amet enim adipiscing congue justo adipiscing sagittis volutpat nibh ac. Integer viverra lectus in quisque.
+            In nisl mauris faucibus egestas quis mi nam.
+          </p>
+        </Card.Preamble>
+      </Card.Body>
     </Card>
   </CardList>

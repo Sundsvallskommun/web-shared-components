@@ -4,12 +4,11 @@ module.exports = Card = (colors) => ({
   },
 
   '.sk-card': {
-    // shadow-lg
     '@apply p-lg bg-white relative rounded-b-cards': {},
     '@apply p-0': {},
+
     width: '40rem',
     '@apply rounded-cards': {},
-    //'@apply border-1 border-gray-stroke rounded-t-cards': {},
 
     ...colors.reduce(
       (styles, color) => ({
@@ -22,16 +21,34 @@ module.exports = Card = (colors) => ({
           '&.sk-card-clickable': {
             // hover
             [`@apply hover:cursor-pointer hover:bg-${color}-surface-primary`]: {},
+
+            //Hide and show of icon
+            '.sk-card-body-icon': {
+              ['@apply inline-flex']: {},
+            },
+          },
+
+          // Meta
+          '.sk-card-meta': {
+            '@apply text-light-primary': {},
+
+            span: {
+              '@apply text-light-primary': {},
+            },
           },
 
           // header
-          '.sk-card-body-header h1, h2, h3, h4, h5, h6, h7': {
-            [`@apply text-light-primary`]: {},
+          '.sk-card-body-header': {
+            'h1, h2, h3, h4, h5, h6, h7, a': {
+              [`@apply text-light-primary`]: {},
+            },
           },
 
           // Content
-          '.sk-card-body-content p': {
-            [`@apply text-light-secondary`]: {},
+          '.sk-card-body-content': {
+            'p, a': {
+              [`@apply text-light-secondary`]: {},
+            },
           },
 
           // Icon
@@ -51,14 +68,27 @@ module.exports = Card = (colors) => ({
               [`@apply hover:cursor-pointer hover:bg-${color}-surface-accent`]: {},
             },
 
+            // Meta
+            '.sk-card-meta': {
+              '@apply text-dark-primary': {},
+
+              span: {
+                '@apply text-dark-primary': {},
+              },
+            },
+
             // header
-            '.sk-card-body-header h1, h2, h3, h4, h5, h6, h7': {
-              [`@apply text-dark-primary`]: {},
+            '.sk-card-body-header': {
+              ' h1, h2, h3, h4, h5, h6, h7, a': {
+                [`@apply text-dark-primary`]: {},
+              },
             },
 
             // Content
-            '.sk-card-body-content p': {
-              [`@apply text-dark-secondary`]: {},
+            '.sk-card-body-content': {
+              'p, a': {
+                [`@apply text-dark-secondary`]: {},
+              },
             },
 
             // Icon
@@ -83,8 +113,14 @@ module.exports = Card = (colors) => ({
         '@apply rounded-l-cards': {},
       },
 
-      '.sk-card-body-content p': {
-        '@apply text-small': {},
+      '.sk-card-body-content': {
+        'p, a': {
+          '@apply text-small': {},
+        },
+      },
+
+      '.sk-card-meta': {
+        '@apply hidden': {},
       },
     },
   },
@@ -92,21 +128,29 @@ module.exports = Card = (colors) => ({
   '.sk-card-body': {
     '@apply p-24 rounded-b-cards': {},
 
+    '.sk-card-meta': {
+      '@apply flex space-x-6 pb-10': {},
+    },
+
     '.sk-card-body-wrapper': {
       '@apply flex': {},
     },
 
-    '.sk-card-body-header h1, h2, h3, h4, h5, h6, h7': {
-      '@apply text-h3-md': {},
+    '.sk-card-body-header': {
+      ' h1, h2, h3, h4, h5, h6, h7, a': {
+        '@apply line-clamp-1 text-h3-md': {},
+      },
     },
 
-    '.sk-card-body-content p': {
-      '@apply line-clamp-3 m-0 pt-8 text-base': {},
+    '.sk-card-body-content': {
+      'p, a': {
+        '@apply line-clamp-3 m-0 pt-8 text-base': {},
+      },
     },
   },
 
   '.sk-card-body-icon': {
-    '@apply ml-32': {},
+    '@apply ml-32 hidden': {},
   },
 
   '.sk-card-image': {
@@ -117,6 +161,8 @@ module.exports = Card = (colors) => ({
   },
 
   '.sk-card-link': {
+    '@apply hover:cursor-pointer': {},
+
     '&::after': {
       content: "''",
       position: 'absolute',

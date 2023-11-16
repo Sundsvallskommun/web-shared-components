@@ -26,5 +26,21 @@ export const Template = (args: CardProps) => (
         </Card.Preamble>
       </Card.Body>
     </Card>
+
+    <Card {...args}>
+      <Card.Image src={PlaceholderImage} alt="placeholder" />
+      <Card.Body>
+        <Card.Meta></Card.Meta>
+        <Card.Header>
+          <Card.Link href="https://sundsvall.se">Rubrik</Card.Link>
+        </Card.Header>
+        <Card.Preamble>
+          <p>
+            Amet enim adipiscing congue justo adipiscing sagittis volutpat nibh ac. Integer viverra lectus in quisque.
+            In nisl mauris faucibus egestas quis mi nam.
+          </p>
+        </Card.Preamble>
+      </Card.Body>
+    </Card>
   </CardList>
 );

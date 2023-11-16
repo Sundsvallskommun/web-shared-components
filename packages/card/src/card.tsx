@@ -145,7 +145,37 @@ if (__DEV__) {
   CardBody.displayName = 'CardBody';
 }
 
-// NOTE: Card body component
+// NOTE: Card Meta component
+
+interface ICardMetaProps extends DefaultProps {
+  /** The element or component to use in place of `a` */
+  as?: React.ElementType;
+  /** The date as string */
+  date?: string;
+  /** The time as string */
+  time?: string;
+}
+
+export interface CardMetaProps extends React.HTMLAttributes<HTMLDivElement>, ICardMetaProps {}
+
+export const CardMeta = React.forwardRef<HTMLDivElement, CardMetaProps>((props, ref) => {
+  const { className, date = '29 augsit 2023', time = '11:51', as: Comp = 'div', ...rest } = props;
+  return (
+    <Comp className={cx('sk-card-meta', className)} ref={ref} {...rest}>
+      <Icon name="calendar" variant="ghost" />
+      {date}
+
+      <Icon name="clock-4" variant="ghost" />
+      {time}
+    </Comp>
+  );
+});
+
+if (__DEV__) {
+  CardMeta.displayName = 'CardBody';
+}
+
+// NOTE: Card Preamble component
 
 interface ICardPreambleProps extends DefaultProps {
   /** The element or component to use in place of `a` */
