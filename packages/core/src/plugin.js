@@ -15,6 +15,7 @@ const ContextMenu = require('./components/context-menu');
 const Dialog = require('./components/dialog');
 const Dot = require('./components/dot');
 const Forms = require('./components/forms');
+const Filter = require('./components/filter');
 const Icon = require('./components/icon');
 const Input = require('./components/input');
 const Label = require('./components/label');
@@ -66,6 +67,7 @@ const components = [
   Dialog,
   Dot,
   Forms,
+  Filter,
   Icon,
   Input,
   Label,
