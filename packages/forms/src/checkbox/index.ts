@@ -13,7 +13,7 @@ const Checkbox = InternalCheckbox as CheckboxProps;
 
 Checkbox.Group = CheckboxGroup;
 
-export type { CheckboxGroupProps, CheckboxProps, CheckboxItemProps };
+export type { CheckboxProps, CheckboxGroupProps, CheckboxItemProps };
 
 export { Checkbox, CheckboxGroup };
 export default Checkbox;

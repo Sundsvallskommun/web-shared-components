@@ -3048,6 +3048,20 @@
     "@sk-web-gui/theme" "0.1.14"
     "@sk-web-gui/utils" "0.1.8"
 
+"@sk-web-gui/user-menu@0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@sk-web-gui/user-menu/-/user-menu-0.2.2.tgz#54bf2612a21d985ee16967fb2645f31068a26375"
+  integrity sha512-C8ukxBz4OLO2i8klXekItufkib5wWZhCPadtvC1DFvtMf0Ou2YA4QhVCSeib7e2oyJV3lYwqMTWT88ETdxU/9g==
+  dependencies:
+    "@emotion/react" "^11.11.1"
+    "@emotion/styled" "^11.11.0"
+    "@headlessui/react" "^1.7.17"
+    "@mui/icons-material" "^5.14.12"
+    "@mui/material" "^5.14.12"
+    "@sk-web-gui/profile" "0.1.5"
+    "@sk-web-gui/theme" "0.1.14"
+    "@sk-web-gui/utils" "0.1.8"
+
 "@storybook/addon-a11y@^7.5.1":
   version "7.5.1"
   resolved "https://registry.yarnpkg.com/@storybook/addon-a11y/-/addon-a11y-7.5.1.tgz#ed7876245c7b00fab4d742a058a32c577af17a79"
@@ -8499,11 +8513,6 @@ lucide-react@^0.292.0:
   version "0.292.0"
   resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.292.0.tgz#c8a06b2ccd8a348a88669def3c0291c035de2884"
   integrity sha512-rRgUkpEHWpa5VCT66YscInCQmQuPCB1RFRzkkxMxg4b+jaL0V12E3riWWR2Sh5OIiUhCwGW/ZExuEO4Az32E6Q==
-
-lucide-static@^0.292.0:
-  version "0.292.0"
-  resolved "https://registry.yarnpkg.com/lucide-static/-/lucide-static-0.292.0.tgz#64725b3b0e4173ac5a77dd8b97ec9a4be8b1d8d1"
-  integrity sha512-s1MRjUKsltTQ7W8e1Fd6Dnhcq5FTW0shhT6Yj3QGyrGilqFRs8VWD8BgegsgLBurrbTwfAQAmAOY2bbbS+gGMw==
 
 magic-string@^0.27.0:
   version "0.27.0"
