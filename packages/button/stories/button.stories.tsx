@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react';
-import { ArrowRight, CandyCane } from 'lucide-react';
 import { Button, ButtonProps } from '../src';
+import { Icon } from '@sk-web-gui/icon';
 
 export default {
   title: 'Komponenter/Knappar/Komponent',
@@ -120,8 +120,8 @@ export default {
 
 export const Template = ({ children, ...args }: ButtonProps) => (
   <div className="flex flex-col items-start space-y-2">
-    <Button {...args}>{args.iconButton ? <CandyCane /> : children}</Button>
-    <Button {...args} leftIcon={<ArrowRight />}>
+    <Button {...args}>{args.iconButton ? <Icon name="candy-cane" /> : children}</Button>
+    <Button {...args} leftIcon={<Icon name="candy-cane" />}>
       {args.iconButton ? '' : children}
     </Button>
   </div>
