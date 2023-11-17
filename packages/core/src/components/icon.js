@@ -42,11 +42,10 @@ module.exports = Icon = (colors) => ({
 
     '&[data-variant="ghost"]': {
       '@apply bg-transparent': {},
-      '@apply text-inverted-light-primary fill-inverted-light-primary': {},
+      '@apply text-current': {},
 
       '&[data-inverted="true"]': {
         [`@apply bg-transparent`]: {},
-        '@apply text-light-primary fill-light-primary': {},
       },
 
       ...colors.reduce(
