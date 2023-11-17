@@ -10,7 +10,9 @@ export interface IconProps extends DefaultProps, React.HTMLAttributes<HTMLElemen
   /** @default primary */
   color?: 'info' | 'success' | 'primary' | 'warning' | 'error' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
   icon?: React.ReactElement;
+  /** @default false */
   rounded?: boolean;
+  /** @default false */
   inverted?: boolean;
   /** @default tertiary */
   variant?: 'tertiary' | 'ghost';
@@ -31,8 +33,8 @@ export const Icon = (props: IconProps) => {
     name,
     color = 'primary',
     icon,
-    rounded,
-    inverted,
+    rounded = false,
+    inverted = false,
     variant = 'tertiary',
     size = 24,
     className,
