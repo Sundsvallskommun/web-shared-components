@@ -1,29 +1,41 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 import { GuiProvider } from '../../theme';
-import { Breadcrumb } from '../src';
+import { List } from '../src';
 import { ComponentPreview } from '../../../.storybook/preview';
 
-<Meta title="Komponenter/Brödsmulor/Översikt" />
+<Meta title="Komponenter/List/Översikt" />
 
 export const Template = (args) => {
   return (
-    <Breadcrumb {...args}>
-      <Breadcrumb.Item>
-        <Breadcrumb.Link href="#">Start</Breadcrumb.Link>
-      </Breadcrumb.Item>
-      <Breadcrumb.Item>
-        <Breadcrumb.Link href="#">Inlägg</Breadcrumb.Link>
-      </Breadcrumb.Item>
-      <Breadcrumb.Item currentPage>
-        <Breadcrumb.Link href="#">Amet minim mollit non</Breadcrumb.Link>
-      </Breadcrumb.Item>
-    </Breadcrumb>
+    <List {...args}>
+      <List.Body>
+        <List.Item>Utbildning och förskola</List.Item>
+        <List.Text>
+          Förskolornas prioriterade områden är språk- och kunskapsutvecklande arbetssätt samt lärande för hållbar
+          utveckling.
+        </List.Text>
+      </List.Body>
+      <List.Body>
+        <List.Item>
+          <List.Link>Uppleva och göra</List.Link>{' '}
+        </List.Item>
+        <List.Text>
+          Förskolornas prioriterade områden är språk- och kunskapsutvecklande arbetssätt samt lärande för hållbar
+          utveckling.
+        </List.Text>
+      </List.Body>
+      <List.Body>
+        <List.Item>Omsorg och hjälp</List.Item>
+        <List.Text>
+          Förskolornas prioriterade områden är språk- och kunskapsutvecklande arbetssätt samt lärande för hållbar
+          utveckling.
+        </List.Text>
+      </List.Body>
+    </List>
   );
 };
 
-# Brödsmulor
-
-Brödsmulor ska inte vara den enda vägen för en användare att navigera utan brödsmulor kompletterar alltid ett annat navigeringssätt. Om du använder någon annan typ av navigering som exempelvis en sidebar överväg då om användaren också behöver brödsmulor.
+# Lista
 
 <div className="p-4" style={{ backgroundColor: '#F4F4F4' }}>
 

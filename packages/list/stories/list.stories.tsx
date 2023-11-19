@@ -10,8 +10,7 @@ export default {
 } as Meta;
 
 export const Template = (args: ListProps) => (
-  <div>
-<List {...args}>
+  <List {...args}>
     <List.Body>
       <List.Item>Utbildning och förskola</List.Item>
       <List.Text>
@@ -36,35 +35,6 @@ export const Template = (args: ListProps) => (
       </List.Text>
     </List.Body>
   </List>
-
-
-
-     <List listStyle='bullet'>
-    <List.Body>
-      <List.Item>Utbildning och förskola</List.Item>
-      <List.Text>
-        Förskolornas prioriterade områden är språk- och kunskapsutvecklande arbetssätt samt lärande för hållbar
-        utveckling.
-      </List.Text>
-    </List.Body>
-    <List.Body>
-      <List.Item>
-        <List.Link>Uppleva och göra</List.Link>{' '}
-      </List.Item>
-      <List.Text>
-        Förskolornas prioriterade områden är språk- och kunskapsutvecklande arbetssätt samt lärande för hållbar
-        utveckling.
-      </List.Text>
-    </List.Body>
-    <List.Body>
-      <List.Item>Omsorg och hjälp</List.Item>
-      <List.Text>
-        Förskolornas prioriterade områden är språk- och kunskapsutvecklande arbetssätt samt lärande för hållbar
-        utveckling.
-      </List.Text>
-    </List.Body>
-  </List> 
-  </div>
 );
 
 Template.storyName = 'List';
