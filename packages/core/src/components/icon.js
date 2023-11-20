@@ -46,6 +46,7 @@ module.exports = Icon = (colors) => ({
 
       '&[data-inverted="true"]': {
         [`@apply bg-transparent`]: {},
+        '@apply text-current': {},
       },
 
       ...colors.reduce(
