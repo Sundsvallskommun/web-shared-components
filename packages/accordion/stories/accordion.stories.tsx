@@ -3,10 +3,10 @@ import { Meta } from '@storybook/react';
 import { Accordion, AccordionProps } from '../src';
 
 export default {
-  title: 'Komponenter/Accordions/Accordion',
+  title: 'Komponenter/Accordion',
   component: Accordion,
   tags: ['autodocs'],
-} as Meta;
+} as Meta<typeof Accordion>;
 
 export const Template = (args: AccordionProps) => {
   return (
@@ -16,7 +16,7 @@ export const Template = (args: AccordionProps) => {
           <Accordion.Item
             header={
               <>
-                Sök skolskjuts innan den 30 april <Badge color="error" size="md" counter={15} />
+                Sök skolskjuts innan den 30 april <Badge color="error" counter={15} />
               </>
             }
           >
@@ -40,4 +40,4 @@ export const Template = (args: AccordionProps) => {
   );
 };
 
-Template.storyName = 'Komponent';
+Template.storyName = 'Accordion';

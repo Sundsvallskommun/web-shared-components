@@ -4,7 +4,7 @@ import { Button, ButtonProps } from '../src';
 import { Icon } from '@sk-web-gui/icon';
 
 export default {
-  title: 'Komponenter/Button Group',
+  title: 'Komponenter/Button/Button.Group',
   component: Button.Group,
   tags: ['autodocs'],
 } as Meta<typeof Button.Group>;

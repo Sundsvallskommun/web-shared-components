@@ -6,7 +6,7 @@ import { Icon } from '@sk-web-gui/icon';
 
 import { useCheckboxClass, useCheckboxLabelClass } from './styles';
 
-interface ICheckboxProps<T = HTMLInputElement> extends DefaultProps {
+export interface ICheckboxProps<T = HTMLInputElement> extends DefaultProps {
   /* Makes checkbox disabled */
   disabled?: React.InputHTMLAttributes<T>['disabled'];
   /* Makes checkbox invalid */

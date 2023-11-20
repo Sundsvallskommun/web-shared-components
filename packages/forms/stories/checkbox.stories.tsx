@@ -3,7 +3,7 @@ import React from 'react';
 import { Checkbox, CheckboxProps } from '../src/checkbox';
 
 export default {
-  title: 'Komponenter/Checkbox/Checkbox',
+  title: 'Komponenter/Checkbox',
   component: Checkbox,
   tags: ['autodocs'],
 } as Meta<typeof Checkbox>;
