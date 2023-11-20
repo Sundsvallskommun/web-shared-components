@@ -1,0 +1,25 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import { Divider } from '../src';
+import { ComponentPreview } from '../../../.storybook/preview';
+
+<Meta title="Komponenter/Avdelare/Översikt" />
+
+# Avdelare
+
+<p>
+  Använd avdelare (dividers) för att vissuellt dela upp innehåll där det inte räcker med att använda sig av enbart
+  mellanrum.
+</p>
+
+<ComponentPreview>
+  <div className="p-6">
+    <div className="flex items-center gap-12 p-6">
+      <p className="">Ljus bakgrund</p>
+      <Divider className="flex-1" />
+    </div>
+    <div className="flex items-center gap-12 p-6 bg-gray text-white">
+      <p className="">Mörk bakgrund</p>
+      <Divider className="flex-1" />
+    </div>
+  </div>
+</ComponentPreview>
