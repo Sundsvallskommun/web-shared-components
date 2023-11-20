@@ -7,6 +7,10 @@ module.exports = Snackbar = () => ({
       '@apply flex-grow': {},
     },
 
+    '.sk-icon': {
+      '@apply text-light-primary': {},
+    },
+
     '&-content': {
       '@apply flex-grow gap-12 py-4 flex items-center': {},
     },
