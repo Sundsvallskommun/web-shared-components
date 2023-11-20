@@ -3,11 +3,10 @@ import { List, ListProps } from '../src';
 import { Meta } from '@storybook/react';
 
 export default {
-  title: 'Komponenter/List/Komponent',
+  title: 'Komponenter/List',
   component: List,
   tags: ['autodocs'],
-  args: {},
-} as Meta;
+} as Meta<typeof List>;
 
 export const Template = (args: ListProps) => (
   <List {...args}>
