@@ -29,9 +29,8 @@ const config: StorybookConfig = {
   ],
   typescript: {
     reactDocgen: 'react-docgen-typescript',
-    reactDocgenTypescriptOptions: {
-      include: [path.resolve(__dirname, '../packages/**/*')],
-    },
+    skipBabel: true,
+    check: false,
   },
   async viteFinal(config, { configType }) {
     if (configType === 'PRODUCTION') {
