@@ -1,18 +1,18 @@
 module.exports = Link = () => ({
   '.sk-list': {
-    // Generell
+    // General
     li: {
       '&:before': {
-        '@apply text-vattjom-surface-primary font-bold fixed h-24 w-24 text-center my-4': {},
+        '@apply text-vattjom-surface-primary font-bold': {},
+        '@apply absolute inline-flex items-center justify-center text-center': {},
+        '@apply w-24 h-24': {},
       },
     },
 
     '&[data-style="bullet"]': {
       li: {
-        "@apply before:content-['•']": {},
-
         '&:before': {
-          '@apply text-[18px]': {},
+          "@apply content-['•'] my-[.5rem] text-[1.8rem]": {},
         },
       },
     },
@@ -22,8 +22,8 @@ module.exports = Link = () => ({
         counterIncrement: 'item',
 
         '&:before': {
-          '@apply text-small border-vattjom-surface-primary border-2 rounded-full h-[2.2rem] w-[2.2rem] my-[0.5rem] leading-8':
-            {},
+          '@apply text-small border-vattjom-surface-primary rounded-full leading-8': {},
+          '@apply my-[.6rem] h-[2.2rem] w-[2.2rem] border-[.2rem] mr-10': {},
           content: 'counter(item)',
         },
       },
@@ -31,19 +31,17 @@ module.exports = Link = () => ({
 
     '&[data-style="stroke"]': {
       li: {
-        "@apply before:content-['–']": {},
-
         '&:before': {
-          '@apply text-[16px]': {},
+          "@apply content-['–'] my-[.4rem] text-[1.6rem] mr-8": {},
         },
       },
     },
 
-    '&-body': {
+    '&-item': {
       '@apply pt-20': {},
     },
 
-    '&-item': {
+    '&-header': {
       '@apply text-large font-bold ml-[3.2rem]': {},
     },
 

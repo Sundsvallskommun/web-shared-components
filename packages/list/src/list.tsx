@@ -1,6 +1,5 @@
 import { Link, LinkProps } from '@sk-web-gui/link';
-import { cx, __DEV__ } from '@sk-web-gui/utils';
-import { DefaultProps } from '@sk-web-gui/utils';
+import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 import * as React from 'react';
 
 interface IListProps extends DefaultProps {
@@ -12,11 +11,11 @@ interface IListProps extends DefaultProps {
 
 export interface ListProps extends React.HTMLAttributes<HTMLElement>, IListProps {}
 
-export const List = React.forwardRef<HTMLElement, ListProps>((props, ref) => {
+export const List = React.forwardRef<HTMLUListElement, ListProps>((props, ref) => {
   const { children, className, listStyle = 'stroke', ...rest } = props;
 
   return (
-    <ul data-style={listStyle ? listStyle : undefined} className={cx('sk-list')} {...rest}>
+    <ul ref={ref} data-style={listStyle ? listStyle : undefined} className={cx('sk-list', className)} {...rest}>
       {children}
     </ul>
   );
@@ -28,34 +27,34 @@ if (__DEV__) {
 
 // NOTE: Body component
 
-interface IListBodyProps extends DefaultProps {
+interface IListItemProps extends DefaultProps {
   /* React Node */
   children?: React.ReactNode;
 }
 
-export interface ListBodyProps extends React.HTMLAttributes<HTMLElement>, IListBodyProps {}
+export interface ListItemProps extends React.HTMLAttributes<HTMLElement>, IListItemProps {}
 
-export const ListBody = React.forwardRef<HTMLElement, ListBodyProps>((props, ref) => {
+export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>((props, ref) => {
   const { children, className, ...rest } = props;
 
   return (
-    <li className={cx('sk-list-body')} {...rest}>
+    <li ref={ref} className={cx('sk-list-item', className)} {...rest}>
       {children}
     </li>
   );
 });
 
 if (__DEV__) {
-  ListBody.displayName = 'ListBody';
+  ListItem.displayName = 'ListItem';
 }
 
 // NOTE: Link component
 
 export const ListLink = React.forwardRef<HTMLElement, LinkProps>((props, ref) => {
-  const { children, external, className, ...rest } = props;
+  const { children, className, ...rest } = props;
 
   return (
-    <Link external href="#">
+    <Link href="#" className={className} {...rest} ref={ref}>
       {children}
     </Link>
   );
@@ -67,25 +66,25 @@ if (__DEV__) {
 
 // NOTE: Item component
 
-interface IListItemProps extends DefaultProps {
+interface IListHeaderProps extends DefaultProps {
   /* React Node */
   children?: React.ReactNode;
 }
 
-export interface ListItemProps extends React.HTMLAttributes<HTMLElement>, IListItemProps {}
+export interface ListHeaderProps extends React.HTMLAttributes<HTMLElement>, IListHeaderProps {}
 
-export const ListItem = React.forwardRef<HTMLElement, ListItemProps>((props, ref) => {
+export const ListHeader = React.forwardRef<HTMLParagraphElement, ListHeaderProps>((props, ref) => {
   const { children, className, ...rest } = props;
 
   return (
-    <p className={cx('sk-list-item')} {...rest}>
+    <p ref={ref} className={cx('sk-list-header', className)} {...rest}>
       {children}
     </p>
   );
 });
 
 if (__DEV__) {
-  ListItem.displayName = 'ListItem';
+  ListHeader.displayName = 'ListHeader';
 }
 
 // NOTE: Text component
@@ -97,11 +96,11 @@ interface IListTextProps extends DefaultProps {
 
 export interface ListTextProps extends React.HTMLAttributes<HTMLElement>, IListTextProps {}
 
-export const ListText = React.forwardRef<HTMLElement, ListTextProps>((props, ref) => {
+export const ListText = React.forwardRef<HTMLParagraphElement, ListTextProps>((props, ref) => {
   const { children, className, ...rest } = props;
 
   return (
-    <p className={cx('sk-list-text')} {...rest}>
+    <p ref={ref} className={cx('sk-list-text', className)} {...rest}>
       {children}
     </p>
   );

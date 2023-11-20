@@ -10,29 +10,29 @@ export default {
 
 export const Template = (args: ListProps) => (
   <List {...args}>
-    <List.Body>
-      <List.Item>Utbildning och förskola</List.Item>
+    <List.Item>
+      <List.Header>Utbildning och förskola</List.Header>
       <List.Text>
         Förskolornas prioriterade områden är språk- och kunskapsutvecklande arbetssätt samt lärande för hållbar
         utveckling.
       </List.Text>
-    </List.Body>
-    <List.Body>
-      <List.Item>
+    </List.Item>
+    <List.Item>
+      <List.Header>
         <List.Link>Uppleva och göra</List.Link>{' '}
-      </List.Item>
+      </List.Header>
       <List.Text>
         Förskolornas prioriterade områden är språk- och kunskapsutvecklande arbetssätt samt lärande för hållbar
         utveckling.
       </List.Text>
-    </List.Body>
-    <List.Body>
-      <List.Item>Omsorg och hjälp</List.Item>
+    </List.Item>
+    <List.Item>
+      <List.Header>Omsorg och hjälp</List.Header>
       <List.Text>
         Förskolornas prioriterade områden är språk- och kunskapsutvecklande arbetssätt samt lärande för hållbar
         utveckling.
       </List.Text>
-    </List.Body>
+    </List.Item>
   </List>
 );
 

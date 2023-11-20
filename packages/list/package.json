@@ -38,7 +38,6 @@
   },
   "dependencies": {
     "@sk-web-gui/link": "0.1.16",
-    "@sk-web-gui/theme": "0.1.14",
     "@sk-web-gui/utils": "0.1.8"
   },
   "peerDependencies": {
