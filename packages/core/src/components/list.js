@@ -12,7 +12,7 @@ module.exports = Link = () => ({
         "@apply before:content-['•']": {},
 
         '&:before': {
-          '@apply text-[30px] mt-6 ml-6': {},
+          '@apply text-[18px] mt-6 ml-6': {},
         },
       },
     },
@@ -43,11 +43,11 @@ module.exports = Link = () => ({
     },
 
     '&-item': {
-      '@apply text-large font-bold ml-[4rem]': {},
+      '@apply text-large font-bold ml-[3.2rem]': {},
     },
 
     '&-text': {
-      '@apply text-dark-secondary ml-[4rem]': {},
+      '@apply text-dark-secondary ml-[3.2rem]': {},
     },
   },
 });
