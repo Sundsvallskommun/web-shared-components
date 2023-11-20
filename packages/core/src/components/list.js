@@ -3,7 +3,7 @@ module.exports = Link = () => ({
     // Generell
     li: {
       '&:before': {
-        '@apply text-vattjom-surface-primary font-bold fixed mt-4': {},
+        '@apply text-vattjom-surface-primary font-bold fixed h-24 w-24 text-center my-4': {},
       },
     },
 
@@ -12,7 +12,7 @@ module.exports = Link = () => ({
         "@apply before:content-['•']": {},
 
         '&:before': {
-          '@apply text-[18px] mt-6 ml-6': {},
+          '@apply text-[18px]': {},
         },
       },
     },
@@ -22,7 +22,8 @@ module.exports = Link = () => ({
         counterIncrement: 'item',
 
         '&:before': {
-          '@apply text-small items-center border-vattjom-surface-primary border-2 rounded-full px-[0.7rem]': {},
+          '@apply text-small border-vattjom-surface-primary border-2 rounded-full h-[2.2rem] w-[2.2rem] my-[0.5rem] leading-8':
+            {},
           content: 'counter(item)',
         },
       },
@@ -33,7 +34,7 @@ module.exports = Link = () => ({
         "@apply before:content-['–']": {},
 
         '&:before': {
-          '@apply text-[16px] ml-8': {},
+          '@apply text-[16px]': {},
         },
       },
     },
