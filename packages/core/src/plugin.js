@@ -53,6 +53,7 @@ const Header = require('./components/header');
 const SearchBar = require('./components/search-bar');
 
 const ProgressStepper = require('./components/progress-stepper');
+const ProgressBar = require('./components/progress-bar');
 
 const components = [
   Alert,
@@ -103,6 +104,7 @@ const components = [
   Footer,
   Header,
   ProgressStepper,
+  ProgressBar,
 ];
 
 const defaultColors = ['warning', 'error', 'success', 'info', 'vattjom', 'juniskar', 'bjornstigen', 'gronsta'];
