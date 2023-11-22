@@ -23,7 +23,7 @@ module.exports = Link = () => ({
 
         '&:before': {
           '@apply text-small border-vattjom-surface-primary rounded-full leading-8': {},
-          '@apply my-[.6rem] h-[2.2rem] w-[2.2rem] border-[.2rem] mr-10': {},
+          '@apply my-[.6rem] h-[2.2rem] w-[2.2rem] border-[.2rem]': {},
           content: 'counter(item)',
         },
       },
@@ -32,7 +32,7 @@ module.exports = Link = () => ({
     '&[data-style="stroke"]': {
       li: {
         '&:before': {
-          "@apply content-['–'] my-[.4rem] text-[1.6rem] mr-8": {},
+          "@apply content-['–'] my-[.4rem] text-[1.6rem]": {},
         },
       },
     },
