@@ -12,7 +12,7 @@ export interface LinkProps extends DefaultProps, React.AnchorHTMLAttributes<HTML
   children?: React.ReactNode;
   /** @default false */
   hideExternalIcon?: boolean;
-  /** @default md */
+  /** @default '' */
   size?: 'sm' | 'md' | 'lg' | 'xl';
   /** @default false */
   strong?: boolean;
@@ -32,7 +32,7 @@ export const Link = React.forwardRef(
       as: Comp = 'a',
       children,
       hideExternalIcon = false,
-      size = 'md',
+      size = '',
       strong = false,
       variant = 'primary',
       ...rest

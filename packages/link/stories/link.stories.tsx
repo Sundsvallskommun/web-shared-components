@@ -8,7 +8,6 @@ export default {
   tags: ['autodocs'],
   args: {
     href: '#',
-    size: 'md',
   },
   argTypes: {
     external: {
@@ -51,11 +50,11 @@ export default {
       type: { name: 'string', required: false },
       description: 'Sets size',
       table: {
-        defaultValue: { summary: 'md' },
+        defaultValue: { summary: '' },
       },
       options: ['sm', 'md', 'lg', 'xl'],
       control: 'select',
-      defaultValue: 'md',
+      defaultValue: '',
     },
     variant: {
       type: { name: 'string', required: false },
