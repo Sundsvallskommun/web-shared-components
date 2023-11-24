@@ -236,9 +236,17 @@ module.exports = Button = (colors) => ({
     '.btn-has-icon': {
       '&-left': {
         '@apply h-full flex items-center justify-center -ml-2': {},
+        '.sk-icon': {
+          '@apply bg-transparent': {},
+          color: 'currentColor',
+        },
       },
       '&-right': {
         '@apply h-full flex items-center justify-center -mr-2': {},
+        '.sk-icon': {
+          '@apply bg-transparent': {},
+          color: 'currentColor',
+        },
       },
     },
     '&-lg .btn-has-icon-left': {

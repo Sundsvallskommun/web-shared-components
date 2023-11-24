@@ -6,11 +6,13 @@ import dynamicIconImports from 'lucide-react/dynamicIconImports';
 type IconNames = keyof typeof dynamicIconImports;
 
 export interface IconProps extends DefaultProps, React.HTMLAttributes<HTMLElement> {
-  name: IconNames;
+  name?: IconNames;
   /** @default primary */
   color?: 'info' | 'success' | 'primary' | 'warning' | 'error' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
   icon?: React.ReactElement;
+  /** @default false */
   rounded?: boolean;
+  /** @default false */
   inverted?: boolean;
   /** @default tertiary */
   variant?: 'tertiary' | 'ghost';
@@ -31,8 +33,8 @@ export const Icon = (props: IconProps) => {
     name,
     color = 'primary',
     icon,
-    rounded,
-    inverted,
+    rounded = false,
+    inverted = false,
     variant = 'tertiary',
     size = 24,
     className,
@@ -49,7 +51,7 @@ export const Icon = (props: IconProps) => {
       data-rounded={rounded ? rounded : undefined}
       data-inverted={inverted ? inverted : undefined}
       data-size={size ? size : undefined}
-      data-testid={`sk-icon-${name as string}`}
+      data-testid={name ? `sk-icon-${name}` : undefined}
       {...rest}
     >
       {icon ? icon : LucideIcon ? <LucideIcon size={typeof size == 'number' ? size : undefined} /> : undefined}

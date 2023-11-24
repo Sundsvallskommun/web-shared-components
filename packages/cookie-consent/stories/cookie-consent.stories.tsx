@@ -1,13 +1,13 @@
+import React from 'react';
 import { Link } from '@sk-web-gui/link';
 import { Meta } from '@storybook/react';
-import React from 'react';
-import { CookieConsent, CookieConsentProps } from '../src/cookie-consent';
+import { CookieConsent, CookieConsentProps } from '../src';
 
 export default {
-  title: 'Komponenter/Kakor/Komponent',
+  title: 'Komponenter/CookieConsent',
   component: CookieConsent,
   tags: ['autodocs'],
-} as Meta;
+} as Meta<typeof CookieConsent>;
 
 export const Template = ({ ...args }: CookieConsentProps) => (
   <CookieConsent
@@ -24,7 +24,7 @@ export const Template = ({ ...args }: CookieConsentProps) => (
         optional: false,
         displayName: 'Nödvändiga kakor',
         description: 'Dessa kakor är nödvändiga för att webbplatsen ska fungera och kan inte stängas av i våra system.',
-        cookieName: 'nessecary',
+        cookieName: 'necessary',
       },
       {
         optional: true,
@@ -49,4 +49,4 @@ export const Template = ({ ...args }: CookieConsentProps) => (
   />
 );
 
-Template.storyName = 'Kakor';
+Template.storyName = 'CookieConsent';

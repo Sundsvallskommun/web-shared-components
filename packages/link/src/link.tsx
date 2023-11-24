@@ -1,16 +1,23 @@
-import { cx, __DEV__, PolymorphicComponentPropsWithRef, PolymorphicRef } from '@sk-web-gui/utils';
-import { DefaultProps } from '@sk-web-gui/utils';
+import { cx, __DEV__, PolymorphicComponentPropsWithRef, PolymorphicRef, DefaultProps } from '@sk-web-gui/utils';
 import * as React from 'react';
-import LaunchIcon from '@mui/icons-material/Launch';
+import { useLinkClass } from './styles';
+import { Icon } from '@sk-web-gui/icon';
 
 export interface LinkProps extends DefaultProps, React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  /* Makes link disabled */
+  /** Makes link disabled */
   disabled?: boolean;
-  /* Makes link open in new tab */
+  /** Makes link open in new tab */
   external?: boolean;
-  /* React node */
+  /** React node */
   children?: React.ReactNode;
+  /** @default false */
   hideExternalIcon?: boolean;
+  /** @default md */
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  /** @default false */
+  strong?: boolean;
+  /** @default primary */
+  variant?: 'primary' | 'tertiary';
 }
 
 type ILinkProps<C extends React.ElementType> = PolymorphicComponentPropsWithRef<C, LinkProps>;
@@ -25,9 +32,18 @@ export const Link = React.forwardRef(
       as: Comp = 'a',
       children,
       hideExternalIcon = false,
+      size = 'md',
+      strong = false,
+      variant = 'primary',
       ...rest
     } = props;
     const externalProps = external ? { target: '_blank', rel: 'noopener noreferrer' } : null;
+
+    const classes = useLinkClass({
+      size,
+      disabled,
+      variant,
+    });
 
     return (
       <Comp
@@ -35,12 +51,14 @@ export const Link = React.forwardRef(
         tabIndex={disabled ? -1 : undefined}
         aria-disabled={disabled}
         onClick={disabled ? (event: React.MouseEvent<HTMLAnchorElement>) => event.preventDefault() : onClick}
-        className={cx('link', disabled && 'link-disabled', className)}
+        className={cx('sk-link', classes, strong && 'font-bold', disabled && 'sk-link-disabled', className)}
         {...externalProps}
         {...rest}
       >
         {children}
-        {!hideExternalIcon && external && <LaunchIcon className="link-external-icon" />}
+        {!hideExternalIcon && external && (
+          <Icon className="sk-link-external-icon" name="external-link" size="fit" variant="ghost" />
+        )}
       </Comp>
     );
   }

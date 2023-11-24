@@ -65,6 +65,7 @@
     "@sk-web-gui/pagination": "0.1.24",
     "@sk-web-gui/popup-menu": "0.1.0",
     "@sk-web-gui/progress-stepper": "0.1.0",
+    "@sk-web-gui/progress-bar": "0.1.0",
     "@sk-web-gui/radio": "0.1.38",
     "@sk-web-gui/search-bar": "0.1.20",
     "@sk-web-gui/side-menu": "0.1.26",

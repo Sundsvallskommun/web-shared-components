@@ -1,15 +1,15 @@
 import React from 'react';
-import { SnackbarProps, useSnackbar, Snackbar } from '../src';
+import { SnackbarProps, useSnackbar, Snackbar } from '../src/snackbar';
 import { Meta } from '@storybook/react';
 
 export default {
-  title: 'Komponenter/Snackbar/Komponent',
+  title: 'Komponenter/Snackbar',
   component: Snackbar,
   tags: ['autodocs'],
   args: {
     message: 'Toast message goes here.',
   },
-} as Meta;
+} as Meta<typeof Snackbar>;
 
 export const Template = (args: SnackbarProps) => {
   const message = useSnackbar();

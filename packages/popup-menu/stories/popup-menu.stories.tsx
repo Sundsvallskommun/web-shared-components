@@ -1,16 +1,17 @@
+import React from 'react';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Button } from '@sk-web-gui/button';
-import { Divider } from '@sk-web-gui/divider';
 import { Link } from '@sk-web-gui/link';
 import { LogOut, Settings2, User, Wallet } from 'lucide-react';
 import { PopupMenu, PopupMenuProps } from '../src';
+import { Meta } from '@storybook/react';
 
 export default {
-  title: 'Komponenter/Meny/Popupmeny',
+  title: 'Komponenter/PopupMenu',
   component: PopupMenu,
   tags: ['autodocs'],
-};
+} as Meta<typeof PopupMenu>;
 
 export const Template = (args: PopupMenuProps) => {
   return (
