@@ -3,7 +3,7 @@ import { Meta } from '@storybook/react';
 import DropdownFilter, { DropdownFilterProps, IFilterData } from '../src/dropdown-filter';
 
 export default {
-  title: 'Komponenter/Dropdown/DropdownFilter',
+  title: 'WIP/Komponenter/DropdownFilter',
   component: DropdownFilter,
   tags: ['autodocs'],
   args: {

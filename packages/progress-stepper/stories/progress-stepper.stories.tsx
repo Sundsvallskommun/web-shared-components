@@ -1,15 +1,16 @@
+import React from 'react';
 import { Meta } from '@storybook/react';
 import { ProgressStepper, ProgressStepperProps } from '../src';
 
 export default {
-  title: 'Komponenter/ProgressStepper/Komponent',
+  title: 'Komponenter/ProgressStepper',
   component: ProgressStepper,
   tags: ['autodocs'],
   args: {
     steps: ['Steg 1', 'Andra steget', 'Sista steget'],
     current: 1,
   },
-} as Meta;
+} as Meta<typeof ProgressStepper>;
 
 export const Template = (args: ProgressStepperProps) => (
   <div className="">

@@ -1,12 +1,10 @@
-import { DefaultProps, cx } from '@sk-web-gui/utils';
-import { __DEV__ } from '@sk-web-gui/utils';
+import { DefaultProps, cx, __DEV__ } from '@sk-web-gui/utils';
 import { Dialog as D, Transition } from '@headlessui/react';
 import { Button } from '@sk-web-gui/button';
 import { Switch } from '@sk-web-gui/switch';
-import { useEffect, useRef, useState } from 'react';
+import { Icon } from '@sk-web-gui/icon';
 import Cookies, { CookieSetOptions } from 'universal-cookie';
-import * as React from 'react';
-import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import React from 'react';
 
 export const defaultCookieConsentName = 'SKCookieConsent';
 
@@ -68,7 +66,7 @@ interface ICookieConsentProps extends DefaultProps {
 
 export interface CookieConsentProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>, ICookieConsentProps {}
 
-export function CookieConsent({
+export const CookieConsent: React.FC<CookieConsentProps> = ({
   title,
   body,
   onConsent,
@@ -81,30 +79,32 @@ export function CookieConsent({
     maxAge: 31536000, // default 12 months according to ePrivacy, EU
     sameSite: 'strict',
   },
-}: CookieConsentProps) {
-  const [htmlTagPropsCopied, setHtmlTagPropsCopied] = useState(false);
-  const [htmlTagInitOverflow, setHtmlTagInitOverflow] = useState('');
-  const [htmlTagInitBottomPadding, setHtmlTagInitBottomPadding] = useState('');
-  const [isOpen, setIsOpen] = useState(false);
-  const [isHandlingOptions, setIsHandlingOptions] = useState(false);
+}) => {
+  const [htmlTagPropsCopied, setHtmlTagPropsCopied] = React.useState(false);
+  const [htmlTagInitOverflow, setHtmlTagInitOverflow] = React.useState('');
+  const [htmlTagInitBottomPadding, setHtmlTagInitBottomPadding] = React.useState('');
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [isHandlingOptions, setIsHandlingOptions] = React.useState(false);
 
   if (resetConsentOnInit) {
     resetConsent();
   }
 
-  const initialFocus = useRef<any>(null);
-  const settingsFocus = useRef<any>(null);
+  const initialFocus = React.useRef<HTMLDivElement>(null);
+  const approveFocus = React.useRef<HTMLButtonElement>(null);
+  const settingsFocus = React.useRef<HTMLButtonElement>(null);
 
-  const [checkableCookies, setCheckableCookies] = useState(getCheckableCookies(cookies));
+  const [checkableCookies, setCheckableCookies] = React.useState(getCheckableCookies(cookies));
 
   const setSettingsFocus = () => {
     setTimeout(() => {
       settingsFocus.current && settingsFocus.current.focus();
     });
   };
-  const setInitialFocus = () => {
+
+  const setApproveFocus = () => {
     setTimeout(() => {
-      initialFocus.current && initialFocus.current?.focus();
+      approveFocus.current && approveFocus.current?.focus();
     });
   };
 
@@ -164,7 +164,7 @@ export function CookieConsent({
     document.documentElement.style.paddingBottom = htmlTagInitBottomPadding;
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     const isOpen = !getConsent().length;
     setIsOpen(isOpen);
   }, [setIsOpen]);
@@ -172,17 +172,17 @@ export function CookieConsent({
   // Let user scroll while cookie banner is shown
   // Below is needed because Headless ui sets document.html.style.overflow to hidden on open
   //START:/ Keep these in order
-  useEffect(() => {
+  React.useEffect(() => {
     if (htmlTagPropsCopied) {
       setHtmlTagInitOverflow(document.documentElement.style.overflow);
       setHtmlTagInitBottomPadding(document.documentElement.style.paddingBottom);
       setHtmlTagPropsCopied(true);
     }
   }, []);
-  useEffect(() => {
+  React.useEffect(() => {
     document.documentElement.style.overflow = 'auto';
     // Let user see all content
-    const cookieElem: any = document.querySelector('.cookie-consent');
+    const cookieElem = document.querySelector('.cookie-consent') as HTMLElement;
     if (cookieElem) {
       document.documentElement.style.paddingBottom = cookieElem.offsetHeight + 'px';
     }
@@ -210,7 +210,7 @@ export function CookieConsent({
         <div className="cookie-consent-content-wrapper">
           {closeable && (
             <button className="cookie-consent-close-btn" onClick={() => handleOnClose()}>
-              <CloseOutlinedIcon className="cookie-consent-close-btn-icon" />
+              <Icon className="cookie-consent-close-btn-icon" name="x" variant="ghost" size="fit" />
             </button>
           )}
 
@@ -250,7 +250,7 @@ export function CookieConsent({
                   onClick={() => handleonConsent(ConsentType.All)}
                   color="primary"
                   variant="primary"
-                  ref={initialFocus}
+                  ref={approveFocus}
                 >
                   Godkänn alla
                 </Button>
@@ -280,7 +280,7 @@ export function CookieConsent({
                 <Button
                   onClick={() => {
                     setIsHandlingOptions(false);
-                    setInitialFocus();
+                    setApproveFocus();
                   }}
                 >
                   Stäng
@@ -292,7 +292,7 @@ export function CookieConsent({
       </D>
     </Transition>
   );
-}
+};
 
 if (__DEV__) {
   CookieConsent.displayName = 'CookieConsent';

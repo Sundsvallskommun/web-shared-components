@@ -3,12 +3,10 @@ import { Breadcrumb, BreadcrumbProps } from '../src';
 import { Meta } from '@storybook/react';
 
 export default {
-  title: 'Komponenter/Brödsmulor/Komponent',
+  title: 'Komponenter/Breadcrumbs',
   component: Breadcrumb,
   tags: ['autodocs'],
-  args: {
-  }
-} as Meta;
+} as Meta<typeof Breadcrumb>;
 
 export const Template = (args: BreadcrumbProps) => (
   <Breadcrumb {...args}>
@@ -34,4 +32,4 @@ export const Template = (args: BreadcrumbProps) => (
   </Breadcrumb>
 );
 
-Template.storyName = 'Breadcrumb';
+Template.storyName = 'Breadcrumbs';

@@ -4,13 +4,13 @@ import { Meta } from '@storybook/react';
 import { CreditCard, Eye, EyeOff } from 'lucide-react';
 
 export default {
-  title: 'Komponenter/Formulär/Input',
+  title: 'Komponenter/Formulär',
   component: Input,
   tags: ['autodocs'],
   args: {
     placeholder: 'Sök...',
   },
-} as Meta;
+} as Meta<typeof Input>;
 
 export const Template = (args: InputProps) => {
   return <Input {...args} />;

@@ -6,7 +6,7 @@ export default {
   title: 'Komponenter/Textarea',
   component: Textarea,
   tags: ['autodocs'],
-} as Meta;
+} as Meta<typeof Textarea>;
 
 export const Template = (args: TextareaProps) => <Textarea {...args} placeholder="Beskriv ditt ärende..." />;
 

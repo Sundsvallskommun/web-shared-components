@@ -11,7 +11,7 @@ export default {
   args: {
     placeholder: 'Textfält',
   },
-} as Meta;
+} as Meta<typeof TextField>;
 
 export const Template = (args: TextFieldProps) => {
   return (

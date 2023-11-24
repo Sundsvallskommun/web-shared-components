@@ -6,14 +6,14 @@ import { MenuItemGroup, UserMenuProps } from '../src/user-menu';
 import { LogOut, Settings2, User, Wallet } from 'lucide-react';
 
 export default {
-  title: 'Komponenter/Meny/Användarmeny',
+  title: 'Komponenter/UserMenu',
   component: UserMenu,
   args: {
     menuTitle: 'Företagsbolaget AB',
     menuSubTitle: 'Förnamn Efternamn som är lite längre',
   },
   tags: ['autodocs'],
-} as Meta;
+} as Meta<typeof UserMenu>;
 
 const isMobileMenuOpen = false;
 
