@@ -1,13 +1,13 @@
 import React from 'react';
 import { Card, CardList, CardBody, CardImage, CardLink, CardProps } from '../src';
-
 import PlaceholderImage from '../../../.storybook/public/placeholder_2.png';
+import { Meta } from '@storybook/react';
 
 export default {
-  title: 'Komponenter/Kort/Komponent',
+  title: 'Komponenter/Card',
   component: Card,
   tags: ['autodocs'],
-};
+} as Meta<typeof Card>;
 
 export const Template = (args: CardProps) => (
   <>

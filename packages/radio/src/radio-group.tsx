@@ -4,10 +4,10 @@ import { cx, getValidChildren, __DEV__ } from '@sk-web-gui/utils';
 import * as React from 'react';
 import { cloneElement, useImperativeHandle, useRef, useState } from 'react';
 
-import { RadioProps } from './radio';
-import { useRadioGroupClass } from './styles';
+import { RadioButtonProps } from './radio';
+import { useRadioButtonGroupClass } from './styles';
 
-interface IRadioGroupProps extends DefaultProps {
+interface IRadioButtonGroupProps extends DefaultProps {
   /**
    * The id of the radio group.
    */
@@ -23,35 +23,35 @@ interface IRadioGroupProps extends DefaultProps {
   /**
    * The initial value of the radio group
    */
-  defaultValue?: RadioProps['value'];
+  defaultValue?: RadioButtonProps['value'];
   /**
    * The value of the radio group
    */
-  value?: RadioProps['value'];
+  value?: RadioButtonProps['value'];
   /* Size of all wrapped radio */
 
-  size?: RadioProps['size'];
+  size?: RadioButtonProps['size'];
   /* Color of all wrapped radio */
 
-  color?: RadioProps['color'];
+  color?: RadioButtonProps['color'];
   /**
    * The callback fired when any children Radio is checked or unchecked
    */
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>, value: RadioProps['value']) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>, value: RadioButtonProps['value']) => void;
   /**
    * If `true`, the radio will aligned horizontally.
    */
   inline?: boolean;
 }
 
-type RadioGroupElement =
+type RadioButtonGroupElement =
   | {
       focus: () => void;
     }
   | undefined;
-export type RadioGroupProps = IRadioGroupProps;
+export type RadioButtonGroupProps = IRadioButtonGroupProps;
 
-export const RadioGroup = React.forwardRef<RadioGroupElement, RadioGroupProps>((props, ref) => {
+export const RadioButtonGroup = React.forwardRef<RadioButtonGroupElement, RadioButtonGroupProps>((props, ref) => {
   const {
     onChange,
     name,
@@ -119,7 +119,7 @@ export const RadioGroup = React.forwardRef<RadioGroupElement, RadioGroupProps>((
     []
   );
 
-  const classes = useRadioGroupClass({ size });
+  const classes = useRadioButtonGroupClass({ size });
 
   return (
     <div
@@ -135,5 +135,5 @@ export const RadioGroup = React.forwardRef<RadioGroupElement, RadioGroupProps>((
 });
 
 if (__DEV__) {
-  RadioGroup.displayName = 'RadioGroup';
+  RadioButtonGroup.displayName = 'RadioButtonGroup';
 }

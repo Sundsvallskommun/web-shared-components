@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Pagination, PaginationProps } from '../src';
 import React from 'react';
+import { Meta } from '@storybook/react';
 
 export default {
-  title: 'Komponenter/Pagination/Komponent',
+  title: 'Komponenter/Pagination',
   component: Pagination,
   tags: ['autodocs'],
   args: {
@@ -14,7 +15,7 @@ export default {
     pagesBefore: 1,
     pagesAfter: 1,
   },
-};
+} as Meta<typeof Pagination>;
 
 export const Template = (args: PaginationProps) => {
   const [paginationPage, setPaginationPage] = useState<number>(args.activePage);

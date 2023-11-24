@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { SearchBar, SearchbarProps } from '../src/search-bar';
 
 export default {
-  title: 'Komponenter/Sök/Komponent',
+  title: 'Komponenter/SearchBar',
   component: SearchBar,
   tags: ['autodocs'],
   args: {

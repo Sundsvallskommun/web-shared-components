@@ -4,7 +4,7 @@ import { AlertBanner, AlertBannerProps } from '../src';
 import { useLocalStorageValue } from '@react-hookz/web';
 
 export default {
-  title: 'Komponenter/Meddelanden/AlertBanner',
+  title: 'Komponenter/AlertBanner',
   component: AlertBanner,
   parameters: { controls: { hideNoControlsWarning: true } },
   tags: ['autodocs'],
@@ -12,7 +12,7 @@ export default {
     children:
       'Viktig men också väldigt lång information om driftstörningar. Så lång att texten är längre än 800px och inte längre får plats på en rad utan hamnar istället på två eller flera rader',
   },
-} as Meta;
+} as Meta<typeof AlertBanner>;
 
 export const Template = ({ children, ...args }: AlertBannerProps) => {
   const localstorageKey = 'alert-banner-is-open';

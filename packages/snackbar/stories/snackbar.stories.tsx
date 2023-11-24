@@ -9,7 +9,7 @@ export default {
   args: {
     message: 'Toast message goes here.',
   },
-} as Meta;
+} as Meta<typeof Snackbar>;
 
 export const Template = (args: SnackbarProps) => {
   const message = useSnackbar();

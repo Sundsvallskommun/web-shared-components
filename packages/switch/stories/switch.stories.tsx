@@ -4,10 +4,10 @@ import { Switch, SwitchProps } from '@sk-web-gui/switch';
 import { Meta } from '@storybook/react';
 
 export default {
-  title: 'Komponenter/Toggel/Komponent',
+  title: 'Komponenter/Switch',
   component: Switch,
   tags: ['autodocs'],
-} as Meta;
+} as Meta<typeof Switch>;
 
 export const Template = (args: SwitchProps) => (
   <div className="space-x-2">

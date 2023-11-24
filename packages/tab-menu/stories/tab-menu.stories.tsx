@@ -28,14 +28,14 @@ const menuData = [
 ];
 
 export default {
-  title: 'Komponenter/Meny/TabMenu',
+  title: 'Komponenter/TabMenu',
   component: TabMenu,
   tags: ['autodocs'],
   parameters: { controls: { hideNoControlsWarning: true } },
   args: {
     menuData: menuData,
   },
-} as Meta;
+} as Meta<typeof TabMenu>;
 
 export const Template = (args: any) => {
   const [active, setActive] = useState<string>('/path/1');

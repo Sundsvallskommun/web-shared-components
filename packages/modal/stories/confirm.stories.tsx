@@ -5,7 +5,7 @@ import { useConfirm } from '../src/confirm';
 import { ConfirmationDialogContextProvider } from '../src/confirm/confirm';
 
 export default {
-  title: 'Komponenter/Modal/Komponent/Confirm',
+  title: 'Komponenter/Modal/Confirm',
   component: ConfirmationDialogContextProvider,
   tags: ['autodocs'],
   args: {
@@ -78,7 +78,7 @@ export default {
       defaultValue: null,
     },
   },
-} as Meta;
+} as Meta<typeof ConfirmationDialogContextProvider>;
 
 const ConfirmComponent: React.FC<{
   title: string;
