@@ -52,7 +52,7 @@ export default {
       table: {
         defaultValue: { summary: '' },
       },
-      options: ['sm', 'md', 'lg', 'xl'],
+      options: [undefined, 'sm', 'md', 'lg', 'xl'],
       control: 'select',
       defaultValue: '',
     },
