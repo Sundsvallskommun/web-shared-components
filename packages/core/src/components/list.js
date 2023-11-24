@@ -37,6 +37,15 @@ module.exports = Link = () => ({
       },
     },
 
+    '.sk-link': {
+      '&-tertiary': {
+        '@apply text-dark-primary': {},
+        '&:hover': {
+          '@apply text-dark-secondary': {},
+        },
+      },
+    },
+
     '&-item': {
       '@apply pt-20': {},
     },

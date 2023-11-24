@@ -19,7 +19,9 @@ export const Template = (args: ListProps) => (
     </List.Item>
     <List.Item>
       <List.Header>
-        <List.Link>Uppleva och göra</List.Link>{' '}
+        <List.Link variant="tertiary" external>
+          Uppleva och göra
+        </List.Link>{' '}
       </List.Header>
       <List.Text>
         Förskolornas prioriterade områden är språk- och kunskapsutvecklande arbetssätt samt lärande för hållbar
