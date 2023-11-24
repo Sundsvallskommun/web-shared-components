@@ -148,23 +148,9 @@ module.exports = {
           overflow: 'hidden',
         },
       },
-
-      'rotate-element': {
-        '100%': { transform: 'rotate(360deg)' },
-      },
-
-      prixClipFix: {
-        '0%': { clipPath: 'polygon(50% 50%,0   0,0    0,0     0,0        0,0 0)' },
-        '25%': { clipPath: 'polygon(50% 50%,0  0,100% 0,100%  0,100%     0,100% 0)' },
-        '50%': { clipPath: 'polygon(50% 50%,0  0,100% 0,100%  100%,100%  100%,100% 100%)' },
-        '75%': { clipPath: 'polygon(50% 50%,0  0,100% 0,100%  100%,0     100%,0 100%)' },
-        '100%': { clipPath: 'polygon(50% 50%,0 0,100% 0,100%  100%,0     100%,0 0)' },
-      },
     },
     animation: {
       'reset-overflow': 'reset-overflow 180ms backwards',
-      rotateAnimation: 'rotate-element 1.5s linear infinite',
-      prixClipFixAnimation: 'prixClipFix 1.5s linear infinite',
     },
   },
 };

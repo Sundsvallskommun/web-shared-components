@@ -32,7 +32,7 @@ export const Spinner = React.forwardRef<SVGSVGElement, SpinProps>((props, ref) =
           type="rotate"
           values="-90;810"
           keyTimes="0;1"
-          dur="4s"
+          dur="3s"
           repeatCount="indefinite"
         ></animateTransform>
         <animate
@@ -41,7 +41,7 @@ export const Spinner = React.forwardRef<SVGSVGElement, SpinProps>((props, ref) =
           calcMode="spline"
           keySplines="0.61, 1, 0.88, 1; 0.12, 0, 0.9, 0"
           keyTimes="0;0.25;1"
-          dur="4s"
+          dur="3s"
           repeatCount="indefinite"
         ></animate>
 
@@ -51,7 +51,7 @@ export const Spinner = React.forwardRef<SVGSVGElement, SpinProps>((props, ref) =
           calcMode="spline"
           keySplines="0.81, 1, 0.82, 1; 0.52, 0, 0.39, 0"
           keyTimes="0;0.25;1"
-          dur="4s"
+          dur="3s"
           repeatCount="indefinite"
         ></animate>
       </circle>
