@@ -28,7 +28,7 @@ function clearAndUpper(text: string) {
   return text.replace(/-/, '').toUpperCase();
 }
 
-export const Icon = (props: IconProps) => {
+export const Icon: React.FC<IconProps> = (props) => {
   const {
     name,
     color = 'primary',
