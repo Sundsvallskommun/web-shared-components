@@ -14,34 +14,17 @@ export interface IInputProps<T = HTMLInputElement> extends DefaultProps {
   required?: React.InputHTMLAttributes<T>['required'];
   /* Makes input readOnly */
   readOnly?: React.InputHTMLAttributes<T>['readOnly'];
-  /* Set the input color */
-  color?: string;
   /* Size of the input */
   size?: 'sm' | 'md' | 'lg';
-  /** Controls input appearance */
-  variant?: 'outline' | 'solid';
   /**
    * The element or component to use in place of `input`
    */
   as?: React.ElementType;
-  /** */
+
+  /**
+   * Input type
+   */
   type?: React.InputHTMLAttributes<T>['type'];
-  /**
-   * A11y: A label that describes the input
-   */
-  'aria-label'?: string;
-  /**
-   * A11y: The id of the element that describes the input
-   */
-  'aria-describedby'?: string;
-  /**
-   * A11y: describes the type of autocompletion
-   */
-  'aria-autocomplete'?: React.AriaAttributes['aria-autocomplete'];
-  /**
-   * Border-radius is rounded
-   */
-  rounded?: boolean;
   placeholder?: React.InputHTMLAttributes<T>['placeholder'];
   value?: string;
   autoFocus?: boolean;
@@ -59,31 +42,25 @@ export type OmittedTypes =
   | 'onResizeCapture'
   | 'value';
 
-// export type InputHTMLAttributes = Omit<React.InputHTMLAttributes<HTMLInputElement>, OmittedTypes>;
-
 export interface InputProps
   extends IInputProps,
     Omit<React.InputHTMLAttributes<HTMLInputElement>, OmittedTypes>,
-    React.RefAttributes<HTMLInputElement> {}
+    React.RefAttributes<HTMLInputElement> {
+  /**
+   * If you want to hide native extra apperances, such as number arrows and icons
+   * @default true
+   */
+  hideExtra?: boolean;
+}
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const {
-    size = 'md',
-    variant = 'outline',
-    color = 'primary',
-    as: Comp = 'input',
-    'aria-label': ariaLabel,
-    'aria-describedby': ariaDescribedby,
-    className,
-    type = 'text',
-    id,
-    rounded = false,
-    ...rest
-  } = props;
+  const { size: _size, as: Comp = 'input', className, type = 'text', hideExtra = true, ...rest } = props;
 
-  const { readOnly, disabled, invalid, required, errorId, helpTextId, ...formControl } = useFormControl(props);
-  const classes = useInputClass({ size, variant, disabled });
+  const { readOnly, disabled, invalid, required, errorId, helpTextId, id, ...formControl } = useFormControl(props);
 
+  const size = _size || formControl.size || 'md';
+
+  const classes = useInputClass({ size, disabled });
   return (
     <Comp
       ref={ref}
@@ -91,16 +68,14 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
       aria-readonly={readOnly}
       disabled={disabled}
       aria-disabled={disabled}
-      aria-label={ariaLabel}
       aria-invalid={invalid}
       required={required}
       aria-required={required}
-      aria-describedby={ariaDescribedby || `${errorId} ${helpTextId}`}
-      data-color={color ? color : undefined}
-      data-rounded={rounded ? rounded : undefined}
+      aria-describedby={errorId && helpTextId ? `${errorId} ${helpTextId}` : errorId || helpTextId}
+      data-hideextra={hideExtra}
       className={cx(classes, className)}
       type={type}
-      id={id || formControl.id}
+      id={id}
       {...rest}
     />
   );

@@ -2,23 +2,13 @@ import { createMemoClass } from '@sk-web-gui/theme';
 import { cx } from '@sk-web-gui/utils';
 
 export const useInputClass = createMemoClass((props) => {
-  const variantClasses: { [key: string]: string } = {
-    outline: 'form-field-outline',
-    solid: 'form-field-solid',
-  };
-
   const sizes: { [key: string]: string } = {
-    sm: 'form-field-sm',
-    md: 'form-field-md',
-    lg: 'form-field-lg',
+    sm: 'sk-form-input-sm',
+    md: 'sk-form-input-md',
+    lg: 'sk-form-input-lg',
   };
 
-  const classes = cx(
-    'form-field',
-    sizes[props.size],
-    variantClasses[props.variant],
-    props.disabled && 'form-field-disabled'
-  );
+  const classes = cx('sk-form-input', sizes[props.size], props.disabled && 'sk-form-input-disabled');
 
   return classes;
 });

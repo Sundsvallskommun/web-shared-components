@@ -217,7 +217,7 @@ module.exports = Button = (colors) => ({
 
     // State
     '&-disabled, &[aria-disabled="true"]': {
-      '@apply shadow-none disabled:shadow-none disabled:cursor-not-allowed cursor-not-allowed': {},
+      '@apply shadow-none disabled:shadow-none disabled:cursor-default cursor-default': {},
       '@apply disabled:text-dark-disabled text-dark-disabled disabled:bg-primary-surface-disabled bg-primary-surface-disabled disabled:border-transparent border-transparent !important':
         {},
       '&[data-inverted="true"]': {
@@ -236,9 +236,17 @@ module.exports = Button = (colors) => ({
     '.btn-has-icon': {
       '&-left': {
         '@apply h-full flex items-center justify-center -ml-2': {},
+        '.sk-icon': {
+          '@apply bg-transparent': {},
+          color: 'currentColor',
+        },
       },
       '&-right': {
         '@apply h-full flex items-center justify-center -mr-2': {},
+        '.sk-icon': {
+          '@apply bg-transparent': {},
+          color: 'currentColor',
+        },
       },
     },
     '&-lg .btn-has-icon-left': {
@@ -249,6 +257,11 @@ module.exports = Button = (colors) => ({
     },
     '&[data-icon=true]': {
       '@apply p-0': {},
+
+      '.sk-icon': {
+        '@apply bg-transparent': {},
+        color: 'currentColor',
+      },
 
       "&[data-rounded='true']": {
         '@apply rounded-full': {},

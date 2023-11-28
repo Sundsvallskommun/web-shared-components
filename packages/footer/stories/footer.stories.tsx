@@ -4,10 +4,10 @@ import { Footer, FooterProps } from '../src';
 import { Link } from '@sk-web-gui/link';
 
 export default {
-  title: 'Komponenter/Footer/Komponent',
+  title: 'Komponenter/Footer',
   component: Footer,
   tags: ['autodocs'],
-} as Meta;
+} as Meta<typeof Footer>;
 
 export const Template = ({ ...args }: FooterProps) => {
   return (

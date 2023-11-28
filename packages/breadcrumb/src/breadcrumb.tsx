@@ -10,7 +10,7 @@ export interface BreadcrumbSeparatorProps extends DefaultProps, React.HTMLAttrib
 
 export const BreadcrumbSeparator = React.forwardRef<HTMLSpanElement, BreadcrumbSeparatorProps>(
   ({ className, ...props }, ref) => {
-    return <span ref={ref} role="presentation" className={cx('breadcrumb-separator', className)} {...props} />;
+    return <span ref={ref} role="presentation" className={cx('sk-breadcrumb-separator', className)} {...props} />;
   }
 );
 
@@ -64,7 +64,7 @@ export const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProp
   });
 
   return (
-    <li ref={ref} className={cx('breadcrumb-item', className)} {...rest} data-color={color ? color : undefined}>
+    <li ref={ref} className={cx('sk-breadcrumb-item', className)} {...rest} data-color={color ? color : undefined}>
       {clones}
       {!lastChild && addSeparator && <BreadcrumbSeparator children={separator} />}
     </li>
@@ -100,7 +100,7 @@ export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>((props,
   });
 
   return (
-    <nav ref={ref} aria-label="breadcrumb" className={cx('breadcrumb', className)} {...rest}>
+    <nav ref={ref} aria-label="breadcrumb" className={cx('sk-breadcrumb', className)} {...rest}>
       <ol>{clones}</ol>
     </nav>
   );

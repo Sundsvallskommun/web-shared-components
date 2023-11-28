@@ -99,28 +99,20 @@ export const DataTable = React.forwardRef<HTMLTableElement, DataTableProps>((pro
       return headers.map((header) => {
         let position = 'left';
         let show = true;
-        let label;
         switch (typeof header) {
           case 'string':
-            label = getLabel(header);
             break;
 
           default:
             const { isShown = true } = header;
             show = isShown;
             position = header?.columnPosition || 'left';
-            label = getLabel(header);
             break;
         }
 
         const value = getValue(item, header);
 
-        let element = (
-          <div className={`w-full lg:text-${position}`}>
-            <span className="inline lg:hidden">{label}: </span>
-            {value}
-          </div>
-        );
+        let element = <div className={`w-full text-${position}`}>{value}</div>;
         if (typeof header !== 'string' && header.renderColumn) {
           element = header.renderColumn(value, item);
         }

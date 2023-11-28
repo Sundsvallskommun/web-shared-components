@@ -2,8 +2,8 @@ export * from '@sk-web-gui/alert';
 export * from '@sk-web-gui/alert-banner';
 export * from '@sk-web-gui/breadcrumb';
 export * from '@sk-web-gui/button';
-export * from '@sk-web-gui/checkbox';
 export * from '@sk-web-gui/forms';
+export * from '@sk-web-gui/filter';
 export * from '@sk-web-gui/icon';
 export * from '@sk-web-gui/image';
 export * from '@sk-web-gui/label';
@@ -30,7 +30,6 @@ export * from '@sk-web-gui/tab-menu';
 export * from '@sk-web-gui/tabs';
 
 export * from '@sk-web-gui/dropdown-filter';
-export * from '@sk-web-gui/dropdown-search';
 
 export * from '@sk-web-gui/table';
 
@@ -44,3 +43,4 @@ export * from '@sk-web-gui/context-menu';
 export * from '@sk-web-gui/badge';
 export * from '@sk-web-gui/avatar';
 export * from '@sk-web-gui/progress-stepper';
+export * from '@sk-web-gui/progress-bar';

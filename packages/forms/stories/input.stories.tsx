@@ -1,16 +1,16 @@
 import React from 'react';
 import { Input, InputProps } from '../src';
-import { Check } from './check';
 import { Meta } from '@storybook/react';
+import { CreditCard, Eye, EyeOff } from 'lucide-react';
 
 export default {
-  title: 'Komponenter/Textfält/Komponent',
+  title: 'Komponenter/Formulär',
   component: Input,
   tags: ['autodocs'],
   args: {
-    placeholder: 'Sök..',
+    placeholder: 'Sök...',
   },
-} as Meta;
+} as Meta<typeof Input>;
 
 export const Template = (args: InputProps) => {
   return <Input {...args} />;
@@ -19,25 +19,27 @@ export const Template = (args: InputProps) => {
 Template.storyName = 'Input';
 
 export const Disabled = () => (
-  <div className="flex space-x-2">
-    <Input placeholder="jon@gmail.com" disabled />
-    <Input placeholder="jon@gmail.com" disabled variant="solid" />
+  <div>
+    <div className="flex gap-16">
+      <Input placeholder="example@mail.com" disabled />
+    </div>
+    <div className="flex mt-md gap-16">
+      <Input.Group disabled>
+        <Input.LeftAddin children="https://" />
+        <Input placeholder="mysite" />
+        <Input.RightAddin children=".com" />
+      </Input.Group>
+    </div>
   </div>
 );
 Disabled.storyName = 'Inaktiverad';
 
 export const Invalid = () => (
   <div>
-    <div className="flex space-x-2">
-      <Input placeholder="jon@gmail.com" invalid />
-      <Input placeholder="jon@gmail.com" invalid variant="solid" />
+    <div className="flex gap-16">
+      <Input placeholder="example@mail.com" invalid />
     </div>
-    <div className="flex mt-md space-x-2">
-      <Input.Group invalid>
-        <Input.LeftAddon children="https://" />
-        <Input placeholder="mysite" />
-        <Input.RightAddon children=".com" />
-      </Input.Group>
+    <div className="flex mt-md gap-16">
       <Input.Group invalid>
         <Input.LeftAddin children="https://" />
         <Input placeholder="mysite" />
@@ -48,95 +50,137 @@ export const Invalid = () => (
 );
 Invalid.storyName = 'Invaliderad';
 
-export const Variant = () => (
-  <div className="flex space-x-2">
-    <Input placeholder="jon@gmail.com" />
-    <Input placeholder="jon@gmail.com" variant="solid" />
-  </div>
-);
-
 export const Storlekar = () => (
-  <div className="flex space-x-2">
-    <Input placeholder="jon@gmail.com" size="sm" />
-    <Input placeholder="jon@gmail.com" size="md" />
-    <Input placeholder="jon@gmail.com" size="lg" />
+  <div className="flex flex-col gap-16">
+    <div className="flex gap-16">
+      <Input placeholder="example@mail.com" size="sm" type="email" />
+      <Input placeholder="example@mail.com" size="md" type="email" />
+      <Input placeholder="example@mail.com" size="lg" type="email" />
+    </div>
+    <div className="flex flex-col mt-md gap-16 w-fit">
+      <Input.Group size="sm">
+        <Input.LeftAddin children="https://" />
+        <Input placeholder="mysite" />
+        <Input.RightAddin children=".com" />
+      </Input.Group>
+      <Input.Group size="md">
+        <Input.LeftAddin children="https://" />
+        <Input placeholder="mysite" />
+        <Input.RightAddin children=".com" />
+      </Input.Group>
+      <Input.Group size="lg">
+        <Input.LeftAddin children="https://" />
+        <Input placeholder="mysite" />
+        <Input.RightAddin children=".com" />
+      </Input.Group>
+    </div>
   </div>
 );
 
-export const Element = () => (
-  <div className="flex flex-wrap w-full space-x-2">
-    <Input.Group size="md">
-      <Input.LeftElement children="$" className="pointer-events-none text-neutral-300" />
-      <Input placeholder="ben@gmail.com" />
-      <Input.RightElement children={<Check className="text-green-500" size={14} />} />
-    </Input.Group>
-
-    <Input.Group size="sm">
-      <Input.LeftElement children="$" className="pointer-events-none text-neutral-300" />
-      <Input placeholder="ben@gmail.com" />
-      <Input.RightElement children={<Check className="text-green-500" size={14} />} />
-    </Input.Group>
-
-    <Input.Group size="md">
-      <Input.LeftElement children="$" className="pointer-events-none text-neutral-300" />
-      <Input placeholder="ben@gmail.com" />
-      <Input.RightElement children={<Check className="text-green-500" size={16} />} />
-    </Input.Group>
-
-    <Input.Group size="lg">
-      <Input.LeftElement children="$" className="pointer-events-none text-neutral-300" />
-      <Input placeholder="ben@gmail.com" />
-      <Input.RightElement children={<Check className="text-green-500" size={24} />} />
-    </Input.Group>
-
-    <Input.Group size="md">
-      <Input.LeftElement children="$" className="pointer-events-none text-neutral-300" />
-      <Input placeholder="ben@gmail.com" />
-      <Input.RightElement children={<Check className="text-green-500" size={32} />} />
-    </Input.Group>
+export const Datum = () => (
+  <div className="flex flex-col gap-16">
+    <div className="flex gap-16">
+      <Input size="sm" type="date" />
+      <Input size="md" type="date" />
+      <Input size="lg" type="date" />
+    </div>
   </div>
 );
 
-export const Addon = () => (
-  <div className="flex flex-wrap items-center w-full">
-    <Input.Group size="sm" className="mb-2 mr-2">
-      <Input.LeftAddon children="https://" />
-      <Input placeholder="mysite" />
-      <Input.RightAddon children=".com" />
-    </Input.Group>
-
-    <Input.Group size="md" className="mb-2 mr-2">
-      <Input.LeftAddon children="https://" />
-      <Input placeholder="mysite" />
-      <Input.RightAddon children=".com" />
-    </Input.Group>
-
-    <Input.Group size="lg" className="mb-2 mr-2">
-      <Input.LeftAddon children="https://" />
-      <Input placeholder="mysite" />
-      <Input.RightAddon children=".com" />
-    </Input.Group>
+export const Tid = () => (
+  <div className="flex flex-col gap-16">
+    <div className="flex gap-16">
+      <Input size="sm" type="time" />
+      <Input size="md" type="time" />
+      <Input size="lg" type="time" />
+    </div>
   </div>
 );
 
-export const Addin = () => (
-  <div className="flex flex-wrap items-center w-full">
-    <Input.Group size="sm" className="mb-2 mr-2">
-      <Input.LeftAddin children="https://" />
-      <Input placeholder="mysite" />
-      <Input.RightAddin children=".com" />
-    </Input.Group>
-
-    <Input.Group size="md" className="mb-2 mr-2">
-      <Input.LeftAddin children="https://" />
-      <Input placeholder="mysite" />
-      <Input.RightAddin children=".com" />
-    </Input.Group>
-
-    <Input.Group size="lg" className="mb-2 mr-2">
-      <Input.LeftAddin children="https://" />
-      <Input placeholder="mysite" />
-      <Input.RightAddin children=".com" />
-    </Input.Group>
+export const DatumTid = () => (
+  <div className="flex flex-col gap-16">
+    <div className="flex gap-16">
+      <Input size="sm" type="datetime-local" />
+      <Input size="md" type="datetime-local" />
+      <Input size="lg" type="datetime-local" />
+    </div>
   </div>
 );
+
+export const Addin = () => {
+  const [showPass, setShowPass] = React.useState(false);
+
+  return (
+    <div className="flex flex-col gap-16">
+      <div className="flex flex-wrap items-center w-full gap-16">
+        <Input.Group size="sm">
+          <Input.LeftAddin children="https://" />
+          <Input placeholder="mysite" />
+          <Input.RightAddin children=".com" />
+        </Input.Group>
+
+        <Input.Group size="md">
+          <Input.LeftAddin children="https://" />
+          <Input placeholder="mysite" />
+          <Input.RightAddin children=".com" />
+        </Input.Group>
+
+        <Input.Group size="lg">
+          <Input.LeftAddin children="https://" />
+          <Input placeholder="mysite" />
+          <Input.RightAddin children=".com" />
+        </Input.Group>
+      </div>
+      <div className="flex flex-wrap items-center w-full gap-16">
+        <Input.Group size="sm">
+          <Input placeholder="Lösenord" type={showPass ? 'text' : 'password'} />
+          <Input.RightAddin icon>
+            <span role="button" onClick={() => setShowPass(!showPass)}>
+              {showPass ? <EyeOff /> : <Eye />}
+            </span>
+          </Input.RightAddin>
+        </Input.Group>
+
+        <Input.Group size="md">
+          <Input placeholder="Lösenord" type={showPass ? 'text' : 'password'} />
+          <Input.RightAddin icon>
+            <span role="button" onClick={() => setShowPass(!showPass)}>
+              {showPass ? <EyeOff /> : <Eye />}
+            </span>
+          </Input.RightAddin>
+        </Input.Group>
+
+        <Input.Group size="lg">
+          <Input placeholder="Lösenord" type={showPass ? 'text' : 'password'} />
+          <Input.RightAddin icon>
+            <span role="button" onClick={() => setShowPass(!showPass)}>
+              {showPass ? <EyeOff /> : <Eye />}
+            </span>
+          </Input.RightAddin>
+        </Input.Group>
+      </div>
+      <div className="flex flex-wrap items-center w-full gap-16">
+        <Input.Group size="sm">
+          <Input.LeftAddin icon>
+            <CreditCard />
+          </Input.LeftAddin>
+          <Input placeholder="Kontokort" />
+        </Input.Group>
+
+        <Input.Group size="md">
+          <Input.LeftAddin icon>
+            <CreditCard />
+          </Input.LeftAddin>
+          <Input placeholder="Kontokort" />
+        </Input.Group>
+
+        <Input.Group size="lg">
+          <Input.LeftAddin icon>
+            <CreditCard />
+          </Input.LeftAddin>
+          <Input placeholder="Kontokort" />
+        </Input.Group>
+      </div>
+    </div>
+  );
+};

@@ -1,8 +1,11 @@
 import { Dialog, Transition } from '@headlessui/react';
-import CloseIcon from '@mui/icons-material/Close';
-import { DefaultProps, __DEV__ } from '@sk-web-gui/utils';
+import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 import * as React from 'react';
 import { Fragment } from 'react';
+import { Icon } from '@sk-web-gui/icon';
+import { Button } from '@sk-web-gui/button';
+import { ModalContent } from './modal-content';
+import { ModalFooter } from './modal-footer';
 
 export interface IModalProps extends DefaultProps {
   show: boolean;
@@ -13,13 +16,21 @@ export interface IModalProps extends DefaultProps {
   hideClosebutton?: boolean;
   children?: React.ReactNode;
   disableCloseOutside?: boolean;
+  /**
+   * @default article
+   */
   as?: React.ElementType;
+  /**
+   * @deafult label
+   */
   labelAs?: React.ElementType;
   hideLabel?: boolean;
   'aria-label'?: string;
 }
 
-export const Modal = React.forwardRef<HTMLDivElement, IModalProps>((props, ref) => {
+export interface ModalComponentProps extends IModalProps, React.HTMLAttributes<HTMLDivElement> {}
+
+const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentProps>((props, ref) => {
   const {
     show,
     label,
@@ -30,12 +41,12 @@ export const Modal = React.forwardRef<HTMLDivElement, IModalProps>((props, ref) 
     children,
     disableCloseOutside = false,
     as: Content = 'article',
-    labelAs = 'h1',
+    labelAs = 'label',
     hideLabel = false,
     ...rest
   } = props;
 
-  const modalRef = React.useRef<any>();
+  const modalRef = React.useRef<HTMLDivElement>(null);
 
   const onCloseHandler = () => {
     if (onClose) {
@@ -52,17 +63,10 @@ export const Modal = React.forwardRef<HTMLDivElement, IModalProps>((props, ref) 
   }, [show, props['aria-label']]);
 
   return (
-    <div className="Modal">
+    <div className="sk-modal" ref={ref}>
       <Transition appear show={show} as={Fragment}>
-        <Dialog
-          ref={modalRef}
-          open={show}
-          as="div"
-          className="fixed inset-0 z-20 overflow-y-auto bg-opacity-50 bg-gray-500"
-          onClose={onCloseHandler}
-          {...rest}
-        >
-          <div className="min-h-screen px-4 text-center">
+        <Dialog ref={modalRef} open={show} as="div" className="sk-modal-wrapper" onClose={onCloseHandler} {...rest}>
+          <div className="sk-modal-wrapper-inner">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -73,7 +77,7 @@ export const Modal = React.forwardRef<HTMLDivElement, IModalProps>((props, ref) 
               leaveTo="opacity-0"
             >
               <Dialog.Overlay
-                className="fixed inset-0"
+                className="sk-modal-overlay"
                 style={{ pointerEvents: disableCloseOutside ? 'none' : undefined }}
               />
             </Transition.Child>
@@ -91,31 +95,34 @@ export const Modal = React.forwardRef<HTMLDivElement, IModalProps>((props, ref) 
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Content
-                className={`${className} inline-block w-full px-md py-lg sm:px-16 my-8 text-left align-middle transition-all transform bg-white shadow-xl rounded`}
-              >
-                <div className="flex flex-between w-full mb-lg">
-                  {!hideLabel ? (
-                    <Dialog.Title as={labelAs} className={`grow text-xl ${hideClosebutton ? 'text-center' : ''}`}>
-                      {label}
-                    </Dialog.Title>
-                  ) : (
-                    <div className="grow" />
-                  )}
+              <Content className={cx('sk-modal-dialog', className)}>
+                {(!hideLabel || !hideClosebutton) && (
+                  <div className="sk-modal-dialog-header">
+                    {!hideLabel ? (
+                      <Dialog.Title as={labelAs} className={'sk-modal-dialog-header-title'}>
+                        {label}
+                      </Dialog.Title>
+                    ) : (
+                      <div className="grow" />
+                    )}
 
-                  {!hideClosebutton && (
-                    <button
-                      className="p-4 -m-4"
-                      aria-label={
-                        closeLabel ? closeLabel : `Stäng ${label && label !== typeof 'object' ? label : 'modal'}`
-                      }
-                      onClick={onCloseHandler}
-                    >
-                      <CloseIcon className="material-icon !text-2xl" />
-                    </button>
-                  )}
-                </div>
-                <div>{children}</div>
+                    {!hideClosebutton && (
+                      <Button
+                        className="sk-modal-dialog-close"
+                        variant="ghost"
+                        iconButton
+                        size="sm"
+                        aria-label={
+                          closeLabel ? closeLabel : `Stäng ${label && label !== typeof 'object' ? label : 'modal'}`
+                        }
+                        onClick={onCloseHandler}
+                      >
+                        <Icon name="x" />
+                      </Button>
+                    )}
+                  </div>
+                )}
+                <>{children}</>
               </Content>
             </Transition.Child>
           </div>
@@ -125,8 +132,21 @@ export const Modal = React.forwardRef<HTMLDivElement, IModalProps>((props, ref) 
   );
 });
 
+interface ModalProps
+  extends ModalComponentProps,
+    React.ForwardRefExoticComponent<ModalComponentProps & React.RefAttributes<HTMLDivElement>> {
+  Content: typeof ModalContent;
+  Footer: typeof ModalFooter;
+}
+
+export const Modal = ModalComponent as ModalProps;
+
+Modal.Content = ModalContent;
+Modal.Footer = ModalFooter;
+
 if (__DEV__) {
   Modal.displayName = 'Modal';
 }
 
+export type { ModalProps };
 export default Modal;

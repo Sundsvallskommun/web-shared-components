@@ -1,80 +1,81 @@
+import React from 'react';
 import { FormControl, FormHelperText, FormLabel } from '@sk-web-gui/forms';
 import { Meta } from '@storybook/react';
-import { Radio, RadioProps } from '../src';
+import { RadioButton, RadioButtonProps } from '../src';
 
 export default {
-  title: 'Komponenter/Radioknappar/Komponent',
-  component: Radio,
+  title: 'Komponenter/RadioButton',
+  component: RadioButton,
   tags: ['autodocs'],
-} as Meta;
+} as Meta<typeof RadioButton>;
 
-export const Template = (args: RadioProps) => (
+export const Template = (args: RadioButtonProps) => (
   <fieldset className="flex flex-row gap-12">
-    <Radio {...args} name="sk-example">
+    <RadioButton {...args} name="sk-example">
       Exempel 1
-    </Radio>
-    <Radio {...args} name="sk-example">
+    </RadioButton>
+    <RadioButton {...args} name="sk-example">
       Exempel 2
-    </Radio>
-    <Radio {...args} name="sk-example">
+    </RadioButton>
+    <RadioButton {...args} name="sk-example">
       Exempel 2
-    </Radio>
+    </RadioButton>
   </fieldset>
 );
 
-Template.storyName = 'Radio';
+Template.storyName = 'RadioButton';
 
 export const Invaliderad = () => (
   <div className="space-x-2">
-    <Radio invalid name="invalid">
+    <RadioButton invalid name="invalid">
       First
-    </Radio>
-    <Radio invalid name="invalid" defaultChecked>
+    </RadioButton>
+    <RadioButton invalid name="invalid" defaultChecked>
       Second
-    </Radio>
+    </RadioButton>
   </div>
 );
 
 export const Inaktiverad = () => (
   <div className="space-x-2">
-    <Radio disabled name="disabled">
+    <RadioButton disabled name="disabled">
       First
-    </Radio>
-    <Radio disabled name="disabled" defaultChecked>
+    </RadioButton>
+    <RadioButton disabled name="disabled" defaultChecked>
       Second
-    </Radio>
+    </RadioButton>
 
-    <Radio readOnly name="readOnly">
+    <RadioButton readOnly name="readOnly">
       First
-    </Radio>
-    <Radio readOnly name="readOnly" defaultChecked>
+    </RadioButton>
+    <RadioButton readOnly name="readOnly" defaultChecked>
       Second
-    </Radio>
+    </RadioButton>
   </div>
 );
 
 export const Storlekar = () => (
   <div className="space-x-2">
-    <Radio size="sm" name="size">
-      Radio
-    </Radio>
-    <Radio size="md" name="size">
-      Radio
-    </Radio>
-    <Radio size="lg" name="size">
-      Radio
-    </Radio>
+    <RadioButton size="sm" name="size">
+      RadioButton
+    </RadioButton>
+    <RadioButton size="md" name="size">
+      RadioButton
+    </RadioButton>
+    <RadioButton size="lg" name="size">
+      RadioButton
+    </RadioButton>
   </div>
 );
 
 export const FormControlComp = () => (
   <FormControl>
     <FormLabel>Favorite Naruto Character</FormLabel>
-    <Radio.Group defaultValue="2" className="space-x-4" inline>
-      <Radio value="1">First</Radio>
-      <Radio value="2">Second</Radio>
-      <Radio value="3">Third</Radio>
-    </Radio.Group>
+    <RadioButton.Group defaultValue="2" className="space-x-4" inline>
+      <RadioButton value="1">First</RadioButton>
+      <RadioButton value="2">Second</RadioButton>
+      <RadioButton value="3">Third</RadioButton>
+    </RadioButton.Group>
     <FormHelperText>Helpertext</FormHelperText>
   </FormControl>
 );

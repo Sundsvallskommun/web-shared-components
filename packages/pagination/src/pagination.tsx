@@ -1,10 +1,9 @@
-import { DefaultProps } from '@sk-web-gui/utils';
-import { cx, __DEV__ } from '@sk-web-gui/utils';
+import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 import React, { KeyboardEvent, useEffect, useState } from 'react';
-import KeyboardDoubleArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftOutlined';
-import KeyboardDoubleArrowRightOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowRightOutlined';
 import { usePaginationClass } from './styles';
 import { Select } from '@sk-web-gui/forms';
+import { Icon } from '@sk-web-gui/icon';
+import { Button } from '@sk-web-gui/button';
 
 export interface IPaginationProps extends DefaultProps {
   /* Total amount of pages */
@@ -13,8 +12,6 @@ export interface IPaginationProps extends DefaultProps {
   activePage: number;
   /* Handles page number change */
   changePage: (page: number) => void;
-  /* Size of the button */
-  size?: 'sm' | 'md' | 'lg';
   /* Number of pages shown before current page */
   pagesBefore?: number;
   /* Number of pages shown after current page */
@@ -44,14 +41,12 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
     pages = 1,
     activePage = 1,
     changePage,
-    children,
-    size = 'md',
     showFirst = true,
     showLast = true,
-    pagesBefore = 2,
-    pagesAfter = 2,
+    pagesBefore = 1,
+    pagesAfter = 1,
     className,
-    hidePrevNextLabel,
+    hidePrevNextLabel = true,
     nextLabel = 'Nästa',
     prevLabel = 'Föregående',
     fitContainer = false,
@@ -61,7 +56,6 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
   } = props;
 
   const classes = usePaginationClass({
-    size,
     fitContainer,
   });
 
@@ -126,10 +120,10 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
     reverse?: boolean;
     tabIndex?: number;
     index: number;
-  }) => JSX.Element = ({ next, label, icon, triggerNumber = 1, step = 1, reverse = false, tabIndex, index }) => {
+  }) => JSX.Element = ({ next, label, icon, triggerNumber = 1, step = 1, tabIndex }) => {
     const isDisabled = currentPage === triggerNumber;
     return (
-      <button
+      <Button
         onKeyDown={keyboardHandler}
         tabIndex={tabIndex}
         role="menuitem"
@@ -139,13 +133,16 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
         } av ${pages}.`}
         aria-disabled={isDisabled}
         disabled={isDisabled}
-        data-reverse={reverse}
         onClick={() => isDisabled || handleClick(currentPage + step)}
         className={cx(`sk-pagination-prevNextButton`)}
+        leftIcon={next === false ? icon : undefined}
+        rightIcon={next === true ? icon : undefined}
+        iconButton={hidePrevNextLabel}
+        rounded
+        size="sm"
       >
-        <span className={cx(`sk-pagination-prevNextButton-label`)}>{hidePrevNextLabel ? '' : label}</span>
-        <span className={cx(`sk-pagination-prevNextButton-icon`)}>{icon}</span>
-      </button>
+        {!hidePrevNextLabel && <span className={cx(`sk-pagination-prevNextButton-label`)}>{label}</span>}
+      </Button>
     );
   };
 
@@ -154,7 +151,6 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
       …
     </span>
   );
-
   const goToNextButton = (button: HTMLElement, index: number, total: number) => {
     if (index + 1 === total) {
       goToFirstButton(button, total);
@@ -245,16 +241,22 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
   };
 
   return (
-    <nav className={cx(classes, className)} {...rest} aria-label="pagination">
+    <nav
+      className={cx(classes, className)}
+      {...rest}
+      aria-label="pagination"
+      ref={ref}
+      data-hidePrevNextLabel={hidePrevNextLabel}
+    >
       {asSelect ? (
         <Select
-          size={size}
+          size="sm"
           aria-label="Gå till sida"
-          value={{ label: currentPage.toString(), data: currentPage }}
-          onChange={(value) => handleClick(value.data)}
+          value={currentPage.toString()}
+          onSelectValue={(value: string) => handleClick(parseInt(value, 10))}
         >
           {[...Array(pages)].map((_, idx: number) => (
-            <Select.Option key={`selectPage-${idx}`} value={{ label: (idx + 1).toString(), data: idx + 1 }}>
+            <Select.Option key={`selectPage-${idx}`} value={(idx + 1).toString()}>
               {idx + 1}
             </Select.Option>
           ))}
@@ -265,10 +267,9 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
             {prevNextButton({
               next: false,
               label: prevLabel,
-              icon: <KeyboardDoubleArrowLeftOutlinedIcon aria-hidden="true" />,
+              icon: <Icon name="arrow-left" size="fit" />,
               triggerNumber: minPage,
               step: -1,
-              reverse: true,
               tabIndex: activePage == pages ? undefined : -1,
               index: 0,
             })}
@@ -308,7 +309,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
             {prevNextButton({
               next: true,
               label: nextLabel,
-              icon: <KeyboardDoubleArrowRightOutlinedIcon aria-hidden="true" />,
+              icon: <Icon name="arrow-right" size="fit" />,
               triggerNumber: pages,
               step: 1,
               tabIndex: activePage == pages ? -1 : undefined,

@@ -15,11 +15,14 @@ const ContextMenu = require('./components/context-menu');
 const Dialog = require('./components/dialog');
 const Dot = require('./components/dot');
 const Forms = require('./components/forms');
-const Calendar = require('./components/calendar');
+const Filter = require('./components/filter');
 const Icon = require('./components/icon');
+const Input = require('./components/input');
 const Label = require('./components/label');
 const Link = require('./components/link');
+const List = require('./components/list');
 const Menubar = require('./components/menubar');
+const Select = require('./components/select');
 const Snackbar = require('./components/snackbar');
 const Notification = require('./components/notification');
 const Radio = require('./components/radio');
@@ -51,6 +54,7 @@ const Header = require('./components/header');
 const SearchBar = require('./components/search-bar');
 
 const ProgressStepper = require('./components/progress-stepper');
+const ProgressBar = require('./components/progress-bar');
 
 const components = [
   Alert,
@@ -65,11 +69,14 @@ const components = [
   Dialog,
   Dot,
   Forms,
-  Calendar,
+  Filter,
   Icon,
+  Input,
   Label,
   Link,
+  List,
   Menubar,
+  Select,
   Snackbar,
   Notification,
   Radio,
@@ -99,6 +106,7 @@ const components = [
   Footer,
   Header,
   ProgressStepper,
+  ProgressBar,
 ];
 
 const defaultColors = ['warning', 'error', 'success', 'info', 'vattjom', 'juniskar', 'bjornstigen', 'gronsta'];

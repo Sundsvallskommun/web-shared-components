@@ -1,14 +1,40 @@
 module.exports = Icon = (colors) => ({
   '.sk-icon': {
     '@apply inline-flex items-center justify-center': {},
-    '@apply text-light-primary fill-light-primary': {},
-    '@apply rounded-utility': {},
 
-    // size
-    '@apply p-[0.4rem]': {},
+    '&.sk-icon-padded': {
+      '@apply rounded-utility': {},
+      '@apply text-light-primary fill-light-primary': {},
+      '@apply p-[0.4rem]': {},
+
+      ...colors.reduce(
+        (styles, color) => ({
+          ...styles,
+          [`&[data-color="${color}"]`]: {
+            [`@apply bg-${color}-surface-primary text-${color}-text-secondary fill-${color}-text-secondary`]: {},
+
+            '&[data-inverted="true"]': {
+              '@apply text-inverted-light-primary': {},
+              [`@apply bg-inverted-${color}-surface-primary text-inverted-${color}-text-secondary fill-inverted-${color}-text-secondary`]:
+                {},
+            },
+          },
+        }),
+        {}
+      ),
+
+      "&[data-color='primary']": {
+        '@apply bg-primary-surface text-light-primary fill-light-primary': {},
+
+        '&[data-inverted="true"]': {
+          '@apply text-inverted-light-primary fill-inverted-light-primary': {},
+          '@apply bg-tertiary-surface': {},
+        },
+      },
+    },
 
     '&[data-size="fit"]': {
-      '@apply p-0 w-fit h-fit': {},
+      '@apply w-fit h-fit': {},
     },
 
     '&[data-rounded="true"]': {
@@ -19,7 +45,8 @@ module.exports = Icon = (colors) => ({
       (styles, color) => ({
         ...styles,
         [`&[data-color="${color}"]`]: {
-          [`@apply bg-${color}-surface-primary text-${color}-text-secondary fill-${color}-text-secondary`]: {},
+          '@apply text-inverted-light-primary': {},
+          [`@apply text-inverted-${color}-text-secondary fill-inverted-${color}-text-secondary`]: {},
 
           '&[data-inverted="true"]': {
             '@apply text-inverted-light-primary': {},
@@ -32,36 +59,9 @@ module.exports = Icon = (colors) => ({
     ),
 
     "&[data-color='primary']": {
-      '@apply bg-primary-surface text-light-primary fill-light-primary': {},
-
       '&[data-inverted="true"]': {
-        '@apply text-inverted-light-primary fill-inverted-light-primary': {},
-        '@apply bg-tertiary-surface': {},
-      },
-    },
-
-    '&[data-variant="ghost"]': {
-      '@apply bg-transparent': {},
-      '@apply text-inverted-light-primary fill-inverted-light-primary': {},
-
-      '&[data-inverted="true"]': {
-        [`@apply bg-transparent`]: {},
         '@apply text-light-primary fill-light-primary': {},
       },
-
-      ...colors.reduce(
-        (styles, color) => ({
-          ...styles,
-          [`&[data-color="${color}"]`]: {
-            [`@apply text-${color}-surface-primary fill-${color}-surface-primary`]: {},
-
-            '&[data-inverted="true"]': {
-              [`@apply text-inverted-${color}-surface-primary fill-inverted-${color}-surface-primary`]: {},
-            },
-          },
-        }),
-        {}
-      ),
     },
   },
 });

@@ -1,4 +1,4 @@
-import { Checkbox } from '@sk-web-gui/checkbox';
+import { Checkbox } from '@sk-web-gui/forms';
 import { cx } from '@sk-web-gui/utils';
 import { IFilterData } from './dropdown-filter';
 import { useFilterItemClass } from './styles';

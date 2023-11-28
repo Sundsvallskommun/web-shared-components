@@ -5,10 +5,10 @@ import { Button } from '@sk-web-gui/button';
 import { MoreHorizontal } from 'lucide-react';
 
 export default {
-  title: 'Komponenter/Tabeller/DataTable',
+  title: 'Komponenter/Table/DataTable',
   component: DataTable,
   tags: ['autodocs'],
-} as Meta;
+} as Meta<typeof DataTable>;
 
 const ongoingCases: any = {
   data: [

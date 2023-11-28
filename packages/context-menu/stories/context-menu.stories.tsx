@@ -8,19 +8,20 @@ import React from 'react';
 import { ContextMenu } from '../src';
 import { Link } from '@sk-web-gui/link';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Meta } from '@storybook/react';
 
 export default {
-  title: 'Komponenter/Meny/Kontextmeny',
+  title: 'Komponenter/ContextMenu',
   component: ContextMenu,
   tags: ['autodocs'],
-};
+} as Meta<typeof ContextMenu>;
 
 export const Template = () => {
   return (
     <div className="h-96">
       <div>
         <ContextMenu>
-          <ContextMenu.Button size="sm" variant="outline" color="primary" iconButton rounded>
+          <ContextMenu.Button size="sm" color="primary" iconButton rounded>
             <ArrowDownwardIcon />
           </ContextMenu.Button>
           <ContextMenu.Item>
@@ -62,9 +63,7 @@ export const Template = () => {
       <div className="mt-lg">
         <h2>Textknapp</h2>
         <ContextMenu menuSide="right">
-          <ContextMenu.Button variant="outline" rightIcon={<ExpandMoreIcon />}>
-            Kontextmeny
-          </ContextMenu.Button>
+          <ContextMenu.Button rightIcon={<ExpandMoreIcon />}>Kontextmeny</ContextMenu.Button>
           <ContextMenu.Item>
             <Button
               variant="link"
@@ -111,7 +110,7 @@ export const solid = () => {
     <div className="h-96">
       <div>
         <ContextMenu>
-          <ContextMenu.Button size="sm" variant="outline" color="primary" iconButton rounded>
+          <ContextMenu.Button size="sm" color="primary" iconButton rounded>
             <ArrowDownwardIcon />
           </ContextMenu.Button>
           <ContextMenu.Item>
@@ -120,12 +119,7 @@ export const solid = () => {
             </Button>
           </ContextMenu.Item>
           <ContextMenu.Item>
-            <Button
-              variant="solid"
-              color="error"
-              leftIcon={<DeleteOutlineOutlinedIcon />}
-              onClick={() => console.log('Delete')}
-            >
+            <Button color="error" leftIcon={<DeleteOutlineOutlinedIcon />} onClick={() => console.log('Delete')}>
               Ta bort
             </Button>
           </ContextMenu.Item>

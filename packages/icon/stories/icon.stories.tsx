@@ -1,20 +1,16 @@
 import React from 'react';
-import { Icon, IconProps } from '../src';
+import { Icon, IconProps } from '../src/icon';
 import { Meta } from '@storybook/react';
 
 export default {
-  title: 'Komponenter/Ikoner/Komponent',
+  title: 'Komponenter/Icon',
   component: Icon,
   tags: ['autodocs'],
   args: {
     name: 'check',
   },
-} as Meta;
+} as Meta<typeof Icon>;
 
-export const Template = (props: IconProps) => (
-  <div className="flex space-x-6">
-    <Icon {...props} />
-  </div>
-);
+export const Template = (props: IconProps) => <Icon {...props} />;
 
 Template.storyName = 'Icon';

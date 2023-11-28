@@ -1,5 +1,5 @@
-module.exports = Breadcrumb = (colors) => ({
-  '.breadcrumb': {
+module.exports = Breadcrumb = () => ({
+  '.sk-breadcrumb': {
     '@apply text-body relative': {},
 
     '&-item': {
@@ -11,25 +11,23 @@ module.exports = Breadcrumb = (colors) => ({
     },
   },
 
-
-  '.breadcrumb-item': {
-
-    'span': {
+  '.sk-breadcrumb-item': {
+    span: {
       '&[aria-current="page"]': {
         '@apply font-bold': {},
-      },  
+      },
     },
-    
-    ...colors.reduce(
-      (styles, color) => ({
-        ...styles,
-        [`&[data-color="${color}"]`]: {
-          'a.link': {
-            [`@apply text-${color}-text-primary`]: {},
-          }
-        },
-      }),
-      {}
-    ),
-  }
+
+    [`&[data-color="primary"]`]: {
+      'a.sk-link': {
+        [`@apply text-secondary`]: {},
+      },
+    },
+
+    [`&[data-color="vattjom"]`]: {
+      'a.sk-link': {
+        [`@apply text-vattjom-text-primary`]: {},
+      },
+    },
+  },
 });

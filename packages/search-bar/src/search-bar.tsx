@@ -79,7 +79,7 @@ export const SearchBar = React.forwardRef<HTMLInputElement, SearchbarProps>((pro
 
   return (
     <div className={`search-bar ${className}`}>
-      <Input.Group size={size} rounded={rounded}>
+      <Input.Group size={size}>
         <Input
           ref={internalRef}
           type="text"
