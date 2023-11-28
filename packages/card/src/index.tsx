@@ -15,6 +15,8 @@ import {
   CardLink,
   CardMeta,
   CardMetaProps,
+  CardList,
+  CardListProps,
 } from './card';
 
 interface CardProps
@@ -35,7 +37,8 @@ Card.Preamble = CardPreamble;
 Card.Link = CardLink;
 Card.Meta = CardMeta;
 
-export type { CardProps, CardImageProps, CardBodyProps, CardHeaderProps, CardPreambleProps, CardMetaProps };
-export { Card, CardImage, CardBody, CardHeader, CardPreamble, CardLink, CardMeta };
+
+export type { CardListProps, CardProps, CardImageProps, CardBodyProps, CardHeaderProps, CardPreambleProps, CardMetaProps };
+export { CardList, Card };
 
 export default Card;
