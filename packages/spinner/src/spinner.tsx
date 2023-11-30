@@ -1,5 +1,4 @@
-import { DefaultProps } from '@sk-web-gui/utils';
-import { cx, __DEV__ } from '@sk-web-gui/utils';
+import { __DEV__, DefaultProps } from '@sk-web-gui/utils';
 import * as React from 'react';
 
 export interface ISpinProps extends DefaultProps {
@@ -26,7 +25,7 @@ export const Spinner = React.forwardRef<SVGSVGElement, SpinProps>((props, ref) =
       style={{ width: `${size}px`, height: `${size}px` }}
       data-color={colors ? colors : undefined}
     >
-      <circle style={{ r: `${size / 2}px` }}>
+      <circle r={size / 2}>
         <animateTransform
           attributeName="transform"
           type="rotate"
