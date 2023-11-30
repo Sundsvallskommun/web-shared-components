@@ -12,6 +12,7 @@ module.exports = SearchBar = (colors) => ({
     },
 
     ...colors.reduce((styles, color) => ({
+      ...styles,
       [`&[data-color="${color}"]`]: {
         circle: {
           [`@apply stroke-${color}-surface-primary`]: {},

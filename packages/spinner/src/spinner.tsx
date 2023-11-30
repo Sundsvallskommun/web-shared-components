@@ -10,20 +10,20 @@ export interface ISpinProps extends DefaultProps {
   /** Set color of the spinner
    * @default tertiary
    */
-  colors?: 'tertiary' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
+  color?: 'tertiary' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
 }
 
-export interface SpinProps extends React.HTMLAttributes<SVGSVGElement>, ISpinProps {}
+export interface SpinProps extends Omit<React.HTMLAttributes<SVGSVGElement>, 'color'>, ISpinProps {}
 
 export const Spinner = React.forwardRef<SVGSVGElement, SpinProps>((props, ref) => {
-  const { size = 16, colors = 'tertiary', className, ...rest } = props;
-  console.log('Color: ', colors);
+  const { size = 16, color = 'tertiary', className, ...rest } = props;
+  console.log('Color: ', color);
 
   return (
     <svg
       className="sk-spinner"
       style={{ width: `${size}px`, height: `${size}px` }}
-      data-color={colors ? colors : undefined}
+      data-color={color ? color : undefined}
     >
       <circle r={size / 2}>
         <animateTransform
