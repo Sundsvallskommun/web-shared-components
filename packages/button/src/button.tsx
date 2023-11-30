@@ -61,7 +61,8 @@ export const Button = React.forwardRef(
       'aria-disabled': ariaDisabled,
       loading,
       active,
-      type = 'button',
+      as,
+      type = as ? undefined : 'button',
       className,
       color = 'primary',
       variant = 'primary',
@@ -73,7 +74,6 @@ export const Button = React.forwardRef(
       rightIcon,
       children,
       inverted,
-      as,
       ...rest
     } = props;
     const Component = as || 'button';
