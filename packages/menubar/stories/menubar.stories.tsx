@@ -2,17 +2,17 @@ import React from 'react';
 import { Meta } from '@storybook/react';
 import { MenuBar, MenuBarProps } from '../src';
 import { Button } from '@sk-web-gui/button';
-import { PopupMenu } from '@sk-web-gui/react';
+import { PopupMenu } from '@sk-web-gui/popup-menu';
 import { ChevronDown } from 'lucide-react';
 
 export default {
-  title: 'Komponenter/Meny/Menubar',
+  title: 'Komponenter/Menu-horizontal',
   component: MenuBar,
   tags: ['autodocs'],
   args: {
     separator: '/',
   },
-} as Meta;
+} as Meta<typeof MenuBar>;
 
 export const Template = (args: MenuBarProps) => {
   const [current, setCurrent] = React.useState<number | undefined>(1);

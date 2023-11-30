@@ -3,10 +3,10 @@ import { Meta } from '@storybook/react';
 import { ZebraTable, ZebraTableColumn, ZebraTableHeader, ZebraTableProps } from '../src/zebratable';
 
 export default {
-  title: 'Komponenter/Tabeller/ZebraTable',
+  title: 'Komponenter/Table',
   component: ZebraTable,
   tags: ['autodocs'],
-} as Meta;
+} as Meta<typeof ZebraTable>;
 
 const ongoingCaseLabels: any = [
   { label: 'Ärende', screenReaderOnly: false, sortable: true },

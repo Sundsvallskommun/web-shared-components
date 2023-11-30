@@ -3,7 +3,7 @@ import { Meta } from '@storybook/react';
 import { ProgressBar, ProgressBarProps } from '../src';
 
 export default {
-  title: 'Komponenter/ProgressBar/Komponent',
+  title: 'Komponenter/ProgressBar',
   component: ProgressBar,
   tags: ['autodocs'],
   args: {

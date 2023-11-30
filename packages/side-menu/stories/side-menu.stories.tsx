@@ -8,14 +8,14 @@ import testDataNoPathDraggable from './testDataNoPathDraggable.json';
 import { Select } from '@sk-web-gui/forms';
 
 export default {
-  title: 'Komponenter/Meny/Sidomeny',
+  title: 'Komponenter/Sidebar',
   component: SideMenu,
   tags: ['autodocs'],
   args: {
     label: 'Sidomeny',
     menuData: testDataNoPath,
   },
-} as Meta;
+} as Meta<typeof SideMenu>;
 
 export const Template = ({ ...args }: IMenuProps) => {
   const [activeId, setActiveId] = useState<number | string>(1280);

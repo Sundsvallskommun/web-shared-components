@@ -1,11 +1,15 @@
-import { Button, MenuBar, MenuItemGroup, PopupMenu, UserMenu } from '@sk-web-gui/react';
+import React from 'react';
+import { Button } from '@sk-web-gui/button';
+import { MenuBar } from '@sk-web-gui/menubar';
+import { PopupMenu } from '@sk-web-gui/popup-menu';
+import { UserMenu, MenuItemGroup } from '@sk-web-gui/user-menu';
 import { Meta, StoryObj } from '@storybook/react';
 import { ChevronDown, LogOut, Menu, Settings2, User, Wallet } from 'lucide-react';
-import { Link } from '../../react';
+import { Link } from '@sk-web-gui/link';
 import { Header, HeaderProps } from '../src';
 
 export default {
-  title: 'Komponenter/Header/Komponent',
+  title: 'Komponenter/Header',
   component: Header,
   tags: ['autodocs'],
 } as Meta<typeof Header>;

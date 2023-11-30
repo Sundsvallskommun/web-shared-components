@@ -5,10 +5,10 @@ import { useEffect, useState } from 'react';
 import { Dialog } from '../src/dialog';
 
 export default {
-  title: 'Komponenter/Modal/Komponent/Dialog',
+  title: 'Komponenter/Modal/Dialog',
   component: Dialog,
   tags: ['autodocs'],
-} as Meta;
+} as Meta<typeof Dialog>;
 
 const TestComponent: React.FC<{ onClose: (data: any) => void }> = ({ onClose }) => {
   useEffect(() => {

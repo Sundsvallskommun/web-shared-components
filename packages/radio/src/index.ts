@@ -1,19 +1,19 @@
 import * as React from 'react';
 
-import { Radio as InternalRadio, RadioProps as InternalRadioProps } from './radio';
-import { RadioGroup, RadioGroupProps } from './radio-group';
+import { RadioButton as InternalRadioButton, RadioButtonProps as InternalRadioButtonProps } from './radio';
+import { RadioButtonGroup, RadioButtonGroupProps } from './radio-group';
 
-interface RadioProps
-  extends InternalRadioProps,
-    React.ForwardRefExoticComponent<InternalRadioProps & React.RefAttributes<HTMLInputElement>> {
-  Group: typeof RadioGroup;
+interface RadioButtonProps
+  extends InternalRadioButtonProps,
+    React.ForwardRefExoticComponent<InternalRadioButtonProps & React.RefAttributes<HTMLInputElement>> {
+  Group: typeof RadioButtonGroup;
 }
 
-const Radio = InternalRadio as RadioProps;
+const RadioButton = InternalRadioButton as RadioButtonProps;
 
-Radio.Group = RadioGroup;
+RadioButton.Group = RadioButtonGroup;
 
-export type { RadioProps, RadioGroupProps };
+export type { RadioButtonProps, RadioButtonGroupProps };
 
-export { Radio, RadioGroup };
-export default Radio;
+export { RadioButton, RadioButtonGroup };
+export default RadioButton;

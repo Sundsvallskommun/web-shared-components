@@ -157,7 +157,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
               ref={ref}
               {...rest}
               className={zebraTableClasses}
-              summary={summary ?? summary}
+              summary={summary ? summary : undefined}
               data-dense={rowHeight === 'dense'}
             >
               {captionTitle && (

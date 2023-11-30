@@ -11,10 +11,6 @@ export default {
   },
 } as Meta<typeof Icon>;
 
-export const Template = (props: IconProps) => (
-  <div className="flex space-x-6">
-    <Icon {...props} />
-  </div>
-);
+export const Template = (props: IconProps) => <Icon {...props} />;
 
 Template.storyName = 'Icon';

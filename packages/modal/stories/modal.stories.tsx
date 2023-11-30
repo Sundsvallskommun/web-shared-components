@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { Meta } from '@storybook/react';
-import { Modal, ModalProps } from '../src/modal/modal';
 import { Button } from '@sk-web-gui/button';
+import { Meta } from '@storybook/react';
+import React, { useState } from 'react';
+import { Modal, ModalProps } from '../src/modal/modal';
 
 export default {
-  title: 'Komponenter/Modal/Komponent',
+  title: 'Komponenter/Modal',
   component: Modal,
   tags: ['autodocs'],
   args: { label: 'Title' },
-} as Meta;
+} as Meta<typeof Modal>;
 
 export const Template = ({ ...args }: ModalProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);

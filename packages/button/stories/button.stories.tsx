@@ -3,7 +3,7 @@ import { Button, ButtonProps } from '../src';
 import { Icon } from '@sk-web-gui/icon';
 
 export default {
-  title: 'Komponenter/Knappar/Komponent',
+  title: 'Komponenter/Button',
   component: Button,
   tags: ['autodocs'],
   args: {

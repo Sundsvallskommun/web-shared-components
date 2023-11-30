@@ -3,13 +3,13 @@ import { Meta } from '@storybook/react';
 import { Badge, BadgeProps } from '../src';
 
 export default {
-  title: 'Komponenter/Badge/Komponent',
+  title: 'Komponenter/Badge',
   component: Badge,
   tags: ['autodocs'],
   args: {
     counter: '1',
   },
-} as Meta;
+} as Meta<typeof Badge>;
 
 export const Template = (args: BadgeProps) => <Badge {...args} />;
 

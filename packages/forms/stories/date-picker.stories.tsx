@@ -5,9 +5,9 @@ import { DatePicker, DatePickerProps } from '../src/date-picker/date-picker';
 
 export default {
   title: 'Komponenter/DatePicker',
-  component: Input,
+  component: DatePicker,
   tags: ['autodocs'],
-} as Meta;
+} as Meta<typeof DatePicker>;
 
 export const Template = (args: DatePickerProps) => {
   return <DatePicker {...args} />;

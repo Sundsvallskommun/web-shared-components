@@ -63,51 +63,49 @@ export const Header = React.forwardRef<HTMLDivElement, HeaderProps>((props, ref)
   };
 
   return (
-    <>
-      <nav ref={ref} {...rest} className={cx('sk-header', wrapperClasses)}>
-        <div className={cx('sk-header-container')}>
-          <div className={cx('sk-header-top-content', className)}>
-            {title && (
-              <LinkWrapper wrapper={LogoLinkWrapperComponent}>
-                <Link
-                  href="/"
-                  onClick={logoLinkOnClick ? handleLogoLinkOnClick : undefined}
-                  className="no-underline"
-                  aria-label={ariaLabel || `${subtitle ? `${title} ${subtitle}` : `${title}`}. Gå till startsidan.`}
-                >
-                  <div className="flex flex-row items-center gap-6 cursor-pointer">
-                    <div>
-                      <Logo color={context?.theme?.colors?.body || undefined} />
-                    </div>
-                    <Divider orientation="vertical" className="h-[4.4rem]" />
-                    <span
-                      id="page-title"
-                      className="text-h4-sm md:text-h4-md xl:text-h4-lg font-header leading-large text-dark-primary"
-                    >
-                      {title}
-                      {subtitle && <span className="text-small font-normal block">{subtitle}</span>}
-                    </span>
+    <nav ref={ref} {...rest} className={cx('sk-header', wrapperClasses)}>
+      <div className={cx('sk-header-container')}>
+        <div className={cx('sk-header-top-content', className)}>
+          {title && (
+            <LinkWrapper wrapper={LogoLinkWrapperComponent}>
+              <Link
+                href="/"
+                onClick={logoLinkOnClick ? handleLogoLinkOnClick : undefined}
+                className="no-underline"
+                aria-label={ariaLabel || `${subtitle ? `${title} ${subtitle}` : `${title}`}. Gå till startsidan.`}
+              >
+                <div className="flex flex-row items-center gap-6 cursor-pointer">
+                  <div>
+                    <Logo color={context?.theme?.colors?.body || undefined} />
                   </div>
-                </Link>
-              </LinkWrapper>
-            )}
-
-            {children}
-
-            {(notificationsAlert || userMenu) && (
-              <div className={cx('sk-header-usermenu', userMenuClasses)}>
-                <div className="sk-header-usermenu-content">
-                  {notificationsAlert && notificationsAlert}
-                  {userMenu && userMenu}
+                  <Divider orientation="vertical" className="h-[4.4rem]" />
+                  <span
+                    id="page-title"
+                    className="text-h4-sm md:text-h4-md xl:text-h4-lg font-header leading-large text-dark-primary"
+                  >
+                    {title}
+                    {subtitle && <span className="text-small font-normal block">{subtitle}</span>}
+                  </span>
                 </div>
+              </Link>
+            </LinkWrapper>
+          )}
+
+          {children}
+
+          {(notificationsAlert || userMenu) && (
+            <div className={cx('sk-header-usermenu', userMenuClasses)}>
+              <div className="sk-header-usermenu-content">
+                {notificationsAlert && notificationsAlert}
+                {userMenu && userMenu}
               </div>
-            )}
-            {mobileMenu && <div className={cx('sk-header-mobilemenu', userMenuClasses)}>{mobileMenu}</div>}
-          </div>
-          {mainMenu && <div className="sk-header-bottom-content">{mainMenu}</div>}
+            </div>
+          )}
+          {mobileMenu && <div className={cx('sk-header-mobilemenu', userMenuClasses)}>{mobileMenu}</div>}
         </div>
-      </nav>
-    </>
+        {mainMenu && <div className="sk-header-bottom-content">{mainMenu}</div>}
+      </div>
+    </nav>
   );
 });
 

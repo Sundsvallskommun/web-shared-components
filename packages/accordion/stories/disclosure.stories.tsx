@@ -2,13 +2,13 @@ import { Meta } from '@storybook/react';
 import { Disclosure, DisclosureProps } from '../src';
 
 export default {
-  title: 'Komponenter/Accordions/Disclosure',
+  title: 'Komponenter/Accordion/Disclosure',
   component: Disclosure,
   tags: ['autodocs'],
   args: {
     header: 'En vanlig fråga',
   },
-} as Meta;
+} as Meta<typeof Disclosure>;
 
 export const Template = (args: DisclosureProps) => {
   return (
@@ -23,4 +23,4 @@ export const Template = (args: DisclosureProps) => {
   );
 };
 
-Template.storyName = 'Komponent';
+Template.storyName = 'Disclosure';

@@ -3,9 +3,9 @@ import { cx, __DEV__ } from '@sk-web-gui/utils';
 import { DefaultProps } from '@sk-web-gui/utils';
 import * as React from 'react';
 
-import { useRadioClass, useRadioLabelClass } from './styles';
+import { useRadioButtonClass, useRadioButtonLabelClass } from './styles';
 
-interface IRadioProps<T = HTMLInputElement> extends DefaultProps {
+interface IRadioButtonProps<T = HTMLInputElement> extends DefaultProps {
   /* Makes radio disabled */
   disabled?: React.InputHTMLAttributes<T>['disabled'];
   /* Makes radio invalid */
@@ -53,9 +53,9 @@ interface IRadioProps<T = HTMLInputElement> extends DefaultProps {
   children?: React.ReactNode;
 }
 
-export type RadioProps = IRadioProps & React.HTMLAttributes<HTMLInputElement>;
+export type RadioButtonProps = IRadioButtonProps & React.HTMLAttributes<HTMLInputElement>;
 
-export const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
+export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>((props, ref) => {
   const {
     id,
     name,
@@ -74,12 +74,12 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref)
 
   const { disabled, invalid } = useFormControl(props);
 
-  const radioClasses = useRadioClass({
+  const radioClasses = useRadioButtonClass({
     size,
     disabled,
   });
 
-  const radioLabelClasses = useRadioLabelClass({ size });
+  const radioLabelClasses = useRadioButtonLabelClass({ size });
 
   return (
     <label className={cx(disabled && 'cursor-not-allowed', radioLabelClasses, className)} data-disabled={disabled}>
@@ -107,5 +107,5 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>((props, ref)
 });
 
 if (__DEV__) {
-  Radio.displayName = 'Radio';
+  RadioButton.displayName = 'RadioButton';
 }

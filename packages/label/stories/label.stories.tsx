@@ -1,11 +1,12 @@
 import React from 'react';
 import { Label, LabelProps } from '../src';
+import { Meta } from '@storybook/react';
 
 export default {
-  title: 'Komponenter/Etikett/Komponent',
+  title: 'Komponenter/Label',
   component: Label,
   tags: ['autodocs'],
-};
+} as Meta<typeof Label>;
 
 export const Template = (args: LabelProps) => (
   <div className="flex flex-row gap-8">
