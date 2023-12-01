@@ -2,7 +2,7 @@ import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 import * as React from 'react';
 
 interface ITooltipProps extends DefaultProps {
-  /** Select style of list.
+  /** Select the position of the tooltip
    * @default down
    */
   position?: 'down' | 'up' | 'right' | 'left';

@@ -8,6 +8,8 @@ export default {
   tags: ['autodocs'],
 } as Meta<typeof Tooltip>;
 
-export const Template = (args: TooltipProps) => <Tooltip {...args}>Tooltip</Tooltip>;
+export const Template = (args: TooltipProps) => (
+  <Tooltip {...args}>Tooltip</Tooltip>
+);  
 
 Template.storyName = 'Tooltip';

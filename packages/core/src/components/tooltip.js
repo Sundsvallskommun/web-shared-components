@@ -17,6 +17,7 @@ module.exports = Tooltip = () => ({
 
     // Down
     '&[data-position="down"]': {
+      '@apply mb-8': {},
       '.sk-tooltip-text::after': {
         '@apply top-[100%] left-[50%] ml-[-7px]': {},
         '@apply border-t-primary-surface border-r-transparent border-b-transparent border-l-transparent': {},
@@ -25,6 +26,7 @@ module.exports = Tooltip = () => ({
 
     // Up
     '&[data-position="up"]': {
+      '@apply mt-8': {},
       '.sk-tooltip-text::after': {
         '@apply bottom-[100%] left-[50%] ml-[-7px]': {},
         '@apply border-t-transparent border-r-transparent border-b-primary-surface border-l-transparent': {},
@@ -33,6 +35,7 @@ module.exports = Tooltip = () => ({
 
     // Right
     '&[data-position="right"]': {
+      '@apply mr-8': {},
       '.sk-tooltip-text::after': {
         '@apply top-[50%] left-[100%]': {},
         '@apply ml-[0px] mt-[-7px]': {},
@@ -42,6 +45,7 @@ module.exports = Tooltip = () => ({
 
     // Left
     '&[data-position="left"]': {
+      '@apply ml-8': {},
       '.sk-tooltip-text::after': {
         '@apply top-[50%] right-[100%]': {},
         '@apply ml-[0px] mt-[-7px]': {},
