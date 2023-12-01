@@ -11,15 +11,14 @@ module.exports = Select = () => ({
     '@apply border-2': {},
     '@apply border-transparent': {},
     '@apply focus:border-transparent': {},
-    '@apply rounded-button-sm md:rounded-button-md xl:rounded-button-lg': {},
+    '@apply rounded-button': {},
     '@apply bg-tertiary-surface': {},
     '@apply hover:bg-tertiary-surface-hover': {},
     '@apply text-dark-secondary': {},
+    '@apply placeholder:text-dark-secondary': {},
     '@apply hover:text-dark-primary': {},
     '@apply focus:text-dark-primary': {},
 
-    //Padding - border width
-    '@apply pl-12 md:pl-16 xl:pl-18': {},
     '@apply py-6': {},
     '@apply focus:ring focus:ring-ring focus:ring-offset': {},
     '@apply focus:outline-0': {},
@@ -28,8 +27,6 @@ module.exports = Select = () => ({
     '&:hover, &:focus': {
       backgroundImage: [`url("data:image/svg+xml;utf-8,${chevronDown('rgb(28,28,40)')}")`],
     },
-    //Background position - border width
-    '@apply bg-right-8 md:bg-right-12 xl:bg-right-16': {},
 
     //Droprown
     '*': {
@@ -42,32 +39,55 @@ module.exports = Select = () => ({
     },
 
     //Disabled
-    '&:disabled, &[aria-disabled="true"]': {
+    '&[aria-disabled="true"]': {
+      '@apply opacity-100': {},
       '@apply text-dark-disabled': {},
+      '@apply placeholder:text-dark-disabled': {},
       '@apply bg-tertiary-surface-disabled': {},
       backgroundImage: [`url("data:image/svg+xml;utf-8,${chevronDown('rgba(28,28,40, 0.5)')}")`],
     },
 
     '&-sm': {
-      '@apply text-label-small leading-[2rem]': {},
+      //Padding - border width
+      '@apply pl-12': {},
+      //Background position - border width
+      '@apply bg-right-8': {},
+
+      '@apply h-[3.2rem]': {},
+      '@apply text-label-small': {},
+      '@apply rounded-button-sm': {},
       //Padding + icon width - border width
-      '@apply pr-[3.2rem] md:pr-[3.6rem] xl:pr-[4rem]': {},
+      '@apply pr-[3.2rem]': {},
       '*': {
         '@apply text-input-small': {},
       },
     },
     '&-md': {
+      //Padding - border width
+      '@apply pl-16': {},
+      //Background position - border width
+      '@apply bg-right-12': {},
+
+      '@apply h-[4rem]': {},
       '@apply text-label-medium': {},
+      '@apply rounded-button-md': {},
       //Padding + icon width - border width
-      '@apply pr-[3.8rem] md:pr-[4.2rem] xl:pr-[4.6rem]': {},
+      '@apply pr-[4.2rem]': {},
       '*': {
         '@apply text-input-medium': {},
       },
     },
     '&-lg': {
+      //Padding - border width
+      '@apply pl-18': {},
+      //Background position - border width
+      '@apply bg-right-16': {},
+
+      '@apply h-[4.8rem]': {},
       '@apply text-label-large': {},
+      '@apply rounded-button-lg': {},
       //Padding + icon width - border width
-      '@apply pr-[4rem] md:pr-[4.4rem] xl:pr-[4.8rem]': {},
+      '@apply pr-[4.8rem]': {},
       '*': {
         '@apply text-input-large': {},
       },
@@ -78,7 +98,7 @@ module.exports = Select = () => ({
     '&:hover, &:focus': {
       backgroundImage: [`url("data:image/svg+xml;utf-8,${chevronDown('rgb(255,255,255)')}")`],
     },
-    '&:disabled, &[aria-disabled="true"]': {
+    '&[aria-disabled="true"]': {
       backgroundImage: [`url("data:image/svg+xml;utf-8,${chevronDown('rgba(255,255,255, 0.64)')}")`],
     },
   },

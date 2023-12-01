@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import { Select, SelectProps } from '../src';
 
 export default {
@@ -15,11 +15,13 @@ const people = [
   { id: '5', name: 'Katelyn Rohan', unavailable: false },
 ];
 
-export const Template: StoryObj<typeof Select> = (args: SelectProps) => {
+export const Template = (args: SelectProps) => {
   return (
     <Select {...args}>
       {people.map((person) => (
-        <Select.Option value={person.id}>{person.name}</Select.Option>
+        <Select.Option key={person.id} value={person.id}>
+          {person.name}
+        </Select.Option>
       ))}
     </Select>
   );

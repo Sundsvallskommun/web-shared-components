@@ -18,10 +18,11 @@ export interface InternalSelectProps extends IInputProps<HTMLSelectElement>, Rea
 }
 
 const InternalSelect = React.forwardRef<HTMLSelectElement, InternalSelectProps>((props, ref) => {
-  const { className, size: _size, onSelectValue, onChange, ...rest } = props;
+  const { className, size: _size, onSelectValue, onChange, invalid: _invalid, ...rest } = props;
 
-  const { disabled, invalid, required, errorId, helpTextId, id, ...formControl } = useFormControl(props);
+  const { disabled, required, errorId, helpTextId, id, ...formControl } = useFormControl(props);
   const size = _size || formControl.size || 'md';
+  const invalid = _invalid !== undefined ? _invalid : formControl.invalid;
 
   const classes = useSelectClass({ size, disabled });
 

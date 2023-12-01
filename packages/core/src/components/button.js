@@ -176,7 +176,7 @@ module.exports = Button = (colors) => ({
     '@apply m-0': {},
     '@apply px-24 py-8 gap-8': {},
     '@apply inline-flex items-center justify-center flex-shrink-0 align-middle': {},
-    '@apply rounded-button-sm md:rounded-button': {},
+    '@apply rounded-button': {},
     transitionProperty: 'background-color, border-color, color, fill, stroke, box-shadow',
     '@apply	duration-75 ease-out': {},
     '@apply outline-none appearance-none select-none whitespace-nowrap': {},
@@ -192,6 +192,7 @@ module.exports = Button = (colors) => ({
       '@apply text-label-small': {},
       '@apply px-14 py-8 gap-6': {},
       '@apply max-h-[3.2rem] h-[3.2rem]': {},
+      '@apply rounded-button-sm': {},
       svg: {
         '@apply h-[1.6rem] w-[1.6rem]': {},
       },
@@ -201,6 +202,7 @@ module.exports = Button = (colors) => ({
       '@apply text-label-medium': {},
       '@apply px-18 py-8 gap-8': {},
       '@apply max-h-[4rem] h-[4rem]': {},
+      '@apply rounded-button-md': {},
       svg: {
         '@apply h-[1.8rem] w-[1.8rem]': {},
       },
@@ -210,6 +212,7 @@ module.exports = Button = (colors) => ({
       '@apply text-label-large': {},
       '@apply px-24 py-8 gap-8': {},
       '@apply max-h-[4.8rem] h-[4.8rem]': {},
+      '@apply rounded-button-lg': {},
       svg: {
         '@apply h-[2rem] w-[2rem]': {},
       },
