@@ -7,8 +7,12 @@ export const useSelectClass = createMemoClass((props) => {
     md: 'sk-form-select-md',
     lg: 'sk-form-select-lg',
   };
+  const variant: { [key: string]: string } = {
+    primary: 'sk-form-select-primary',
+    tertiary: 'sk-form-select-tertiary',
+  };
 
-  const classes = cx('sk-form-select', sizes[props.size]);
+  const classes = cx('sk-form-select', sizes[props.size], variant[props.variant]);
 
   return classes;
 });

@@ -17,16 +17,20 @@ export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListPr
   const { total, setTotal, open, autofilter, ...context } = useCombobox();
 
   React.useEffect(() => {
-    if (internalRef.current) {
-      const positions = internalRef.current.getBoundingClientRect();
-      setTimeout(() => {
-        if (window.innerHeight - positions.top < 250) {
-          setPosition('over');
-        } else {
-          setPosition('under');
+    const handlePosition = () => {
+      if (internalRef.current) {
+        const positions = internalRef.current.parentElement?.getBoundingClientRect();
+        if (positions) {
+          if (window.innerHeight - positions.top < 280) {
+            setPosition('over');
+          } else {
+            setPosition('under');
+          }
         }
-      });
-    }
+      }
+    };
+
+    handlePosition();
   }, [open]);
 
   React.useEffect(() => {

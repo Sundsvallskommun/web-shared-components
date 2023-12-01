@@ -151,10 +151,13 @@ export const Template = (args: ComboboxProps) => {
     </div>
   );
 };
+
+Template.storyName = 'Combobox';
+
 export const WithFormControl = () => {
   return (
     <div className="h-[40rem]">
-      <FormControl disabled>
+      <FormControl>
         <FormLabel>Favoritfrukt</FormLabel>
         <Combobox placeholder="Välj en frukt">
           <Combobox.List>
@@ -175,24 +178,25 @@ export const CustomFilterHandler = () => {
 
   return (
     <div className="h-[40rem]">
-      <Combobox
-        searchPlaceholder="Search apple or pear"
-        autofilter={false}
-        searchValue={query}
-        onChangeSearch={(e) => setQuery(e.target.value.toLowerCase())}
-      >
-        <Combobox.List>
-          {applesAndPears
-            .filter((fruit) => fruit.name.toLowerCase().includes(query) || fruit.type.includes(query))
-            .map((fruit) => (
-              <Combobox.Option key={`appleAndPears-${fruit.id}`} value={fruit.id.toString()}>
-                {fruit.name}
-              </Combobox.Option>
-            ))}
-        </Combobox.List>
-      </Combobox>
+      <FormControl>
+        <FormLabel>Favoritfrukt</FormLabel>
+        <Combobox
+          searchPlaceholder="Search apple or pear"
+          autofilter={false}
+          searchValue={query}
+          onChangeSearch={(e) => setQuery(e.target.value.toLowerCase())}
+        >
+          <Combobox.List>
+            {applesAndPears
+              .filter((fruit) => fruit.name.toLowerCase().includes(query) || fruit.type.includes(query))
+              .map((fruit) => (
+                <Combobox.Option key={`appleAndPears-${fruit.id}`} value={fruit.id.toString()}>
+                  {fruit.name}
+                </Combobox.Option>
+              ))}
+          </Combobox.List>
+        </Combobox>
+      </FormControl>
     </div>
   );
 };
-
-Template.storyName = 'Combobox';

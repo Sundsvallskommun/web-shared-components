@@ -1,13 +1,14 @@
 module.exports = ComboBox = () => ({
   '.sk-form-combobox': {
     '@apply focus-within:ring ring-ring ring-offset': {},
-    '@apply relative w-fit': {},
+    '@apply relative w-auto': {},
     '@apply inline-block': {},
     '&-sm': {
       '@apply h-[3.2rem]': {},
       '@apply rounded-button-sm': {},
       '.sk-form-combobox-select.active': {
         '@apply text-input-small': {},
+        '@apply pr-[5.2rem]': {},
       },
     },
     '&-md': {
@@ -15,6 +16,7 @@ module.exports = ComboBox = () => ({
       '@apply rounded-button-md': {},
       '.sk-form-combobox-select.active': {
         '@apply text-input-medium': {},
+        '@apply pr-[6.1rem]': {},
       },
     },
     '&-lg': {
@@ -22,25 +24,31 @@ module.exports = ComboBox = () => ({
       '@apply rounded-button-lg': {},
       '.sk-form-combobox-select.active': {
         '@apply text-input-large': {},
+        '@apply pr-[6.8rem]': {},
       },
     },
 
     '&-select': {
       '@apply h-full bg-right-12 bg-no-repeat': {},
-      '@apply focus:ring-0': {},
+
+      '&.sk-form-select': { '@apply focus:outline-none focus:ring-0 focus:ring-transparent': {} },
       '@apply w-full': {},
+
       '&:not(.active)': {
         '@apply cursor-default': {},
       },
-
+      '@apply focus:border-transparent': {},
+      '@apply focus:hover:border-transparent': {},
       '&.active': {
-        '@apply bg-background-content': {},
+        '@apply bg-primitives-overlay-lighten-10': {},
+        '@apply dark:bg-primitives-overlay-darken-6': {},
         '@apply placeholder:text-dark-placeholder': {},
         '@apply text-dark-primary': {},
+        '@apply border-transparent': {},
       },
     },
     '&-list': {
-      '@apply w-max': {},
+      '@apply w-full': {},
       '@apply max-h-[23rem] overflow-y-auto': {},
       '&-option': {
         '@apply cursor-default': {},
