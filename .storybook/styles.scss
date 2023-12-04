@@ -29,27 +29,6 @@ pre.prismjs .tag {
   @apply hidden;
 }
 
-.docs-wrapper {
-  .sbdocs-wrapper,
-  .sbdocs-preview,
-  .docblock-argstable-body td,
-  .docblock-argstable-head th,
-  th,
-  td,
-  p,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  ul,
-  li,
-  .material-icons,
-  .docblock-typeset,
-  .docblock-typeset > * > * {
-    @apply bg-background text-body;
-  }
-}
 
 [type='radio']:checked {
   background-image: unset;
@@ -66,12 +45,35 @@ body.dark .docblock-argstable {
   }
 }
 
-.docs-preview {
-  all: initial !important;
-  @apply bg-background;
-}
-
-.docs-preview-canvas {
-  all: unset !important;
-  @apply bg-background;
+@layer base {
+  .sbdocs {
+    &.sbdocs-wrapper,
+    .sbdocs-preview,
+    .docblock-argstable-body td,
+    .docblock-argstable-head th,
+    th,
+    td,
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    ul,
+    li,
+    .material-icons,
+    .docblock-typeset,
+    .docblock-typeset > * > * {
+        @apply bg-background text-body;
+    }
+  }
+  .docs-preview {
+    all: initial !important;
+    @apply bg-background;
+  }
+  
+  .docs-preview-canvas {
+    all: unset !important;
+    @apply bg-background;
+  }  
 }
