@@ -29,8 +29,8 @@ pre.prismjs .tag {
   @apply hidden;
 }
 
-.sbdocs {
-  &.sbdocs-wrapper,
+.docs-wrapper {
+  .sbdocs-wrapper,
   .sbdocs-preview,
   .docblock-argstable-body td,
   .docblock-argstable-head th,
