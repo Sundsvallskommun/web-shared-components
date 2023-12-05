@@ -56,34 +56,34 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => 
     });
   });
 
-  if (href !== '') {
-    return (
-      <Link
-        href={href}
-        data-color={color ? color : undefined}
-        data-inverted={invert ? invert : undefined}
-        data-layout={layout ? layout : undefined}
-        className={cx('sk-card', { 'sk-card-use-hover-effect': useHoverEffect }, className)}
-        {...rest}
-        ref={ref}
-      >
-        {clones}
-      </Link>
-    );
-  } else {
-    return (
-      <div
-        data-color={color ? color : undefined}
-        data-inverted={invert ? invert : undefined}
-        data-layout={layout ? layout : undefined}
-        className={cx('sk-card', { 'sk-card-use-hover-effect': useHoverEffect }, className)}
-        {...rest}
-        ref={ref}
-      >
-        {clones}
-      </div>
-    );
-  }
+  return (
+    <div>
+      {href !== '' ? (
+        <Link
+          href={href}
+          data-color={color ? color : undefined}
+          data-inverted={invert ? invert : undefined}
+          data-layout={layout ? layout : undefined}
+          className={cx('sk-card', { 'sk-card-use-hover-effect': useHoverEffect }, className)}
+          {...rest}
+          ref={ref}
+        >
+          {clones}
+        </Link>
+      ) : (
+        <div
+          data-color={color ? color : undefined}
+          data-inverted={invert ? invert : undefined}
+          data-layout={layout ? layout : undefined}
+          className={cx('sk-card', { 'sk-card-use-hover-effect': useHoverEffect }, className)}
+          {...rest}
+          ref={ref}
+        >
+          {clones}
+        </div>
+      )}
+    </div>
+  );
 });
 
 if (__DEV__) {

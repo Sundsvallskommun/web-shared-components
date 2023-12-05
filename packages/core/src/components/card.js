@@ -185,4 +185,45 @@ module.exports = Card = (colors) => ({
       bottom: '0',
     },
   },
+
+  /**
+   * Meta card
+   */
+  '.sk-meta-card': {
+    '@apply no-underline hover:no-underline': {},
+    '@apply flex bg-vattjom-surface-accent': {},
+    '@apply p-14 rounded-16 w-[454px]': {},
+
+    '&[data-color="tertiary"]': {
+      '@apply bg-neutral-200': {},
+    },
+
+    '&[data-color="vattjom"]': {
+      '@apply bg-vattjom-background-200': {},
+    },
+
+    '&-text-icon': {
+      '@apply mr-12 rounded-12 p-8': {},
+      '@apply bg-light text-dark': {},
+    },
+
+    '&-body': {
+      '&-header': {
+        'h1, h2, h3, h4, h5, h6, h7, a, p': {
+          '@apply mt-6 text-base line-clamp-1': {},
+        },
+      },
+
+      '&-text': {
+        'p, a': {
+          '@apply text-dark-secondary line-clamp-1': {},
+        },
+      },
+    },
+
+    '&-external-link-icon': {
+      '@apply ml-auto h-[32px] w-[32px]': {},
+      '@apply p-6 text-dark': {},
+    },
+  },
 });

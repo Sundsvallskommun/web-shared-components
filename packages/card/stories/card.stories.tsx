@@ -1,7 +1,8 @@
 import { Meta } from '@storybook/react';
 import React from 'react';
 import PlaceholderImage from '../../../.storybook/public/placeholder_2.png';
-import { Card, CardList, CardProps } from '../src';
+import { Card, CardList, CardProps, MetaCard } from '../src';
+import { CardMetaProps } from '../dist/types';
 
 export default {
   title: 'Komponenter/Card',
@@ -43,5 +44,32 @@ export const Template = (args: CardProps) => (
         </Card.Text>
       </Card.Body>
     </Card>
+  </CardList>
+);
+
+export const Meta_card = () => (
+  <CardList>
+    <MetaCard color="tertiary" href="https://sundsvall.se" useHoverEffect={true}>
+      <MetaCard.Header>
+        <h2>Rubrik</h2>
+      </MetaCard.Header>
+      <MetaCard.Text>
+        <p>
+          Amet enim adipiscing congue justo adipiscing sagittis volutpat nibh ac. Integer viverra lectus in quisque. In
+          nisl mauris faucibus egestas quis mi nam.
+        </p>
+      </MetaCard.Text>
+    </MetaCard>
+    <MetaCard color="vattjom">
+      <MetaCard.Header>
+        <h2>Rubrik</h2>
+      </MetaCard.Header>
+      <MetaCard.Text>
+        <p>
+          Amet enim adipiscing congue justo adipiscing sagittis volutpat nibh ac. Integer viverra lectus in quisque. In
+          nisl mauris faucibus egestas quis mi nam.
+        </p>
+      </MetaCard.Text>
+    </MetaCard>
   </CardList>
 );

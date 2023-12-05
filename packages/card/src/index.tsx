@@ -1,4 +1,3 @@
-//export * from './card';
 import * as React from 'react';
 
 import {
@@ -18,6 +17,16 @@ import {
   CardListProps,
 } from './card';
 
+import {
+  MetaCard as InternalMetaCard,
+  MetaCardProps as InternalMetaCardProps,
+  MetaCardBody,
+  MetaCardHeader,
+  MetaCardHeaderProps,
+  MetaCardText,
+  MetaCardTextProps,
+} from './metaCard';
+
 interface CardProps
   extends InternalCardProps,
     React.ForwardRefExoticComponent<InternalCardProps & React.RefAttributes<HTMLElement>> {
@@ -27,6 +36,15 @@ interface CardProps
   Text: typeof CardText;
   Meta: typeof CardMeta;
 }
+
+interface MetaCardProps
+  extends InternalMetaCardProps,
+    React.ForwardRefExoticComponent<InternalMetaCardProps & React.RefAttributes<HTMLElement>> {
+  Body: typeof MetaCardBody;
+  Header: typeof MetaCardHeader;
+  Text: typeof MetaCardText;
+}
+
 const Card = InternalCard as CardProps;
 Card.Image = CardImage;
 Card.Body = CardBody;
@@ -34,7 +52,23 @@ Card.Header = CardHeader;
 Card.Text = CardText;
 Card.Meta = CardMeta;
 
-export type { CardListProps, CardProps, CardImageProps, CardBodyProps, CardHeaderProps, CardTextProps, CardMetaProps };
-export { CardList, Card };
+const MetaCard = InternalMetaCard as MetaCardProps;
+MetaCard.Body = MetaCardBody;
+MetaCard.Header = MetaCardHeader;
+MetaCard.Text = MetaCardText;
+
+export type {
+  CardListProps,
+  CardProps,
+  CardImageProps,
+  CardBodyProps,
+  CardHeaderProps,
+  CardTextProps,
+  CardMetaProps,
+  MetaCardProps,
+  MetaCardHeaderProps,
+  MetaCardTextProps,
+};
+export { CardList, Card, MetaCard };
 
 export default Card;
