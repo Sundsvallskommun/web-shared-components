@@ -4,6 +4,7 @@ import { ChevronDown, ChevronUp } from 'lucide-react';
 import React from 'react';
 import { useAccordion } from '../accordion/accordion';
 import { Button } from '@sk-web-gui/button';
+import { useDisclosureClass } from './styles';
 
 interface IDisclosureProps extends DefaultProps {
   initalOpen?: boolean;
@@ -18,13 +19,30 @@ interface IDisclosureProps extends DefaultProps {
   id?: string;
   /* Returns true if opened, false if closed */
   onToggleOpen?: (open: boolean) => void;
+  /**
+   * Size of the disclosure
+   * @default md
+   */
+  size?: 'sm' | 'md';
 }
 
 export interface DisclosureProps extends React.HTMLAttributes<HTMLDivElement>, IDisclosureProps {}
 
 export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((props, ref) => {
-  const { disabled, initalOpen, header, children, className, headerAs, id: _id, onToggleOpen, ...rest } = props;
+  const {
+    disabled,
+    initalOpen,
+    header,
+    children,
+    className,
+    headerAs,
+    id: _id,
+    onToggleOpen,
+    size: _size,
+    ...rest
+  } = props;
   const { open, onClose, onOpen, ...context } = useAccordion();
+  const size = _size || context.size || 'md';
 
   const Comp = headerAs || context.headerAs || 'label';
 
@@ -60,10 +78,11 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
     }
   };
 
+  const classes = useDisclosureClass({ size, disabled });
   return (
     <div
       ref={ref}
-      className={cx('sk-disclosure', disclosureOpen ? 'sk-disclosure-is-open' : undefined, className)}
+      className={cx(classes, disclosureOpen ? 'sk-disclosure-is-open' : undefined, className)}
       id={id}
       data-open={disclosureOpen}
       {...rest}
