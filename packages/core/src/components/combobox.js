@@ -51,7 +51,11 @@ module.exports = ComboBox = () => ({
       '@apply w-full': {},
       '@apply max-h-[23rem] overflow-y-auto': {},
       '&-option': {
-        '@apply cursor-default': {},
+        '&.sk-popup-menu-item': {
+          '@apply cursor-default': {},
+          '@apply leading-none': {},
+          '@apply h-auto': {},
+        },
 
         '&-checkbox': {
           '@apply w-0 h-0 m-0 p-0 opacity-0': {},
