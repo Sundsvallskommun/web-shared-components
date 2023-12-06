@@ -1,6 +1,5 @@
-import React from 'react';
-import { Icon, IconProps } from '../src/icon';
 import { cx } from '@sk-web-gui/utils';
+import { Icon, IconProps } from './icon';
 
 export const IconPadded = (props: IconProps) => {
   const { children, className, ...rest } = props;

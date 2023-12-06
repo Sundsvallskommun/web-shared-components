@@ -8,3 +8,5 @@ export * from './form-error-message';
 export * from './form-helper-text';
 export * from './form-label';
 export * from './checkbox';
+export * from './combobox';
+export * from './radio';
