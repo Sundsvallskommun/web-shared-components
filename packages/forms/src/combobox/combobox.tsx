@@ -30,6 +30,10 @@ interface ComboboxBaseProps
    * Placeholder when search is active
    */
   searchPlaceholder?: string;
+  /**
+   * @default primary
+   */
+  variant?: 'primary' | 'tertiary';
 }
 
 const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((props, ref) => {
@@ -47,6 +51,7 @@ const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((prop
     children,
     autofilter = true,
     size: _size,
+    variant = 'primary',
     ...rest
   } = props;
 
@@ -79,7 +84,8 @@ const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((prop
   const name = `${id}-option`;
   const disabled = _disabled !== undefined ? _disabled : fcDisabled;
   const size = _size || fcSize || 'md';
-  const classes = useComboboxStyles({ size });
+
+  const classes = useComboboxStyles({ size, variant });
 
   const addLabel = (label: string, value: string) => {
     const newLabels = labels;
@@ -249,7 +255,13 @@ const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((prop
       <div className={cx(classes, className)} role="combobox" aria-owns={listId} ref={internalRef}>
         <input
           ref={useForkRef(inputRef, ref)}
-          className={cx('sk-form-select', `sk-form-select-${size}`, 'sk-form-combobox-select', open ? 'active' : '')}
+          className={cx(
+            'sk-form-select',
+            `sk-form-select-${size}`,
+            `sk-form-select-${variant}`,
+            'sk-form-combobox-select',
+            open ? 'active' : ''
+          )}
           tabIndex={0}
           onKeyDown={handleKeyboard}
           id={id}

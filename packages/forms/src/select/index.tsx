@@ -15,16 +15,17 @@ const Option = React.forwardRef<HTMLOptionElement, SelectOptionProps>((props, re
 
 export interface InternalSelectProps extends IInputProps<HTMLSelectElement>, React.HTMLAttributes<HTMLSelectElement> {
   onSelectValue?: (value: string) => void;
+  variant?: 'primary' | 'tertiary';
 }
 
 const InternalSelect = React.forwardRef<HTMLSelectElement, InternalSelectProps>((props, ref) => {
-  const { className, size: _size, onSelectValue, onChange, invalid: _invalid, ...rest } = props;
+  const { className, size: _size, onSelectValue, onChange, invalid: _invalid, variant = 'primary', ...rest } = props;
 
   const { disabled, required, errorId, helpTextId, id, ...formControl } = useFormControl(props);
   const size = _size || formControl.size || 'md';
   const invalid = _invalid !== undefined ? _invalid : formControl.invalid;
 
-  const classes = useSelectClass({ size, disabled });
+  const classes = useSelectClass({ size, disabled, variant });
 
   const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     onChange && onChange(event);

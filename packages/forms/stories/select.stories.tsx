@@ -1,10 +1,13 @@
 import { Meta } from '@storybook/react';
-import { Select, SelectProps } from '../src';
+import { SelectProps, Select } from '../src';
 
 export default {
   title: 'Komponenter/Select',
   component: Select,
   tags: ['autodocs'],
+  args: {
+    variant: 'primary',
+  },
 } as Meta<typeof Select>;
 
 const people = [
