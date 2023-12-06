@@ -236,14 +236,18 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
               />
             </div>
 
-            <Pagination
-              className="sk-zebratable-pagination"
-              pages={pages}
-              activePage={currentPage}
-              changePage={(page: number) => setCurrentPage(page)}
-              fitContainer
-            />
-
+            <div className="sk-zebratable-paginationwrapper">
+              <Pagination
+                className="sk-zebratable-pagination"
+                pages={pages}
+                activePage={currentPage}
+                showConstantPages
+                pagesAfter={1}
+                pagesBefore={1}
+                changePage={(page: number) => setCurrentPage(page)}
+                fitContainer
+              />
+            </div>
             <div className="sk-zebratable-bottom-section">
               <label className="sk-zebratable-bottom-section-label" htmlFor="pagiRowHeight">
                 Radhöjd:

@@ -27,13 +27,11 @@ module.exports = Pagination = () => ({
     },
     '&-pageLabel': {
       '@apply leading-base cursor-pointer underline text-vattjom-surface-primary': {},
-
+      '@apply focus-visible:ring ring-ring ring-offset': {},
+      '@apply rounded-full': {},
+      '@apply h-32 w-32': {},
       "&[aria-current='true']": {
         '@apply font-bold no-underline text-dark-primary': {},
-      },
-
-      '&:hover': {
-        '@apply no-underline': {},
       },
     },
 
@@ -89,17 +87,24 @@ module.exports = Pagination = () => ({
     '&.fit-content': {
       '@apply w-full max-w-full': {},
       '.sk-pagination-list': {
-        '@apply w-full flex justify-between': {},
+        '@apply w-full flex justify-center': {},
+        '@apply gap-24': {},
         '&-item': {
-          '@apply px-0  flex-shrink grow text-center': {},
+          '@apply px-0 grow-0 text-center': {},
           '&.ellipsis': {
             '@apply flex-shrink grow-0': {},
           },
           '&.prev-next': {
-            '@apply flex-shrink grow-0': {},
+            '@apply flex-shrink grow': {},
+            '&.prev': {
+              '@apply text-left': {},
+            },
+            '&.next': {
+              '@apply text-right': {},
+            },
           },
           '.sk-pagination-pageLabel': {
-            '@apply w-full max-w-[1.5em] mx-xs': {},
+            '@apply mx-xs': {},
           },
         },
       },

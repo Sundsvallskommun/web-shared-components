@@ -23,13 +23,14 @@ module.exports = ZebraTable = () => ({
 
     '&-thead': {
       '@apply border-b-1 border-dark-primary': {},
+      '@apply h-48': {},
       '&-tr': {
         '@apply table-row': {},
         '@apply text-label-small': {},
       },
 
       '&-th': {
-        '@apply py-16 px-16': {},
+        '@apply py-4': {},
 
         "&[data-isColumnSortable='true']": {
           '@apply cursor-pointer': {},
@@ -43,6 +44,11 @@ module.exports = ZebraTable = () => ({
 
     '&-sortbutton': {
       '@apply flex items-center': {},
+      '@apply focus-visible:ring ring-ring ring-offset-0': {},
+      '@apply focus-visible:bg-vattjom-background-200': {},
+      '@apply rounded-utility': {},
+      '@apply px-16': {},
+      '@apply h-40': {},
 
       '&-icon': {
         '@apply inline-flex pl-sm': {},
@@ -104,7 +110,8 @@ module.exports = ZebraTable = () => ({
     },
 
     '&-paginationwrapper': {
-      '@apply w-full text-small flex justify-between': {},
+      '@apply w-full max-w-[60rem]': {},
+      '@apply shrink': {},
     },
 
     '&-bottom': {
