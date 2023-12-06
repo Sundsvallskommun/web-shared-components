@@ -54,7 +54,7 @@ const parameters: Preview['parameters'] = {
 
       return (
         <GuiProvider theme={theme} colorScheme={colorScheme}>
-          <div id="docs-wrapper">
+          <div className="docs-wrapper">
             <DocsContainer {...props} />
           </div>
         </GuiProvider>
