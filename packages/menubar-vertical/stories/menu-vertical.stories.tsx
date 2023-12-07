@@ -12,7 +12,7 @@ export default {
 export const Template = (args: MenuVerticalProps) => {
   const [current, setCurrent] = React.useState<MenuIndex>(1001);
 
-  const handleSetCurrent = (menuIndex) => {
+  const handleSetCurrent = (menuIndex: React.SetStateAction<MenuIndex>) => {
     console.log('menuIndex', menuIndex);
     setCurrent(menuIndex);
   };
