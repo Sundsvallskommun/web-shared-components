@@ -9,6 +9,7 @@ const AlertBanner = require('./components/alert-banner');
 const Badge = require('./components/badge');
 const Breadcrumb = require('./components/breadcrumb');
 const ButtonGroup = require('./components/button-group');
+const ComboBox = require('./components/combobox');
 const Comments = require('./components/comments');
 const Checkbox = require('./components/checkbox');
 const ContextMenu = require('./components/context-menu');
@@ -65,6 +66,7 @@ const components = [
   ButtonGroup,
   Button,
   Checkbox,
+
   Comments,
   ContextMenu,
   Dialog,
@@ -83,7 +85,6 @@ const components = [
   Notification,
   Radio,
   Switch,
-
   Table,
   ZebraTable,
   CookieConsent,
@@ -109,6 +110,7 @@ const components = [
   Header,
   ProgressStepper,
   ProgressBar,
+  ComboBox,
 ];
 
 const defaultColors = ['warning', 'error', 'success', 'info', 'vattjom', 'juniskar', 'bjornstigen', 'gronsta'];

@@ -7,7 +7,6 @@ function clock() {
 
 function inputStandards() {
   return {
-    '@apply rounded-button-sm md:rounded-button-md xl:rounded-button-lg': {},
     '@apply border-1': {},
     '@apply border-primitives-overlay-darken-6': {},
     '@apply dark:border-primitives-overlay-lighten-6': {},
@@ -34,15 +33,6 @@ function inputStandards() {
       '@apply dark:hover:border-primitives-overlay-lighten-3': {},
       '@apply text-dark-disabled': {},
     },
-    '&-lg': {
-      '@apply text-input-large': {},
-    },
-    '&-md': {
-      '@apply text-input-medium': {},
-    },
-    '&-sm': {
-      '@apply text-input-small': {},
-    },
   };
 }
 
@@ -52,28 +42,44 @@ function addin() {
       '@apply bg-transparent': {},
       '@apply flex': {},
       '@apply justify-start items-center': {},
-      '@apply px-6 gap-6': {},
-      '@apply md:px-8 md:gap-8': {},
-
-      '&-left': {
-        '@apply -mr-12 md:-mr-16 xl:-mr-20': {},
-        '@apply pl-10 md:pl-12 xl:pl-16': {},
-      },
-      '&-right': {
-        '@apply -ml-12 md:-ml-16 xl:-ml-20': {},
-        '@apply pr-10 md:pr-12 xl:pr-16': {},
-      },
       '&-sm': {
+        '@apply px-6 gap-6': {},
+        '&.sk-form-input-addin-left': {
+          '@apply -mr-12': {},
+          '@apply pl-10': {},
+        },
+        '&.sk-form-input-addin-right': {
+          '@apply -ml-12': {},
+          '@apply pr-10': {},
+        },
         svg: {
           '@apply w-[1.6rem] h-[1.6rem]': {},
         },
       },
       '&-md': {
+        '@apply md:px-8 md:gap-8': {},
+        '&.sk-form-input-addin-left': {
+          '@apply -mr-16': {},
+          '@apply pl-12': {},
+        },
+        '&.sk-form-input-addin-right': {
+          '@apply -ml-16': {},
+          '@apply pr-12': {},
+        },
         svg: {
           '@apply w-[2rem] h-[2rem]': {},
         },
       },
       '&-lg': {
+        '@apply md:px-8 md:gap-8': {},
+        '&.sk-form-input-addin-left': {
+          '@apply -mr-20': {},
+          '@apply pl-16': {},
+        },
+        '&.sk-form-input-addin-right': {
+          '@apply -ml-20': {},
+          '@apply pr-16': {},
+        },
         svg: {
           '@apply w-[2.2rem] h-[2.2rem]': {},
         },
@@ -86,6 +92,7 @@ function inputGroup() {
   return {
     '&-group': {
       '@apply flex relative': {},
+      '@apply items-center': {},
       '@apply focus-within:ring': {},
       '@apply focus-within:ring-ring': {},
       '@apply text-dark-secondary': {},
@@ -103,7 +110,18 @@ function inputGroup() {
           '@apply color-black-disabled': {},
         },
       },
-
+      '&&-lg': {
+        '@apply text-input-large': {},
+        '@apply rounded-button-lg': {},
+      },
+      '&&-md': {
+        '@apply text-input-medium': {},
+        '@apply rounded-button-md': {},
+      },
+      '&&-sm': {
+        '@apply text-input-small': {},
+        '@apply rounded-button-sm': {},
+      },
       ...inputStandards(),
       '.sk-form-input': {
         '@apply rounded-0': {},
@@ -125,10 +143,22 @@ function timeAndDatePicker() {
       '@apply p-0': {},
       '@apply pl-6 md:pl-8': {},
       '@apply m-0': {},
-      '@apply -mr-2 md:-mr-4 xl:-mr-4': {},
       '@apply bg-none': {},
       '@apply bg-dark-secondary': {},
+      '&.sk-form-input-sm': {
+        '@apply w-[1.6rem] h-[1.6rem]': {},
+        '@apply -mr-2': {},
+      },
+      '&.sk-form-input-md': {
+        '@apply -mr-4': {},
+        '@apply w-[1.8rem] h-[1.8rem]': {},
+      },
+      '&.sk-form-input-lg': {
+        '@apply -mr-6': {},
+        '@apply w-[2rem] h-[2rem]': {},
+      },
     },
+
     '&[type="date"]::-webkit-inner-spin-button, &[type="date"]::-webkit-calendar-picker-indicator': {
       mask: [`url("data:image/svg+xml;utf-8,${calendar()}") no-repeat 100% 100%`],
       '-webkit-mask': [`url("data:image/svg+xml;utf-8,${calendar()}") no-repeat 100% 100%`],
@@ -141,7 +171,6 @@ function timeAndDatePicker() {
         '-webkit-mask': [`url("data:image/svg+xml;utf-8,${calendar()}") no-repeat 100% 100%`],
         maskSize: 'contain',
         '-webkit-mask-size': 'contain',
-        '@apply -mr-6 md:-mr-8 xl:-mr-8': {},
       },
     '&[type="time"]::-webkit-inner-spin-button, &[type="time"]::-webkit-calendar-picker-indicator': {
       mask: [`url("data:image/svg+xml;utf-8,${clock()}") no-repeat 100% 100%`],
@@ -150,23 +179,6 @@ function timeAndDatePicker() {
       '-webkit-mask-size': 'contain',
     },
 
-    '&-sm': {
-      '&[type="date"]::-webkit-inner-spin-button, &[type="date"]::-webkit-calendar-picker-indicator': {
-        '@apply w-[1.6rem] h-[1.6rem]': {},
-        maskSize: '16px 16px',
-        '-webkit-mask-size': '16px 16px',
-      },
-    },
-    '&-md': {
-      '&[type="date"]::-webkit-inner-spin-button, &[type="date"]::-webkit-calendar-picker-indicator': {
-        '@apply w-[2.0rem] h-[2.0rem]': {},
-      },
-    },
-    '&-lg': {
-      '&[type="date"]::-webkit-inner-spin-button, &[type="date"]::-webkit-calendar-picker-indicator': {
-        '@apply w-[2.2rem] h-[2.2rem]': {},
-      },
-    },
     '&:disabled, &[aria-disabled="true"]': {
       '&::-webkit-inner-spin-button, &::-webkit-calendar-picker-indicator': {
         '@apply color-black-disabled': {},
@@ -178,9 +190,6 @@ function timeAndDatePicker() {
 module.exports = Input = () => ({
   '.sk-form-input': {
     '@apply grow-0': {},
-    '@apply px-12 md:px-16 xl:px-20': {},
-    '@apply py-6 md:py-8 xl:py-12': {},
-    '@apply gap-6 md:gap-8 xl:gap-8': {},
     '@apply text-dark-primary': {},
 
     '&[data-hideextra="true"]': {
@@ -190,6 +199,31 @@ module.exports = Input = () => ({
         margin: 0,
       },
       '-moz-appearance': 'textfield',
+    },
+
+    '&&-lg': {
+      '@apply rounded-button-lg': {},
+      '@apply px-20': {},
+      '@apply py-12': {},
+      '@apply gap-8': {},
+      '@apply text-input-large': {},
+      '@apply h-[4.8rem]': {},
+    },
+    '&&-md': {
+      '@apply rounded-button-md': {},
+      '@apply px-16': {},
+      '@apply py-8': {},
+      '@apply gap-8': {},
+      '@apply text-input-medium': {},
+      '@apply h-[4rem]': {},
+    },
+    '&&-sm': {
+      '@apply rounded-button-sm': {},
+      '@apply px-12': {},
+      '@apply py-6': {},
+      '@apply gap-6': {},
+      '@apply text-input-small': {},
+      '@apply h-[3.2rem]': {},
     },
 
     //Focus

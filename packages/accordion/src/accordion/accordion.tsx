@@ -1,11 +1,19 @@
 import { useId } from '@reach/auto-id';
 import React from 'react';
 import Disclosure, { DisclosureProps } from '../disclosure/disclosure';
-import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
+import { DefaultProps, __DEV__, __REACT_NAME__, cx, getValidChildren } from '@sk-web-gui/utils';
 
 interface UseAccordionProps extends Pick<DisclosureProps, 'headerAs'> {
-  /** Default false, will close any item open when another is opened */
+  /**
+   * Will close any item open when another is opened
+   * @deafult false
+   */
   allowMultipleOpen?: boolean;
+  /**
+   * Size of the accordion
+   * @default md
+   */
+  size?: 'sm' | 'md';
 }
 
 interface UseAccordionData extends UseAccordionProps {
@@ -44,7 +52,7 @@ export const AccordionComponent = React.forwardRef<HTMLDivElement, AccordionInte
     setOpen((open) => open.filter((openId) => openId !== id));
   };
 
-  const { className, children, allowMultipleOpen, id: _id, headerAs = 'label', ...rest } = props;
+  const { className, children, allowMultipleOpen, id: _id, headerAs = 'label', size = 'md', ...rest } = props;
   const id = _id || `sk-accordion-${useId()}`;
   const labelId = `${id}-label`;
 
@@ -54,16 +62,18 @@ export const AccordionComponent = React.forwardRef<HTMLDivElement, AccordionInte
     onOpen,
     onClose,
     headerAs,
+    size,
   };
 
   const getChildren = (): React.ReactNode => {
-    const property = __DEV__ ? 'displayName' : 'name';
-    return React.Children.toArray(children).map((child: any, index) => {
-      if (child?.type[property] === Accordion.Item[property]) {
-        const props = { ...child?.props, id: child?.props?.id || `${id}-child-${index}` };
-        return React.cloneElement(child, props);
-      } else {
-        return child;
+    return getValidChildren(children).map((child, index) => {
+      switch ((child.type as React.FC)[__REACT_NAME__]) {
+        case Accordion.Item[__REACT_NAME__]:
+          console.log(child);
+          const props = { ...child?.props, id: child?.props?.id || `${id}-child-${index}` };
+          return React.cloneElement(child, props);
+        default:
+          return child;
       }
     });
   };

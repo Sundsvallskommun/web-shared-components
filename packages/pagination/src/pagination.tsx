@@ -101,7 +101,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
         type="button"
         role="menuitem"
         aria-current={active}
-        aria-label={active ? `sida ${pageNumber}, Nuvarande sida` : `Gå till sida ${pageNumber} av ${pages}.`}
+        aria-label={active ? `sida ${pageNumber}, Nuvarande sida` : `Sida ${pageNumber} av ${pages}.`}
         className={cx(`sk-pagination-pageLabel`)}
         onClick={() => handleClick(pageNumber)}
         key={`page${pageNumber}`}
@@ -128,9 +128,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
         tabIndex={tabIndex}
         role="menuitem"
         type="button"
-        aria-label={`Gå till ${next ? 'nästa' : 'föregående'} sida ${
-          next ? currentPage + 1 : currentPage - 1
-        } av ${pages}.`}
+        aria-label={`${next ? 'Nästa' : 'Föregående'} sida ${next ? currentPage + 1 : currentPage - 1} av ${pages}.`}
         aria-disabled={isDisabled}
         disabled={isDisabled}
         onClick={() => isDisabled || handleClick(currentPage + step)}
@@ -205,9 +203,9 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
   };
 
   const keyboardHandler = (event: KeyboardEvent<HTMLButtonElement>) => {
-    const allItems = Array.from(event.currentTarget?.parentElement?.parentElement?.children as any);
+    const allItems = Array.from(event.currentTarget?.parentElement?.parentElement?.children as HTMLCollection);
     const total = allItems?.length;
-    const index = allItems.indexOf(event.currentTarget?.parentElement);
+    const index = event.currentTarget?.parentElement ? allItems.indexOf(event.currentTarget?.parentElement) : -1;
 
     if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
       event.preventDefault();
@@ -263,7 +261,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
         </Select>
       ) : (
         <ul className="sk-pagination-list" role="menubar" aria-orientation="horizontal">
-          <li className="sk-pagination-list-item prev-next" role="none">
+          <li className="sk-pagination-list-item prev-next prev" role="none">
             {prevNextButton({
               next: false,
               label: prevLabel,
@@ -305,7 +303,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
                 {pageLabel(pages)}
               </li>
             )}
-          <li className="sk-pagination-list-item  prev-next" role="none">
+          <li className="sk-pagination-list-item  prev-next next" role="none">
             {prevNextButton({
               next: true,
               label: nextLabel,

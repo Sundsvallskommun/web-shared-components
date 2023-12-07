@@ -1,7 +1,7 @@
 module.exports = Accordion = () => ({
   '.sk-disclosure': {
     '&-header': {
-      '@apply mt-6': {},
+      '@apply mt-6 mb-8': {},
       '@apply flex flex-col text-left': {},
       '@apply cursor-pointer': {},
       '*': {
@@ -12,9 +12,9 @@ module.exports = Accordion = () => ({
       },
 
       '&-icon': {
-        '@apply ml-auto !text-2xl': {},
+        '@apply ml-auto w-20 h-20': {},
         svg: {
-          '@apply !text-2xl': {},
+          '@apply w-20 h-20': {},
         },
       },
       '&[data-disabled="true"]': {
@@ -26,19 +26,35 @@ module.exports = Accordion = () => ({
       },
     },
 
+    '&-sm': {
+      '.sk-disclosure-title': {
+        '@apply text-h4-sm font-bold': {},
+      },
+      '.sk-disclosure-toggle': {
+        '@apply py-4': {},
+        '@apply h-40': {},
+      },
+    },
+    '&-md': {
+      '.sk-disclosure-title': {
+        '@apply text-h4-md font-bold': {},
+      },
+      '.sk-disclosure-toggle': {
+        '@apply py-8': {},
+        '@apply h-56': {},
+      },
+    },
     '&-toggle': {
       '@apply flex items-center justify-between': {},
-      '@apply py-8 gap-16': {},
-
-      '.sk-disclosure-title': {
-        '@apply text-h4-sm md:text-h4-md xl:text-h4-lg font-bold': {},
-        '@apply leading-h4-sm md:leading-h4-md xl:leading-h4-lg': {},
-      },
+      '@apply gap-16': {},
+    },
+    '&-title': {
+      '@apply text-dark-secondary': {},
     },
 
     '&-body': {
-      '@apply mb-6': {},
-      '@apply py-6': {},
+      '@apply mb-32': {},
+      '@apply py-0': {},
       '@apply h-0 overflow-hidden': {},
       transitionProperty: 'visibility, height, padding, margin',
       transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
@@ -53,8 +69,13 @@ module.exports = Accordion = () => ({
       },
     },
 
-    '&-is-open &-body': {
-      '@apply overflow-visible animate-reset-overflow': {},
+    '&-is-open': {
+      '.sk-disclosure-body': {
+        '@apply overflow-visible animate-reset-overflow': {},
+      },
+      '.sk-disclosure-title': {
+        '@apply text-vattjom-text-primary': {},
+      },
     },
   },
   '.sk-accordion': {

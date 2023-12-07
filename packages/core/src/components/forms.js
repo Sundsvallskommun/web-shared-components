@@ -17,14 +17,6 @@ module.exports = Forms = () => ({
 
   '.sk-form-helper-text, sk-form-error-message': {
     '@apply font-normal': {},
-    '&-sm': {
-      '@apply text-small': {},
-    },
-    '&-md': {
-      '@apply text-base': {},
-    },
-    '&-lg': {
-      '@apply text-large': {},
-    },
+    '@apply text-small': {},
   },
 });
