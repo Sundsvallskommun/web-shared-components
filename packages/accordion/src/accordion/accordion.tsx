@@ -1,7 +1,7 @@
 import { useId } from '@reach/auto-id';
 import React from 'react';
 import Disclosure, { DisclosureProps } from '../disclosure/disclosure';
-import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
+import { DefaultProps, __DEV__, __REACT_NAME__, cx } from '@sk-web-gui/utils';
 
 interface UseAccordionProps extends Pick<DisclosureProps, 'headerAs'> {
   /** Default false, will close any item open when another is opened */
@@ -57,11 +57,15 @@ export const AccordionComponent = React.forwardRef<HTMLDivElement, AccordionInte
   };
 
   const getChildren = (): React.ReactNode => {
-    const property = __DEV__ ? 'displayName' : 'name';
-    return React.Children.toArray(children).map((child: any, index) => {
-      if (child?.type[property] === Accordion.Item[property]) {
-        const props = { ...child?.props, id: child?.props?.id || `${id}-child-${index}` };
-        return React.cloneElement(child, props);
+    return React.Children.toArray(children).map((child, index) => {
+      if (React.isValidElement(child) && typeof child?.type !== 'string') {
+        switch ((child?.type as React.FC)[__REACT_NAME__]) {
+          case Accordion.Item[__REACT_NAME__]:
+            const props = { ...child?.props, id: child?.props?.id || `${id}-child-${index}` };
+            return React.cloneElement(child, props);
+          default:
+            return child;
+        }
       } else {
         return child;
       }

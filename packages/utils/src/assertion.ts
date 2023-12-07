@@ -13,3 +13,4 @@ export function isObject(value: any): value is Dict {
 }
 
 export const __DEV__ = process.env.NODE_ENV !== 'production';
+export const __REACT_NAME__: 'displayName' | 'name' = __DEV__ ? 'displayName' : 'name';
