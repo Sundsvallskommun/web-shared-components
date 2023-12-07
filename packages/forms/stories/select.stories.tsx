@@ -1,10 +1,13 @@
-import { Meta, StoryObj } from '@storybook/react';
-import { Select, SelectProps } from '../src';
+import { Meta } from '@storybook/react';
+import { SelectProps, Select } from '../src';
 
 export default {
   title: 'Komponenter/Select',
   component: Select,
   tags: ['autodocs'],
+  args: {
+    variant: 'primary',
+  },
 } as Meta<typeof Select>;
 
 const people = [
@@ -15,11 +18,13 @@ const people = [
   { id: '5', name: 'Katelyn Rohan', unavailable: false },
 ];
 
-export const Template: StoryObj<typeof Select> = (args: SelectProps) => {
+export const Template = (args: SelectProps) => {
   return (
     <Select {...args}>
       {people.map((person) => (
-        <Select.Option value={person.id}>{person.name}</Select.Option>
+        <Select.Option key={person.id} value={person.id}>
+          {person.name}
+        </Select.Option>
       ))}
     </Select>
   );

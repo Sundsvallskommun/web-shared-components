@@ -22,7 +22,6 @@ export const FormLabel = React.forwardRef<HTMLElement, FormLabelProps>((props, r
   const formControl = useFormControl(rest);
   const size = _size || formControl.size || 'md';
 
-  console.log(size);
   const classes = cx(
     'sk-form-label',
     `sk-form-label-${size}`,
