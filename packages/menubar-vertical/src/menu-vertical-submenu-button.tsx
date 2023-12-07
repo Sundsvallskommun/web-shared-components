@@ -2,8 +2,8 @@ import { Button, ButtonProps } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
 import { DefaultProps, __DEV__ } from '@sk-web-gui/utils';
 import React from 'react';
-import { useMenuVertical } from './menu-vertical';
 import { IMenuVerticalItemProps } from './menu-vertical-item';
+import { useMenuVertical } from './menu-vertical-context';
 
 export interface MenuVerticalSubmenuButtonProps
   extends DefaultProps,
@@ -14,118 +14,120 @@ export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps>
   HTMLButtonElement,
   MenuVerticalSubmenuButtonProps
 >((props, ref) => {
+  const { current: thisCurrent, menuIndex, children, menuId = '', parentMenuId = '', ...rest } = props;
   const {
-    current: thisCurrent,
-    active: thisActive,
-    menuIndex,
-    children,
-    menuId = '',
-    parentMenuId = '',
-    ...rest
-  } = props;
-  const { tree, rootId } = useMenuVertical();
-  const {
+    menu,
+    rootMenuId,
+    active,
+    setActive,
+    setFocused,
+    focused,
+    activeMenuId,
+    setActiveMenuId,
     current,
     setCurrent,
+    currentMenuId,
+    setCurrentMenuId,
     prev,
     next,
-    active,
-    setActive: parentSetActive,
-    setSubmenuOpen: parentSetSubmenuOpen,
-  } = tree[parentMenuId];
-  const { submenuOpen, setSubmenuOpen, setActive: childSetActive, setCurrent: childSetCurrent } = tree[menuId];
+  } = useMenuVertical();
   const [mounted, setMounted] = React.useState<boolean>(false);
   const menuRef = React.useRef<HTMLButtonElement>(null);
   React.useImperativeHandle(ref, () => menuRef.current!, []);
+  const _menuIndex = menuIndex !== undefined ? menuIndex : React.useId();
+  const isCurrentItem = current === _menuIndex || thisCurrent;
+  const isActiveItem = active === _menuIndex;
+  const isFocusedItem = focused === _menuIndex;
 
-  const closeSubmenu = (_setCurrent: boolean = false) => {
-    // parentSetSubmenuOpen && parentSetSubmenuOpen(false);
-    setSubmenuOpen && setSubmenuOpen(false);
-    childSetActive && childSetActive(null);
-    parentSetActive && parentSetActive(null);
-    // grandparent
-    console.log('tree', tree);
-    console.log('tree[parentMenuId]', tree[parentMenuId]);
-    console.log('tree[parentMenuId].parentMenuId', tree[parentMenuId].parentMenuId);
-    tree[tree[parentMenuId].parentMenuId].setActive(tree[menuId].parentLiMenuIndex);
-    if (_setCurrent) {
-      childSetCurrent && childSetCurrent(null);
-
-      setCurrent && setCurrent(tree[menuId].parentLiMenuIndex);
-    }
-  };
-
-  const openSubmenu = (_setCurrent: boolean = false) => {
-    setSubmenuOpen && setSubmenuOpen(true);
-    childSetActive && childSetActive(0);
-    parentSetActive && parentSetActive(null);
-    if (_setCurrent) {
-      const grandParentSetCurrent = tree[tree[parentMenuId].parentMenuId].setCurrent;
-      grandParentSetCurrent && grandParentSetCurrent(null);
-      childSetCurrent && childSetCurrent(null);
-      setCurrent && setCurrent(tree[menuId].parentLiMenuIndex);
-    }
-  };
+  const isSubmenuOpen = menu[menuId].submenuOpen;
 
   const handleSubmenuKeyboard: React.KeyboardEventHandler<HTMLButtonElement> = (event) => {
     if (event.key === 'ArrowLeft') {
-      if (parentMenuId === rootId) return;
-      closeSubmenu();
-      parentSetSubmenuOpen && parentSetSubmenuOpen(false);
+      if (parentMenuId === rootMenuId) return;
+      menu[parentMenuId].setSubmenuOpen(false);
+      setActive(menu[parentMenuId].parentLiMenuIndex);
+      setFocused(menu[parentMenuId].parentLiMenuIndex);
+      setActiveMenuId(menu[parentMenuId].parentMenuId);
     }
     if (event.key === 'ArrowUp') {
       event.preventDefault();
-      prev && prev();
+      prev();
     }
     if (event.key === 'ArrowDown') {
       event.preventDefault();
-      next && next();
+      next();
     }
-    if (event.key === 'Enter' || event.key === 'ArrowRight') {
+    if (event.key === 'Enter') {
       event.target?.dispatchEvent(new MouseEvent('click'));
-      openSubmenu();
+    }
+    if (event.key === ' ') {
+      event.preventDefault();
+      menu[menuId].setSubmenuOpen((open) => !open);
+    }
+    if (event.key === 'ArrowRight') {
+      menu[menuId].setSubmenuOpen(true);
+      setActive(menu[menuId].menuItems[0].props.menuIndex as number);
+      setFocused(menu[menuId].menuItems[0].props.menuIndex as number);
+      setActiveMenuId(menuId);
     }
   };
 
   const handleSubmenuOnClick = () => {
-    console.log('tree', tree);
-    if (tree[menuId].submenuOpen) {
-      closeSubmenu(true);
+    if (isSubmenuOpen) {
+      menu[menuId].setSubmenuOpen(false);
+      setCurrent(_menuIndex);
+      setCurrentMenuId(parentMenuId);
+      setActive(_menuIndex);
+      setActiveMenuId(parentMenuId);
     } else {
-      openSubmenu(true);
+      menu[menuId].setSubmenuOpen(true);
+      setCurrent(_menuIndex);
+      setCurrentMenuId(parentMenuId);
+      setActive(_menuIndex);
+      setActiveMenuId(parentMenuId);
     }
   };
 
   React.useEffect(() => {
-    if (thisCurrent && typeof menuIndex === 'number') {
-      setCurrent && setCurrent(menuIndex);
+    if (isCurrentItem) {
+      setCurrent(_menuIndex);
+      setCurrentMenuId(parentMenuId);
     }
-  }, [thisCurrent]);
+  }, [isCurrentItem, currentMenuId]);
+
+  React.useEffect(() => {
+    if (isActiveItem) {
+      setActive(_menuIndex);
+      setActiveMenuId(parentMenuId);
+    }
+  }, [isActiveItem, activeMenuId]);
 
   React.useEffect(() => {
     if (mounted) {
-      if (active === menuIndex || thisActive) {
+      if (isFocusedItem && isActiveItem) {
         menuRef.current && menuRef.current.focus();
       }
     } else {
       setMounted(true);
     }
-  }, [active, thisActive]);
-  console.log('submenuItem', menuId, menuIndex, current, active);
+  }, [isFocusedItem, isActiveItem, activeMenuId]);
+
   return (
     <Button
       {...rest}
       className="sk-menu-vertical-item-submenu-button"
       ref={menuRef}
       role="menuitem"
-      data-menuindex={menuIndex}
-      aria-current={current === menuIndex ? 'page' : undefined}
-      tabIndex={active === menuIndex ? 0 : -1}
+      data-menuindex={_menuIndex}
+      data-menuid={menuId}
+      data-parentmenuid={parentMenuId}
+      aria-current={isCurrentItem ? 'page' : undefined}
+      tabIndex={isActiveItem ? 0 : -1}
       onKeyDown={handleSubmenuKeyboard}
       onClick={handleSubmenuOnClick}
       aria-haspopup={true}
-      aria-expanded={submenuOpen}
-      rightIcon={<Icon name={submenuOpen ? 'chevron-up' : 'chevron-down'} />}
+      aria-expanded={isSubmenuOpen}
+      rightIcon={<Icon name={isSubmenuOpen ? 'chevron-up' : 'chevron-down'} />}
     >
       {children}
     </Button>

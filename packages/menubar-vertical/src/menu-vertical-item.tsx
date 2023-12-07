@@ -1,18 +1,18 @@
-import { DefaultProps, __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
+import { DefaultProps, __DEV__, cx, getValidChildren, __REACT_NAME__ } from '@sk-web-gui/utils';
 import React from 'react';
-import { MenuVerticalComponent, useMenuVertical } from './menu-vertical';
+import { MenuVerticalComponent, MenuVerticalComponentProps } from './menu-vertical';
+import { MenuIndex, useMenuVertical } from './menu-vertical-context';
 
 export interface IMenuVerticalItemProps extends DefaultProps {
-  /** Set true if this is the current menuoption. Can be handled by MenuVertical */
+  /** Set true to set to current */
   current?: boolean;
-  /** Set automatic */
-  menuIndex?: number;
-  /** Set parent id */
-  menuId?: string;
-  /** Use <a> or <button>. For dropdown, use <PopupMenu> */
+  /** Set to override menuIndex */
+  menuIndex?: MenuIndex;
+  /** Use <a> or <button>. For dropdown, use Another <MenuVertical> with a <MenuVertical.SubmenuButton> instead of first item */
   children: JSX.Element;
-  /** For e.g. Next Links to work, they need to wrapped this way */
+  /** For e.g. Next Links to work, they need to be wrapped this way */
   wrapper?: JSX.Element;
+  menuId?: string;
   parentMenuId?: string;
 }
 
@@ -24,7 +24,7 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
   (props, ref) => {
     const {
       className,
-      current: thisCurrent,
+      current: thisCurrent = false,
       children,
       menuIndex = 0,
       menuId = '',
@@ -33,37 +33,38 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
       ...rest
     } = props;
 
-    const { tree, rootId } = useMenuVertical();
-    const { setActive: parentSetActive } = tree[parentMenuId];
-    const { current, setCurrent, next, prev, active, setActive, setSubmenuOpen, parentLiMenuIndex } = tree[menuId];
+    const contextProps = useMenuVertical();
+    const {
+      menu,
+      rootMenuId,
+      active,
+      setActive,
+      setFocused,
+      focused,
+      activeMenuId,
+      setActiveMenuId,
+      current,
+      setCurrent,
+      currentMenuId,
+      setCurrentMenuId,
+      prev,
+      next,
+      openAboveSubmenus,
+    } = contextProps;
     const [mounted, setMounted] = React.useState<boolean>(false);
     const menuRef = React.useRef<HTMLElement>();
-
-    React.useEffect(() => {
-      if (thisCurrent && typeof menuIndex === 'number') {
-        setCurrent && setCurrent(menuIndex);
-      }
-    }, [thisCurrent]);
-
-    React.useEffect(() => {
-      if (active === menuIndex) {
-        setSubmenuOpen && setSubmenuOpen(true);
-      }
-      if (mounted) {
-        if (active === menuIndex) {
-          menuRef.current && menuRef.current.focus();
-        }
-      } else {
-        setMounted(true);
-      }
-    }, [active]);
+    const _menuIndex = menuIndex !== undefined ? menuIndex : React.useId();
+    const isCurrentItem = current === _menuIndex || thisCurrent;
+    const isActiveItem = active === _menuIndex;
+    const isFocusedItem = focused === _menuIndex;
 
     const handleKeyboard = (event: KeyboardEvent) => {
       if (event.key === 'ArrowLeft') {
-        if (menuId === rootId) return;
-        setSubmenuOpen && setSubmenuOpen(false);
-        setActive && setActive(null);
-        parentSetActive && parentSetActive(parentLiMenuIndex);
+        if (menuId === rootMenuId) return;
+        menu[menuId].setSubmenuOpen(false);
+        setActive(menu[menuId].parentLiMenuIndex);
+        setFocused(menu[menuId].parentLiMenuIndex);
+        setActiveMenuId(parentMenuId);
       }
       if (event.key === 'ArrowUp') {
         event.preventDefault();
@@ -78,6 +79,34 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
       }
     };
 
+    React.useEffect(() => {
+      if (isCurrentItem) {
+        openAboveSubmenus(menuId);
+        setCurrent(_menuIndex);
+        setCurrentMenuId(menuId);
+        setActive(_menuIndex);
+        setActiveMenuId(menuId);
+      }
+    }, [isCurrentItem, currentMenuId]);
+
+    React.useEffect(() => {
+      if (isActiveItem) {
+        openAboveSubmenus(menuId);
+        setActive(_menuIndex);
+        setActiveMenuId(menuId);
+      }
+    }, [isActiveItem, activeMenuId]);
+
+    React.useEffect(() => {
+      if (mounted) {
+        if (isFocusedItem && isActiveItem) {
+          menuRef.current && menuRef.current.focus();
+        }
+      } else {
+        setMounted(true);
+      }
+    }, [isFocusedItem, isActiveItem, activeMenuId]);
+
     const getClonedChild = (child: JSX.Element): React.ReactNode => {
       if (child.type === React.Fragment) {
         const grandchild = getValidChildren(child.props.children)[0];
@@ -88,18 +117,18 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
 
       const submenu = React.Children.toArray(children).find((child) => {
         if (React.isValidElement(child) && typeof child?.type !== 'string') {
-          switch ((child?.type as React.FC).displayName) {
-            case MenuVerticalComponent.displayName:
+          switch ((child?.type as React.FC)[__REACT_NAME__]) {
+            case MenuVerticalComponent[__REACT_NAME__]:
               return true;
           }
         }
-      }) as React.ReactElement;
+      }) as React.ReactElement<MenuVerticalComponentProps>;
 
       if (submenu) {
         return React.cloneElement(submenu, {
           ...submenu.props,
           menuId: menuId,
-          parentLiMenuIndex: menuIndex,
+          parentLiMenuIndex: _menuIndex,
         });
       } else {
         return React.cloneElement(child, {
@@ -107,8 +136,8 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
           onKeyDown: handleKeyboard,
           ref: menuRef,
           role: 'menuitem',
-          'aria-current': current === menuIndex ? 'page' : undefined,
-          tabIndex: active === menuIndex ? 0 : -1,
+          'aria-current': isCurrentItem ? 'page' : undefined,
+          tabIndex: isActiveItem ? 0 : -1,
         });
       }
     };

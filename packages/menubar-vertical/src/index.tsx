@@ -5,10 +5,12 @@ import { MenuVerticalItem } from './menu-vertical-item';
 import { MenuVerticalLabel } from './menu-vertical-label';
 import { MenuVerticalNav } from './menu-vertical-nav';
 import { MenuVerticalSubmenuButton } from './menu-vertical-submenu-button';
+import { MenuVerticalProvider } from './menu-vertical-context';
 
 interface MenuVerticalProps
   extends MenuVerticalComponentProps,
     React.ForwardRefExoticComponent<MenuVerticalComponentProps & React.RefAttributes<HTMLElement>> {
+  Provider: typeof MenuVerticalProvider;
   Nav: typeof MenuVerticalNav;
   BackButton: typeof MenuVerticalBackButton;
   Label: typeof MenuVerticalLabel;
@@ -18,6 +20,7 @@ interface MenuVerticalProps
 
 export const MenuVertical = MenuVerticalComponent as MenuVerticalProps;
 
+MenuVertical.Provider = MenuVerticalProvider;
 MenuVertical.Nav = MenuVerticalNav;
 MenuVertical.BackButton = MenuVerticalBackButton;
 MenuVertical.Label = MenuVerticalLabel;

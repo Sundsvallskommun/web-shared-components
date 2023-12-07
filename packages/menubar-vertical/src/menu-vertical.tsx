@@ -1,65 +1,14 @@
-import { DefaultProps, cx } from '@sk-web-gui/utils';
+import { DefaultProps, __DEV__, cx, __REACT_NAME__ } from '@sk-web-gui/utils';
 import React, { useState } from 'react';
-import { MenuVerticalItem } from './menu-vertical-item';
-import { MenuVerticalSubmenuButton } from './menu-vertical-submenu-button';
+import { MenuItemTypes, useMenuVertical } from './menu-vertical-context';
+import { MenuVerticalItem, MenuVerticalItemProps } from './menu-vertical-item';
+import { MenuVerticalSubmenuButton, MenuVerticalSubmenuButtonProps } from './menu-vertical-submenu-button';
 
-interface UseMenuVerticalProps {
-  //** Index of current menuoption */
-  current?: number;
-}
-
-export interface MenuItemTypes {
-  menuId: string;
-  submenuItem?: React.ReactElement;
-  menuItems: React.ReactElement[];
-}
-
-interface MenuTypes extends MenuItemTypes {
-  parentMenuId: string;
-  parentLiMenuIndex: number | null;
-  active: number | null;
-  setActive: React.Dispatch<React.SetStateAction<number | null>>;
-  current: number | null;
-  setCurrent?: (menuIndex: number | null) => void;
-  submenuOpen: boolean;
-  setSubmenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  next?: () => void;
-  prev?: () => void;
-}
-
-interface Tree {
-  [id: string]: MenuTypes;
-}
-
-interface UseMenuVerticalData extends UseMenuVerticalProps {
-  tree: Tree;
-  rootId: string;
-  // currentMenuId: string; // <-- these to control current instead
-  // currentMenuIndex: number; // <--
-  // active?: number | null;
-  // setActive?: React.Dispatch<React.SetStateAction<number | null>>;
-  // current?: number | null;
-  // setCurrent?: (menuIndex: number | null) => void;
-  // same with active?
-  // next?: (currentItemMenuId: string) => void;
-  // prev?: (currentItemMenuId: string) => void;
-  // active?: string;
-  // setActive?: React.Dispatch<React.SetStateAction<string>>;
-  // setCurrent?: (currentItemMenuId: string) => void;
-  // submenuOpen?: boolean;
-  // setSubmenuOpen?: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-type IMenuVerticalComponentProps = DefaultProps &
-  UseMenuVerticalProps & {
-    rootId?: string;
-    menuId?: string;
-    parentLiMenuIndex: number | null;
-  };
-
-const MenuVerticalContext = React.createContext<UseMenuVerticalData>({ tree: {}, rootId: '' });
-
-export const useMenuVertical = () => React.useContext(MenuVerticalContext);
+type IMenuVerticalComponentProps = DefaultProps & {
+  rootId?: string;
+  menuId?: string;
+  parentLiMenuIndex?: number | string | null;
+};
 
 export interface MenuVerticalComponentProps
   extends Omit<React.HTMLAttributes<HTMLUListElement>, 'color'>,
@@ -71,52 +20,55 @@ function extractString(obj: React.ReactNode): string {
   else if (React.isValidElement(obj)) {
     return extractString(obj.props.children);
   } else if (Array.isArray(obj)) {
-    return obj.map((e) => extractString(e)).join(' ');
+    const submenuItem = obj.find((obj) => {
+      switch ((obj?.type as React.FC)[__REACT_NAME__]) {
+        case MenuVerticalSubmenuButton[__REACT_NAME__]:
+          return true;
+      }
+    });
+    return submenuItem ? extractString(submenuItem) : '';
   } else return obj.toString();
 }
 
 export const MenuVerticalComponent = React.forwardRef<HTMLUListElement, MenuVerticalComponentProps>((props, ref) => {
-  const {
-    className,
-    children,
-    rootId = `sk-menu-vertical-root`,
-    menuId: _menuId = rootId,
-    current: _current = null,
-    parentLiMenuIndex = null,
-    ...rest
-  } = props;
-  const { tree } = useMenuVertical();
-  const [current, setCurrent] = useState<number | null>(_current);
-  const [active, setActive] = useState<number | null>(Object.keys(tree).length === 0 ? 0 : null);
-  const [mounted, setMounted] = useState<boolean>(false);
+  const { className, children, menuId, parentLiMenuIndex = null, ...rest } = props;
+  const { rootMenuId, menu, setMenu } = useMenuVertical();
   const [submenuOpen, setSubmenuOpen] = useState<boolean>(false);
+  const _menu = menu;
 
-  const { menuItems, submenuItem, menuId } = React.Children.toArray(children).reduce<MenuItemTypes>(
-    (object, child, index) => {
+  const { menuItems, submenuItem, _menuId } = React.Children.toArray(children).reduce<
+    MenuItemTypes & { _menuId: string }
+  >(
+    (object, child) => {
       if (React.isValidElement(child) && typeof child?.type !== 'string') {
-        switch ((child?.type as React.FC).displayName) {
-          case MenuVerticalSubmenuButton.displayName:
+        switch ((child?.type as React.FC)[__REACT_NAME__]) {
+          case MenuVerticalSubmenuButton[__REACT_NAME__]:
             const submenuItem = child;
-            const submenuItemInnerText = extractString(submenuItem);
-            object.menuId = `sk-menu-vertical-${submenuItemInnerText}`;
-            object.submenuItem = React.cloneElement(child, {
+            const submenuItemInnerText = encodeURIComponent(extractString(submenuItem));
+            const _menuId = `${object._menuId}-${submenuItemInnerText}`;
+            object.submenuItem = React.cloneElement(child as React.ReactElement<MenuVerticalSubmenuButtonProps>, {
               ...child.props,
-              menuId: object.menuId,
-              menuIndex: parentLiMenuIndex ? parentLiMenuIndex : index,
-              parentMenuId: _menuId,
-              'data-menuid': object.menuId,
-              // 'data-menuindex': index,
+              menuIndex: child.props.menuIndex
+                ? child.props.menuIndex
+                : parentLiMenuIndex
+                ? parentLiMenuIndex
+                : `${object._menuId}`,
+              menuId: parentLiMenuIndex && parentLiMenuIndex !== rootMenuId ? parentLiMenuIndex : `${object._menuId}`,
+              parentMenuId: menuId ? menuId : rootMenuId,
             });
+            object._menuId = _menuId;
             break;
-          case MenuVerticalItem.displayName:
+          case MenuVerticalItem[__REACT_NAME__]:
+            const innerText = encodeURIComponent(extractString(child));
             object.menuItems.push(
-              React.cloneElement(child, {
+              React.cloneElement(child as React.ReactElement<MenuVerticalItemProps>, {
                 ...child.props,
-                menuIndex: object.submenuItem ? index - 1 : index,
-                menuId: object.menuId,
-                parentMenuId: _menuId,
-                'data-menuid': object.menuId,
-                'data-menuindex': object.submenuItem ? index - 1 : index,
+                menuIndex: child.props.menuIndex ? child.props.menuIndex : `${object._menuId}-${innerText}`,
+                menuId: object._menuId,
+                parentMenuId: child.props.parentMenuId ? child.props.parentMenuId : menuId ? menuId : rootMenuId,
+                'data-menuindex': child.props.menuIndex ? child.props.menuIndex : `${object._menuId}-${innerText}`,
+                'data-menuid': object._menuId,
+                'data-parentmenuid': child.props.parentMenuId ? child.props.parentMenuId : menuId ? menuId : rootMenuId,
               })
             );
             break;
@@ -125,74 +77,40 @@ export const MenuVerticalComponent = React.forwardRef<HTMLUListElement, MenuVert
 
       return object;
     },
-    { menuItems: [], submenuItem: undefined, menuId: `sk-menu-vertical-root` }
+    { menuItems: [], submenuItem: undefined, _menuId: !menuId ? `${rootMenuId}` : `${menuId}` }
   );
 
-  tree[menuId] = {
+  _menu[_menuId] = {
     submenuItem: submenuItem,
     menuItems: menuItems,
-    menuId: menuId,
-    current: current,
-    active: active,
-    parentMenuId: _menuId,
+    parentMenuId: menuId ? menuId : rootMenuId,
     parentLiMenuIndex: parentLiMenuIndex,
-    setActive: setActive,
     submenuOpen: submenuOpen,
     setSubmenuOpen: setSubmenuOpen,
   };
 
   React.useEffect(() => {
-    if (mounted) {
-      handleSetCurrent(_current);
-    } else {
-      setMounted(true);
-    }
-  }, [_current]);
+    setMenu(_menu);
+  }, []);
 
-  const handleSetCurrent = (menuIndex: MenuTypes['current']) => {
-    setCurrent(menuIndex);
-    setActive(menuIndex);
-  };
-
-  const next = () => {
-    const active = tree[menuId].active;
-    if (active === null) return;
-    if (active === tree[menuId].menuItems.length - 1) {
-      setActive(0);
-    } else {
-      setActive(active + 1);
-    }
-  };
-
-  const prev = () => {
-    const active = tree[menuId].active;
-    if (active === null) return;
-    if (active === 0) {
-      setActive(tree[menuId].menuItems.length - 1);
-    } else {
-      setActive(active - 1);
-    }
-  };
-
-  tree[menuId].next = next;
-  tree[menuId].prev = prev;
-  tree[menuId].setCurrent = handleSetCurrent;
-
-  const context = {
-    tree,
-    rootId: rootId,
-  };
-  // console.log('context', context);
   return (
-    <MenuVerticalContext.Provider value={context}>
-      {submenuItem && <MenuVerticalSubmenuButton {...submenuItem.props} />}
-      {menuItems.length && (
-        <ul id={menuId} role="menubar" ref={ref} className={cx('sk-menu-vertical', className)} {...rest}>
+    <>
+      {submenuItem ? <MenuVerticalSubmenuButton {...submenuItem.props} /> : <></>}
+      {menuItems.length ? (
+        <ul id={_menuId} role="menubar" ref={ref} className={cx('sk-menu-vertical', className)} {...rest}>
           {menuItems.map((item) => (
             <MenuVerticalItem key={`${item.props.menuId}-${item.props.menuIndex}`} {...item.props} />
           ))}
         </ul>
+      ) : (
+        <></>
       )}
-    </MenuVerticalContext.Provider>
+    </>
   );
 });
+
+if (__DEV__) {
+  MenuVerticalComponent.displayName = 'MenuVerticalComponent';
+}
+
+export default { MenuVerticalComponent };

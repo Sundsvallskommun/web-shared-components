@@ -1,6 +1,7 @@
 import { Meta } from '@storybook/react';
 import React from 'react';
 import { MenuVertical, MenuVerticalProps } from '../src';
+import { MenuIndex } from '../src/menu-vertical-context';
 
 export default {
   title: 'Komponenter/Menu-vertical',
@@ -9,72 +10,113 @@ export default {
 } as Meta<typeof MenuVertical>;
 
 export const Template = (args: MenuVerticalProps) => {
-  const [current, setCurrent] = React.useState<number | undefined>();
+  const [current, setCurrent] = React.useState<MenuIndex>(1001);
 
-  const handleSetCurrent = (number: number) => {
-    console.log('number', number);
-    setCurrent(number);
+  const handleSetCurrent = (menuIndex) => {
+    console.log('menuIndex', menuIndex);
+    setCurrent(menuIndex);
   };
 
   return (
     <div className="w-[30.2rem]">
-      <MenuVertical.Nav>
-        <MenuVertical.BackButton>Kommunala förskolor</MenuVertical.BackButton>
-        <MenuVertical.Label>Områden</MenuVertical.Label>
-        <MenuVertical {...args}>
-          <MenuVertical.Item>
-            <a href="#">test</a>
-          </MenuVertical.Item>
-          <MenuVertical.Item>
+      <MenuVertical.Provider current={current} setCurrent={handleSetCurrent}>
+        {({ setCurrentActiveFocus }) => (
+          <MenuVertical.Nav>
+            <MenuVertical.BackButton>Kommunala förskolor</MenuVertical.BackButton>
+            <MenuVertical.Label>Områden</MenuVertical.Label>
+
             <MenuVertical {...args}>
-              <MenuVertical.SubmenuButton>Alnö</MenuVertical.SubmenuButton>
               <MenuVertical.Item>
-                <a href="#">Fyrens förskola</a>
+                <a href="#">test</a>
               </MenuVertical.Item>
               <MenuVertical.Item>
-                <a href="#">Lanternans förskola</a>
-              </MenuVertical.Item>
-              <MenuVertical.Item>
-                <a href="#">Rönnbackens förskola - Ur och skur</a>
-              </MenuVertical.Item>
-              <MenuVertical.Item>
-                <a href="#">Strandgårdens förskola</a>
-              </MenuVertical.Item>
-              <MenuVertical.Item>
-                <a href="#">Vibacke förskola</a>
-              </MenuVertical.Item>
-              <MenuVertical.Item>
-                <a href="#">Äppellunda förskola</a>
-              </MenuVertical.Item>
-            </MenuVertical>
-          </MenuVertical.Item>
-          <MenuVertical.Item>
-            <MenuVertical {...args}>
-              <MenuVertical.SubmenuButton>Alnö2</MenuVertical.SubmenuButton>
-              <MenuVertical.Item>
-                <a href="#">Fyrens förskola</a>
-              </MenuVertical.Item>
-              <MenuVertical.Item>
-                <a href="#">Lanternans förskola</a>
+                <button onClick={() => setCurrentActiveFocus(1002)}>set nested current item</button>
               </MenuVertical.Item>
               <MenuVertical.Item>
                 <MenuVertical {...args}>
-                  <MenuVertical.SubmenuButton>_test</MenuVertical.SubmenuButton>
+                  <MenuVertical.SubmenuButton>Alnö</MenuVertical.SubmenuButton>
                   <MenuVertical.Item>
-                    <a href="#">test</a>
-                  </MenuVertical.Item>
-                  <MenuVertical.Item current>
-                    <a href="#">test1</a>
+                    <a href="#">Fyrens förskola</a>
                   </MenuVertical.Item>
                   <MenuVertical.Item>
-                    <a href="#">test2</a>
+                    <a href="#">Lanternans förskola</a>
+                  </MenuVertical.Item>
+                  <MenuVertical.Item>
+                    <a href="#">Rönnbackens förskola - Ur och skur</a>
+                  </MenuVertical.Item>
+                  <MenuVertical.Item menuIndex="apa">
+                    <a href="#">Strandgårdens förskola</a>
+                  </MenuVertical.Item>
+                  <MenuVertical.Item>
+                    <a href="#">Vibacke förskola</a>
+                  </MenuVertical.Item>
+                  <MenuVertical.Item>
+                    <a href="#">Äppellunda förskola</a>
+                  </MenuVertical.Item>
+                </MenuVertical>
+              </MenuVertical.Item>
+              <MenuVertical.Item>
+                <MenuVertical {...args}>
+                  <MenuVertical.SubmenuButton>Alnö2</MenuVertical.SubmenuButton>
+                  <MenuVertical.Item>
+                    <a href="#">Fyrens förskola</a>
+                  </MenuVertical.Item>
+                  <MenuVertical.Item>
+                    <a href="#">Lanternans förskola</a>
+                  </MenuVertical.Item>
+                  <MenuVertical.Item>
+                    <MenuVertical {...args}>
+                      <MenuVertical.SubmenuButton>_test</MenuVertical.SubmenuButton>
+                      <MenuVertical.Item>
+                        <a href="#">test</a>
+                      </MenuVertical.Item>
+                      <MenuVertical.Item menuIndex={1001}>
+                        <a href="#">test1</a>
+                      </MenuVertical.Item>
+                      <MenuVertical.Item>
+                        <MenuVertical {...args}>
+                          <MenuVertical.SubmenuButton>__test</MenuVertical.SubmenuButton>
+                          <MenuVertical.Item menuIndex={1002}>
+                            <a href="#">test</a>
+                          </MenuVertical.Item>
+                          <MenuVertical.Item>
+                            <a href="#">test1</a>
+                          </MenuVertical.Item>
+                          <MenuVertical.Item>
+                            <MenuVertical {...args}>
+                              <MenuVertical.SubmenuButton>___test</MenuVertical.SubmenuButton>
+                              <MenuVertical.Item>
+                                <a href="#">test</a>
+                              </MenuVertical.Item>
+                              <MenuVertical.Item>
+                                <a href="#">test1</a>
+                              </MenuVertical.Item>
+                              <MenuVertical.Item>
+                                <MenuVertical {...args}>
+                                  <MenuVertical.SubmenuButton>____test</MenuVertical.SubmenuButton>
+                                  <MenuVertical.Item>
+                                    <a href="#">test</a>
+                                  </MenuVertical.Item>
+                                  <MenuVertical.Item>
+                                    <a href="#">test1</a>
+                                  </MenuVertical.Item>
+                                  <MenuVertical.Item>
+                                    <a href="#">test2</a>
+                                  </MenuVertical.Item>
+                                </MenuVertical>
+                              </MenuVertical.Item>
+                            </MenuVertical>
+                          </MenuVertical.Item>
+                        </MenuVertical>
+                      </MenuVertical.Item>
+                    </MenuVertical>
                   </MenuVertical.Item>
                 </MenuVertical>
               </MenuVertical.Item>
             </MenuVertical>
-          </MenuVertical.Item>
-        </MenuVertical>
-      </MenuVertical.Nav>
+          </MenuVertical.Nav>
+        )}
+      </MenuVertical.Provider>
     </div>
   );
 };
