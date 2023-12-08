@@ -49,9 +49,7 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
       setCurrentMenuId,
       prev,
       next,
-      openAboveSubmenus,
     } = contextProps;
-    const [mounted, setMounted] = React.useState<boolean>(false);
     const menuRef = React.useRef<HTMLElement>();
     const _menuIndex = menuIndex !== undefined ? menuIndex : React.useId();
     const isCurrentItem = current === _menuIndex || thisCurrent;
@@ -81,31 +79,25 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
 
     React.useEffect(() => {
       if (isCurrentItem) {
-        openAboveSubmenus(menuId);
-        setCurrent(_menuIndex);
-        setCurrentMenuId(menuId);
         setActive(_menuIndex);
         setActiveMenuId(menuId);
+        setCurrent(_menuIndex);
+        setCurrentMenuId(menuId);
       }
     }, [isCurrentItem, currentMenuId]);
 
     React.useEffect(() => {
       if (isActiveItem) {
-        openAboveSubmenus(menuId);
         setActive(_menuIndex);
         setActiveMenuId(menuId);
       }
     }, [isActiveItem, activeMenuId]);
 
     React.useEffect(() => {
-      if (mounted) {
-        if (isFocusedItem && isActiveItem) {
-          menuRef.current && menuRef.current.focus();
-        }
-      } else {
-        setMounted(true);
+      if (isFocusedItem && isActiveItem) {
+        menuRef.current && menuRef.current.focus();
       }
-    }, [isFocusedItem, isActiveItem, activeMenuId]);
+    }, [isFocusedItem, isActiveItem, activeMenuId, menu[menuId].submenuOpen]);
 
     const getClonedChild = (child: JSX.Element): React.ReactNode => {
       if (child.type === React.Fragment) {
@@ -150,7 +142,12 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
     };
 
     return (
-      <li ref={ref} className={cx('sk-menu-vertical-item', className)} role="none" {...rest}>
+      <li
+        ref={ref}
+        className={cx('sk-menu-vertical-item', className, !menu[menuId].submenuOpen && 'hide')}
+        role="none"
+        {...rest}
+      >
         {getChildWithWrapper()}
       </li>
     );

@@ -13,7 +13,7 @@ export const Template = (args: MenuVerticalProps) => {
   const [current, setCurrent] = React.useState<MenuIndex>(1001);
 
   const handleSetCurrent = (menuIndex: React.SetStateAction<MenuIndex>) => {
-    console.log('menuIndex', menuIndex);
+    console.log('handleSetCurrent menuIndex', menuIndex);
     setCurrent(menuIndex);
   };
 
@@ -34,7 +34,9 @@ export const Template = (args: MenuVerticalProps) => {
               </MenuVertical.Item>
               <MenuVertical.Item>
                 <MenuVertical {...args}>
-                  <MenuVertical.SubmenuButton>Alnö</MenuVertical.SubmenuButton>
+                  <MenuVertical.SubmenuButton>
+                    <a href="#">Alnö (a-tag)</a>
+                  </MenuVertical.SubmenuButton>
                   <MenuVertical.Item>
                     <a href="#">Fyrens förskola</a>
                   </MenuVertical.Item>

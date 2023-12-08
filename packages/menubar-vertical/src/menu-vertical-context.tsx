@@ -31,18 +31,17 @@ interface UseMenuVerticalPropsStates {
   currentMenuId: string;
 }
 
-type ReactDispatchOrFn<Value = unknown> = React.Dispatch<React.SetStateAction<Value>>;
-
 interface UseMenuVerticalPropsFunctions {
   setMenu: React.Dispatch<React.SetStateAction<Menu>>;
-  setActive: ReactDispatchOrFn<UseMenuVerticalPropsStates['active']>;
-  setActiveMenuId: ReactDispatchOrFn<UseMenuVerticalPropsStates['activeMenuId']>;
-  setCurrent: ReactDispatchOrFn<UseMenuVerticalPropsStates['current']>;
-  setFocused: ReactDispatchOrFn<UseMenuVerticalPropsStates['focused']>;
-  setCurrentMenuId: ReactDispatchOrFn<UseMenuVerticalPropsStates['currentMenuId']>;
+  setActive: React.Dispatch<React.SetStateAction<UseMenuVerticalPropsStates['active']>>;
+  setActiveMenuId: React.Dispatch<React.SetStateAction<UseMenuVerticalPropsStates['activeMenuId']>>;
+  setCurrent: React.Dispatch<React.SetStateAction<UseMenuVerticalPropsStates['current']>>;
+  setFocused: React.Dispatch<React.SetStateAction<UseMenuVerticalPropsStates['focused']>>;
+  setCurrentMenuId: React.Dispatch<React.SetStateAction<UseMenuVerticalPropsStates['currentMenuId']>>;
   next: () => void;
   prev: () => void;
-  openAboveSubmenus: (menuId: string) => void;
+  getAboveSubmenuIds: (menuId: string, menuIds?: string[]) => string[];
+  setSubmenus: (defaultOpen?: boolean, options?: { openMenuIds?: string[]; closeMenuIds?: string[] }) => void;
   setCurrentActive: (menuIndex: UseMenuVerticalPropsStates['current']) => void;
   setCurrentActiveFocus: (menuIndex: UseMenuVerticalPropsStates['focused']) => void;
   setActiveFocus: (menuIndex: UseMenuVerticalPropsStates['focused']) => void;
@@ -52,7 +51,7 @@ export type UseMenuVerticalProps = UseMenuVerticalPropsStates & UseMenuVerticalP
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-const MenuVerticalContext = React.createContext<UseMenuVerticalProps>(null);
+const MenuVerticalContext = React.createContext<UseMenuVerticalProps>(null); // context defaults are generated on render
 
 export const useMenuVertical = () => React.useContext(MenuVerticalContext);
 
@@ -96,23 +95,72 @@ export function MenuVerticalProvider({
   const [activeMenuId, setActiveMenuId] = React.useState<UseMenuVerticalProps['activeMenuId']>(_activeMenuId);
   const [currentMenuId, setCurrentMenuId] = React.useState<UseMenuVerticalProps['currentMenuId']>(_currentMenuId);
 
-  const setCurrentActive = (menuIndex: UseMenuVerticalProps['current']) => {
-    _setCurrent ? _setCurrent(menuIndex) : setCurrent(menuIndex);
-    _setActive ? _setActive : setActive(menuIndex);
+  const getAboveSubmenuIds: UseMenuVerticalPropsFunctions['getAboveSubmenuIds'] = (
+    menuId: string,
+    menuIds: string[] = []
+  ) => {
+    menuIds = menuIds.concat([menuId]);
+    if (menu[menuId].parentMenuId && menu[menuId].parentMenuId !== rootMenuId) {
+      return getAboveSubmenuIds(menu[menuId].parentMenuId, menuIds);
+    } else {
+      return menuIds;
+    }
   };
 
-  const setCurrentActiveFocus = (menuIndex: UseMenuVerticalProps['focused']) => {
+  const setSubmenus: UseMenuVerticalPropsFunctions['setSubmenus'] = (defaultOpen = true, options) => {
+    Object.entries(menu).forEach(([menuId, submenu]) => {
+      if (menuId === rootMenuId) return;
+      if (options?.openMenuIds?.includes(menuId)) {
+        return submenu.setSubmenuOpen(true);
+      }
+      if (options?.closeMenuIds?.includes(menuId)) {
+        return submenu.setSubmenuOpen(false);
+      }
+      submenu.setSubmenuOpen(defaultOpen);
+    });
+  };
+
+  const setCurrentActive: UseMenuVerticalPropsFunctions['setCurrentActive'] = (
+    menuIndex: UseMenuVerticalProps['current']
+  ) => {
+    _setCurrent ? _setCurrent(menuIndex) : setCurrent(menuIndex);
+    _setActive ? _setActive : setActive(menuIndex);
+
+    // without this the current menu containing the menuItem wont open because no state change is triggered in submenuItem for isCurrentItem
+    const __current = _current !== undefined ? _current : current;
+    if (menuIndex === __current) {
+      setSubmenus(false, { openMenuIds: getAboveSubmenuIds(currentMenuId) });
+    }
+  };
+
+  const setCurrentActiveFocus: UseMenuVerticalPropsFunctions['setCurrentActiveFocus'] = (
+    menuIndex: UseMenuVerticalProps['focused']
+  ) => {
     _setCurrent ? _setCurrent(menuIndex) : setCurrent(menuIndex);
     _setActive ? _setActive : setActive(menuIndex);
     _setFocused ? _setFocused : setFocused(menuIndex);
+
+    // without this the current menu containing the menuItem wont open because no state change is triggered in submenuItem for isCurrentItem
+    const __current = _current !== undefined ? _current : current;
+    if (menuIndex === __current) {
+      setSubmenus(false, { openMenuIds: getAboveSubmenuIds(currentMenuId) });
+    }
   };
 
-  const setActiveFocus = (menuIndex: UseMenuVerticalProps['focused']) => {
+  const setActiveFocus: UseMenuVerticalPropsFunctions['setActiveFocus'] = (
+    menuIndex: UseMenuVerticalProps['focused']
+  ) => {
     _setActive ? _setActive : setActive(menuIndex);
     _setFocused ? _setFocused : setFocused(menuIndex);
+
+    // without this the current menu containing the menuItem wont open because no state change is triggered in submenuItem for isCurrentItem
+    const __current = _current !== undefined ? _current : current;
+    if (menuIndex === __current) {
+      setSubmenus(false, { openMenuIds: getAboveSubmenuIds(currentMenuId) });
+    }
   };
 
-  const next = () => {
+  const next: UseMenuVerticalPropsFunctions['next'] = () => {
     const activeMenuItemIndex = menu[activeMenuId].menuItems.findIndex((x) => x.props.menuIndex === active);
     if (active === null) return;
     if (activeMenuItemIndex === menu[activeMenuId].menuItems.length - 1) {
@@ -122,20 +170,13 @@ export function MenuVerticalProvider({
     }
   };
 
-  const prev = () => {
+  const prev: UseMenuVerticalPropsFunctions['prev'] = () => {
     const activeMenuItemIndex = menu[activeMenuId].menuItems.findIndex((x) => x.props.menuIndex === active);
     if (active === null) return;
     if (activeMenuItemIndex === 0) {
       setActiveFocus(menu[activeMenuId].menuItems[menu[activeMenuId].menuItems.length - 1].props.menuIndex as number);
     } else {
       setActiveFocus(menu[activeMenuId].menuItems[activeMenuItemIndex - 1].props.menuIndex as MenuIndex);
-    }
-  };
-
-  const openAboveSubmenus = (menuId: string) => {
-    menu[menuId].setSubmenuOpen(true);
-    if (menuId !== menu[menuId].parentMenuId) {
-      openAboveSubmenus(menu[menuId].parentMenuId);
     }
   };
 
@@ -173,10 +214,11 @@ export function MenuVerticalProvider({
 
     next,
     prev,
-    openAboveSubmenus,
+    getAboveSubmenuIds,
     setCurrentActive,
     setCurrentActiveFocus,
     setActiveFocus,
+    setSubmenus,
   };
 
   const _children = typeof children === 'function' ? children({ ...contextProps }) : children;

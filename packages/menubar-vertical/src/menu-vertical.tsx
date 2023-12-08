@@ -33,7 +33,9 @@ function extractString(obj: React.ReactNode): string {
 export const MenuVerticalComponent = React.forwardRef<HTMLUListElement, MenuVerticalComponentProps>((props, ref) => {
   const { className, children, menuId, parentLiMenuIndex = null, ...rest } = props;
   const { rootMenuId, menu, setMenu } = useMenuVertical();
-  const [submenuOpen, setSubmenuOpen] = useState<boolean>(false);
+  const [submenuOpen, setSubmenuOpen] = useState<boolean>(
+    parentLiMenuIndex && parentLiMenuIndex !== rootMenuId ? false : true
+  );
   const _menu = menu;
 
   const { menuItems, submenuItem, _menuId } = React.Children.toArray(children).reduce<
@@ -97,7 +99,13 @@ export const MenuVerticalComponent = React.forwardRef<HTMLUListElement, MenuVert
     <>
       {submenuItem ? <MenuVerticalSubmenuButton {...submenuItem.props} /> : <></>}
       {menuItems.length ? (
-        <ul id={_menuId} role="menubar" ref={ref} className={cx('sk-menu-vertical', className)} {...rest}>
+        <ul
+          id={_menuId}
+          role="menubar"
+          ref={ref}
+          className={cx('sk-menu-vertical', className, !menu[_menuId].submenuOpen && 'hide')}
+          {...rest}
+        >
           {menuItems.map((item) => (
             <MenuVerticalItem key={`${item.props.menuId}-${item.props.menuIndex}`} {...item.props} />
           ))}

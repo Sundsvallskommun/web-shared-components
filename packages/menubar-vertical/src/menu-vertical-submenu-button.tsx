@@ -1,20 +1,20 @@
-import { Button, ButtonProps } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
-import { DefaultProps, __DEV__ } from '@sk-web-gui/utils';
+import { DefaultProps, __DEV__, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
-import { IMenuVerticalItemProps } from './menu-vertical-item';
 import { useMenuVertical } from './menu-vertical-context';
+import { IMenuVerticalItemProps } from './menu-vertical-item';
 
-export interface MenuVerticalSubmenuButtonProps
-  extends DefaultProps,
-    Omit<IMenuVerticalItemProps, 'children'>,
-    ButtonProps {}
+export interface MenuVerticalSubmenuButtonProps extends DefaultProps, Omit<IMenuVerticalItemProps, 'children'> {
+  children: string | JSX.Element;
+  /** For e.g. Next Links to work, they need to be wrapped this way */
+  wrapper?: JSX.Element;
+}
 
 export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps> = React.forwardRef<
-  HTMLButtonElement,
+  HTMLElement,
   MenuVerticalSubmenuButtonProps
 >((props, ref) => {
-  const { current: thisCurrent, menuIndex, children, menuId = '', parentMenuId = '', ...rest } = props;
+  const { current: thisCurrent, menuIndex, children, menuId = '', parentMenuId = '', wrapper, ...rest } = props;
   const {
     menu,
     rootMenuId,
@@ -30,9 +30,11 @@ export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps>
     setCurrentMenuId,
     prev,
     next,
+    setSubmenus,
+    getAboveSubmenuIds,
   } = useMenuVertical();
   const [mounted, setMounted] = React.useState<boolean>(false);
-  const menuRef = React.useRef<HTMLButtonElement>(null);
+  const menuRef = React.useRef<HTMLElement>(null);
   React.useImperativeHandle(ref, () => menuRef.current!, []);
   const _menuIndex = menuIndex !== undefined ? menuIndex : React.useId();
   const isCurrentItem = current === _menuIndex || thisCurrent;
@@ -41,7 +43,7 @@ export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps>
 
   const isSubmenuOpen = menu[menuId].submenuOpen;
 
-  const handleSubmenuKeyboard: React.KeyboardEventHandler<HTMLButtonElement> = (event) => {
+  const handleSubmenuKeyboard: React.KeyboardEventHandler<HTMLElement> = async (event) => {
     if (event.key === 'ArrowLeft') {
       if (parentMenuId === rootMenuId) return;
       menu[parentMenuId].setSubmenuOpen(false);
@@ -72,26 +74,34 @@ export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps>
     }
   };
 
-  const handleSubmenuOnClick = () => {
+  const handleExpandToggle = () => {
     if (isSubmenuOpen) {
       menu[menuId].setSubmenuOpen(false);
-      setCurrent(_menuIndex);
-      setCurrentMenuId(parentMenuId);
       setActive(_menuIndex);
       setActiveMenuId(parentMenuId);
     } else {
       menu[menuId].setSubmenuOpen(true);
-      setCurrent(_menuIndex);
-      setCurrentMenuId(parentMenuId);
-      setActive(_menuIndex);
-      setActiveMenuId(parentMenuId);
+      setActive(menu[menuId].menuItems[0].props.menuIndex as number);
+      setFocused(menu[menuId].menuItems[0].props.menuIndex as number);
+      setActiveMenuId(menuId);
     }
+  };
+
+  const handleSubmenuOnClick = async () => {
+    setActive(_menuIndex);
+    setActiveMenuId(parentMenuId);
+    setCurrent(_menuIndex);
+    setCurrentMenuId(parentMenuId);
   };
 
   React.useEffect(() => {
     if (isCurrentItem) {
       setCurrent(_menuIndex);
       setCurrentMenuId(parentMenuId);
+    }
+    if (isCurrentItem || menu[menuId].menuItems.find((menuItem) => menuItem.props.menuIndex === current)) {
+      // isCurrentItem or contains current item
+      setSubmenus(false, { openMenuIds: getAboveSubmenuIds(menuId) });
     }
   }, [isCurrentItem, currentMenuId]);
 
@@ -112,25 +122,66 @@ export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps>
     }
   }, [isFocusedItem, isActiveItem, activeMenuId]);
 
+  const getClonedChild = (child: JSX.Element | string): React.ReactNode => {
+    const props = {
+      ...rest,
+      className: 'sk-menu-vertical-item-submenu-button',
+      ref: menuRef,
+      role: 'menuitem',
+      tabIndex: isActiveItem ? 0 : -1,
+      onKeyDown: handleSubmenuKeyboard,
+      onClick: handleSubmenuOnClick,
+      'aria-current': isCurrentItem ? 'page' : undefined,
+      'aria-haspopup': true,
+      'aria-expanded': isSubmenuOpen,
+    };
+
+    if (typeof child === 'string') {
+      return React.cloneElement(
+        <button />,
+        Object.assign(props, {
+          ...rest,
+          children: children,
+        })
+      );
+    }
+
+    if (child.type === React.Fragment) {
+      const grandchild = getValidChildren(child.props.children)[0];
+      if (grandchild) {
+        return React.cloneElement(child, { ...child.props, children: getClonedChild(grandchild) });
+      }
+    }
+
+    return React.cloneElement(child, Object.assign(props, rest));
+  };
+
+  const getChildWithWrapper = () => {
+    if (wrapper) {
+      return React.cloneElement(wrapper, { ...wrapper.props, children: getClonedChild(children) });
+    } else {
+      return getClonedChild(children);
+    }
+  };
+
+  const getExpandButton = () => {
+    return (
+      <button
+        onClick={handleExpandToggle}
+        aria-hidden={true}
+        tabIndex={-1}
+        className="sk-menu-vertical-item-submenu-button-expand"
+      >
+        <Icon name={isSubmenuOpen ? 'chevron-up' : 'chevron-down'} />
+      </button>
+    );
+  };
+
   return (
-    <Button
-      {...rest}
-      className="sk-menu-vertical-item-submenu-button"
-      ref={menuRef}
-      role="menuitem"
-      data-menuindex={_menuIndex}
-      data-menuid={menuId}
-      data-parentmenuid={parentMenuId}
-      aria-current={isCurrentItem ? 'page' : undefined}
-      tabIndex={isActiveItem ? 0 : -1}
-      onKeyDown={handleSubmenuKeyboard}
-      onClick={handleSubmenuOnClick}
-      aria-haspopup={true}
-      aria-expanded={isSubmenuOpen}
-      rightIcon={<Icon name={isSubmenuOpen ? 'chevron-up' : 'chevron-down'} />}
-    >
-      {children}
-    </Button>
+    <span className="sk-menu-vertical-item-submenu">
+      {getChildWithWrapper()}
+      {getExpandButton()}
+    </span>
   );
 });
 
