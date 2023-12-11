@@ -1,5 +1,5 @@
 import { Icon } from '@sk-web-gui/icon';
-import { DefaultProps, __DEV__, getValidChildren } from '@sk-web-gui/utils';
+import { DefaultProps, __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
 import { useMenuVertical } from './menu-vertical-context';
 import { IMenuVerticalItemProps } from './menu-vertical-item';
@@ -8,13 +8,31 @@ export interface MenuVerticalSubmenuButtonProps extends DefaultProps, Omit<IMenu
   children: string | JSX.Element;
   /** For e.g. Next Links to work, they need to be wrapped this way */
   wrapper?: JSX.Element;
+  /**
+   * @default large
+   */
+  size?: 'medium' | 'large';
+  /**
+   * @default false
+   */
+  disabled?: boolean;
 }
 
 export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps> = React.forwardRef<
   HTMLElement,
   MenuVerticalSubmenuButtonProps
 >((props, ref) => {
-  const { current: thisCurrent, menuIndex, children, menuId = '', parentMenuId = '', wrapper, ...rest } = props;
+  const {
+    current: thisCurrent,
+    menuIndex,
+    children,
+    menuId = '',
+    parentMenuId = '',
+    wrapper,
+    size = 'large',
+    disabled = false,
+    ...rest
+  } = props;
   const {
     menu,
     rootMenuId,
@@ -130,7 +148,8 @@ export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps>
       role: 'menuitem',
       tabIndex: isActiveItem ? 0 : -1,
       onKeyDown: handleSubmenuKeyboard,
-      onClick: handleSubmenuOnClick,
+      onClick: disabled ? undefined : handleSubmenuOnClick,
+      'aria-disabled': disabled ? disabled : undefined,
       'aria-current': isCurrentItem ? 'page' : undefined,
       'aria-haspopup': true,
       'aria-expanded': isSubmenuOpen,
@@ -166,10 +185,11 @@ export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps>
   const getExpandButton = () => {
     return (
       <button
-        onClick={handleExpandToggle}
         aria-hidden={true}
         tabIndex={-1}
         className="sk-menu-vertical-item-submenu-button-expand"
+        onClick={disabled ? undefined : handleExpandToggle}
+        aria-disabled={disabled ? disabled : undefined}
       >
         <Icon name={isSubmenuOpen ? 'chevron-up' : 'chevron-down'} />
       </button>
@@ -177,7 +197,7 @@ export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps>
   };
 
   return (
-    <span className="sk-menu-vertical-item-submenu">
+    <span className={cx('sk-menu-vertical-item-submenu', `sk-menu-vertical-item-submenu-${size}`)}>
       {getChildWithWrapper()}
       {getExpandButton()}
     </span>

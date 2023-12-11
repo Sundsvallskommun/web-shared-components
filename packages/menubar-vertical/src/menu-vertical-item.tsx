@@ -14,6 +14,10 @@ export interface IMenuVerticalItemProps extends DefaultProps {
   wrapper?: JSX.Element;
   menuId?: string;
   parentMenuId?: string;
+  /**
+   * @default false
+   */
+  disabled?: boolean;
 }
 
 export interface MenuVerticalItemProps
@@ -30,6 +34,7 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
       menuId = '',
       parentMenuId = '',
       wrapper,
+      disabled = false,
       ...rest
     } = props;
 
@@ -124,12 +129,14 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
         });
       } else {
         return React.cloneElement(child, {
-          ...children.props,
-          onKeyDown: handleKeyboard,
+          ...child.props,
+          onKeyDown: disabled ? undefined : handleKeyboard,
           ref: menuRef,
           role: 'menuitem',
           'aria-current': isCurrentItem ? 'page' : undefined,
           tabIndex: isActiveItem ? 0 : -1,
+          'aria-disabled': disabled ? disabled : undefined,
+          onClick: disabled ? undefined : child.props.onClick,
         });
       }
     };

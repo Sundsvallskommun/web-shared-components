@@ -26,6 +26,10 @@ const MenuVerticalNav = () => ({
           '@apply hidden': {},
         },
 
+        '[aria-disabled="true"]': {
+          '@apply cursor-default bg-transparent text-primitives-overlay-darken-6': {},
+        },
+
         'a, button': {
           '@apply flex': {},
           color: 'unset',
@@ -36,7 +40,7 @@ const MenuVerticalNav = () => ({
           '@apply rounded-button cursor-pointer': {},
           '@apply bg-transparent text-dark-secondary': {},
 
-          '&:hover': {
+          '&:hover:not([aria-disabled="true"])': {
             '@apply bg-primitives-overlay-darken-3': {},
           },
 
@@ -47,7 +51,7 @@ const MenuVerticalNav = () => ({
         },
 
         '.sk-menu-vertical-item-submenu': {
-          '@apply flex items-center justify-between w-full': {},
+          '@apply flex justify-between w-full': {},
           '@apply rounded-button': {},
 
           '&:focus-within': {
@@ -58,20 +62,34 @@ const MenuVerticalNav = () => ({
             },
           },
 
+          '&-medium': {
+            'button, a': {
+              '@apply font-bold': {},
+              '@apply py-[0.6rem] px-[1.4rem]': {},
+            },
+          },
+          '&-large': {
+            'button, a': {
+              '@apply font-bold text-large': {},
+              '@apply py-[1rem] px-[1.4rem]': {},
+            },
+          },
+
           '&-button, &-button-expand': {
             '@apply py-[1rem] px-[1.4rem]': {},
           },
 
           '&-button-expand': {
-            '@apply rounded-r-button rounded-l-0': {},
+            '@apply items-center rounded-r-button rounded-l-0': {},
           },
 
           '&-button': {
-            '@apply grow rounded-l-button rounded-r-0': {},
+            '@apply text-left grow rounded-l-button rounded-r-0': {},
 
-            '&:hover, & ~ button:hover, &:hover ~ button': {
-              '@apply bg-primitives-overlay-darken-3': {},
-            },
+            '&:hover:not([aria-disabled="true"]), & ~ button:hover:not([aria-disabled="true"]), &:hover:not([aria-disabled="true"]) ~ button':
+              {
+                '@apply bg-primitives-overlay-darken-3': {},
+              },
 
             '&[aria-current="page"]:not(:hover), &[aria-current="page"]:not(:hover) ~ button:not(:hover)': {
               '@apply bg-primary-surface text-light-primary': {},
@@ -79,9 +97,10 @@ const MenuVerticalNav = () => ({
             },
 
             '&[aria-expanded="true"]': {
-              '&:not(:hover,[aria-current="page"]), &:not(:hover,[aria-current="page"]) ~ button:not(:hover)': {
-                '@apply bg-primitives-blue-200': {},
-              },
+              '&:not(:hover,[aria-current="page"],[aria-disabled="true"]), &:not(:hover,[aria-current="page"],[aria-disabled="true"]) ~ button:not(:hover)':
+                {
+                  '@apply bg-primitives-blue-200': {},
+                },
             },
           },
         },

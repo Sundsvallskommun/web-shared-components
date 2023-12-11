@@ -26,11 +26,11 @@ export const Template = (args: MenuVerticalProps) => {
             <MenuVertical.Label>Områden</MenuVertical.Label>
 
             <MenuVertical {...args}>
-              <MenuVertical.Item>
-                <a href="#">test</a>
+              <MenuVertical.Item disabled>
+                <a href="#">Disabled</a>
               </MenuVertical.Item>
               <MenuVertical.Item>
-                <button onClick={() => setCurrentActiveFocus(1002)}>set nested current item</button>
+                <button onClick={() => setCurrentActiveFocus(1002)}>Set nested current item</button>
               </MenuVertical.Item>
               <MenuVertical.Item>
                 <MenuVertical {...args}>
@@ -95,7 +95,7 @@ export const Template = (args: MenuVerticalProps) => {
                               </MenuVertical.Item>
                               <MenuVertical.Item>
                                 <MenuVertical {...args}>
-                                  <MenuVertical.SubmenuButton>____test</MenuVertical.SubmenuButton>
+                                  <MenuVertical.SubmenuButton disabled>____test</MenuVertical.SubmenuButton>
                                   <MenuVertical.Item>
                                     <a href="#">test</a>
                                   </MenuVertical.Item>
