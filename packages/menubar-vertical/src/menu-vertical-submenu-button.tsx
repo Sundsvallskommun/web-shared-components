@@ -138,10 +138,9 @@ export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps>
 
     if (typeof child === 'string') {
       return React.cloneElement(
-        <button />,
+        <button>{children}</button>,
         Object.assign(props, {
           ...rest,
-          children: children,
         })
       );
     }
