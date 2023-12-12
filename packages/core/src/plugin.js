@@ -52,7 +52,7 @@ const PopupMenu = require('./components/popup-menu');
 const Footer = require('./components/footer');
 const Header = require('./components/header');
 
-const SearchBar = require('./components/search-bar');
+const SearchField = require('./components/search-field');
 
 const ProgressStepper = require('./components/progress-stepper');
 const ProgressBar = require('./components/progress-bar');
@@ -100,7 +100,7 @@ const components = [
 
   DropdownFilter,
 
-  SearchBar,
+  SearchField,
 
   Pagination,
   PopupMenu,

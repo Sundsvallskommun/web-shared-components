@@ -32,7 +32,7 @@ export * from '@sk-web-gui/dropdown-filter';
 
 export * from '@sk-web-gui/table';
 
-export * from '@sk-web-gui/search-bar';
+export * from '@sk-web-gui/searchfield';
 
 export * from '@sk-web-gui/pagination';
 export * from '@sk-web-gui/popup-menu';

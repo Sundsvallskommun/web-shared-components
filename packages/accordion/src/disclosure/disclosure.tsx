@@ -104,6 +104,7 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
             disabled={disabled}
             variant="ghost"
             iconButton
+            size={size}
             className="sk-disclosure-header-icon"
             onClick={onClick}
             aria-controls={`${id}-content`}
