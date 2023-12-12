@@ -60,10 +60,6 @@ const MenuVerticalSidebar = () => ({
           '@apply text-light-primary': {},
         },
 
-        // 'a:hover': {
-        //   '@apply underline': {},
-        // },
-
         '.sk-divider': {
           '@apply border-inverted-divider': {},
         },
