@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from '@sk-web-gui/link';
 import { Meta } from '@storybook/react';
 import { CookieConsent, CookieConsentProps } from '../src';
@@ -7,19 +6,20 @@ export default {
   title: 'Komponenter/CookieConsent',
   component: CookieConsent,
   tags: ['autodocs'],
-} as Meta<typeof CookieConsent>;
-
-export const Template = ({ ...args }: CookieConsentProps) => (
-  <CookieConsent
-    {...args}
-    title="Kakor på example.sundsvall.se"
-    body={
-      <p>
-        Vi använder kakor, cookies, för att ge dig en förbättrad upplevelse, sammanställa statistik och för att viss
-        nödvändig funktionalitet ska fungera på webbplatsen. <Link href="/kakor">Läs mer om hur vi använder kakor</Link>
-      </p>
-    }
-    cookies={[
+  args: {
+    title: 'Kakor på example.sundsvall.se',
+    body: (
+      <>
+        <p>
+          Vi använder kakor, cookies, för att ge dig en förbättrad upplevelse, sammanställa statistik och för att viss
+          nödvändig funktionalitet ska fungera på webbplatsen.
+        </p>
+        <p>
+          <Link href="/kakor">Läs mer om hur vi använder kakor</Link>
+        </p>
+      </>
+    ),
+    cookies: [
       {
         optional: false,
         displayName: 'Nödvändiga kakor',
@@ -39,13 +39,18 @@ export const Template = ({ ...args }: CookieConsentProps) => (
           'Dessa kakor tillåter oss att räkna besök och trafikkällor, så att vi kan mäta och förbättra prestanda på vår webbplats.',
         cookieName: 'stats',
       },
-    ]}
-    resetConsentOnInit={true}
+    ],
+    resetConsentOnInit: true,
+  },
+} as Meta<typeof CookieConsent>;
+
+export const Template = (args: CookieConsentProps) => (
+  <CookieConsent
+    {...args}
     onConsent={(cookies) => {
       // Do stuff with the cookies
       alert(JSON.stringify(cookies));
     }}
-    closeable={true}
   />
 );
 
