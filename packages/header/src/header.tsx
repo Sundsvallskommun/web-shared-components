@@ -1,11 +1,9 @@
-import * as React from 'react';
 import { Link } from '@sk-web-gui/link';
-import { Divider } from '@sk-web-gui/divider';
-import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
-import { Logo } from './assets/logo';
-import { useGui } from '@sk-web-gui/theme';
+import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
+import React from 'react';
+import { HeaderLogoText } from './header-logotext';
 
-export interface HeaderProps extends DefaultProps, React.HTMLAttributes<HTMLDivElement> {
+export interface HeaderComponentProps extends DefaultProps, React.HTMLAttributes<HTMLDivElement> {
   /* Title for main page */
   title?: string;
   /*Subtitle for page- optional */
@@ -30,7 +28,12 @@ export interface HeaderProps extends DefaultProps, React.HTMLAttributes<HTMLDivE
   mobileMenu?: React.ReactNode;
 }
 
-export const Header = React.forwardRef<HTMLDivElement, HeaderProps>((props, ref) => {
+interface LinkWrapper {
+  children: React.ReactElement | string;
+  wrapper?: React.ReactElement;
+}
+
+export const HeaderComponent = React.forwardRef<HTMLDivElement, HeaderComponentProps>((props, ref) => {
   const {
     title,
     subtitle,
@@ -48,14 +51,12 @@ export const Header = React.forwardRef<HTMLDivElement, HeaderProps>((props, ref)
     ...rest
   } = props;
 
-  const LinkWrapper = ({ wrapper, children }: any) => {
+  const LinkWrapper = ({ wrapper, children }: LinkWrapper) => {
     if (wrapper !== undefined) {
       return React.cloneElement(wrapper, { children });
     }
     return children;
   };
-
-  const context = useGui();
 
   const handleLogoLinkOnClick = (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
@@ -74,19 +75,7 @@ export const Header = React.forwardRef<HTMLDivElement, HeaderProps>((props, ref)
                 className="no-underline"
                 aria-label={ariaLabel || `${subtitle ? `${title} ${subtitle}` : `${title}`}. Gå till startsidan.`}
               >
-                <div className="flex flex-row items-center gap-6 cursor-pointer">
-                  <div>
-                    <Logo color={context?.theme?.colors?.body || undefined} />
-                  </div>
-                  <Divider orientation="vertical" className="h-[4.4rem]" />
-                  <span
-                    id="page-title"
-                    className="text-h4-sm md:text-h4-md xl:text-h4-lg font-header leading-large text-dark-primary"
-                  >
-                    {title}
-                    {subtitle && <span className="text-small font-normal block">{subtitle}</span>}
-                  </span>
-                </div>
+                <HeaderLogoText title={title} subtitle={subtitle} />
               </Link>
             </LinkWrapper>
           )}
@@ -110,7 +99,7 @@ export const Header = React.forwardRef<HTMLDivElement, HeaderProps>((props, ref)
 });
 
 if (__DEV__) {
-  Header.displayName = 'Header';
+  HeaderComponent.displayName = 'HeaderComponent';
 }
 
-export default Header;
+export default HeaderComponent;
