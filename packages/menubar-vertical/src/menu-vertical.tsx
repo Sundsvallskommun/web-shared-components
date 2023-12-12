@@ -26,7 +26,7 @@ function extractString(obj: React.ReactNode): string {
           return true;
       }
     });
-    return submenuItem ? extractString(submenuItem) : '';
+    return submenuItem ? extractString(submenuItem) : obj.map((e) => extractString(e)).join(' ');
   } else return obj.toString();
 }
 

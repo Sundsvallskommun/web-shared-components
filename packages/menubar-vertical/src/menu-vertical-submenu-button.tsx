@@ -16,6 +16,10 @@ export interface MenuVerticalSubmenuButtonProps extends DefaultProps, Omit<IMenu
    * @default false
    */
   disabled?: boolean;
+  /**
+   * @default false
+   */
+  treePath?: boolean;
 }
 
 export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps> = React.forwardRef<
@@ -31,6 +35,7 @@ export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps>
     wrapper,
     size = 'large',
     disabled = false,
+    treePath = false,
     ...rest
   } = props;
   const {
@@ -85,6 +90,7 @@ export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps>
       menu[menuId].setSubmenuOpen((open) => !open);
     }
     if (event.key === 'ArrowRight') {
+      if (disabled) return;
       menu[menuId].setSubmenuOpen(true);
       setActive(menu[menuId].menuItems[0].props.menuIndex as number);
       setFocused(menu[menuId].menuItems[0].props.menuIndex as number);
@@ -153,6 +159,8 @@ export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps>
       'aria-current': isCurrentItem ? 'page' : undefined,
       'aria-haspopup': true,
       'aria-expanded': isSubmenuOpen,
+      'data-menuindex': _menuIndex,
+      'data-menuid': menuId,
     };
 
     if (typeof child === 'string') {
@@ -198,6 +206,13 @@ export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps>
 
   return (
     <span className={cx('sk-menu-vertical-item-submenu', `sk-menu-vertical-item-submenu-${size}`)}>
+      {treePath && (
+        <span className="sk-menu-verticak-item-submenu-treePath">
+          <svg width="16" height="52" viewBox="0 0 16 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 -1500V17C1 24.1797 6.8203 30 14 30H15" stroke="#B7B7BA" stroke-linecap="round" />
+          </svg>
+        </span>
+      )}
       {getChildWithWrapper()}
       {getExpandButton()}
     </span>

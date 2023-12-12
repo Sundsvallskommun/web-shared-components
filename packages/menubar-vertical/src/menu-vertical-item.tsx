@@ -127,6 +127,18 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
           menuId: menuId,
           parentLiMenuIndex: _menuIndex,
         });
+      } else if (typeof child.props.children === 'string') {
+        return React.cloneElement(child, {
+          ...child.props,
+          onKeyDown: disabled ? undefined : handleKeyboard,
+          ref: menuRef,
+          role: 'menuitem',
+          'aria-current': isCurrentItem ? 'page' : undefined,
+          tabIndex: isActiveItem ? 0 : -1,
+          'aria-disabled': disabled ? disabled : undefined,
+          onClick: disabled ? undefined : child.props.onClick,
+          children: React.cloneElement(<span />, { children: child.props.children }),
+        });
       } else {
         return React.cloneElement(child, {
           ...child.props,
