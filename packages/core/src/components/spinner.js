@@ -14,9 +14,5 @@ module.exports = SearchBar = (colors) => ({
         },
       },
     })),
-
-    '&-lottie': {
-      '@apply m-0 !important': {},
-    },
   },
 });
