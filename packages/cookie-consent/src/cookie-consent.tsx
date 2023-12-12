@@ -1,8 +1,7 @@
 import { DefaultProps, cx, __DEV__ } from '@sk-web-gui/utils';
 import { Dialog as D, Transition } from '@headlessui/react';
 import { Button } from '@sk-web-gui/button';
-import { Switch } from '@sk-web-gui/switch';
-import { Icon } from '@sk-web-gui/icon';
+import { Checkbox } from '@sk-web-gui/forms';
 import Cookies, { CookieSetOptions } from 'universal-cookie';
 import React from 'react';
 
@@ -53,10 +52,7 @@ export function getCheckableCookies(cookies: ConsentCookie[]): CheckableConsentC
 
 interface ICookieConsentProps extends DefaultProps {
   isOpen?: boolean;
-  // eslint-disable-next-line no-unused-vars
   onConsent: (cookies: ConsentCookie[]) => void;
-  closeable?: boolean;
-  onDecline?: () => void;
   cookies: ConsentCookie[];
   title: string;
   body: React.ReactNode;
@@ -71,8 +67,6 @@ export const CookieConsent: React.FC<CookieConsentProps> = ({
   body,
   onConsent,
   cookies = [],
-  onDecline,
-  closeable = false,
   resetConsentOnInit = false,
   className,
   options = {
@@ -80,9 +74,6 @@ export const CookieConsent: React.FC<CookieConsentProps> = ({
     sameSite: 'strict',
   },
 }) => {
-  const [htmlTagPropsCopied, setHtmlTagPropsCopied] = React.useState(false);
-  const [htmlTagInitOverflow, setHtmlTagInitOverflow] = React.useState('');
-  const [htmlTagInitBottomPadding, setHtmlTagInitBottomPadding] = React.useState('');
   const [isOpen, setIsOpen] = React.useState(false);
   const [isHandlingOptions, setIsHandlingOptions] = React.useState(false);
 
@@ -106,16 +97,6 @@ export const CookieConsent: React.FC<CookieConsentProps> = ({
     setTimeout(() => {
       approveFocus.current && approveFocus.current?.focus();
     });
-  };
-
-  const handleOnClose = () => {
-    if (onDecline) {
-      onDecline();
-    }
-    userCookie.set(defaultCookieConsentName, '');
-    setIsOpen(false);
-    document.documentElement.style.overflow = htmlTagInitOverflow;
-    document.documentElement.style.paddingBottom = htmlTagInitBottomPadding;
   };
 
   const handleOnCheck = (index: number) => {
@@ -160,8 +141,6 @@ export const CookieConsent: React.FC<CookieConsentProps> = ({
       }
     }
     setIsOpen(false);
-    document.documentElement.style.overflow = htmlTagInitOverflow;
-    document.documentElement.style.paddingBottom = htmlTagInitBottomPadding;
   };
 
   React.useEffect(() => {
@@ -169,124 +148,92 @@ export const CookieConsent: React.FC<CookieConsentProps> = ({
     setIsOpen(isOpen);
   }, [setIsOpen]);
 
-  // Let user scroll while cookie banner is shown
-  // Below is needed because Headless ui sets document.html.style.overflow to hidden on open
-  //START:/ Keep these in order
-  React.useEffect(() => {
-    if (htmlTagPropsCopied) {
-      setHtmlTagInitOverflow(document.documentElement.style.overflow);
-      setHtmlTagInitBottomPadding(document.documentElement.style.paddingBottom);
-      setHtmlTagPropsCopied(true);
-    }
-  }, []);
-  React.useEffect(() => {
-    document.documentElement.style.overflow = 'auto';
-    // Let user see all content
-    const cookieElem = document.querySelector('.cookie-consent') as HTMLElement;
-    if (cookieElem) {
-      document.documentElement.style.paddingBottom = cookieElem.offsetHeight + 'px';
-    }
-  });
-  //:END/
-
   return (
-    <Transition
-      show={isOpen}
-      //enter="transition duration-100 ease-out"
-      //enterFrom="transform scale-95 opacity-0"
-      //enterTo="transform scale-100 opacity-100"
-      //leave="transition duration-75 ease-out"
-      //leaveFrom="transform scale-100 opacity-100"
-      //leaveTo="transform scale-95 opacity-0"
-    >
+    <Transition show={isOpen}>
       <D
         initialFocus={initialFocus}
         open={isOpen}
         onClose={() => false}
         as="div"
-        style={{ boxShadow: '0px -4px 14px rgba(27, 29, 31, 0.12)' }}
-        className={cx('cookie-consent', className)}
+        className={cx('sk-cookie-consent-wrapper', className)}
       >
-        <div className="cookie-consent-content-wrapper">
-          {closeable && (
-            <button className="cookie-consent-close-btn" onClick={() => handleOnClose()}>
-              <Icon className="cookie-consent-close-btn-icon" name="x" variant="ghost" size="fit" />
-            </button>
-          )}
-
+        <div className="sk-cookie-consent">
           <D.Overlay />
+          <div className="sk-cookie-consent-content-wrapper">
+            <div className="sk-cookie-consent-body">
+              <D.Title className="sk-cookie-consent-title">{title}</D.Title>
 
-          <D.Title className="cookie-consent-title">{title}</D.Title>
+              <D.Description as="div" className="sk-cookie-consent-description">
+                {!isHandlingOptions && <>{body}</>}
 
-          <D.Description as="div" className="cookie-consent-description">
-            {!isHandlingOptions && <>{body}</>}
+                {isHandlingOptions && (
+                  <>
+                    <fieldset className="sk-cookie-consent-custom-wrapper">
+                      <legend className="text-label font-bold">Välj vilka kakor vi får använda</legend>
+                      {checkableCookies.map((cookie, index) => (
+                        <div key={cookie.cookieName}>
+                          <Checkbox
+                            checked={cookie.isChecked || !cookie.optional}
+                            onChange={() => handleOnCheck(index)}
+                            disabled={!cookie.optional}
+                          >
+                            <strong>{cookie.displayName}</strong> – {cookie.description}
+                          </Checkbox>
+                        </div>
+                      ))}
+                    </fieldset>
+                  </>
+                )}
+              </D.Description>
+            </div>
 
-            {isHandlingOptions && (
-              <>
-                <div className="bg-gray-lighter p-8">
-                  <h6>Välj vilka kakor vi får använda</h6>
-                  {checkableCookies.map((cookie, index) => (
-                    <div key={cookie.cookieName} className="my-6">
-                      <span className="w-12 inline-block">{cookie.isChecked || !cookie.optional ? 'På' : 'Av'}</span>
-                      <Switch
-                        className="mr-4"
-                        aria-label={`check z`}
-                        checked={cookie.isChecked || !cookie.optional}
-                        onChange={() => handleOnCheck(index)}
-                        disabled={!cookie.optional}
-                      />
-                      <strong>{cookie.displayName}</strong> – {cookie.description}
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
-          </D.Description>
-
-          <div className="cookie-consent-btn-wrapper">
-            {!isHandlingOptions && (
-              <>
-                <Button
-                  onClick={() => handleonConsent(ConsentType.All)}
-                  color="primary"
-                  variant="primary"
-                  ref={approveFocus}
-                >
-                  Godkänn alla
-                </Button>
-                <Button onClick={() => handleonConsent(ConsentType.Necessary)} color="primary" variant="primary">
-                  Godkänn endast nödvändiga
-                </Button>
-                <Button
-                  onClick={() => {
-                    setIsHandlingOptions(true);
-                    setSettingsFocus();
-                  }}
-                >
-                  Hantera kakor
-                </Button>
-              </>
-            )}
-            {isHandlingOptions && (
-              <>
-                <Button
-                  ref={settingsFocus}
-                  onClick={() => handleonConsent(ConsentType.Custom)}
-                  color="primary"
-                  variant="primary"
-                >
-                  Spara mina val
-                </Button>
-                <Button
-                  onClick={() => {
-                    setIsHandlingOptions(false);
-                    setApproveFocus();
-                  }}
-                >
-                  Stäng
-                </Button>
-              </>
-            )}
+            <div className="sk-cookie-consent-btn-wrapper">
+              {!isHandlingOptions && (
+                <>
+                  <Button
+                    onClick={() => handleonConsent(ConsentType.All)}
+                    color="vattjom"
+                    variant="primary"
+                    ref={approveFocus}
+                  >
+                    Godkänn alla
+                  </Button>
+                  <Button onClick={() => handleonConsent(ConsentType.Necessary)} color="vattjom" variant="primary">
+                    Godkänn endast nödvändiga
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    onClick={() => {
+                      setIsHandlingOptions(true);
+                      setSettingsFocus();
+                    }}
+                  >
+                    Hantera kakor
+                  </Button>
+                </>
+              )}
+              {isHandlingOptions && (
+                <>
+                  <Button
+                    ref={settingsFocus}
+                    onClick={() => handleonConsent(ConsentType.Custom)}
+                    color="vattjom"
+                    variant="primary"
+                  >
+                    Spara mina val
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    onClick={() => {
+                      setIsHandlingOptions(false);
+                      setApproveFocus();
+                    }}
+                  >
+                    Stäng
+                  </Button>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </D>
