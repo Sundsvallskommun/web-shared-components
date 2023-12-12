@@ -7,7 +7,7 @@ import { Avatar } from '@sk-web-gui/avatar';
 import { Header } from '@sk-web-gui/header';
 
 export default {
-  title: 'Komponenter/Menu-vertical/MenuVertical.Sidebar',
+  title: 'Komponenter/Sidebar',
   component: MenuVertical,
   tags: ['autodocs'],
 } as Meta<typeof MenuVertical>;
