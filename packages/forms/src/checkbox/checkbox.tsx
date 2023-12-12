@@ -80,7 +80,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxItemProps>((p
     color = 'primary',
     defaultChecked,
     checked,
-    size = 'md',
+    size: _size,
     onChange,
     indeterminate,
     children,
@@ -89,7 +89,9 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxItemProps>((p
     ...rest
   } = props;
 
-  const { disabled, invalid, readOnly } = useFormControl(props);
+  const { disabled, invalid, readOnly, size: formcontrolSize } = useFormControl(props);
+
+  const size = _size || formcontrolSize || 'md';
 
   const checkboxClasses = useCheckboxClass({
     size,
