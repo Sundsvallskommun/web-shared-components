@@ -25,6 +25,7 @@ const List = require('./components/list');
 const Menubar = require('./components/menubar');
 const Select = require('./components/select');
 const Snackbar = require('./components/snackbar');
+const Spinner = require('./components/spinner');
 const Notification = require('./components/notification');
 const Radio = require('./components/radio');
 const Switch = require('./components/switch');
@@ -80,6 +81,7 @@ const components = [
   Menubar,
   Select,
   Snackbar,
+  Spinner,
   Notification,
   Radio,
   Switch,

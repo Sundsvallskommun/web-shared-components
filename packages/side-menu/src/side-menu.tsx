@@ -286,7 +286,7 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
           })}
         {loading && (
           <div className="py-20 flex justify-center w-full">
-            <Spinner size="xl" />
+            <Spinner size={30} />
           </div>
         )}
       </ul>
