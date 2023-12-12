@@ -186,7 +186,8 @@ module.exports = MenuVertical = () => ({
       },
 
       '[aria-disabled="true"]': {
-        '@apply cursor-default bg-transparent text-primitives-overlay-darken-6': {},
+        '@apply cursor-default bg-transparent text-primitives-overlay-darken-6 dark:text-primitives-overlay-lighten-7':
+          {},
       },
 
       'a, button': {
@@ -264,7 +265,7 @@ module.exports = MenuVertical = () => ({
           '&[aria-expanded="true"]': {
             '&:not(:hover,[aria-current="page"],[aria-disabled="true"]), &:not(:hover,[aria-current="page"],[aria-disabled="true"]) ~ button:not(:hover)':
               {
-                '@apply bg-primitives-blue-200': {},
+                '@apply bg-vattjom-surface-accent': {},
               },
           },
         },
