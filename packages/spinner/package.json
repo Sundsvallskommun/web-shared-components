@@ -38,7 +38,8 @@
   },
   "dependencies": {
     "@sk-web-gui/theme": "0.1.14",
-    "@sk-web-gui/utils": "0.1.8"
+    "@sk-web-gui/utils": "0.1.8",
+    "@lottiefiles/react-lottie-player": "3.5.3"
   },
   "peerDependencies": {
     "react": ">=18.2.0"

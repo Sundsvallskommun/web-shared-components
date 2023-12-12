@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spinner } from '../src';
+import { Spinner, SpinnerProps } from '../src';
 import { Meta } from '@storybook/react';
 
 export default {
@@ -8,8 +8,6 @@ export default {
   tags: ['autodocs'],
 } as Meta<typeof Spinner>;
 
-export const Template = (args) => (
-  <Spinner {...args} />
-);
+export const Template = (args: SpinnerProps) => <Spinner {...args} />;
 
 Template.storyName = 'Spinner';
