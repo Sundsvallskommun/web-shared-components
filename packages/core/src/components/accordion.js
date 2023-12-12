@@ -12,7 +12,7 @@ module.exports = Accordion = () => ({
       },
 
       '&-icon': {
-        '@apply ml-auto w-20 h-20': {},
+        '@apply ml-auto': {},
         svg: {
           '@apply w-20 h-20': {},
         },
@@ -34,6 +34,9 @@ module.exports = Accordion = () => ({
         '@apply py-4': {},
         '@apply h-40': {},
       },
+      '.sk-disclosure-header-icon': {
+        '@apply w-32 h-32': {},
+      },
     },
     '&-md': {
       '.sk-disclosure-title': {
@@ -42,6 +45,9 @@ module.exports = Accordion = () => ({
       '.sk-disclosure-toggle': {
         '@apply py-8': {},
         '@apply h-56': {},
+      },
+      '.sk-disclosure-header-icon': {
+        '@apply w-40 h-40': {},
       },
     },
     '&-toggle': {
@@ -53,7 +59,10 @@ module.exports = Accordion = () => ({
     },
 
     '&-body': {
+      '@apply flex flex-col': {},
       '@apply mb-32': {},
+      '@apply mr-32': {},
+      '@apply gap-8': {},
       '@apply py-0': {},
       '@apply h-0 overflow-hidden': {},
       transitionProperty: 'visibility, height, padding, margin',

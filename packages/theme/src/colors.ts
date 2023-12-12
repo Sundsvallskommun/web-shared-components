@@ -427,8 +427,8 @@ const darkmode = {
     100: primitives.gray[700],
     200: primitives.gray[900],
     'color-mixin': {
-      1: primitives.overlay.lighten[1],
-      2: primitives.overlay.lighten[3],
+      1: primitives.overlay.lighten[3],
+      2: primitives.overlay.lighten[4],
     },
   },
   vattjom: {

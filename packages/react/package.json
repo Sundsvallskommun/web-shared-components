@@ -66,7 +66,7 @@
     "@sk-web-gui/popup-menu": "0.1.0",
     "@sk-web-gui/progress-stepper": "0.1.0",
     "@sk-web-gui/progress-bar": "0.1.0",
-    "@sk-web-gui/search-bar": "0.1.20",
+    "@sk-web-gui/searchfield": "0.1.0",
     "@sk-web-gui/side-menu": "0.1.26",
     "@sk-web-gui/spinner": "0.1.14",
     "@sk-web-gui/switch": "0.1.39",
