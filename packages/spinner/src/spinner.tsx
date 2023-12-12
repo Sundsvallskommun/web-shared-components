@@ -1,4 +1,4 @@
-import { Player, Controls } from '@lottiefiles/react-lottie-player';
+import { Player } from '@lottiefiles/react-lottie-player';
 import Animation from '../src/assets/spinner-square.json';
 import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 import * as React from 'react';
