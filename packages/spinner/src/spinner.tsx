@@ -4,30 +4,36 @@ import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 import * as React from 'react';
 
 export interface ISpinnerProps extends DefaultProps {
-  /** Set size of the spinner
-   * @default 250
+  /** Set size of the spinner in rem
+   * @default 4
    */
   size?: number;
 
   /** Set color of the spinner
    * @default tertiary
    */
-  color?: 'tertiary' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
+  color?: 'tertiary' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar' | 'warning' | 'info' | 'success' | 'error';
 }
 
-export interface SpinnerProps extends Omit<React.HTMLAttributes<SVGSVGElement>, 'color'>, ISpinnerProps {}
+export interface SpinnerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'>, ISpinnerProps {}
 
-export const Spinner = React.forwardRef<SVGSVGElement, SpinnerProps>((props, ref) => {
-  const { size = 250, color = 'tertiary', className, ...rest } = props;
+export const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>((props, ref) => {
+  const { size = 4, color = 'tertiary', className, ...rest } = props;
 
   return (
-    <div className={cx('sk-spinner', className)} data-color={color ? color : undefined}>
+    <div
+      ref={ref}
+      className={cx('sk-spinner', className)}
+      data-color={color ? color : undefined}
+      style={{ width: `${size}rem`, height: `${size}rem` }}
+      {...rest}
+    >
       <Player
         autoplay
         loop
         src={Animation}
         renderer="svg"
-        style={{ width: `${size}px`, height: `${size}px`, margin: '0px' }}
+        style={{ width: `${size * 2}rem`, height: `${size * 2}rem`, margin: '0px' }}
         className={cx('sk-spinner-lottie', className)}
       ></Player>
     </div>
