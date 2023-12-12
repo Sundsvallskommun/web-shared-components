@@ -114,7 +114,7 @@ export const MetaCardText = React.forwardRef<HTMLDivElement, MetaCardTextProps>(
   const { children, className, ...rest } = props;
 
   return (
-    <div className={cx('sk-meta-card-body-text', className)} ref={ref} {...rest}>
+    <div className={cx('sk-meta-card-body-content', className)} ref={ref} {...rest}>
       {children}
     </div>
   );

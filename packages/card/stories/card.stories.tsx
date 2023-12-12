@@ -48,28 +48,43 @@ export const Template = (args: CardProps) => (
 );
 
 export const Meta_card = () => (
-  <CardList>
-    <MetaCard color="tertiary" href="https://sundsvall.se" useHoverEffect={true}>
-      <MetaCard.Header>
-        <h2>Rubrik</h2>
-      </MetaCard.Header>
-      <MetaCard.Text>
-        <p>
-          Amet enim adipiscing congue justo adipiscing sagittis volutpat nibh ac. Integer viverra lectus in quisque. In
-          nisl mauris faucibus egestas quis mi nam.
-        </p>
-      </MetaCard.Text>
-    </MetaCard>
-    <MetaCard color="vattjom">
-      <MetaCard.Header>
-        <h2>Rubrik</h2>
-      </MetaCard.Header>
-      <MetaCard.Text>
-        <p>
-          Amet enim adipiscing congue justo adipiscing sagittis volutpat nibh ac. Integer viverra lectus in quisque. In
-          nisl mauris faucibus egestas quis mi nam.
-        </p>
-      </MetaCard.Text>
-    </MetaCard>
-  </CardList>
+  <div>
+    <CardList>
+      <MetaCard color="tertiary" href="https://sundsvall.se" useHoverEffect={true}>
+        <MetaCard.Header>
+          <h2>Rubrik</h2>
+        </MetaCard.Header>
+        <MetaCard.Text>
+          <p>
+            Amet enim adipiscing congue justo adipiscing sagittis volutpat nibh ac. Integer viverra lectus in quisque.
+            In nisl mauris faucibus egestas quis mi nam.
+          </p>
+        </MetaCard.Text>
+      </MetaCard>
+      <MetaCard color="vattjom">
+        <MetaCard.Header>
+          <h2>Rubrik</h2>
+        </MetaCard.Header>
+        <MetaCard.Text>
+          <p>
+            Amet enim adipiscing congue justo adipiscing sagittis volutpat nibh ac. Integer viverra lectus in quisque.
+            In nisl mauris faucibus egestas quis mi nam.
+          </p>
+        </MetaCard.Text>
+      </MetaCard>
+    </CardList>
+
+    <CardList style={{ marginTop: '2rem' }}>
+      <MetaCard color="tertiary" href="https://sundsvall.se" useHoverEffect={true}>
+        <MetaCard.Header>
+          <h2>Rubrik</h2>
+        </MetaCard.Header>
+      </MetaCard>
+      <MetaCard color="vattjom">
+        <MetaCard.Header>
+          <h2>Rubrik</h2>
+        </MetaCard.Header>
+      </MetaCard>
+    </CardList>
+  </div>
 );

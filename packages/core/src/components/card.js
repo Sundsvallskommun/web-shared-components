@@ -195,7 +195,7 @@ module.exports = Card = (colors) => ({
     '@apply p-14 rounded-16 w-[454px]': {},
 
     '&[data-color="tertiary"]': {
-      '@apply bg-neutral-200': {},
+      '@apply bg-primitives-overlay-darken-1 dark:bg-primitives-overlay-lighten-1': {},
     },
 
     '&[data-color="vattjom"]': {
@@ -204,18 +204,21 @@ module.exports = Card = (colors) => ({
 
     '&-text-icon': {
       '@apply mr-12 rounded-12 p-8': {},
-      '@apply bg-light text-dark': {},
+      '@apply bg-primitives-gray-lightest dark:bg-primitives-gray-800': {},
+      '@apply text-dark': {},
     },
 
     '&-body': {
       '&-header': {
         'h1, h2, h3, h4, h5, h6, h7, a, p': {
           '@apply mt-6 text-base line-clamp-1': {},
+          '@apply text-dark-primary': {},
         },
       },
 
-      '&-text': {
+      '&-content': {
         'p, a': {
+          '@apply text-primitives-gray-700 dark:text-primitives-gray-200': {},
           '@apply text-dark-secondary line-clamp-1': {},
         },
       },
