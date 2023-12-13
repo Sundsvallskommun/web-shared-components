@@ -1,5 +1,5 @@
 import { cx, __DEV__ } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 
 import { IInputProps, OmittedTypes } from '../input/input';
 import { useInputClass } from '../input/styles';

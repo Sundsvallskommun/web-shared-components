@@ -1,5 +1,5 @@
 import { cx, __DEV__ } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 import { IModalProps, Modal } from '../modal';
 import { DialogButtons } from './dialog-buttons';
 import { DialogContent } from './dialog-content';

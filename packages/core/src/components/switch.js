@@ -1,6 +1,7 @@
 module.exports = Switch = () => ({
   '.sk-form-switch-label': {
-    '@apply inline-block align-middle': {},
+    '@apply inline-flex align-middle items-center': {},
+    '@apply flex-row gap-12': {},
 
     "&[type='hidden']": {
       '@apply hidden': {},
@@ -25,14 +26,14 @@ module.exports = Switch = () => ({
     },
 
     // Checked
-    'input[type=checkbox]:checked + &, input[type=checkbox][aria-checked=mixed] + &': {
+    'input[type=checkbox]:checked + &': {
       [`&[data-color="gronsta"]`]: {
-        '.sk-switch-icon': {
+        '.sk-form-switch-box': {
           '@apply bg-gronsta-surface-primary': {},
         },
       },
 
-      '.sk-switch-icon': {
+      '.sk-form-switch-icon': {
         '@apply flex': {},
       },
 
@@ -47,8 +48,9 @@ module.exports = Switch = () => ({
         '.sk-form-switch-box': {
           '@apply bg-transparent': {},
 
-          '.sk-switch-icon': {
-            '@apply bg-primitives-overlay-darken-6 dark:bg-primitives-overlay-lighten-6 !important': {},
+          '.sk-form-switch-icon': {
+            '@apply bg-primitives-overlay-darken-6 dark:bg-primitives-overlay-lighten-6': {},
+            '@apply text-light-primary': {},
           },
         },
       },
@@ -56,8 +58,8 @@ module.exports = Switch = () => ({
 
     // Disabled not checked
     [`&[data-disabled="true"]`]: {
-      '@apply cursor-not-allowed': {},
-      '@apply bg-primitives-overlay-darken-2 dark:bg-primitives-overlay-lighten-2 !important': {},
+      '@apply cursor-default': {},
+      '@apply bg-primitives-overlay-darken-2 dark:bg-primitives-overlay-lighten-2': {},
 
       '.sk-form-switch-box': {
         '@apply bg-primitives-overlay-darken-6 dark:bg-primitives-overlay-lighten-6': {},
@@ -71,12 +73,14 @@ module.exports = Switch = () => ({
   '.sk-form-switch-box': {
     '@apply transition-transform ease-in-out duration-150 transform rounded-full shadow translate-x-0 m-6': {},
     '@apply bg-primitives-overlay-darken-7 dark:bg-primitives-overlay-lighten-7': {},
-    
-    '.sk-switch-icon': {
-      '@apply hidden': {},
-    },
+    '@apply h-20 w-20': {},
+    '@apply flex justify-center items-center object-center': {},
 
-    height: '2rem',
-    width: '2rem',
+    '.sk-form-switch-icon': {
+      '@apply bg-transparent': {},
+      '@apply hidden': {},
+      '@apply w-20 h-20': {},
+      '@apply text-light-primary': {},
+    },
   },
 });

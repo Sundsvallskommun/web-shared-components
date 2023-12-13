@@ -1,6 +1,6 @@
 import { ZebraTableHeader } from './zebratable';
 import { cx } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 import { ChevronUp, ChevronDown } from 'lucide-react';
 
 interface ZTableHeaderProps extends ZebraTableHeader {

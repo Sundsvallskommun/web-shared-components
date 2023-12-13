@@ -1,5 +1,5 @@
 import { __DEV__, cx } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 import { useTabMenuListClass, useTabMenuWrapperClass } from './styles';
 import TabItem, { IMenuItem } from './tab-item';
 

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Input as InternalInput, InputProps } from './input';
 import { InputGroup, InputGroupProps } from '../input-group';
