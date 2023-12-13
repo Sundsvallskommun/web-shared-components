@@ -31,8 +31,9 @@ export interface CheckboxGroupProps extends DefaultProps {
   onChange?: (value: Array<CheckboxItemProps['value']>) => void;
   /**
    * If `true`, the checkboxes will aligned horizontally.
+   * @default column
    */
-  inline?: boolean;
+  direction?: 'row' | 'column';
   /* Size of all wrapped checkbox */
   size?: CheckboxItemProps['size'];
   /* Color of all wrapped checkbox */
@@ -52,7 +53,7 @@ const CheckboxGroupContext = React.createContext<UseCheckboxGroupData>({});
 export const useCheckboxGroup = () => React.useContext(CheckboxGroupContext);
 
 export const CheckboxGroup = React.forwardRef<HTMLUListElement, CheckboxGroupProps>((props, ref) => {
-  const { onChange, name, color, size, defaultValue, inline, value: valueProp, children, ...rest } = props;
+  const { onChange, name, color, size, defaultValue, direction, value: valueProp, children, ...rest } = props;
   const [values, setValues] = useState(defaultValue || []);
 
   const { current: isControlled } = useRef(valueProp != null);
@@ -87,7 +88,7 @@ export const CheckboxGroup = React.forwardRef<HTMLUListElement, CheckboxGroupPro
 
   const clones = validChildren.map((child, index) => {
     return (
-      <li key={index} className={cx(inline ? 'inline-block' : 'block', child.props.className)}>
+      <li key={index} className={cx(child.props.className)}>
         {child}
       </li>
     );
@@ -95,7 +96,7 @@ export const CheckboxGroup = React.forwardRef<HTMLUListElement, CheckboxGroupPro
 
   return (
     <CheckboxGroupContext.Provider value={context}>
-      <ul className="sk-form-checkbox-group" role="group" ref={ref} {...rest}>
+      <ul className="sk-form-checkbox-group" role="group" data-direction={direction} ref={ref} {...rest}>
         {clones}
       </ul>
     </CheckboxGroupContext.Provider>

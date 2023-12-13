@@ -27,18 +27,16 @@ export const ExampleWithForm = () => {
   const allToppings = ['Skinka', 'Ost', 'Tomat'];
 
   return (
-    <div className="flex flex-col">
-      <FormControl fieldset>
-        <FormLabel>Pålägg</FormLabel>
-        <Checkbox.Group>
-          {allToppings.map((topping) => (
-            <Checkbox key={topping} {...register('toppings')} value={topping}>
-              {topping}
-            </Checkbox>
-          ))}
-        </Checkbox.Group>
-      </FormControl>
-    </div>
+    <FormControl fieldset>
+      <FormLabel>Pålägg</FormLabel>
+      <Checkbox.Group>
+        {allToppings.map((topping) => (
+          <Checkbox key={topping} {...register('toppings')} value={topping}>
+            {topping}
+          </Checkbox>
+        ))}
+      </Checkbox.Group>
+    </FormControl>
   );
 };
 
@@ -47,18 +45,16 @@ export const ExampleWithState = () => {
   const [value, setValue] = React.useState<Array<CheckboxItemProps['value']>>([]);
 
   return (
-    <div className="flex flex-col">
-      <FormControl fieldset>
-        <FormLabel>Pålägg</FormLabel>
-        <Checkbox.Group value={value} onChange={setValue}>
-          {allToppings.map((topping) => (
-            <Checkbox key={topping} value={topping}>
-              {topping}
-            </Checkbox>
-          ))}
-        </Checkbox.Group>
-      </FormControl>
-    </div>
+    <FormControl fieldset>
+      <FormLabel>Pålägg</FormLabel>
+      <Checkbox.Group value={value} onChange={setValue}>
+        {allToppings.map((topping) => (
+          <Checkbox key={topping} value={topping}>
+            {topping}
+          </Checkbox>
+        ))}
+      </Checkbox.Group>
+    </FormControl>
   );
 };
 
@@ -78,20 +74,18 @@ export const ExampleWithIndeterminate = () => {
   };
 
   return (
-    <div className="flex flex-col">
-      <FormControl fieldset>
-        <FormLabel>Pålägg</FormLabel>
-        <Checkbox.Group value={value} onChange={setValue}>
-          <Checkbox value="" checked={value.length > 0} indeterminate={indeterminate} onChange={handleChange}>
-            Alla
+    <FormControl fieldset>
+      <FormLabel>Pålägg</FormLabel>
+      <Checkbox.Group value={value} onChange={setValue}>
+        <Checkbox value="" checked={value.length > 0} indeterminate={indeterminate} onChange={handleChange}>
+          Alla
+        </Checkbox>
+        {allToppings.map((topping) => (
+          <Checkbox key={topping} value={topping}>
+            {topping}
           </Checkbox>
-          {allToppings.map((topping) => (
-            <Checkbox key={topping} value={topping}>
-              {topping}
-            </Checkbox>
-          ))}
-        </Checkbox.Group>
-      </FormControl>
-    </div>
+        ))}
+      </Checkbox.Group>
+    </FormControl>
   );
 };

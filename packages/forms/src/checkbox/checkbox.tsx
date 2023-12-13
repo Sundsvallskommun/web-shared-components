@@ -96,7 +96,12 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxItemProps>((p
   const size = _size || groupContext?.size || formControl?.size || 'md';
   const name = _name || groupContext?.name;
   const color = _color || groupContext.color || 'primary';
-  const checked = _checked !== undefined || ref ? _checked : (groupContext.value || []).includes(value);
+  const checked =
+    _checked !== undefined || ref
+      ? _checked
+      : groupContext.value
+      ? (groupContext.value || []).includes(value)
+      : undefined;
 
   const checkboxClasses = useCheckboxClass({
     size,
