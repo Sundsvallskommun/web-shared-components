@@ -2,6 +2,7 @@ module.exports = Switch = () => ({
   '.sk-form-switch-label': {
     '@apply inline-flex align-middle items-center': {},
     '@apply flex-row gap-12': {},
+    '@apply font-normal text-base': {},
 
     "&[type='hidden']": {
       '@apply hidden': {},
@@ -12,13 +13,11 @@ module.exports = Switch = () => ({
     },
   },
   '.sk-form-switch': {
-    '@apply rounded-full p-0.5 cursor-pointer focus:outline-none': {},
+    '@apply rounded-full cursor-pointer focus:outline-none': {},
     '@apply bg-primitives-overlay-darken-3 dark:bg-primitives-overlay-lighten-3': {},
 
-    border: '0.1rem solid transparent',
-
     // Hover
-    '@apply hover:bg-primitives-overlay-darken-5 hover:dark:bg-primitives-overlay-lighten-4 !important': {},
+    '@apply hover:bg-primitives-overlay-darken-5 hover:dark:bg-primitives-overlay-lighten-4': {},
 
     // Focus
     'input[type=checkbox]:focus-visible + &': {
@@ -38,7 +37,7 @@ module.exports = Switch = () => ({
       },
 
       '.sk-form-switch-box': {
-        transform: 'translateX(1.78rem)',
+        transform: 'translateX(2.4rem)',
       },
 
       '@apply bg-primitives-overlay-darken-4 dark:bg-primitives-overlay-lighten-5': {},
