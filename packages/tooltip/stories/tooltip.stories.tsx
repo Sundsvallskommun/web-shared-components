@@ -1,4 +1,3 @@
-import React from 'react';
 import { Tooltip, TooltipProps } from '../src';
 import { Meta } from '@storybook/react';
 
@@ -9,7 +8,9 @@ export default {
 } as Meta<typeof Tooltip>;
 
 export const Template = (args: TooltipProps) => (
-  <Tooltip {...args}>Tooltip</Tooltip>
-);  
+  <div style={{ height: '4rem' }}>
+    <Tooltip {...args}>My tooltip</Tooltip>
+  </div>
+);
 
 Template.storyName = 'Tooltip';
