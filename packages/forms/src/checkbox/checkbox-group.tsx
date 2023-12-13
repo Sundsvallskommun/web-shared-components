@@ -1,7 +1,6 @@
 import { useId } from '@reach/auto-id';
-import { cx, getValidChildren, __DEV__, DefaultProps } from '@sk-web-gui/utils';
-import React from 'react';
-import { cloneElement, useRef, useState } from 'react';
+import { DefaultProps, __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
+import React, { useRef, useState } from 'react';
 
 import { CheckboxItemProps } from './checkbox';
 
@@ -32,16 +31,29 @@ export interface CheckboxGroupProps extends DefaultProps {
   onChange?: (value: Array<CheckboxItemProps['value']>) => void;
   /**
    * If `true`, the checkboxes will aligned horizontally.
+   * @default column
    */
-  inline?: boolean;
+  direction?: 'row' | 'column';
   /* Size of all wrapped checkbox */
   size?: CheckboxItemProps['size'];
   /* Color of all wrapped checkbox */
   color?: CheckboxItemProps['color'];
 }
 
+interface UseCheckboxGroupData {
+  handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  size?: CheckboxItemProps['size'];
+  color?: CheckboxItemProps['color'];
+  name?: CheckboxItemProps['name'];
+  value?: Array<CheckboxItemProps['value']>;
+}
+
+const CheckboxGroupContext = React.createContext<UseCheckboxGroupData>({});
+
+export const useCheckboxGroup = () => React.useContext(CheckboxGroupContext);
+
 export const CheckboxGroup = React.forwardRef<HTMLUListElement, CheckboxGroupProps>((props, ref) => {
-  const { onChange, name, color, size, defaultValue, inline, value: valueProp, children, ...rest } = props;
+  const { onChange, name, color, size, defaultValue, direction, value: valueProp, children, ...rest } = props;
   const [values, setValues] = useState(defaultValue || []);
 
   const { current: isControlled } = useRef(valueProp != null);
@@ -64,26 +76,30 @@ export const CheckboxGroup = React.forwardRef<HTMLUListElement, CheckboxGroupPro
   const fallbackName = `checkbox-${useId()}`;
   const _name = name || fallbackName;
 
+  const context = {
+    handleChange: _onChange,
+    name: _name,
+    size: size,
+    color: color,
+    value: _values,
+  };
+
   const validChildren = getValidChildren(children);
 
   const clones = validChildren.map((child, index) => {
     return (
-      <li key={index} className={cx(inline ? 'inline-block' : 'block', child.props.className)}>
-        {cloneElement(child, {
-          size: size,
-          color: child.props.color || color,
-          name: `${_name}-${index}`,
-          onChange: _onChange,
-          checked: (_values || []).includes(child.props.value),
-        })}
+      <li key={index} className={cx(child.props.className)}>
+        {child}
       </li>
     );
   });
 
   return (
-    <ul className="sk-form-checkbox-group" role="group" ref={ref} {...rest}>
-      {clones}
-    </ul>
+    <CheckboxGroupContext.Provider value={context}>
+      <ul className="sk-form-checkbox-group" role="group" data-direction={direction} ref={ref} {...rest}>
+        {clones}
+      </ul>
+    </CheckboxGroupContext.Provider>
   );
 });
 
