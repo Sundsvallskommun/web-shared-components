@@ -1,6 +1,6 @@
 import { useFormControl } from '../form-control';
 import { cx, useForkRef, __DEV__, DefaultProps } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 import { useEffect, useRef } from 'react';
 import { Icon } from '@sk-web-gui/icon';
 

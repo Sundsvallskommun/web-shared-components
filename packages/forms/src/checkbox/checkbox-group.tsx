@@ -1,6 +1,6 @@
 import { useId } from '@reach/auto-id';
 import { cx, getValidChildren, __DEV__, DefaultProps } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 import { cloneElement, useRef, useState } from 'react';
 
 import { CheckboxItemProps } from './checkbox';

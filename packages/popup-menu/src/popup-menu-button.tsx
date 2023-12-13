@@ -2,7 +2,7 @@ import { Menu } from '@headlessui/react';
 
 import { ButtonProps, getButtonContent } from '@sk-web-gui/button';
 import { cx } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 import { useButtonClass } from './styles';
 
 export const PopupMenuButton = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {

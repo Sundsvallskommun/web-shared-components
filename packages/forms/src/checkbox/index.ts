@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { CheckboxItemProps, Checkbox as InternalCheckbox } from './checkbox';
 import { CheckboxGroup, CheckboxGroupProps } from './checkbox-group';

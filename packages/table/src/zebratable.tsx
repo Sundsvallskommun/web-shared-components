@@ -1,7 +1,7 @@
 import { Input, Select } from '@sk-web-gui/forms';
 import { Pagination } from '@sk-web-gui/pagination';
 import { __DEV__, cx } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 import { useEffect, useState } from 'react';
 import { useZebraTableClass } from './styles';
 import { ZTableHeader } from './zebratable-header';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Spinner as InternalSpinner, SpinnerProps as InternalSpinnerProps } from './spinner';
 
