@@ -194,7 +194,7 @@ export const lineHeights = {
   lead: '2.8rem',
   base: '2.4rem',
   large: '2.6rem',
-  small: '2.2rem',
+  small: '1.8rem',
 };
 
 export const radius = {
