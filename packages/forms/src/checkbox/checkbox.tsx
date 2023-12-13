@@ -5,6 +5,7 @@ import { useEffect, useRef } from 'react';
 import { Icon } from '@sk-web-gui/icon';
 
 import { useCheckboxClass, useCheckboxLabelClass } from './styles';
+import { useCheckboxGroup } from './checkbox-group';
 
 export interface ICheckboxProps<T = HTMLInputElement> extends DefaultProps {
   /* Makes checkbox disabled */
@@ -31,7 +32,7 @@ export interface ICheckboxProps<T = HTMLInputElement> extends DefaultProps {
   /** Checkbox name */
   name?: string;
   /** Checkbox value */
-  value?: string | number;
+  value?: string;
   /** Set the checkbox color
    * @default primary
    */
@@ -72,15 +73,15 @@ export type CheckboxItemProps = ICheckboxProps & React.HTMLAttributes<HTMLInputE
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxItemProps>((props, ref) => {
   const {
     id,
-    name,
+    name: _name,
     value,
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
     'aria-describedby': ariaDescribedby,
-    color = 'primary',
+    color: _color,
     defaultChecked,
-    checked,
-    size = 'md',
+    checked: _checked,
+    size: _size,
     onChange,
     indeterminate,
     children,
@@ -89,7 +90,13 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxItemProps>((p
     ...rest
   } = props;
 
-  const { disabled, invalid, readOnly } = useFormControl(props);
+  const { disabled, invalid, readOnly, ...formControl } = useFormControl(props);
+  const groupContext = useCheckboxGroup();
+
+  const size = _size || groupContext?.size || formControl?.size || 'md';
+  const name = _name || groupContext?.name;
+  const color = _color || groupContext.color || 'primary';
+  const checked = _checked !== undefined || ref ? _checked : (groupContext.value || []).includes(value);
 
   const checkboxClasses = useCheckboxClass({
     size,
@@ -111,6 +118,10 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxItemProps>((p
     }
   }, [indeterminate, _ref]);
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    groupContext.handleChange && groupContext.handleChange(event);
+    onChange && onChange(event);
+  };
   return (
     <label
       className={cx(
@@ -129,7 +140,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxItemProps>((p
         ref={_ref}
         name={name}
         value={value}
-        onChange={readOnly ? undefined : onChange}
+        onChange={readOnly ? undefined : handleChange}
         defaultChecked={readOnly ? undefined : defaultChecked}
         checked={readOnly ? Boolean(checked) : defaultChecked ? undefined : checked}
         disabled={disabled}
