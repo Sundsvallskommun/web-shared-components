@@ -1,9 +1,9 @@
+import React from 'react';
 import { Link } from '@sk-web-gui/link';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
-import React from 'react';
 import { HeaderLogoText } from './header-logotext';
 
-export interface HeaderComponentProps extends DefaultProps, React.HTMLAttributes<HTMLDivElement> {
+export interface HeaderComponentProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   /* Title for main page */
   title?: string;
   /*Subtitle for page- optional */

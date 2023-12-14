@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 
 interface IBadgeProps extends DefaultProps {
@@ -8,7 +8,7 @@ interface IBadgeProps extends DefaultProps {
   rounded?: boolean;
 }
 
-export interface BadgeProps extends Omit<React.HTMLAttributes<HTMLSpanElement>, 'color'>, IBadgeProps {}
+export interface BadgeProps extends Omit<React.ComponentPropsWithRef<'span'>, 'color'>, IBadgeProps {}
 
 export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
   const { color = 'tertiary', rounded, counter, inverted = false, className, ...rest } = props;

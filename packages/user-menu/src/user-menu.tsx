@@ -1,13 +1,13 @@
 import { Avatar } from '@sk-web-gui/avatar';
 import { PopupMenu } from '@sk-web-gui/popup-menu';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 export interface MenuItemGroup {
   label: string;
   elements: { label: string; element: () => JSX.Element }[];
 }
 
-interface IUserMenuProps extends DefaultProps {
+export interface UserMenuProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   menuTitle?: string;
   menuSubTitle?: string;
   initials?: string;
@@ -15,9 +15,6 @@ interface IUserMenuProps extends DefaultProps {
   imageAlt?: string;
   placeholderImage?: string;
   imageElem?: React.ReactElement;
-}
-
-export interface UserMenuProps extends React.HTMLAttributes<HTMLDivElement>, IUserMenuProps {
   menuGroups: MenuItemGroup[];
 }
 

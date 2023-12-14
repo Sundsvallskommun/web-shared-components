@@ -1,7 +1,7 @@
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import { Icon } from '@sk-web-gui/icon';
 import { DefaultProps } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 
 import { useAlertClass, useAlertCloseButton } from './styles';
 
@@ -19,7 +19,7 @@ const useAlertContext = () => {
   return context;
 };
 
-export interface AlertCloseButtonProps extends React.HTMLAttributes<HTMLButtonElement>, DefaultProps {}
+export interface AlertCloseButtonProps extends React.ComponentPropsWithRef<'button'>, DefaultProps {}
 
 export const AlertCloseButton = React.forwardRef<HTMLButtonElement, AlertCloseButtonProps>(({ className }, ref) => {
   const { color } = useAlertContext();
@@ -43,7 +43,7 @@ interface IAlertProps extends DefaultProps {
   variant?: 'subtle' | 'solid' | 'left-accent';
 }
 
-export interface AlertProps extends React.HTMLAttributes<HTMLDivElement>, IAlertProps {}
+export interface AlertProps extends React.ComponentPropsWithRef<'div'>, IAlertProps {}
 
 export const Alert = React.forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
   const { color = 'primary', variant = 'subtle', className, ...rest } = props;

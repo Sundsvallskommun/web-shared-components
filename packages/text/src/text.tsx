@@ -1,8 +1,8 @@
 import { Link } from '@sk-web-gui/link';
 import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 
-interface ITextProps extends DefaultProps {
+export interface TextProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   /* If text looking like urls should be clickable links */
   urlAsLink?: boolean;
   /* If links should be external or not */
@@ -13,8 +13,6 @@ interface ITextProps extends DefaultProps {
   /* The element or component to use in place of `div` */
   as?: React.ElementType;
 }
-
-export interface TextProps extends React.HTMLAttributes<HTMLDivElement>, ITextProps {}
 
 export const Text = React.forwardRef<HTMLDivElement, TextProps>((props, ref) => {
   const {

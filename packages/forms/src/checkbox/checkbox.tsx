@@ -1,18 +1,17 @@
 import { useFormControl } from '../form-control';
 import { cx, useForkRef, __DEV__, DefaultProps } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 import { useEffect, useRef } from 'react';
 import { Icon } from '@sk-web-gui/icon';
 
 import { useCheckboxClass, useCheckboxLabelClass } from './styles';
+import { useCheckboxGroup } from './checkbox-group';
 
-export interface ICheckboxProps<T = HTMLInputElement> extends DefaultProps {
-  /* Makes checkbox disabled */
-  disabled?: React.InputHTMLAttributes<T>['disabled'];
+export interface CheckboxItemProps<T = HTMLInputElement>
+  extends DefaultProps,
+    Omit<React.ComponentPropsWithRef<'input'>, 'size'> {
   /* Makes checkbox invalid */
   invalid?: boolean;
-  /* Makes checkbox required */
-  required?: React.InputHTMLAttributes<T>['required'];
   /* Makes checkbox readOnly */
   readOnly?: React.InputHTMLAttributes<T>['readOnly'];
   /* Makes checkbox indeterminate */
@@ -26,12 +25,6 @@ export interface ICheckboxProps<T = HTMLInputElement> extends DefaultProps {
    * You'll need to pass `onChange` to update it's value (since it's now controlled)
    */
   checked?: boolean;
-  /** Checkbox id */
-  id?: string;
-  /** Checkbox name */
-  name?: string;
-  /** Checkbox value */
-  value?: string | number;
   /** Set the checkbox color
    * @default primary
    */
@@ -40,18 +33,6 @@ export interface ICheckboxProps<T = HTMLInputElement> extends DefaultProps {
    * @default md
    */
   size?: 'sm' | 'md' | 'lg';
-  /**
-   * A11y: A label that describes the input
-   */
-  'aria-label'?: string;
-  /**
-   * A11y: The id of the element that describes the input
-   */
-  'aria-describedby'?: string;
-  /**
-   * A11y: Refers to the id of the element that labels the checkbox element.
-   */
-  'aria-labelledby'?: string;
   /**
    * The children is the label to be displayed to the right of the checkbox.
    */
@@ -67,19 +48,17 @@ export interface ICheckboxProps<T = HTMLInputElement> extends DefaultProps {
   labelPosition?: 'left' | 'right';
 }
 
-export type CheckboxItemProps = ICheckboxProps & React.HTMLAttributes<HTMLInputElement>;
-
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxItemProps>((props, ref) => {
   const {
     id,
-    name,
+    name: _name,
     value,
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
     'aria-describedby': ariaDescribedby,
-    color = 'primary',
+    color: _color,
     defaultChecked,
-    checked,
+    checked: _checked,
     size: _size,
     onChange,
     indeterminate,
@@ -89,9 +68,18 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxItemProps>((p
     ...rest
   } = props;
 
-  const { disabled, invalid, readOnly, size: formcontrolSize } = useFormControl(props);
+  const { disabled, invalid, readOnly, ...formControl } = useFormControl(props);
+  const groupContext = useCheckboxGroup();
 
-  const size = _size || formcontrolSize || 'md';
+  const size = _size || groupContext?.size || formControl?.size || 'md';
+  const name = _name || groupContext?.name;
+  const color = _color || groupContext.color || 'primary';
+  const checked =
+    _checked !== undefined || ref
+      ? _checked
+      : groupContext.value
+        ? (groupContext.value || []).includes(value)
+        : undefined;
 
   const checkboxClasses = useCheckboxClass({
     size,
@@ -113,6 +101,10 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxItemProps>((p
     }
   }, [indeterminate, _ref]);
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    groupContext.handleChange && groupContext.handleChange(event);
+    onChange && onChange(event);
+  };
   return (
     <label
       className={cx(
@@ -131,7 +123,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxItemProps>((p
         ref={_ref}
         name={name}
         value={value}
-        onChange={readOnly ? undefined : onChange}
+        onChange={readOnly ? undefined : handleChange}
         defaultChecked={readOnly ? undefined : defaultChecked}
         checked={readOnly ? Boolean(checked) : defaultChecked ? undefined : checked}
         disabled={disabled}

@@ -1,11 +1,11 @@
 import { Spinner } from '@sk-web-gui/spinner';
 import { DefaultProps, PolymorphicComponentPropsWithRef, PolymorphicRef } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 import { Link } from '@sk-web-gui/link';
 import { useButtonClass } from './styles';
 
-export interface ButtonProps extends DefaultProps, React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends DefaultProps, React.ComponentPropsWithRef<'button'> {
   /* Shows loading spinner */
   loading?: boolean;
   /** Makes button disabled */
@@ -38,15 +38,21 @@ export interface ButtonProps extends DefaultProps, React.ButtonHTMLAttributes<HT
   'aria-disabled'?: React.ButtonHTMLAttributes<HTMLButtonElement>['aria-disabled'];
 }
 
-export type IButtonProps<C extends React.ElementType> = PolymorphicComponentPropsWithRef<C, ButtonProps>;
+export interface ButtonContentProps {
+  loading?: ButtonProps['loading'];
+  loadingText?: ButtonProps['loadingText'];
+  leftIcon?: ButtonProps['leftIcon'];
+  rightIcon?: ButtonProps['rightIcon'];
+  children?: ButtonProps['children'];
+}
 
-export const getButtonContent = (props: ButtonProps): JSX.Element => {
+export const ButtonContent: React.FC<ButtonContentProps> = (props: ButtonContentProps): JSX.Element => {
   const { loading, loadingText, leftIcon, rightIcon, children } = props;
   return (
     <>
       {leftIcon && !loading ? <span className="btn-has-icon-left">{leftIcon}</span> : null}
       {loading && (
-        <Spinner className={cx(loadingText ? 'relative' : 'absolute', loadingText ? `mr-2` : 'mr-0')} size="sm" />
+        <Spinner className={cx(loadingText ? 'relative' : 'absolute', loadingText ? `mr-2` : 'mr-0')} size={16} />
       )}
       {loading ? loadingText || <span className="opacity-0">{children}</span> : children}
       {rightIcon && !loading ? <span className="btn-has-icon-right">{rightIcon}</span> : null}
@@ -54,6 +60,7 @@ export const getButtonContent = (props: ButtonProps): JSX.Element => {
   );
 };
 
+export type IButtonProps<C extends React.ElementType> = PolymorphicComponentPropsWithRef<C, ButtonProps>;
 export const Button = React.forwardRef(
   <C extends React.ElementType = 'button'>(props: IButtonProps<C>, ref?: PolymorphicRef<C>) => {
     const {
@@ -96,7 +103,10 @@ export const Button = React.forwardRef(
         className={cx(className)}
         {...rest}
       >
-        {getButtonContent({ loading, loadingText, leftIcon, rightIcon, children })}
+        <ButtonContent loading={loading} loadingText={loadingText} leftIcon={leftIcon} rightIcon={rightIcon}>
+          {children}
+        </ButtonContent>
+        {/* {ButtonContent({ loading, loadingText, leftIcon, rightIcon, children })} */}
       </Link>
     ) : (
       <Component
@@ -112,7 +122,9 @@ export const Button = React.forwardRef(
         data-icon={iconButton ? iconButton : undefined}
         className={cx(classes, className)}
       >
-        {getButtonContent({ loading, loadingText, leftIcon, rightIcon, children })}
+        <ButtonContent loading={loading} loadingText={loadingText} leftIcon={leftIcon} rightIcon={rightIcon}>
+          {children}
+        </ButtonContent>
       </Component>
     );
   }

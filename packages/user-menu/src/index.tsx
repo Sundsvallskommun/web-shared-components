@@ -1,3 +1,5 @@
-import * as React from 'react';
+import UserMenu, { MenuItemGroup, UserMenuProps } from './user-menu';
 
-export * from './user-menu';
+export { UserMenu };
+export type { UserMenuProps, MenuItemGroup };
+export default { UserMenu };

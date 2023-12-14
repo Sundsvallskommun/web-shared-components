@@ -1,19 +1,18 @@
-import { __DEV__, cx, useForkRef } from '@sk-web-gui/utils';
-import React, { useState } from 'react';
-import { useComboboxStyles } from './styles';
-import { ComboboxList } from './combobox-list';
-import { ComboboxOption } from './combobox-option';
 import { useClickOutside } from '@react-hookz/web';
-import { UseComboboxProps, ComboboxContext } from './combobox-context';
+import { __DEV__, cx, useForkRef } from '@sk-web-gui/utils';
+import React from 'react';
 import { useFormControl } from '../form-control';
+import { ComboboxContext, UseComboboxProps } from './combobox-context';
+import { useComboboxStyles } from './styles';
 
-interface ComboboxBaseProps
-  extends UseComboboxProps,
-    Omit<React.HTMLAttributes<HTMLInputElement>, 'onChange' | 'onSelect'> {
+interface ComboboxChangeEvent extends Partial<React.ChangeEvent<HTMLInputElement>> {
+  target: React.ChangeEvent<HTMLInputElement>['target'];
+}
+export interface ComboboxBaseProps extends UseComboboxProps, Omit<React.ComponentPropsWithRef<'input'>, 'size'> {
   /**
    * ChangeEvent list
    */
-  onChange?: (event: Partial<React.ChangeEvent<HTMLInputElement>>) => void;
+  onChange?: (event: ComboboxChangeEvent) => void;
   /**
    * Value from list
    */
@@ -34,6 +33,8 @@ interface ComboboxBaseProps
    * @default primary
    */
   variant?: 'primary' | 'tertiary';
+  /* Makes input invalid */
+  invalid?: boolean;
 }
 
 const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((props, ref) => {
@@ -51,6 +52,7 @@ const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((prop
     children,
     autofilter = true,
     size: _size,
+    invalid: _invalid,
     variant = 'primary',
     ...rest
   } = props;
@@ -59,8 +61,8 @@ const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((prop
   const [internalValue, setInternalValue] = React.useState<string[]>([]);
   const [labels, setLabels] = React.useState<Record<string, string>>({});
   const [searchValue, setSearchValue] = React.useState<string>('');
-  const [active, setActive] = useState<number>(-1);
-  const [total, setTotal] = useState<number>(0);
+  const [active, setActive] = React.useState<number>(-1);
+  const [total, setTotal] = React.useState<number>(0);
 
   const value = _value !== undefined ? _value : searchValue;
 
@@ -70,7 +72,7 @@ const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((prop
   const {
     readOnly,
     disabled: fcDisabled,
-    invalid,
+    invalid: formcontrolInvalid,
     required,
     errorId,
     helpTextId,
@@ -84,7 +86,7 @@ const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((prop
   const name = `${id}-option`;
   const disabled = _disabled !== undefined ? _disabled : fcDisabled;
   const size = _size || fcSize || 'md';
-
+  const invalid = _invalid !== undefined ? _invalid : formcontrolInvalid;
   const classes = useComboboxStyles({ size, variant });
 
   const addLabel = (label: string, value: string) => {
@@ -288,21 +290,8 @@ const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((prop
   );
 });
 
-interface ComboboxProps
-  extends ComboboxBaseProps,
-    React.ForwardRefExoticComponent<ComboboxBaseProps & React.RefAttributes<HTMLElement>> {
-  List: typeof ComboboxList;
-  Option: typeof ComboboxOption;
-}
-
-export const Combobox = ComboboxBase as ComboboxProps;
-
-Combobox.List = ComboboxList;
-Combobox.Option = ComboboxOption;
-
 if (__DEV__) {
-  Combobox.displayName = 'ComboBox';
+  ComboboxBase.displayName = 'ComboBoxBase';
 }
 
-export type { ComboboxProps };
-export default Combobox;
+export default ComboboxBase;

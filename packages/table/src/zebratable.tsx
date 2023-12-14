@@ -1,8 +1,7 @@
 import { Input, Select } from '@sk-web-gui/forms';
 import { Pagination } from '@sk-web-gui/pagination';
-import { __DEV__, cx } from '@sk-web-gui/utils';
-import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
+import React from 'react';
 import { useZebraTableClass } from './styles';
 import { ZTableHeader } from './zebratable-header';
 export interface ZebraTableHeader {
@@ -16,7 +15,7 @@ export interface ZebraTableColumn {
   isShown?: boolean;
 }
 
-export interface IZebraTableProps {
+export interface ZebraTableProps extends DefaultProps, React.ComponentPropsWithRef<'table'> {
   headers: ZebraTableHeader[];
   rows: ZebraTableColumn[][];
   tableSortable?: boolean;
@@ -38,8 +37,6 @@ export interface IZebraTableProps {
   dense?: boolean;
   variant?: 'table' | 'datatable';
 }
-
-export type ZebraTableProps = IZebraTableProps & React.HTMLAttributes<HTMLTableElement>;
 
 export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((props, ref) => {
   const {
@@ -68,14 +65,14 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
   } = props;
 
   const zebraTableClasses = useZebraTableClass();
-  const [managedRows, setManagedRows] = useState(rows);
-  const [sortModeAscending, setSortModeAscending] = useState(defaultSort.sortMode);
-  const [_pageSize, setPageSize] = useState<number>(_propsPageSize);
+  const [managedRows, setManagedRows] = React.useState(rows);
+  const [sortModeAscending, setSortModeAscending] = React.useState(defaultSort.sortMode);
+  const [_pageSize, setPageSize] = React.useState<number>(_propsPageSize);
   const pageSize = _pageSize || 1;
-  const [sortIndex, setSortIndex] = useState<number>(defaultSort.idx);
-  const [currentPage, setCurrentPage] = useState<number>(page);
-  const [pages, setPages] = useState<number>(Math.ceil(_pages || rows.length / pageSize));
-  const [rowHeight, setRowHeight] = useState<string>(_dense ? 'dense' : 'normal');
+  const [sortIndex, setSortIndex] = React.useState<number>(defaultSort.idx);
+  const [currentPage, setCurrentPage] = React.useState<number>(page);
+  const [pages, setPages] = React.useState<number>(Math.ceil(_pages || rows.length / pageSize));
+  const [rowHeight, setRowHeight] = React.useState<string>(_dense ? 'dense' : 'normal');
 
   const captionShowPages = _captionShowPages || variant === 'datatable' ? true : false;
 
@@ -83,32 +80,32 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
     setSortModeAscending(sortIndex === idx ? !sortModeAscending : sortAscending);
     setSortIndex(idx);
   };
-  const [highlightedPage, setHighlightedPage] = useState<number>(0);
+  const [highlightedPage, setHighlightedPage] = React.useState<number>(0);
 
-  useEffect(() => {
+  React.useEffect(() => {
     sortHandler(sortIndex, sortModeAscending);
   }, [sortIndex, sortModeAscending, sortHandler]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     setSortIndex(defaultSort.idx);
     setSortModeAscending(defaultSort.sortMode);
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     setCurrentPage(page);
   }, [page]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (_pageSize) {
       setPageSize(_pageSize);
     }
   }, [_pageSize]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     changePage && changePage(currentPage);
   }, [currentPage]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (highlightedItemIndex !== undefined) {
       const itemPage = Math.floor(highlightedItemIndex / pageSize + 1);
       setHighlightedPage(itemPage);
@@ -116,7 +113,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
     }
   }, [highlightedItemIndex]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (pages > 0) {
       const newPages = Math.ceil(rows.length / pageSize);
       setPages(newPages);

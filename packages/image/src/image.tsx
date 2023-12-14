@@ -1,6 +1,6 @@
 import { DefaultProps } from '@sk-web-gui/utils';
 import { omit, __DEV__ } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 import { useImage, UseImageProps } from './use-image';
 
 interface INativeImageProps extends DefaultProps {
@@ -15,8 +15,6 @@ interface INativeImageProps extends DefaultProps {
 }
 
 interface NativeImageProps extends React.ImgHTMLAttributes<HTMLImageElement>, INativeImageProps {}
-
-export type { NativeImageProps };
 
 export const NativeImage = React.forwardRef((props: NativeImageProps, ref: React.Ref<any>) => {
   const { htmlWidth, htmlHeight, alt, ...rest } = props;
@@ -69,10 +67,9 @@ export const Image = React.forwardRef<unknown, ImageProps>((props, ref) => {
   return <Comp src={src} crossOrigin={crossOrigin} loading={loading} {...shared} />;
 });
 
-export type { ImageProps };
-
 if (__DEV__) {
   Image.displayName = 'Image';
 }
 
+export type { ImageProps, NativeImageProps };
 export default Image;

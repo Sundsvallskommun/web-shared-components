@@ -1,7 +1,7 @@
 import { useId } from '@reach/auto-id';
 import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 
 interface UseFormControlProps {
   /** If `true`, this prop is passed to its children. */
@@ -26,21 +26,21 @@ interface UseFormControlData extends UseFormControlProps {
   helpTextId?: string;
 }
 
-interface IFormControlRegularProps extends DefaultProps, UseFormControlProps, React.HTMLAttributes<HTMLDivElement> {
+interface IFormControlRegularProps extends DefaultProps, UseFormControlProps, React.ComponentPropsWithRef<'div'> {
   children?: React.ReactNode;
   fieldset?: false | undefined;
 }
-interface IFormControlFieldsetProps
-  extends DefaultProps,
-    UseFormControlProps,
-    React.HTMLAttributes<HTMLFieldSetElement> {
+interface IFormControlFieldsetProps extends DefaultProps, UseFormControlProps, React.ComponentPropsWithRef<'fieldset'> {
   children?: React.ReactNode;
   fieldset: true;
 }
 
 export type FormControlProps = IFormControlFieldsetProps | IFormControlRegularProps;
 
-export const useFormControl = (props: UseFormControlProps & { [key: string]: any }): UseFormControlData => {
+//eslint-disable-next-line
+type FormControlObject = Record<string, any>;
+
+export const useFormControl = (props: UseFormControlProps & FormControlObject): UseFormControlData => {
   const context = useFormControlContext();
   if (!context) {
     return props;
@@ -60,7 +60,7 @@ export const useFormControl = (props: UseFormControlProps & { [key: string]: any
   }, {});
 };
 
-const FormControlContext = React.createContext<(UseFormControlProps & { [key: string]: any }) | undefined>(undefined);
+const FormControlContext = React.createContext<(UseFormControlProps & FormControlObject) | undefined>(undefined);
 
 const useFormControlContext = () => React.useContext(FormControlContext);
 

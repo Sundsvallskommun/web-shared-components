@@ -1,13 +1,11 @@
 import { DefaultProps, cx } from '@sk-web-gui/utils';
 import React from 'react';
 
-interface ILabelProps extends DefaultProps {
+export interface LabelProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   color?: string;
   rounded?: boolean;
   inverted?: boolean;
 }
-
-export interface LabelProps extends ILabelProps, React.HTMLAttributes<HTMLDivElement> {}
 
 export const Label = React.forwardRef<HTMLDivElement, LabelProps>((props, ref) => {
   const { color = 'tertiary', rounded = false, inverted = false, className, ...rest } = props;

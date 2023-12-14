@@ -1,6 +1,7 @@
+import React from 'react';
 import { cx } from '@sk-web-gui/utils';
 import { Meta } from '@storybook/react';
-import { Link } from '../../react';
+import { Link } from '@sk-web-gui/react';
 import { UserMenu } from '../src';
 import { MenuItemGroup, UserMenuProps } from '../src/user-menu';
 import { LogOut, Settings2, User, Wallet } from 'lucide-react';
@@ -189,7 +190,6 @@ export const Template = (args: UserMenuProps) => (
 
           <div className="block lg:flex justify-end lg:items-center lg:w-auto">
             <UserMenu {...args} menuGroups={menuGroups}></UserMenu>
-            {/* </div> */}
           </div>
         </div>
       </div>

@@ -1,15 +1,13 @@
 import { Link, LinkProps } from '@sk-web-gui/link';
 import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 
-interface IListProps extends DefaultProps {
+export interface ListProps extends DefaultProps, React.ComponentPropsWithRef<'ul'> {
   /** Select style of list. */
   listStyle?: 'bullet' | 'numbered' | 'stroke';
   /** React Node */
   children?: React.ReactNode;
 }
-
-export interface ListProps extends React.HTMLAttributes<HTMLElement>, IListProps {}
 
 export const List = React.forwardRef<HTMLUListElement, ListProps>((props, ref) => {
   const { children, className, listStyle = 'stroke', ...rest } = props;
@@ -27,12 +25,10 @@ if (__DEV__) {
 
 // NOTE: Body component
 
-interface IListItemProps extends DefaultProps {
+export interface ListItemProps extends DefaultProps, React.ComponentPropsWithRef<'li'> {
   /* React Node */
   children?: React.ReactNode;
 }
-
-export interface ListItemProps extends React.HTMLAttributes<HTMLElement>, IListItemProps {}
 
 export const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>((props, ref) => {
   const { children, className, ...rest } = props;
@@ -50,7 +46,7 @@ if (__DEV__) {
 
 // NOTE: Link component
 
-export const ListLink = React.forwardRef<HTMLElement, LinkProps>((props, ref) => {
+export const ListLink = React.forwardRef<typeof Link, LinkProps>((props, ref) => {
   const { children, className, ...rest } = props;
 
   return (
@@ -66,12 +62,10 @@ if (__DEV__) {
 
 // NOTE: Item component
 
-interface IListHeaderProps extends DefaultProps {
+export interface ListHeaderProps extends DefaultProps, React.ComponentPropsWithRef<'p'> {
   /* React Node */
   children?: React.ReactNode;
 }
-
-export interface ListHeaderProps extends React.HTMLAttributes<HTMLElement>, IListHeaderProps {}
 
 export const ListHeader = React.forwardRef<HTMLParagraphElement, ListHeaderProps>((props, ref) => {
   const { children, className, ...rest } = props;
@@ -89,12 +83,10 @@ if (__DEV__) {
 
 // NOTE: Text component
 
-interface IListTextProps extends DefaultProps {
+export interface ListTextProps extends DefaultProps, React.ComponentPropsWithRef<'p'> {
   /* React Node */
   children?: React.ReactNode;
 }
-
-export interface ListTextProps extends React.HTMLAttributes<HTMLElement>, IListTextProps {}
 
 export const ListText = React.forwardRef<HTMLParagraphElement, ListTextProps>((props, ref) => {
   const { children, className, ...rest } = props;

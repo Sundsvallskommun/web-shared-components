@@ -4,7 +4,7 @@ import { Spinner } from '@sk-web-gui/spinner';
 import { Button } from '@sk-web-gui/button';
 import EastIcon from '@mui/icons-material/East';
 import { Draggable } from './draggable';
-import * as React from 'react';
+import React from 'react';
 import { AriaMenuKeyboard } from '@sk-web-gui/keyboard-navigation';
 import { findIdPathsForObject } from './utils';
 export interface IDataObject {
@@ -286,7 +286,7 @@ export const SideMenu = React.forwardRef<HTMLDivElement, IMenuProps>((props, ref
           })}
         {loading && (
           <div className="py-20 flex justify-center w-full">
-            <Spinner size="xl" />
+            <Spinner size={30} />
           </div>
         )}
       </ul>

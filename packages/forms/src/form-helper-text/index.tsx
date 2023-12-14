@@ -1,13 +1,14 @@
 import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 
 import { FormControlProps, useFormControl } from '../form-control';
-interface IFormHelperTextProps extends DefaultProps, Pick<FormControlProps, 'size'> {
+export interface FormHelperTextProps
+  extends DefaultProps,
+    Pick<FormControlProps, 'size'>,
+    React.ComponentPropsWithRef<'p'> {
   children?: React.ReactNode;
 }
-
-export interface FormHelperTextProps extends React.HTMLAttributes<HTMLParagraphElement>, IFormHelperTextProps {}
 
 export const FormHelperText = React.forwardRef<HTMLParagraphElement, FormHelperTextProps>((props, ref) => {
   const { className, id, size = 'md', ...rest } = props;

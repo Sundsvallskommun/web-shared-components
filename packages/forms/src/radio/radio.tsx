@@ -5,9 +5,9 @@ import React from 'react';
 
 import { useRadioButtonClass, useRadioButtonLabelClass } from './styles';
 
-export interface RadioButtonProps<T = HTMLInputElement> extends DefaultProps, React.HTMLAttributes<HTMLInputElement> {
-  /* Makes radio disabled */
-  disabled?: React.InputHTMLAttributes<T>['disabled'];
+export interface RadioButtonProps<T = HTMLInputElement>
+  extends DefaultProps,
+    Omit<React.ComponentPropsWithRef<'input'>, 'size'> {
   /* Makes radio invalid */
   invalid?: boolean;
   /* Makes radio required */
@@ -27,26 +27,8 @@ export interface RadioButtonProps<T = HTMLInputElement> extends DefaultProps, Re
    * The callback invoked when the checked state of the `radio` changes..
    */
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  /* Radio id */
-  id?: string;
-  /* Radio name */
-  name?: string;
-  /* Radio value */
-  value?: string | number;
   /* Size of the radio */
   size?: 'sm' | 'md' | 'lg';
-  /**
-   * A11y: A label that describes the input
-   */
-  'aria-label'?: string;
-  /**
-   * A11y: The id of the element that describes the input
-   */
-  'aria-describedby'?: string;
-  /**
-   * A11y: Refers to the id of the element that labels the radio element.
-   */
-  'aria-labelledby'?: string;
   /**
    * The children is the label to be displayed to the right of the radio.
    */

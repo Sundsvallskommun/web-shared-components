@@ -1,10 +1,10 @@
 import { Link, LinkProps } from '@sk-web-gui/link';
-import { cx, getValidChildren, __DEV__ } from '@sk-web-gui/utils';
+import { cx, getValidChildren, __DEV__, PolymorphicComponentPropsWithRef, PolymorphicRef } from '@sk-web-gui/utils';
 import { DefaultProps } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 import { cloneElement } from 'react';
 
-export interface BreadcrumbSeparatorProps extends DefaultProps, React.HTMLAttributes<HTMLSpanElement> {
+export interface BreadcrumbSeparatorProps extends DefaultProps, React.ComponentPropsWithRef<'span'> {
   children?: React.ReactNode;
 }
 
@@ -26,18 +26,69 @@ interface BreadcrumbLinkProps extends LinkProps {
   currentPage?: boolean;
 }
 
+export type IBreadcrumbLinkProps<C extends React.ElementType> = PolymorphicComponentPropsWithRef<
+  C,
+  BreadcrumbLinkProps
+>;
+
 export type { BreadcrumbLinkProps };
 
-export const BreadcrumbLink = React.forwardRef<any, any>(({ currentPage, ...props }, ref) => {
-  const Comp = currentPage ? 'span' : Link;
-  return <Comp ref={ref} aria-current={currentPage ? 'page' : undefined} {...props} />;
-});
+export const BreadcrumbLink = React.forwardRef(
+  <C extends React.ElementType = typeof Link>(
+    { currentPage, ...props }: IBreadcrumbLinkProps<C>,
+    ref?: PolymorphicRef<C>
+  ) => {
+    const Comp = currentPage ? 'span' : Link;
+    return <Comp ref={ref} aria-current={currentPage ? 'page' : undefined} {...props} />;
+  }
+);
 
 if (__DEV__) {
   BreadcrumbLink.displayName = 'BreadcrumbLink';
 }
 
-export interface BreadcrumbItemProps extends BreadcrumbProps {
+interface IBreadcrumbProps extends DefaultProps {
+  /** @default / */
+  separator?: string | React.ReactElement;
+
+  /** @default true */
+  addSeparator?: boolean;
+
+  /** @default primary */
+  color?: 'primary' | 'vattjom';
+
+  /** React Node */
+  children?: React.ReactNode;
+}
+
+export interface BreadcrumbProps extends Omit<React.ComponentPropsWithRef<'nav'>, 'color'>, IBreadcrumbProps {}
+
+export const Breadcrumb = React.forwardRef<HTMLDivElement, BreadcrumbProps>((props, ref) => {
+  const { children, addSeparator = true, separator = '/', color = 'primary', className, ...rest } = props;
+  const validChildren = getValidChildren(children);
+  const clones = validChildren.map((child, index) => {
+    return cloneElement(child, {
+      addSeparator,
+      separator,
+      color,
+      lastChild: validChildren.length === index + 1,
+    });
+  });
+
+  return (
+    <nav ref={ref} aria-label="breadcrumb" className={cx('sk-breadcrumb', className)} {...rest}>
+      <ol>{clones}</ol>
+    </nav>
+  );
+});
+
+if (__DEV__) {
+  Breadcrumb.displayName = 'Breadcrumb';
+}
+
+export default Breadcrumb;
+
+export interface BreadcrumbItemProps extends IBreadcrumbProps, Omit<React.ComponentPropsWithRef<'li'>, 'color'> {
   /**
    * If `true`, indicates that the breadcrumb item is active, adds
    * `aria-current=page` and renders a `span`
@@ -70,44 +121,3 @@ export const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProp
     </li>
   );
 });
-
-interface IBreadcrumbProps extends DefaultProps {
-  /** @default / */
-  separator?: string | React.ReactElement;
-
-  /** @default true */
-  addSeparator?: boolean;
-
-  /** @default primary */
-  color?: 'primary' | 'vattjom';
-
-  /** React Node */
-  children?: React.ReactNode;
-}
-
-export interface BreadcrumbProps extends Omit<React.HTMLAttributes<HTMLElement>, 'color'>, IBreadcrumbProps {}
-
-export const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>((props, ref) => {
-  const { children, addSeparator = true, separator = '/', color = 'primary', className, ...rest } = props;
-  const validChildren = getValidChildren(children);
-  const clones = validChildren.map((child, index) => {
-    return cloneElement(child, {
-      addSeparator,
-      separator,
-      color,
-      lastChild: validChildren.length === index + 1,
-    });
-  });
-
-  return (
-    <nav ref={ref} aria-label="breadcrumb" className={cx('sk-breadcrumb', className)} {...rest}>
-      <ol>{clones}</ol>
-    </nav>
-  );
-});
-
-if (__DEV__) {
-  Breadcrumb.displayName = 'Breadcrumb';
-}
-
-export default Breadcrumb;

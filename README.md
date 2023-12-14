@@ -53,7 +53,9 @@ module.exports = {
   ],
 };
 ```
+
 eller använd som preset med valbara inställningar:
+
 ```Typescript
 // tailwind.config.js
 module.exports = {
@@ -70,7 +72,7 @@ module.exports = {
 Wrappa din React-app med `GuiProvider` för att få stylingen.
 
 ```TypeScript
-import * as React from "react";
+import React from "react";
 import { GuiProvider, Button } from "@sk-web-gui/react";
 ​
 function App() {

@@ -1,19 +1,19 @@
-import * as React from 'react';
+import React from 'react';
 
 import { CheckboxItemProps, Checkbox as InternalCheckbox } from './checkbox';
-import { CheckboxGroup, CheckboxGroupProps } from './checkbox-group';
+import { CheckboxGroup } from './checkbox-group';
 
-interface CheckboxProps
-  extends CheckboxItemProps,
-    React.ForwardRefExoticComponent<CheckboxItemProps & React.RefAttributes<HTMLInputElement>> {
+interface CheckboxProps extends React.ForwardRefExoticComponent<CheckboxItemProps> {
+  Component: typeof InternalCheckbox;
   Group: typeof CheckboxGroup;
 }
 
-const Checkbox = InternalCheckbox as CheckboxProps;
+export const Checkbox = {
+  ...InternalCheckbox,
+  Component: InternalCheckbox,
+  Group: CheckboxGroup,
+} as CheckboxProps;
 
-Checkbox.Group = CheckboxGroup;
+export type { CheckboxProps };
 
-export type { CheckboxProps, CheckboxGroupProps, CheckboxItemProps };
-
-export { Checkbox, CheckboxGroup };
 export default Checkbox;

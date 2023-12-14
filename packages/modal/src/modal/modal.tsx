@@ -1,13 +1,10 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
-import * as React from 'react';
-import { Fragment } from 'react';
-import { Icon } from '@sk-web-gui/icon';
 import { Button } from '@sk-web-gui/button';
-import { ModalContent } from './modal-content';
-import { ModalFooter } from './modal-footer';
+import { Icon } from '@sk-web-gui/icon';
+import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
+import React from 'react';
 
-export interface IModalProps extends DefaultProps {
+export interface ModalComponentProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   show: boolean;
   label?: string | JSX.Element;
   closeLabel?: string;
@@ -27,8 +24,6 @@ export interface IModalProps extends DefaultProps {
   hideLabel?: boolean;
   'aria-label'?: string;
 }
-
-export interface ModalComponentProps extends IModalProps, React.HTMLAttributes<HTMLDivElement> {}
 
 const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentProps>((props, ref) => {
   const {
@@ -64,11 +59,11 @@ const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentProps>((pr
 
   return (
     <div className="sk-modal" ref={ref}>
-      <Transition appear show={show} as={Fragment}>
+      <Transition appear show={show} as={React.Fragment}>
         <Dialog ref={modalRef} open={show} as="div" className="sk-modal-wrapper" onClose={onCloseHandler} {...rest}>
           <div className="sk-modal-wrapper-inner">
             <Transition.Child
-              as={Fragment}
+              as={React.Fragment}
               enter="ease-out duration-300"
               enterFrom="opacity-0"
               enterTo="opacity-100"
@@ -87,7 +82,7 @@ const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentProps>((pr
               &#8203;
             </span>
             <Transition.Child
-              as={Fragment}
+              as={React.Fragment}
               enter="ease-out duration-300"
               enterFrom="opacity-0 scale-95"
               enterTo="opacity-100 scale-100"
@@ -132,21 +127,8 @@ const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentProps>((pr
   );
 });
 
-interface ModalProps
-  extends ModalComponentProps,
-    React.ForwardRefExoticComponent<ModalComponentProps & React.RefAttributes<HTMLDivElement>> {
-  Content: typeof ModalContent;
-  Footer: typeof ModalFooter;
-}
-
-export const Modal = ModalComponent as ModalProps;
-
-Modal.Content = ModalContent;
-Modal.Footer = ModalFooter;
-
 if (__DEV__) {
-  Modal.displayName = 'Modal';
+  ModalComponent.displayName = 'ModalComponent';
 }
 
-export type { ModalProps };
-export default Modal;
+export default ModalComponent;

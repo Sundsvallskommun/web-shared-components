@@ -1,20 +1,16 @@
-import { __DEV__ } from '@sk-web-gui/utils';
 import HeaderComponent, { HeaderComponentProps } from './header';
 import { HeaderLogoText } from './header-logotext';
 
-interface HeaderProps
-  extends HeaderComponentProps,
-    React.ForwardRefExoticComponent<HeaderComponentProps & React.RefAttributes<HTMLElement>> {
+interface HeaderProps extends React.ForwardRefExoticComponent<HeaderComponentProps> {
+  Component: typeof HeaderComponent;
   LogoText: typeof HeaderLogoText;
 }
 
-export const Header = HeaderComponent as HeaderProps;
-
-Header.LogoText = HeaderLogoText;
-
-if (__DEV__) {
-  Header.displayName = 'Header';
-}
+export const Header = {
+  ...HeaderComponent,
+  Component: HeaderComponent,
+  LogoText: HeaderLogoText,
+} as HeaderProps;
 
 export type { HeaderProps };
 export default Header;

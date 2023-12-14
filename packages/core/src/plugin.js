@@ -26,6 +26,7 @@ const Menubar = require('./components/menubar');
 const MenuVertical = require('./components/menu-vertical');
 const Select = require('./components/select');
 const Snackbar = require('./components/snackbar');
+const Spinner = require('./components/spinner');
 const Notification = require('./components/notification');
 const Radio = require('./components/radio');
 const Switch = require('./components/switch');
@@ -44,6 +45,7 @@ const Divider = require('./components/divider');
 const SideMenu = require('./components/side-menu');
 const TabMenu = require('./components/tab-menu');
 const Tabs = require('./components/tabs');
+const Tooltip = require('./components/tooltip');
 const UserMenu = require('./components/user-menu');
 
 const DropdownFilter = require('./components/dropdown-filter');
@@ -53,7 +55,7 @@ const PopupMenu = require('./components/popup-menu');
 const Footer = require('./components/footer');
 const Header = require('./components/header');
 
-const SearchBar = require('./components/search-bar');
+const SearchField = require('./components/search-field');
 
 const ProgressStepper = require('./components/progress-stepper');
 const ProgressBar = require('./components/progress-bar');
@@ -82,6 +84,7 @@ const components = [
   MenuVertical,
   Select,
   Snackbar,
+  Spinner,
   Notification,
   Radio,
   Switch,
@@ -98,11 +101,13 @@ const components = [
   SideMenu,
   TabMenu,
   Tabs,
+  Tooltip,
+
   UserMenu,
 
   DropdownFilter,
 
-  SearchBar,
+  SearchField,
 
   Pagination,
   PopupMenu,

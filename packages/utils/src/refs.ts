@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import * as React from 'react';
+import React from 'react';
 
 type ReactRef<T> = React.Ref<T> | React.RefObject<T> | React.MutableRefObject<T>;
 

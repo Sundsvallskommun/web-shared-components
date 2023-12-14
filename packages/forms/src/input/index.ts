@@ -1,25 +1,23 @@
-import * as React from 'react';
+import React from 'react';
 
-import { Input as InternalInput, InputProps } from './input';
-import { InputGroup, InputGroupProps } from '../input-group';
-import { InputLeftAddin, InputRightAddin, InputAddinProps } from '../input-addin';
+import { InputLeftAddin, InputRightAddin } from '../input-addin';
+import { InputGroup } from '../input-group';
+import { Input as InternalInput, InputProps as InternalInputProps } from './input';
 
-interface InputPropsComplex
-  extends InputProps,
-    React.ForwardRefExoticComponent<InputProps & React.RefAttributes<HTMLElement>> {
+interface InputProps extends React.ForwardRefExoticComponent<InternalInputProps> {
+  Component: typeof InternalInput;
   Group: typeof InputGroup;
-
   LeftAddin: typeof InputLeftAddin;
   RightAddin: typeof InputRightAddin;
 }
 
-const Input = InternalInput as InputPropsComplex;
+export const Input = {
+  ...InternalInput,
+  Component: InternalInput,
+  Group: InputGroup,
+  LeftAddin: InputLeftAddin,
+  RightAddin: InputRightAddin,
+} as InputProps;
 
-Input.Group = InputGroup;
-Input.LeftAddin = InputLeftAddin;
-Input.RightAddin = InputRightAddin;
-
-export type { InputPropsComplex, InputProps, InputGroupProps, InputAddinProps };
-
-export { Input };
+export type { InputProps };
 export default Input;

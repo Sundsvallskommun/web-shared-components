@@ -1,3 +1,5 @@
+import React from 'react';
+import { __DEV__ } from '@sk-web-gui/utils';
 import { Divider } from '@sk-web-gui/divider';
 import { Check } from 'lucide-react';
 
@@ -24,3 +26,9 @@ export const ProgressStep: React.FC<ProgressStepProps> = (props) => {
     </div>
   );
 };
+
+if (__DEV__) {
+  ProgressStep.displayName = 'ProgressStep';
+}
+
+export default ProgressStep;

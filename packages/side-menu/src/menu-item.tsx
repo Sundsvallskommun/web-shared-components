@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Button } from '@sk-web-gui/button';
 import { cx } from '@sk-web-gui/utils';
 import MinusIcon from './assets/minus-icon';

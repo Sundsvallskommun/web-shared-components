@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Input, { InputProps } from '../input';
 
 export interface DatePickerProps extends Omit<InputProps, 'type' | 'as'> {
@@ -9,3 +9,5 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>((p
   const { type = 'date', ...rest } = props;
   return <Input type={type} ref={ref} {...rest} />;
 });
+
+export default DatePicker;
