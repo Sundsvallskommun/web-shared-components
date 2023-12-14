@@ -1,11 +1,9 @@
-import { __DEV__, cx, useForkRef } from '@sk-web-gui/utils';
-import React, { useState } from 'react';
-import { useComboboxStyles } from './styles';
-import { ComboboxList } from './combobox-list';
-import { ComboboxOption } from './combobox-option';
 import { useClickOutside } from '@react-hookz/web';
-import { UseComboboxProps, ComboboxContext } from './combobox-context';
+import { __DEV__, cx, useForkRef } from '@sk-web-gui/utils';
+import React from 'react';
 import { useFormControl } from '../form-control';
+import { ComboboxContext, UseComboboxProps } from './combobox-context';
+import { useComboboxStyles } from './styles';
 
 interface ComboboxChangeEvent extends Partial<React.ChangeEvent<HTMLInputElement>> {
   target: React.ChangeEvent<HTMLInputElement>['target'];
@@ -63,8 +61,8 @@ const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((prop
   const [internalValue, setInternalValue] = React.useState<string[]>([]);
   const [labels, setLabels] = React.useState<Record<string, string>>({});
   const [searchValue, setSearchValue] = React.useState<string>('');
-  const [active, setActive] = useState<number>(-1);
-  const [total, setTotal] = useState<number>(0);
+  const [active, setActive] = React.useState<number>(-1);
+  const [total, setTotal] = React.useState<number>(0);
 
   const value = _value !== undefined ? _value : searchValue;
 
@@ -292,23 +290,8 @@ const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((prop
   );
 });
 
-interface ComboboxProps extends React.ForwardRefExoticComponent<ComboboxBaseProps> {
-  Component: typeof ComboboxBase;
-  List: typeof ComboboxList;
-  Option: typeof ComboboxOption;
-}
-
-const Combobox = {
-  ...ComboboxBase,
-  Component: ComboboxBase,
-  List: ComboboxList,
-  Option: ComboboxOption,
-} as ComboboxProps;
-
 if (__DEV__) {
-  Combobox.displayName = 'ComboBox';
+  ComboboxBase.displayName = 'ComboBoxBase';
 }
 
-export { Combobox };
-export type { ComboboxProps };
-export default Combobox;
+export default ComboboxBase;
