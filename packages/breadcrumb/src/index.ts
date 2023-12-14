@@ -1,31 +1,27 @@
 import React from 'react';
 
 import {
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbSeparator,
   Breadcrumb as InternalBreadcrumb,
   BreadcrumbProps as InternalBreadcrumbProps,
-  BreadcrumbItem,
-  BreadcrumbItemProps,
-  BreadcrumbLink,
-  BreadcrumbLinkProps,
-  BreadcrumbSeparator,
-  BreadcrumbSeparatorProps,
 } from './breadcrumb';
 
-interface BreadcrumbProps
-  extends InternalBreadcrumbProps,
-    React.ForwardRefExoticComponent<InternalBreadcrumbProps & React.RefAttributes<HTMLElement>> {
+interface BreadcrumbProps extends React.ForwardRefExoticComponent<InternalBreadcrumbProps> {
+  Component: typeof InternalBreadcrumb;
   Item: typeof BreadcrumbItem;
   Link: typeof BreadcrumbLink;
   Separator: typeof BreadcrumbSeparator;
 }
 
-const Breadcrumb = InternalBreadcrumb as BreadcrumbProps;
+export const Breadcrumb = {
+  ...InternalBreadcrumb,
+  Component: InternalBreadcrumb,
+  Item: BreadcrumbItem,
+  Link: BreadcrumbLink,
+  Separator: BreadcrumbSeparator,
+} as BreadcrumbProps;
 
-Breadcrumb.Item = BreadcrumbItem;
-Breadcrumb.Link = BreadcrumbLink;
-Breadcrumb.Separator = BreadcrumbSeparator;
-
-export type { BreadcrumbProps, BreadcrumbItemProps, BreadcrumbLinkProps, BreadcrumbSeparatorProps };
-
-export { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator };
+export type { BreadcrumbProps };
 export default Breadcrumb;

@@ -1,6 +1,3 @@
-import ErrorSharpIcon from '@mui/icons-material/ErrorSharp';
-import HelpOutlineSharpIcon from '@mui/icons-material/HelpOutlineSharp';
-import InfoSharpIcon from '@mui/icons-material/InfoSharp';
 import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
 import { __DEV__, cx } from '@sk-web-gui/utils';

@@ -1,12 +1,19 @@
-import { cx } from '@sk-web-gui/utils';
+import React from 'react';
+import { __DEV__, cx } from '@sk-web-gui/utils';
 import { Icon, IconProps } from './icon';
 
-export const IconPadded = (props: IconProps) => {
+export const IconPadded = React.forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
   const { children, className, ...rest } = props;
 
   return (
-    <Icon className={cx('sk-icon-padded', className)} {...rest}>
+    <Icon ref={ref} className={cx('sk-icon-padded', className)} {...rest}>
       {children}
     </Icon>
   );
-};
+});
+
+if (__DEV__) {
+  IconPadded.displayName = 'IconPadded';
+}
+
+export default IconPadded;

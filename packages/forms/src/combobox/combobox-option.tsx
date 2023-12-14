@@ -1,9 +1,9 @@
 import { Icon } from '@sk-web-gui/icon';
-import { cx, useForkRef } from '@sk-web-gui/utils';
+import { DefaultProps, cx, useForkRef } from '@sk-web-gui/utils';
 import React from 'react';
 import { useCombobox } from './combobox-context';
 
-export interface ComboboxOptionProps extends Omit<React.HTMLAttributes<HTMLInputElement>, 'onClick'> {
+export interface ComboboxOptionProps extends DefaultProps, Omit<React.ComponentPropsWithRef<'input'>, 'onClick'> {
   value: string;
   checked?: boolean;
   children: string;

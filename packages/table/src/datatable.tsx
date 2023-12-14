@@ -1,7 +1,7 @@
 import { __DEV__ } from '@sk-web-gui/utils';
 import _ from 'lodash';
 import React from 'react';
-import { IZebraTableProps, ZebraTable, ZebraTableColumn, ZebraTableHeader } from './zebratable';
+import { ZebraTableProps, ZebraTable, ZebraTableColumn, ZebraTableHeader } from './zebratable';
 
 export interface DataTableHeader {
   property?: string;
@@ -13,11 +13,12 @@ export interface DataTableHeader {
   renderColumn?: (value: any, item: any) => JSX.Element;
 }
 
-interface IDataTableProps extends Omit<IZebraTableProps, 'headers' | 'rows'> {
+export interface DataTableProps
+  extends Omit<ZebraTableProps, 'headers' | 'rows'>,
+    React.ComponentPropsWithRef<'table'> {
   headers: Array<DataTableHeader | string>;
   data: Array<any>;
 }
-export type DataTableProps = IDataTableProps & React.HTMLAttributes<HTMLTableElement>;
 
 export const DataTable = React.forwardRef<HTMLTableElement, DataTableProps>((props, ref) => {
   const { data, headers, ...rest } = props;
@@ -140,8 +141,8 @@ export const DataTable = React.forwardRef<HTMLTableElement, DataTableProps>((pro
             getValue(a, headers[colIndex]).toLowerCase() > getValue(b, headers[colIndex]).toLowerCase()
               ? 1 * mode
               : getValue(a, headers[colIndex]).toLowerCase() < getValue(b, headers[colIndex]).toLowerCase()
-              ? -1 * mode
-              : 0
+                ? -1 * mode
+                : 0
           );
           break;
         default:
@@ -149,8 +150,8 @@ export const DataTable = React.forwardRef<HTMLTableElement, DataTableProps>((pro
             getValue(a, headers[colIndex]) > getValue(b, headers[colIndex])
               ? 1 * mode
               : getValue(a, headers[colIndex]) < getValue(b, headers[colIndex])
-              ? -1 * mode
-              : 0
+                ? -1 * mode
+                : 0
           );
           break;
       }

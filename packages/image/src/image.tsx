@@ -16,8 +16,6 @@ interface INativeImageProps extends DefaultProps {
 
 interface NativeImageProps extends React.ImgHTMLAttributes<HTMLImageElement>, INativeImageProps {}
 
-export type { NativeImageProps };
-
 export const NativeImage = React.forwardRef((props: NativeImageProps, ref: React.Ref<any>) => {
   const { htmlWidth, htmlHeight, alt, ...rest } = props;
   return <img width={htmlWidth} height={htmlHeight} ref={ref} alt={alt} {...rest} />;
@@ -69,10 +67,9 @@ export const Image = React.forwardRef<unknown, ImageProps>((props, ref) => {
   return <Comp src={src} crossOrigin={crossOrigin} loading={loading} {...shared} />;
 });
 
-export type { ImageProps };
-
 if (__DEV__) {
   Image.displayName = 'Image';
 }
 
+export type { ImageProps, NativeImageProps };
 export default Image;

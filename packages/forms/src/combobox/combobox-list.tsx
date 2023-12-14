@@ -1,8 +1,8 @@
-import { cx, getValidChildren, useForkRef } from '@sk-web-gui/utils';
+import { DefaultProps, cx, getValidChildren, useForkRef } from '@sk-web-gui/utils';
 import React, { useEffect, useState } from 'react';
 import { useCombobox } from './combobox-context';
 
-export interface ComboboxListProps extends React.HTMLAttributes<HTMLFieldSetElement> {
+export interface ComboboxListProps extends DefaultProps, React.ComponentPropsWithRef<'fieldset'> {
   multiple?: boolean;
   size?: 'sm' | 'md' | 'lg';
   value?: string | string[];

@@ -1,14 +1,17 @@
+import React from 'react';
 import { Icon as InternalIcon, IconProps as InternalIconProps } from './icon';
 import { IconPadded } from './icon-padded';
-interface IconProps
-  extends InternalIconProps,
-    React.ForwardRefExoticComponent<InternalIconProps & React.RefAttributes<HTMLElement>> {
+
+interface IconProps extends React.ForwardRefExoticComponent<InternalIconProps> {
+  Component: typeof InternalIcon;
   Padded: typeof IconPadded;
 }
 
-const Icon = InternalIcon as IconProps;
-
-Icon.Padded = IconPadded;
+export const Icon = {
+  ...InternalIcon,
+  Component: InternalIcon,
+  Padded: IconPadded,
+} as IconProps;
 
 export type { IconProps };
-export { Icon };
+export default Icon;

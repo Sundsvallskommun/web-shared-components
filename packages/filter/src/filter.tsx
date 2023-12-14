@@ -1,10 +1,10 @@
 import { Checkbox } from '@sk-web-gui/forms';
-import { cx, DefaultProps } from '@sk-web-gui/utils';
+import { __DEV__, cx, DefaultProps } from '@sk-web-gui/utils';
 import React from 'react';
 import { FilterItem } from './filter-item';
 import { FilterLabel } from './filter-label';
 
-export interface FilterRootProps extends DefaultProps, React.HTMLAttributes<HTMLFieldSetElement> {}
+export interface FilterRootProps extends DefaultProps, React.ComponentPropsWithRef<'fieldset'> {}
 
 interface FilterTypes {
   filterCheckboxes: JSX.Element[];
@@ -15,14 +15,16 @@ export const FilterRoot = React.forwardRef<HTMLFieldSetElement, FilterRootProps>
   const { className, children, ...rest } = props;
 
   const { filterCheckboxes, filterLabel } = React.Children.toArray(children).reduce<FilterTypes>(
-    (object, child: any) => {
-      switch (child?.type?.name) {
-        case FilterItem.name:
-          object.filterCheckboxes.push(child);
-          break;
-        case FilterLabel.name:
-          object.filterLabel = child;
-          break;
+    (object, child) => {
+      if (React.isValidElement(child) && typeof child.type !== 'string') {
+        switch (child?.type?.name) {
+          case FilterItem.name:
+            object.filterCheckboxes.push(child);
+            break;
+          case FilterLabel.name:
+            object.filterLabel = child;
+            break;
+        }
       }
       return object;
     },
@@ -37,16 +39,8 @@ export const FilterRoot = React.forwardRef<HTMLFieldSetElement, FilterRootProps>
   );
 });
 
-export interface FilterProps
-  extends FilterRootProps,
-    React.ForwardRefExoticComponent<FilterRootProps & React.RefAttributes<HTMLElement>> {
-  Label: typeof FilterLabel;
-  Item: typeof FilterItem;
+if (__DEV__) {
+  FilterRoot.displayName = 'FilterRoot';
 }
 
-export const Filter = FilterRoot as FilterProps;
-
-Filter.Item = FilterItem;
-Filter.Label = FilterLabel;
-
-export default Filter;
+export default FilterRoot;

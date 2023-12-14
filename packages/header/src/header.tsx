@@ -5,7 +5,7 @@ import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 import { Logo } from './assets/logo';
 import { useGui } from '@sk-web-gui/theme';
 
-export interface HeaderProps extends DefaultProps, React.HTMLAttributes<HTMLDivElement> {
+export interface HeaderProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   /* Title for main page */
   title?: string;
   /*Subtitle for page- optional */
@@ -48,7 +48,7 @@ export const Header = React.forwardRef<HTMLDivElement, HeaderProps>((props, ref)
     ...rest
   } = props;
 
-  const LinkWrapper = ({ wrapper, children }: any) => {
+  const LinkWrapper = ({ wrapper, children }: { wrapper?: React.ReactElement; children: React.ReactNode }) => {
     if (wrapper !== undefined) {
       return React.cloneElement(wrapper, { children });
     }

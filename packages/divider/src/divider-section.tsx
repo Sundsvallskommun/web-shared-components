@@ -3,7 +3,7 @@ import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 import { useDividerClass } from './styles';
 import Divider, { DividerProps } from './divider';
 
-export interface DividerSectionProps extends DividerProps, DefaultProps, React.RefAttributes<HTMLDivElement> {
+export interface DividerSectionProps extends DividerProps, DefaultProps {
   /**
    * @default md
    */

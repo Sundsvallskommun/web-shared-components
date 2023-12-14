@@ -12,7 +12,7 @@ export default {
   },
 } as Meta<typeof Input>;
 
-export const Template = (args: InputProps) => {
+export const Template = (args: React.ComponentProps<InputProps['Component']>) => {
   return <Input {...args} />;
 };
 
