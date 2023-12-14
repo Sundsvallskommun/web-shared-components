@@ -1,7 +1,7 @@
 import { Spinner } from '@sk-web-gui/spinner';
 import { DefaultProps, PolymorphicComponentPropsWithRef, PolymorphicRef } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 import { Link } from '@sk-web-gui/link';
 import { useButtonClass } from './styles';
 

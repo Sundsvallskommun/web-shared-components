@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Message, PositionsType, MessageType, MessageOptions, MessageProp } from './Message';
 
 interface Props {

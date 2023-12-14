@@ -66,7 +66,7 @@ function primary() {
         //Padding + icon width - border width
         '@apply pr-[3.3rem]': {},
 
-        '&:invalid, &[aria-invalid="true"]': {
+        '&[aria-invalid="true"]': {
           //Padding - border width
           '@apply pl-12': {},
           //Background position - border width
@@ -83,7 +83,7 @@ function primary() {
         //Padding + icon width - border width
         '@apply pr-[4.3rem]': {},
 
-        '&:invalid, &[aria-invalid="true"]': {
+        '&[aria-invalid="true"]': {
           //Padding - border width
           '@apply pl-16': {},
           //Background position - border width
@@ -100,7 +100,7 @@ function primary() {
         //Padding + icon width - border width
         '@apply pr-[4.9rem]': {},
 
-        '&:invalid, &[aria-invalid="true"]': {
+        '&[aria-invalid="true"]': {
           //Padding - border width
           '@apply pl-18': {},
           //Background position - border width
@@ -153,7 +153,7 @@ module.exports = Select = () => ({
     },
 
     //Invalid
-    '&:invalid, &[aria-invalid="true"]': {
+    '&[aria-invalid="true"]': {
       '@apply border-2 border-error-surface-primary': {},
     },
 

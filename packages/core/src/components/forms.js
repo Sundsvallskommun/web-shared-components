@@ -4,6 +4,7 @@ module.exports = Forms = () => ({
   },
 
   '.sk-form-label': {
+    '@apply font-bold': {},
     '&-sm': {
       '@apply text-label-small': {},
     },
@@ -15,7 +16,11 @@ module.exports = Forms = () => ({
     },
   },
 
-  '.sk-form-helper-text, sk-form-error-message': {
+  'legend.sk-form-label': {
+    display: 'contents',
+  },
+
+  '.sk-form-helper-text, .sk-form-error-message': {
     '@apply font-normal': {},
     '@apply text-small': {},
   },

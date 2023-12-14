@@ -1,5 +1,5 @@
 import { Dict, WithCSSVar, deepmerge, omit } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 import { createContext, useContext, useMemo } from 'react';
 
 import { toCSSVar } from './create-theme-vars';

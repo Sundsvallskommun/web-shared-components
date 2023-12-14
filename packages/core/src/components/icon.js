@@ -1,6 +1,10 @@
 module.exports = Icon = (colors) => ({
   '.sk-icon': {
     '@apply inline-flex items-center justify-center': {},
+    '@apply w-24 h-24': {},
+    svg: {
+      '@apply w-full h-full': {},
+    },
 
     '&.sk-icon-padded': {
       '@apply rounded-utility': {},
@@ -23,12 +27,19 @@ module.exports = Icon = (colors) => ({
         {}
       ),
 
-      "&[data-color='primary']": {
+      "&[data-color='primary'], &[data-color='tertiary']": {
         '@apply bg-primary-surface text-light-primary fill-light-primary': {},
 
         '&[data-inverted="true"]': {
           '@apply text-inverted-light-primary fill-inverted-light-primary': {},
           '@apply bg-tertiary-surface': {},
+        },
+      },
+      "&[data-variant='ghost']": {
+        '@apply bg-transparent text-current fill-current': {},
+
+        '&[data-inverted="true"]': {
+          '@apply bg-transparent text-current fill-current': {},
         },
       },
     },

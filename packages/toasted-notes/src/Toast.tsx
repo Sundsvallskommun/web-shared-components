@@ -1,5 +1,5 @@
-import * as ReactDOM from 'react-dom';
-import * as React from 'react';
+import ReactDOM from 'react-dom';
+import React from 'react';
 import ToastManager, { MessageOptionalOptions } from './ToastManager';
 import { MessageProp, PositionsType } from './Message';
 import { createRoot } from 'react-dom/client';

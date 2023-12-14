@@ -1,5 +1,5 @@
 import { cx, __DEV__, PolymorphicComponentPropsWithRef, PolymorphicRef, DefaultProps } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 import { useLinkClass } from './styles';
 import { Icon } from '@sk-web-gui/icon';
 

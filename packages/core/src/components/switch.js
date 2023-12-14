@@ -1,119 +1,85 @@
-module.exports = Switch = (colors) => ({
-  '.form-switch-label': {
-    '@apply inline-block align-middle': {},
+module.exports = Switch = () => ({
+  '.sk-form-switch-label': {
+    '@apply inline-flex align-middle items-center': {},
+    '@apply flex-row gap-12': {},
+    '@apply font-normal text-base': {},
 
     "&[type='hidden']": {
       '@apply hidden': {},
 
-      '.form-switch': {
+      '.sk-form-switch': {
         '@apply hidden': {},
       },
     },
   },
-  '.form-switch': {
-    '@apply rounded-full p-0.5 cursor-base focus:outline-none': {},
-    '@apply bg-gray-stroke dark:bg-neutral-700': {},
+  '.sk-form-switch': {
+    '@apply rounded-full cursor-pointer focus:outline-none': {},
+    '@apply bg-primitives-overlay-darken-3 dark:bg-primitives-overlay-lighten-3': {},
+
     // Hover
-    //"@apply hover:bg-neutral-300 dark:hover:bg-neutral-600": {},
+    '@apply hover:bg-primitives-overlay-darken-5 hover:dark:bg-primitives-overlay-lighten-4': {},
 
-    border: '0.1rem solid transparent',
-
-    'input[type=checkbox]:checked + &, input[type=checkbox][aria-checked=mixed] + &': {
-      backgroundColor: 'currentColor',
-      '.form-switch-box-sm': {
-        transform: 'translateX(1.42rem)',
-      },
-      '.form-switch-box-md': {
-        transform: 'translateX(1.6rem)',
-      },
-      '.form-switch-box-lg': {
-        transform: 'translateX(1.78rem)',
-      },
-    },
-
+    // Focus
     'input[type=checkbox]:focus-visible + &': {
-      '@apply z-base !important': {},
-      '@apply border-primary !important': {},
-      '@apply ring': {},
+      '@apply ring ring-blue-500': {},
     },
 
-    'input[type=checkbox]:checked:focus-visible + &, input[type=checkbox][aria-checked=mixed]:focus-visible + &': {
-      '@apply ring': {},
-    },
-    '.dark input[type=checkbox]:checked:focus-visible + &,.dark input[type=checkbox][aria-checked=mixed]:focus-visible + &':
-      {
-        '@apply ring': {},
-      },
-    'input[type=checkbox]:checked:hover:not(:disabled) + &, input[type=checkbox][aria-checked=mixed]:hover:not(:disabled) + &':
-      {
-        '@apply cursor-base': {},
-      },
-
-    // colors
-    ...colors.reduce(
-      (styles, color) => ({
-        ...styles,
-        [`&[data-color="${color}"]`]: {
-          [`@apply text-${color}-text`]: {},
-
-          // 'input[type=checkbox]:focus + &': {
-          //   borderColor: `${theme(`colors.${color}.DEFAULT`)}`,
-          //   boxShadow: `0 0 5px ${theme(`colors.${color}.DEFAULT`)}`,
-          //   borderWidth: '0.1rem',
-          // },
+    // Checked
+    'input[type=checkbox]:checked + &': {
+      [`&[data-color="gronsta"]`]: {
+        '.sk-form-switch-box': {
+          '@apply bg-gronsta-surface-primary': {},
         },
-      }),
-      {}
-    ),
+      },
 
-    // disabled
-    '&-disabled': {
-      '@apply cursor-not-allowed': {},
+      '.sk-form-switch-icon': {
+        '@apply flex': {},
+      },
 
-      '&': {
-        backgroundColor: '#ECECEC',
+      '.sk-form-switch-box': {
+        transform: 'translateX(2.4rem)',
+      },
+
+      '@apply bg-primitives-overlay-darken-4 dark:bg-primitives-overlay-lighten-5': {},
+
+      // Disabled
+      [`&[data-disabled="true"]`]: {
+        '.sk-form-switch-box': {
+          '@apply bg-transparent': {},
+
+          '.sk-form-switch-icon': {
+            '@apply bg-primitives-overlay-darken-6 dark:bg-primitives-overlay-lighten-6': {},
+            '@apply text-light-primary': {},
+          },
+        },
       },
     },
 
-    'input[type=checkbox]:not(:checked) + &-disabled .form-switch-box': {
-      '@apply bg-gray-stroke': {},
+    // Disabled not checked
+    [`&[data-disabled="true"]`]: {
+      '@apply cursor-default': {},
+      '@apply bg-primitives-overlay-darken-2 dark:bg-primitives-overlay-lighten-2': {},
+
+      '.sk-form-switch-box': {
+        '@apply bg-primitives-overlay-darken-6 dark:bg-primitives-overlay-lighten-6': {},
+      },
     },
 
-    // sizing
-    '&-sm': {
-      height: '2.16rem',
-      width: '3.6rem',
-    },
-
-    '&-md': {
-      height: '2.4rem',
-      width: '4rem',
-    },
-
-    '&-lg': {
-      height: '2.64rem',
-      width: '4.4rem',
-    },
+    width: '5.6rem',
   },
 
   // Knob
-  '.form-switch-box': {
-    '@apply transition-transform ease-in-out duration-150 transform bg-white rounded-full shadow translate-x-0': {},
+  '.sk-form-switch-box': {
+    '@apply transition-transform ease-in-out duration-150 transform rounded-full shadow translate-x-0 m-6': {},
+    '@apply bg-primitives-overlay-darken-7 dark:bg-primitives-overlay-lighten-7': {},
+    '@apply h-20 w-20': {},
+    '@apply flex justify-center items-center object-center': {},
 
-    // sizing
-    '&-sm': {
-      height: '1.6rem',
-      width: '1.7rem',
-    },
-
-    '&-md': {
-      height: '2rem',
-      width: '2rem',
-    },
-
-    '&-lg': {
-      height: '2.2rem',
-      width: '2.2rem',
+    '.sk-form-switch-icon': {
+      '@apply bg-transparent': {},
+      '@apply hidden': {},
+      '@apply w-20 h-20': {},
+      '@apply text-light-primary': {},
     },
   },
 });
