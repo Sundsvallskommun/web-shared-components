@@ -1,3 +1,4 @@
+import React from 'react';
 import { Icon as InternalIcon, IconProps as InternalIconProps } from './icon';
 import { IconPadded } from './icon-padded';
 
