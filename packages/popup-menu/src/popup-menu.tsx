@@ -1,17 +1,16 @@
 import { Menu } from '@headlessui/react';
-
 import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import React from 'react';
 import { PopupMenuButton } from './popup-menu-button';
 
-interface PopupMenuPropsInternal extends React.ComponentPropsWithRef<'button'>, DefaultProps {
+export interface PopupMenuPropsInternal extends React.ComponentPropsWithRef<'button'>, DefaultProps {
   size?: 'md' | 'sm';
   position?: 'under' | 'over' | 'left' | 'right';
   align?: 'start' | 'end';
 }
 
-const PopupMenuComponent = React.forwardRef<HTMLButtonElement, PopupMenuPropsInternal>((props, ref) => {
+export const PopupMenuComponent = React.forwardRef<HTMLButtonElement, PopupMenuPropsInternal>((props, ref) => {
   const { className, children, size = 'md', position = 'under', align = 'start', ...rest } = props;
 
   const getButton = () => {
@@ -48,14 +47,14 @@ const PopupMenuComponent = React.forwardRef<HTMLButtonElement, PopupMenuPropsInt
   );
 });
 
-interface PopupMenuItemProps {
+export interface PopupMenuItemProps {
   children: JSX.Element;
   disabled?: boolean;
 }
 
 //TODO: Add function for expandable menues.
 
-const PopupMenuItem: React.FC<PopupMenuItemProps> = ({ disabled = false, children }) => {
+export const PopupMenuItem: React.FC<PopupMenuItemProps> = ({ disabled = false, children }) => {
   const getItem = (child: JSX.Element, active: boolean) => {
     const classes = cx(child?.props?.className, active ? 'active' : '');
     const props = { ...child.props, className: cx('sk-popup-menu-item', classes) };
@@ -65,31 +64,14 @@ const PopupMenuItem: React.FC<PopupMenuItemProps> = ({ disabled = false, childre
   return <Menu.Item disabled={disabled}>{({ active }) => getItem(children, active)}</Menu.Item>;
 };
 
-const PopupMenuGroup: React.FC<React.ComponentPropsWithRef<'div'> & DefaultProps> = (props) => {
+export const PopupMenuGroup: React.FC<React.ComponentPropsWithRef<'div'> & DefaultProps> = (props) => {
   const { className, ...rest } = props;
 
   return <div role="group" className={cx('sk-popup-menu-items-group', className)} {...rest} />;
 };
 
-interface PopupMenuProps extends React.ForwardRefExoticComponent<PopupMenuPropsInternal> {
-  Component: typeof PopupMenuComponent;
-  Item: typeof PopupMenuItem;
-  Button: typeof PopupMenuButton;
-  Group: typeof PopupMenuGroup;
-}
-
-const PopupMenu = {
-  ...PopupMenuComponent,
-  Component: PopupMenuComponent,
-  Item: PopupMenuItem,
-  Button: PopupMenuButton,
-  Group: PopupMenuGroup,
-} as PopupMenuProps;
-
 if (__DEV__) {
-  PopupMenu.displayName = 'PopupMenu';
+  PopupMenuComponent.displayName = 'PopupMenuComponent';
 }
 
-export { PopupMenu };
-export type { PopupMenuProps };
-export default PopupMenu;
+export default PopupMenuComponent;
