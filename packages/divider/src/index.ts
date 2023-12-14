@@ -1,5 +1,5 @@
 import { Divider as InternalDivider, DividerProps as InternalDividerProps } from './divider';
-import { DividerSection, DividerSectionProps } from './divider-section';
+import { DividerSection } from './divider-section';
 
 interface DividerProps extends React.ForwardRefExoticComponent<InternalDividerProps> {
   Component: typeof InternalDivider;
@@ -12,5 +12,5 @@ export const Divider = {
   Section: DividerSection,
 } as DividerProps;
 
-export type { DividerProps, DividerSectionProps };
+export type { DividerProps };
 export default Divider;
