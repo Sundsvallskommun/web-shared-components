@@ -1,8 +1,6 @@
-import { cx, __DEV__ } from '@sk-web-gui/utils';
+import { __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
 import { Modal } from '../modal';
-import { DialogButtons } from './dialog-buttons';
-import { DialogContent } from './dialog-content';
 
 export interface InternalDialogProps
   extends Omit<React.ComponentProps<typeof Modal.Component>, 'onClose'>,
@@ -24,22 +22,8 @@ export const DialogComponent = React.forwardRef<HTMLDivElement, InternalDialogPr
   );
 });
 
-interface DialogProps extends React.ForwardRefExoticComponent<InternalDialogProps> {
-  Component: typeof DialogComponent;
-  Buttons: typeof DialogButtons;
-  Content: typeof DialogContent;
-}
-
-export const Dialog = {
-  ...DialogComponent,
-  Component: DialogComponent,
-  Buttons: DialogButtons,
-  Content: DialogContent,
-} as DialogProps;
-
 if (__DEV__) {
-  Dialog.displayName = 'Dialog';
+  DialogComponent.displayName = 'DialogComponent';
 }
 
-export type { DialogProps };
-export default Dialog;
+export default DialogComponent;
