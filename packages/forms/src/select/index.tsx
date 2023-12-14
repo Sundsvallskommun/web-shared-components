@@ -5,7 +5,7 @@ import { useFormControl } from '../form-control';
 import { IInputProps } from '../input/input';
 import { useSelectClass } from './styles';
 
-export interface SelectOptionProps extends React.HTMLAttributes<HTMLOptionElement> {
+export interface SelectOptionProps extends React.ComponentPropsWithRef<'option'> {
   value?: string | number;
 }
 
@@ -13,7 +13,9 @@ const Option = React.forwardRef<HTMLOptionElement, SelectOptionProps>((props, re
   return <option ref={ref} {...props} />;
 });
 
-export interface InternalSelectProps extends IInputProps<HTMLSelectElement>, React.HTMLAttributes<HTMLSelectElement> {
+export interface InternalSelectProps
+  extends IInputProps<HTMLSelectElement>,
+    Omit<React.ComponentPropsWithRef<'select'>, 'size' | 'value'> {
   onSelectValue?: (value: string) => void;
   variant?: 'primary' | 'tertiary';
 }
@@ -53,15 +55,16 @@ if (__DEV__) {
   InternalSelect.displayName = 'Select';
 }
 
-interface SelectProps
-  extends React.ForwardRefExoticComponent<InternalSelectProps & React.RefAttributes<HTMLSelectElement>> {
+interface SelectProps extends React.ForwardRefExoticComponent<InternalSelectProps> {
+  Component: typeof InternalSelect;
   Option: typeof Option;
 }
 
-const Select = InternalSelect as SelectProps;
+export const Select = {
+  ...InternalSelect,
+  Component: InternalSelect,
+  Option: Option,
+} as SelectProps;
 
-Select.Option = Option;
-
-export { Option, Select };
 export type { SelectProps };
 export default Select;

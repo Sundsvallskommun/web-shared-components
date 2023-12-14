@@ -1,9 +1,8 @@
-import { DefaultProps } from '@sk-web-gui/utils';
-import { cx } from '@sk-web-gui/utils';
+import { DefaultProps, cx } from '@sk-web-gui/utils';
 import React from 'react';
 import { ModalContent } from '../modal/modal-content';
 
-interface DialogContentProps extends React.HTMLAttributes<HTMLDivElement>, DefaultProps {}
+interface DialogContentProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {}
 
 export const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>((props, ref) => {
   const { className, children, ...rest } = props;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider, DividerSectionProps } from '../src';
+import { Divider, DividerProps } from '../src';
 import { Meta } from '@storybook/react';
 
 export default {
@@ -11,6 +11,8 @@ export default {
   },
 } as Meta<typeof Divider.Section>;
 
-export const Template = (args: DividerSectionProps) => <Divider.Section {...args}>{args.children}</Divider.Section>;
+export const Template = (args: React.ComponentProps<DividerProps['Section']>) => (
+  <Divider.Section {...args}>{args.children}</Divider.Section>
+);
 
 Template.storyName = 'Divider';

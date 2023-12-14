@@ -2,7 +2,9 @@ import { DefaultProps, cx, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
 import { useMenuBar } from './menubar';
 
-interface IMenuBarItemProps extends DefaultProps {
+export interface MenuBarItemProps
+  extends DefaultProps,
+    Omit<React.ComponentPropsWithRef<'li'>, 'color' | 'children' | 'onClick'> {
   /** Color for menuoption. Is inherited from MenuBar */
   color?: 'tertiary' | 'juniskar' | 'bjornstigen' | 'gronsta' | 'vattjom';
   /** Set true if this is the current menuoption. Can be handled by MenuBar */
@@ -14,10 +16,6 @@ interface IMenuBarItemProps extends DefaultProps {
   /** For e.g. Next Links to work, they need to wrapped this way */
   wrapper?: JSX.Element;
 }
-
-export interface MenuBarItemProps
-  extends Omit<React.HTMLAttributes<HTMLLIElement>, 'color' | 'children' | 'onClick'>,
-    IMenuBarItemProps {}
 
 export const MenuBarItem = React.forwardRef<HTMLLIElement, MenuBarItemProps>((props, ref) => {
   const { color: propsColor, className, current: thisCurrent, children, menuIndex, wrapper, ...rest } = props;

@@ -50,7 +50,7 @@ export function getCheckableCookies(cookies: ConsentCookie[]): CheckableConsentC
   );
 }
 
-interface ICookieConsentProps extends DefaultProps {
+export interface CookieConsentProps extends DefaultProps, Omit<React.ComponentPropsWithRef<'div'>, 'title'> {
   isOpen?: boolean;
   onConsent: (cookies: ConsentCookie[]) => void;
   cookies: ConsentCookie[];
@@ -59,8 +59,6 @@ interface ICookieConsentProps extends DefaultProps {
   resetConsentOnInit: boolean;
   options?: CookieSetOptions;
 }
-
-export interface CookieConsentProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>, ICookieConsentProps {}
 
 export const CookieConsent: React.FC<CookieConsentProps> = ({
   title,

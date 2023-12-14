@@ -14,6 +14,27 @@ module.exports = Header = () => ({
       '@apply hidden md:flex items-center w-full justify-start p-8 xl:p-0': {},
     },
 
+    'a:hover &-logotext': {
+      '@apply underline': {},
+    },
+    'a:focus-within &-logotext': {
+      '@apply outline outline-2 outline-ring': {},
+    },
+    '&-logotext': {
+      '@apply flex flex-row items-center gap-8': {},
+
+      '&-title': {
+        '@apply pt-6 pl-[.2rem] pr-8 text-h4-sm md:text-h4-md xl:text-h4-lg font-header leading-large': {},
+      },
+      '&-subtitle': {
+        '@apply text-small font-normal block': {},
+      },
+    },
+
+    '& &-logotext': {
+      '@apply text-dark-primary': {},
+    },
+
     '&-usermenu': {
       '@apply hidden xl:flex-shrink md:flex xl:items-center xl:w-auto': {},
 

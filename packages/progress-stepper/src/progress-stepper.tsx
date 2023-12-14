@@ -3,14 +3,12 @@ import { Divider } from '@sk-web-gui/divider';
 import React from 'react';
 import { ProgressStep } from './progress-step';
 
-interface IProgressStepperProps extends DefaultProps {
+export interface ProgressStepperProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   /** Array of labels */
   steps: string[];
   /** Index of current step */
   current?: number;
 }
-
-export interface ProgressStepperProps extends React.HTMLAttributes<HTMLDivElement>, IProgressStepperProps {}
 
 export const ProgressStepper = React.forwardRef<HTMLDivElement, ProgressStepperProps>((props, ref) => {
   const { steps, current = 0, className, ...rest } = props;

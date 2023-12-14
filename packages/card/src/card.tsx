@@ -6,7 +6,7 @@ import React from 'react';
 
 // import { useCardClass } from "./styles";
 
-interface ICardProps extends DefaultProps {
+export interface CardProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   clickable?: boolean;
   outlined?: boolean;
   borderTop?: boolean;
@@ -15,8 +15,6 @@ interface ICardProps extends DefaultProps {
   /* React node */
   children?: React.ReactNode;
 }
-
-export interface CardProps extends React.HTMLAttributes<HTMLDivElement>, ICardProps {}
 
 export const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   const {
@@ -54,14 +52,12 @@ if (__DEV__) {
 
 // NOTE: Card List component
 
-interface ICardListProps extends DefaultProps {
+interface CardListProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   /* The element or component to use in place of `a` */
   as?: React.ElementType;
   /* React node */
   children?: React.ReactNode;
 }
-
-export interface CardListProps extends React.HTMLAttributes<HTMLDivElement>, ICardListProps {}
 
 export const CardList = React.forwardRef<HTMLDivElement, CardListProps>((props, ref) => {
   const { children, className, color, as: Comp = 'div', ...rest } = props;
@@ -79,14 +75,12 @@ if (__DEV__) {
 
 // NOTE: Card body component
 
-interface ICardBodyProps extends DefaultProps {
+interface CardBodyProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   /* The element or component to use in place of `a` */
   as?: React.ElementType;
   /* React node */
   children?: React.ReactNode;
 }
-
-export interface CardBodyProps extends React.HTMLAttributes<HTMLDivElement>, ICardBodyProps {}
 
 export const CardBody = React.forwardRef<HTMLDivElement, CardBodyProps>((props, ref) => {
   const { children, className, color, as: Comp = 'div', ...rest } = props;
@@ -104,7 +98,7 @@ if (__DEV__) {
 
 // NOTE: Card image component
 
-interface ICardImageProps extends DefaultProps {
+interface CardImageProps extends DefaultProps, React.ComponentPropsWithRef<'image'> {
   /* The element or component to use in place of `a` */
   as?: React.ElementType;
   /* React node */
@@ -114,8 +108,6 @@ interface ICardImageProps extends DefaultProps {
   /* The alt text for the image */
   alt?: string;
 }
-
-export interface CardImageProps extends React.HTMLAttributes<HTMLImageElement>, ICardImageProps {}
 
 export const CardImage = React.forwardRef<HTMLImageElement, CardImageProps>((props, ref) => {
   const { children, className, color, as: Comp = 'img', ...rest } = props;

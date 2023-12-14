@@ -23,6 +23,7 @@ const Label = require('./components/label');
 const Link = require('./components/link');
 const List = require('./components/list');
 const Menubar = require('./components/menubar');
+const MenuVertical = require('./components/menu-vertical');
 const Select = require('./components/select');
 const Snackbar = require('./components/snackbar');
 const Spinner = require('./components/spinner');
@@ -80,6 +81,7 @@ const components = [
   Link,
   List,
   Menubar,
+  MenuVertical,
   Select,
   Snackbar,
   Spinner,

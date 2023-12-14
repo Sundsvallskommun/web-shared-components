@@ -6,12 +6,8 @@ import { useFormControl } from '../form-control';
 import { useInputClass } from './styles';
 
 export interface IInputProps<T = HTMLInputElement> extends DefaultProps {
-  /* Makes input disabled */
-  disabled?: React.InputHTMLAttributes<T>['disabled'];
   /* Makes input invalid */
   invalid?: boolean;
-  /* Makes input required */
-  required?: React.InputHTMLAttributes<T>['required'];
   /* Makes input readOnly */
   readOnly?: React.InputHTMLAttributes<T>['readOnly'];
   /* Size of the input */
@@ -30,22 +26,7 @@ export interface IInputProps<T = HTMLInputElement> extends DefaultProps {
   autoFocus?: boolean;
 }
 
-export type OmittedTypes =
-  | 'size'
-  | 'disabled'
-  | 'required'
-  | 'checked'
-  | 'defaultChecked'
-  | 'readOnly'
-  | 'nonce'
-  | 'onResize'
-  | 'onResizeCapture'
-  | 'value';
-
-export interface InputProps
-  extends IInputProps,
-    Omit<React.InputHTMLAttributes<HTMLInputElement>, OmittedTypes>,
-    React.RefAttributes<HTMLInputElement> {
+export interface InputProps extends IInputProps, Omit<React.ComponentPropsWithRef<'input'>, 'size' | 'value'> {
   /**
    * If you want to hide native extra apperances, such as number arrows and icons
    * @default true

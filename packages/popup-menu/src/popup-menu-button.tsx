@@ -1,11 +1,13 @@
 import { Menu } from '@headlessui/react';
-
-import { ButtonProps, getButtonContent } from '@sk-web-gui/button';
+import { Button, ButtonProps } from '@sk-web-gui/button';
 import { cx } from '@sk-web-gui/utils';
 import React from 'react';
 import { useButtonClass } from './styles';
 
-export const PopupMenuButton = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+export const PopupMenuButton = React.forwardRef<
+  HTMLButtonElement,
+  React.ComponentPropsWithoutRef<ButtonProps['Component']>
+>((props, ref) => {
   const {
     disabled: _disabled,
     loading,
@@ -43,7 +45,9 @@ export const PopupMenuButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
       disabled={disabled}
       {...rest}
     >
-      {getButtonContent({ loadingText, loading, leftIcon, rightIcon, children })}
+      <Button.Content loadingText={loadingText} loading={loading} leftIcon={leftIcon} rightIcon={rightIcon}>
+        {children}
+      </Button.Content>
     </Menu.Button>
   );
 });

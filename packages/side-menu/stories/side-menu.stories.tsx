@@ -8,7 +8,7 @@ import testDataNoPathDraggable from './testDataNoPathDraggable.json';
 import { Select } from '@sk-web-gui/forms';
 
 export default {
-  title: 'Komponenter/Sidebar',
+  title: 'WIP/Komponenter/Sidemenu',
   component: SideMenu,
   tags: ['autodocs'],
   args: {

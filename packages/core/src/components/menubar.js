@@ -1,4 +1,4 @@
-module.exports = Avatar = (colors) => ({
+module.exports = MenuBar = (colors) => ({
   '.sk-menubar': {
     '@apply flex flex-row': {},
     '@apply p-8 gap-16': {},

@@ -1,13 +1,11 @@
-import { DefaultProps, cx } from '@sk-web-gui/utils';
+import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
 
-interface IFilterLabelProps extends DefaultProps {
+export interface FilterLabelProps
+  extends DefaultProps,
+    Omit<React.ComponentPropsWithRef<'legend'>, 'color' | 'children' | 'onClick'> {
   children: JSX.Element | string;
 }
-
-export interface FilterLabelProps
-  extends Omit<React.HTMLAttributes<HTMLLegendElement>, 'color' | 'children' | 'onClick'>,
-    IFilterLabelProps {}
 
 export const FilterLabel = React.forwardRef<HTMLLegendElement, FilterLabelProps>((props, ref) => {
   const { className, children, ...rest } = props;
@@ -18,3 +16,9 @@ export const FilterLabel = React.forwardRef<HTMLLegendElement, FilterLabelProps>
     </legend>
   );
 });
+
+if (__DEV__) {
+  FilterLabel.displayName = 'FilterLabel';
+}
+
+export default FilterLabel;
