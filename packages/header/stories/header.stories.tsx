@@ -12,6 +12,10 @@ export default {
   title: 'Komponenter/Header',
   component: Header,
   tags: ['autodocs'],
+  args: {
+    title: 'E-tjänster',
+    subtitle: 'Sundsvalls kommun',
+  },
 } as Meta<typeof Header>;
 
 const menuGroups: MenuItemGroup[] = [
@@ -68,8 +72,8 @@ export const Template: StoryObj<typeof Header> = (args: HeaderProps) => {
     <div className="h-[40rem] overflow-hidden">
       <Header
         {...args}
-        title="E-tjänster"
-        subtitle="Sundsvalls kommun"
+        title={args.title}
+        subtitle={args.subtitle}
         userMenu={<UserMenu menuGroups={menuGroups} />}
         mobileMenu={
           <Button iconButton>

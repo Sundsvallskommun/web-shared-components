@@ -1,14 +1,14 @@
 module.exports = Divider = () => ({
   '.sk-divider': {
-    '@apply border-t-0 border-divider flex-1': {},
+    '@apply border-t-0 border-divider': {},
     '&-vertical': {
-      '@apply border-l-1 border-solid h-auto mx-2': {},
+      '@apply min-h-[1em] border-l-1 border-solid h-auto ml-4 mt-8 mb-4 mr-4 self-stretch': {},
       '&[data-strong="true"]': {
         '@apply border-l border-solid h-auto mx-2': {},
       },
     },
     '&-horizontal': {
-      '@apply border-b-1 border-solid w-auto my-2': {},
+      '@apply flex-1 border-b-1 border-solid w-auto my-2': {},
       '&[data-strong="true"]': {
         '@apply border-b border-solid w-auto my-2': {},
       },

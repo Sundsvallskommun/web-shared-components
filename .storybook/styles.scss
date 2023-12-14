@@ -4,78 +4,84 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  a {
-    @apply text-vattjom-text-primary;
+@layer base {
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    a {
+      @apply text-vattjom-text-primary;
+    }
   }
-}
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: raleway, sans-serif;
-}
-
-/* Styling for Show code */
-pre.prismjs .tag {
-  @apply px-[.05em];
-}
-
-.docblock-code-toggle--disabled[disabled=''] {
-  @apply hidden;
-}
-
-.docs-wrapper {
-  .sbdocs-wrapper,
-  .sbdocs-preview,
-  .docblock-argstable-head th,
-  th,
-  td,
-  p,
   h1,
   h2,
   h3,
   h4,
   h5,
-  .material-icons,
-  .docblock-typeset,
-  .docblock-typeset > * > * {
-    @apply bg-background text-body;
+  h6 {
+    font-family: raleway, sans-serif;
   }
-}
-.docblock-argstable-body td {
-  @apply text-black;
-}
 
-.sbdocs.sbdocs-preview {
-  @apply border-divider;
-}
-
-[type='radio']:checked {
-  background-image: unset;
-}
-input {
-  margin: unset;
-}
-body.dark .docblock-argstable {
-  tr:nth-of-type(2n) {
-    @apply bg-gray-700;
+  /* Styling for Show code */
+  pre.prismjs .tag {
+    @apply px-[.05em];
   }
-  .docblock-argstable-head {
-    @apply bg-gray-500;
+
+  .docblock-code-toggle--disabled[disabled=''] {
+    @apply hidden;
   }
-}
 
-.docs-preview {
-  all: initial !important;
-  @apply bg-background;
-}
+  .sbdocs {
+    &.sbdocs-wrapper,
+    .sbdocs-preview,
+    .docblock-argstable-head td,
+    .docblock-argstable-head th,
+    th,
+    td,
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    ul,
+    li,
+    .material-icons,
+    .docblock-typeset,
+    .docblock-typeset > * > * {
+      @apply bg-background text-body;
+    }
+  }
+  .docblock-argstable-body td {
+    @apply text-black;
+  }
 
-.docs-preview-canvas {
-  all: unset !important;
-  @apply bg-background;
+  body.dark .docblock-argstable {
+    tr:nth-of-type(2n) {
+      @apply bg-gray-700;
+    }
+    .docblock-argstable-head {
+      @apply bg-gray-500;
+    }
+  }
+
+  .sbdocs.sbdocs-preview {
+    @apply border-divider;
+  }
+
+  .docs-preview {
+    all: initial !important;
+    @apply bg-background;
+  }
+
+  .docs-preview-canvas {
+    all: unset !important;
+    @apply bg-background;
+  }
+
+  [type='radio']:checked {
+    background-image: unset;
+  }
+  input {
+    margin: unset;
+  }
 }
