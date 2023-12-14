@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { ButtonContent, Button as InternalButton, ButtonProps as InternalButtonProps } from './button';
 import { ButtonGroup } from './button-group';

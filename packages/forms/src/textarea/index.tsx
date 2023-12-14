@@ -1,6 +1,5 @@
 import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
-import * as React from 'react';
-
+import React from 'react';
 import { IInputProps } from '../input/input';
 import { useInputClass } from '../input/styles';
 import { useFormControl } from '../form-control';

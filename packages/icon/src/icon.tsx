@@ -8,7 +8,17 @@ type IconNames = keyof typeof dynamicIconImports;
 export interface IconProps extends DefaultProps, React.ComponentPropsWithRef<'span'> {
   name?: IconNames;
   /** @default primary */
-  color?: 'info' | 'success' | 'primary' | 'warning' | 'error' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
+  color?:
+    | 'tertiary'
+    | 'info'
+    | 'success'
+    | 'primary'
+    | 'warning'
+    | 'error'
+    | 'vattjom'
+    | 'gronsta'
+    | 'bjornstigen'
+    | 'juniskar';
   icon?: React.ReactElement;
   /** @default false */
   rounded?: boolean;
@@ -16,8 +26,8 @@ export interface IconProps extends DefaultProps, React.ComponentPropsWithRef<'sp
   inverted?: boolean;
   /** @default tertiary */
   variant?: 'tertiary' | 'ghost';
-  /** @default 24 */
-  size?: number | 'fit';
+  /** @default 2.4rem */
+  size?: number | string | 'fit';
 }
 
 function toPascalCase(text: string) {
@@ -36,7 +46,7 @@ export const Icon = React.forwardRef<HTMLSpanElement, IconProps>((props, ref) =>
     rounded = false,
     inverted = false,
     variant = 'tertiary',
-    size = 24,
+    size,
     className,
     ...rest
   } = props;
@@ -45,7 +55,7 @@ export const Icon = React.forwardRef<HTMLSpanElement, IconProps>((props, ref) =>
     <span
       ref={ref}
       className={cx('sk-icon', className)}
-      style={{ width: typeof size == 'number' ? size : undefined, height: typeof size == 'number' ? size : undefined }}
+      style={size ? { width: size, height: size } : undefined}
       aria-hidden={true}
       data-variant={variant}
       data-color={color ? color : undefined}
@@ -55,7 +65,7 @@ export const Icon = React.forwardRef<HTMLSpanElement, IconProps>((props, ref) =>
       data-testid={name ? `sk-icon-${name}` : undefined}
       {...rest}
     >
-      {icon ? icon : LucideIcon ? <LucideIcon size={typeof size == 'number' ? size : undefined} /> : undefined}
+      {icon ? icon : LucideIcon ? <LucideIcon /> : undefined}
     </span>
   );
 });

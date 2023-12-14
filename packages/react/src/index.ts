@@ -10,7 +10,6 @@ export * from '@sk-web-gui/label';
 export * from '@sk-web-gui/link';
 export * from '@sk-web-gui/snackbar';
 export * from '@sk-web-gui/spinner';
-export * from '@sk-web-gui/switch';
 export * from '@sk-web-gui/theme';
 export * from '@sk-web-gui/text';
 export * from '@sk-web-gui/utils';

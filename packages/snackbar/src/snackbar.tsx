@@ -2,7 +2,7 @@ import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
 import { createToast, useToastOptions } from '@sk-web-gui/toast';
 import { __DEV__, cx as clsx } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 import dynamicIconImports from 'lucide-react/dynamicIconImports';
 
 interface Status {

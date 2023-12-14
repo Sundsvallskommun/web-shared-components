@@ -1,6 +1,6 @@
 import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, getValidChildren, __DEV__ } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 
 import { Input, InputProps } from '../input/input';
 import { useInputGroupClass } from './styles';

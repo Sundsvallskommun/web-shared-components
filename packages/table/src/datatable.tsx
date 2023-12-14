@@ -1,6 +1,6 @@
 import { __DEV__ } from '@sk-web-gui/utils';
 import _ from 'lodash';
-import * as React from 'react';
+import React from 'react';
 import { ZebraTableProps, ZebraTable, ZebraTableColumn, ZebraTableHeader } from './zebratable';
 
 export interface DataTableHeader {

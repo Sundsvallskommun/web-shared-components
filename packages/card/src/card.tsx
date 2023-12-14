@@ -2,7 +2,7 @@
 import { DefaultProps } from '@sk-web-gui/utils';
 import { Link, LinkProps } from '@sk-web-gui/link';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 
 // import { useCardClass } from "./styles";
 

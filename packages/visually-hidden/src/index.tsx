@@ -10,7 +10,7 @@
  * @see Source   https://github.com/reach/reach-ui/tree/main/packages/visually-hidden
  */
 
-import * as React from 'react';
+import React from 'react';
 import { __DEV__ } from '@sk-web-gui/utils';
 
 // interface VisuallyHiddenProps extends DefaultProps {

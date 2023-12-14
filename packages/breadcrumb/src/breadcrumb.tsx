@@ -1,7 +1,7 @@
 import { Link, LinkProps } from '@sk-web-gui/link';
 import { cx, getValidChildren, __DEV__, PolymorphicComponentPropsWithRef, PolymorphicRef } from '@sk-web-gui/utils';
 import { DefaultProps } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 import { cloneElement } from 'react';
 
 export interface BreadcrumbSeparatorProps extends DefaultProps, React.ComponentPropsWithRef<'span'> {

@@ -3,7 +3,7 @@ import { DefaultProps, cx, useForkRef } from '@sk-web-gui/utils';
 import React from 'react';
 import { useCombobox } from './combobox-context';
 
-export interface ComboboxOption extends DefaultProps, Omit<React.ComponentPropsWithRef<'input'>, 'onClick'> {
+export interface ComboboxOptionProps extends DefaultProps, Omit<React.ComponentPropsWithRef<'input'>, 'onClick'> {
   value: string;
   checked?: boolean;
   children: string;
@@ -12,7 +12,7 @@ export interface ComboboxOption extends DefaultProps, Omit<React.ComponentPropsW
   index?: number;
 }
 
-export const ComboboxOption = React.forwardRef<HTMLInputElement, ComboboxOption>((props, ref) => {
+export const ComboboxOption = React.forwardRef<HTMLInputElement, ComboboxOptionProps>((props, ref) => {
   const {
     className,
     value,

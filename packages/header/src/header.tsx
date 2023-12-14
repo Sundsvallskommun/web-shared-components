@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Link } from '@sk-web-gui/link';
 import { Divider } from '@sk-web-gui/divider';
 import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';

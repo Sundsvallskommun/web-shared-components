@@ -1,6 +1,6 @@
 import { Link } from '@sk-web-gui/link';
 import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 
 export interface TextProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   /* If text looking like urls should be clickable links */

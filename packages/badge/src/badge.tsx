@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 
 interface IBadgeProps extends DefaultProps {

@@ -1,6 +1,6 @@
 import { Badge, BadgeProps } from '@sk-web-gui/badge';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 import { useTabsIconClass, useTabsListClass, useTabsTabClass, useTabsWrapperClass } from './styles';
 
 export interface TabItem {

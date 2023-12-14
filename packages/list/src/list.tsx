@@ -1,6 +1,6 @@
 import { Link, LinkProps } from '@sk-web-gui/link';
 import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 
 export interface ListProps extends DefaultProps, React.ComponentPropsWithRef<'ul'> {
   /** Select style of list. */

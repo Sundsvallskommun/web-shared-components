@@ -42,6 +42,21 @@ export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListPr
   const size = _size || context.size || 'md';
   const multiple = _multiple !== undefined ? _multiple : context.multiple || false;
 
+  const sortSelected = (a: React.ReactElement, b: React.ReactElement) => {
+    const achecked =
+      a.props.checked !== undefined
+        ? a.props.checked
+        : context?.value?.length > 0
+        ? context?.value.includes(a.props.value)
+        : false;
+    const bchecked =
+      b.props.checked !== undefined
+        ? b.props.checked
+        : context?.value?.length > 0
+        ? context?.value.includes(b.props.value)
+        : false;
+    return achecked && !bchecked ? -1 : bchecked && !achecked ? 1 : 0;
+  };
   const getFilteredChildren = () =>
     getValidChildren(children)
       .filter(
@@ -52,12 +67,15 @@ export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListPr
       .map((child, index) =>
         React.cloneElement(child, { ...child.props, index: index, id: `${context.listId}-${index}` })
       );
+
   const getChildren = () =>
     autofilter
-      ? getFilteredChildren()
-      : getValidChildren(children).map((child, index) =>
-          React.cloneElement(child, { ...child.props, index: index, id: `${context.listId}-${index}` })
-        );
+      ? getFilteredChildren().sort(sortSelected)
+      : getValidChildren(children)
+          .map((child, index) =>
+            React.cloneElement(child, { ...child.props, index: index, id: `${context.listId}-${index}` })
+          )
+          .sort(sortSelected);
 
   useEffect(() => {
     setTotal && setTotal(React.Children.count(getChildren()));

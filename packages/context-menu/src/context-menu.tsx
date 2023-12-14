@@ -2,7 +2,7 @@ import { Menu } from '@headlessui/react';
 
 import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 import { ContextMenuButton } from './context-menu-button';
 
 export interface ContextMenuPropsInternal extends React.ComponentPropsWithRef<'div'>, DefaultProps {
