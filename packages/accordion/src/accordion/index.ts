@@ -1,3 +1,4 @@
+import React from 'react';
 import { AccordionComponent, AccordionInternalProps } from './accordion';
 import AccordionItem from './accordion-item';
 
