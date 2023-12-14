@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Alert as InternalAlert, AlertProps as InternalAlertProps, AlertCloseButton } from './alert';
 
 interface AlertProps extends React.ForwardRefExoticComponent<InternalAlertProps> {
