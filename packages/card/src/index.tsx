@@ -13,8 +13,6 @@ import {
   CardTextProps,
   CardMeta,
   CardMetaProps,
-  CardList,
-  CardListProps,
 } from './card';
 
 import {
@@ -58,7 +56,6 @@ MetaCard.Header = MetaCardHeader;
 MetaCard.Text = MetaCardText;
 
 export type {
-  CardListProps,
   CardProps,
   CardImageProps,
   CardBodyProps,
@@ -69,6 +66,6 @@ export type {
   MetaCardHeaderProps,
   MetaCardTextProps,
 };
-export { CardList, Card, MetaCard };
+export { Card, MetaCard };
 
 export default Card;

@@ -1,25 +1,109 @@
 module.exports = Card = (colors) => ({
-  '.sk-card-list': {
-    '@apply grid grid-cols-1 md:grid-cols-2 gap-10': {},
-  },
-
   '.sk-card': {
-    '@apply bg-white relative rounded-b-cards': {},
+    '@apply bg-white relative rounded-b-cards rounded-cards': {},
     '@apply flex flex-col': {},
     '@apply no-underline hover:no-underline': {},
+    '@apply h-[100%]': {},
 
-    width: '40rem',
-    height: '492px',
+    '&-wrapper': {
+      '@apply grid': {},
+    },
 
-    '@apply rounded-cards': {},
+    '&-image': {
+      '@apply object-cover grow': {},
+      '@apply rounded-t-cards': {},
+    },
+
+    '&-body': {
+      '@apply px-24 pb-24 pt-16 rounded-b-cards': {},
+      '@apply shrink': {},
+
+      '&-wrapper': {
+        '@apply flex': {},
+      },
+
+      '&-meta': {
+        '@apply flex space-x-12 mt-16': {},
+        span: {
+          '@apply flex space-x-4 my-auto': {},
+        },
+
+        '&.sk-card-image': {
+          backgroundColor: 'green',
+          '@apply h-[278px]': {},
+        },
+      },
+
+      '&-header': {
+        'h1, h2, h3, h4, h5, h6, h7, a': {
+          '@apply line-clamp-1 text-h3-md text-dark-primary mt-16': {},
+        },
+        span: {
+          '@apply pl-12': {},
+        },
+      },
+
+      '&-content': {
+        '@apply w-full': {},
+        'p, a': {
+          '@apply line-clamp-3 m-0 pt-8 text-base': {},
+        },
+      },
+
+      '&-icon': {
+        '@apply hidden': {},
+      },
+    },
 
     ...colors.reduce(
       (styles, color) => ({
         ...styles,
 
-        '&[data-color="mono"], &[data-color="tertiary"]': {
+        '&[data-color="mono"]': {
           '@apply border-solid border-1': {},
-          borderTop: 'none',
+          '@apply border-primitives-overlay-darken-5 dark:border-primitives-overlay-lighten-5': {},
+
+          '.sk-card-body-meta': {
+            '@apply text-dark-secondary': {},
+          },
+
+          '@apply bg-primitives-gray-lightest dark:bg-primitives-gray-800': {},
+
+          '.sk-card-body-icon': {
+            '@apply bg-primitives-overlay-darken-9 dark:bg-primitives-overlay-lighten-10': {},
+          },
+
+          // inverted.
+          [`&[data-inverted="true"]`]: {
+            '@apply bg-primitives-gray-800': {},
+
+            '.sk-card-body': {
+              // Meta
+              '&-meta': {
+                span: {
+                  '@apply text-light-secondary': {},
+                },
+              },
+
+              // header
+              '&-header': {
+                'h1, h2, h3, h4, h5, h6, h7, a': {
+                  [`@apply text-light-primary`]: {},
+                },
+              },
+
+              // Content
+              '&-content': {
+                'p, a': {
+                  [`@apply text-light-secondary`]: {},
+                },
+              },
+
+              '.sk-card-body-icon': {
+                '@apply bg-primitives-overlay-lighten-10 text-primitives-gray-900': {},
+              },
+            },
+          },
         },
 
         [`&[data-color="${color}"]`]: {
@@ -99,77 +183,39 @@ module.exports = Card = (colors) => ({
       //Hide and show of icon
       '.sk-card-body-icon': {
         '@apply inline-flex': {},
+        '@apply mt-auto mb-auto mr-24': {},
       },
     },
 
     [`&[data-layout="horizontal"]`]: {
-      '@apply flex-row': {},
-      height: '140px',
+      '@apply flex-row h-[100%]': {},
 
-      '.sk-card-image': {
-        height: '100%',
-        width: '128px',
-        '@apply float-left': {},
-        '@apply rounded-none': {},
-        '@apply rounded-l-cards': {},
-      },
+      '.sk-card': {
+        '&-image': {
+          '@apply h-[100%] w-[128px]': {},
+          '@apply float-left': {},
+          '@apply rounded-none rounded-l-cards grow-0': {},
+        },
 
-      '.sk-card-body': {
-        '@apply border-none': {},
+        '&-body': {
+          '@apply w-[100%]': {},
+          '@apply border-none': {},
 
-        '&-content': {
-          'p, a': {
-            '@apply text-small': {},
+          '&-wrapper': {
+            '@apply w-[100%]': {},
+          },
+
+          '&-content': {
+            'p, a': {
+              '@apply text-small': {},
+            },
+          },
+
+          '&-meta': {
+            '@apply hidden': {},
           },
         },
-
-        '&-meta': {
-          '@apply hidden': {},
-        },
       },
-    },
-  },
-
-  '.sk-card-image': {
-    '@apply object-cover': {},
-    width: '100%',
-    height: '318px',
-    '@apply rounded-t-cards': {},
-  },
-
-  '.sk-card-body': {
-    '@apply px-24 pb-24 pt-16 rounded-b-cards': {},
-    '@apply grow': {},
-
-    '&-meta': {
-      '@apply flex space-x-12 mt-16': {},
-      span: {
-        '@apply flex space-x-4 my-auto': {},
-      },
-    },
-
-    '&-wrapper': {
-      '@apply flex gap-x-32': {},
-    },
-
-    '&-header': {
-      'h1, h2, h3, h4, h5, h6, h7, a': {
-        '@apply line-clamp-1 text-h3-md text-dark-primary mt-16': {},
-      },
-      span: {
-        '@apply pl-12': {},
-      },
-    },
-
-    '&-content': {
-      '@apply w-full': {},
-      'p, a': {
-        '@apply line-clamp-3 m-0 pt-8 text-base': {},
-      },
-    },
-
-    '&-icon': {
-      '@apply hidden': {},
     },
   },
 
@@ -194,7 +240,7 @@ module.exports = Card = (colors) => ({
     '@apply flex bg-vattjom-surface-accent': {},
     '@apply p-14 rounded-16 w-[454px]': {},
 
-    '&[data-color="tertiary"]': {
+    '&[data-color="mono"]': {
       '@apply bg-primitives-overlay-darken-1 dark:bg-primitives-overlay-lighten-1': {},
     },
 

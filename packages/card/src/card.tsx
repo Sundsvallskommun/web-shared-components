@@ -15,7 +15,7 @@ interface ICardProps extends DefaultProps {
   /** Set background color to card
    * @default vattjom
    */
-  color?: 'mono' | 'tertiary' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
+  color?: 'mono' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
   /** Make the card inverted
    * @default false
    */
@@ -33,13 +33,13 @@ interface ICardProps extends DefaultProps {
   href?: string;
 }
 
-export interface CardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'>, ICardProps {}
+export interface CardProps extends Omit<React.ComponentPropsWithRef<'div'>, 'color'>, ICardProps {}
 
 export const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   const {
     children,
     className,
-    color = 'vattjom',
+    color = 'mono',
     invert = false,
     layout = 'vertical',
     useHoverEffect = false,
@@ -57,14 +57,14 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => 
   });
 
   return (
-    <div>
+    <div className={cx('sk-card-wrapper', className)}>
       {href !== '' ? (
         <Link
           href={href}
           data-color={color ? color : undefined}
           data-inverted={invert ? invert : undefined}
           data-layout={layout ? layout : undefined}
-          className={cx('sk-card', { 'sk-card-use-hover-effect': useHoverEffect }, className)}
+          className={cx('sk-card', { 'sk-card-use-hover-effect': useHoverEffect })}
           {...rest}
           ref={ref}
         >
@@ -75,7 +75,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => 
           data-color={color ? color : undefined}
           data-inverted={invert ? invert : undefined}
           data-layout={layout ? layout : undefined}
-          className={cx('sk-card', { 'sk-card-use-hover-effect': useHoverEffect }, className)}
+          className={cx('sk-card', { 'sk-card-use-hover-effect': useHoverEffect })}
           {...rest}
           ref={ref}
         >
@@ -88,31 +88,6 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => 
 
 if (__DEV__) {
   Card.displayName = 'Card';
-}
-
-// NOTE: Card List component
-
-interface ICardListProps extends DefaultProps {
-  /** The element or component to use in place of `a` */
-  as?: React.ElementType;
-  /** React Node */
-  children?: React.ReactNode;
-}
-
-export interface CardListProps extends React.HTMLAttributes<HTMLDivElement>, ICardListProps {}
-
-export const CardList = React.forwardRef<HTMLDivElement, CardListProps>((props, ref) => {
-  const { children, className, color, as: Comp = 'div', ...rest } = props;
-
-  return (
-    <Comp data-color={color ? color : undefined} className={cx('sk-card-list', className)} ref={ref} {...rest}>
-      {children}
-    </Comp>
-  );
-});
-
-if (__DEV__) {
-  CardList.displayName = 'CardList';
 }
 
 // NOTE: Card image component
@@ -128,7 +103,7 @@ interface ICardImageProps extends DefaultProps {
   inverted?: string;
 }
 
-export interface CardImageProps extends React.HTMLAttributes<HTMLImageElement>, ICardImageProps {}
+export interface CardImageProps extends React.ComponentPropsWithRef<'img'>, ICardImageProps {}
 
 export const CardImage = React.forwardRef<HTMLImageElement, CardImageProps>((props, ref) => {
   const { children, className, color, inverted, ...rest } = props;
@@ -144,26 +119,6 @@ if (__DEV__) {
   CardImage.displayName = 'CardImage';
 }
 
-// NOTE: Card Header component
-
-interface ICardHeaderProps extends DefaultProps {
-  /** React node */
-  children?: React.ReactNode;
-  /** Make the card inverted */
-  inverted?: string;
-}
-
-export interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement>, ICardHeaderProps {}
-
-export const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>((props, ref) => {
-  const { children, className, inverted, color, ...rest } = props;
-  return (
-    <div className={cx('sk-card-body-header', className)} ref={ref} {...rest}>
-      {children}
-    </div>
-  );
-});
-
 // NOTE: Card body component
 
 interface ICardBodyProps extends DefaultProps {
@@ -173,22 +128,26 @@ interface ICardBodyProps extends DefaultProps {
   inverted?: string;
 }
 
-export interface CardBodyProps extends React.HTMLAttributes<HTMLDivElement>, ICardBodyProps {}
+export interface CardBodyProps extends React.ComponentPropsWithRef<'div'>, ICardBodyProps {}
 
 export const CardBody = React.forwardRef<HTMLDivElement, CardBodyProps>((props, ref) => {
   const { children, className, color, inverted, ...rest } = props;
 
-  const validChildren = getValidChildren(children);
-  const clones = validChildren.map((child, index) => {
-    return cloneElement(child, {
-      color,
-      inverted,
-    });
-  });
-
   return (
-    <div data-color={color ? color : undefined} className={cx('sk-card-body', className)} ref={ref} {...rest}>
-      {clones}
+    <div className="sk-card-body-wrapper">
+      <div data-color={color ? color : undefined} className={cx('sk-card-body', className)} ref={ref} {...rest}>
+        {children}
+      </div>
+      <Button
+        as={'div'}
+        iconButton
+        color={color as any}
+        rounded
+        inverted={inverted == 'true' ? false : true}
+        className="sk-card-body-icon"
+      >
+        <Icon name="arrow-right" size={20} />
+      </Button>
     </div>
   );
 });
@@ -202,14 +161,12 @@ if (__DEV__) {
 interface ICardMetaProps extends DefaultProps {
   /** Insert date object and it will apply date and time to the card */
   datetime?: Date;
-  /** Make the card inverted */
-  inverted?: string;
 }
 
-export interface CardMetaProps extends React.HTMLAttributes<HTMLDivElement>, ICardMetaProps {}
+export interface CardMetaProps extends React.ComponentPropsWithRef<'div'>, ICardMetaProps {}
 
 export const CardMeta = React.forwardRef<HTMLDivElement, CardMetaProps>((props, ref) => {
-  const { className, datetime, color, inverted, ...rest } = props;
+  const { className, datetime, ...rest } = props;
   const monthNames = [
     'januari',
     'februari',
@@ -247,35 +204,39 @@ if (__DEV__) {
   CardMeta.displayName = 'CardMeta';
 }
 
-// NOTE: Card Text component
+// NOTE: Card Header component
+
+interface ICardHeaderProps extends DefaultProps {
+  /** React node */
+  children?: React.ReactNode;
+}
+
+export interface CardHeaderProps extends React.ComponentPropsWithRef<'div'>, ICardHeaderProps {}
+
+export const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>((props, ref) => {
+  const { children, className, ...rest } = props;
+  return (
+    <div className={cx('sk-card-body-header', className)} ref={ref} {...rest}>
+      {children}
+    </div>
+  );
+});
+
+// NOTE: Card Text component (CHECK THIS ELEMENT)
 
 interface ICardTextProps extends DefaultProps {
   /** React node */
   children?: React.ReactNode;
-  /** Make the card inverted */
-  inverted?: string;
 }
 
-export interface CardTextProps extends React.HTMLAttributes<HTMLDivElement>, ICardTextProps {}
+export interface CardTextProps extends React.ComponentPropsWithRef<'div'>, ICardTextProps {}
 
 export const CardText = React.forwardRef<HTMLDivElement, CardTextProps>((props, ref) => {
-  const { children, className, inverted, color, ...rest } = props;
+  const { children, className, ...rest } = props;
 
   return (
-    <div className="sk-card-body-wrapper">
-      <div data-color={color ? color : undefined} className={cx('sk-card-body-content', className)} ref={ref} {...rest}>
-        {children}
-      </div>
-      <Button
-        as={'div'}
-        iconButton
-        color={color as any}
-        rounded
-        inverted={inverted == 'true' ? false : true}
-        className="sk-card-body-icon"
-      >
-        <Icon name="arrow-right" size={20} />
-      </Button>
+    <div className="sk-card-body-content" ref={ref} {...rest}>
+      {children}
     </div>
   );
 });

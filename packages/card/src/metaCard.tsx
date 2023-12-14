@@ -11,7 +11,7 @@ interface IMetaCardProps extends DefaultProps {
   /** Set background color to card
    * @default vattjom
    */
-  color?: 'tertiary' | 'vattjom';
+  color?: 'mono' | 'vattjom';
   /** If the card should be clickable, will apply hover style
    * @default false;
    */
@@ -21,7 +21,7 @@ interface IMetaCardProps extends DefaultProps {
   href?: string;
 }
 
-export interface MetaCardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'>, IMetaCardProps {}
+export interface MetaCardProps extends Omit<React.ComponentPropsWithRef<'div'>, 'color'>, IMetaCardProps {}
 
 export const MetaCard = React.forwardRef<HTMLDivElement, MetaCardProps>((props, ref) => {
   const { children, className, color = 'vattjom', useHoverEffect = false, href = '', ...rest } = props;
@@ -62,7 +62,7 @@ interface IMetaCardBodyProps extends DefaultProps {
   children?: React.ReactNode;
 }
 
-export interface MetaCardBodyProps extends React.HTMLAttributes<HTMLDivElement>, IMetaCardBodyProps {}
+export interface MetaCardBodyProps extends React.ComponentPropsWithRef<'div'>, IMetaCardBodyProps {}
 
 export const MetaCardBody = React.forwardRef<HTMLDivElement, MetaCardBodyProps>((props, ref) => {
   const { children, className, ...rest } = props;
@@ -85,7 +85,7 @@ interface IMetaCardHeaderProps extends DefaultProps {
   children?: React.ReactNode;
 }
 
-export interface MetaCardHeaderProps extends React.HTMLAttributes<HTMLDivElement>, IMetaCardHeaderProps {}
+export interface MetaCardHeaderProps extends React.ComponentPropsWithRef<'div'>, IMetaCardHeaderProps {}
 
 export const MetaCardHeader = React.forwardRef<HTMLDivElement, MetaCardHeaderProps>((props, ref) => {
   const { children, className, ...rest } = props;
@@ -108,7 +108,7 @@ interface IMetaCardTextProps extends DefaultProps {
   children?: React.ReactNode;
 }
 
-export interface MetaCardTextProps extends React.HTMLAttributes<HTMLDivElement>, IMetaCardTextProps {}
+export interface MetaCardTextProps extends React.ComponentPropsWithRef<'div'>, IMetaCardTextProps {}
 
 export const MetaCardText = React.forwardRef<HTMLDivElement, MetaCardTextProps>((props, ref) => {
   const { children, className, ...rest } = props;

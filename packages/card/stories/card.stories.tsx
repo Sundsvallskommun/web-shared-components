@@ -1,8 +1,6 @@
 import { Meta } from '@storybook/react';
-import React from 'react';
 import PlaceholderImage from '../../../.storybook/public/placeholder_2.png';
-import { Card, CardList, CardProps, MetaCard } from '../src';
-import { CardMetaProps } from '../dist/types';
+import { Card, CardProps, MetaCard } from '../src';
 
 export default {
   title: 'Komponenter/Card',
@@ -13,7 +11,7 @@ export default {
 let inputDate = new Date();
 
 export const Template = (args: CardProps) => (
-  <CardList>
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '1rem' }}>
     <Card {...args}>
       <Card.Image src={PlaceholderImage} alt="placeholder" />
       <Card.Body>
@@ -44,13 +42,13 @@ export const Template = (args: CardProps) => (
         </Card.Text>
       </Card.Body>
     </Card>
-  </CardList>
+  </div>
 );
 
 export const Meta_card = () => (
   <div>
-    <CardList>
-      <MetaCard color="tertiary" href="https://sundsvall.se" useHoverEffect={true}>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '1rem' }}>
+      <MetaCard color="mono" href="https://sundsvall.se" useHoverEffect={true}>
         <MetaCard.Header>
           <h2>Rubrik</h2>
         </MetaCard.Header>
@@ -72,10 +70,10 @@ export const Meta_card = () => (
           </p>
         </MetaCard.Text>
       </MetaCard>
-    </CardList>
+    </div>
 
-    <CardList style={{ marginTop: '2rem' }}>
-      <MetaCard color="tertiary" href="https://sundsvall.se" useHoverEffect={true}>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '1rem', marginTop: '4rem' }}>
+      <MetaCard color="mono" href="https://sundsvall.se" useHoverEffect={true}>
         <MetaCard.Header>
           <h2>Rubrik</h2>
         </MetaCard.Header>
@@ -85,6 +83,6 @@ export const Meta_card = () => (
           <h2>Rubrik</h2>
         </MetaCard.Header>
       </MetaCard>
-    </CardList>
+    </div>
   </div>
 );
