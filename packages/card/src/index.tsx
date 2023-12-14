@@ -4,15 +4,10 @@ import {
   Card as InternalCard,
   CardProps as InternalCardProps,
   CardImage,
-  CardImageProps,
   CardBody,
-  CardBodyProps,
   CardHeader,
-  CardHeaderProps,
   CardText,
-  CardTextProps,
   CardMeta,
-  CardMetaProps,
 } from './card';
 
 import {
@@ -20,14 +15,11 @@ import {
   MetaCardProps as InternalMetaCardProps,
   MetaCardBody,
   MetaCardHeader,
-  MetaCardHeaderProps,
   MetaCardText,
-  MetaCardTextProps,
 } from './metaCard';
 
-interface CardProps
-  extends InternalCardProps,
-    React.ForwardRefExoticComponent<InternalCardProps & React.RefAttributes<HTMLElement>> {
+interface CardProps extends React.ForwardRefExoticComponent<InternalCardProps> {
+  Component: typeof InternalCard;
   Image: typeof CardImage;
   Body: typeof CardBody;
   Header: typeof CardHeader;
@@ -35,37 +27,30 @@ interface CardProps
   Meta: typeof CardMeta;
 }
 
-interface MetaCardProps
-  extends InternalMetaCardProps,
-    React.ForwardRefExoticComponent<InternalMetaCardProps & React.RefAttributes<HTMLElement>> {
+interface MetaCardProps extends React.ForwardRefExoticComponent<InternalMetaCardProps> {
+  Component: typeof InternalMetaCard;
   Body: typeof MetaCardBody;
   Header: typeof MetaCardHeader;
   Text: typeof MetaCardText;
 }
 
-const Card = InternalCard as CardProps;
-Card.Image = CardImage;
-Card.Body = CardBody;
-Card.Header = CardHeader;
-Card.Text = CardText;
-Card.Meta = CardMeta;
+export const Card = {
+  ...InternalCard,
+  Component: InternalCard,
+  Image: CardImage,
+  Body: CardBody,
+  Header: CardHeader,
+  Meta: CardMeta,
+  Text: CardText,
+} as CardProps;
 
-const MetaCard = InternalMetaCard as MetaCardProps;
-MetaCard.Body = MetaCardBody;
-MetaCard.Header = MetaCardHeader;
-MetaCard.Text = MetaCardText;
+export const MetaCard = {
+  ...InternalMetaCard,
+  Component: InternalMetaCard,
+  Body: MetaCardBody,
+  Header: MetaCardHeader,
+  Text: MetaCardText,
+} as MetaCardProps;
 
-export type {
-  CardProps,
-  CardImageProps,
-  CardBodyProps,
-  CardHeaderProps,
-  CardTextProps,
-  CardMetaProps,
-  MetaCardProps,
-  MetaCardHeaderProps,
-  MetaCardTextProps,
-};
-export { Card, MetaCard };
-
+export type { CardProps, MetaCardProps };
 export default Card;
