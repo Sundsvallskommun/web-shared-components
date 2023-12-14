@@ -15,4 +15,5 @@ export const Filter = {
   Item: FilterItem,
 } as FilterProps;
 
+export type { FilterProps };
 export default Filter;
