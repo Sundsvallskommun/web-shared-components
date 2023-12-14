@@ -13,7 +13,7 @@ interface ICardProps extends DefaultProps {
   /** React node */
   children?: React.ReactNode;
   /** Set background color to card
-   * @default vattjom
+   * @default mono
    */
   color?: 'mono' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
   /** Make the card inverted
