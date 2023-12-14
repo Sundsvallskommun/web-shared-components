@@ -1,4 +1,5 @@
-import { Combobox, ComboboxProps, FormControl, FormHelperText, FormLabel } from '../src';
+import { useForm } from 'react-hook-form';
+import { Combobox, ComboboxProps, FormControl, FormErrorMessage, FormHelperText, FormLabel } from '../src';
 import React from 'react';
 export default {
   title: 'Komponenter/Combobox',
@@ -154,25 +155,6 @@ export const Template = (args: ComboboxProps) => {
 
 Template.storyName = 'Combobox';
 
-export const WithFormControl = () => {
-  return (
-    <div className="h-[40rem]">
-      <FormControl>
-        <FormLabel>Favoritfrukt</FormLabel>
-        <Combobox placeholder="Välj en frukt">
-          <Combobox.List>
-            {applesAndPears.map((fruit) => (
-              <Combobox.Option key={`fruit-${fruit.id}`} value={fruit.id.toString()}>
-                {fruit.name}
-              </Combobox.Option>
-            ))}
-          </Combobox.List>
-        </Combobox>
-        <FormHelperText>Ta den frukt du äter oftast på fredagar</FormHelperText>
-      </FormControl>
-    </div>
-  );
-};
 export const CustomFilterHandler = () => {
   const [query, setQuery] = React.useState<string>('');
 
@@ -196,6 +178,65 @@ export const CustomFilterHandler = () => {
               ))}
           </Combobox.List>
         </Combobox>
+      </FormControl>
+    </div>
+  );
+};
+
+export const SingleChoiceWithForm = () => {
+  const { register } = useForm<{ fruit: string }>();
+
+  return (
+    <div className="h-[40rem]">
+      <FormControl>
+        <FormLabel>Favoritfrukt</FormLabel>
+        <Combobox placeholder="Välj en frukt" {...register('fruit')}>
+          <Combobox.List>
+            {fruits.map((fruit) => (
+              <Combobox.Option key={`singlefruit-${fruit}`} value={fruit}>
+                {fruit}
+              </Combobox.Option>
+            ))}
+          </Combobox.List>
+        </Combobox>
+        <FormHelperText>Välj en frukt</FormHelperText>
+      </FormControl>
+    </div>
+  );
+};
+
+export const MultipleChoicesWithForm = () => {
+  const {
+    register,
+    setError,
+    clearErrors,
+    watch,
+    formState: { errors },
+  } = useForm<{ fruits: string[] }>();
+  const myfruits = watch('fruits');
+  React.useEffect(() => {
+    console.log(myfruits);
+    if (myfruits && myfruits.length < 1) {
+      setError('fruits', { message: 'Välj minst en frukt' });
+    } else {
+      clearErrors('fruits');
+    }
+  }, [myfruits]);
+
+  return (
+    <div className="h-[40rem]">
+      <FormControl required>
+        <FormLabel>Favoritfrukt</FormLabel>
+        <Combobox multiple placeholder="Välj en frukt" invalid={!!errors.fruits}>
+          <Combobox.List>
+            {fruits.map((fruit) => (
+              <Combobox.Option {...register('fruits')} key={`multifruit-${fruit}`} value={fruit}>
+                {fruit}
+              </Combobox.Option>
+            ))}
+          </Combobox.List>
+        </Combobox>
+        {errors.fruits && <FormErrorMessage>Välj minst en frukt</FormErrorMessage>}
       </FormControl>
     </div>
   );

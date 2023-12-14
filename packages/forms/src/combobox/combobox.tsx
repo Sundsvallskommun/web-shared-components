@@ -7,13 +7,16 @@ import { useClickOutside } from '@react-hookz/web';
 import { UseComboboxProps, ComboboxContext } from './combobox-context';
 import { useFormControl } from '../form-control';
 
+interface ComboboxChangeEvent extends Partial<React.ChangeEvent<HTMLInputElement>> {
+  target: React.ChangeEvent<HTMLInputElement>['target'];
+}
 interface ComboboxBaseProps
   extends UseComboboxProps,
-    Omit<React.HTMLAttributes<HTMLInputElement>, 'onChange' | 'onSelect'> {
+    Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'onSelect' | 'size'> {
   /**
    * ChangeEvent list
    */
-  onChange?: (event: Partial<React.ChangeEvent<HTMLInputElement>>) => void;
+  onChange?: (event: ComboboxChangeEvent) => void;
   /**
    * Value from list
    */
@@ -34,6 +37,8 @@ interface ComboboxBaseProps
    * @default primary
    */
   variant?: 'primary' | 'tertiary';
+  /* Makes input invalid */
+  invalid?: boolean;
 }
 
 const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((props, ref) => {
@@ -51,6 +56,7 @@ const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((prop
     children,
     autofilter = true,
     size: _size,
+    invalid: _invalid,
     variant = 'primary',
     ...rest
   } = props;
@@ -70,7 +76,7 @@ const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((prop
   const {
     readOnly,
     disabled: fcDisabled,
-    invalid,
+    invalid: formcontrolInvalid,
     required,
     errorId,
     helpTextId,
@@ -84,7 +90,7 @@ const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((prop
   const name = `${id}-option`;
   const disabled = _disabled !== undefined ? _disabled : fcDisabled;
   const size = _size || fcSize || 'md';
-
+  const invalid = _invalid !== undefined ? _invalid : formcontrolInvalid;
   const classes = useComboboxStyles({ size, variant });
 
   const addLabel = (label: string, value: string) => {

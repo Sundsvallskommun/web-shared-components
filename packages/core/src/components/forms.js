@@ -20,7 +20,7 @@ module.exports = Forms = () => ({
     display: 'contents',
   },
 
-  '.sk-form-helper-text, sk-form-error-message': {
+  '.sk-form-helper-text, .sk-form-error-message': {
     '@apply font-normal': {},
     '@apply text-small': {},
   },
