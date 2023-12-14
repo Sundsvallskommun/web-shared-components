@@ -5,7 +5,7 @@ import { Select } from '@sk-web-gui/forms';
 import { Icon } from '@sk-web-gui/icon';
 import { Button } from '@sk-web-gui/button';
 
-export interface IPaginationProps extends DefaultProps {
+export interface PaginationProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   /* Total amount of pages */
   pages: number;
   /* Currently active page */
@@ -33,8 +33,6 @@ export interface IPaginationProps extends DefaultProps {
   /* Show as select */
   asSelect?: boolean;
 }
-
-export interface PaginationProps extends React.HTMLAttributes<HTMLDivElement>, IPaginationProps {}
 
 export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((props, ref) => {
   const {

@@ -1,5 +1,5 @@
 import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 
 interface ITooltipProps extends DefaultProps {
   /** Select the position of the tooltip

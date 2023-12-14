@@ -13,8 +13,8 @@ interface IFormLabelProps extends DefaultProps {
   size?: 'sm' | 'md' | 'lg';
 }
 
-interface IFormLabelRegularProps extends React.HTMLAttributes<HTMLLabelElement>, IFormLabelProps {}
-interface IFormLabelFieldsetProps extends React.HTMLAttributes<HTMLLegendElement>, IFormLabelProps {}
+interface IFormLabelRegularProps extends React.ComponentPropsWithRef<'label'>, IFormLabelProps {}
+interface IFormLabelFieldsetProps extends React.ComponentPropsWithRef<'legend'>, IFormLabelProps {}
 export type FormLabelProps = IFormLabelFieldsetProps | IFormLabelRegularProps;
 
 export const FormLabel = React.forwardRef<HTMLElement, FormLabelProps>((props, ref) => {
@@ -60,7 +60,7 @@ if (__DEV__) {
   FormLabel.displayName = 'FormLabel';
 }
 
-export const RequiredIndicator = React.forwardRef<HTMLSpanElement, React.HTMLAttributes<HTMLSpanElement>>(
+export const RequiredIndicator = React.forwardRef<HTMLSpanElement, React.ComponentPropsWithRef<'span'>>(
   (props, ref) => {
     const { className, ...rest } = props;
     const classes = cx('sk-form-required-indicator', className);

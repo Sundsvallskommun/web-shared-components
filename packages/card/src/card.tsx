@@ -3,13 +3,13 @@ import { Link } from '@sk-web-gui/link';
 import { cx, getValidChildren, __DEV__ } from '@sk-web-gui/utils';
 import { Icon } from '@sk-web-gui/icon';
 import { Button } from '@sk-web-gui/button';
-import * as React from 'react';
+import React from 'react';
 
 import { cloneElement } from 'react';
 
 // NOTE: Card component
 
-interface ICardProps extends DefaultProps {
+export interface CardProps extends DefaultProps, Omit<React.ComponentPropsWithRef<'div'>, 'color'> {
   /** React node */
   children?: React.ReactNode;
   /** Set background color to card
@@ -33,8 +33,6 @@ interface ICardProps extends DefaultProps {
   href?: string;
 }
 
-export interface CardProps extends Omit<React.ComponentPropsWithRef<'div'>, 'color'>, ICardProps {}
-
 export const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   const {
     children,
@@ -46,10 +44,10 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => 
     href = '',
     ...rest
   } = props;
-  let inverted = invert.toString();
+  const inverted = invert.toString();
 
   const validChildren = getValidChildren(children);
-  const clones = validChildren.map((child, index) => {
+  const clones = validChildren.map((child) => {
     return cloneElement(child, {
       color,
       inverted,
@@ -92,7 +90,7 @@ if (__DEV__) {
 
 // NOTE: Card image component
 
-interface ICardImageProps extends DefaultProps {
+export interface CardImageProps extends DefaultProps, React.ComponentPropsWithRef<'img'> {
   /** React node */
   children?: React.ReactNode;
   /** The image `src` attribute */
@@ -103,10 +101,8 @@ interface ICardImageProps extends DefaultProps {
   inverted?: string;
 }
 
-export interface CardImageProps extends React.ComponentPropsWithRef<'img'>, ICardImageProps {}
-
 export const CardImage = React.forwardRef<HTMLImageElement, CardImageProps>((props, ref) => {
-  const { children, className, color, inverted, ...rest } = props;
+  const { children, className, color, ...rest } = props;
 
   return (
     <img data-color={color ? color : undefined} className={cx('sk-card-image', className)} ref={ref} {...rest}>
@@ -121,14 +117,15 @@ if (__DEV__) {
 
 // NOTE: Card body component
 
-interface ICardBodyProps extends DefaultProps {
+export interface CardBodyProps
+  extends DefaultProps,
+    Omit<React.ComponentPropsWithRef<'div'>, 'color'>,
+    Pick<CardProps, 'color'> {
   /** React node */
   children?: React.ReactNode;
   /** Make the card inverted */
   inverted?: string;
 }
-
-export interface CardBodyProps extends React.ComponentPropsWithRef<'div'>, ICardBodyProps {}
 
 export const CardBody = React.forwardRef<HTMLDivElement, CardBodyProps>((props, ref) => {
   const { children, className, color, inverted, ...rest } = props;
@@ -139,9 +136,9 @@ export const CardBody = React.forwardRef<HTMLDivElement, CardBodyProps>((props, 
         {children}
       </div>
       <Button
-        as={'div'}
+        as="div"
         iconButton
-        color={color as any}
+        color={color}
         rounded
         inverted={inverted == 'true' ? false : true}
         className="sk-card-body-icon"
@@ -158,12 +155,10 @@ if (__DEV__) {
 
 // NOTE: Card Meta component
 
-interface ICardMetaProps extends DefaultProps {
+export interface CardMetaProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   /** Insert date object and it will apply date and time to the card */
   datetime?: Date;
 }
-
-export interface CardMetaProps extends React.ComponentPropsWithRef<'div'>, ICardMetaProps {}
 
 export const CardMeta = React.forwardRef<HTMLDivElement, CardMetaProps>((props, ref) => {
   const { className, datetime, ...rest } = props;
@@ -184,18 +179,24 @@ export const CardMeta = React.forwardRef<HTMLDivElement, CardMetaProps>((props, 
 
   return (
     <div className={cx('sk-card-body-meta', className)} ref={ref} {...rest}>
-      <span>
-        <Icon name="calendar" variant="ghost" />
-        <time dateTime={datetime?.toISOString().split('T')[0]}>
-          {datetime?.getDay() as any} {monthNames[datetime?.getMonth() as any]} {datetime?.getFullYear() as any}
-        </time>
-      </span>
-      <span>
-        <Icon name="clock-4" variant="ghost" />
-        <time dateTime={datetime?.getHours() + ':' + datetime?.getMinutes()}>
-          {datetime?.getHours() as any}:{('0' + datetime?.getMinutes()).slice(-2) as any}
-        </time>
-      </span>
+      {datetime ? (
+        <>
+          <span>
+            <Icon name="calendar" variant="ghost" />
+            <time dateTime={datetime?.toISOString().split('T')[0]}>
+              {datetime?.getDay()} {monthNames[datetime?.getMonth()]} {datetime?.getFullYear()}
+            </time>
+          </span>
+          <span>
+            <Icon name="clock-4" variant="ghost" />
+            <time dateTime={datetime?.getHours() + ':' + datetime?.getMinutes()}>
+              {datetime?.getHours()}:{('0' + datetime?.getMinutes()).slice(-2)}
+            </time>
+          </span>
+        </>
+      ) : (
+        <></>
+      )}
     </div>
   );
 });
@@ -206,12 +207,10 @@ if (__DEV__) {
 
 // NOTE: Card Header component
 
-interface ICardHeaderProps extends DefaultProps {
+export interface CardHeaderProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   /** React node */
   children?: React.ReactNode;
 }
-
-export interface CardHeaderProps extends React.ComponentPropsWithRef<'div'>, ICardHeaderProps {}
 
 export const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>((props, ref) => {
   const { children, className, ...rest } = props;
@@ -224,18 +223,16 @@ export const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>((pro
 
 // NOTE: Card Text component (CHECK THIS ELEMENT)
 
-interface ICardTextProps extends DefaultProps {
+export interface CardTextProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   /** React node */
   children?: React.ReactNode;
 }
-
-export interface CardTextProps extends React.ComponentPropsWithRef<'div'>, ICardTextProps {}
 
 export const CardText = React.forwardRef<HTMLDivElement, CardTextProps>((props, ref) => {
   const { children, className, ...rest } = props;
 
   return (
-    <div className="sk-card-body-content" ref={ref} {...rest}>
+    <div className={cx('sk-card-body-content', className)} ref={ref} {...rest}>
       {children}
     </div>
   );

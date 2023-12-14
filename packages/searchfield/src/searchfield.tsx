@@ -2,9 +2,9 @@ import { Button } from '@sk-web-gui/button';
 import { Input, InputProps } from '@sk-web-gui/forms';
 import { Icon } from '@sk-web-gui/icon';
 import { DefaultProps, __DEV__ } from '@sk-web-gui/utils';
-import React, { HTMLAttributes, useEffect, useState } from 'react';
+import React from 'react';
 
-export interface SearchFieldProps extends DefaultProps, InputProps, HTMLAttributes<HTMLInputElement> {
+export interface SearchFieldProps extends DefaultProps, InputProps, Omit<React.ComponentPropsWithRef<'input'>, 'size'> {
   // Parent should handle the state
   value: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
@@ -38,7 +38,7 @@ export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
     ...rest
   } = props;
 
-  const [query, setQuery] = useState(value);
+  const [query, setQuery] = React.useState(value);
   const internalRef = React.useRef<HTMLInputElement | null>(null);
   React.useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(ref, () => internalRef.current);
 
@@ -70,7 +70,7 @@ export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
     onChange(e);
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (value !== null || value !== undefined) {
       setQuery(value);
     }

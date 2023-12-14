@@ -21,11 +21,11 @@
     "baseUrl": ".",
     "paths": {
       "@stories/*": [".storybook/stories/*"],
-      "@components/*": ["packages/*"],
+      "@sk-web-gui/*": ["packages/*"],
       "@public/*": [".storybook/public/*"]
     }
   },
-  "include": ["packages"],
+  "include": ["packages/*/src"],
   "exclude": ["node_modules"],
   "ts-node": {
     "compilerOptions": {

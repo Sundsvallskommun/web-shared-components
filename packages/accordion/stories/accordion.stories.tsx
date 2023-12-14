@@ -1,3 +1,4 @@
+import React from 'react';
 import { Badge } from '@sk-web-gui/badge';
 import { Meta } from '@storybook/react';
 import { Accordion, AccordionProps } from '../src';
@@ -8,7 +9,7 @@ export default {
   tags: ['autodocs'],
 } as Meta<typeof Accordion>;
 
-export const Template = (args: AccordionProps) => {
+export const Template = (args: React.ComponentProps<AccordionProps['Component']>) => {
   return (
     <div className="h-[30rem]">
       <Accordion {...args}>

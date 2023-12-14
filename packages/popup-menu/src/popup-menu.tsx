@@ -1,22 +1,22 @@
 import { Menu } from '@headlessui/react';
-
 import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import React from 'react';
 import { PopupMenuButton } from './popup-menu-button';
 
-export interface PopupMenuPropsInternal extends React.HTMLAttributes<HTMLButtonElement>, DefaultProps {
+export interface PopupMenuPropsInternal extends React.ComponentPropsWithRef<'button'>, DefaultProps {
   size?: 'md' | 'sm';
   position?: 'under' | 'over' | 'left' | 'right';
   align?: 'start' | 'end';
 }
 
-const PopupMenuComponent = React.forwardRef<HTMLButtonElement, PopupMenuPropsInternal>((props, ref) => {
+export const PopupMenuComponent = React.forwardRef<HTMLButtonElement, PopupMenuPropsInternal>((props, ref) => {
   const { className, children, size = 'md', position = 'under', align = 'start', ...rest } = props;
 
   const getButton = () => {
     const button = React.Children.toArray(children).find(
-      (child: any) => child?.type?.name === PopupMenuButton.name
+      (child) =>
+        React.isValidElement(child) && typeof child.type !== 'string' && child?.type?.name === PopupMenuButton.name
     ) as React.ReactElement;
 
     if (button) {
@@ -27,7 +27,10 @@ const PopupMenuComponent = React.forwardRef<HTMLButtonElement, PopupMenuPropsInt
   };
 
   const getItems = () => {
-    return React.Children.toArray(children).filter((child: any) => child?.type?.name !== PopupMenuButton.name);
+    return React.Children.toArray(children).filter(
+      (child) =>
+        React.isValidElement(child) && typeof child.type !== 'string' && child?.type?.name !== PopupMenuButton.name
+    );
   };
 
   return (
@@ -44,14 +47,14 @@ const PopupMenuComponent = React.forwardRef<HTMLButtonElement, PopupMenuPropsInt
   );
 });
 
-interface PopupMenuItemProps {
+export interface PopupMenuItemProps {
   children: JSX.Element;
   disabled?: boolean;
 }
 
 //TODO: Add function for expandable menues.
 
-const PopupMenuItem: React.FC<PopupMenuItemProps> = ({ disabled = false, children }) => {
+export const PopupMenuItem: React.FC<PopupMenuItemProps> = ({ disabled = false, children }) => {
   const getItem = (child: JSX.Element, active: boolean) => {
     const classes = cx(child?.props?.className, active ? 'active' : '');
     const props = { ...child.props, className: cx('sk-popup-menu-item', classes) };
@@ -61,29 +64,14 @@ const PopupMenuItem: React.FC<PopupMenuItemProps> = ({ disabled = false, childre
   return <Menu.Item disabled={disabled}>{({ active }) => getItem(children, active)}</Menu.Item>;
 };
 
-const PopupMenuGroup: React.FC<React.HTMLAttributes<HTMLDivElement>> = (props) => {
+export const PopupMenuGroup: React.FC<React.ComponentPropsWithRef<'div'> & DefaultProps> = (props) => {
   const { className, ...rest } = props;
 
   return <div role="group" className={cx('sk-popup-menu-items-group', className)} {...rest} />;
 };
 
-interface PopupMenuProps
-  extends PopupMenuPropsInternal,
-    React.ForwardRefExoticComponent<PopupMenuPropsInternal & React.RefAttributes<HTMLElement>> {
-  Item: typeof PopupMenuItem;
-  Button: typeof PopupMenuButton;
-  Group: typeof PopupMenuGroup;
-}
-
-export const PopupMenu = PopupMenuComponent as PopupMenuProps;
-
-PopupMenu.Item = PopupMenuItem;
-PopupMenu.Button = PopupMenuButton;
-PopupMenu.Group = PopupMenuGroup;
-
 if (__DEV__) {
-  PopupMenu.displayName = 'Popup menu';
+  PopupMenuComponent.displayName = 'PopupMenuComponent';
 }
 
-export type { PopupMenuProps };
-export default PopupMenu;
+export default PopupMenuComponent;

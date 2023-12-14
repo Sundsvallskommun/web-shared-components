@@ -1,7 +1,7 @@
 import React from 'react';
 import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 
-export interface DividerProps extends DefaultProps, React.HTMLAttributes<HTMLHRElement> {
+export interface DividerProps extends DefaultProps, React.ComponentPropsWithRef<'hr'> {
   /*The orientation */
   orientation?: 'horizontal' | 'vertical';
   /* Thicker divider */
