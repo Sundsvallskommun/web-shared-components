@@ -1,9 +1,10 @@
 import { useId } from '@reach/auto-id';
-import React from 'react';
-import Disclosure, { DisclosureProps } from '../disclosure/disclosure';
 import { DefaultProps, __DEV__, __REACT_NAME__, cx, getValidChildren } from '@sk-web-gui/utils';
+import React from 'react';
+import { DisclosureProps } from '../disclosure/disclosure';
+import AccordionItem from './accordion-item';
 
-interface UseAccordionProps extends Pick<DisclosureProps, 'headerAs'> {
+export interface UseAccordionProps extends Pick<DisclosureProps, 'headerAs'> {
   /**
    * Will close any item open when another is opened
    * @deafult false
@@ -34,7 +35,7 @@ const AccordionContext = React.createContext<UseAccordionProps>({ allowMultipleO
 
 const useAccordionContext = () => React.useContext(AccordionContext);
 
-export const AccordionComponent = React.forwardRef<HTMLDivElement, AccordionInternalProps>((props, ref) => {
+export const AccordionComponent = React.forwardRef<HTMLUListElement, AccordionInternalProps>((props, ref) => {
   const [open, setOpen] = React.useState<string[]>([]);
 
   const onOpen = (id: string) => {
@@ -65,8 +66,7 @@ export const AccordionComponent = React.forwardRef<HTMLDivElement, AccordionInte
   const getChildren = (): React.ReactNode => {
     return getValidChildren(children).map((child, index) => {
       switch ((child.type as React.FC)[__REACT_NAME__]) {
-        case Accordion.Item[__REACT_NAME__]:
-          console.log(child);
+        case AccordionItem[__REACT_NAME__]:
           const props = { ...child?.props, id: child?.props?.id || `${id}-child-${index}` };
           return React.cloneElement(child, props);
         default:
@@ -77,8 +77,8 @@ export const AccordionComponent = React.forwardRef<HTMLDivElement, AccordionInte
 
   return (
     <AccordionContext.Provider value={context}>
-      <div ref={ref} className={cx('sk-accordion', className)}>
-        <ul id={id} aria-labelledby={labelId} {...rest}>
+      <div className={cx('sk-accordion', className)}>
+        <ul ref={ref} id={id} aria-labelledby={labelId} {...rest}>
           {getChildren()}
         </ul>
       </div>
@@ -86,30 +86,8 @@ export const AccordionComponent = React.forwardRef<HTMLDivElement, AccordionInte
   );
 });
 
-const AccordionItem = React.forwardRef<HTMLDivElement, DisclosureProps>((props, ref) => {
-  const { className, ...rest } = props;
-  return (
-    <li className={cx('sk-accordion-item', className)}>
-      <Disclosure ref={ref} {...rest} />
-    </li>
-  );
-});
-
-interface AccordionProps extends React.ForwardRefExoticComponent<AccordionInternalProps> {
-  Component: typeof AccordionComponent;
-  Item: typeof AccordionItem;
-}
-
-export const Accordion = {
-  ...AccordionComponent,
-  Component: AccordionComponent,
-  Item: AccordionItem,
-} as AccordionProps;
-
 if (__DEV__) {
-  Accordion.Item.displayName = 'AccordionItem';
-  Accordion.displayName = 'Accordion';
+  AccordionComponent.displayName = 'AccordionComponent';
 }
 
-export type { AccordionProps };
-export default Accordion;
+export default AccordionComponent;

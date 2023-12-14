@@ -6,7 +6,7 @@ import { useAccordion } from '../accordion/accordion';
 import { Button } from '@sk-web-gui/button';
 import { useDisclosureClass } from './styles';
 
-interface IDisclosureProps extends DefaultProps {
+export interface DisclosureProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   initalOpen?: boolean;
   header: React.ReactNode;
   /* Makes disclosure disabled */
@@ -25,8 +25,6 @@ interface IDisclosureProps extends DefaultProps {
    */
   size?: 'sm' | 'md';
 }
-
-export interface DisclosureProps extends React.ComponentPropsWithRef<'div'>, IDisclosureProps {}
 
 export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((props, ref) => {
   const {
