@@ -17,6 +17,9 @@ module.exports = Header = () => ({
     'a:hover &-logotext': {
       '@apply underline': {},
     },
+    'a:focus-within &-logotext': {
+      '@apply outline outline-2 outline-ring': {},
+    },
     '&-logotext': {
       '@apply flex flex-row items-center gap-8': {},
 

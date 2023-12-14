@@ -130,7 +130,7 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
       } else if (typeof child.props.children === 'string') {
         return React.cloneElement(child, {
           ...child.props,
-          onKeyDown: disabled ? undefined : handleKeyboard,
+          onKeyDown: handleKeyboard,
           ref: menuRef,
           role: 'menuitem',
           'aria-current': isCurrentItem ? 'page' : undefined,
@@ -142,7 +142,7 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
       } else {
         return React.cloneElement(child, {
           ...child.props,
-          onKeyDown: disabled ? undefined : handleKeyboard,
+          onKeyDown: handleKeyboard,
           ref: menuRef,
           role: 'menuitem',
           'aria-current': isCurrentItem ? 'page' : undefined,

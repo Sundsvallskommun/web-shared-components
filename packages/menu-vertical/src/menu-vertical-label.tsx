@@ -1,8 +1,10 @@
 import React from 'react';
-import { Divider, DividerSectionProps } from '@sk-web-gui/divider';
-import { cx } from '@sk-web-gui/utils';
+import { Divider, DividerProps } from '@sk-web-gui/divider';
+import { DefaultProps, cx } from '@sk-web-gui/utils';
 
-export const MenuVerticalLabel: React.FC<DividerSectionProps> = (props) => {
+interface MenuVerticalLabelProps extends DefaultProps, React.ComponentProps<DividerProps['Section']> {}
+
+export const MenuVerticalLabel: React.FC<MenuVerticalLabelProps> = (props) => {
   const { children, className, ...rest } = props;
 
   return (

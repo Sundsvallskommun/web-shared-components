@@ -25,7 +25,7 @@ const MenuVerticalNav = () => ({
             },
           },
         },
-        '.sk-menu-vertical-item-submenu-button': {
+        '.sk-menu-vertical-item-submenu-button:not([aria-disabled="true"])': {
           '@apply text-dark-secondary': {},
         },
       },
@@ -146,14 +146,14 @@ const MenuVerticalSidebar = () => ({
           '&-button': {
             '@apply gap-8': {},
 
-            '&[aria-current="page"]:not(:hover), &[aria-current="page"]:not(:hover) ~ button:not(:hover)': {
+            '&[aria-current="page"], &[aria-current="page"] ~ button': {
               '@apply font-bold': {},
             },
           },
         },
 
         '> a, > button': {
-          '&[aria-current="page"]:not(:hover)': {
+          '&[aria-current="page"]': {
             '@apply font-bold': {},
           },
         },
@@ -198,6 +198,10 @@ module.exports = MenuVertical = () => ({
       '& > a, > button': {
         '@apply flex items-center min-h-[4.4rem]': {},
 
+        '&:focus-visible': {
+          '@apply outline outline-2 outline-ring': {},
+        },
+
         '> *': {
           '@apply flex w-full py-[.6rem] px-[1.4rem]': {},
           '@apply rounded-button cursor-pointer': {},
@@ -221,11 +225,20 @@ module.exports = MenuVertical = () => ({
         '@apply flex justify-between w-full': {},
         '@apply rounded-button': {},
 
+        '&:hover': {
+          '> a:not([aria-disabled="true"]), > button:not([aria-disabled="true"]), > a[aria-expanded="true"]:not([aria-disabled="true"]), > button[aria-expanded="true"]:not([aria-disabled="true"])':
+            {
+              '@apply text-dark-primary bg-primitives-overlay-darken-3': {},
+            },
+        },
+
         '&:focus-within': {
           '@apply outline outline-2 outline-ring': {},
 
-          '*:focus-visible': {
-            '@apply ring-0 outline-0': {},
+          '.sk-menu-vertical-item-submenu-button, .sk-menu-vertical-item-submenu-button-expand': {
+            '&:focus-visible': {
+              '@apply ring-0 ring-offset-0 outline-0': {},
+            },
           },
         },
 
@@ -252,14 +265,8 @@ module.exports = MenuVertical = () => ({
         '&-button': {
           '@apply text-left grow rounded-l-button rounded-r-0': {},
 
-          '&:hover:not([aria-disabled="true"]), & ~ button:hover:not([aria-disabled="true"]), &:hover:not([aria-disabled="true"]) ~ button':
-            {
-              '@apply bg-primitives-overlay-darken-3': {},
-            },
-
           '&[aria-current="page"]:not(:hover), &[aria-current="page"]:not(:hover) ~ button:not(:hover)': {
             '@apply bg-primary-surface text-light-primary': {},
-            '@apply focus-visible:ring': {},
           },
 
           '&[aria-expanded="true"]': {
