@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 export const Check = ({ color = 'currentColor', size = 24, ...rest }) => {
   return (

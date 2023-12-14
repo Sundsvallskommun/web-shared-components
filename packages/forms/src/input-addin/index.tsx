@@ -1,6 +1,6 @@
 import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 
 import { InputProps } from '../input/input';
 
@@ -16,20 +16,20 @@ export interface IInputAddinProps extends DefaultProps {
 }
 
 const _placement = {
-  left: 'sk-input-addin-left',
-  right: 'sk-input-addin-right',
+  left: 'sk-form-input-addin-left',
+  right: 'sk-form-input-addin-right',
 };
 
 const sizes = {
-  sm: 'sk-input-addin-sm',
-  md: 'sk-input-addin-md',
-  lg: 'sk-input-addin-lg',
+  sm: 'sk-form-input-addin-sm',
+  md: 'sk-form-input-addin-md',
+  lg: 'sk-form-input-addin-lg',
 };
 
 export interface InputAddinProps extends React.HTMLAttributes<HTMLDivElement>, IInputAddinProps {}
 
 const InputAddin: React.FC<InputAddinProps> = ({ placement = 'left', size = 'md', className, icon, ...props }) => {
-  const classes = cx('sk-input-addin', sizes[size], _placement[placement], className);
+  const classes = cx('sk-form-input-addin', sizes[size], _placement[placement], className);
 
   return <div className={classes} data-icon={icon} {...props} />;
 };

@@ -9,9 +9,7 @@ export * from '@sk-web-gui/image';
 export * from '@sk-web-gui/label';
 export * from '@sk-web-gui/link';
 export * from '@sk-web-gui/snackbar';
-export * from '@sk-web-gui/radio';
 export * from '@sk-web-gui/spinner';
-export * from '@sk-web-gui/switch';
 export * from '@sk-web-gui/theme';
 export * from '@sk-web-gui/text';
 export * from '@sk-web-gui/utils';
@@ -33,7 +31,7 @@ export * from '@sk-web-gui/dropdown-filter';
 
 export * from '@sk-web-gui/table';
 
-export * from '@sk-web-gui/search-bar';
+export * from '@sk-web-gui/searchfield';
 
 export * from '@sk-web-gui/pagination';
 export * from '@sk-web-gui/popup-menu';

@@ -1,7 +1,7 @@
 import { Spinner } from '@sk-web-gui/spinner';
 import { DefaultProps, PolymorphicComponentPropsWithRef, PolymorphicRef } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 import { Link } from '@sk-web-gui/link';
 import { useButtonClass } from './styles';
 
@@ -46,7 +46,7 @@ export const getButtonContent = (props: ButtonProps): JSX.Element => {
     <>
       {leftIcon && !loading ? <span className="btn-has-icon-left">{leftIcon}</span> : null}
       {loading && (
-        <Spinner className={cx(loadingText ? 'relative' : 'absolute', loadingText ? `mr-2` : 'mr-0')} size="sm" />
+        <Spinner className={cx(loadingText ? 'relative' : 'absolute', loadingText ? `mr-2` : 'mr-0')} size={16} />
       )}
       {loading ? loadingText || <span className="opacity-0">{children}</span> : children}
       {rightIcon && !loading ? <span className="btn-has-icon-right">{rightIcon}</span> : null}

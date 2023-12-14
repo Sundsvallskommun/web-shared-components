@@ -1,6 +1,6 @@
 import { DefaultProps } from '@sk-web-gui/utils';
 import { omit, __DEV__ } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 import { useImage, UseImageProps } from './use-image';
 
 interface INativeImageProps extends DefaultProps {

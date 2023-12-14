@@ -1,44 +1,42 @@
-import { DefaultProps } from '@sk-web-gui/utils';
-import { cx, __DEV__ } from '@sk-web-gui/utils';
-import * as React from 'react';
+import { Player } from '@lottiefiles/react-lottie-player';
+import Animation from '../src/assets/spinner-square.json';
+import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
+import React from 'react';
 
-import useSpinClass from './styles';
+export interface ISpinnerProps extends DefaultProps {
+  /** Set size of the spinner in rem
+   * @default 4
+   */
+  size?: number;
 
-export interface ISpinProps extends DefaultProps {
-  /* Size of the spinner */
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  /** Set color of the spinner
+   * @default tertiary
+   */
+  color?: 'tertiary' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar' | 'warning' | 'info' | 'success' | 'error';
 }
 
-export interface SpinProps extends React.HTMLAttributes<SVGSVGElement>, ISpinProps {}
+export interface SpinnerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'>, ISpinnerProps {}
 
-export const Spinner = React.forwardRef<SVGSVGElement, SpinProps>((props, ref) => {
-  const { size = 'sm', className, ...rest } = props;
-  const classes = useSpinClass({ size });
+export const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>((props, ref) => {
+  const { size = 4, color = 'tertiary', className, ...rest } = props;
 
   return (
-    <svg
+    <div
       ref={ref}
-      xmlns="http://www.w3.org/2000/svg"
-      stroke="currentColor"
-      className={cx(classes, className)}
-      fill="none"
-      viewBox="0 0 66 66"
+      className={cx('sk-spinner', className)}
+      data-color={color ? color : undefined}
+      style={{ width: `${size}rem`, height: `${size}rem` }}
       {...rest}
     >
-      <circle cx="33" cy="33" fill="none" r="28" stroke="currentColor" strokeWidth="10" className="opacity-30" />
-      <circle
-        cx="33"
-        cy="33"
-        fill="none"
-        r="28"
-        stroke="currentColor"
-        strokeDasharray="40, 134"
-        strokeDashoffset="325"
-        strokeLinecap="round"
-        strokeWidth="10"
-        className="opacity-70"
-      />
-    </svg>
+      <Player
+        autoplay
+        loop
+        src={Animation}
+        renderer="svg"
+        style={{ width: `${size * 2}rem`, height: `${size * 2}rem`, margin: '0px' }}
+        className={cx('sk-spinner-lottie', className)}
+      ></Player>
+    </div>
   );
 });
 

@@ -1,6 +1,6 @@
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import { useState, useRef, useEffect } from 'react';
-import * as React from 'react';
+import React from 'react';
 import FilterItem from './filter-item';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { useDropdownFilterClass } from './styles';

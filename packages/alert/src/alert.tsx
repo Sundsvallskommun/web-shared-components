@@ -1,7 +1,7 @@
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import { Icon } from '@sk-web-gui/icon';
 import { DefaultProps } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 
 import { useAlertClass, useAlertCloseButton } from './styles';
 

@@ -1,6 +1,6 @@
 import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 
 import { useFormControl } from '../form-control';
 
@@ -22,7 +22,6 @@ export const FormLabel = React.forwardRef<HTMLElement, FormLabelProps>((props, r
   const formControl = useFormControl(rest);
   const size = _size || formControl.size || 'md';
 
-  console.log(size);
   const classes = cx(
     'sk-form-label',
     `sk-form-label-${size}`,

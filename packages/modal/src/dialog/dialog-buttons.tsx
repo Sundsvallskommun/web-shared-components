@@ -1,6 +1,6 @@
 import { DefaultProps } from '@sk-web-gui/utils';
 import { cx } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 import { ModalFooter } from '../modal/modal-footer';
 
 interface DialogButtonsProps extends React.HTMLAttributes<HTMLDivElement>, DefaultProps {}

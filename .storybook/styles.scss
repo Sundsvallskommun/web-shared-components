@@ -32,7 +32,6 @@ pre.prismjs .tag {
 .docs-wrapper {
   .sbdocs-wrapper,
   .sbdocs-preview,
-  .docblock-argstable-body td,
   .docblock-argstable-head th,
   th,
   td,
@@ -42,13 +41,18 @@ pre.prismjs .tag {
   h3,
   h4,
   h5,
-  ul,
-  li,
   .material-icons,
   .docblock-typeset,
   .docblock-typeset > * > * {
       @apply bg-background text-body;
   }
+}
+.docblock-argstable-body td {
+  @apply text-black;
+}
+
+.sbdocs.sbdocs-preview {
+  @apply border-divider;
 }
 
 [type='radio']:checked {

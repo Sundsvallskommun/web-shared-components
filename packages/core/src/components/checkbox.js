@@ -128,6 +128,9 @@ module.exports = Checkbox = () => ({
 
     '&-group': {
       '@apply flex flex-col gap-16 my-12': {},
+      '&[data-direction="row"]': {
+        '@apply flex-row': {},
+      },
     },
   },
 });

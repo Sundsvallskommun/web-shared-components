@@ -1,6 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 import { Fragment } from 'react';
 import { Icon } from '@sk-web-gui/icon';
 import { Button } from '@sk-web-gui/button';
