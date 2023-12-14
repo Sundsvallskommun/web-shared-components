@@ -1,6 +1,5 @@
 import { DefaultProps, __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
-import React, { useState } from 'react';
-import { MenuBarItem } from './menubar-item';
+import React from 'react';
 
 interface UseMenuBarProps {
   color?: 'tertiary' | 'juniskar' | 'bjornstigen' | 'gronsta' | 'vattjom';
@@ -37,9 +36,9 @@ export const MenuBarComponent = React.forwardRef<HTMLUListElement, MenuBarCompon
     id: _id,
     ...rest
   } = props;
-  const [current, setCurrent] = useState<number | undefined>(_current);
-  const [active, setActive] = useState<number>(_current || 0);
-  const [mounted, setMounted] = useState<boolean>(false);
+  const [current, setCurrent] = React.useState<number | undefined>(_current);
+  const [active, setActive] = React.useState<number>(_current || 0);
+  const [mounted, setMounted] = React.useState<boolean>(false);
   const autoId = React.useId();
   const id = _id || `sk-menubar-${autoId}`;
 
@@ -107,21 +106,8 @@ export const MenuBarComponent = React.forwardRef<HTMLUListElement, MenuBarCompon
   );
 });
 
-interface MenuBarProps extends React.ForwardRefExoticComponent<MenuBarComponentProps> {
-  Component: typeof MenuBarComponent;
-  Item: typeof MenuBarItem;
-}
-
-const MenuBar = {
-  ...MenuBarComponent,
-  Component: MenuBarComponent,
-  Item: MenuBarItem,
-} as MenuBarProps;
-
 if (__DEV__) {
-  MenuBar.displayName = 'Menubar';
+  MenuBarComponent.displayName = 'Menubar';
 }
 
-export { MenuBar };
-export type { MenuBarProps };
-export default MenuBar;
+export default MenuBarComponent;
