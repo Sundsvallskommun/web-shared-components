@@ -16,17 +16,16 @@ interface UseMenuBarData extends UseMenuBarProps {
   setCurrent?: (index: number) => void;
 }
 
-interface IMenuBarComponentProps extends DefaultProps, UseMenuBarProps {
+export interface MenuBarComponentProps
+  extends DefaultProps,
+    UseMenuBarProps,
+    Omit<React.ComponentPropsWithRef<'ul'>, 'color'> {
   showBackground?: boolean;
 }
 
 const MenuBarContext = React.createContext<UseMenuBarData>({});
 
 export const useMenuBar = () => React.useContext(MenuBarContext);
-
-export interface MenuBarComponentProps
-  extends Omit<React.HTMLAttributes<HTMLUListElement>, 'color'>,
-    IMenuBarComponentProps {}
 
 export const MenuBarComponent = React.forwardRef<HTMLUListElement, MenuBarComponentProps>((props, ref) => {
   const {
@@ -108,19 +107,21 @@ export const MenuBarComponent = React.forwardRef<HTMLUListElement, MenuBarCompon
   );
 });
 
-interface MenuBarProps
-  extends MenuBarComponentProps,
-    React.ForwardRefExoticComponent<MenuBarComponentProps & React.RefAttributes<HTMLElement>> {
+interface MenuBarProps extends React.ForwardRefExoticComponent<MenuBarComponentProps> {
+  Component: typeof MenuBarComponent;
   Item: typeof MenuBarItem;
 }
 
-export const MenuBar = MenuBarComponent as MenuBarProps;
-
-MenuBar.Item = MenuBarItem;
+const MenuBar = {
+  ...MenuBarComponent,
+  Component: MenuBarComponent,
+  Item: MenuBarItem,
+} as MenuBarProps;
 
 if (__DEV__) {
   MenuBar.displayName = 'Menubar';
 }
 
+export { MenuBar };
 export type { MenuBarProps };
 export default MenuBar;

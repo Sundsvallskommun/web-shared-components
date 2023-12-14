@@ -1,8 +1,8 @@
-import { cx, __DEV__ } from '@sk-web-gui/utils';
-import { useState, useRef, useEffect } from 'react';
-import * as React from 'react';
-import FilterItem from './filter-item';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { DefaultProps, cx } from '@sk-web-gui/utils';
+import * as React from 'react';
+import { useEffect, useRef, useState } from 'react';
+import FilterItem from './filter-item';
 import { useDropdownFilterClass } from './styles';
 
 export interface IFilterData {
@@ -13,7 +13,7 @@ export interface IFilterData {
   isShown?: boolean;
 }
 
-interface IDropdownFilter {
+export interface DropdownFilterProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   label: string;
   filterData: Array<IFilterData>;
   onFilterChange: (value: Array<IFilterData>) => void;
@@ -24,8 +24,6 @@ interface IDropdownFilter {
   size?: 'sm' | 'md' | 'lg';
   hideHideAllButton?: boolean;
 }
-
-export interface DropdownFilterProps extends React.HTMLAttributes<HTMLDivElement>, IDropdownFilter {}
 
 export const DropdownFilter = React.forwardRef<HTMLDivElement, DropdownFilterProps>((props, ref) => {
   const {

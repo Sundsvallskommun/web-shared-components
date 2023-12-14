@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Input, InputProps } from '../input/input';
 import { useInputGroupClass } from './styles';
 
-interface IInputGroupProps extends DefaultProps {
+export interface InputGroupProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   /* Size of all wrapped input */
   size?: InputProps['size'];
   /* React node */
@@ -15,8 +15,6 @@ interface IInputGroupProps extends DefaultProps {
   /* Makes input disabled */
   disabled?: boolean;
 }
-
-export interface InputGroupProps extends React.HTMLAttributes<HTMLDivElement>, IInputGroupProps {}
 
 export const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>((props, ref) => {
   const { children, className, size = 'md', invalid, disabled, ...rest } = props;

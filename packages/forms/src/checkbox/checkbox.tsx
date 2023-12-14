@@ -6,13 +6,11 @@ import { Icon } from '@sk-web-gui/icon';
 
 import { useCheckboxClass, useCheckboxLabelClass } from './styles';
 
-export interface ICheckboxProps<T = HTMLInputElement> extends DefaultProps {
-  /* Makes checkbox disabled */
-  disabled?: React.InputHTMLAttributes<T>['disabled'];
+export interface CheckboxItemProps<T = HTMLInputElement>
+  extends DefaultProps,
+    Omit<React.ComponentPropsWithRef<'input'>, 'size'> {
   /* Makes checkbox invalid */
   invalid?: boolean;
-  /* Makes checkbox required */
-  required?: React.InputHTMLAttributes<T>['required'];
   /* Makes checkbox readOnly */
   readOnly?: React.InputHTMLAttributes<T>['readOnly'];
   /* Makes checkbox indeterminate */
@@ -26,12 +24,6 @@ export interface ICheckboxProps<T = HTMLInputElement> extends DefaultProps {
    * You'll need to pass `onChange` to update it's value (since it's now controlled)
    */
   checked?: boolean;
-  /** Checkbox id */
-  id?: string;
-  /** Checkbox name */
-  name?: string;
-  /** Checkbox value */
-  value?: string | number;
   /** Set the checkbox color
    * @default primary
    */
@@ -40,18 +32,6 @@ export interface ICheckboxProps<T = HTMLInputElement> extends DefaultProps {
    * @default md
    */
   size?: 'sm' | 'md' | 'lg';
-  /**
-   * A11y: A label that describes the input
-   */
-  'aria-label'?: string;
-  /**
-   * A11y: The id of the element that describes the input
-   */
-  'aria-describedby'?: string;
-  /**
-   * A11y: Refers to the id of the element that labels the checkbox element.
-   */
-  'aria-labelledby'?: string;
   /**
    * The children is the label to be displayed to the right of the checkbox.
    */
@@ -66,8 +46,6 @@ export interface ICheckboxProps<T = HTMLInputElement> extends DefaultProps {
    */
   labelPosition?: 'left' | 'right';
 }
-
-export type CheckboxItemProps = ICheckboxProps & React.HTMLAttributes<HTMLInputElement>;
 
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxItemProps>((props, ref) => {
   const {

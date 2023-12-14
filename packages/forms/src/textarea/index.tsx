@@ -1,24 +1,20 @@
-import { cx, __DEV__ } from '@sk-web-gui/utils';
+import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 import * as React from 'react';
 
-import { IInputProps, OmittedTypes } from '../input/input';
+import { IInputProps } from '../input/input';
 import { useInputClass } from '../input/styles';
 import { useFormControl } from '../form-control';
 
-type TextareaHTMLAttributes<T = HTMLTextAreaElement> = Omit<React.TextareaHTMLAttributes<T>, OmittedTypes>;
-
-type ITextareaProps = {
+export interface TextareaProps
+  extends DefaultProps,
+    IInputProps<HTMLTextAreaElement>,
+    React.ComponentPropsWithRef<'textarea'> {
   showCount?: boolean;
   maxLength?: number;
   value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   maxLengthWarningText?: string;
-};
-
-export type TextareaProps<T = HTMLTextAreaElement> = IInputProps<T> &
-  TextareaHTMLAttributes<T> &
-  ITextareaProps &
-  React.RefAttributes<T>;
+}
 
 export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>((props, ref) => {
   const {
@@ -42,7 +38,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>((pr
   const [charCount, setCharCount] = React.useState<number>(0);
   const [text, setText] = React.useState<string>(value);
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
     if (maxLength && maxLength > 0) {
       if (e.target.value.length >= maxLength) {

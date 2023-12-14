@@ -1,13 +1,13 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
-import * as React from 'react';
+import React from 'react';
 import { Fragment } from 'react';
 import { Icon } from '@sk-web-gui/icon';
 import { Button } from '@sk-web-gui/button';
 import { ModalContent } from './modal-content';
 import { ModalFooter } from './modal-footer';
 
-export interface IModalProps extends DefaultProps {
+export interface ModalComponentProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   show: boolean;
   label?: string | JSX.Element;
   closeLabel?: string;
@@ -27,8 +27,6 @@ export interface IModalProps extends DefaultProps {
   hideLabel?: boolean;
   'aria-label'?: string;
 }
-
-export interface ModalComponentProps extends IModalProps, React.HTMLAttributes<HTMLDivElement> {}
 
 const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentProps>((props, ref) => {
   const {
@@ -132,21 +130,23 @@ const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentProps>((pr
   );
 });
 
-interface ModalProps
-  extends ModalComponentProps,
-    React.ForwardRefExoticComponent<ModalComponentProps & React.RefAttributes<HTMLDivElement>> {
+interface ModalProps extends React.ForwardRefExoticComponent<ModalComponentProps> {
+  Component: typeof ModalComponent;
   Content: typeof ModalContent;
   Footer: typeof ModalFooter;
 }
 
-export const Modal = ModalComponent as ModalProps;
-
-Modal.Content = ModalContent;
-Modal.Footer = ModalFooter;
+const Modal = {
+  ...ModalComponent,
+  Component: ModalComponent,
+  Content: ModalContent,
+  Footer: ModalFooter,
+} as ModalProps;
 
 if (__DEV__) {
   Modal.displayName = 'Modal';
 }
 
+export { Modal };
 export type { ModalProps };
 export default Modal;

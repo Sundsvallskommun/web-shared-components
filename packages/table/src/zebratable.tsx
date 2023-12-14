@@ -1,6 +1,6 @@
 import { Input, Select } from '@sk-web-gui/forms';
 import { Pagination } from '@sk-web-gui/pagination';
-import { __DEV__, cx } from '@sk-web-gui/utils';
+import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { useZebraTableClass } from './styles';
@@ -16,7 +16,7 @@ export interface ZebraTableColumn {
   isShown?: boolean;
 }
 
-export interface IZebraTableProps {
+export interface ZebraTableProps extends DefaultProps, React.ComponentPropsWithRef<'table'> {
   headers: ZebraTableHeader[];
   rows: ZebraTableColumn[][];
   tableSortable?: boolean;
@@ -38,8 +38,6 @@ export interface IZebraTableProps {
   dense?: boolean;
   variant?: 'table' | 'datatable';
 }
-
-export type ZebraTableProps = IZebraTableProps & React.HTMLAttributes<HTMLTableElement>;
 
 export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((props, ref) => {
   const {

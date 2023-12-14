@@ -7,7 +7,7 @@ export interface MenuItemGroup {
   elements: { label: string; element: () => JSX.Element }[];
 }
 
-interface IUserMenuProps extends DefaultProps {
+export interface UserMenuProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   menuTitle?: string;
   menuSubTitle?: string;
   initials?: string;
@@ -15,9 +15,6 @@ interface IUserMenuProps extends DefaultProps {
   imageAlt?: string;
   placeholderImage?: string;
   imageElem?: React.ReactElement;
-}
-
-export interface UserMenuProps extends React.HTMLAttributes<HTMLDivElement>, IUserMenuProps {
   menuGroups: MenuItemGroup[];
 }
 

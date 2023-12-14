@@ -22,10 +22,7 @@ interface UseAccordionData extends UseAccordionProps {
   onOpen?: (id: string) => void;
 }
 
-export interface AccordionInternalProps
-  extends DefaultProps,
-    UseAccordionProps,
-    React.HTMLAttributes<HTMLUListElement> {}
+export interface AccordionInternalProps extends DefaultProps, UseAccordionProps, React.ComponentPropsWithRef<'ul'> {}
 
 export const useAccordion = (): UseAccordionData => {
   const context = useAccordionContext();
@@ -98,15 +95,16 @@ const AccordionItem = React.forwardRef<HTMLDivElement, DisclosureProps>((props, 
   );
 });
 
-interface AccordionProps
-  extends AccordionInternalProps,
-    React.ForwardRefExoticComponent<AccordionInternalProps & React.RefAttributes<HTMLElement>> {
+interface AccordionProps extends React.ForwardRefExoticComponent<AccordionInternalProps> {
+  Component: typeof AccordionComponent;
   Item: typeof AccordionItem;
 }
 
-export const Accordion = AccordionComponent as AccordionProps;
-
-Accordion.Item = AccordionItem;
+export const Accordion = {
+  ...AccordionComponent,
+  Component: AccordionComponent,
+  Item: AccordionItem,
+} as AccordionProps;
 
 if (__DEV__) {
   Accordion.Item.displayName = 'AccordionItem';

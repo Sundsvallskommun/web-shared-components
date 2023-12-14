@@ -8,7 +8,7 @@ interface IBadgeProps extends DefaultProps {
   rounded?: boolean;
 }
 
-export interface BadgeProps extends Omit<React.HTMLAttributes<HTMLSpanElement>, 'color'>, IBadgeProps {}
+export interface BadgeProps extends Omit<React.ComponentPropsWithRef<'span'>, 'color'>, IBadgeProps {}
 
 export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>((props, ref) => {
   const { color = 'tertiary', rounded, counter, inverted = false, className, ...rest } = props;

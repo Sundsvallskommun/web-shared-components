@@ -26,14 +26,11 @@ interface UseFormControlData extends UseFormControlProps {
   helpTextId?: string;
 }
 
-interface IFormControlRegularProps extends DefaultProps, UseFormControlProps, React.HTMLAttributes<HTMLDivElement> {
+interface IFormControlRegularProps extends DefaultProps, UseFormControlProps, React.ComponentPropsWithRef<'div'> {
   children?: React.ReactNode;
   fieldset?: false | undefined;
 }
-interface IFormControlFieldsetProps
-  extends DefaultProps,
-    UseFormControlProps,
-    React.HTMLAttributes<HTMLFieldSetElement> {
+interface IFormControlFieldsetProps extends DefaultProps, UseFormControlProps, React.ComponentPropsWithRef<'fieldset'> {
   children?: React.ReactNode;
   fieldset: true;
 }

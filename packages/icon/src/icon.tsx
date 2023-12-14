@@ -1,11 +1,11 @@
-import { cx, DefaultProps } from '@sk-web-gui/utils';
+import { __DEV__, cx, DefaultProps } from '@sk-web-gui/utils';
 import { icons } from 'lucide-react';
 import React from 'react';
 import dynamicIconImports from 'lucide-react/dynamicIconImports';
 
 type IconNames = keyof typeof dynamicIconImports;
 
-export interface IconProps extends DefaultProps, React.HTMLAttributes<HTMLElement> {
+export interface IconProps extends DefaultProps, React.ComponentPropsWithRef<'span'> {
   name?: IconNames;
   /** @default primary */
   color?: 'info' | 'success' | 'primary' | 'warning' | 'error' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
@@ -28,7 +28,7 @@ function clearAndUpper(text: string) {
   return text.replace(/-/, '').toUpperCase();
 }
 
-export const Icon: React.FC<IconProps> = (props) => {
+export const Icon = React.forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
   const {
     name,
     color = 'primary',
@@ -43,6 +43,7 @@ export const Icon: React.FC<IconProps> = (props) => {
   const LucideIcon = name ? icons[toPascalCase(name) as keyof typeof icons] : undefined;
   return (
     <span
+      ref={ref}
       className={cx('sk-icon', className)}
       style={{ width: typeof size == 'number' ? size : undefined, height: typeof size == 'number' ? size : undefined }}
       aria-hidden={true}
@@ -57,6 +58,10 @@ export const Icon: React.FC<IconProps> = (props) => {
       {icon ? icon : LucideIcon ? <LucideIcon size={typeof size == 'number' ? size : undefined} /> : undefined}
     </span>
   );
-};
+});
+
+if (__DEV__) {
+  Icon.displayName = 'Icon';
+}
 
 export default Icon;

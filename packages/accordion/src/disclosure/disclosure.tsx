@@ -26,7 +26,7 @@ interface IDisclosureProps extends DefaultProps {
   size?: 'sm' | 'md';
 }
 
-export interface DisclosureProps extends React.HTMLAttributes<HTMLDivElement>, IDisclosureProps {}
+export interface DisclosureProps extends React.ComponentPropsWithRef<'div'>, IDisclosureProps {}
 
 export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((props, ref) => {
   const {

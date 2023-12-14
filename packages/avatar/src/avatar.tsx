@@ -14,7 +14,7 @@ interface IAvatarProps extends DefaultProps {
   rounded?: boolean;
 }
 
-export interface AvatarProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'>, IAvatarProps {}
+export interface AvatarProps extends Omit<React.ComponentPropsWithRef<'div'>, 'color'>, IAvatarProps {}
 
 export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
   const {

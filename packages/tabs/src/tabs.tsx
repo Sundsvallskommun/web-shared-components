@@ -14,7 +14,7 @@ export interface TabItem {
 
 type alertSettings = Pick<BadgeProps, 'color' | 'className'>;
 
-interface ITabsProps extends Omit<DefaultProps, 'children'> {
+export interface TabsProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   /* Set active tab */
   activeIndex?: number;
   onTabClick?: (event: React.MouseEvent, item: TabItem, index: number) => void;
@@ -33,8 +33,6 @@ interface ITabsProps extends Omit<DefaultProps, 'children'> {
   alertSettings?: alertSettings;
   variant?: 'default' | 'headermenu';
 }
-
-export interface TabsProps extends React.HTMLAttributes<HTMLDivElement>, ITabsProps {}
 
 export const Tabs = React.forwardRef<HTMLDivElement, TabsProps>((props, ref) => {
   const {

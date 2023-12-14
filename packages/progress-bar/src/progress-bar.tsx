@@ -1,7 +1,7 @@
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
 
-interface IProgressBarProps extends DefaultProps {
+export interface ProgressBarProps extends DefaultProps, Omit<React.ComponentPropsWithRef<'div'>, 'color'> {
   /** @default 100 */
   steps?: number;
   /** Current step
@@ -15,8 +15,6 @@ interface IProgressBarProps extends DefaultProps {
   /** @default false */
   accent?: boolean;
 }
-
-export interface ProgressBarProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'>, IProgressBarProps {}
 
 export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>((props, ref) => {
   const { steps = 100, current = 0, color = 'tertiary', accent = false, className, ...rest } = props;

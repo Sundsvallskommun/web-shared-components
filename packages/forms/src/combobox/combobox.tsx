@@ -7,9 +7,7 @@ import { useClickOutside } from '@react-hookz/web';
 import { UseComboboxProps, ComboboxContext } from './combobox-context';
 import { useFormControl } from '../form-control';
 
-interface ComboboxBaseProps
-  extends UseComboboxProps,
-    Omit<React.HTMLAttributes<HTMLInputElement>, 'onChange' | 'onSelect'> {
+export interface ComboboxBaseProps extends UseComboboxProps, Omit<React.ComponentPropsWithRef<'input'>, 'size'> {
   /**
    * ChangeEvent list
    */
@@ -288,21 +286,23 @@ const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((prop
   );
 });
 
-interface ComboboxProps
-  extends ComboboxBaseProps,
-    React.ForwardRefExoticComponent<ComboboxBaseProps & React.RefAttributes<HTMLElement>> {
+interface ComboboxProps extends React.ForwardRefExoticComponent<ComboboxBaseProps> {
+  Component: typeof ComboboxBase;
   List: typeof ComboboxList;
   Option: typeof ComboboxOption;
 }
 
-export const Combobox = ComboboxBase as ComboboxProps;
-
-Combobox.List = ComboboxList;
-Combobox.Option = ComboboxOption;
+const Combobox = {
+  ...ComboboxBase,
+  Component: ComboboxBase,
+  List: ComboboxList,
+  Option: ComboboxOption,
+} as ComboboxProps;
 
 if (__DEV__) {
   Combobox.displayName = 'ComboBox';
 }
 
+export { Combobox };
 export type { ComboboxProps };
 export default Combobox;

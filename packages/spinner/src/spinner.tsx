@@ -3,7 +3,7 @@ import Animation from '../src/assets/spinner-square.json';
 import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 import * as React from 'react';
 
-export interface ISpinnerProps extends DefaultProps {
+export interface SpinnerProps extends DefaultProps, Omit<React.ComponentPropsWithRef<'div'>, 'color'> {
   /** Set size of the spinner in rem
    * @default 4
    */
@@ -14,8 +14,6 @@ export interface ISpinnerProps extends DefaultProps {
    */
   color?: 'tertiary' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar' | 'warning' | 'info' | 'success' | 'error';
 }
-
-export interface SpinnerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'>, ISpinnerProps {}
 
 export const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>((props, ref) => {
   const { size = 4, color = 'tertiary', className, ...rest } = props;
