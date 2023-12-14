@@ -87,6 +87,7 @@ export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps>
     }
     if (event.key === ' ') {
       event.preventDefault();
+      if (disabled) return;
       menu[menuId].setSubmenuOpen((open) => !open);
     }
     if (event.key === 'ArrowRight') {
