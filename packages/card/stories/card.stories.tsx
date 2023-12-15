@@ -1,6 +1,7 @@
 import { Meta } from '@storybook/react';
 import PlaceholderImage from '../../../.storybook/public/placeholder_2.png';
 import { Card, CardProps, MetaCard } from '../src';
+import React from 'react';
 
 export default {
   title: 'Komponenter/Card',

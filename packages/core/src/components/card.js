@@ -70,7 +70,8 @@ module.exports = Card = (colors) => ({
           '@apply bg-primitives-gray-lightest dark:bg-primitives-gray-800': {},
 
           '.sk-card-body-icon': {
-            '@apply bg-primitives-overlay-darken-9 dark:bg-primitives-overlay-lighten-10': {},
+            '@apply bg-primitives-overlay-darken-9 dark:bg-primitives-gray-lightest': {},
+            '@apply text-primitives-gray-lightest dark:text-primitives-overlay-darken-9': {},
           },
 
           // inverted.
@@ -252,6 +253,10 @@ module.exports = Card = (colors) => ({
       '@apply mr-12 rounded-12 p-8': {},
       '@apply bg-primitives-gray-lightest dark:bg-primitives-gray-800': {},
       '@apply text-dark': {},
+      svg: {
+        height: 'unset',
+        width: 'unset',
+      },
     },
 
     '&-body': {

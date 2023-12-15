@@ -21,7 +21,7 @@ export interface CardProps extends DefaultProps, Omit<React.ComponentPropsWithRe
    */
   invert?: boolean;
   /** Change layout of card
-   * @default 'vertical'
+   * @default vertical
    */
   layout?: 'vertical' | 'horizontal';
   /** If the card should be clickable, will apply hover style
@@ -136,9 +136,8 @@ export const CardBody = React.forwardRef<HTMLDivElement, CardBodyProps>((props, 
         {children}
       </div>
       <Button
-        as="div"
         iconButton
-        color={color}
+        color={color == 'mono' ? 'primary' : color}
         rounded
         inverted={inverted == 'true' ? false : true}
         className="sk-card-body-icon"
