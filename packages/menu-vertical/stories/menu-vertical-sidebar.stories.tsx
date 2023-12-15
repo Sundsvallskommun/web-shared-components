@@ -4,7 +4,7 @@ import { MenuVertical, MenuVerticalProps } from '../src';
 import { MenuIndex } from '../src/menu-vertical-context';
 import { Icon } from '@sk-web-gui/icon';
 import { Avatar } from '@sk-web-gui/avatar';
-import { Header } from '@sk-web-gui/header';
+import { Header } from '@sk-web-gui/layout';
 
 export default {
   title: 'Komponenter/Sidebar',
