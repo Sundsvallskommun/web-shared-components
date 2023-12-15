@@ -67,7 +67,7 @@ const menuGroups: MenuItemGroup[] = [
   },
 ];
 
-export const Template: StoryObj<typeof Header> = (args: HeaderProps) => {
+export const Template: StoryObj<typeof Header> = (args: React.ComponentProps<HeaderProps['Component']>) => {
   return (
     <div className="h-[40rem] overflow-hidden">
       <Header

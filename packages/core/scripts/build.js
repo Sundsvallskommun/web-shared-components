@@ -1,9 +1,4 @@
-const fs = require('fs');
-const postcss = require('postcss');
-const tailwind = require('tailwindcss');
-const CleanCSS = require('clean-css');
-
-function buildDistFile(filename) {
+function buildDistFile() {
   // FIXME: basic mode seems buggy when compiling plugins
   // return postcss([
   //   require("postcss-import"),

@@ -2,7 +2,6 @@ const withOpacity = require('./with-opacity');
 const colors = require('./colors');
 const units = require('./units');
 const { screens } = require('@sk-web-gui/theme');
-const { space } = require('postcss/lib/list');
 
 module.exports = {
   fontSize: {

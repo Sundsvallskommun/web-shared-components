@@ -29,7 +29,7 @@
     "release": "changeset publish",
     "link-all": "yarn unlink-all && lerna exec --parallel yarn link",
     "unlink-all": "lerna exec --parallel --bail=false yarn unlink",
-    "lint": "eslint ."
+    "lint": "eslint ./packages"
   },
   "resolutions": {
     "**/react": "^18.2.0",
@@ -86,5 +86,8 @@
   "peerDependencies": {},
   "dependencies": {
     "react-hook-form": "^7.49.2"
+  },
+  "dependenciesComments": {
+    "vite": "Wait for this until upgrade: https://github.com/storybookjs/storybook/issues/25127"
   }
 }

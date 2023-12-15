@@ -22,7 +22,7 @@ export function createThemeVars(target: Dict, options: CreateThemeVarsOptions) {
     // firstKey will be e.g. "space"
     const [firstKey] = path;
 
-    const handler: TokenHandler = (tokenHandlerMap as any)[firstKey] ?? tokenHandlerMap.defaultHandler;
+    const handler: TokenHandler = tokenHandlerMap[firstKey as keyof TokenHandlerMap] ?? tokenHandlerMap.defaultHandler;
 
     const { cssVars, cssMap } = handler(path, value, options);
     Object.assign(context.cssVars, cssVars);
@@ -38,12 +38,14 @@ type TokenHandler = (
   options: CreateThemeVarsOptions
 ) => ThemeVars;
 
+type TokenHandlerMap = Partial<Record<ThemeScale, TokenHandler>> & {
+  defaultHandler: TokenHandler;
+};
+
 /**
  * Define transformation handlers for ThemeScale
  */
-const tokenHandlerMap: Partial<Record<ThemeScale, TokenHandler>> & {
-  defaultHandler: TokenHandler;
-} = {
+const tokenHandlerMap: TokenHandlerMap = {
   defaultHandler: (keys, value, options) => {
     const lookupKey = keys.join('.');
     const varKey = keys.join('-');
