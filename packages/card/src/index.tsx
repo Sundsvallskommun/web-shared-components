@@ -16,7 +16,7 @@ import {
   MetaCardBody,
   MetaCardHeader,
   MetaCardText,
-} from './metaCard';
+} from './meta-card';
 
 interface CardProps extends React.ForwardRefExoticComponent<InternalCardProps> {
   Component: typeof InternalCard;

@@ -15,7 +15,7 @@ export interface CardProps extends DefaultProps, Omit<React.ComponentPropsWithRe
   /** Set background color to card
    * @default mono
    */
-  color?: 'mono' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
+  color?: 'mono' | 'tertiary' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
   /** Make the card inverted
    * @default false
    */
@@ -137,7 +137,7 @@ export const CardBody = React.forwardRef<HTMLDivElement, CardBodyProps>((props, 
       </div>
       <Button
         iconButton
-        color={color == 'mono' ? 'primary' : color}
+        color={color === 'mono' || color === 'tertiary' ? 'primary' : color}
         rounded
         inverted={inverted == 'true' ? false : true}
         className="sk-card-body-icon"
