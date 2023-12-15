@@ -3021,19 +3021,6 @@
     "@sk-web-gui/theme" "0.1.14"
     "@sk-web-gui/utils" "0.1.8"
 
-"@sk-web-gui/tag@0.1.27":
-  version "0.1.27"
-  resolved "https://registry.yarnpkg.com/@sk-web-gui/tag/-/tag-0.1.27.tgz#3932dfaa804afc043f58d47ba58364975211298a"
-  integrity sha512-K7pKKPrkOiQIrX7k+XwvsNdGVvtv+WTOcn0t1xKhyC0vAb0PYSBcxaPbU9nTrApagi1yzNQM9q+4A4FE396wOQ==
-  dependencies:
-    "@emotion/react" "^11.11.1"
-    "@emotion/styled" "^11.11.0"
-    "@mui/icons-material" "^5.14.12"
-    "@mui/material" "^5.14.12"
-    "@sk-web-gui/button" "0.1.22"
-    "@sk-web-gui/theme" "0.1.14"
-    "@sk-web-gui/utils" "0.1.8"
-
 "@sk-web-gui/user-menu@0.2.2":
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/@sk-web-gui/user-menu/-/user-menu-0.2.2.tgz#54bf2612a21d985ee16967fb2645f31068a26375"
@@ -8349,11 +8336,6 @@ lru-cache@^7.4.4, lru-cache@^7.5.1, lru-cache@^7.7.1:
   version "7.18.3"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-7.18.3.tgz#f793896e0fd0e954a59dfdd82f0773808df6aa89"
   integrity sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==
-
-lucide-react@^0.291.0:
-  version "0.291.0"
-  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.291.0.tgz#d6db8f5117a68c8bbc6ed51d800879fa6a471978"
-  integrity sha512-79jHlT9Je2PXSvXIBGDkItCK7In2O9iKnnSJ/bJxvIBOFaX2Ex0xEcC4fRS/g0F2uQGFejjmn2qWhwdc5wicMQ==
 
 lucide-react@^0.292.0:
   version "0.292.0"

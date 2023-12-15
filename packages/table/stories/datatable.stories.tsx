@@ -2,7 +2,7 @@ import { Meta } from '@storybook/react';
 import React from 'react';
 import { DataTable, DataTableHeader, DataTableProps } from '../src/datatable';
 import { Button } from '@sk-web-gui/button';
-import { MoreHorizontal } from 'lucide-react';
+import { Icon } from '@sk-web-gui/icon';
 
 export default {
   title: 'Komponenter/Table/DataTable',
@@ -91,7 +91,7 @@ const headers: Array<string | DataTableHeader> = [
           size="sm"
           iconButton
         >
-          <MoreHorizontal />
+          <Icon name="more-horizontal" />
         </Button>
       </div>
     ),

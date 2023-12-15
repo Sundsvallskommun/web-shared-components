@@ -1,5 +1,5 @@
 import React from 'react';
-import Input, { InputProps } from '../input';
+import { Input, InputProps } from '../input/input';
 
 export interface TextFieldProps extends Omit<InputProps, 'type' | 'as'> {
   type?: 'text' | 'email' | 'password' | 'url';

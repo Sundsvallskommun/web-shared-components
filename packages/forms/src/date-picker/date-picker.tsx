@@ -1,5 +1,5 @@
 import React from 'react';
-import Input, { InputProps } from '../input';
+import { Input, InputProps } from '../input/input';
 
 export interface DatePickerProps extends Omit<InputProps, 'type' | 'as'> {
   type?: 'date' | 'time' | 'datetime-local';

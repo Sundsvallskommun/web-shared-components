@@ -1,13 +1,12 @@
 import { Button } from '@sk-web-gui/button';
-import { Icon } from '@sk-web-gui/icon';
+import { Icon, IconProps } from '@sk-web-gui/icon';
 import { createToast, useToastOptions } from '@sk-web-gui/toast';
 import { __DEV__, cx as clsx } from '@sk-web-gui/utils';
 import React from 'react';
-import dynamicIconImports from 'lucide-react/dynamicIconImports';
 
 interface Status {
   [key: string]: {
-    icon: keyof typeof dynamicIconImports;
+    icon: IconProps['name'];
     cx: string;
   };
 }
@@ -96,7 +95,13 @@ export const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>((props, 
           (CustomIcon ? (
             <CustomIcon />
           ) : (
-            <Icon variant="ghost" inverted size="fit" name={icon} className={clsx('sk-snackbar-icon')} />
+            <Icon
+              variant="ghost"
+              inverted
+              size="fit"
+              name={icon as React.ComponentProps<typeof Icon>['name']}
+              className={clsx('sk-snackbar-icon')}
+            />
           ))}
         <span className={clsx('sk-snackbar-text')}>{message}</span>
       </span>
