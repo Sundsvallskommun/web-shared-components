@@ -67,7 +67,7 @@
     "@sk-web-gui/theme": "0.1.14",
     "@sk-web-gui/user-menu": "0.2.2",
     "@sk-web-gui/utils": "0.1.8",
-    "@sk-web-gui/logo": "0.1.0"
+    "@sk-web-gui/logo": "0.1.0",
     "@sk-web-gui/layout": "0.1.0"
   },
   "peerDependencies": {
