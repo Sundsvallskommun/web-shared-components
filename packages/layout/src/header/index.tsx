@@ -1,4 +1,4 @@
-import HeaderComponent, { HeaderComponentProps } from './header';
+import { HeaderComponent, HeaderComponentProps } from './header';
 import { HeaderLogoText } from './header-logotext';
 
 interface HeaderProps extends React.ForwardRefExoticComponent<HeaderComponentProps> {

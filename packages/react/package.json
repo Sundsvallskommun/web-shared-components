@@ -46,10 +46,8 @@
     "@sk-web-gui/card": "0.1.17",
     "@sk-web-gui/cookie-consent": "0.1.27",
     "@sk-web-gui/divider": "0.1.17",
-    "@sk-web-gui/footer": "0.1.12",
     "@sk-web-gui/forms": "0.1.37",
     "@sk-web-gui/filter": "0.1.0",
-    "@sk-web-gui/header": "0.1.15",
     "@sk-web-gui/icon": "0.1.15",
     "@sk-web-gui/image": "0.1.14",
     "@sk-web-gui/label": "0.1.0",
@@ -68,7 +66,8 @@
     "@sk-web-gui/text": "0.1.5",
     "@sk-web-gui/theme": "0.1.14",
     "@sk-web-gui/user-menu": "0.2.2",
-    "@sk-web-gui/utils": "0.1.8"
+    "@sk-web-gui/utils": "0.1.8",
+    "@sk-web-gui/layout": "0.1.0"
   },
   "peerDependencies": {
     "react": ">=18.2.0",
