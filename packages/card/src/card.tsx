@@ -137,7 +137,7 @@ export const CardBody = React.forwardRef<HTMLDivElement, CardBodyProps>((props, 
       </div>
       <Button
         iconButton
-        color={color === 'mono' || color === 'tertiary' ? 'primary' : color}
+        color={(color === 'mono' || color === 'tertiary') ? 'primary' : color}
         rounded
         inverted={inverted == 'true' ? false : true}
         className="sk-card-body-icon"
@@ -181,13 +181,13 @@ export const CardMeta = React.forwardRef<HTMLDivElement, CardMetaProps>((props, 
       {datetime ? (
         <>
           <span>
-            <Icon name="calendar" variant="ghost" />
+            <Icon name="calendar" variant="ghost" size={20}/>
             <time dateTime={datetime?.toISOString().split('T')[0]}>
               {datetime?.getDay()} {monthNames[datetime?.getMonth()]} {datetime?.getFullYear()}
             </time>
           </span>
           <span>
-            <Icon name="clock-4" variant="ghost" />
+            <Icon name="clock-4" variant="ghost" size={20}/>
             <time dateTime={datetime?.getHours() + ':' + datetime?.getMinutes()}>
               {datetime?.getHours()}:{('0' + datetime?.getMinutes()).slice(-2)}
             </time>

@@ -25,7 +25,10 @@ module.exports = Card = (colors) => ({
       '&-meta': {
         '@apply flex space-x-12 mt-16': {},
         span: {
-          '@apply flex space-x-4 my-auto': {},
+          '@apply flex space-x-4 items-center': {},
+          time: {
+            '@apply h-[23px] leading-[24px]': {},
+          },
         },
 
         '&.sk-card-image': {
@@ -59,19 +62,19 @@ module.exports = Card = (colors) => ({
       (styles, color) => ({
         ...styles,
 
-        '&[data-color="mono"]': {
+        '&[data-color="mono"], &[data-color="tertiary"]': {
           '@apply border-solid border-1': {},
           '@apply border-primitives-overlay-darken-5 dark:border-primitives-overlay-lighten-5': {},
+          '@apply bg-primitives-gray-lightest dark:bg-primitives-gray-800': {},
 
           '.sk-card-body-meta': {
             '@apply text-dark-secondary': {},
           },
 
-          '@apply bg-primitives-gray-lightest dark:bg-primitives-gray-800': {},
-
           '.sk-card-body-icon': {
-            '@apply bg-primitives-overlay-darken-9 dark:bg-primitives-gray-lightest': {},
+            '@apply bg-primitives-overlay-darken-9 dark:bg-primitives-overlay-lighten-10': {},
             '@apply text-primitives-gray-lightest dark:text-primitives-overlay-darken-9': {},
+            '@apply hover:bg-primitives-overlay-darken-10 dark:hover:bg-primitives-gray-lightest': {},
           },
 
           // inverted.
@@ -102,9 +105,16 @@ module.exports = Card = (colors) => ({
 
               '.sk-card-body-icon': {
                 '@apply bg-primitives-overlay-lighten-10 text-primitives-gray-900': {},
+                '@apply hover:bg-primitives-gray-lightest': {},
               },
             },
           },
+        },
+
+        '&[data-color="tertiary"]': {
+          '@apply border-solid border-1': {},
+          '@apply border-primitives-overlay-darken-5 dark:border-primitives-overlay-lighten-5': {},
+          '@apply bg-primitives-gray-50 dark:bg-primitives-gray-700': {},
         },
 
         [`&[data-color="${color}"]`]: {
