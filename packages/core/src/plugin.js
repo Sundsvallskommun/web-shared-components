@@ -22,6 +22,7 @@ const Input = require('./components/input');
 const Label = require('./components/label');
 const Link = require('./components/link');
 const List = require('./components/list');
+const Logo = require('./components/logo');
 const Menubar = require('./components/menubar');
 const MenuVertical = require('./components/menu-vertical');
 const Select = require('./components/select');
@@ -80,6 +81,7 @@ const components = [
   Label,
   Link,
   List,
+  Logo,
   Menubar,
   MenuVertical,
   Select,
