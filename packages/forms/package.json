@@ -40,6 +40,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@reach/auto-id": "^0.18.0",
+    "@react-hookz/web": "23.1.0",
     "@sk-web-gui/tag": "0.1.27",
     "@sk-web-gui/theme": "0.1.14",
     "@sk-web-gui/utils": "0.1.8",
