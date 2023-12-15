@@ -1,4 +1,4 @@
-module.exports = UserMenu = (colors) => ({
+module.exports = UserMenu = () => ({
   '.sk-usermenu': {
     '@apply relative': {},
     '&-button': {

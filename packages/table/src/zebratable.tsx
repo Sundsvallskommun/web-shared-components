@@ -2,7 +2,6 @@ import { Input, Select } from '@sk-web-gui/forms';
 import { Pagination } from '@sk-web-gui/pagination';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
-import { useZebraTableClass } from './styles';
 import { ZTableHeader } from './zebratable-header';
 export interface ZebraTableHeader {
   element: JSX.Element;
@@ -64,7 +63,6 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
     ...rest
   } = props;
 
-  const zebraTableClasses = useZebraTableClass();
   const [managedRows, setManagedRows] = React.useState(rows);
   const [sortModeAscending, setSortModeAscending] = React.useState(defaultSort.sortMode);
   const [_pageSize, setPageSize] = React.useState<number>(_propsPageSize);
@@ -153,7 +151,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
             <table
               ref={ref}
               {...rest}
-              className={zebraTableClasses}
+              className={'sk-zebratable'}
               summary={summary ? summary : undefined}
               data-dense={rowHeight === 'dense'}
             >

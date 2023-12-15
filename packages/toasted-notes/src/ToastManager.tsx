@@ -33,8 +33,6 @@ const defaultState: State = {
   'bottom-right': [],
 };
 
-type Keys = keyof State;
-
 export class ToastManager extends React.Component<Props, State> {
   static idCounter = 0;
 

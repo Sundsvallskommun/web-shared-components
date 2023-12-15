@@ -1,4 +1,4 @@
-import { Dict, pick } from '@sk-web-gui/utils';
+import { Dict, omit, pick } from '@sk-web-gui/utils';
 
 const tokens = ['colors', 'cursor', 'rounded', 'fontSize', 'lineHeight', 'spacing', 'screens', 'radius'] as const;
 
@@ -10,6 +10,5 @@ export function extractTokens(theme: Dict) {
 }
 
 export function omitVars(rawTheme: Dict) {
-  const { __cssMap, __cssVars, __breakpoints, ...cleanTheme } = rawTheme;
-  return cleanTheme;
+  return omit(rawTheme, ['__cssMap', '__cssVars', '__breakpoints']);
 }

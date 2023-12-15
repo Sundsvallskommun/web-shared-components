@@ -29,7 +29,7 @@
     "release": "changeset publish",
     "link-all": "yarn unlink-all && lerna exec --parallel yarn link",
     "unlink-all": "lerna exec --parallel --bail=false yarn unlink",
-    "lint": "eslint ."
+    "lint": "eslint ./packages"
   },
   "resolutions": {
     "**/react": "^18.2.0",
