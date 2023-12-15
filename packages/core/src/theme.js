@@ -96,6 +96,9 @@ module.exports = {
       lg: units.spacing[24],
       xl: units.spacing[48],
     },
+    maxWidth: {
+      content: '100%',
+    },
     borderRadius: {
       ...units.radius,
       base: 'var(--sk-spacing-0)',
