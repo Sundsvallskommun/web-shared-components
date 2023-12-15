@@ -9,7 +9,7 @@ import { Link } from '@sk-web-gui/link';
 import { Header, HeaderProps } from '../src';
 
 export default {
-  title: 'Komponenter/Header',
+  title: 'Layout/Header',
   component: Header,
   tags: ['autodocs'],
   args: {

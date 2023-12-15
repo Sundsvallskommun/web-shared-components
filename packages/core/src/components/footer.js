@@ -1,41 +1,28 @@
-module.exports = Footer = (colors) => ({
-  '.footer': {
+module.exports = Footer = () => ({
+  '.sk-footer': {
+    '@apply bg-background-content': {},
+    '@apply flex justify-center': {},
+    '@apply w-full': {},
+    '@apply p-20 sm:p-32 md:p-40 lg:p-48 xl:p-80': {},
+    '@apply text-dark-secondary': {},
+
     '&-innerwrapper': {
-      '@apply bg-background-100 text-white py-12': {},
-
-      ...colors.reduce(
-        (styles, color) => ({
-          ...styles,
-          [`&[data-color="${color}"]`]: {
-            [`@apply bg-${color}-surface-primary`]: {},
-          },
-        }),
-        {}
-      ),
+      '@apply w-full max-w-content': {},
+      '@apply pb-20 sm:pb-32 md:pb-40 lg:pb-48 xl:pb-80': {},
+      '@apply flex flex-row flex-wrap gap-[10rem]': {},
+      '@apply justify-between': {},
     },
 
+    '&-logo': {
+      '@apply max-h-[7.2rem] h-[7.2rem]': {},
+    },
     '&-content': {
-      '@apply px-md md:flex items-center justify-center m-auto': {},
+      '@apply flex flex-row gap-36 w-fit grow-0 flex-wrap': {},
     },
-
-    '&-bottomlinks': {
-      '@apply  bg-background-100 text-body py-md': {},
-
-      ...colors.reduce(
-        (styles, color) => ({
-          ...styles,
-          [`&[data-color="${color}"]`]: {
-            [`@apply bg-${color}-surface-primary`]: {},
-          },
-        }),
-        {}
-      ),
-
-      '&-container': {
-        '@apply px-md flex items-center items-center justify-center m-auto md:space-x-10 flex-col md:flex-row': {},
-        '> *': {
-          '@apply text-body text-small py-sm': {},
-        },
+    '&-list': {
+      '@apply flex flex-col gap-16': {},
+      '&-item': {
+        '@apply flex flex-row justify-start items-center gap-8': {},
       },
     },
   },

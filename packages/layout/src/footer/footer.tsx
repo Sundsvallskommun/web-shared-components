@@ -1,44 +1,20 @@
+import { Logo } from '@sk-web-gui/logo';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
 
-export interface FooterProps extends DefaultProps {
-  /* Main color */
-  color?: string;
-  /* React node */
-  children?: React.ReactNode;
-  /* Section of links in the bottom node */
-  bottomLinks?: React.ReactNode;
-  /* Bottom links color */
-  bottomLinksColor?: string;
-  /* Bottom links container classes */
-  bottomLinksClasses?: string;
-  /* CSS-classes for top parent node */
-  wrapperClasses?: string;
-}
+export interface FooterProps extends DefaultProps, React.ComponentPropsWithRef<'footer'> {}
 
-export const Footer = React.forwardRef<HTMLDivElement, FooterProps>((props, ref) => {
-  const {
-    color = 'primary',
-    bottomLinksColor = 'gray-middle',
-    className,
-    children,
-    bottomLinks,
-    bottomLinksClasses,
-    wrapperClasses,
-    ...rest
-  } = props;
+export const Footer = React.forwardRef<HTMLElement, FooterProps>((props, ref) => {
+  const { className, children, ...rest } = props;
 
   return (
-    <footer ref={ref} className={cx('footer', wrapperClasses)} {...rest}>
-      <div data-color={color} className="footer-innerwrapper">
-        <div className={cx(className, 'footer-content')}>{children}</div>
-      </div>
-
-      {bottomLinks && (
-        <div className="footer-bottomlinks" data-color={bottomLinksColor}>
-          <div className={cx(bottomLinksClasses, 'footer-bottomlinks-container')}>{bottomLinks}</div>
+    <footer ref={ref} className={cx(className, 'sk-footer')} {...rest}>
+      <div className="sk-footer-innerwrapper">
+        <div className="sk-footer-logo-wrapper">
+          <Logo className="sk-footer-logo" aria-label="Sundsvalls kommun logotyp" />
         </div>
-      )}
+        <div className="sk-footer-content">{children}</div>
+      </div>
     </footer>
   );
 });

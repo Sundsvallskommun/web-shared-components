@@ -4,7 +4,7 @@ import { DefaultProps } from '@sk-web-gui/utils';
 import React from 'react';
 import { Divider } from '@sk-web-gui/divider';
 
-interface ILogoProps extends DefaultProps, Omit<React.ComponentPropsWithRef<'div'>, 'children'> {
+interface ILogoProps extends DefaultProps, Omit<React.ComponentPropsWithoutRef<'div'>, 'children'> {
   /**
    * Controls alert appearance
    * @default 'logo'
@@ -30,9 +30,8 @@ interface ILogoProps extends DefaultProps, Omit<React.ComponentPropsWithRef<'div
 }
 
 interface LogoWithoutText extends ILogoProps {
-  variant: 'logo' | 'symbol' | undefined;
-  title: undefined;
-  subtitle: undefined;
+  variant?: 'logo' | 'symbol' | undefined;
+  title?: string;
 }
 interface LogoWithText extends ILogoProps {
   variant: 'service';
