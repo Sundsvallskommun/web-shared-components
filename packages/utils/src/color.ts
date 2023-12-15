@@ -90,3 +90,17 @@ export function toColor(colorStr: string): { color: string; opacity: string } {
     opacity,
   };
 }
+
+export const rgbStringToHex = (rgbString: string) => {
+  const regex = /^rgb\s*\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)$/;
+  let hex = '';
+  const match = rgbString.match(regex);
+  if (match) {
+    const r = parseInt(match[1]);
+    const g = parseInt(match[2]);
+    const b = parseInt(match[3]);
+
+    hex = `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`;
+  }
+  return hex;
+};
