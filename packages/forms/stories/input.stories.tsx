@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input, InputProps } from '../src';
 import { Meta } from '@storybook/react';
-import { CreditCard, Eye, EyeOff } from 'lucide-react';
+import { Icon } from '@sk-web-gui/icon';
 
 export default {
   title: 'Komponenter/Formulär',
@@ -136,7 +136,7 @@ export const Addin = () => {
           <Input placeholder="Lösenord" type={showPass ? 'text' : 'password'} />
           <Input.RightAddin icon>
             <span role="button" onClick={() => setShowPass(!showPass)}>
-              {showPass ? <EyeOff /> : <Eye />}
+              {showPass ? <Icon name="eye-off" /> : <Icon name="eye" />}
             </span>
           </Input.RightAddin>
         </Input.Group>
@@ -145,7 +145,7 @@ export const Addin = () => {
           <Input placeholder="Lösenord" type={showPass ? 'text' : 'password'} />
           <Input.RightAddin icon>
             <span role="button" onClick={() => setShowPass(!showPass)}>
-              {showPass ? <EyeOff /> : <Eye />}
+              {showPass ? <Icon name="eye-off" /> : <Icon name="eye" />}
             </span>
           </Input.RightAddin>
         </Input.Group>
@@ -154,7 +154,7 @@ export const Addin = () => {
           <Input placeholder="Lösenord" type={showPass ? 'text' : 'password'} />
           <Input.RightAddin icon>
             <span role="button" onClick={() => setShowPass(!showPass)}>
-              {showPass ? <EyeOff /> : <Eye />}
+              {showPass ? <Icon name="eye-off" /> : <Icon name="eye" />}
             </span>
           </Input.RightAddin>
         </Input.Group>
@@ -162,21 +162,21 @@ export const Addin = () => {
       <div className="flex flex-wrap items-center w-full gap-16">
         <Input.Group size="sm">
           <Input.LeftAddin icon>
-            <CreditCard />
+            <Icon name="credit-card" />
           </Input.LeftAddin>
           <Input placeholder="Kontokort" />
         </Input.Group>
 
         <Input.Group size="md">
           <Input.LeftAddin icon>
-            <CreditCard />
+            <Icon name="credit-card" />
           </Input.LeftAddin>
           <Input placeholder="Kontokort" />
         </Input.Group>
 
         <Input.Group size="lg">
           <Input.LeftAddin icon>
-            <CreditCard />
+            <Icon name="credit-card" />
           </Input.LeftAddin>
           <Input placeholder="Kontokort" />
         </Input.Group>
