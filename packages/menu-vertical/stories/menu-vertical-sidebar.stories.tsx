@@ -4,7 +4,7 @@ import { MenuVertical, MenuVerticalProps } from '../src';
 import { MenuIndex } from '../src/menu-vertical-context';
 import { Icon } from '@sk-web-gui/icon';
 import { Avatar } from '@sk-web-gui/avatar';
-import { Header } from '@sk-web-gui/layout';
+import { Logo } from '@sk-web-gui/logo';
 
 export default {
   title: 'Komponenter/Sidebar',
@@ -27,7 +27,7 @@ export const Template = (args: MenuVerticalProps) => {
           <MenuVertical.Sidebar>
             <MenuVertical.Header>
               <a href="#">
-                <Header.LogoText title="Service name" subtitle="Subheader" />
+                <Logo variant="service" title="Service name" subtitle="Subheader" />
               </a>
             </MenuVertical.Header>
             <MenuVertical {...args}>
