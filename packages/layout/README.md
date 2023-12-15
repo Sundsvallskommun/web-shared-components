@@ -1,5 +1,5 @@
 ## Installation
 
 ```sh
-yarn add @sk-web-gui/header
+yarn add @sk-web-gui/layout
 ```
