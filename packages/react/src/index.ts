@@ -29,3 +29,5 @@ export * from '@sk-web-gui/text';
 export * from '@sk-web-gui/theme';
 export * from '@sk-web-gui/user-menu';
 export * from '@sk-web-gui/utils';
+
+export * from '@sk-web-gui/logo';
