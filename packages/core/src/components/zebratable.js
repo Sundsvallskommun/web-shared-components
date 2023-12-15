@@ -64,13 +64,13 @@ module.exports = ZebraTable = () => ({
           },
 
           "&[data-sortmodeascending='true']": {
-            svg: {
+            '> *': {
               '@apply last-of-type:text-dark-ghost': {},
             },
           },
 
           "&[data-sortmodeascending='false']": {
-            svg: {
+            '> *': {
               '@apply first-of-type:text-dark-ghost': {},
             },
           },

@@ -1,7 +1,7 @@
 import { ZebraTableHeader } from './zebratable';
 import { cx } from '@sk-web-gui/utils';
 import React from 'react';
-import { ChevronUp, ChevronDown } from 'lucide-react';
+import { Icon } from '@sk-web-gui/icon';
 
 interface ZTableHeaderProps extends ZebraTableHeader {
   sortIndex: number;
@@ -46,8 +46,8 @@ export const ZTableHeader: React.FC<ZTableHeaderProps> = ({
                     className="sk-zebratable-sortbutton-icon-sort"
                     data-sortmodeascending={index === sortIndex ? sortModeAscending : undefined}
                   >
-                    <ChevronUp />
-                    <ChevronDown />
+                    <Icon name="chevron-up" size="fit" />
+                    <Icon name="chevron-down" size="fit" />
                   </span>
                 )}
               </div>
