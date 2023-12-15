@@ -1,10 +1,10 @@
 import { useId } from '@reach/auto-id';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
-import { ChevronDown, ChevronUp } from 'lucide-react';
 import React from 'react';
 import { useAccordion } from '../accordion/accordion';
 import { Button } from '@sk-web-gui/button';
 import { useDisclosureClass } from './styles';
+import { Icon } from '@sk-web-gui/icon';
 
 export interface DisclosureProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   initalOpen?: boolean;
@@ -109,7 +109,7 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
             aria-expanded={disclosureOpen}
             aria-labelledby={`${id}-label`}
           >
-            {disclosureOpen ? <ChevronUp /> : <ChevronDown />}
+            {disclosureOpen ? <Icon name="chevron-up" /> : <Icon name="chevron-down" />}
           </Button>
         </div>
       </div>
