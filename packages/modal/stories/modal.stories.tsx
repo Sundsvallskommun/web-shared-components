@@ -1,7 +1,7 @@
 import { Button } from '@sk-web-gui/button';
 import { Meta } from '@storybook/react';
 import React, { useState } from 'react';
-import { Modal, ModalProps } from '../src/modal/modal';
+import { Modal, ModalProps } from '../src/modal';
 
 export default {
   title: 'Komponenter/Modal',
