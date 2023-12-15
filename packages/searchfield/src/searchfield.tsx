@@ -4,7 +4,10 @@ import { Icon } from '@sk-web-gui/icon';
 import { DefaultProps, __DEV__ } from '@sk-web-gui/utils';
 import React from 'react';
 
-export interface SearchFieldProps extends DefaultProps, InputProps, Omit<React.ComponentPropsWithRef<'input'>, 'size'> {
+export interface SearchFieldProps
+  extends DefaultProps,
+    React.ComponentProps<InputProps['Component']>,
+    Omit<React.ComponentPropsWithRef<'input'>, 'size'> {
   // Parent should handle the state
   value: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
