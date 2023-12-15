@@ -1,7 +1,7 @@
-import React from 'react';
-import { Card, CardList, CardBody, CardImage, CardLink, CardProps } from '../src';
-import PlaceholderImage from '../../../.storybook/public/placeholder_2.png';
 import { Meta } from '@storybook/react';
+import React from 'react';
+import PlaceholderImage from '../../../.storybook/public/placeholder_2.png';
+import { Card, CardProps } from '../src';
 
 export default {
   title: 'Komponenter/Card',
@@ -9,118 +9,39 @@ export default {
   tags: ['autodocs'],
 } as Meta<typeof Card>;
 
+const inputDate = new Date();
+
 export const Template = (args: CardProps) => (
-  <>
-    <CardList>
-      <Card {...args} className="text-center">
-        <CardBody>
-          <span className="avatar material-icons">person</span>
-          <h6 className="my-6">1. Skapa ett konto</h6>
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: '1rem' }}>
+    <Card {...args}>
+      <Card.Image src={PlaceholderImage} alt="placeholder" />
+      <Card.Body>
+        <Card.Header>
+          <h2>Rubrik</h2>
+        </Card.Header>
+        <Card.Text>
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora necessitatibus illum doloremque nihil
-            consequatur totam.
+            Amet enim adipiscing congue justo adipiscing sagittis volutpat nibh ac. Integer viverra lectus in quisque.
+            In nisl mauris faucibus egestas quis mi nam.
           </p>
-        </CardBody>
-      </Card>
-      <Card {...args} className="text-center">
-        <CardBody>
-          <span className="avatar material-icons-outlined">assignment</span>
-          <h6 className="my-6">2. API-dokumentation</h6>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora necessitatibus illum doloremque nihil
-            consequatur totam.
-          </p>
-        </CardBody>
-      </Card>
-      <Card {...args} className="text-center">
-        <CardBody>
-          <span className="avatar material-icons">phonelink</span>
-          <h6 className="my-6">3. Kom igång</h6>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora necessitatibus illum doloremque nihil
-            consequatur totam.
-          </p>
-        </CardBody>
-      </Card>
-      <Card {...args} className="text-center">
-        <CardBody>
-          <span className="avatar material-icons">person</span>
-          <h6 className="my-6">4. Lorem ipsum</h6>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora necessitatibus illum doloremque nihil
-            consequatur totam.
-          </p>
-        </CardBody>
-      </Card>
-    </CardList>
+        </Card.Text>
+      </Card.Body>
+    </Card>
 
-    <CardList className="pt-24">
-      <Card {...args}>
-        <CardImage className="h-80" src={PlaceholderImage} alt="placeholder" />
-        <CardBody>
-          <h4>Lorem ipsum dolor sit amet.</h4>
+    <Card {...args}>
+      <Card.Image src={PlaceholderImage} alt="placeholder" />
+      <Card.Body>
+        <Card.Meta datetime={inputDate}></Card.Meta>
+        <Card.Header>
+          <h2>Rubrik</h2>
+        </Card.Header>
+        <Card.Text>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos soluta eligendi libero? Illo odio, sint
-            accusamus deserunt distinctio commodi suscipit.
+            Amet enim adipiscing congue justo adipiscing sagittis volutpat nibh ac. Integer viverra lectus in quisque.
+            In nisl mauris faucibus egestas quis mi nam.
           </p>
-        </CardBody>
-      </Card>
-      <Card {...args}>
-        <CardImage className="h-80" src={PlaceholderImage} alt="placeholder" />
-        <CardBody>
-          <h4>Lorem ipsum dolor sit amet.</h4>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos soluta eligendi libero? Illo odio, sint
-            accusamus deserunt distinctio commodi suscipit.
-          </p>
-        </CardBody>
-      </Card>
-      <Card {...args}>
-        <CardImage className="h-80" src={PlaceholderImage} alt="placeholder" />
-        <CardBody>
-          <h4>
-            <CardLink href="https://example.com" external={true}>
-              Lorem ipsum dolor sit.
-            </CardLink>
-          </h4>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos soluta eligendi libero? Illo odio, sint
-            accusamus deserunt distinctio commodi suscipit.
-          </p>
-        </CardBody>
-      </Card>
-    </CardList>
-  </>
+        </Card.Text>
+      </Card.Body>
+    </Card>
+  </div>
 );
-
-Template.argTypes = {
-  clickable: {
-    type: { name: 'boolean', required: false },
-    description: 'If the card should be clickable, will apply :hover style',
-    table: {
-      defaultValue: { summary: 'false' },
-    },
-    control: 'boolean',
-    defaultValue: false,
-  },
-  borderTop: {
-    type: { name: 'boolean', required: false },
-    description: 'Applies border top',
-    table: {
-      defaultValue: { summary: 'false' },
-    },
-    control: 'boolean',
-    defaultValue: false,
-  },
-  outlined: {
-    type: { name: 'boolean', required: false },
-    description: 'Applies border',
-    table: {
-      defaultValue: { summary: 'false' },
-    },
-    control: 'boolean',
-    defaultValue: false,
-  },
-};
-
-Template.storyName = 'Card';

@@ -92,7 +92,7 @@ dayjs.updateLocale('sv', {
   weekdaysMin: ['S', 'M', 'T', 'O', 'T', 'F', 'L'],
 });
 
-const withGui = (StoryFn: Function) => {
+const withGui = (StoryFn) => {
   const [colorScheme, setColorScheme] = useState(useDarkMode() ? 'dark' : 'light');
   const theme = useMemo(
     () =>
