@@ -3,7 +3,7 @@ import { Meta } from '@storybook/react';
 import { MenuBar, MenuBarProps } from '../src';
 import { Button } from '@sk-web-gui/button';
 import { PopupMenu } from '@sk-web-gui/popup-menu';
-import { ChevronDown } from 'lucide-react';
+import { Icon } from '@sk-web-gui/icon';
 
 export default {
   title: 'Komponenter/Menu-horizontal',
@@ -30,7 +30,7 @@ export const Template = (args: MenuBarProps) => {
         </MenuBar.Item>
         <MenuBar.Item>
           <PopupMenu>
-            <PopupMenu.Button rightIcon={<ChevronDown />}>Flervals</PopupMenu.Button>
+            <PopupMenu.Button rightIcon={<Icon name="chevron-down" />}>Flervals</PopupMenu.Button>
             <PopupMenu.Item>
               <button onClick={() => setCurrent(2)}>Underval 1</button>
             </PopupMenu.Item>

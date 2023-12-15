@@ -1,7 +1,7 @@
 import React from 'react';
 import { __DEV__ } from '@sk-web-gui/utils';
 import { Divider } from '@sk-web-gui/divider';
-import { Check } from 'lucide-react';
+import { Icon } from '@sk-web-gui/icon';
 
 interface ProgressStepProps {
   first?: boolean;
@@ -19,7 +19,7 @@ export const ProgressStep: React.FC<ProgressStepProps> = (props) => {
     <div className="sk-progress-stepper-step" data-progress={done ? 'done' : current ? 'current' : undefined}>
       <div className="sk-progress-stepper-step-wrapper">
         <Divider orientation="horizontal" className={first ? 'invisible' : 'visible'} />
-        <div className="sk-progress-stepper-step-box">{done ? <Check /> : number}</div>
+        <div className="sk-progress-stepper-step-box">{done ? <Icon name="check" /> : number}</div>
         <Divider orientation="horizontal" className={last ? 'invisible' : 'visible'} />
       </div>
       <div className="sk-progress-stepper-step-label">{label}</div>

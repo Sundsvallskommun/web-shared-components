@@ -40,7 +40,7 @@
     "@sk-web-gui/theme": "^0.1.14",
     "@sk-web-gui/utils": "^0.1.8",
     "@sk-web-gui/divider": "^0.1.17",
-    "lucide-react": "^0.291.0"
+    "@sk-web-gui/icon": "^0.1.15"
   },
   "peerDependencies": {
     "react": ">=18.2.0"

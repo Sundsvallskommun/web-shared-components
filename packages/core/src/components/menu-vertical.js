@@ -64,7 +64,7 @@ const MenuVerticalSidebar = () => ({
           '@apply border-inverted-divider': {},
         },
 
-        '.sk-header-logotext-subtitle': {
+        '.sk-logo': {
           '@apply text-light-secondary': {},
         },
       },

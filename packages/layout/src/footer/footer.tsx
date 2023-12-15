@@ -1,5 +1,4 @@
-import { DefaultProps } from '@sk-web-gui/utils';
-import { cx, __DEV__ } from '@sk-web-gui/utils';
+import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
 
 export interface FooterProps extends DefaultProps {

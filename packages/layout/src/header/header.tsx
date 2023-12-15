@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from '@sk-web-gui/link';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
-import { HeaderLogoText } from './header-logotext';
+import { Logo } from '@sk-web-gui/logo';
 
 export interface HeaderComponentProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   /* Title for main page */
@@ -75,7 +75,7 @@ export const HeaderComponent = React.forwardRef<HTMLDivElement, HeaderComponentP
                 className="no-underline"
                 aria-label={ariaLabel || `${subtitle ? `${title} ${subtitle}` : `${title}`}. Gå till startsidan.`}
               >
-                <HeaderLogoText title={title} subtitle={subtitle} />
+                <Logo variant="service" title={title} subtitle={subtitle} />
               </Link>
             </LinkWrapper>
           )}

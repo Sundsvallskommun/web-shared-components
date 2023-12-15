@@ -1,10 +1,10 @@
 import React from 'react';
 import { Button } from '@sk-web-gui/button';
 import { MenuBar } from '@sk-web-gui/menubar';
+import { Icon } from '@sk-web-gui/icon';
 import { PopupMenu } from '@sk-web-gui/popup-menu';
 import { UserMenu, MenuItemGroup } from '@sk-web-gui/user-menu';
 import { Meta, StoryObj } from '@storybook/react';
-import { ChevronDown, LogOut, Menu, Settings2, User, Wallet } from 'lucide-react';
 import { Link } from '@sk-web-gui/link';
 import { Header, HeaderProps } from '../src';
 
@@ -26,7 +26,7 @@ const menuGroups: MenuItemGroup[] = [
         label: 'Min profil',
         element: () => (
           <Link href="/pagaende">
-            <User />
+            <Icon name="user" />
             Profil
           </Link>
         ),
@@ -35,7 +35,7 @@ const menuGroups: MenuItemGroup[] = [
         label: 'Konto',
         element: () => (
           <Link href="/beslutade">
-            <Wallet />
+            <Icon name="wallet" />
             Konto
           </Link>
         ),
@@ -44,7 +44,7 @@ const menuGroups: MenuItemGroup[] = [
         label: 'Inställningar',
         element: () => (
           <Link href="/handlingsplan">
-            <Settings2 />
+            <Icon name="settings-2" />
             Inställningar
           </Link>
         ),
@@ -58,7 +58,7 @@ const menuGroups: MenuItemGroup[] = [
         label: 'Logga ut',
         element: () => (
           <Link href="/logout">
-            <LogOut />
+            <Icon name="log-out" />
             Logga ut
           </Link>
         ),
@@ -77,7 +77,7 @@ export const Template: StoryObj<typeof Header> = (args: React.ComponentProps<Hea
         userMenu={<UserMenu menuGroups={menuGroups} />}
         mobileMenu={
           <Button iconButton>
-            <Menu />
+            <Icon name="menu" />
           </Button>
         }
         mainMenu={
@@ -90,7 +90,7 @@ export const Template: StoryObj<typeof Header> = (args: React.ComponentProps<Hea
             </MenuBar.Item>
             <MenuBar.Item>
               <PopupMenu>
-                <PopupMenu.Button rightIcon={<ChevronDown />}>Hjälp</PopupMenu.Button>
+                <PopupMenu.Button rightIcon={<Icon name="chevron-down" />}>Hjälp</PopupMenu.Button>
                 <PopupMenu.Item>
                   <button>Underval 1</button>
                 </PopupMenu.Item>
