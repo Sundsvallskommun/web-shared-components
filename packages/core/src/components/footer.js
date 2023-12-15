@@ -17,7 +17,7 @@ module.exports = Footer = () => ({
       '@apply max-h-[7.2rem] h-[7.2rem]': {},
     },
     '&-content': {
-      '@apply flex flex-row gap-36 w-fit grow flex-wrap': {},
+      '@apply flex flex-row gap-36 w-fit grow-0 flex-wrap': {},
     },
     '&-list': {
       '@apply flex flex-col gap-16': {},
