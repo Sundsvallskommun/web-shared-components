@@ -15,7 +15,8 @@ module.exports = Logo = () => ({
     },
     '&[data-variant="service"]': {
       '@apply flex-row gap-6': {},
-      '@apply w-auto h-[6rem]': {},
+      '@apply w-max': {},
+      '@apply h-[6rem]': {},
       '@apply pb-4': {},
       '.sk-logo-figure': {
         '@apply w-auto h-[5.6rem]': {},

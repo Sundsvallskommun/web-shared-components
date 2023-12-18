@@ -14,13 +14,6 @@ module.exports = Header = () => ({
       '@apply hidden md:flex items-center w-full justify-start p-8 xl:p-0': {},
     },
 
-    'a:hover &-logotext': {
-      '@apply underline': {},
-    },
-    'a:focus-within &-logotext': {
-      '@apply outline outline-2 outline-ring': {},
-    },
-
     '&-usermenu': {
       '@apply hidden xl:flex-shrink md:flex xl:items-center xl:w-auto': {},
 
