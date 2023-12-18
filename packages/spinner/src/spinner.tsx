@@ -1,5 +1,5 @@
 import { Player } from '@lottiefiles/react-lottie-player';
-import Animation from '../src/assets/spinner-square.json';
+import { SpinnerAnimation } from './assets/spinner-square';
 import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 import React from 'react';
 
@@ -29,7 +29,7 @@ export const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>((props, re
       <Player
         autoplay
         loop
-        src={Animation}
+        src={SpinnerAnimation}
         renderer="svg"
         style={{ width: `${size * 2}rem`, height: `${size * 2}rem`, margin: '0px' }}
         className={cx('sk-spinner-lottie', className)}
