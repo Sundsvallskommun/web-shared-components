@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@1.0.0...@sk-web-gui/core@1.0.1) (2023-12-18)
+
+### Bug Fixes
+
+- header logo styling ([822c045](https://github.com/vechai/sk-web-gui/commit/822c045d9ad371d4cdac2eba436bd40dfc2d3620))
+
 # [1.0.0](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@0.1.92...@sk-web-gui/core@1.0.0) (2023-12-18)
 
 ### Bug Fixes
