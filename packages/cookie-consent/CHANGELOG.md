@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/cookie-consent@0.1.27...@sk-web-gui/cookie-consent@1.0.0) (2023-12-18)
+
+### Bug Fixes
+
+- **cookie-consent:** created utils ([2b75adb](https://github.com/Sundsvallskommun/web-shared-components/commit/2b75adb47f99a39c899f1376b83b9e8c56177fab))
+- storybook autodocs [F]ilter -> [K]akor ([8afa0ba](https://github.com/Sundsvallskommun/web-shared-components/commit/8afa0bab8a7c7d829719a7ca474aeaf930660a0a))
+- types to include ref, adjusted exotic comps export style ([070d499](https://github.com/Sundsvallskommun/web-shared-components/commit/070d4990ecea5d5ce90ebdd684a381bb8ad95861))
+
+### Features
+
+- updated cookie consent ([1bd4ac7](https://github.com/Sundsvallskommun/web-shared-components/commit/1bd4ac72d87eb96b080b12a52d3647df41376758))
+
+### BREAKING CHANGES
+
+- **cookie-consent:** functions and constants moved to utils
+- No longer scrollable outside. Closable is no longer an option.
+
 ## [0.1.27](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/cookie-consent@0.1.26...@sk-web-gui/cookie-consent@0.1.27) (2023-10-25)
 
 **Note:** Version bump only for package @sk-web-gui/cookie-consent

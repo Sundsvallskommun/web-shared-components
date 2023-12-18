@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@0.1.14...@sk-web-gui/theme@1.0.0) (2023-12-18)
+
+### Bug Fixes
+
+- gui issues ([8e88f5d](https://github.com/Sundsvallskommun/web-shared-components/commit/8e88f5dd8fc3ed46acd7cf3358597777cbf7aa99))
+- removed unused, typefixes, lintfixes ([e484e6f](https://github.com/Sundsvallskommun/web-shared-components/commit/e484e6f05ce9c8ed79a1f57ad0cdc81ea46b388e))
+- styling and sizing of icon and switch ([0aa4dab](https://github.com/Sundsvallskommun/web-shared-components/commit/0aa4dab97bb6c1fbc01a22f655baf6248bfd36f2))
+- updated style of tooltip ([5250910](https://github.com/Sundsvallskommun/web-shared-components/commit/5250910fc5fc8f075121ce88f458ed4dc526e15d))
+
+### Features
+
+- new searchfield ([45cb13c](https://github.com/Sundsvallskommun/web-shared-components/commit/45cb13c4c1a77d69d98ae935db1f58c5c3f45254))
+
+### BREAKING CHANGES
+
+- search-bar is no longer
+
 ## [0.1.14](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@0.1.13...@sk-web-gui/theme@0.1.14) (2023-10-10)
 
 **Note:** Version bump only for package @sk-web-gui/theme

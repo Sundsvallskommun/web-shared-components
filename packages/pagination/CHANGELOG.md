@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/pagination@0.1.24...@sk-web-gui/pagination@1.0.0) (2023-12-18)
+
+### Bug Fixes
+
+- pagination and table ([d538823](https://github.com/Sundsvallskommun/web-shared-components/commit/d538823420e6826a8a70b13555c3a6dd7e6011eb))
+- **pagination:** explicit index export ([0cb6c21](https://github.com/Sundsvallskommun/web-shared-components/commit/0cb6c215fad46b62503e0e96df6918a06410a95e))
+- storybook autodocs F->Z, removed mdxs, generating docs-icons ([63fbddd](https://github.com/Sundsvallskommun/web-shared-components/commit/63fbddd93035115ae805d7e21ad73ef426e93a42))
+- tables, button and pagination ([62a895b](https://github.com/Sundsvallskommun/web-shared-components/commit/62a895b61ed266faf6a6874ec9a0b73b336e3091))
+- types to include ref, adjusted exotic comps export style ([070d499](https://github.com/Sundsvallskommun/web-shared-components/commit/070d4990ecea5d5ce90ebdd684a381bb8ad95861))
+
+### Features
+
+- Added pagination ([9f68481](https://github.com/Sundsvallskommun/web-shared-components/commit/9f684816c5152070be62bba5f362302e7adc69d6))
+
 ## [0.1.24](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/pagination@0.1.23...@sk-web-gui/pagination@0.1.24) (2023-10-10)
 
 **Note:** Version bump only for package @sk-web-gui/pagination

@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/user-menu@0.2.1...@sk-web-gui/user-menu@1.0.0) (2023-12-18)
+
+### Bug Fixes
+
+- storybook autodocs F->Z, removed mdxs, generating docs-icons ([63fbddd](https://github.com/Sundsvallskommun/web-shared-components/commit/63fbddd93035115ae805d7e21ad73ef426e93a42))
+- styling and sizing of icon and switch ([0aa4dab](https://github.com/Sundsvallskommun/web-shared-components/commit/0aa4dab97bb6c1fbc01a22f655baf6248bfd36f2))
+- types to include ref, adjusted exotic comps export style ([070d499](https://github.com/Sundsvallskommun/web-shared-components/commit/070d4990ecea5d5ce90ebdd684a381bb8ad95861))
+- **user-menu:** added missing type export ([91fc7a8](https://github.com/Sundsvallskommun/web-shared-components/commit/91fc7a8022c544f169e0e52950cfeae21b75e755))
+- **user-menu:** explicit index export ([e840f37](https://github.com/Sundsvallskommun/web-shared-components/commit/e840f37e5dfc76cefaf258f67e4d9fef2ae4543b))
+- **user-menu:** now using icon component, removed unused deps ([2bcfbdc](https://github.com/Sundsvallskommun/web-shared-components/commit/2bcfbdc3460a788acf2f36e7fc73db6c1f25b1e2))
+
+### Features
+
+- Avatar component ([8125398](https://github.com/Sundsvallskommun/web-shared-components/commit/81253984d9897c318d768fa6ab1f71961a8aecc0))
+- new searchfield ([45cb13c](https://github.com/Sundsvallskommun/web-shared-components/commit/45cb13c4c1a77d69d98ae935db1f58c5c3f45254))
+
+### BREAKING CHANGES
+
+- search-bar is no longer
+
 ## [0.2.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/user-menu@0.2.0...@sk-web-gui/user-menu@0.2.1) (2023-10-10)
 
 **Note:** Version bump only for package @sk-web-gui/user-menu

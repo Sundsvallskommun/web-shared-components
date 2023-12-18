@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/icon@0.1.15...@sk-web-gui/icon@1.0.0) (2023-12-18)
+
+### Bug Fixes
+
+- **icon:** added missing import react ([a5bce4e](https://github.com/Sundsvallskommun/web-shared-components/commit/a5bce4ee56306b4b2dc476703d28e2e49eac7283))
+- **icon:** better typing, docs & moved to /Icon ([7159c48](https://github.com/Sundsvallskommun/web-shared-components/commit/7159c483da2998890be730a416e5d9755ea5490f))
+- **icon:** ghost inverted to use text-current ([8083ab9](https://github.com/Sundsvallskommun/web-shared-components/commit/8083ab94b8a62b800504c89f763570318e9fdcfe))
+- **icon:** removed unnecessary wrapper ([bfb985b](https://github.com/Sundsvallskommun/web-shared-components/commit/bfb985b1988f509f46b7c4ac5475522479bc1b15))
+- storybook autodocs [F]ilter -> [K]akor ([8afa0ba](https://github.com/Sundsvallskommun/web-shared-components/commit/8afa0bab8a7c7d829719a7ca474aeaf930660a0a))
+- styling and sizing of icon and switch ([0aa4dab](https://github.com/Sundsvallskommun/web-shared-components/commit/0aa4dab97bb6c1fbc01a22f655baf6248bfd36f2))
+- types to include ref, adjusted exotic comps export style ([070d499](https://github.com/Sundsvallskommun/web-shared-components/commit/070d4990ecea5d5ce90ebdd684a381bb8ad95861))
+
+### Features
+
+- combobox ([de6988c](https://github.com/Sundsvallskommun/web-shared-components/commit/de6988c9165e1fb8f7e8547e3a83830bec559c0f))
+- new Modal styles ([d6706b1](https://github.com/Sundsvallskommun/web-shared-components/commit/d6706b1f8665c9d13a7967a9f959f91d9d39f07c))
+- New select ([8169551](https://github.com/Sundsvallskommun/web-shared-components/commit/816955118a54e37a516a9fa9c2c49b1f1faec414))
+- pure icon, icon as icon.padded ([64d5ec2](https://github.com/Sundsvallskommun/web-shared-components/commit/64d5ec22383f260c42516fc3a125540b561787ee))
+
+### BREAKING CHANGES
+
+- Now uses native functionality. No support for multiple.
+
 ## [0.1.15](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/icon@0.1.14...@sk-web-gui/icon@0.1.15) (2023-10-10)
 
 **Note:** Version bump only for package @sk-web-gui/icon

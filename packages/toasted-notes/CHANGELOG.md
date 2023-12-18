@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/toasted-notes@0.1.14...@sk-web-gui/toasted-notes@1.0.0) (2023-12-18)
+
+### Bug Fixes
+
+- removed unused, typefixes, lintfixes ([e484e6f](https://github.com/Sundsvallskommun/web-shared-components/commit/e484e6f05ce9c8ed79a1f57ad0cdc81ea46b388e))
+- styling and sizing of icon and switch ([0aa4dab](https://github.com/Sundsvallskommun/web-shared-components/commit/0aa4dab97bb6c1fbc01a22f655baf6248bfd36f2))
+
 ## [0.1.14](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/toasted-notes@0.1.13...@sk-web-gui/toasted-notes@0.1.14) (2023-10-10)
 
 **Note:** Version bump only for package @sk-web-gui/toasted-notes

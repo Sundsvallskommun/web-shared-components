@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@0.3.1...@sk-web-gui/accordion@1.0.0) (2023-12-18)
+
+### Bug Fixes
+
+- **accordion:** added **REACT_NAME** ([3613841](https://github.com/Sundsvallskommun/web-shared-components/commit/36138412f656e9f903f2f137040fc81b4301abd5))
+- **accordion:** added explicit react import ([7f40203](https://github.com/Sundsvallskommun/web-shared-components/commit/7f40203953286c8b313c4f2451be450ea830fff5))
+- **accordion:** moved export and typefixes ([5a03dad](https://github.com/Sundsvallskommun/web-shared-components/commit/5a03dadf7372f0157edc03bd4dbd7bd5630a531f))
+- **accordion:** now using icon component ([ddb8912](https://github.com/Sundsvallskommun/web-shared-components/commit/ddb89127017799f422f20a60647b3d6df910635b))
+- menu structure and types in storybook A->[F]ilter ([20f78d6](https://github.com/Sundsvallskommun/web-shared-components/commit/20f78d6f4b143e4db2b1ffacd8b47b8d3130f3d6))
+- storybook autodocs [F]ilter -> [K]akor ([8afa0ba](https://github.com/Sundsvallskommun/web-shared-components/commit/8afa0bab8a7c7d829719a7ca474aeaf930660a0a))
+- storybook autodocs F->Z, removed mdxs, generating docs-icons ([63fbddd](https://github.com/Sundsvallskommun/web-shared-components/commit/63fbddd93035115ae805d7e21ad73ef426e93a42))
+- types to include ref, adjusted exotic comps export style ([070d499](https://github.com/Sundsvallskommun/web-shared-components/commit/070d4990ecea5d5ce90ebdd684a381bb8ad95861))
+
+### Features
+
+- new accordion ([af29c32](https://github.com/Sundsvallskommun/web-shared-components/commit/af29c32ba1f1f877503c89e049bfe028b955a28f))
+- new searchfield ([45cb13c](https://github.com/Sundsvallskommun/web-shared-components/commit/45cb13c4c1a77d69d98ae935db1f58c5c3f45254))
+
+### BREAKING CHANGES
+
+- search-bar is no longer
+
 ## [0.3.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@0.3.0...@sk-web-gui/accordion@0.3.1) (2023-10-10)
 
 **Note:** Version bump only for package @sk-web-gui/accordion

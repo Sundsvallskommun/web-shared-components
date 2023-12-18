@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/card@0.1.17...@sk-web-gui/card@1.0.0) (2023-12-18)
+
+### Bug Fixes
+
+- **card:** changed size of icons and added tertiary as color. ([f1c15a4](https://github.com/Sundsvallskommun/web-shared-components/commit/f1c15a42367fe35b48b73047c5cd20b3b6ef50dc))
+- **card:** changed style and functionality ([c8050d4](https://github.com/Sundsvallskommun/web-shared-components/commit/c8050d421f5ec31a31163d3161deabb56855b4ad))
+- **card:** color problem solved ([3537ce3](https://github.com/Sundsvallskommun/web-shared-components/commit/3537ce3a26c4e87179c8c4c6bfd9dfe6c8fa8b51))
+- **card:** exporting cardlist from index ([bbb96e7](https://github.com/Sundsvallskommun/web-shared-components/commit/bbb96e7ecc9df79f3252599e0ac08e7c347bd1c2))
+- **card:** lint, missing color, naming and structure convention ([bbd351e](https://github.com/Sundsvallskommun/web-shared-components/commit/bbd351e83cd5939e022695cfb7f7cd6aa8aca369))
+- **card:** updated default ([b5d8a64](https://github.com/Sundsvallskommun/web-shared-components/commit/b5d8a640587f02820ef2f541c8b6f65e4eb48c37))
+- **card:** updated index file ([2a8feff](https://github.com/Sundsvallskommun/web-shared-components/commit/2a8feff61c35cf11679b14420de917c1614926ee))
+- **card:** Updated react import ([f03b627](https://github.com/Sundsvallskommun/web-shared-components/commit/f03b627a4c68522b8168dbd1065d60dbc21d22a5))
+- **card:** updated style ([c31a841](https://github.com/Sundsvallskommun/web-shared-components/commit/c31a841a737ad38737b32824411268d1a32a3e76))
+- **card:** updated style and added meta component. ([da1da8b](https://github.com/Sundsvallskommun/web-shared-components/commit/da1da8b7b67d8fdb91a64fe88b62e6b71ac51dfd))
+- **card:** Updated style. ([9694c3c](https://github.com/Sundsvallskommun/web-shared-components/commit/9694c3cc69740badcc3caac285db6b1609665b13))
+- storybook autodocs F->Z, removed mdxs, generating docs-icons ([63fbddd](https://github.com/Sundsvallskommun/web-shared-components/commit/63fbddd93035115ae805d7e21ad73ef426e93a42))
+- styling and sizing of icon and switch ([0aa4dab](https://github.com/Sundsvallskommun/web-shared-components/commit/0aa4dab97bb6c1fbc01a22f655baf6248bfd36f2))
+- types to include ref, adjusted exotic comps export style ([070d499](https://github.com/Sundsvallskommun/web-shared-components/commit/070d4990ecea5d5ce90ebdd684a381bb8ad95861))
+
 ## [0.1.17](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/card@0.1.16...@sk-web-gui/card@0.1.17) (2023-10-25)
 
 **Note:** Version bump only for package @sk-web-gui/card

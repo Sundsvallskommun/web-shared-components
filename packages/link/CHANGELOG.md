@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/link@0.1.16...@sk-web-gui/link@1.0.0) (2023-12-18)
+
+### Bug Fixes
+
+- **link:** added undefined to size controls ([e7ba2fc](https://github.com/Sundsvallskommun/web-shared-components/commit/e7ba2fce244c3a452a518872fe36fe6ba60ebae5))
+- **link:** explicit index export ([e891811](https://github.com/Sundsvallskommun/web-shared-components/commit/e891811d0a9f6e62dd3b3a52c6efc3ceb7f0e24b))
+- **link:** size default to '' ([2fd120f](https://github.com/Sundsvallskommun/web-shared-components/commit/2fd120f72e521aaf2c2739d2d05090d7d4b3f675))
+- storybook autodocs F->Z, removed mdxs, generating docs-icons ([63fbddd](https://github.com/Sundsvallskommun/web-shared-components/commit/63fbddd93035115ae805d7e21ad73ef426e93a42))
+- styling and sizing of icon and switch ([0aa4dab](https://github.com/Sundsvallskommun/web-shared-components/commit/0aa4dab97bb6c1fbc01a22f655baf6248bfd36f2))
+
+### Features
+
+- added link ([144b6bc](https://github.com/Sundsvallskommun/web-shared-components/commit/144b6bc27ace23be4f6ca32e196b0b273700a5d5))
+
 ## [0.1.16](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/link@0.1.15...@sk-web-gui/link@0.1.16) (2023-10-25)
 
 **Note:** Version bump only for package @sk-web-gui/link

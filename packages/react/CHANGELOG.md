@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.134...@sk-web-gui/react@1.0.0) (2023-12-18)
+
+### Bug Fixes
+
+- missing comma in package.json ([9420bd2](https://github.com/Sundsvallskommun/web-shared-components/commit/9420bd224a7bd71388c16b3397aec9987cf6b17e))
+- removed unused, typefixes, lintfixes ([e484e6f](https://github.com/Sundsvallskommun/web-shared-components/commit/e484e6f05ce9c8ed79a1f57ad0cdc81ea46b388e))
+- updated old not working components ([14d4cd9](https://github.com/Sundsvallskommun/web-shared-components/commit/14d4cd97d0a21802789d3b1aa5ef26589fcaa792))
+
+### Features
+
+- added checkbox ([4861841](https://github.com/Sundsvallskommun/web-shared-components/commit/4861841e145dbaec424b1f283495635f23b77a53))
+- Added Filter ([41f792c](https://github.com/Sundsvallskommun/web-shared-components/commit/41f792c392fd0987e41ad175e2748260856d2c5f))
+- added layout package ([190c8a0](https://github.com/Sundsvallskommun/web-shared-components/commit/190c8a00322f8169d8672b8e07a534b501e27735))
+- added menu-vertical ([ea9b802](https://github.com/Sundsvallskommun/web-shared-components/commit/ea9b802ce58a1974e4128dd30c4d146de5ffb8b8))
+- added progress-bar ([5d5ff2d](https://github.com/Sundsvallskommun/web-shared-components/commit/5d5ff2daa4768cbdbe94d018f0cfb313cf77a28e))
+- Avatar component ([8125398](https://github.com/Sundsvallskommun/web-shared-components/commit/81253984d9897c318d768fa6ab1f71961a8aecc0))
+- combobox ([de6988c](https://github.com/Sundsvallskommun/web-shared-components/commit/de6988c9165e1fb8f7e8547e3a83830bec559c0f))
+- Label ([172085b](https://github.com/Sundsvallskommun/web-shared-components/commit/172085b7c34a279e7bf7fbb8a90171952ccbb749))
+- logo component ([d7e6292](https://github.com/Sundsvallskommun/web-shared-components/commit/d7e629213f870c8ecec8b511bc8e922ba9d7fdd9))
+- Menubar ([90ffa1e](https://github.com/Sundsvallskommun/web-shared-components/commit/90ffa1e869ee90aa95be1d155a65c2d42fd2edc9))
+- new searchfield ([45cb13c](https://github.com/Sundsvallskommun/web-shared-components/commit/45cb13c4c1a77d69d98ae935db1f58c5c3f45254))
+
+### BREAKING CHANGES
+
+- header package removed
+- footer package removed
+- search-bar is no longer
+- Tag is no longer. Use Label instead.
+
 ## [0.1.134](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.133...@sk-web-gui/react@0.1.134) (2023-10-25)
 
 **Note:** Version bump only for package @sk-web-gui/react

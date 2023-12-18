@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/modal@0.1.21...@sk-web-gui/modal@1.0.0) (2023-12-18)
+
+### Bug Fixes
+
+- **modal:** adjusted import ([9d1aabc](https://github.com/Sundsvallskommun/web-shared-components/commit/9d1aabc06a39b8b70bcc2295a60327cdf7896376))
+- **modal:** explicit index export ([24b7357](https://github.com/Sundsvallskommun/web-shared-components/commit/24b7357e0b87afe79cb783136fcff1cb6860e07a))
+- storybook autodocs F->Z, removed mdxs, generating docs-icons ([63fbddd](https://github.com/Sundsvallskommun/web-shared-components/commit/63fbddd93035115ae805d7e21ad73ef426e93a42))
+- styling and sizing of icon and switch ([0aa4dab](https://github.com/Sundsvallskommun/web-shared-components/commit/0aa4dab97bb6c1fbc01a22f655baf6248bfd36f2))
+- types to include ref, adjusted exotic comps export style ([070d499](https://github.com/Sundsvallskommun/web-shared-components/commit/070d4990ecea5d5ce90ebdd684a381bb8ad95861))
+
+### Features
+
+- new Modal styles ([d6706b1](https://github.com/Sundsvallskommun/web-shared-components/commit/d6706b1f8665c9d13a7967a9f959f91d9d39f07c))
+
 ## [0.1.21](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/modal@0.1.20...@sk-web-gui/modal@0.1.21) (2023-10-25)
 
 **Note:** Version bump only for package @sk-web-gui/modal

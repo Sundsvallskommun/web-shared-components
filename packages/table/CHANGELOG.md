@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@0.1.36...@sk-web-gui/table@1.0.0) (2023-12-18)
+
+### Bug Fixes
+
+- fixed sorting issues when prop is undefined ([68ba5d6](https://github.com/Sundsvallskommun/web-shared-components/commit/68ba5d6aefa5f16e900654f489da0b2db59babe2))
+- pagination and table ([d538823](https://github.com/Sundsvallskommun/web-shared-components/commit/d538823420e6826a8a70b13555c3a6dd7e6011eb))
+- removed unused, typefixes, lintfixes ([e484e6f](https://github.com/Sundsvallskommun/web-shared-components/commit/e484e6f05ce9c8ed79a1f57ad0cdc81ea46b388e))
+- storybook autodocs [F]ilter -> [K]akor ([8afa0ba](https://github.com/Sundsvallskommun/web-shared-components/commit/8afa0bab8a7c7d829719a7ca474aeaf930660a0a))
+- storybook autodocs F->Z, removed mdxs, generating docs-icons ([63fbddd](https://github.com/Sundsvallskommun/web-shared-components/commit/63fbddd93035115ae805d7e21ad73ef426e93a42))
+- styling and sizing of icon and switch ([0aa4dab](https://github.com/Sundsvallskommun/web-shared-components/commit/0aa4dab97bb6c1fbc01a22f655baf6248bfd36f2))
+- table caption ([70fd120](https://github.com/Sundsvallskommun/web-shared-components/commit/70fd1201bd270c580f29e5dd56ed66aca65e01d8))
+- **table:** now using icon component, dep-fix ([175b369](https://github.com/Sundsvallskommun/web-shared-components/commit/175b3694ea42ae41059011b4f8d357770cf2d322))
+- tables, button and pagination ([62a895b](https://github.com/Sundsvallskommun/web-shared-components/commit/62a895b61ed266faf6a6874ec9a0b73b336e3091))
+- types to include ref, adjusted exotic comps export style ([070d499](https://github.com/Sundsvallskommun/web-shared-components/commit/070d4990ecea5d5ce90ebdd684a381bb8ad95861))
+
 ## [0.1.36](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@0.1.35...@sk-web-gui/table@0.1.36) (2023-10-10)
 
 **Note:** Version bump only for package @sk-web-gui/table

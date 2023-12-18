@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/badge@0.1.16...@sk-web-gui/badge@1.0.0) (2023-12-18)
+
+### Bug Fixes
+
+- **badge:** explicit index export ([36db7d1](https://github.com/Sundsvallskommun/web-shared-components/commit/36db7d1f834599fd8dcc5b161820c41bc84a726c))
+- **badge:** primary->tertiary, removed interactive states ([aefe54d](https://github.com/Sundsvallskommun/web-shared-components/commit/aefe54d2a1ceffc45d9fe3db933c118e2b47215c))
+- menu structure and types in storybook A->[F]ilter ([20f78d6](https://github.com/Sundsvallskommun/web-shared-components/commit/20f78d6f4b143e4db2b1ffacd8b47b8d3130f3d6))
+- styling and sizing of icon and switch ([0aa4dab](https://github.com/Sundsvallskommun/web-shared-components/commit/0aa4dab97bb6c1fbc01a22f655baf6248bfd36f2))
+- types to include ref, adjusted exotic comps export style ([070d499](https://github.com/Sundsvallskommun/web-shared-components/commit/070d4990ecea5d5ce90ebdd684a381bb8ad95861))
+
 ## [0.1.16](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/badge@0.1.15...@sk-web-gui/badge@0.1.16) (2023-10-10)
 
 **Note:** Version bump only for package @sk-web-gui/badge

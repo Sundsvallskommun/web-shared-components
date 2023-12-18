@@ -3,6 +3,94 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@0.1.92...@sk-web-gui/core@1.0.0) (2023-12-18)
+
+### Bug Fixes
+
+- adjusted icon sizes ([9631ac9](https://github.com/vechai/sk-web-gui/commit/9631ac936718eec9f8d938a42a71f8110dd0171c))
+- bad styling on footer content ([a8e61ce](https://github.com/vechai/sk-web-gui/commit/a8e61cef1dd318e5a4041b42de24e00454c3d127))
+- **badge:** primary->tertiary, removed interactive states ([aefe54d](https://github.com/vechai/sk-web-gui/commit/aefe54d2a1ceffc45d9fe3db933c118e2b47215c))
+- better styling on options ([9da6d92](https://github.com/vechai/sk-web-gui/commit/9da6d92882ffeddce6de31cbc21b8603c07987c4))
+- **button:** bg-transparent for Icon-component ([eb59f54](https://github.com/vechai/sk-web-gui/commit/eb59f54b86e96dd8ea3821cfd93232df267b5f87))
+- **card:** changed size of icons and added tertiary as color. ([f1c15a4](https://github.com/vechai/sk-web-gui/commit/f1c15a42367fe35b48b73047c5cd20b3b6ef50dc))
+- **card:** changed style and functionality ([c8050d4](https://github.com/vechai/sk-web-gui/commit/c8050d421f5ec31a31163d3161deabb56855b4ad))
+- **card:** color problem solved ([3537ce3](https://github.com/vechai/sk-web-gui/commit/3537ce3a26c4e87179c8c4c6bfd9dfe6c8fa8b51))
+- **card:** updated style ([c31a841](https://github.com/vechai/sk-web-gui/commit/c31a841a737ad38737b32824411268d1a32a3e76))
+- **card:** updated style and added meta component. ([da1da8b](https://github.com/vechai/sk-web-gui/commit/da1da8b7b67d8fdb91a64fe88b62e6b71ac51dfd))
+- **card:** Updated style. ([9694c3c](https://github.com/vechai/sk-web-gui/commit/9694c3cc69740badcc3caac285db6b1609665b13))
+- combobox stories and validation ([6dca70e](https://github.com/vechai/sk-web-gui/commit/6dca70e252b8190f53c64dc5da12b907097521b7))
+- **divider:** adjusted margins, added min-height for vertical ([3561443](https://github.com/vechai/sk-web-gui/commit/3561443c9953c7b0865abc8eadaabb73c02338b5))
+- gui issues ([8e88f5d](https://github.com/vechai/sk-web-gui/commit/8e88f5dd8fc3ed46acd7cf3358597777cbf7aa99))
+- header breakpoints ([e1b708c](https://github.com/vechai/sk-web-gui/commit/e1b708c7dab6d0c7d25159bbded7e9600d41c24e))
+- **header:** split to subcomponent ([e624c5b](https://github.com/vechai/sk-web-gui/commit/e624c5b8f07fd7935e3071d98c460fc1f18bd618))
+- **icon:** ghost inverted to use text-current ([8083ab9](https://github.com/vechai/sk-web-gui/commit/8083ab94b8a62b800504c89f763570318e9fdcfe))
+- **icon:** ghost to use text-current ([be38ea4](https://github.com/vechai/sk-web-gui/commit/be38ea4e1c86a2242a82d4ff7f749189baa20ae0))
+- **intellisense:** caused internal build-errors ([ff1733d](https://github.com/vechai/sk-web-gui/commit/ff1733dbaeb7844f869c6d0bf47a2a6ae674e3ff))
+- **list:** adjusted link use and style ([e4b350e](https://github.com/vechai/sk-web-gui/commit/e4b350efbcda8931f8a991adfb1e668680480820))
+- **list:** feedback ([9215baa](https://github.com/vechai/sk-web-gui/commit/9215baa776e51d86db0478603d665edbc1c870b7))
+- **menu-vertical:** adjusted focus and navigation ([cdb4c65](https://github.com/vechai/sk-web-gui/commit/cdb4c655c0b1adc51cb38abdad32b9fc800df398))
+- **menu-vertical:** adjusted styling & statelogic ([e214c2c](https://github.com/vechai/sk-web-gui/commit/e214c2c7b7aac734a4911e7eeacd577976a407f9))
+- **menu-vertical:** darkmode-fixes ([1d9f68b](https://github.com/vechai/sk-web-gui/commit/1d9f68bb91f5e2d46fcf4603a09c6ba8fa86d03f))
+- **menu-vertical:** removed unused code ([0eb5baa](https://github.com/vechai/sk-web-gui/commit/0eb5baa7268b7b8f2860cde2fa4faa075d44086d))
+- **menu-vertical:** switched to Logo ([4d5f9e1](https://github.com/vechai/sk-web-gui/commit/4d5f9e12d3730859a8e8d918a4607b4f6106d3e6))
+- navigation working correctly ([c03466c](https://github.com/vechai/sk-web-gui/commit/c03466c4f87e2eeaea456523af1c840592b0a0d9))
+- pagination and table ([d538823](https://github.com/vechai/sk-web-gui/commit/d538823420e6826a8a70b13555c3a6dd7e6011eb))
+- removed background from icon in button ([244a141](https://github.com/vechai/sk-web-gui/commit/244a141bba6f03c43e640386904ed223194ad8a5))
+- removed unused, typefixes, lintfixes ([e484e6f](https://github.com/vechai/sk-web-gui/commit/e484e6f05ce9c8ed79a1f57ad0cdc81ea46b388e))
+- **snackbar:** added default primary ([4cbdb70](https://github.com/vechai/sk-web-gui/commit/4cbdb70a4ec50593cb99fe58a7c17565a57fc3c5))
+- **snackbar:** text-light-primary for icon ([7cf343a](https://github.com/vechai/sk-web-gui/commit/7cf343af54f6c3b5498184efc8484d52a6966fa2))
+- **spinner:** changed the implementation to lottie files ([9c94c3e](https://github.com/vechai/sk-web-gui/commit/9c94c3e5832b874eae9308c312d2793a5f890990))
+- **spinner:** Removed old code ([04febb7](https://github.com/vechai/sk-web-gui/commit/04febb7de6ea69421bd5c2b9ac47fdb725472e96))
+- **spinner:** updated style and dependencies ([0107656](https://github.com/vechai/sk-web-gui/commit/0107656af0ba7f67862d6e63378df7ba7873061f))
+- styling and sizing of icon and switch ([0aa4dab](https://github.com/vechai/sk-web-gui/commit/0aa4dab97bb6c1fbc01a22f655baf6248bfd36f2))
+- synced to latest tailwindcss ([c7f44d6](https://github.com/vechai/sk-web-gui/commit/c7f44d6c2d885cbaa79d8efd4e3f3503f3a0662a))
+- **table:** now using icon component, dep-fix ([175b369](https://github.com/vechai/sk-web-gui/commit/175b3694ea42ae41059011b4f8d357770cf2d322))
+- tables, button and pagination ([62a895b](https://github.com/vechai/sk-web-gui/commit/62a895b61ed266faf6a6874ec9a0b73b336e3091))
+- **tooltip:** Updated props and style ([77f8e49](https://github.com/vechai/sk-web-gui/commit/77f8e495e2f49657ee7f3a8cb7fc48db348694ea))
+- **tooltip:** Updated style and description text ([c8a7713](https://github.com/vechai/sk-web-gui/commit/c8a77137bf6e3e109ee989725cbb145e1a773f3d))
+- updated old not working components ([14d4cd9](https://github.com/vechai/sk-web-gui/commit/14d4cd97d0a21802789d3b1aa5ef26589fcaa792))
+- updated spinner size and colors ([d9f231a](https://github.com/vechai/sk-web-gui/commit/d9f231ab71d86331b556a05d8bf597dc7fc12239))
+- updated stories and formlabel ([7ca3670](https://github.com/vechai/sk-web-gui/commit/7ca367004ec7e5b98900ebd09a1ef095c5f9e507))
+- updated style of tooltip ([5250910](https://github.com/vechai/sk-web-gui/commit/5250910fc5fc8f075121ce88f458ed4dc526e15d))
+
+### Features
+
+- added button-group ([cc17fc8](https://github.com/vechai/sk-web-gui/commit/cc17fc89369fd473ce2b868a50d0949181e7d2e4))
+- added checkbox ([4861841](https://github.com/vechai/sk-web-gui/commit/4861841e145dbaec424b1f283495635f23b77a53))
+- added divider section ([c4708be](https://github.com/vechai/sk-web-gui/commit/c4708bed9ae427bd9da3c58bec68730406dcb13e))
+- Added Filter ([41f792c](https://github.com/vechai/sk-web-gui/commit/41f792c392fd0987e41ad175e2748260856d2c5f))
+- added link ([144b6bc](https://github.com/vechai/sk-web-gui/commit/144b6bc27ace23be4f6ca32e196b0b273700a5d5))
+- added menu-vertical ([ea9b802](https://github.com/vechai/sk-web-gui/commit/ea9b802ce58a1974e4128dd30c4d146de5ffb8b8))
+- Added pagination ([9f68481](https://github.com/vechai/sk-web-gui/commit/9f684816c5152070be62bba5f362302e7adc69d6))
+- added progress-bar ([5d5ff2d](https://github.com/vechai/sk-web-gui/commit/5d5ff2daa4768cbdbe94d018f0cfb313cf77a28e))
+- added variant to select and combobox ([4c2dff2](https://github.com/vechai/sk-web-gui/commit/4c2dff234708ac818083b805b486159834e53cb9))
+- Avatar component ([8125398](https://github.com/vechai/sk-web-gui/commit/81253984d9897c318d768fa6ab1f71961a8aecc0))
+- combobox ([de6988c](https://github.com/vechai/sk-web-gui/commit/de6988c9165e1fb8f7e8547e3a83830bec559c0f))
+- Header ([b88d1d3](https://github.com/vechai/sk-web-gui/commit/b88d1d3dc1c7ec2c48d945a47a8d3c34a4e24e68))
+- input, textfield and datepicker ([5f33b2d](https://github.com/vechai/sk-web-gui/commit/5f33b2d543a8d760bfddae98fe9651b83c07bd43))
+- Label ([172085b](https://github.com/vechai/sk-web-gui/commit/172085b7c34a279e7bf7fbb8a90171952ccbb749))
+- logo component ([d7e6292](https://github.com/vechai/sk-web-gui/commit/d7e629213f870c8ecec8b511bc8e922ba9d7fdd9))
+- **menu-vertical:** added disabled state, added size ([9b893b9](https://github.com/vechai/sk-web-gui/commit/9b893b9db08a24adb6e031094e52242deddb0333))
+- **menu-vertical:** added sidebar, adjustments to share code ([2901ae5](https://github.com/vechai/sk-web-gui/commit/2901ae5f63f9ac63145af8d8f86ce004617f3b40))
+- Menubar ([90ffa1e](https://github.com/vechai/sk-web-gui/commit/90ffa1e869ee90aa95be1d155a65c2d42fd2edc9))
+- new accordion ([af29c32](https://github.com/vechai/sk-web-gui/commit/af29c32ba1f1f877503c89e049bfe028b955a28f))
+- new footer ([22dee25](https://github.com/vechai/sk-web-gui/commit/22dee254cb3a7e06d9a72e22dca205ac4a025ff8))
+- new Modal styles ([d6706b1](https://github.com/vechai/sk-web-gui/commit/d6706b1f8665c9d13a7967a9f959f91d9d39f07c))
+- new radio button ([73261f8](https://github.com/vechai/sk-web-gui/commit/73261f86af12d636302fa2f3e6151cfc23027747))
+- new searchfield ([45cb13c](https://github.com/vechai/sk-web-gui/commit/45cb13c4c1a77d69d98ae935db1f58c5c3f45254))
+- New select ([8169551](https://github.com/vechai/sk-web-gui/commit/816955118a54e37a516a9fa9c2c49b1f1faec414))
+- pure icon, icon as icon.padded ([64d5ec2](https://github.com/vechai/sk-web-gui/commit/64d5ec22383f260c42516fc3a125540b561787ee))
+- updated cookie consent ([1bd4ac7](https://github.com/vechai/sk-web-gui/commit/1bd4ac72d87eb96b080b12a52d3647df41376758))
+- updated input core ([6cd7e0c](https://github.com/vechai/sk-web-gui/commit/6cd7e0c76ee9bbf4dc0e3d125bc0ac9302532ece))
+
+### BREAKING CHANGES
+
+- No longer scrollable outside. Closable is no longer an option.
+- search-bar is no longer
+- Now uses native functionality. No support for multiple.
+- color is no longer a prop on radiobutton. Sizes no longer include xl
+- Tag is no longer. Use Label instead.
+
 ## [0.1.92](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@0.1.91...@sk-web-gui/core@0.1.92) (2023-10-25)
 
 **Note:** Version bump only for package @sk-web-gui/core

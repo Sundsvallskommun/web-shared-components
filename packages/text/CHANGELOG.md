@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/text@0.1.5...@sk-web-gui/text@1.0.0) (2023-12-18)
+
+### Bug Fixes
+
+- styling and sizing of icon and switch ([0aa4dab](https://github.com/Sundsvallskommun/web-shared-components/commit/0aa4dab97bb6c1fbc01a22f655baf6248bfd36f2))
+- **text:** explicit index export ([55e3d6f](https://github.com/Sundsvallskommun/web-shared-components/commit/55e3d6ff6b349376ec522c310427e9c7693fdb0b))
+- types to include ref, adjusted exotic comps export style ([070d499](https://github.com/Sundsvallskommun/web-shared-components/commit/070d4990ecea5d5ce90ebdd684a381bb8ad95861))
+
 ## [0.1.5](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/text@0.1.4...@sk-web-gui/text@0.1.5) (2023-10-25)
 
 **Note:** Version bump only for package @sk-web-gui/text

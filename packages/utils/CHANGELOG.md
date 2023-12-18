@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/utils@0.1.8...@sk-web-gui/utils@1.0.0) (2023-12-18)
+
+### Bug Fixes
+
+- **accordion:** added **REACT_NAME** ([3613841](https://github.com/Sundsvallskommun/web-shared-components/commit/36138412f656e9f903f2f137040fc81b4301abd5))
+- styling and sizing of icon and switch ([0aa4dab](https://github.com/Sundsvallskommun/web-shared-components/commit/0aa4dab97bb6c1fbc01a22f655baf6248bfd36f2))
+
+### Features
+
+- added generated colors ([97acd66](https://github.com/Sundsvallskommun/web-shared-components/commit/97acd66f1ed6ca9bc8dcf6e7484502ebbc854889))
+
 ## [0.1.8](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/utils@0.1.7...@sk-web-gui/utils@0.1.8) (2023-10-10)
 
 **Note:** Version bump only for package @sk-web-gui/utils

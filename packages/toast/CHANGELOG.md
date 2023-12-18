@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/toast@0.1.21...@sk-web-gui/toast@1.0.0) (2023-12-18)
+
+### Bug Fixes
+
+- **toast:** explicit index export ([c780e2e](https://github.com/Sundsvallskommun/web-shared-components/commit/c780e2e67b8efa87fd4378549092c6757c100dc5))
+
 ## [0.1.21](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/toast@0.1.20...@sk-web-gui/toast@0.1.21) (2023-10-10)
 
 **Note:** Version bump only for package @sk-web-gui/toast

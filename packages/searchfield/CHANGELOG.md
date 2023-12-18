@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0 (2023-12-18)
+
+### Bug Fixes
+
+- **searchfield:** explicit index export ([e8bfd08](https://github.com/Sundsvallskommun/web-shared-components/commit/e8bfd0854b41b04246b32aa4bfd244ca5113c21d))
+- **searchfield:** typefix ([51f78e1](https://github.com/Sundsvallskommun/web-shared-components/commit/51f78e166dab517c7006274ce43d9aa518f80d42))
+- types to include ref, adjusted exotic comps export style ([070d499](https://github.com/Sundsvallskommun/web-shared-components/commit/070d4990ecea5d5ce90ebdd684a381bb8ad95861))
+
+### Features
+
+- new searchfield ([45cb13c](https://github.com/Sundsvallskommun/web-shared-components/commit/45cb13c4c1a77d69d98ae935db1f58c5c3f45254))
+
+### BREAKING CHANGES
+
+- search-bar is no longer
+
 ## [0.1.20](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/search-bar@0.1.19...@sk-web-gui/search-bar@0.1.20) (2023-10-25)
 
 **Note:** Version bump only for package @sk-web-gui/search-bar

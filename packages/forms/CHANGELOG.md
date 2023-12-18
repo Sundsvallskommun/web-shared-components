@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@0.1.37...@sk-web-gui/forms@1.0.0) (2023-12-18)
+
+### Bug Fixes
+
+- checkbox-group story and useForm ([40552de](https://github.com/Sundsvallskommun/web-shared-components/commit/40552de468298a9c31193ea8231b05fa3b0cb66a))
+- combobox stories and validation ([6dca70e](https://github.com/Sundsvallskommun/web-shared-components/commit/6dca70e252b8190f53c64dc5da12b907097521b7))
+- **combobox:** explicit index export ([dcb3fcb](https://github.com/Sundsvallskommun/web-shared-components/commit/dcb3fcb6f2de6b2a117d1397ccd266dd3d449b22))
+- **date-picker:** explicit index export ([4e2bfc0](https://github.com/Sundsvallskommun/web-shared-components/commit/4e2bfc015de6c31a82b6878cc56e3cae7b68d5d0))
+- **forms:** missing dependency ([7b7702b](https://github.com/Sundsvallskommun/web-shared-components/commit/7b7702b2246a71afafe03c5b67488f6ca37a0337))
+- **forms:** named import instead of default ([9058bf8](https://github.com/Sundsvallskommun/web-shared-components/commit/9058bf871b1ca196408177f9204454c7902edae5))
+- **forms:** now using icon component, and typefix ([e2e2465](https://github.com/Sundsvallskommun/web-shared-components/commit/e2e2465b29ed497f2c67b3ddaa7f93643851eb7d))
+- menu structure and types in storybook A->[F]ilter ([20f78d6](https://github.com/Sundsvallskommun/web-shared-components/commit/20f78d6f4b143e4db2b1ffacd8b47b8d3130f3d6))
+- removed unused, typefixes, lintfixes ([e484e6f](https://github.com/Sundsvallskommun/web-shared-components/commit/e484e6f05ce9c8ed79a1f57ad0cdc81ea46b388e))
+- storybook autodocs [F]ilter -> [K]akor ([8afa0ba](https://github.com/Sundsvallskommun/web-shared-components/commit/8afa0bab8a7c7d829719a7ca474aeaf930660a0a))
+- storybook autodocs F->Z, removed mdxs, generating docs-icons ([63fbddd](https://github.com/Sundsvallskommun/web-shared-components/commit/63fbddd93035115ae805d7e21ad73ef426e93a42))
+- styling and sizing of icon and switch ([0aa4dab](https://github.com/Sundsvallskommun/web-shared-components/commit/0aa4dab97bb6c1fbc01a22f655baf6248bfd36f2))
+- **switch:** explicit index export ([b262a85](https://github.com/Sundsvallskommun/web-shared-components/commit/b262a850439e3056ed6e79ffb81936c3ec1157cf))
+- **text-field:** explicit index export ([ed4b354](https://github.com/Sundsvallskommun/web-shared-components/commit/ed4b35494d6201e7b0a29589f70f505f1f5976d4))
+- types to include ref, adjusted exotic comps export style ([070d499](https://github.com/Sundsvallskommun/web-shared-components/commit/070d4990ecea5d5ce90ebdd684a381bb8ad95861))
+- updated stories and formlabel ([7ca3670](https://github.com/Sundsvallskommun/web-shared-components/commit/7ca367004ec7e5b98900ebd09a1ef095c5f9e507))
+
+### Features
+
+- added checkbox ([4861841](https://github.com/Sundsvallskommun/web-shared-components/commit/4861841e145dbaec424b1f283495635f23b77a53))
+- Added Filter ([41f792c](https://github.com/Sundsvallskommun/web-shared-components/commit/41f792c392fd0987e41ad175e2748260856d2c5f))
+- added variant to select and combobox ([4c2dff2](https://github.com/Sundsvallskommun/web-shared-components/commit/4c2dff234708ac818083b805b486159834e53cb9))
+- combobox ([de6988c](https://github.com/Sundsvallskommun/web-shared-components/commit/de6988c9165e1fb8f7e8547e3a83830bec559c0f))
+- input, textfield and datepicker ([5f33b2d](https://github.com/Sundsvallskommun/web-shared-components/commit/5f33b2d543a8d760bfddae98fe9651b83c07bd43))
+- New select ([8169551](https://github.com/Sundsvallskommun/web-shared-components/commit/816955118a54e37a516a9fa9c2c49b1f1faec414))
+- updated input core ([6cd7e0c](https://github.com/Sundsvallskommun/web-shared-components/commit/6cd7e0c76ee9bbf4dc0e3d125bc0ac9302532ece))
+
+### BREAKING CHANGES
+
+- Now uses native functionality. No support for multiple.
+
 ## [0.1.37](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@0.1.36...@sk-web-gui/forms@0.1.37) (2023-10-25)
 
 **Note:** Version bump only for package @sk-web-gui/forms

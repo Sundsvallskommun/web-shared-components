@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/spinner@0.1.14...@sk-web-gui/spinner@1.0.0) (2023-12-18)
+
+### Bug Fixes
+
+- **spinner:** changed the implementation to lottie files ([9c94c3e](https://github.com/Sundsvallskommun/web-shared-components/commit/9c94c3e5832b874eae9308c312d2793a5f890990))
+- **spinner:** Removed old code ([04febb7](https://github.com/Sundsvallskommun/web-shared-components/commit/04febb7de6ea69421bd5c2b9ac47fdb725472e96))
+- **spinner:** updated style and dependencies ([0107656](https://github.com/Sundsvallskommun/web-shared-components/commit/0107656af0ba7f67862d6e63378df7ba7873061f))
+- storybook autodocs F->Z, removed mdxs, generating docs-icons ([63fbddd](https://github.com/Sundsvallskommun/web-shared-components/commit/63fbddd93035115ae805d7e21ad73ef426e93a42))
+- styling and sizing of icon and switch ([0aa4dab](https://github.com/Sundsvallskommun/web-shared-components/commit/0aa4dab97bb6c1fbc01a22f655baf6248bfd36f2))
+- types to include ref, adjusted exotic comps export style ([070d499](https://github.com/Sundsvallskommun/web-shared-components/commit/070d4990ecea5d5ce90ebdd684a381bb8ad95861))
+- updated spinner size and colors ([d9f231a](https://github.com/Sundsvallskommun/web-shared-components/commit/d9f231ab71d86331b556a05d8bf597dc7fc12239))
+
 ## [0.1.14](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/spinner@0.1.13...@sk-web-gui/spinner@0.1.14) (2023-10-10)
 
 **Note:** Version bump only for package @sk-web-gui/spinner
