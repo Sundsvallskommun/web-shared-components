@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@1.0.0...@sk-web-gui/react@1.1.0) (2023-12-18)
+
+### Features
+
+- added List to react package ([8db1693](https://github.com/Sundsvallskommun/web-shared-components/commit/8db1693f948df788e6f7c8177da2f28d3e8b28c8))
+
 # [1.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@0.1.134...@sk-web-gui/react@1.0.0) (2023-12-18)
 
 ### Bug Fixes

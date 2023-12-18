@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/spinner@1.0.0...@sk-web-gui/spinner@1.0.1) (2023-12-18)
+
+### Bug Fixes
+
+- json export issue. ([911d123](https://github.com/Sundsvallskommun/web-shared-components/commit/911d12342a5f348fb71c842690b251e3b71d4760))
+
 # [1.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/spinner@0.1.14...@sk-web-gui/spinner@1.0.0) (2023-12-18)
 
 ### Bug Fixes

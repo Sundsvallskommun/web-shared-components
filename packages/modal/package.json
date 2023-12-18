@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/modal",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -40,7 +40,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@headlessui/react": "^1.7.17",
-    "@sk-web-gui/button": "1.0.0",
+    "@sk-web-gui/button": "1.0.1",
     "@sk-web-gui/icon": "1.0.0",
     "@sk-web-gui/theme": "1.0.0",
     "@sk-web-gui/utils": "1.0.0"
