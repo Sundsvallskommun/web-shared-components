@@ -184,13 +184,13 @@ export const CustomFilterHandler = () => {
 };
 
 export const SingleChoiceWithForm = () => {
-  const { register, getValues } = useForm<{ fruit: string }>({ defaultValues: { fruit: 'lime' } });
+  const { register, formState } = useForm<{ fruit: string }>({ defaultValues: { fruit: 'lime' } });
 
   return (
     <div className="h-[40rem]">
       <FormControl>
         <FormLabel>Favoritfrukt</FormLabel>
-        <Combobox placeholder="Välj en frukt" {...register('fruit')} defaultValue={getValues('fruit')}>
+        <Combobox placeholder="Välj en frukt" {...register('fruit')} defaultValue={formState?.defaultValues?.fruit}>
           <Combobox.List>
             {fruits.map((fruit) => (
               <Combobox.Option key={`singlefruit-${fruit}`} value={fruit}>
