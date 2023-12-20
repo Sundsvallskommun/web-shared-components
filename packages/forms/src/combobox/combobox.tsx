@@ -14,15 +14,19 @@ export interface ComboboxBaseProps extends UseComboboxProps, Omit<React.Componen
    */
   onChange?: (event: ComboboxChangeEvent) => void;
   /**
-   * Value from list
+   * Selected value
    */
   value?: string | string[];
+  /**
+   * Sets initial value
+   */
+  defaultValue?: string | string[];
   /**
    * ChangeEvent from search input
    */
   onChangeSearch?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   /**
-   * Value from search input
+   * Search input value
    */
   searchValue?: string;
   /**
@@ -42,6 +46,7 @@ const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((prop
     multiple,
     searchValue: _value,
     value: _incomingValue,
+    defaultValue,
     className,
     disabled: _disabled,
     id: _id,
@@ -57,10 +62,13 @@ const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((prop
     ...rest
   } = props;
 
+  const initialValue = defaultValue || _incomingValue || [];
   const [open, setOpen] = React.useState<boolean>(false);
-  const [internalValue, setInternalValue] = React.useState<string[]>([]);
+  const [internalValue, setInternalValue] = React.useState<string[]>(
+    typeof initialValue === 'string' ? [initialValue] : initialValue
+  );
   const [labels, setLabels] = React.useState<Record<string, string>>({});
-  const [searchValue, setSearchValue] = React.useState<string>('');
+  const [searchValue, setSearchValue] = React.useState<string>(_value || '');
   const [active, setActive] = React.useState<number>(-1);
   const [total, setTotal] = React.useState<number>(0);
 
@@ -107,7 +115,7 @@ const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((prop
         setInternalValue(_incomingValue);
       }
     }
-  });
+  }, [_incomingValue]);
 
   const close = () => {
     setSearchValue('');
@@ -115,6 +123,7 @@ const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((prop
     setActive(-1);
     inputRef.current && inputRef.current.focus();
   };
+
   const onSelect = (value: string) => {
     if (multiple) {
       if (!internalValue.includes(value)) {
