@@ -68,7 +68,7 @@ export const screens = {
   'large-device-max': breakpoints['large-device'].max,
   desktop: breakpoints.desktop.DEFAULT,
   'desktop-min': breakpoints.desktop.min,
-  'desktop-max': breakpoints.desktop.DEFAULT,
+  'desktop-max': breakpoints.desktop.max,
 };
 
 export const fontSizes = {
