@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/snackbar",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -37,7 +37,7 @@
     "react": "^18.2.0"
   },
   "dependencies": {
-    "@sk-web-gui/button": "1.0.1",
+    "@sk-web-gui/button": "1.0.2",
     "@sk-web-gui/icon": "1.0.0",
     "@sk-web-gui/toast": "1.0.0",
     "@sk-web-gui/utils": "1.0.0"
