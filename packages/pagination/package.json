@@ -42,7 +42,8 @@
     "@mui/icons-material": "^5.14.12",
     "@mui/material": "^5.14.12",
     "@sk-web-gui/theme": "1.0.0",
-    "@sk-web-gui/utils": "1.0.0"
+    "@sk-web-gui/utils": "1.0.0",
+    "@sk-web-gui/forms": "1.0.0"
   },
   "peerDependencies": {
     "react": ">=18.2.0"
