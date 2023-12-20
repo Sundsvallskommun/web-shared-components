@@ -98,7 +98,7 @@ module.exports = ZebraTable = () => ({
       '.sk-zebratable': {
         '&-thead': {
           '&-th': {
-            '@apply py-12': {},
+            '@apply py-4': {},
           },
         },
         '&-tbody': {
