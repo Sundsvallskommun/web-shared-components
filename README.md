@@ -43,6 +43,9 @@ module.exports = {
       xl: '1140px',
       // => @media (min-width: 1280px) { ... }
     },
+    maxWidth: {
+      content: '150rem' //Set max width for content
+    }
   },
   variants: {
     extend: {},
@@ -64,7 +67,7 @@ module.exports = {
     // ...
     './node_modules/@sk-web-gui/*/dist/**/*.js', // path to sk-web-gui
   ],
-  presets: [require('@sk-web-gui/core').preset({ customScrollbar: true, tailwindForms: true, plugin: { colors: [], cssBase: true } })],
+  presets: [require('@sk-web-gui/core').preset({ tailwindForms: true, plugin: { colors: [], cssBase: true } })],
   ...
 }
 ```
