@@ -52,10 +52,12 @@ interface ConfirmDialogProps {
   labelAs?: React.ElementType;
 }
 
+type Resolver = (value: boolean | PromiseLike<boolean>) => void;
+
 export const ConfirmationDialogContextProvider: React.FC<ConfirmationDialogContextProviderProps> = (props) => {
   const { setShow, show, onHide } = useDialogShow();
   const [content, setContent] = React.useState<ConfirmDialogProps | null>();
-  const resolver = React.useRef<any>();
+  const resolver = React.useRef<Resolver | undefined>();
 
   const handleShow = (
     title: string,
@@ -95,7 +97,7 @@ export const ConfirmationDialogContextProvider: React.FC<ConfirmationDialogConte
     onHide();
   };
 
-  const switchIcon = (parameter: any) => {
+  const switchIcon = (parameter: string) => {
     switch (parameter) {
       case 'info':
         return <Icon rounded name="lightbulb" color={content?.dialogType} />;
@@ -133,7 +135,7 @@ export const ConfirmationDialogContextProvider: React.FC<ConfirmationDialogConte
             <span
               className={cx(`text-${content.dialogType || 'dark-primary'}`, 'flex items-center justify-start gap-4')}
             >
-              {switchIcon(content.icon)} {getIconLabel()}
+              {switchIcon(content.icon || '')} {getIconLabel()}
             </span>
           }
           hideLabel={!content.icon}

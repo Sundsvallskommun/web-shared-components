@@ -34,10 +34,6 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.14.12",
-    "@mui/material": "^5.14.12",
     "@sk-web-gui/button": "1.0.2",
     "@sk-web-gui/forms": "1.0.1",
     "@sk-web-gui/icon": "1.0.0",
