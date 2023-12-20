@@ -1,6 +1,4 @@
 import React from 'react';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Button } from '@sk-web-gui/button';
 import { Link } from '@sk-web-gui/link';
 import { PopupMenu, PopupMenuProps } from '../src';
@@ -26,7 +24,7 @@ export const Template = (args: PopupMenuProps) => {
             iconButton
             rounded
           >
-            <ArrowDownwardIcon />
+            <Icon name="arrow-down" />
           </PopupMenu.Button>
           <PopupMenu.Group>
             <PopupMenu.Item>
@@ -62,7 +60,7 @@ export const Template = (args: PopupMenuProps) => {
         <h2>Textknapp</h2>
         <div className="w-min relative h-[4rem]">
           <PopupMenu {...args}>
-            <PopupMenu.Button variant="tertiary" rightIcon={<ExpandMoreIcon />}>
+            <PopupMenu.Button variant="tertiary" rightIcon={<Icon name="more-vertical" />}>
               Kontextmeny
             </PopupMenu.Button>
             <PopupMenu.Item>
