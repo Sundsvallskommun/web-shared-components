@@ -44,15 +44,19 @@ export interface ButtonContentProps {
   leftIcon?: ButtonProps['leftIcon'];
   rightIcon?: ButtonProps['rightIcon'];
   children?: ButtonProps['children'];
+  size?: ButtonProps['size'];
 }
 
 export const ButtonContent: React.FC<ButtonContentProps> = (props: ButtonContentProps): JSX.Element => {
-  const { loading, loadingText, leftIcon, rightIcon, children } = props;
+  const { size = 'md', loading, loadingText, leftIcon, rightIcon, children } = props;
   return (
     <>
       {leftIcon && !loading ? <span className="btn-has-icon-left">{leftIcon}</span> : null}
       {loading && (
-        <Spinner className={cx(loadingText ? 'relative' : 'absolute', loadingText ? `mr-2` : 'mr-0')} size={16} />
+        <Spinner
+          size={size === 'sm' ? 1.6 : size === 'md' ? 1.8 : 2}
+          className={cx(loadingText ? 'relative' : 'absolute', loadingText ? `mr-2` : 'mr-0')}
+        />
       )}
       {loading ? loadingText || <span className="opacity-0">{children}</span> : children}
       {rightIcon && !loading ? <span className="btn-has-icon-right">{rightIcon}</span> : null}
@@ -103,10 +107,15 @@ export const Button = React.forwardRef(
         className={cx(className)}
         {...rest}
       >
-        <ButtonContent loading={loading} loadingText={loadingText} leftIcon={leftIcon} rightIcon={rightIcon}>
+        <ButtonContent
+          size={size}
+          loading={loading}
+          loadingText={loadingText}
+          leftIcon={leftIcon}
+          rightIcon={rightIcon}
+        >
           {children}
         </ButtonContent>
-        {/* {ButtonContent({ loading, loadingText, leftIcon, rightIcon, children })} */}
       </Link>
     ) : (
       <Component
@@ -122,7 +131,13 @@ export const Button = React.forwardRef(
         data-icon={iconButton ? iconButton : undefined}
         className={cx(classes, className)}
       >
-        <ButtonContent loading={loading} loadingText={loadingText} leftIcon={leftIcon} rightIcon={rightIcon}>
+        <ButtonContent
+          size={size}
+          loading={loading}
+          loadingText={loadingText}
+          leftIcon={leftIcon}
+          rightIcon={rightIcon}
+        >
           {children}
         </ButtonContent>
       </Component>
