@@ -39,11 +39,9 @@
   "dependencies": {
     "@reach/auto-id": "^0.18.0",
     "@react-hookz/web": "23.1.0",
-    "@sk-web-gui/forms": "0.1.37",
     "@sk-web-gui/icon": "1.0.0",
     "@sk-web-gui/theme": "1.0.0",
-    "@sk-web-gui/utils": "1.0.0",
-    "dayjs": "^1.11.10"
+    "@sk-web-gui/utils": "1.0.0"
   },
   "peerDependencies": {
     "react": ">=18.2.0"
