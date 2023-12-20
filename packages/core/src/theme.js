@@ -97,7 +97,7 @@ module.exports = {
       xl: units.spacing[48],
     },
     maxWidth: {
-      content: '100%',
+      content: screens['desktop-max'],
     },
     borderRadius: {
       ...units.radius,

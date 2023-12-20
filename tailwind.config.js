@@ -1,5 +1,5 @@
 module.exports = {
-  presets: [require('./packages/core/src/preset')], // with support for custom-scrollbar
+  presets: [require('./packages/core/src/preset')],
   content: [
     './packages/*/src/**/*.{ts,tsx,js}',
     './packages/*/stories/**/*.{tsx,mdx}',
