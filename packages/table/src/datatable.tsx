@@ -3,6 +3,9 @@ import _ from 'lodash';
 import React from 'react';
 import { ZebraTableProps, ZebraTable, ZebraTableColumn, ZebraTableHeader } from './zebratable';
 
+//eslint-disable-next-line
+type TableValue = any;
+type TableItem = Record<string | number, TableValue>;
 export interface DataTableHeader {
   property?: string;
   label?: string;
@@ -10,21 +13,21 @@ export interface DataTableHeader {
   isShown?: boolean;
   screenReaderOnly?: boolean;
   columnPosition?: 'left' | 'center' | 'right';
-  renderColumn?: (value: any, item: any) => JSX.Element;
+  renderColumn?: (value: TableValue, item: TableItem) => JSX.Element;
 }
 
 export interface DataTableProps
   extends Omit<ZebraTableProps, 'headers' | 'rows'>,
     React.ComponentPropsWithRef<'table'> {
   headers: Array<DataTableHeader | string>;
-  data: Array<any>;
+  data: Array<TableItem>;
 }
 
 export const DataTable = React.forwardRef<HTMLTableElement, DataTableProps>((props, ref) => {
   const { data, headers, ...rest } = props;
-  const [tableData, setTableData] = React.useState<any[]>(data);
+  const [tableData, setTableData] = React.useState<TableItem[]>(data);
 
-  const getValue = (item: any, header: string | DataTableHeader) => {
+  const getValue = (item: TableItem, header: string | DataTableHeader): TableValue => {
     let headerparts = [];
 
     switch (typeof header) {
@@ -36,7 +39,7 @@ export const DataTable = React.forwardRef<HTMLTableElement, DataTableProps>((pro
         headerparts = header?.property ? header?.property.split('.') : [];
         break;
     }
-    const value = headerparts.reduce((value: any, headerpart) => {
+    const value = headerparts.reduce((value, headerpart) => {
       if (value !== null) {
         if (value) {
           return value[headerpart] ? value[headerpart] : undefined;
@@ -141,8 +144,8 @@ export const DataTable = React.forwardRef<HTMLTableElement, DataTableProps>((pro
             getValue(a, headers[colIndex]).toLowerCase() > getValue(b, headers[colIndex]).toLowerCase()
               ? 1 * mode
               : getValue(a, headers[colIndex]).toLowerCase() < getValue(b, headers[colIndex]).toLowerCase()
-                ? -1 * mode
-                : 0
+              ? -1 * mode
+              : 0
           );
           break;
         default:
@@ -150,8 +153,8 @@ export const DataTable = React.forwardRef<HTMLTableElement, DataTableProps>((pro
             getValue(a, headers[colIndex]) > getValue(b, headers[colIndex])
               ? 1 * mode
               : getValue(a, headers[colIndex]) < getValue(b, headers[colIndex])
-                ? -1 * mode
-                : 0
+              ? -1 * mode
+              : 0
           );
           break;
       }

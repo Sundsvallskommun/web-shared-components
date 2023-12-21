@@ -89,8 +89,15 @@ module.exports = ZebraTable = () => ({
       },
 
       '&-td': {
-        '@apply py-20 px-18': {},
         '@apply text-small': {},
+        '&-content': {
+          '@apply inline-flex': {},
+          '@apply justify-start items-center': {},
+          '@apply gap-8': {},
+          '@apply py-8 px-18': {},
+          '@apply h-[6.3rem]': {},
+          '@apply min-h-[6.3rem]': {},
+        },
       },
     },
 
@@ -102,8 +109,10 @@ module.exports = ZebraTable = () => ({
           },
         },
         '&-tbody': {
-          '&-td': {
-            '@apply py-12': {},
+          '&-td-content': {
+            '@apply py-0': {},
+            '@apply h-[4.7rem]': {},
+            '@apply min-h-[4.7rem]': {},
           },
         },
       },
