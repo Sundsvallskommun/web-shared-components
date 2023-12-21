@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react';
 import { GuiProvider, extendTheme, defaultTheme } from '@sk-web-gui/theme';
 import { useState, useMemo } from 'react';
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
-import updateLocale from 'dayjs/plugin/updateLocale';
 import './styles.scss';
 import { Canvas, DocsContainer, DocsContainerProps } from '@storybook/addon-docs';
 import type { Preview } from '@storybook/react';
@@ -67,30 +64,6 @@ const parameters: Preview['parameters'] = {
     },
   },
 };
-
-dayjs.extend(utc);
-dayjs.locale('sv');
-dayjs.extend(updateLocale);
-dayjs.updateLocale('sv', {
-  months: [
-    'Januari',
-    'Februari',
-    'Mars',
-    'April',
-    'Maj',
-    'Juni',
-    'Juli',
-    'Augusti',
-    'September',
-    'Oktober',
-    'November',
-    'December',
-  ],
-  monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'],
-  weekdays: ['Söndag', 'Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag'],
-  weekdaysShort: ['Sön', 'Mån', 'Tis', 'Ons', 'Tors', 'Fre', 'Lör'],
-  weekdaysMin: ['S', 'M', 'T', 'O', 'T', 'F', 'L'],
-});
 
 const withGui = (StoryFn) => {
   const [colorScheme, setColorScheme] = useState(useDarkMode() ? 'dark' : 'light');
