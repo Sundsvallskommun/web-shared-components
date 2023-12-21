@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@1.0.1...@sk-web-gui/core@1.0.2) (2023-12-21)
+
+### Bug Fixes
+
+- **table:** bad padding in header ([533dac8](https://github.com/vechai/sk-web-gui/commit/533dac88adc23b8bdd6dffaf01a3ff2c15c55662))
+
 ## [1.0.1](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@1.0.0...@sk-web-gui/core@1.0.1) (2023-12-18)
 
 ### Bug Fixes

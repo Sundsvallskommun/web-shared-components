@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/popup-menu@1.0.2...@sk-web-gui/popup-menu@1.0.3) (2023-12-21)
+
+### Bug Fixes
+
+- replaced icons with bad dep, removed dayjs ([ab35f84](https://github.com/Sundsvallskommun/web-shared-components/commit/ab35f843ca0e25fbac8bea4eadc8b6a6deb221a0))
+
 ## [1.0.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/popup-menu@1.0.1...@sk-web-gui/popup-menu@1.0.2) (2023-12-20)
 
 **Note:** Version bump only for package @sk-web-gui/popup-menu

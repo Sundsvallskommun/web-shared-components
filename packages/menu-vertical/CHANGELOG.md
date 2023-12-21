@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/menu-vertical@1.0.0...@sk-web-gui/menu-vertical@1.0.1) (2023-12-21)
+
+### Bug Fixes
+
+- **menu-vertical:** updated dependecies ([700f80e](https://github.com/Sundsvallskommun/web-shared-components/commit/700f80e016605e6119b8c0d3d4a16f45e1033aaa))
+
 # 1.0.0 (2023-12-18)
 
 ### Bug Fixes
