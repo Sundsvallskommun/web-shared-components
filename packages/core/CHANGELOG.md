@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@1.0.2...@sk-web-gui/core@1.0.3) (2023-12-22)
+
+### Bug Fixes
+
+- **table:** styling and linting issues ([227f9fa](https://github.com/vechai/sk-web-gui/commit/227f9fae5e4ef8dd4f03b896d5e340917ad8b16e))
+
 ## [1.0.2](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@1.0.1...@sk-web-gui/core@1.0.2) (2023-12-21)
 
 ### Bug Fixes
