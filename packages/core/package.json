@@ -2,11 +2,18 @@
   "name": "@sk-web-gui/core",
   "version": "1.0.2",
   "license": "MIT",
-  "main": "src/index.js",
+  "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "typings": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/esm/index.js"
+    }
+  },
   "files": [
-    "src/",
-    "dist/"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
@@ -20,7 +27,8 @@
     "version": "yarn build",
     "build": "concurrently yarn:build:*",
     "build:esm": "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .js -d dist/esm --source-maps",
-    "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .js -d dist/cjs --source-maps"
+    "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .js -d dist/cjs --source-maps",
+    "build:types": "tsc --emitDeclarationOnly --declaration --allowJs --declarationDir dist/types"
   },
   "bugs": {
     "url": "https://github.com/vechai/sk-web-gui/issues"
