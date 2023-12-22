@@ -54,29 +54,7 @@ const config: StorybookConfig = {
       });
     }
     if (configType === 'DEVELOPMENT') {
-      return mergeConfig(config, {
-        build: {
-          rollupOptions: {
-            //onwarn: https://github.com/TanStack/query/issues/5175#issuecomment-1482196558
-            onwarn: (warning, warn) => {
-              if (warning.code === 'MODULE_LEVEL_DIRECTIVE') {
-                return;
-              }
-              warn(warning);
-            },
-            input: getPackages().map((packageName) => path.resolve(__dirname, `../packages/${packageName}/index.ts`)),
-          },
-        },
-        resolve: {
-          alias: getPackages().reduce((entries: Array<any>, packageName) => {
-            entries.push({
-              find: `@sk-web-gui/${packageName}`,
-              replacement: path.resolve(__dirname, `../packages/${packageName}/index.ts`),
-            });
-            return entries;
-          }, []),
-        },
-      });
+      return mergeConfig(config, {});
     }
     return config;
   },
