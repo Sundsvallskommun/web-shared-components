@@ -40,7 +40,8 @@
     "@sk-web-gui/divider": "1.0.1",
     "@sk-web-gui/link": "1.0.1",
     "@sk-web-gui/theme": "1.0.1",
-    "@sk-web-gui/utils": "1.0.0"
+    "@sk-web-gui/utils": "1.0.0",
+    "@sk-web-gui/logo": "1.0.1"
   },
   "peerDependencies": {
     "react": ">=18.2.0"

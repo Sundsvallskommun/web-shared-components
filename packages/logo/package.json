@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@sk-web-gui/icon": "1.0.0",
-    "@sk-web-gui/theme": "1.0.1",
+    "@sk-web-gui/divider": "1.0.1",
     "@sk-web-gui/utils": "1.0.0"
   },
   "peerDependencies": {
