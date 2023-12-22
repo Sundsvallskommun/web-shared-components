@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@1.0.0...@sk-web-gui/theme@1.0.1) (2023-12-21)
+
+### Bug Fixes
+
+- **theme:** fixed bad breakpoint variable ([aefe8b8](https://github.com/Sundsvallskommun/web-shared-components/commit/aefe8b8ca532dce54e23e5173e02442b11f91bc8))
+
 # [1.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@0.1.14...@sk-web-gui/theme@1.0.0) (2023-12-18)
 
 ### Bug Fixes

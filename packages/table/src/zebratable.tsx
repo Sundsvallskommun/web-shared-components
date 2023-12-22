@@ -203,7 +203,7 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
                     {cols.map(({ element, isShown = true }, idx) =>
                       isShown ? (
                         <td key={`col${idx}`} className="sk-zebratable-tbody-td">
-                          {element}
+                          <div className="sk-zebratable-tbody-td-content">{element}</div>
                         </td>
                       ) : null
                     )}

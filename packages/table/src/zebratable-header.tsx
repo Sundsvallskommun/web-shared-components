@@ -27,10 +27,10 @@ export const ZTableHeader: React.FC<ZTableHeaderProps> = ({
       <th
         scope="col"
         aria-sort={`${sortIndex == index ? (sortModeAscending ? 'ascending' : 'descending') : 'none'}`}
-        data-iscolumnsortable={isColumnSortable}
+        data-iscolumnsortable={tableSortable && isColumnSortable}
         className="sk-zebratable-thead-th"
       >
-        {isColumnSortable ? (
+        {tableSortable && isColumnSortable ? (
           <>
             <button
               aria-description={sortIndex == index ? undefined : 'sortera'}
@@ -54,7 +54,9 @@ export const ZTableHeader: React.FC<ZTableHeaderProps> = ({
             </button>
           </>
         ) : (
-          <span className={cx(`${screenReaderOnly ? `sr-only` : ``}`)}>{element.props.children}</span>
+          <span className={cx('sk-zebratable-sortbutton', `${screenReaderOnly ? `sr-only` : ``}`)}>
+            {element.props.children}
+          </span>
         )}
       </th>
     </>

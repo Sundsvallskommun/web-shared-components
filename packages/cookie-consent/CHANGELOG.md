@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/cookie-consent@1.0.2...@sk-web-gui/cookie-consent@1.0.3) (2023-12-21)
+
+### Bug Fixes
+
+- removed theme dep ([edc732b](https://github.com/Sundsvallskommun/web-shared-components/commit/edc732b5db28f2367c3cc833d0d239b44f1ec839))
+
 ## [1.0.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/cookie-consent@1.0.1...@sk-web-gui/cookie-consent@1.0.2) (2023-12-20)
 
 **Note:** Version bump only for package @sk-web-gui/cookie-consent

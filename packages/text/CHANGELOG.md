@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/text@1.0.0...@sk-web-gui/text@1.0.1) (2023-12-21)
+
+### Bug Fixes
+
+- replaced icons with bad dep, removed dayjs ([ab35f84](https://github.com/Sundsvallskommun/web-shared-components/commit/ab35f843ca0e25fbac8bea4eadc8b6a6deb221a0))
+
 # [1.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/text@0.1.5...@sk-web-gui/text@1.0.0) (2023-12-18)
 
 ### Bug Fixes

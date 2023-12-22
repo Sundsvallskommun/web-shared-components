@@ -10,7 +10,7 @@ export default {
   tags: ['autodocs'],
 } as Meta<typeof DataTable>;
 
-const ongoingCases: any = {
+const ongoingCases = {
   data: [
     {
       caseType: 'Trasig bänk',

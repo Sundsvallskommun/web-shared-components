@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/card@1.0.1...@sk-web-gui/card@1.0.2) (2023-12-21)
+
+### Bug Fixes
+
+- **card:** updated dependencies ([0e705a4](https://github.com/Sundsvallskommun/web-shared-components/commit/0e705a46b0e397359d52957c55f39f7fbde7fb44))
+- removed theme dep ([edc732b](https://github.com/Sundsvallskommun/web-shared-components/commit/edc732b5db28f2367c3cc833d0d239b44f1ec839))
+
 ## [1.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/card@1.0.0...@sk-web-gui/card@1.0.1) (2023-12-20)
 
 ### Bug Fixes

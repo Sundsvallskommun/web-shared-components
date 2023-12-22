@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@1.0.2...@sk-web-gui/table@1.0.3) (2023-12-22)
+
+### Bug Fixes
+
+- **table:** styling and linting issues ([227f9fa](https://github.com/Sundsvallskommun/web-shared-components/commit/227f9fae5e4ef8dd4f03b896d5e340917ad8b16e))
+
+## [1.0.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@1.0.1...@sk-web-gui/table@1.0.2) (2023-12-21)
+
+**Note:** Version bump only for package @sk-web-gui/table
+
 ## [1.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@1.0.0...@sk-web-gui/table@1.0.1) (2023-12-20)
 
 **Note:** Version bump only for package @sk-web-gui/table
