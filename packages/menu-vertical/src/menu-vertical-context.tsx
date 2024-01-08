@@ -49,9 +49,38 @@ interface UseMenuVerticalPropsFunctions {
 
 export type UseMenuVerticalProps = UseMenuVerticalPropsStates & UseMenuVerticalPropsFunctions;
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-const MenuVerticalContext = React.createContext<UseMenuVerticalProps>(null); // context defaults are generated on render
+const defaults = {
+  rootId: '',
+  rootMenuId: '',
+
+  menu: {},
+  setMenu: () => ({}),
+
+  active: '',
+  setActive: () => ({}),
+
+  focused: '',
+  setFocused: () => ({}),
+
+  current: '',
+  setCurrent: () => ({}),
+
+  activeMenuId: '',
+  setActiveMenuId: () => ({}),
+
+  currentMenuId: '',
+  setCurrentMenuId: () => ({}),
+
+  next: () => ({}),
+  prev: () => ({}),
+  getAboveSubmenuIds: () => [],
+  setCurrentActive: () => ({}),
+  setCurrentActiveFocus: () => ({}),
+  setActiveFocus: () => ({}),
+  setSubmenus: () => ({}),
+};
+
+const MenuVerticalContext = React.createContext<UseMenuVerticalProps>(defaults); // context defaults are generated on render
 
 export const useMenuVertical = () => React.useContext(MenuVerticalContext);
 

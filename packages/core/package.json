@@ -23,11 +23,10 @@
     "url": "git+https://github.com/vechai/sk-web-gui.git"
   },
   "scripts": {
-    "build2": "node scripts/build.js",
     "version": "yarn build",
     "build": "concurrently yarn:build:*",
-    "build:esm": "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .js -d dist/esm --source-maps",
-    "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .js -d dist/cjs --source-maps",
+    "build:esm": "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .ts -d dist/esm --source-maps",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts -d dist/cjs --source-maps",
     "build:types": "tsc --emitDeclarationOnly --declaration --allowJs --declarationDir dist/types"
   },
   "bugs": {
