@@ -25,9 +25,6 @@ const MenuVerticalNav = () => ({
             },
           },
         },
-        '.sk-menu-vertical-item-submenu-button:not([aria-disabled="true"])': {
-          '@apply text-dark-secondary': {},
-        },
       },
     },
   },
