@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react';
 import React from 'react';
-import { RadioButton, RadioButtonGroupProps } from '../src';
+import { RadioButton } from '../src';
 
 export default {
   title: 'Komponenter/RadioButton/RadioButton.Group',
@@ -8,7 +8,7 @@ export default {
   tags: ['autodocs'],
 } as Meta<typeof RadioButton.Group>;
 
-export const Template = (args: RadioButtonGroupProps) => (
+export const Template = (args: React.ComponentProps<typeof RadioButton.Group>) => (
   <div className="flex flex-col space-y-4">
     <RadioButton.Group {...args}>
       <RadioButton value="1" name="sk-example">
