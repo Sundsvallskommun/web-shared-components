@@ -1,8 +1,8 @@
 import { useId } from '@reach/auto-id';
-import { DefaultProps, __DEV__, __REACT_NAME__, cx, getValidChildren } from '@sk-web-gui/utils';
+import { DefaultProps, __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
 import { DisclosureProps } from '../disclosure/disclosure';
-import AccordionItem from './accordion-item';
+import { AccordionItem } from './accordion-item';
 
 export interface UseAccordionProps extends Pick<DisclosureProps, 'headerAs'> {
   /**
@@ -65,8 +65,8 @@ export const AccordionComponent = React.forwardRef<HTMLUListElement, AccordionIn
 
   const getChildren = (): React.ReactNode => {
     return getValidChildren(children).map((child, index) => {
-      switch ((child.type as React.FC)[__REACT_NAME__]) {
-        case AccordionItem[__REACT_NAME__]:
+      switch (child?.type as React.FC) {
+        case AccordionItem:
           const props = { ...child?.props, id: child?.props?.id || `${id}-child-${index}` };
           return React.cloneElement(child, props);
         default:

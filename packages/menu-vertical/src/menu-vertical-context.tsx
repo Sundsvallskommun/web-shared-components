@@ -129,7 +129,7 @@ export function MenuVerticalProvider({
     menuIds: string[] = []
   ) => {
     menuIds = menuIds.concat([menuId]);
-    if (menu[menuId].parentMenuId && menu[menuId].parentMenuId !== rootMenuId) {
+    if (menu[menuId]?.parentMenuId && menu[menuId].parentMenuId !== rootMenuId) {
       return getAboveSubmenuIds(menu[menuId].parentMenuId, menuIds);
     } else {
       return menuIds;
@@ -212,10 +212,14 @@ export function MenuVerticalProvider({
   React.useEffect(() => {
     _setActive
       ? _setActive((menuIndex: MenuIndex) =>
-          menuIndex === null ? (menu[rootMenuId].menuItems[0].props.menuIndex as MenuIndex) : menuIndex
+          menuIndex === null && menu[rootMenuId]
+            ? (menu[rootMenuId].menuItems[0].props.menuIndex as MenuIndex)
+            : menuIndex
         )
       : setActive((menuIndex) =>
-          menuIndex === null ? (menu[rootMenuId].menuItems[0].props.menuIndex as MenuIndex) : menuIndex
+          menuIndex === null && menu[rootMenuId]
+            ? (menu[rootMenuId].menuItems[0].props.menuIndex as MenuIndex)
+            : menuIndex
         );
   }, []);
 

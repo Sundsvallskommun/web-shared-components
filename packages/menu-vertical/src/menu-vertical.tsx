@@ -43,8 +43,8 @@ export const MenuVerticalComponent = React.forwardRef<HTMLUListElement, MenuVert
   >(
     (object, child) => {
       if (React.isValidElement(child) && typeof child?.type !== 'string') {
-        switch ((child?.type as React.FC)[__REACT_NAME__]) {
-          case MenuVerticalSubmenuButton[__REACT_NAME__]:
+        switch (child?.type as React.FC) {
+          case MenuVerticalSubmenuButton:
             const submenuItem = child;
             const submenuItemInnerText = encodeURIComponent(extractString(submenuItem));
             const _menuId = `${object._menuId}-${submenuItemInnerText}`;
@@ -53,16 +53,16 @@ export const MenuVerticalComponent = React.forwardRef<HTMLUListElement, MenuVert
               menuIndex: child.props.menuIndex
                 ? child.props.menuIndex
                 : parentLiMenuIndex
-                ? parentLiMenuIndex
-                : `${object._menuId}`,
+                  ? parentLiMenuIndex
+                  : `${object._menuId}`,
               menuId: parentLiMenuIndex && parentLiMenuIndex !== rootMenuId ? parentLiMenuIndex : `${object._menuId}`,
               parentMenuId: menuId ? menuId : rootMenuId,
             });
             object._menuId = _menuId;
             break;
-          case MenuVerticalItem[__REACT_NAME__]:
+          case MenuVerticalItem:
             const innerText = encodeURIComponent(extractString(child));
-            object.menuItems.push(
+            object.menuItems = object.menuItems.concat([
               React.cloneElement(child as React.ReactElement<MenuVerticalItemProps>, {
                 ...child.props,
                 menuIndex: child.props.menuIndex ? child.props.menuIndex : `${object._menuId}-${innerText}`,
@@ -71,8 +71,8 @@ export const MenuVerticalComponent = React.forwardRef<HTMLUListElement, MenuVert
                 'data-menuindex': child.props.menuIndex ? child.props.menuIndex : `${object._menuId}-${innerText}`,
                 'data-menuid': object._menuId,
                 'data-parentmenuid': child.props.parentMenuId ? child.props.parentMenuId : menuId ? menuId : rootMenuId,
-              })
-            );
+              }),
+            ]);
             break;
         }
       }
@@ -98,7 +98,7 @@ export const MenuVerticalComponent = React.forwardRef<HTMLUListElement, MenuVert
   return (
     <>
       {submenuItem ? <MenuVerticalSubmenuButton {...submenuItem.props} /> : <></>}
-      {menuItems.length ? (
+      {menuItems?.length > 0 ? (
         <ul
           id={_menuId}
           role="menubar"
