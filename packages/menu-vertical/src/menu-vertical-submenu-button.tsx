@@ -38,6 +38,7 @@ export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps>
     treePath = false,
     ...rest
   } = props;
+
   const {
     menu,
     rootMenuId,
@@ -64,7 +65,7 @@ export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps>
   const isActiveItem = active === _menuIndex;
   const isFocusedItem = focused === _menuIndex;
 
-  const isSubmenuOpen = menu[menuId].submenuOpen;
+  const isSubmenuOpen = menu[menuId]?.submenuOpen ?? false;
 
   const handleSubmenuKeyboard: React.KeyboardEventHandler<HTMLElement> = async (event) => {
     if (event.key === 'ArrowLeft') {
@@ -124,9 +125,10 @@ export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps>
       setCurrent(_menuIndex);
       setCurrentMenuId(parentMenuId);
     }
-    if (isCurrentItem || menu[menuId].menuItems.find((menuItem) => menuItem.props.menuIndex === current)) {
+    if (isCurrentItem || menu[menuId]?.menuItems.find((menuItem) => menuItem.props.menuIndex === current)) {
       // isCurrentItem or contains current item
-      setSubmenus(false, { openMenuIds: getAboveSubmenuIds(menuId) });
+      const aboveMenuIds = getAboveSubmenuIds(menuId);
+      setSubmenus(false, { openMenuIds: aboveMenuIds });
     }
   }, [isCurrentItem, currentMenuId]);
 
@@ -138,7 +140,7 @@ export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps>
   }, [isActiveItem, activeMenuId]);
 
   React.useEffect(() => {
-    if (mounted) {
+    if (mounted && menuRef?.current) {
       if (isFocusedItem && isActiveItem) {
         menuRef.current && menuRef.current.focus();
       }

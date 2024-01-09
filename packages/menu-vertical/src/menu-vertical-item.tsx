@@ -38,7 +38,6 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
       ...rest
     } = props;
 
-    const contextProps = useMenuVertical();
     const {
       menu,
       rootMenuId,
@@ -54,12 +53,13 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
       setCurrentMenuId,
       prev,
       next,
-    } = contextProps;
+    } = useMenuVertical();
     const menuRef = React.useRef<HTMLElement>();
     const _menuIndex = menuIndex !== undefined ? menuIndex : React.useId();
     const isCurrentItem = current === _menuIndex || thisCurrent;
     const isActiveItem = active === _menuIndex;
     const isFocusedItem = focused === _menuIndex;
+    const submenuOpen = menu[menuId]?.submenuOpen ?? false;
 
     const handleKeyboard = (event: KeyboardEvent) => {
       if (event.key === 'ArrowLeft') {
@@ -102,7 +102,7 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
       if (isFocusedItem && isActiveItem) {
         menuRef.current && menuRef.current.focus();
       }
-    }, [isFocusedItem, isActiveItem, activeMenuId, menu[menuId].submenuOpen]);
+    }, [isFocusedItem, isActiveItem, activeMenuId, submenuOpen]);
 
     const getClonedChild = (child: JSX.Element): React.ReactNode => {
       if (child.type === React.Fragment) {

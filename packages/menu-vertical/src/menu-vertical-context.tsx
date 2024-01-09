@@ -49,9 +49,38 @@ interface UseMenuVerticalPropsFunctions {
 
 export type UseMenuVerticalProps = UseMenuVerticalPropsStates & UseMenuVerticalPropsFunctions;
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-const MenuVerticalContext = React.createContext<UseMenuVerticalProps>(null); // context defaults are generated on render
+const defaults = {
+  rootId: '',
+  rootMenuId: '',
+
+  menu: {},
+  setMenu: () => ({}),
+
+  active: '',
+  setActive: () => ({}),
+
+  focused: '',
+  setFocused: () => ({}),
+
+  current: '',
+  setCurrent: () => ({}),
+
+  activeMenuId: '',
+  setActiveMenuId: () => ({}),
+
+  currentMenuId: '',
+  setCurrentMenuId: () => ({}),
+
+  next: () => ({}),
+  prev: () => ({}),
+  getAboveSubmenuIds: () => [],
+  setCurrentActive: () => ({}),
+  setCurrentActiveFocus: () => ({}),
+  setActiveFocus: () => ({}),
+  setSubmenus: () => ({}),
+};
+
+const MenuVerticalContext = React.createContext<UseMenuVerticalProps>(defaults); // context defaults are generated on render
 
 export const useMenuVertical = () => React.useContext(MenuVerticalContext);
 
@@ -100,7 +129,7 @@ export function MenuVerticalProvider({
     menuIds: string[] = []
   ) => {
     menuIds = menuIds.concat([menuId]);
-    if (menu[menuId].parentMenuId && menu[menuId].parentMenuId !== rootMenuId) {
+    if (menu[menuId]?.parentMenuId && menu[menuId].parentMenuId !== rootMenuId) {
       return getAboveSubmenuIds(menu[menuId].parentMenuId, menuIds);
     } else {
       return menuIds;
@@ -183,10 +212,14 @@ export function MenuVerticalProvider({
   React.useEffect(() => {
     _setActive
       ? _setActive((menuIndex: MenuIndex) =>
-          menuIndex === null ? (menu[rootMenuId].menuItems[0].props.menuIndex as MenuIndex) : menuIndex
+          menuIndex === null && menu[rootMenuId]
+            ? (menu[rootMenuId].menuItems[0].props.menuIndex as MenuIndex)
+            : menuIndex
         )
       : setActive((menuIndex) =>
-          menuIndex === null ? (menu[rootMenuId].menuItems[0].props.menuIndex as MenuIndex) : menuIndex
+          menuIndex === null && menu[rootMenuId]
+            ? (menu[rootMenuId].menuItems[0].props.menuIndex as MenuIndex)
+            : menuIndex
         );
   }, []);
 
