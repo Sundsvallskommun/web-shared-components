@@ -4,6 +4,7 @@ export * from '@sk-web-gui/badge';
 export * from '@sk-web-gui/breadcrumb';
 export * from '@sk-web-gui/button';
 export * from '@sk-web-gui/card';
+export * from '@sk-web-gui/chip';
 export * from '@sk-web-gui/cookie-consent';
 export * from '@sk-web-gui/divider';
 export * from '@sk-web-gui/filter';
