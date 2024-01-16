@@ -1,4 +1,7 @@
-import { TabsButton, TabsComponent, TabsComponentProps, TabsContent, TabsItem } from './tabs';
+import { TabsComponent, TabsComponentProps } from './tabs';
+import { TabsButton } from './tabs-button';
+import { TabsContent } from './tabs-content';
+import { TabsItem } from './tabs-item';
 
 interface TabsProps extends React.ForwardRefExoticComponent<TabsComponentProps>, TabsComponentProps {
   Component: typeof TabsComponent;

@@ -14,7 +14,8 @@
     }
   },
   "files": [
-    "dist"
+    "dist/esm/index.js",
+    "dist/cjs/index.js"
   ],
   "publishConfig": {
     "access": "public"
@@ -38,6 +39,7 @@
   },
   "dependencies": {
     "@sk-web-gui/menubar": "1.0.1",
+    "@sk-web-gui/button": "1.0.3",
     "@sk-web-gui/utils": "1.0.0"
   },
   "peerDependencies": {

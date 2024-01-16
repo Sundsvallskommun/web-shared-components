@@ -1,107 +1,116 @@
-import Button from '@sk-web-gui/button';
 import MenuBar from '@sk-web-gui/menubar';
-import { useMenuBar } from '@sk-web-gui/menubar/dist/types/menubar';
-import { cx, getValidChildren } from '@sk-web-gui/utils';
+import { __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
 import React, { useId } from 'react';
+import { TabsContext } from './tabs-context';
+import { TabsButton } from './tabs-button';
+import { TabsItem } from './tabs-item';
+import { TabsContent } from './tabs-content';
 
 export interface TabsComponentProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'> {
   color?: React.ComponentProps<typeof MenuBar>['color'];
   current?: React.ComponentProps<typeof MenuBar>['current'];
   showBackground?: React.ComponentProps<typeof MenuBar>['showBackground'];
+  onTabChange?: (index: number) => void;
+  tabslistClassName?: string;
+  panelsClassName?: string;
 }
 
 export const TabsComponent = React.forwardRef<HTMLDivElement, TabsComponentProps>((props, ref) => {
-  const { className, color, current, showBackground, children, id: _id, ...rest } = props;
+  const {
+    className,
+    tabslistClassName,
+    panelsClassName,
+    color,
+    current: _current = 0,
+    showBackground,
+    children,
+    id: _id,
+    onTabChange,
+    ...rest
+  } = props;
+  const [current, setCurrent] = React.useState<number>(_current);
+
+  React.useEffect(() => {
+    setCurrent(_current);
+  }, [_current]);
+
+  const handleSetCurrent = (index: number) => {
+    if (index !== current) {
+      onTabChange && onTabChange(index);
+      setCurrent(index);
+    }
+  };
+  const context = {
+    current,
+    setCurrent: handleSetCurrent,
+  };
 
   const autoId = useId();
   const id = _id || `sk-tabs-${autoId}`;
 
+  const getButtons = (): React.ReactNode => {
+    return getValidChildren(children).map((child, index) => {
+      const contentComponent = getValidChildren(child.props.children).find((child) => child?.type === TabsContent);
+      const buttonComponent = getValidChildren(child.props.children).find((child) => child?.type === TabsButton);
+      if (buttonComponent) {
+        const newButton = React.cloneElement(buttonComponent, {
+          id: buttonComponent.props.id || `${id}-tab-${index}`,
+          'aria-controls': contentComponent?.props?.id || `${id}-panel-${index}`,
+          menuIndex: index,
+          ...buttonComponent.props,
+        });
+        return <MenuBar.Item key={`button-${index}`}>{newButton}</MenuBar.Item>;
+      } else {
+        throw Error('No <Tabs.Button> found! Each <Tabs.Item> needs a button.');
+      }
+    });
+  };
+
   const getContent = (): React.ReactNode => {
     if (!getValidChildren(children).some((child) => child?.type === TabsItem)) {
-      throw Error('No Tabs.Item found! You need at least one tab item.');
+      throw Error('No <Tabs.Item> found! You need at least one tab item.');
     }
-    return getValidChildren(children)
-      .filter((child) => child?.type === TabsItem)
-      .map((child, index) => {
-        const contentComponent = getValidChildren(child.props.children).filter(
-          (child) => child?.type === TabsContent
-        )[0];
-        return React.cloneElement(contentComponent, {
-          ...contentComponent.props,
-          id: contentComponent.props.id || `${id}-tab-${index}`,
+
+    return getValidChildren(children).map((child, index) => {
+      const contentComponent = getValidChildren(child.props.children).find((child) => child?.type === TabsContent);
+      const buttonComponent = getValidChildren(child.props.children).find((child) => child?.type === TabsButton);
+      if (contentComponent) {
+        const newContent = React.cloneElement(contentComponent, {
+          ...contentComponent?.props,
+          key: `panel-${index}`,
+          selected: current === index,
+          menuIndex: index,
+          id: contentComponent?.props?.id || `${id}-panel-${index}`,
+          'aria-labelledby': buttonComponent?.props?.id || `${id}-tab-${index}`,
         });
-      });
-  };
-
-  return (
-    <div ref={ref} className={cx('sk-tabs', className)} {...rest}>
-      <MenuBar color={color} current={current} showBackground={showBackground} role="tablist"></MenuBar>
-      <div className="sk-tabs-panel">{getContent()}</div>
-    </div>
-  );
-});
-
-interface TabsItemProps {
-  children: React.ReactNode;
-}
-
-export const TabsItem: React.FC<TabsItemProps> = ({ children }) => {
-  const context = useMenuBar();
-
-  const getContent = () => {
-    if (!getValidChildren(children).some((child) => child.type === TabsContent)) {
-      throw Error('No Tabs.Content found! Each tabs item needs a content container.');
-    }
-    return getValidChildren(children).filter((child) => child?.type === TabsContent)[0];
-  };
-  const getButton = () => {
-    if (!getValidChildren(children).some((child) => child.type === TabsButton)) {
-      throw Error('No Tabs.Button found! Each tabs item needs a button.');
-    }
-    const button = getValidChildren(children).filter((child) => child?.type === TabsButton)[0];
-    return React.cloneElement(button, {
-      ...button.props,
-      role: 'tab',
-      'aria-current': undefined,
-      'aria-selected': button.props.menuIndex === context.current ? 'true' : undefined,
+        return newContent;
+      } else {
+        throw Error('No <Tabs.Content> found! Each <Tabs.Item> needs content.');
+      }
     });
   };
 
   return (
-    <>
-      {getButton()}
-      {getContent()}
-    </>
-  );
-};
-
-interface TabsButtonProps
-  extends React.ComponentProps<typeof MenuBar.Item>,
-    Pick<React.ComponentProps<typeof Button>, 'loading' | 'disabled' | 'loadingText' | 'leftIcon' | 'rightIcon'> {}
-
-export const TabsButton = React.forwardRef<HTMLLIElement, TabsButtonProps>((props, ref) => {
-  const { children, loading, disabled, loadingText, leftIcon, rightIcon, ...rest } = props;
-  return (
-    <MenuBar.Item ref={ref} {...rest}>
-      <Button
-        loading={loading}
-        disabled={disabled}
-        loadingText={loadingText}
-        leftIcon={leftIcon}
-        rightIcon={rightIcon}
-        role="tab"
-      >
-        {children}
-      </Button>
-    </MenuBar.Item>
+    <TabsContext.Provider value={context}>
+      <div ref={ref} className={cx('sk-tabs', className)} {...rest}>
+        <MenuBar
+          className={tabslistClassName}
+          color={color}
+          current={current}
+          showBackground={showBackground}
+          role="tablist"
+          id={id}
+        >
+          {getButtons()}
+        </MenuBar>
+        <div ref={ref} className={cx('sk-tabs-panels', panelsClassName)} {...rest}>
+          {getContent()}
+        </div>
+      </div>
+    </TabsContext.Provider>
   );
 });
 
-export const TabsContent = React.forwardRef<HTMLDivElement, React.ComponentPropsWithRef<'div'>>((props, ref) => {
-  const { className, children, ...rest } = props;
-  return (
-    <div role="tabpanel" ref={ref} className={cx('sk-tabs-content', className)} {...rest}>
-      {children}
-    </div>
-  );
-});
+if (__DEV__) {
+  TabsComponent.displayName = 'Tabs';
+}
