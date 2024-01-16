@@ -13,6 +13,7 @@ import { Button } from './components/button';
 import { ButtonGroup } from './components/button-group';
 import { Card } from './components/card';
 import { Checkbox } from './components/checkbox';
+import { Chip } from './components/chip';
 import { ComboBox } from './components/combobox';
 import { CookieConsent } from './components/cookie-consent';
 import { Dialog } from './components/dialog';
@@ -54,6 +55,7 @@ const components: ((colors: string[], theme: PluginAPI['theme']) => CSSRuleObjec
   ButtonGroup,
   Button,
   Checkbox,
+  Chip,
   Dialog,
   Dot,
   Forms,
