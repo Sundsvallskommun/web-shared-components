@@ -66,6 +66,7 @@
     "@sk-web-gui/snackbar": "1.0.3",
     "@sk-web-gui/spinner": "1.0.3",
     "@sk-web-gui/table": "1.0.3",
+    "@sk-web-gui/tabs": "1.0.0",
     "@sk-web-gui/text": "1.0.1",
     "@sk-web-gui/theme": "1.0.1",
     "@sk-web-gui/user-menu": "1.0.3",

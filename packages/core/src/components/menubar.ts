@@ -29,7 +29,7 @@ export const MenuBar = (colors: string[]) => ({
 
         '@apply border-0': {},
         '@apply focus-visible:bg-background-content focus-visible:ring': {},
-        '&[aria-current="page"]:not(:hover)': {
+        '&[aria-current="page"]:not(:hover),&[aria-selected="true"]:not(:hover), ': {
           '@apply bg-primary-surface text-light-primary': {},
           '@apply focus-visible:ring': {},
         },
@@ -42,7 +42,7 @@ export const MenuBar = (colors: string[]) => ({
               [`@apply hover:bg-${color}-surface-accent`]: {},
               [`@apply hover:text-${color}-text-primary`]: {},
               '@apply focus-visible:bg-background-content focus-visible:ring': {},
-              '&[aria-current="page"]:not(:hover)': {
+              '&[aria-current="page"]:not(:hover),&[aria-selected="true"]:not(:hover)': {
                 [`@apply bg-${color}-surface-primary`]: {},
                 '@apply focus-visible:ring': {},
               },

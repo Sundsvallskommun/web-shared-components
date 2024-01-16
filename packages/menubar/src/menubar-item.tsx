@@ -62,12 +62,12 @@ export const MenuBarItem = React.forwardRef<HTMLLIElement, MenuBarItemProps>((pr
       }
     }
     return React.cloneElement(child, {
-      ...children.props,
       onKeyDown: handleKeyboard,
       ref: menuRef,
       role: 'menuitem',
       'aria-current': current === menuIndex ? 'page' : undefined,
       tabIndex: active === menuIndex ? 0 : -1,
+      ...children.props,
     });
   };
 
