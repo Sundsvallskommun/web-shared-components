@@ -225,6 +225,9 @@ export const Input = () => ({
       '@apply text-input-small': {},
       '@apply h-[3.2rem]': {},
     },
+    '&&-textarea': {
+      '@apply h-full': {},
+    },
 
     //Focus
     '@apply focus:ring': {},
