@@ -109,7 +109,7 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
             aria-expanded={disclosureOpen}
             aria-labelledby={`${id}-label`}
           >
-            {disclosureOpen ? <Icon name="chevron-up" /> : <Icon name="chevron-down" />}
+            {disclosureOpen ? <Icon name="minus" /> : <Icon name="plus" />}
           </Button>
         </div>
       </div>
