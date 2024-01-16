@@ -24,7 +24,7 @@ export const primitives = {
     darken: {
       1: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.04)`,
       2: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.08)`,
-      3: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.12)`,
+      3: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.10)`,
       4: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.18)`,
       5: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.3)`,
       6: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.5)`,
@@ -36,7 +36,7 @@ export const primitives = {
     lighten: {
       1: `rgba(${toRGB('#FFFFFF')?.join(',')}, 0.04)`,
       2: `rgba(${toRGB('#FFFFFF')?.join(',')}, 0.08)`,
-      3: `rgba(${toRGB('#FFFFFF')?.join(',')}, 0.12)`,
+      3: `rgba(${toRGB('#FFFFFF')?.join(',')}, 0.10)`,
       4: `rgba(${toRGB('#FFFFFF')?.join(',')}, 0.2)`,
       5: `rgba(${toRGB('#FFFFFF')?.join(',')}, 0.3)`,
       6: `rgba(${toRGB('#FFFFFF')?.join(',')}, 0.5)`,
@@ -144,7 +144,7 @@ const lightmode = {
     active: primitives.gray[700],
     outline: {
       DEFAULT: primitives.overlay.darken[5],
-      hover: primitives.overlay.darken[6],
+      hover: primitives.overlay.darken[7],
     },
     surface: {
       DEFAULT: 'transparent',
@@ -196,7 +196,7 @@ const lightmode = {
     surface: {
       primary: {
         DEFAULT: primitives.blue[700],
-        hover: primitives.blue[800],
+        hover: primitives.blue[900],
       },
       accent: {
         DEFAULT: primitives.blue[200],
@@ -387,7 +387,7 @@ const darkmode = {
     DEFAULT: primitives.gray[200],
     outline: {
       DEFAULT: primitives.overlay.lighten[5],
-      hover: primitives.overlay.lighten[6],
+      hover: primitives.overlay.lighten[7],
     },
     surface: {
       DEFAULT: 'transparent',
