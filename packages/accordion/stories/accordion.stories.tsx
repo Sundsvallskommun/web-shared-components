@@ -1,6 +1,5 @@
-import React from 'react';
-import { Badge } from '@sk-web-gui/badge';
 import { Meta } from '@storybook/react';
+import React from 'react';
 import { Accordion, AccordionProps } from '../src';
 
 export default {
@@ -13,13 +12,7 @@ export const Template = (args: React.ComponentProps<AccordionProps['Component']>
   return (
     <div className="h-[30rem]">
       <Accordion {...args}>
-        <Accordion.Item
-          header={
-            <>
-              Sök skolskjuts innan den 30 april <Badge color="error" counter={15} />
-            </>
-          }
-        >
+        <Accordion.Item label="15" labelColor="error" header="Sök skolskjuts innan den 30 april">
           <p>
             Har du barn som är i behov av skolskjuts måste du ansöka innan den 30 april inför hösten 2021. Detta gäller
             elever som går i förskoleklass, grundskola och gymnasiesärskola.

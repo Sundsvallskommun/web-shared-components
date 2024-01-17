@@ -25,3 +25,16 @@ export const Template = (args: DisclosureProps) => {
 };
 
 Template.storyName = 'Disclosure';
+
+export const AlternativeVariant = () => {
+  return (
+    <>
+      <Disclosure variant="alt" header="Sök skolskjuts innan den 30 april" icon="bus">
+        <p>
+          Har du barn som är i behov av skolskjuts måste du ansöka innan den 30 april inför hösten 2021. Detta gäller
+          elever som går i förskoleklass, grundskola och gymnasiesärskola.
+        </p>
+      </Disclosure>
+    </>
+  );
+};

@@ -7,14 +7,14 @@ export interface AccordionItemProps
   extends DefaultProps,
     UseAccordionProps,
     React.ComponentPropsWithRef<'div'>,
-    DisclosureProps {}
+    Omit<DisclosureProps, 'size' | 'variant'> {}
 
 export const AccordionItem: React.FC<AccordionItemProps> = React.forwardRef<HTMLDivElement, AccordionItemProps>(
   (props, ref) => {
     const { className, ...rest } = props;
     return (
       <li className={cx('sk-accordion-item', className)}>
-        <Disclosure ref={ref} {...rest} />
+        <Disclosure ref={ref} variant="default" {...rest} />
       </li>
     );
   }
