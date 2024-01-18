@@ -28,6 +28,12 @@ export const ComboBox = () => ({
       },
     },
 
+    '&:not([aria-expanded="true"])': {
+      '.sk-form-combobox-select': {
+        '@apply caret-transparent': {},
+      },
+    },
+
     '&-select': {
       '@apply h-full bg-right-12 bg-no-repeat': {},
 

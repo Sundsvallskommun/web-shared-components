@@ -47,18 +47,19 @@ export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListPr
       a.props.checked !== undefined
         ? a.props.checked
         : context?.value?.length > 0
-        ? context?.value.includes(a.props.value)
-        : false;
+          ? context?.value.includes(a.props.value)
+          : false;
     const bchecked =
       b.props.checked !== undefined
         ? b.props.checked
         : context?.value?.length > 0
-        ? context?.value.includes(b.props.value)
-        : false;
+          ? context?.value.includes(b.props.value)
+          : false;
     return achecked && !bchecked ? -1 : bchecked && !achecked ? 1 : 0;
   };
   const getFilteredChildren = () =>
     getValidChildren(children)
+      .sort(sortSelected)
       .filter(
         (child) =>
           child.props.value?.toLowerCase().includes(context.searchValue?.toLowerCase()) ||
@@ -68,18 +69,19 @@ export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListPr
         React.cloneElement(child, { ...child.props, index: index, id: `${context.listId}-${index}` })
       );
 
-  const getChildren = () =>
-    autofilter
-      ? getFilteredChildren().sort(sortSelected)
+  const options = React.useMemo(() => {
+    return autofilter
+      ? getFilteredChildren()
       : getValidChildren(children)
+          .sort(sortSelected)
           .map((child, index) =>
             React.cloneElement(child, { ...child.props, index: index, id: `${context.listId}-${index}` })
-          )
-          .sort(sortSelected);
+          );
+  }, [context.searchValue, open]);
 
   useEffect(() => {
-    setTotal && setTotal(React.Children.count(getChildren()));
-  }, [context.searchValue, getChildren, setTotal]);
+    setTotal && setTotal(React.Children.count(options));
+  }, [context.searchValue, options, setTotal]);
 
   return (
     <fieldset
@@ -99,7 +101,7 @@ export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListPr
       aria-hidden={!open}
       {...rest}
     >
-      {getChildren()}
+      {options}
     </fieldset>
   );
 });

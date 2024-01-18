@@ -231,19 +231,11 @@ const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((prop
       event.preventDefault();
       if (!open) {
         setOpen(!open);
-      } else if (active > -1) {
-        document.getElementById(`${listId}-${active}`)?.click();
-        setOpen(false);
       }
     } else if (event.key === ' ') {
       if (!open) {
-        setOpen(!open);
-      } else {
         event.preventDefault();
-        event.stopPropagation();
-        if (active > -1) {
-          document.getElementById(`${listId}-${active}`)?.click();
-        }
+        setOpen(!open);
       }
     } else if (event.key === 'Escape') {
       close();
@@ -263,7 +255,13 @@ const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((prop
 
   return (
     <ComboboxContext.Provider value={context}>
-      <div className={cx(classes, className)} role="combobox" aria-owns={listId} ref={internalRef}>
+      <div
+        className={cx(classes, className)}
+        role="combobox"
+        aria-controls={listId}
+        ref={internalRef}
+        aria-expanded={open}
+      >
         <input
           ref={useForkRef(inputRef, ref)}
           className={cx(
@@ -288,7 +286,6 @@ const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((prop
           placeholder={open && !value ? searchPlaceholder : internalValue.length < 1 ? placeholder : undefined}
           onChange={handleOnChange}
           aria-autocomplete="none"
-          aria-controls={listId}
           value={getValue()}
           {...rest}
         ></input>
