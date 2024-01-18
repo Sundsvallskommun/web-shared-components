@@ -2,7 +2,7 @@ import React from 'react';
 import { Meta } from '@storybook/react';
 import { Chip, ChipProps } from '../src';
 import { FormControl, FormLabel, Input } from '@sk-web-gui/forms';
-import Button from '@sk-web-gui/button';
+import { Button } from '@sk-web-gui/button';
 
 export default {
   title: 'Komponenter/Chip',
