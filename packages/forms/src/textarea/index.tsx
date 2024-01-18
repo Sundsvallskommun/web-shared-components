@@ -74,7 +74,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>((pr
         aria-required={required}
         aria-describedby={ariaDescribedby || `${errorId} ${helpTextId}`}
         data-color={color ? color : undefined}
-        className={cx('form-textarea', classes, className)}
+        className={cx('sk-form-input-textarea', classes, className)}
         id={id || formControl.id}
         {...rest}
       />

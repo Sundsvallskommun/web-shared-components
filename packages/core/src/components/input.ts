@@ -204,7 +204,7 @@ export const Input = () => ({
     '&&-lg': {
       '@apply rounded-button-lg': {},
       '@apply px-20': {},
-      '@apply py-12': {},
+      '@apply py-[1.1rem]': {},
       '@apply gap-8': {},
       '@apply text-input-large': {},
       '@apply h-[4.8rem]': {},
@@ -212,7 +212,7 @@ export const Input = () => ({
     '&&-md': {
       '@apply rounded-button-md': {},
       '@apply px-16': {},
-      '@apply py-8': {},
+      '@apply py-[0.7rem]': {},
       '@apply gap-8': {},
       '@apply text-input-medium': {},
       '@apply h-[4rem]': {},
@@ -220,10 +220,13 @@ export const Input = () => ({
     '&&-sm': {
       '@apply rounded-button-sm': {},
       '@apply px-12': {},
-      '@apply py-6': {},
+      '@apply py-[0.5rem]': {},
       '@apply gap-6': {},
       '@apply text-input-small': {},
       '@apply h-[3.2rem]': {},
+    },
+    '&&-textarea': {
+      '@apply h-auto': {},
     },
 
     //Focus
