@@ -3,15 +3,20 @@ import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
 import { useAccordion } from '../accordion/accordion';
 import { Button } from '@sk-web-gui/button';
+import { Label } from '@sk-web-gui/label';
+import { Divider } from '@sk-web-gui/divider';
 import { useDisclosureClass } from './styles';
-import { Icon } from '@sk-web-gui/icon';
+import { Icon, IconProps } from '@sk-web-gui/icon';
 
 export interface DisclosureProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   initalOpen?: boolean;
   header: React.ReactNode;
-  /* Makes disclosure disabled */
+  /** Makes disclosure disabled */
   disabled?: boolean;
-  /* Element to wrap header in. Defaults to label */
+  /**
+   * Element to wrap header in.
+   * @default label
+   */
   headerAs?: React.ElementType;
   /* React node */
   children?: React.ReactNode;
@@ -23,7 +28,25 @@ export interface DisclosureProps extends DefaultProps, React.ComponentPropsWithR
    * Size of the disclosure
    * @default md
    */
-  size?: 'sm' | 'md';
+  size?: 'sm' | 'md' | 'lg';
+  /**
+   * Style variant,
+   */
+  variant?: 'default' | 'alt';
+  /** Leading icon. Will be displayed before the header */
+  icon?: React.ComponentProps<IconProps>['name'];
+  /** Support text. Will be displayed after the header. */
+  supportText?: string;
+  /** Label. Will be displayed after the header. */
+  label?: string;
+  /** Color of the label
+   * @default gronsta
+   */
+  labelColor?: React.ComponentProps<typeof Label>['color'];
+  /** Inverts the colors of the label
+   * @default true
+   */
+  labelInverted?: React.ComponentProps<typeof Label>['inverted'];
 }
 
 export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((props, ref) => {
@@ -37,6 +60,12 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
     id: _id,
     onToggleOpen,
     size: _size,
+    variant = 'default',
+    icon,
+    supportText,
+    label,
+    labelColor = 'gronsta',
+    labelInverted = true,
     ...rest
   } = props;
   const { open, onClose, onOpen, ...context } = useAccordion();
@@ -76,13 +105,14 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
     }
   };
 
-  const classes = useDisclosureClass({ size, disabled });
+  const classes = useDisclosureClass({ size, disabled, variant });
   return (
     <div
       ref={ref}
       className={cx(classes, disclosureOpen ? 'sk-disclosure-is-open' : undefined, className)}
       id={id}
       data-open={disclosureOpen}
+      data-variant={variant}
       {...rest}
     >
       <div
@@ -93,16 +123,24 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
         onClick={onClick}
       >
         <div className="sk-disclosure-toggle">
-          <div className="w-full">
+          {icon && <Icon name={icon} size={size === 'lg' ? '3.2rem' : size === 'md' ? '2.4rem' : '2rem'} />}
+          <div className="sk-disclosure-title-wrapper">
             <Comp className="sk-disclosure-title" id={`${id}-label`}>
               {header}
             </Comp>
+            {variant === 'alt' && <Divider></Divider>}
           </div>
+          {supportText && <span className="sk-disclosure-support">{supportText}</span>}
+          {label && (
+            <Label className="sk-disclosure-label" color={labelColor} inverted={labelInverted} rounded>
+              {label}
+            </Label>
+          )}
           <Button
             disabled={disabled}
-            variant="ghost"
+            variant={variant === 'default' ? 'ghost' : 'tertiary'}
             iconButton
-            size={size}
+            size={variant === 'default' ? size : 'sm'}
             className="sk-disclosure-header-icon"
             onClick={onClick}
             aria-controls={`${id}-content`}
@@ -113,7 +151,13 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
           </Button>
         </div>
       </div>
-      <div className={`sk-disclosure-body ${disclosureOpen && 'overflow-visible'}`} aria-hidden={!disclosureOpen}>
+      <div
+        className={`sk-disclosure-body ${disclosureOpen && 'overflow-visible'}`}
+        data-has-icon={!!icon}
+        data-variant={variant}
+        data-size={size === 'lg' && variant === 'default' ? 'md' : size}
+        aria-hidden={!disclosureOpen}
+      >
         <div role="region" aria-labelledby={`${id}-header`} id={`${id}-content`}>
           {children}
         </div>

@@ -13,49 +13,97 @@ export const Accordion = () => ({
 
       '&-icon': {
         '@apply ml-auto': {},
+        '@apply text-dark-secondary': {},
         svg: {
           '@apply w-20 h-20': {},
         },
       },
       '&[data-disabled="true"]': {
         '@apply text-dark-disabled': {},
+        '.sk-disclosure-title': {
+          '@apply text-dark-disabled': {},
+        },
         '@apply cursor-default': {},
         '*': {
           '@apply cursor-default': {},
         },
       },
     },
-
-    '&-sm': {
-      '.sk-disclosure-title': {
-        '@apply text-h4-sm font-bold': {},
-      },
-      '.sk-disclosure-toggle': {
-        '@apply py-4': {},
-        '@apply h-40': {},
-      },
-      '.sk-disclosure-header-icon': {
-        '@apply w-32 h-32': {},
-      },
-    },
-    '&-md': {
-      '.sk-disclosure-title': {
-        '@apply text-h4-md font-bold': {},
-      },
-      '.sk-disclosure-toggle': {
-        '@apply py-8': {},
-        '@apply h-56': {},
-      },
-      '.sk-disclosure-header-icon': {
-        '@apply w-40 h-40': {},
-      },
+    '&-label': {
+      '@apply shrink-0': {},
     },
     '&-toggle': {
       '@apply flex items-center justify-between': {},
       '@apply gap-16': {},
     },
     '&-title': {
-      '@apply text-dark-secondary': {},
+      '@apply text-dark-primary': {},
+      '&-wrapper': {
+        '@apply w-full': {},
+        '@apply flex flex-row': {},
+        '@apply items-center': {},
+      },
+    },
+
+    '&-sm': {
+      '.sk-disclosure-title': {
+        '@apply text-h4-sm font-bold': {},
+        '&-wrapper': {
+          '@apply gap-12': {},
+        },
+      },
+      '.sk-disclosure-toggle': {
+        '@apply gap-12': {},
+      },
+      '.sk-disclosure-support': {
+        '@apply text-small': {},
+      },
+      '&[data-variant="default"]': {
+        '.sk-disclosure-toggle': {
+          '@apply py-4': {},
+          '@apply h-40': {},
+        },
+        '.sk-disclosure-header-icon': {
+          '@apply w-32 h-32': {},
+        },
+      },
+      '&[data-variant="alt"]': {},
+    },
+    '&-md': {
+      '.sk-disclosure-title': {
+        '@apply text-h4-md font-bold': {},
+        '&-wrapper': {
+          '@apply gap-12': {},
+        },
+      },
+      '.sk-disclosure-toggle': {
+        '@apply gap-12': {},
+      },
+      '.sk-disclosure-support': {
+        '@apply text-body': {},
+      },
+      '&[data-variant="default"]': {
+        '.sk-disclosure-toggle': {
+          '@apply py-8': {},
+          '@apply h-56': {},
+        },
+        '.sk-disclosure-header-icon': {
+          '@apply w-40 h-40': {},
+        },
+      },
+    },
+    '&-lg': {
+      '&[data-variant="alt"]': {
+        '.sk-disclosure-support': {
+          '@apply text-large': {},
+        },
+        '.sk-disclosure-title': {
+          '@apply text-h3-md font-bold': {},
+          '&-wrapper': {
+            '@apply gap-16': {},
+          },
+        },
+      },
     },
 
     '&-body': {
@@ -76,14 +124,40 @@ export const Accordion = () => ({
       '&[aria-hidden="false"], &[data-hidden="false"]': {
         '@apply block h-max visible': {},
       },
+
+      '&[data-variant="alt"]': {
+        '@apply mt-24': {},
+        '&[data-size="sm"]': {
+          '@apply pr-12': {},
+        },
+        '&[data-size="md"]': {
+          '@apply pr-12': {},
+        },
+        '&[data-size="lg"]': {
+          '@apply pr-16': {},
+        },
+        '&[data-has-icon="true"]': {
+          '&[data-size="sm"]': {
+            '@apply ml-[3.2rem]': {},
+          },
+          '&[data-size="md"]': {
+            '@apply ml-[3.6rem]': {},
+          },
+          '&[data-size="lg"]': {
+            '@apply ml-[4.8rem]': {},
+          },
+        },
+      },
     },
 
     '&-is-open': {
       '.sk-disclosure-body': {
         '@apply overflow-visible animate-reset-overflow': {},
       },
-      '.sk-disclosure-title': {
-        '@apply text-vattjom-text-primary': {},
+      '&[data-variant="default"]': {
+        '.sk-disclosure-title': {
+          '@apply text-vattjom-text-primary': {},
+        },
       },
     },
   },
