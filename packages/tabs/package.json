@@ -14,8 +14,7 @@
     }
   },
   "files": [
-    "dist/esm/index.js",
-    "dist/cjs/index.js"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"

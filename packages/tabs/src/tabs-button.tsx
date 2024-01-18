@@ -3,10 +3,10 @@ import React from 'react';
 import { useTabs } from './tabs-context';
 import { __DEV__ } from '@sk-web-gui/utils';
 
-interface TabsButtonProps extends React.ComponentProps<typeof Button> {
+interface TabsButtonProps
+  extends React.ComponentProps<typeof Button>,
+    Omit<React.ComponentPropsWithoutRef<'button'>, 'color'> {
   menuIndex?: number;
-}
-{
 }
 
 export const TabsButton = React.forwardRef<HTMLButtonElement, TabsButtonProps>((props, ref) => {
