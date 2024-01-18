@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@1.1.3...@sk-web-gui/react@1.2.0) (2024-01-18)
+
+### Features
+
+- **chip:** new Chip component ([e9aa4b3](https://github.com/Sundsvallskommun/web-shared-components/commit/e9aa4b3e49aae1c8905bd4155a7378433ac7734f))
+- **tabs:** tabs styling and context ([fbbade6](https://github.com/Sundsvallskommun/web-shared-components/commit/fbbade6450a29edaed91aeebb5234393d41010cb))
+
 ## [1.1.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@1.1.2...@sk-web-gui/react@1.1.3) (2023-12-22)
 
 **Note:** Version bump only for package @sk-web-gui/react

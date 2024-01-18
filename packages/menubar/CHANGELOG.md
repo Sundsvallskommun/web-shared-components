@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/menubar@1.0.1...@sk-web-gui/menubar@1.0.2) (2024-01-18)
+
+### Bug Fixes
+
+- **menubar:** updated order of props ([89c242b](https://github.com/Sundsvallskommun/web-shared-components/commit/89c242b0a89cf4d82c5376ed9c6f0a1c238150b9))
+
 ## [1.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/menubar@1.0.0...@sk-web-gui/menubar@1.0.1) (2023-12-21)
 
 ### Bug Fixes

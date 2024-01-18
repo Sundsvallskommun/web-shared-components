@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/menu-vertical@1.0.1...@sk-web-gui/menu-vertical@1.0.2) (2024-01-18)
+
+### Bug Fixes
+
+- faulty rendering in prod ([2bd2067](https://github.com/Sundsvallskommun/web-shared-components/commit/2bd20676860695bc55129907105b41327a7b28f9))
+- major dep update, tailwind hot reload ([c59db89](https://github.com/Sundsvallskommun/web-shared-components/commit/c59db89958e36ff51931389c17f18bf0e8857f82))
+
 ## [1.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/menu-vertical@1.0.0...@sk-web-gui/menu-vertical@1.0.1) (2023-12-21)
 
 ### Bug Fixes

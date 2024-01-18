@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@1.0.3...@sk-web-gui/core@1.1.0) (2024-01-18)
+
+### Bug Fixes
+
+- **combobox:** keyboard, aria, and sorting issues ([a5c181e](https://github.com/vechai/sk-web-gui/commit/a5c181e40192b806e50e1d35dd3624c51d0c6737))
+- **core:** typed core ([944c928](https://github.com/vechai/sk-web-gui/commit/944c9289976b497d62643c1d6a5d4133e69519f7))
+- major dep update, tailwind hot reload ([c59db89](https://github.com/vechai/sk-web-gui/commit/c59db89958e36ff51931389c17f18bf0e8857f82))
+- **menu-vertical:** bg-bug on current submenuitem ([bb7f0c8](https://github.com/vechai/sk-web-gui/commit/bb7f0c8a6e66eb9902c2dac20ab11d6740ce284e))
+- minor update of dependencies ([bbfc79d](https://github.com/vechai/sk-web-gui/commit/bbfc79d988de26396ef7f22db4f0f36eceba5df3))
+- **textarea:** fixed autoheight issue ([c74393b](https://github.com/vechai/sk-web-gui/commit/c74393bf3e86068ef60675e80958e386cf976da0))
+
+### Features
+
+- **accordion:** new disclosure variant ([9429fa5](https://github.com/vechai/sk-web-gui/commit/9429fa559f365c81928bab309b3dda061d90b1e5))
+- **chip:** new Chip component ([e9aa4b3](https://github.com/vechai/sk-web-gui/commit/e9aa4b3e49aae1c8905bd4155a7378433ac7734f))
+- **tabs:** tabs styling and context ([fbbade6](https://github.com/vechai/sk-web-gui/commit/fbbade6450a29edaed91aeebb5234393d41010cb))
+
 ## [1.0.3](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@1.0.2...@sk-web-gui/core@1.0.3) (2023-12-22)
 
 ### Bug Fixes

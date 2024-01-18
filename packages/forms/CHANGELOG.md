@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@1.0.2...@sk-web-gui/forms@1.0.3) (2024-01-18)
+
+### Bug Fixes
+
+- **combobox:** keyboard, aria, and sorting issues ([a5c181e](https://github.com/Sundsvallskommun/web-shared-components/commit/a5c181e40192b806e50e1d35dd3624c51d0c6737))
+- **forms:** radiobutton.group using wrong type in stories ([ac95588](https://github.com/Sundsvallskommun/web-shared-components/commit/ac9558876f2245fbbe852c64f3158c58d0de7145))
+- **textarea:** fixed autoheight issue ([c74393b](https://github.com/Sundsvallskommun/web-shared-components/commit/c74393bf3e86068ef60675e80958e386cf976da0))
+
 ## [1.0.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@1.0.1...@sk-web-gui/forms@1.0.2) (2023-12-21)
 
 ### Bug Fixes
