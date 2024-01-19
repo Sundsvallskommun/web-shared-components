@@ -1,4 +1,4 @@
-import Button from '@sk-web-gui/button';
+import { Button } from '@sk-web-gui/button';
 import React from 'react';
 import { useTabs } from './tabs-context';
 import { __DEV__ } from '@sk-web-gui/utils';
