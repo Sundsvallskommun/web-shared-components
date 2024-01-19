@@ -27,6 +27,13 @@ export const Template = (args: PopupMenuProps) => {
             <Icon name="arrow-down" />
           </PopupMenu.Button>
           <PopupMenu.Group>
+            {['Val 1', 'Val 2', 'Val 3'].map((s) => (
+              <PopupMenu.Item key={s}>
+                <Button variant="primary" leftIcon={<Icon name="plus" />}>
+                  {s}
+                </Button>
+              </PopupMenu.Item>
+            ))}
             <PopupMenu.Item>
               <Button leftIcon={<Icon name="user" />} onClick={() => console.log('Profile')}>
                 Profil

@@ -54,14 +54,18 @@ export interface PopupMenuItemProps {
 
 //TODO: Add function for expandable menues.
 
-export const PopupMenuItem: React.FC<PopupMenuItemProps> = ({ disabled = false, children }) => {
+export const PopupMenuItem: React.FC<PopupMenuItemProps> = (props) => {
   const getItem = (child: JSX.Element, active: boolean) => {
     const classes = cx(child?.props?.className, active ? 'active' : '');
     const props = { ...child.props, className: cx('sk-popup-menu-item', classes) };
     return React.cloneElement(child, props);
   };
 
-  return <Menu.Item disabled={disabled}>{({ active }) => getItem(children, active)}</Menu.Item>;
+  return (
+    <Menu.Item {...props} disabled={props.disabled}>
+      {({ active }) => getItem(props.children, active)}
+    </Menu.Item>
+  );
 };
 
 export const PopupMenuGroup: React.FC<React.ComponentPropsWithRef<'div'> & DefaultProps> = (props) => {
