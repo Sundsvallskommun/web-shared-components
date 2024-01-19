@@ -1,10 +1,10 @@
-import { Dialog, Transition } from '@headlessui/react';
+import { Dialog, Transition, _internal_ComponentDialog } from '@headlessui/react';
 import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
 
-export interface ModalComponentProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
+export interface ModalComponentProps extends DefaultProps, Omit<_internal_ComponentDialog, 'displayName'> {
   show: boolean;
   label?: string | JSX.Element;
   closeLabel?: string;
