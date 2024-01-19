@@ -242,7 +242,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
       {...rest}
       aria-label="pagination"
       ref={ref}
-      data-hidePrevNextLabel={hidePrevNextLabel}
+      data-hideprevnextlabel={hidePrevNextLabel}
     >
       {asSelect ? (
         <Select
