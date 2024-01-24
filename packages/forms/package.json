@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@reach/auto-id": "^0.18.0",
-    "@react-hookz/web": "23.1.0",
+    "@react-hookz/web": "24.0.2",
     "@sk-web-gui/icon": "1.0.0",
     "@sk-web-gui/theme": "1.0.2",
     "@sk-web-gui/utils": "1.0.0"

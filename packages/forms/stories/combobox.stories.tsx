@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { Combobox, ComboboxProps, FormControl, FormErrorMessage, FormHelperText, FormLabel } from '../src';
-import React from 'react';
+import React, { useEffect } from 'react';
 export default {
   title: 'Komponenter/Combobox',
   component: Combobox,
@@ -157,6 +157,13 @@ Template.storyName = 'Combobox';
 
 export const CustomFilterHandler = () => {
   const [query, setQuery] = React.useState<string>('');
+  const [delayedList, setDelayedList] = React.useState<typeof applesAndPears>([]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setDelayedList(applesAndPears);
+    }, 1000);
+  }, []);
 
   return (
     <div className="h-[40rem]">
@@ -166,10 +173,11 @@ export const CustomFilterHandler = () => {
           searchPlaceholder="Search apple or pear"
           autofilter={false}
           searchValue={query}
+          defaultValue={applesAndPears[0].id.toString()}
           onChangeSearch={(e) => setQuery(e.target.value.toLowerCase())}
         >
           <Combobox.List>
-            {applesAndPears
+            {delayedList
               .filter((fruit) => fruit.name.toLowerCase().includes(query) || fruit.type.includes(query))
               .map((fruit) => (
                 <Combobox.Option key={`appleAndPears-${fruit.id}`} value={fruit.id.toString()}>

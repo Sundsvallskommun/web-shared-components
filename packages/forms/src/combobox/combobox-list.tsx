@@ -47,14 +47,14 @@ export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListPr
       a.props.checked !== undefined
         ? a.props.checked
         : context?.value?.length > 0
-          ? context?.value.includes(a.props.value)
-          : false;
+        ? context?.value.includes(a.props.value)
+        : false;
     const bchecked =
       b.props.checked !== undefined
         ? b.props.checked
         : context?.value?.length > 0
-          ? context?.value.includes(b.props.value)
-          : false;
+        ? context?.value.includes(b.props.value)
+        : false;
     return achecked && !bchecked ? -1 : bchecked && !achecked ? 1 : 0;
   };
   const getFilteredChildren = () =>
@@ -77,7 +77,7 @@ export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListPr
           .map((child, index) =>
             React.cloneElement(child, { ...child.props, index: index, id: `${context.listId}-${index}` })
           );
-  }, [context.searchValue, open]);
+  }, [context.searchValue, open, children]);
 
   useEffect(() => {
     setTotal && setTotal(React.Children.count(options));
