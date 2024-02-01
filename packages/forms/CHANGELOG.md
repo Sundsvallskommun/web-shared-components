@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@1.0.3...@sk-web-gui/forms@1.0.4) (2024-02-01)
+
+### Bug Fixes
+
+- **forms:** async options list not updating ([8057774](https://github.com/Sundsvallskommun/web-shared-components/commit/8057774940b603bcbacea727a35f3a9c2f343d8d))
+
 ## [1.0.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@1.0.2...@sk-web-gui/forms@1.0.3) (2024-01-18)
 
 ### Bug Fixes

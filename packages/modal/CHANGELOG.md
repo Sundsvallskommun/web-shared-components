@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/modal@1.0.4...@sk-web-gui/modal@1.0.5) (2024-02-01)
+
+### Bug Fixes
+
+- broken build ([407afc9](https://github.com/Sundsvallskommun/web-shared-components/commit/407afc99073db8e423f865ccdd303f68ca0896e4))
+
 ## [1.0.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/modal@1.0.3...@sk-web-gui/modal@1.0.4) (2024-01-18)
 
 **Note:** Version bump only for package @sk-web-gui/modal

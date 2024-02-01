@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@1.1.0...@sk-web-gui/core@1.1.1) (2024-02-01)
+
+### Bug Fixes
+
+- fixed issues with elevation shadows ([45e02b1](https://github.com/vechai/sk-web-gui/commit/45e02b15d20ab06f12e4bd1b35785f688ed54f0a))
+
 # [1.1.0](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@1.0.3...@sk-web-gui/core@1.1.0) (2024-01-18)
 
 ### Bug Fixes
