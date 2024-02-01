@@ -16,6 +16,16 @@ export interface UserMenuProps extends DefaultProps, React.ComponentPropsWithRef
   placeholderImage?: string;
   imageElem?: React.ReactElement;
   menuGroups: MenuItemGroup[];
+  /**
+   * Size of avatar button
+   * @default lg
+   */
+  buttonSize?: React.ComponentProps<typeof Avatar>['size'];
+  /**
+   * If avatar button should be rounded
+   * @default true
+   */
+  buttonRounded?: React.ComponentProps<typeof Avatar>['rounded'];
 }
 
 export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>((props, ref) => {
@@ -29,6 +39,8 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>((props, 
     placeholderImage,
     imageElem,
     initials,
+    buttonSize = 'lg',
+    buttonRounded = true,
     ...rest
   } = props;
 
@@ -37,8 +49,8 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>((props, 
       <PopupMenu align="end">
         <PopupMenu.Button size="lg" iconButton className="sk-usermenu-button" rounded>
           <Avatar
-            size="lg"
-            rounded
+            size={buttonSize}
+            rounded={buttonRounded}
             initials={initials}
             imageUrl={image}
             imageAlt={imageAlt}
