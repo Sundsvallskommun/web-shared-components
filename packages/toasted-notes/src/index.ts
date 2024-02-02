@@ -1,4 +1,4 @@
-import Toaster from './Toast';
+import { Toaster } from './Toast';
 
 const toaster = new Toaster();
 

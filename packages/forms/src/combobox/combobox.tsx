@@ -41,7 +41,7 @@ export interface ComboboxBaseProps extends UseComboboxProps, Omit<React.Componen
   invalid?: boolean;
 }
 
-const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((props, ref) => {
+export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((props, ref) => {
   const {
     multiple,
     searchValue: _value,
