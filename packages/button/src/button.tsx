@@ -36,6 +36,11 @@ export interface ButtonProps extends DefaultProps, React.ComponentPropsWithRef<'
   iconButton?: boolean;
   /** Make sure to use aria-describedby or such for accessibility */
   'aria-disabled'?: React.ButtonHTMLAttributes<HTMLButtonElement>['aria-disabled'];
+  /**
+   * If the background of the button should be shown
+   * @default true
+   */
+  showBackground?: boolean;
 }
 
 export interface ButtonContentProps {
@@ -85,6 +90,7 @@ export const Button = React.forwardRef(
       rightIcon,
       children,
       inverted,
+      showBackground = true,
       ...rest
     } = props;
     const Component = as || 'button';
@@ -105,6 +111,7 @@ export const Button = React.forwardRef(
         type={type}
         data-active={active ? 'true' : undefined}
         className={cx(className)}
+        data-background={showBackground ? undefined : 'false'}
         {...rest}
       >
         <ButtonContent
@@ -129,6 +136,7 @@ export const Button = React.forwardRef(
         data-color={color ? color : undefined}
         data-inverted={inverted ? inverted : undefined}
         data-icon={iconButton ? iconButton : undefined}
+        data-background={showBackground ? undefined : 'false'}
         className={cx(classes, className)}
       >
         <ButtonContent

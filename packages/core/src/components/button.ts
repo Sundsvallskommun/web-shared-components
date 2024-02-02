@@ -236,6 +236,9 @@ export const Button = (colors: string[]) => ({
     ...buttonGhost(),
     ...buttonLink(colors),
 
+    '&[data-background="false"]:not(:hover)': {
+      '@apply bg-transparent': {},
+    },
     '.btn-has-icon': {
       '&-left': {
         '@apply h-full flex items-center justify-center -ml-2': {},
