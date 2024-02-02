@@ -29,7 +29,8 @@
     "release": "changeset publish",
     "link-all": "yarn unlink-all && lerna exec --parallel yarn link",
     "unlink-all": "lerna exec --parallel --bail=false yarn unlink",
-    "lint": "eslint ./packages"
+    "lint": "eslint ./packages",
+    "prepare": "husky"
   },
   "resolutions": {
     "**/react": "^18.2.0",
@@ -63,6 +64,7 @@
     "cross-env": "^7.0.3",
     "eslint": "^8.56.0",
     "eslint-plugin-storybook": "^0.6.15",
+    "husky": "^9.0.10",
     "install": "^0.13.0",
     "lerna": "^7.4.1",
     "npm": "^10.2.5",
