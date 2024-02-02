@@ -1,4 +1,4 @@
-import useSnackbar, { Snackbar, SnackbarProps } from './snackbar';
+import { useSnackbar, Snackbar, SnackbarProps } from './snackbar';
 
 export { Snackbar, useSnackbar };
 export type { SnackbarProps };

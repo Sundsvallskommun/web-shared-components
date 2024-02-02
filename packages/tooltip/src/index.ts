@@ -1,4 +1,4 @@
-import Tooltip, { TooltipProps } from './tooltip';
+import { Tooltip, TooltipProps } from './tooltip';
 
 export { Tooltip };
 export type { TooltipProps };

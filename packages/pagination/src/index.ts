@@ -1,4 +1,4 @@
-import Pagination, { PaginationProps } from './pagination';
+import { Pagination, PaginationProps } from './pagination';
 
 export { Pagination };
 export type { PaginationProps };

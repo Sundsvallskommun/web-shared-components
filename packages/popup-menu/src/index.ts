@@ -1,4 +1,4 @@
-import PopupMenuComponent, { PopupMenuPropsInternal, PopupMenuItem, PopupMenuGroup } from './popup-menu';
+import { PopupMenuComponent, PopupMenuPropsInternal, PopupMenuItem, PopupMenuGroup } from './popup-menu';
 import { PopupMenuButton } from './popup-menu-button';
 
 interface PopupMenuProps extends React.ForwardRefExoticComponent<PopupMenuPropsInternal> {
