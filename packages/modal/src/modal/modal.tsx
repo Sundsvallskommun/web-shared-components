@@ -11,6 +11,7 @@ export interface ModalComponentProps extends DefaultProps, Omit<_internal_Compon
   className?: string;
   onClose?: () => void;
   hideClosebutton?: boolean;
+  closeButtonProps?: React.ComponentProps<typeof Button>;
   children?: React.ReactNode;
   disableCloseOutside?: boolean;
   /**
@@ -38,6 +39,7 @@ const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentProps>((pr
     as: Content = 'article',
     labelAs = 'label',
     hideLabel = false,
+    closeButtonProps,
     ...rest
   } = props;
 
@@ -104,13 +106,15 @@ const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentProps>((pr
                     {!hideClosebutton && (
                       <Button
                         className="sk-modal-dialog-close"
-                        variant="ghost"
+                        variant="tertiary"
                         iconButton
+                        showBackground={false}
                         size="sm"
                         aria-label={
                           closeLabel ? closeLabel : `Stäng ${label && label !== typeof 'object' ? label : 'modal'}`
                         }
                         onClick={onCloseHandler}
+                        {...closeButtonProps}
                       >
                         <Icon name="x" />
                       </Button>
