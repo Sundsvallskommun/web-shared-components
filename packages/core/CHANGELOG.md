@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@1.1.1...@sk-web-gui/core@1.1.2) (2024-02-02)
+
+### Bug Fixes
+
+- **modal:** text colors adjusted ([363e379](https://github.com/vechai/sk-web-gui/commit/363e3796a5e43a33af0d023eba88192daefbfaea))
+
 ## [1.1.1](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@1.1.0...@sk-web-gui/core@1.1.1) (2024-02-01)
 
 ### Bug Fixes

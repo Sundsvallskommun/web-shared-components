@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/modal@1.0.5...@sk-web-gui/modal@1.1.0) (2024-02-02)
+
+### Features
+
+- **modal:** added closeButtonProps ([83bb371](https://github.com/Sundsvallskommun/web-shared-components/commit/83bb371569bbb6478e79e8cce6322f7312767149))
+
 ## [1.0.5](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/modal@1.0.4...@sk-web-gui/modal@1.0.5) (2024-02-01)
 
 ### Bug Fixes

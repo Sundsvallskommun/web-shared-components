@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@1.0.4...@sk-web-gui/forms@1.0.5) (2024-02-02)
+
+### Bug Fixes
+
+- **combobox:** issue with missing dependency were resolved ([19e8924](https://github.com/Sundsvallskommun/web-shared-components/commit/19e8924a6568d35a791bef0e906228b58cff503f))
+- **combobox:** replaced @react-hookz/web with usehooks-ts ([21ec6ac](https://github.com/Sundsvallskommun/web-shared-components/commit/21ec6aca4bb7efb64bdbfe83edd439a3d0e678b7))
+
 ## [1.0.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@1.0.3...@sk-web-gui/forms@1.0.4) (2024-02-01)
 
 ### Bug Fixes

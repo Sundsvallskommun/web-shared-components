@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@1.1.0...@sk-web-gui/accordion@1.1.1) (2024-02-02)
+
+**Note:** Version bump only for package @sk-web-gui/accordion
+
 # [1.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@1.0.3...@sk-web-gui/accordion@1.1.0) (2024-01-18)
 
 ### Bug Fixes
