@@ -1,6 +1,6 @@
-import { useClickOutside } from '@react-hookz/web';
 import { __DEV__, cx, useForkRef } from '@sk-web-gui/utils';
 import React from 'react';
+import { useOnClickOutside } from 'usehooks-ts';
 import { useFormControl } from '../form-control';
 import { ComboboxContext, UseComboboxProps } from './combobox-context';
 import { useComboboxStyles } from './styles';
@@ -103,7 +103,7 @@ const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((prop
     setLabels(newLabels);
   };
 
-  useClickOutside(internalRef, () => {
+  useOnClickOutside(internalRef, () => {
     setOpen(false);
   });
 

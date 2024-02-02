@@ -2717,18 +2717,6 @@
   dependencies:
     "@reach/polymorphic" "0.18.0"
 
-"@react-hookz/deep-equal@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@react-hookz/deep-equal/-/deep-equal-1.0.4.tgz#68a71f36cbc88724b3ce6f4036183778b6e7f282"
-  integrity sha512-N56fTrAPUDz/R423pag+n6TXWbvlBZDtTehaGFjK0InmN+V2OFWLE/WmORhmn6Ce7dlwH5+tQN1LJFw3ngTJVg==
-
-"@react-hookz/web@24.0.2":
-  version "24.0.2"
-  resolved "https://registry.yarnpkg.com/@react-hookz/web/-/web-24.0.2.tgz#8db0e083ffdf1c1419c65960cb36fb7d3acf330c"
-  integrity sha512-LhWw/LzhxKYRZDRIKd42mCMqRa9pTMSpwpwnfpa0hYoUNcrHw//3NlpoPlynkmKT3G88mumTTuV0HeWnNkarog==
-  dependencies:
-    "@react-hookz/deep-equal" "^1.0.4"
-
 "@react-spring/animated@~9.7.3":
   version "9.7.3"
   resolved "https://registry.yarnpkg.com/@react-spring/animated/-/animated-9.7.3.tgz#4211b1a6d48da0ff474a125e93c0f460ff816e0f"
@@ -11702,6 +11690,13 @@ use-sidecar@^1.1.2:
   dependencies:
     detect-node-es "^1.1.0"
     tslib "^2.0.0"
+
+usehooks-ts@^2.12.0:
+  version "2.12.0"
+  resolved "https://registry.yarnpkg.com/usehooks-ts/-/usehooks-ts-2.12.0.tgz#d6804acf7044129e1662502e55504c9f854042eb"
+  integrity sha512-1wyM1a7EmUKJSAuvzCzOJ9tqBgj35LzMQD1CM41W2Il9SVPMYAzlhytjhmIlzUngQkglmD3xi54r52KBDC5M7w==
+  dependencies:
+    lodash.debounce "^4.0.8"
 
 util-deprecate@^1.0.1, util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   version "1.0.2"
