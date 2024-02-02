@@ -1,7 +1,5 @@
 export const Modal = () => ({
   '.sk-modal': {
-    // '@apply fixed inset-0 z-10 flex items-center justify-center overflow-y-auto': {},
-
     '&-wrapper': {
       '@apply fixed inset-0 z-20 overflow-y-auto': {},
       '@apply bg-primitives-overlay-darken-6': {},
@@ -17,6 +15,7 @@ export const Modal = () => ({
     },
 
     '&-dialog': {
+      '@apply text-dark-secondary': {},
       '@apply inline-flex flex-col': {},
       '@apply text-left': {},
       '@apply align-middle': {},
@@ -38,6 +37,9 @@ export const Modal = () => ({
     '&-content': {
       '@apply flex flex-col': {},
       '@apply py-8 pb-16 gap-12': {},
+      'h1, h2, h3, h4, h5, h6': {
+        '@apply text-dark-primary': {},
+      },
     },
     '&-footer': {
       '@apply flex flex-row justify-start': {},
