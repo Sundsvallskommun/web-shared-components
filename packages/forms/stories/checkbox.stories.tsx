@@ -19,13 +19,27 @@ export const Template = (args: CheckboxProps) => (
 Template.storyName = 'Checkbox';
 
 export const ExampleWithForm = () => {
-  const { register } = useForm<{ toppings: string[] }>();
+  const { register, watch, setValue } = useForm<{ toppings: string[] }>({ defaultValues: { toppings: [] } });
   const allToppings = ['Skinka', 'Ost', 'Tomat'];
+  const pickToppings = watch('toppings');
+
+  const handleChangeAll = () => {
+    if (allToppings.every((topping) => pickToppings.includes(topping))) {
+      setValue('toppings', []);
+    } else {
+      setValue('toppings', allToppings);
+    }
+  };
+
+  const isIndeterminate = pickToppings.length > 0 && !allToppings.every((topping) => pickToppings.includes(topping));
 
   return (
     <div className="flex flex-col">
       <FormControl fieldset>
         <FormLabel>Pålägg</FormLabel>
+        <Checkbox checked={pickToppings.length > 0} onChange={handleChangeAll} indeterminate={isIndeterminate}>
+          Alla
+        </Checkbox>
         {allToppings.map((topping) => (
           <Checkbox key={topping} {...register('toppings')} value={topping}>
             {topping}
