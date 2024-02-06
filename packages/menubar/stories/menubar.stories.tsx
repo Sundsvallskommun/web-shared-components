@@ -44,4 +44,4 @@ export const Template = (args: MenuBarProps) => {
   );
 };
 
-Template.storyName = 'Menubar';
+Template.storyName = 'MenuBar';

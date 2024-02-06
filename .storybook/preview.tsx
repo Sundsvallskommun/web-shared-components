@@ -29,6 +29,15 @@ const parameters: Preview['parameters'] = {
   },
   controls: { hideNoControlsWarning: true },
   docs: {
+    source: {
+      type: 'code',
+      transform: (code, storyContext) => {
+        return `
+        import { ${storyContext.name} } from '@sk-web-gui/react';
+
+${code}`;
+      },
+    },
     //
     // this applies to MDX and docs tab
     //
