@@ -109,7 +109,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxItemProps>((p
     <label
       className={cx(
         'sk-form-checkbox-label-wrapper',
-        disabled && 'cursor-not-allowed',
+        className,
         labelPosition === 'left' ? 'sk-form-checkbox-label-left' : 'sk-form-checkbox-label-right'
       )}
     >
@@ -133,10 +133,10 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxItemProps>((p
         aria-invalid={invalid}
         aria-checked={indeterminate ? 'mixed' : checked}
         data-color={color ? color : undefined}
-        className={cx(checkboxClasses, className)}
+        className={cx(checkboxClasses)}
         {...rest}
       />
-      <Icon variant="ghost" name={indeterminate ? 'minus' : 'check'} />
+      <Icon.Padded variant="ghost" name={indeterminate ? 'minus' : 'check'} />
       {children && labelPosition === 'right' && <span className={cx(checkboxLabelClasses)}>{children}</span>}
     </label>
   );
