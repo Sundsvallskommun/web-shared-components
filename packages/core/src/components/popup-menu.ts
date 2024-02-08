@@ -45,7 +45,12 @@ export const PopupMenu = () => ({
     '@apply border-0': {},
     '@apply focus-within:border-0': {},
     '@apply focus:outline-0 focus-visible:outline-0 focus-visible:ring': {},
-
+    '.sk-form-checkbox-label-left .sk-icon': {
+      '@apply right-8': {},
+    },
+    '.sk-form-checkbox-label-right .sk-icon': {
+      '@apply left-8': {},
+    },
     '.sk-popup-menu-item': {
       '@apply list-none': {},
       '@apply w-full': {},
@@ -60,15 +65,17 @@ export const PopupMenu = () => ({
       '@apply focus-visible:ring ring-ring': {},
       '@apply rounded-utility': {},
       '@apply text-body font-normal': {},
-
-      '&:focus-visible': {
+      '> *': {
+        '@apply max-w-full': {},
+      },
+      '&:focus-visible, &:focus-within': {
         '@apply bg-primitives-gray-200': {},
         '@apply dark:bg-primitives-overlay-lighten-1': {},
       },
-      '&.active': {
-        '@apply bg-transparent': {},
-        // '@apply dark:bg-primitives-overlay-lighten-1': {},
-      },
+      // '&.active': {
+      //   '@apply bg-transparent': {},
+      //   // '@apply dark:bg-primitives-overlay-lighten-1': {},
+      // },
       svg: {
         '@apply w-[2rem] h-[2rem]': {},
       },
@@ -95,7 +102,10 @@ export const PopupMenu = () => ({
       '@apply rounded-utility': {},
       '@apply focus-within:ring ring-ring': {},
       '.sk-popup-menu-item': {
-        '@apply focus-visible:ring-0 ring-transparent': {},
+        '@apply focus-visible:ring-0 ring-transparent ring-offset-0': {},
+        '> *': {
+          '@apply focus-visible:ring-0 ring-transparent ring-offset-0': {},
+        },
       },
       '&:focus-within': {
         '.sk-popup-menu-item.active': {
@@ -111,13 +121,13 @@ export const PopupMenu = () => ({
       '.sk-popup-menu-item': {
         '@apply h-[3.2rem]': {},
         '@apply min-h-[3.2rem]': {},
-        '@apply gap-10 pl-8 pr-24 py-4': {},
+        '@apply gap-10 pl-8 pr-8 py-4': {},
 
         '@apply text-small': {},
         '&-group': {
           '@apply gap-6 pb-6': {},
           '> *': {
-            '@apply gap-10 pl-8 pr-24 py-4': {},
+            '@apply gap-10 pl-8 pr-8 py-4': {},
           },
         },
         svg: {

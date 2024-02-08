@@ -23,11 +23,12 @@ export const PopupMenuItems = React.forwardRef<HTMLDivElement, PopupMenuItemsPro
   const [activeIndex, setActiveIndex] = React.useState<number>(0);
   const [activeMode, setActiveMode] = React.useState<'soft' | 'hard'>('hard');
   const internalRef = React.useRef<HTMLDivElement>(null);
-  const autoId = React.useId();
-  const id = _id || `sk-popup-menu-items-${autoId}`;
   const [panels, setPanels] = React.useState<string[]>([]);
   const active = panels[activeIndex];
-  const { goTo, isOpen } = usePopupMenu();
+  const autoId = React.useId();
+  const { goTo, isOpen, id: parentId, buttonId } = usePopupMenu();
+
+  const id = _id || `${parentId}-items-${autoId}`;
 
   const menuItems = React.useMemo(() => {
     let total = 0;
@@ -112,21 +113,10 @@ export const PopupMenuItems = React.forwardRef<HTMLDivElement, PopupMenuItemsPro
         item.setAttribute('role', 'menuitem');
         item.setAttribute('tabIndex', tabIndex);
         break;
-      case 'label':
-        item.setAttribute('tabIndex', tabIndex);
-        switch (handleInput(item?.children)) {
-          case 'menuitemcheckbox':
-            item.setAttribute('role', 'menuitemcheckbox');
-            break;
-          case 'menuitemradio':
-            item.setAttribute('role', 'menuitemradio');
-            break;
-          default:
-            break;
-        }
-        break;
+
       case 'input': {
         item.setAttribute('tabIndex', tabIndex);
+        handleInput(item);
         break;
       }
       default:
@@ -137,24 +127,22 @@ export const PopupMenuItems = React.forwardRef<HTMLDivElement, PopupMenuItemsPro
     }
   };
 
-  const handleInput = (items?: HTMLCollection): string | undefined => {
-    if (!items) {
+  const handleInput = (item?: Element): string | undefined => {
+    if (!item) {
       return undefined;
     }
-    const input = Array.from(items).find((child) => child.nodeName.toLowerCase() === 'input');
-
-    if (input) {
-      input.setAttribute('tabIndex', '-1');
-      const type = input.getAttribute('type')?.toLowerCase();
-      switch (type) {
-        case 'checkbox':
-          return 'menuitemcheckbox';
-        case 'radio':
-          return 'menuitemradio';
-        default:
-          return undefined;
-      }
+    const type = item.getAttribute('type')?.toLowerCase();
+    switch (type) {
+      case 'checkbox':
+        item.setAttribute('role', 'menuitemcheckbox');
+        break;
+      case 'radio':
+        item.setAttribute('role', 'menuitemradio');
+        break;
+      default:
+        return undefined;
     }
+    // }
     return undefined;
   };
 
@@ -189,6 +177,7 @@ export const PopupMenuItems = React.forwardRef<HTMLDivElement, PopupMenuItemsPro
         className={cx('sk-popup-menu-items', className)}
         role="menu"
         id={id}
+        aria-labelledby={buttonId}
         {...rest}
       >
         {menuItems}

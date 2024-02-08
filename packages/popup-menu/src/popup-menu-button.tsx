@@ -18,11 +18,18 @@ export const PopupMenuButton = React.forwardRef<
     inverted,
     onClick,
     onKeyDown,
+    id: _id,
     ...rest
   } = props;
   const disabled = _disabled || loading;
 
-  const { isOpen, open, close, type } = usePopupMenu();
+  const { isOpen, open, close, type, id: parentId, setButtonId } = usePopupMenu();
+
+  const id = _id || `${parentId}-button`;
+
+  React.useEffect(() => {
+    setButtonId && setButtonId(id);
+  }, [id]);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (isOpen) {
@@ -53,6 +60,7 @@ export const PopupMenuButton = React.forwardRef<
       disabled={disabled}
       aria-haspopup={type || 'menu'}
       aria-expanded={isOpen}
+      id={id}
       {...rest}
       onKeyDown={handleKeyboard}
       onClick={handleClick}

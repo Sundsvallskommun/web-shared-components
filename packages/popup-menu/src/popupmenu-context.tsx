@@ -6,6 +6,9 @@ export interface PopupMenuContextProps extends PopupMenuBaseProps {
   isOpen?: boolean;
   open?: () => void;
   goTo?: 'first' | 'last' | undefined;
+  id?: string;
+  buttonId?: string;
+  setButtonId?: (id: string) => void;
 }
 
 export const PopupMenuContext = React.createContext<PopupMenuContextProps>({});

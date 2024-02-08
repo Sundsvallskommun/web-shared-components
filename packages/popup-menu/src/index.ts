@@ -1,5 +1,6 @@
-import PopupMenuComponent, { PopupMenuComponentProps, PopupMenuGroup } from './popup-menu';
+import { PopupMenuComponent, PopupMenuComponentProps } from './popup-menu';
 import { PopupMenuButton } from './popup-menu-button';
+import { PopupMenuGroup } from './popup-menu-group';
 import { PopupMenuItem } from './popup-menu-item';
 import { PopupMenuItems } from './popup-menu-items';
 

@@ -1,4 +1,4 @@
-import { cx, getValidChildren, useForkRef } from '@sk-web-gui/utils';
+import { cx, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
 import { usePopupMenuItems } from './popup-menu-items';
 import { usePopupMenu } from './popupmenu-context';
@@ -16,7 +16,7 @@ export const PopupMenuItem: React.FC<PopupMenuItemProps> = (props) => {
   const internalRef = React.useRef<HTMLSpanElement>(null);
   const autoId = React.useId();
   const { active, activeMode, next, prev, autoFocus } = usePopupMenuItems();
-  const { close, isOpen, goTo } = usePopupMenu();
+  const { close, isOpen, goTo, size } = usePopupMenu();
 
   const handleKeyboard = (event: KeyboardEvent) => {
     switch (event.key) {
@@ -34,6 +34,15 @@ export const PopupMenuItem: React.FC<PopupMenuItemProps> = (props) => {
         event.target?.dispatchEvent(new MouseEvent('click'));
         close && close();
         break;
+      case ' ':
+        const target = event.target as Element;
+        if (target?.nodeName?.toLowerCase() !== 'input') {
+          event.preventDefault();
+          event.stopPropagation();
+          target.dispatchEvent(new MouseEvent('click'));
+          close && close();
+        }
+        break;
     }
   };
 
@@ -46,6 +55,7 @@ export const PopupMenuItem: React.FC<PopupMenuItemProps> = (props) => {
         onKeyDown: handleKeyboard,
         ref: internalRef,
         disabled: disabled,
+        size,
         ...item.props,
         id: id,
         className: classes,
@@ -63,8 +73,6 @@ export const PopupMenuItem: React.FC<PopupMenuItemProps> = (props) => {
     }
     return mapItem(children);
   };
-
-  const MenuItem: React.FC = () => <>{getMenuItem()}</>;
 
   React.useEffect(() => {
     if (active === _id && activeMode === 'hard') {

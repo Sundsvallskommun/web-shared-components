@@ -36,6 +36,7 @@ export interface PopupMenuComponentProps
 export const PopupMenuComponent = React.forwardRef<HTMLDivElement, PopupMenuComponentProps>((props, ref) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const [goTo, setGoTo] = React.useState<'first' | 'last' | undefined>();
+  const [buttonId, setButtonId] = React.useState<string>();
   const [hasItems, setHasItems] = React.useState<boolean>(false);
   const {
     className,
@@ -81,6 +82,8 @@ export const PopupMenuComponent = React.forwardRef<HTMLDivElement, PopupMenuComp
     goTo,
     type,
     id,
+    buttonId,
+    setButtonId,
   };
 
   const getButton = () => {
@@ -104,22 +107,17 @@ export const PopupMenuComponent = React.forwardRef<HTMLDivElement, PopupMenuComp
         }
         // console.log(`type ${child?.type?.displayName}: `, child.type);
         if (child?.type === PopupMenuItems) {
-          console.log('FOUND ITEMS', child);
           setHasItems(true);
         } else {
           if (!foundAutofocus) {
             if (child?.props?.autoFocus) {
-              console.log('FOUND autofocus: ', child);
               foundAutofocus = true;
               return React.cloneElement(child, { ...child.props, ref: focusRef });
             } else if (child?.props?.children) {
               const validKids = getValidChildren(child.props.children);
-              console.log('validKids: ', validKids);
               // console.log('kids: ', validKids);
               if (validKids.length > 0) {
                 const newKids = getValidChildren(child?.props?.children).map((child) => mapItem(child));
-
-                console.log('newKids: ', newKids);
                 if (newKids) {
                   return React.cloneElement(child, { ...child.props, children: newKids });
                 }
@@ -176,6 +174,7 @@ export const PopupMenuComponent = React.forwardRef<HTMLDivElement, PopupMenuComp
         data-position={position}
         data-align={align}
         role={type}
+        aria-labelledby={type ? buttonId : undefined}
       >
         {getItems}
       </div>
@@ -185,16 +184,6 @@ export const PopupMenuComponent = React.forwardRef<HTMLDivElement, PopupMenuComp
 
 //TODO: Add function for expandable menues.
 
-export const PopupMenuGroup = React.forwardRef<HTMLDivElement, React.ComponentPropsWithRef<'div'> & DefaultProps>(
-  (props, ref) => {
-    const { className, ...rest } = props;
-
-    return <div role="group" ref={ref} className={cx('sk-popup-menu-group', className)} {...rest} />;
-  }
-);
-
 if (__DEV__) {
   PopupMenuComponent.displayName = 'PopupMenuComponent';
 }
-
-export default PopupMenuComponent;
