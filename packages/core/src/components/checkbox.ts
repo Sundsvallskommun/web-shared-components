@@ -39,6 +39,9 @@ export const Checkbox = () => ({
       },
     },
 
+    '&[type="checkbox"]:checked': {
+      '@apply text-transparent': {},
+    },
     '&&:hover:not(&&-disabled,&&:checked,&&[aria-invalid=true]),&&:hover:focus:not(&&-disabled,&&:checked,&&[aria-invalid=true])':
       {
         '& + .sk-icon, &:focus + .sk-icon': {
