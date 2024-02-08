@@ -141,6 +141,12 @@ export const PopupMenuComponent = React.forwardRef<HTMLDivElement, PopupMenuComp
       case 'Escape':
         close();
         break;
+      case 'Enter':
+        const target = event.target as Element;
+        if (target.nodeName.toLowerCase() !== 'input') {
+          close();
+        }
+        break;
       case 'ArrowDown':
         event.preventDefault();
         event.stopPropagation();
@@ -181,8 +187,6 @@ export const PopupMenuComponent = React.forwardRef<HTMLDivElement, PopupMenuComp
     </PopupMenuContext.Provider>
   );
 });
-
-//TODO: Add function for expandable menues.
 
 if (__DEV__) {
   PopupMenuComponent.displayName = 'PopupMenuComponent';

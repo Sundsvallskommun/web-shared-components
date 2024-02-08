@@ -35,6 +35,10 @@ export const PopupMenu = () => ({
         '@apply left-0': {},
       },
     },
+    '> *': {
+      '@apply max-w-full w-full': {},
+    },
+
     '@apply absolute flex flex-col justify-start items-start mt-8': {},
     '@apply w-max': {},
     '@apply rounded-utility': {},

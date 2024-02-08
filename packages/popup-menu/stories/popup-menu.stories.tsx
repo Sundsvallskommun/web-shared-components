@@ -1,5 +1,5 @@
 import { Button } from '@sk-web-gui/button';
-import { Checkbox } from '@sk-web-gui/forms';
+import { Checkbox, DatePicker, FormControl, FormLabel } from '@sk-web-gui/forms';
 import { Icon } from '@sk-web-gui/icon';
 import { Link } from '@sk-web-gui/link';
 import { SearchField } from '@sk-web-gui/searchfield';
@@ -88,6 +88,27 @@ export const CheckboxesAndFilter = () => {
               </PopupMenu.Item>
             ))}
         </PopupMenu.Items>
+      </PopupMenu>
+    </div>
+  );
+};
+
+export const PopupMenuAsDialog = () => {
+  return (
+    <div className="h-[30rem]">
+      <PopupMenu>
+        <PopupMenu.Button rightIcon={<Icon name="chevron-down" />}>Datumfilter</PopupMenu.Button>
+        <PopupMenu.Group>
+          <FormControl>
+            <FormLabel>Startdatum</FormLabel>
+            <DatePicker autoFocus></DatePicker>
+          </FormControl>
+          <FormControl>
+            <FormLabel>Slutdatum</FormLabel>
+            <DatePicker autoFocus></DatePicker>
+          </FormControl>
+        </PopupMenu.Group>
+        <Button onClick={() => console.log('Applied')}>Applicera</Button>
       </PopupMenu>
     </div>
   );

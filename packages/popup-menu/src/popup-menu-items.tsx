@@ -142,7 +142,6 @@ export const PopupMenuItems = React.forwardRef<HTMLDivElement, PopupMenuItemsPro
       default:
         return undefined;
     }
-    // }
     return undefined;
   };
 
