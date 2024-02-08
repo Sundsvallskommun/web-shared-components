@@ -1,8 +1,11 @@
-import PopupMenuComponent, { PopupMenuPropsInternal, PopupMenuItem, PopupMenuGroup } from './popup-menu';
+import PopupMenuComponent, { PopupMenuComponentProps, PopupMenuGroup } from './popup-menu';
 import { PopupMenuButton } from './popup-menu-button';
+import { PopupMenuItem } from './popup-menu-item';
+import { PopupMenuItems } from './popup-menu-items';
 
-interface PopupMenuProps extends React.ForwardRefExoticComponent<PopupMenuPropsInternal> {
+interface PopupMenuProps extends React.ForwardRefExoticComponent<PopupMenuComponentProps> {
   Component: typeof PopupMenuComponent;
+  Items: typeof PopupMenuItems;
   Item: typeof PopupMenuItem;
   Button: typeof PopupMenuButton;
   Group: typeof PopupMenuGroup;
@@ -11,6 +14,7 @@ interface PopupMenuProps extends React.ForwardRefExoticComponent<PopupMenuPropsI
 const PopupMenu = {
   ...PopupMenuComponent,
   Component: PopupMenuComponent,
+  Items: PopupMenuItems,
   Item: PopupMenuItem,
   Button: PopupMenuButton,
   Group: PopupMenuGroup,
