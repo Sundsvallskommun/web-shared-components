@@ -1,20 +1,24 @@
 import { cx, getValidChildren, useForkRef } from '@sk-web-gui/utils';
 import React, { cloneElement } from 'react';
 import { PopupMenuItem } from './popup-menu-item';
-import { usePopupMenu } from './popupmenu-context';
+import { GoTo, usePopupMenu } from './popupmenu-context';
 
 interface PopupMenuItemsContextProps {
   next?: () => void;
   prev?: () => void;
   active?: string;
   activeMode?: 'soft' | 'hard';
-  autoFocus?: boolean;
 }
 
 const PopupMenuItemsContext = React.createContext<PopupMenuItemsContextProps>({});
 export const usePopupMenuItems = () => React.useContext(PopupMenuItemsContext);
 
 interface PopupMenuItemsProps extends React.ComponentPropsWithoutRef<'div'> {
+  /**
+   * If items inside should be autofocused on open
+   * Will focus first item on 'Enter' and 'ArrowDown', last item on 'ArrowUp'
+   * @default true
+   */
   autoFocus?: boolean;
 }
 
@@ -26,7 +30,7 @@ export const PopupMenuItems = React.forwardRef<HTMLDivElement, PopupMenuItemsPro
   const [panels, setPanels] = React.useState<string[]>([]);
   const active = panels[activeIndex];
   const autoId = React.useId();
-  const { goTo, isOpen, id: parentId, buttonId } = usePopupMenu();
+  const { goTo, setGoTo, isOpen, id: parentId, buttonId } = usePopupMenu();
 
   const id = _id || `${parentId}-items-${autoId}`;
 
@@ -70,13 +74,6 @@ export const PopupMenuItems = React.forwardRef<HTMLDivElement, PopupMenuItemsPro
   }, [children]);
 
   React.useEffect(() => {
-    if (!isOpen) {
-      setActiveMode('hard');
-      setActiveIndex(0);
-    }
-  }, [isOpen]);
-
-  React.useEffect(() => {
     if (internalRef.current) {
       walkItems(internalRef.current.children);
     }
@@ -88,19 +85,32 @@ export const PopupMenuItems = React.forwardRef<HTMLDivElement, PopupMenuItemsPro
     });
   };
 
-  React.useEffect(() => {
-    setActiveMode('hard');
+  const handleGoTo = () => {
     switch (goTo) {
-      case 'first':
+      case GoTo.First:
         setActiveIndex(0);
         break;
-      case 'last':
+      case GoTo.Last:
         setActiveIndex(panels.length - 1);
         break;
       default:
         break;
     }
+    setGoTo && setGoTo(undefined);
+  };
+
+  React.useEffect(() => {
+    setActiveMode('hard');
+    handleGoTo();
   }, [goTo]);
+
+  React.useEffect(() => {
+    setActiveMode('soft');
+    if (autoFocus && isOpen) {
+      setActiveMode('hard');
+      handleGoTo();
+    }
+  }, [isOpen]);
 
   const mapItem = (item: Element) => {
     const tabIndex = item.getAttribute('id') === active ? '0' : '-1';
@@ -166,7 +176,6 @@ export const PopupMenuItems = React.forwardRef<HTMLDivElement, PopupMenuItemsPro
     active,
     next,
     prev,
-    autoFocus,
     activeMode,
   };
   return (

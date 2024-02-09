@@ -28,31 +28,41 @@ export const Template = (args: PopupMenuProps) => {
           >
             <Icon name="arrow-down" />
           </PopupMenu.Button>
-          <PopupMenu.Items>
-            <PopupMenu.Group>
-              <PopupMenu.Item>
-                <Button
-                  role="menuitemcheckbox"
-                  leftIcon={<Icon name="wallet" />}
-                  onClick={() => console.log('Account')}
-                >
-                  Konto
-                </Button>
-              </PopupMenu.Item>
-              <PopupMenu.Item>
-                <Link onClick={() => console.log('Edit')}>
-                  <Icon name="settings-2" /> Inställningar
-                </Link>
-              </PopupMenu.Item>
-            </PopupMenu.Group>
-            <PopupMenu.Group>
-              <PopupMenu.Item>
-                <Button leftIcon={<Icon name="log-out" />} onClick={() => console.log('Logout')}>
-                  Logga ut
-                </Button>
-              </PopupMenu.Item>
-            </PopupMenu.Group>
-          </PopupMenu.Items>
+          <PopupMenu.Panel>
+            <PopupMenu.Items>
+              <PopupMenu.Group>
+                <PopupMenu.Item>
+                  <Button
+                    role="menuitemcheckbox"
+                    leftIcon={<Icon name="wallet" />}
+                    onClick={() => console.log('Account')}
+                  >
+                    Konto
+                  </Button>
+                </PopupMenu.Item>
+                <PopupMenu.Item>
+                  <Link onClick={() => console.log('Edit')}>
+                    <Icon name="settings-2" /> Inställningar
+                  </Link>
+                </PopupMenu.Item>
+                <PopupMenu.Item>
+                  <PopupMenu position="right">
+                    <PopupMenu.Button leftIcon={<Icon name="settings-2" />} rightIcon={<Icon name="chevron-right" />}>
+                      Inställningar
+                    </PopupMenu.Button>
+                    <PopupMenu.Panel></PopupMenu.Panel>
+                  </PopupMenu>
+                </PopupMenu.Item>
+              </PopupMenu.Group>
+              <PopupMenu.Group>
+                <PopupMenu.Item>
+                  <Button leftIcon={<Icon name="log-out" />} onClick={() => console.log('Logout')}>
+                    Logga ut
+                  </Button>
+                </PopupMenu.Item>
+              </PopupMenu.Group>
+            </PopupMenu.Items>
+          </PopupMenu.Panel>
         </PopupMenu>
       </div>
     </div>
@@ -68,26 +78,28 @@ export const CheckboxesAndFilter = () => {
     <div className="h-[30rem]">
       <PopupMenu>
         <PopupMenu.Button rightIcon={<Icon name="chevron-down" />}>Filter</PopupMenu.Button>
-        <PopupMenu.Group>
-          <SearchField
-            autoFocus
-            size="md"
-            placeholder="Sök eller välj ur lista"
-            id="searchbar"
-            onChange={(e) => setQuery(e.target.value)}
-            value={query}
-            onClose={() => setQuery('')}
-          />
-        </PopupMenu.Group>
-        <PopupMenu.Items aria-label="Sök eller välj ur lista" aria-labelledby="">
-          {values
-            .filter((value) => value.toLowerCase().includes(query.toLowerCase()))
-            .map((value) => (
-              <PopupMenu.Item key={value}>
-                <Checkbox labelPosition="left">{value}</Checkbox>
-              </PopupMenu.Item>
-            ))}
-        </PopupMenu.Items>
+        <PopupMenu.Panel>
+          <PopupMenu.Group>
+            <SearchField
+              autoFocus
+              size="md"
+              placeholder="Sök eller välj ur lista"
+              id="searchbar"
+              onChange={(e) => setQuery(e.target.value)}
+              value={query}
+              onClose={() => setQuery('')}
+            />
+          </PopupMenu.Group>
+          <PopupMenu.Items autoFocus={false} aria-label="Sök eller välj ur lista" aria-labelledby="">
+            {values
+              .filter((value) => value.toLowerCase().includes(query.toLowerCase()))
+              .map((value) => (
+                <PopupMenu.Item key={value}>
+                  <Checkbox labelPosition="left">{value}</Checkbox>
+                </PopupMenu.Item>
+              ))}
+          </PopupMenu.Items>
+        </PopupMenu.Panel>
       </PopupMenu>
     </div>
   );
@@ -98,17 +110,19 @@ export const PopupMenuAsDialog = () => {
     <div className="h-[30rem]">
       <PopupMenu>
         <PopupMenu.Button rightIcon={<Icon name="chevron-down" />}>Datumfilter</PopupMenu.Button>
-        <PopupMenu.Group>
-          <FormControl>
-            <FormLabel>Startdatum</FormLabel>
-            <DatePicker autoFocus></DatePicker>
-          </FormControl>
-          <FormControl>
-            <FormLabel>Slutdatum</FormLabel>
-            <DatePicker autoFocus></DatePicker>
-          </FormControl>
-        </PopupMenu.Group>
-        <Button onClick={() => console.log('Applied')}>Applicera</Button>
+        <PopupMenu.Panel>
+          <PopupMenu.Group>
+            <FormControl>
+              <FormLabel>Startdatum</FormLabel>
+              <DatePicker autoFocus></DatePicker>
+            </FormControl>
+            <FormControl>
+              <FormLabel>Slutdatum</FormLabel>
+              <DatePicker autoFocus></DatePicker>
+            </FormControl>
+          </PopupMenu.Group>
+          <Button onClick={() => console.log('Applied')}>Applicera</Button>
+        </PopupMenu.Panel>
       </PopupMenu>
     </div>
   );

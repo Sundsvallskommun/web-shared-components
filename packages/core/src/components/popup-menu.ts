@@ -1,5 +1,9 @@
 export const PopupMenu = () => ({
   '.sk-popup-menu': {
+    '@apply hidden': {},
+    '&[data-open="true"]': {
+      '@apply flex': {},
+    },
     '&[data-position="left"]': {
       '@apply mt-0 mr-8 right-[100%]': {},
       '&[data-align="end"]': {
@@ -39,7 +43,7 @@ export const PopupMenu = () => ({
       '@apply max-w-full w-full': {},
     },
 
-    '@apply absolute flex flex-col justify-start items-start mt-8': {},
+    '@apply absolute flex-col justify-start items-start mt-8': {},
     '@apply w-max': {},
     '@apply rounded-utility': {},
     '@apply bg-background-100': {},

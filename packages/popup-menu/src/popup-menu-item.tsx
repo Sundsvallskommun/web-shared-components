@@ -15,8 +15,8 @@ export const PopupMenuItem: React.FC<PopupMenuItemProps> = (props) => {
   const { children, disabled, id: _id } = props;
   const internalRef = React.useRef<HTMLSpanElement>(null);
   const autoId = React.useId();
-  const { active, activeMode, next, prev, autoFocus } = usePopupMenuItems();
-  const { close, isOpen, goTo, size } = usePopupMenu();
+  const { active, activeMode, next, prev } = usePopupMenuItems();
+  const { close, goTo, size } = usePopupMenu();
 
   const handleKeyboard = (event: KeyboardEvent) => {
     switch (event.key) {
@@ -79,12 +79,6 @@ export const PopupMenuItem: React.FC<PopupMenuItemProps> = (props) => {
       internalRef.current && internalRef.current.focus();
     }
   }, [active, goTo]);
-
-  React.useEffect(() => {
-    if (isOpen && autoFocus && active === _id) {
-      internalRef.current && internalRef.current.focus();
-    }
-  }, [isOpen]);
 
   return <>{getMenuItem()}</>;
 };

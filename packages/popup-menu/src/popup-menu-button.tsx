@@ -1,6 +1,6 @@
 import { Button, ButtonProps } from '@sk-web-gui/button';
 import React from 'react';
-import { usePopupMenu } from './popupmenu-context';
+import { GoTo, usePopupMenu } from './popupmenu-context';
 
 export const PopupMenuButton = React.forwardRef<
   HTMLButtonElement,
@@ -44,6 +44,24 @@ export const PopupMenuButton = React.forwardRef<
     switch (event.key) {
       case 'Escape':
         close && close();
+        break;
+      case 'Enter':
+        event.preventDefault();
+        if (open && close) {
+          if (isOpen) {
+            close();
+          } else {
+            open(GoTo.First);
+          }
+        }
+        break;
+      case 'ArrowDown':
+        event.preventDefault();
+        open && open(GoTo.First);
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        open && open(GoTo.Last);
         break;
     }
     onKeyDown && onKeyDown(event);
