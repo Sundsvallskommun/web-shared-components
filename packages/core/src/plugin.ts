@@ -43,6 +43,7 @@ import { Snackbar } from './components/snackbar';
 import { Spinner } from './components/spinner';
 import { Switch } from './components/switch';
 import { Table } from './components/table';
+import { TableAutoTable } from './components/table-autotable';
 import { Tabs } from './components/tabs';
 import { Tooltip } from './components/tooltip';
 import { UserMenu } from './components/user-menu';
@@ -74,6 +75,7 @@ const components: ((colors: string[], theme: PluginAPI['theme']) => CSSRuleObjec
   Radio,
   Switch,
   Table,
+  TableAutoTable,
   Tabs,
   ZebraTable,
   CookieConsent,
