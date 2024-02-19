@@ -44,6 +44,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
     pages = 1,
     activePage = 1,
     changePage,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     children,
     size = 'md',
     showFirst = true,
@@ -126,7 +127,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
     reverse?: boolean;
     tabIndex?: number;
     index: number;
-  }) => JSX.Element = ({ next, label, icon, triggerNumber = 1, step = 1, reverse = false, tabIndex, index }) => {
+  }) => JSX.Element = ({ next, label, icon, triggerNumber = 1, step = 1, reverse = false, tabIndex }) => {
     const isDisabled = currentPage === triggerNumber;
     return (
       <button
@@ -209,9 +210,9 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
   };
 
   const keyboardHandler = (event: KeyboardEvent<HTMLButtonElement>) => {
-    const allItems = Array.from(event.currentTarget?.parentElement?.parentElement?.children as any);
+    const allItems = Array.from(event.currentTarget?.parentElement?.parentElement?.children as ArrayLike<Element>);
     const total = allItems?.length;
-    const index = allItems.indexOf(event.currentTarget?.parentElement);
+    const index = allItems.indexOf(event.currentTarget?.parentElement as Element);
 
     if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
       event.preventDefault();
@@ -245,7 +246,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
   };
 
   return (
-    <nav className={cx(classes, className)} {...rest} aria-label="pagination">
+    <nav ref={ref} className={cx(classes, className)} {...rest} aria-label="pagination">
       {asSelect ? (
         <Select
           size={size}
