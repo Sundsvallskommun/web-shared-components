@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.25](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/pagination@0.1.24...@sk-web-gui/pagination@0.1.25) (2024-02-19)
+
+### Bug Fixes
+
+- **pagination:** added missing dependency and fix eslint ([95b92ea](https://github.com/Sundsvallskommun/web-shared-components/commit/95b92eab3b25cef04fe59b7c1337f4ecefd8d596))
+
 ## [0.1.24](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/pagination@0.1.23...@sk-web-gui/pagination@0.1.24) (2023-10-10)
 
 **Note:** Version bump only for package @sk-web-gui/pagination
