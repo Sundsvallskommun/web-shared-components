@@ -11,7 +11,7 @@
       "conventionalCommits": true,
       "message": "chore(release): publish",
       "ignoreChanges": ["**/stories/**", "**/tests/**"],
-      "allowBranch": "main"
+      "allowBranch": ["main", "alpha/main"]
     }
   },
   "useNx": true
