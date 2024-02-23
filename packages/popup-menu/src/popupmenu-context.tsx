@@ -6,7 +6,7 @@ export enum GoTo {
   Last = 'LAST',
 }
 export interface PopupMenuContextProps extends PopupMenuBaseProps {
-  close?: () => void;
+  close?: (focusButton?: boolean) => void;
   isOpen?: boolean;
   open?: (goTo?: GoTo) => void;
   goTo?: GoTo;
@@ -14,7 +14,6 @@ export interface PopupMenuContextProps extends PopupMenuBaseProps {
   id?: string;
   buttonId?: string;
   setButtonId?: (id: string) => void;
-  setHasItems?: (hasItems: boolean) => void;
 }
 
 export const PopupMenuContext = React.createContext<PopupMenuContextProps>({});

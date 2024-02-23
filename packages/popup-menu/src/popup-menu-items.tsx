@@ -8,6 +8,8 @@ interface PopupMenuItemsContextProps {
   prev?: () => void;
   active?: string;
   activeMode?: 'soft' | 'hard';
+  navigate?: boolean;
+  setNavigate?: (navigate: boolean) => void;
 }
 
 const PopupMenuItemsContext = React.createContext<PopupMenuItemsContextProps>({});
@@ -25,9 +27,11 @@ interface PopupMenuItemsProps extends React.ComponentPropsWithoutRef<'div'> {
 export const PopupMenuItems = React.forwardRef<HTMLDivElement, PopupMenuItemsProps>((props, ref) => {
   const { className, children, id: _id, autoFocus = true, ...rest } = props;
   const [activeIndex, setActiveIndex] = React.useState<number>(0);
-  const [activeMode, setActiveMode] = React.useState<'soft' | 'hard'>('hard');
+  const [activeMode, setActiveMode] = React.useState<'soft' | 'hard'>('soft');
+  const [navigate, setNavigate] = React.useState<boolean>(false);
   const internalRef = React.useRef<HTMLDivElement>(null);
   const [panels, setPanels] = React.useState<string[]>([]);
+  const [opened, setOpened] = React.useState<boolean>(false);
   const active = panels[activeIndex];
   const autoId = React.useId();
   const { goTo, setGoTo, isOpen, id: parentId, buttonId } = usePopupMenu();
@@ -46,11 +50,18 @@ export const PopupMenuItems = React.forwardRef<HTMLDivElement, PopupMenuItemsPro
 
         switch (child.type) {
           case PopupMenuItem:
-            const itemIndex = total;
-            total++;
-            const childId = child?.props?.id || `${id}-${itemIndex}`;
-            setPanels((panels) => [...panels, childId]);
-            newChildren = [...newChildren, cloneElement(child, { ...child.props, id: childId, itemIndex: itemIndex })];
+            if (!child.props.disabled) {
+              const itemIndex = total;
+              const childId = child?.props?.id || `${id}-${itemIndex}`;
+              setPanels((panels) => [...panels, childId]);
+              newChildren = [
+                ...newChildren,
+                cloneElement(child, { ...child.props, id: childId, itemIndex: itemIndex }),
+              ];
+              total++;
+            } else {
+              newChildren = [...newChildren, child];
+            }
             break;
           default:
             if (child.props.children) {
@@ -65,13 +76,11 @@ export const PopupMenuItems = React.forwardRef<HTMLDivElement, PopupMenuItemsPro
 
       return newChildren;
     };
-    setActiveMode('soft');
-    setActiveIndex(0);
-    setPanels([]);
+
     const newChildren = mapKids(children);
 
     return newChildren;
-  }, [children]);
+  }, [children, active, activeMode]);
 
   React.useEffect(() => {
     if (internalRef.current) {
@@ -94,23 +103,32 @@ export const PopupMenuItems = React.forwardRef<HTMLDivElement, PopupMenuItemsPro
         setActiveIndex(panels.length - 1);
         break;
       default:
+        setActiveIndex(0);
         break;
     }
+    setNavigate(true);
     setGoTo && setGoTo(undefined);
   };
 
   React.useEffect(() => {
-    setActiveMode('hard');
-    handleGoTo();
-  }, [goTo]);
+    setActiveMode('soft');
+    if (isOpen) {
+      if (autoFocus && goTo) {
+        setActiveMode('hard');
+        handleGoTo();
+      }
+      setOpened(true);
+    } else {
+      setOpened(false);
+    }
+  }, [isOpen]);
 
   React.useEffect(() => {
-    setActiveMode('soft');
-    if (autoFocus && isOpen) {
+    if (goTo && opened) {
       setActiveMode('hard');
       handleGoTo();
     }
-  }, [isOpen]);
+  }, [goTo]);
 
   const mapItem = (item: Element) => {
     const tabIndex = item.getAttribute('id') === active ? '0' : '-1';
@@ -162,7 +180,9 @@ export const PopupMenuItems = React.forwardRef<HTMLDivElement, PopupMenuItemsPro
     } else {
       setActiveIndex(activeIndex + 1);
     }
+    setNavigate(true);
   };
+
   const prev = () => {
     setActiveMode('hard');
     if (activeIndex === 0) {
@@ -170,6 +190,7 @@ export const PopupMenuItems = React.forwardRef<HTMLDivElement, PopupMenuItemsPro
     } else {
       setActiveIndex(activeIndex - 1);
     }
+    setNavigate(true);
   };
 
   const context = {
@@ -177,6 +198,8 @@ export const PopupMenuItems = React.forwardRef<HTMLDivElement, PopupMenuItemsPro
     next,
     prev,
     activeMode,
+    navigate,
+    setNavigate,
   };
   return (
     <PopupMenuItemsContext.Provider value={context}>
@@ -188,7 +211,8 @@ export const PopupMenuItems = React.forwardRef<HTMLDivElement, PopupMenuItemsPro
         aria-labelledby={buttonId}
         {...rest}
       >
-        {menuItems}
+        {menuItems &&
+          getValidChildren(menuItems).map((item, index) => <React.Fragment key={index}>{item}</React.Fragment>)}
       </div>
     </PopupMenuItemsContext.Provider>
   );

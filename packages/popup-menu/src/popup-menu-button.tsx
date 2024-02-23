@@ -23,7 +23,7 @@ export const PopupMenuButton = React.forwardRef<
   } = props;
   const disabled = _disabled || loading;
 
-  const { isOpen, open, close, type, id: parentId, setButtonId } = usePopupMenu();
+  const { isOpen, open, close, type, id: parentId, setButtonId, position } = usePopupMenu();
 
   const id = _id || `${parentId}-button`;
 
@@ -47,6 +47,7 @@ export const PopupMenuButton = React.forwardRef<
         break;
       case 'Enter':
         event.preventDefault();
+        event.stopPropagation();
         if (open && close) {
           if (isOpen) {
             close();
@@ -56,12 +57,32 @@ export const PopupMenuButton = React.forwardRef<
         }
         break;
       case 'ArrowDown':
-        event.preventDefault();
-        open && open(GoTo.First);
+        if (position === 'over' || position === 'under') {
+          event.preventDefault();
+          event.stopPropagation();
+          open && open(GoTo.First);
+        }
         break;
       case 'ArrowUp':
-        event.preventDefault();
-        open && open(GoTo.Last);
+        if (position === 'over' || position === 'under') {
+          event.preventDefault();
+          event.stopPropagation();
+          open && open(GoTo.Last);
+        }
+        break;
+      case 'ArrowRight':
+        if (position === 'right') {
+          event.preventDefault();
+          event.stopPropagation();
+          open && open(GoTo.First);
+        }
+        break;
+      case 'ArrowLeft':
+        if (position === 'left') {
+          event.preventDefault();
+          event.stopPropagation();
+          open && open(GoTo.First);
+        }
         break;
     }
     onKeyDown && onKeyDown(event);

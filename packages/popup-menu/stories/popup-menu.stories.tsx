@@ -14,10 +14,11 @@ export default {
 } as Meta<typeof PopupMenu>;
 
 export const Template = (args: PopupMenuProps) => {
+  const [open, setOpen] = React.useState(false);
   return (
     <div className="h-[50rem] flex flex-col items-center">
       <div className="relative w-min h-[3.2rem]">
-        <PopupMenu {...args}>
+        <PopupMenu {...args} onToggleOpen={setOpen} open={open}>
           <PopupMenu.Button
             size="sm"
             variant="primary"
@@ -32,31 +33,54 @@ export const Template = (args: PopupMenuProps) => {
             <PopupMenu.Items>
               <PopupMenu.Group>
                 <PopupMenu.Item>
-                  <Button
-                    role="menuitemcheckbox"
-                    leftIcon={<Icon name="wallet" />}
-                    onClick={() => console.log('Account')}
-                  >
+                  <Button leftIcon={<Icon name="wallet" />} onClick={() => console.log('Account')}>
                     Konto
                   </Button>
                 </PopupMenu.Item>
                 <PopupMenu.Item>
-                  <Link onClick={() => console.log('Edit')}>
+                  <Link
+                    onClick={() => {
+                      console.log('Edit');
+                      setOpen(false);
+                    }}
+                  >
                     <Icon name="settings-2" /> Inställningar
                   </Link>
                 </PopupMenu.Item>
+
                 <PopupMenu.Item>
-                  <PopupMenu position="right">
-                    <PopupMenu.Button leftIcon={<Icon name="settings-2" />} rightIcon={<Icon name="chevron-right" />}>
+                  <PopupMenu>
+                    <PopupMenu.Button leftIcon={<Icon name="settings" />} rightIcon={<Icon name="chevron-right" />}>
                       Inställningar
                     </PopupMenu.Button>
-                    <PopupMenu.Panel></PopupMenu.Panel>
+                    <PopupMenu.Panel>
+                      <PopupMenu.Items>
+                        <PopupMenu.Item>
+                          <Button
+                            role="menuitemcheckbox"
+                            leftIcon={<Icon name="wallet" />}
+                            onClick={() => {
+                              console.log('Account');
+                              setOpen(false);
+                            }}
+                          >
+                            Konto
+                          </Button>
+                        </PopupMenu.Item>
+                      </PopupMenu.Items>
+                    </PopupMenu.Panel>
                   </PopupMenu>
                 </PopupMenu.Item>
               </PopupMenu.Group>
               <PopupMenu.Group>
                 <PopupMenu.Item>
-                  <Button leftIcon={<Icon name="log-out" />} onClick={() => console.log('Logout')}>
+                  <Button
+                    leftIcon={<Icon name="log-out" />}
+                    onClick={() => {
+                      console.log('Logout');
+                      setOpen(false);
+                    }}
+                  >
                     Logga ut
                   </Button>
                 </PopupMenu.Item>
@@ -108,7 +132,7 @@ export const CheckboxesAndFilter = () => {
 export const PopupMenuAsDialog = () => {
   return (
     <div className="h-[30rem]">
-      <PopupMenu>
+      <PopupMenu type="dialog">
         <PopupMenu.Button rightIcon={<Icon name="chevron-down" />}>Datumfilter</PopupMenu.Button>
         <PopupMenu.Panel>
           <PopupMenu.Group>
@@ -118,10 +142,12 @@ export const PopupMenuAsDialog = () => {
             </FormControl>
             <FormControl>
               <FormLabel>Slutdatum</FormLabel>
-              <DatePicker autoFocus></DatePicker>
+              <DatePicker></DatePicker>
             </FormControl>
           </PopupMenu.Group>
-          <Button onClick={() => console.log('Applied')}>Applicera</Button>
+          <Button type="button" onClick={() => console.log('Applied')}>
+            Applicera
+          </Button>
         </PopupMenu.Panel>
       </PopupMenu>
     </div>

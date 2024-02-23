@@ -80,10 +80,6 @@ export const PopupMenu = () => ({
         '@apply bg-primitives-gray-200': {},
         '@apply dark:bg-primitives-overlay-lighten-1': {},
       },
-      // '&.active': {
-      //   '@apply bg-transparent': {},
-      //   // '@apply dark:bg-primitives-overlay-lighten-1': {},
-      // },
       svg: {
         '@apply w-[2rem] h-[2rem]': {},
       },
