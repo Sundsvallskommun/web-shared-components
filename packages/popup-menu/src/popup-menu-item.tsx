@@ -44,11 +44,10 @@ export const PopupMenuItem: React.FC<PopupMenuItemProps> = (props) => {
         break;
       case ' ':
         const target = event.target as Element;
-        if (target?.nodeName?.toLowerCase() !== 'input') {
-          event.preventDefault();
+        if (target?.nodeName !== 'INPUT') {
           event.stopPropagation();
           target.dispatchEvent(new MouseEvent('click'));
-          close && close();
+          !preventClose && close && close();
         }
         break;
     }
@@ -56,7 +55,8 @@ export const PopupMenuItem: React.FC<PopupMenuItemProps> = (props) => {
   };
 
   const handleClick = (event: MouseEvent, preventClose: boolean, defaultFunc?: (event: MouseEvent) => void) => {
-    if (!preventClose) {
+    const target = event.target as Element;
+    if (!preventClose && target?.nodeName !== 'INPUT') {
       event.preventDefault();
       event.stopPropagation();
       close && close();
