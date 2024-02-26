@@ -148,8 +148,6 @@ export const PopupMenuComponent: React.FC<PopupMenuComponentProps> = (props) => 
   return (
     <>
       <PopupMenuContext.Provider value={context}>
-        {/* <Button />
-        <Panel /> */}
         {getButton()}
         {getPanel()}
       </PopupMenuContext.Provider>
