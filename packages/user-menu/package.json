@@ -39,7 +39,8 @@
   "dependencies": {
     "@sk-web-gui/avatar": "1.0.2",
     "@sk-web-gui/popup-menu": "1.0.6",
-    "@sk-web-gui/utils": "1.0.0"
+    "@sk-web-gui/utils": "1.0.0",
+    "@sk-web-gui/logo": "1.0.2"
   },
   "peerDependencies": {
     "react": ">=18.2.0"

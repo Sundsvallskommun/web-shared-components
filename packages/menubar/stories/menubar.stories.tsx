@@ -9,13 +9,10 @@ export default {
   title: 'Komponenter/Menu-horizontal',
   component: MenuBar,
   tags: ['autodocs'],
-  args: {
-    separator: '/',
-  },
 } as Meta<typeof MenuBar>;
 
 export const Template = (args: MenuBarProps) => {
-  const [current, setCurrent] = React.useState<number | undefined>(1);
+  const [current, setCurrent] = React.useState<number | undefined>(0);
   return (
     <div className="h-[50rem]">
       <MenuBar {...args} current={current}>
@@ -31,12 +28,16 @@ export const Template = (args: MenuBarProps) => {
         <MenuBar.Item>
           <PopupMenu>
             <PopupMenu.Button rightIcon={<Icon name="chevron-down" />}>Flervals</PopupMenu.Button>
-            <PopupMenu.Item>
-              <button onClick={() => setCurrent(2)}>Underval 1</button>
-            </PopupMenu.Item>
-            <PopupMenu.Item>
-              <a onClick={() => setCurrent(2)}>Underval 2</a>
-            </PopupMenu.Item>
+            <PopupMenu.Panel>
+              <PopupMenu.Items>
+                <PopupMenu.Item>
+                  <button onClick={() => setCurrent(2)}>Underval 1</button>
+                </PopupMenu.Item>
+                <PopupMenu.Item>
+                  <a onClick={() => setCurrent(2)}>Underval 2</a>
+                </PopupMenu.Item>
+              </PopupMenu.Items>
+            </PopupMenu.Panel>
           </PopupMenu>
         </MenuBar.Item>
       </MenuBar>
