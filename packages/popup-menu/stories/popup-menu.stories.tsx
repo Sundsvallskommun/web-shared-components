@@ -6,6 +6,7 @@ import { SearchField } from '@sk-web-gui/searchfield';
 import { Meta } from '@storybook/react';
 import React from 'react';
 import { PopupMenu, PopupMenuProps } from '../src';
+import { useForm } from 'react-hook-form';
 
 export default {
   title: 'Komponenter/PopupMenu',
@@ -14,11 +15,10 @@ export default {
 } as Meta<typeof PopupMenu>;
 
 export const Template = (args: PopupMenuProps) => {
-  const [open, setOpen] = React.useState(false);
   return (
     <div className="h-[50rem] flex flex-col items-center">
       <div className="relative w-min h-[3.2rem]">
-        <PopupMenu {...args} onToggleOpen={setOpen} open={open}>
+        <PopupMenu {...args}>
           <PopupMenu.Button
             size="sm"
             variant="primary"
@@ -41,7 +41,6 @@ export const Template = (args: PopupMenuProps) => {
                   <Link
                     onClick={() => {
                       console.log('Edit');
-                      setOpen(false);
                     }}
                   >
                     <Icon name="settings-2" /> Inställningar
@@ -61,7 +60,6 @@ export const Template = (args: PopupMenuProps) => {
                             leftIcon={<Icon name="wallet" />}
                             onClick={() => {
                               console.log('Account');
-                              setOpen(false);
                             }}
                           >
                             Konto
@@ -78,7 +76,6 @@ export const Template = (args: PopupMenuProps) => {
                     leftIcon={<Icon name="log-out" />}
                     onClick={() => {
                       console.log('Logout');
-                      setOpen(false);
                     }}
                   >
                     Logga ut
@@ -97,7 +94,15 @@ Template.storyName = 'PopupMenu';
 
 export const CheckboxesAndFilter = () => {
   const values = ['Banan', 'Äpple', 'Päron', 'Apelsin'];
+  const { register, watch } = useForm<{ fruit: string[] }>({ defaultValues: { fruit: [] } });
   const [query, setQuery] = React.useState<string>('');
+
+  const selected = watch('fruit');
+
+  React.useEffect(() => {
+    console.log('Selected: ', selected);
+  }, [selected]);
+
   return (
     <div className="h-[30rem]">
       <PopupMenu>
@@ -119,7 +124,9 @@ export const CheckboxesAndFilter = () => {
               .filter((value) => value.toLowerCase().includes(query.toLowerCase()))
               .map((value) => (
                 <PopupMenu.Item key={value}>
-                  <Checkbox labelPosition="left">{value}</Checkbox>
+                  <Checkbox labelPosition="left" {...register('fruit')} value={value}>
+                    {value}
+                  </Checkbox>
                 </PopupMenu.Item>
               ))}
           </PopupMenu.Items>

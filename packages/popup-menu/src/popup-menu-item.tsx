@@ -27,6 +27,9 @@ export const PopupMenuItem: React.FC<PopupMenuItemProps> = (props) => {
     preventClose: boolean,
     defaultFunc?: (event: KeyboardEvent) => void
   ) => {
+    const target = event.target as Element;
+    const clickEvent = new MouseEvent('click', { bubbles: true });
+
     switch (event.key) {
       case 'ArrowDown':
         event.preventDefault();
@@ -39,15 +42,16 @@ export const PopupMenuItem: React.FC<PopupMenuItemProps> = (props) => {
         prev && prev();
         break;
       case 'Enter':
-        event.target?.dispatchEvent(new MouseEvent('click'));
-        !preventClose && close && close();
+        if (target?.nodeName !== 'BUTTON') {
+          target?.dispatchEvent(clickEvent);
+          !preventClose && close && close();
+        }
         break;
       case ' ':
-        const target = event.target as Element;
         if (target?.nodeName !== 'INPUT') {
           event.stopPropagation();
-          target.dispatchEvent(new MouseEvent('click'));
-          !preventClose && close && close();
+          event.preventDefault();
+          target.dispatchEvent(clickEvent);
         }
         break;
     }
