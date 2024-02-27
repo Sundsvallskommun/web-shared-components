@@ -47,7 +47,14 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>((props, 
   return (
     <div ref={ref} className={cx('sk-usermenu', className)} {...rest}>
       <PopupMenu align="end">
-        <PopupMenu.Button size="lg" iconButton className="sk-usermenu-button" rounded>
+        <PopupMenu.Button
+          size={buttonSize}
+          showBackground={false}
+          className="sk-usermenu-button"
+          rounded={buttonRounded}
+          variant="tertiary"
+          iconButton
+        >
           <Avatar
             size={buttonSize}
             rounded={buttonRounded}
