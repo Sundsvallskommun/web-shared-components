@@ -6,21 +6,7 @@ export const PopupMenuButton = React.forwardRef<
   HTMLButtonElement,
   React.ComponentPropsWithoutRef<ButtonProps['Component']>
 >((props, ref) => {
-  const {
-    disabled: _disabled,
-    loading,
-    active,
-    iconButton,
-    children,
-    className,
-    color,
-    rounded = false,
-    inverted,
-    onClick,
-    onKeyDown,
-    id: _id,
-    ...rest
-  } = props;
+  const { disabled: _disabled, loading, children, className, onClick, onKeyDown, id: _id, ...rest } = props;
   const disabled = _disabled || loading;
 
   const { isOpen, open, close, type, id: parentId, setButtonId, position } = usePopupMenu();
@@ -90,11 +76,6 @@ export const PopupMenuButton = React.forwardRef<
   return (
     <Button
       ref={ref}
-      data-rounded={rounded ? rounded : undefined}
-      data-active={active ? 'true' : undefined}
-      data-color={color ? color : undefined}
-      data-icon={iconButton ? iconButton : undefined}
-      data-inverted={inverted ? inverted : undefined}
       className={className}
       disabled={disabled}
       aria-haspopup={type || 'menu'}
