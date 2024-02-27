@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.7](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/user-menu@1.0.6...@sk-web-gui/user-menu@1.0.7) (2024-02-27)
+
+### Bug Fixes
+
+- updated button for better apperence with new popup menu ([48b95b1](https://github.com/Sundsvallskommun/web-shared-components/commit/48b95b13ee4524eb0d1fe6835150d006338a691d))
+- updated with new PopupMenu ([ff0f208](https://github.com/Sundsvallskommun/web-shared-components/commit/ff0f2083c8bfb1f12846b31c632565354629a994))
+
 ## [1.0.6](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/user-menu@1.0.5...@sk-web-gui/user-menu@1.0.6) (2024-02-02)
 
 **Note:** Version bump only for package @sk-web-gui/user-menu

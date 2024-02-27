@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/menubar@1.0.2...@sk-web-gui/menubar@1.0.3) (2024-02-27)
+
+### Bug Fixes
+
+- updated to work with new PopupMenu ([39adb60](https://github.com/Sundsvallskommun/web-shared-components/commit/39adb609ca6493e4d8d69491266e4eef7cf6a8b4))
+
 ## [1.0.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/menubar@1.0.1...@sk-web-gui/menubar@1.0.2) (2024-01-18)
 
 ### Bug Fixes

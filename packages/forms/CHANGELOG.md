@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.6](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@1.0.5...@sk-web-gui/forms@1.0.6) (2024-02-27)
+
+### Bug Fixes
+
+- **checkbox:** checkbox rounded corners ([7080321](https://github.com/Sundsvallskommun/web-shared-components/commit/7080321a6c39daef3fdbef70490aac7d41145d58))
+
 ## [1.0.5](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@1.0.4...@sk-web-gui/forms@1.0.5) (2024-02-02)
 
 ### Bug Fixes
