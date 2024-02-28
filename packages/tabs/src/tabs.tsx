@@ -1,4 +1,4 @@
-import MenuBar from '@sk-web-gui/menubar';
+import { MenuBar } from '@sk-web-gui/menubar';
 import { __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
 import React, { useId } from 'react';
 import { TabsContext } from './tabs-context';
