@@ -1,5 +1,5 @@
 #!/bin/sh
-if ! head -1 "$1" | grep -qE "^(feat|fix|chore|docs|test|style|refactor|perf|build|ci|revert)(\(.+?\))?: .{1,}$"; then
+if ! head -1 "$1" | grep -qE "^(Merge pull request)|((feat|fix|chore|docs|test|style|refactor|perf|build|ci|revert)(\(.+?\))?: .{1,}$)"; then
     echo "Aborting commit. Use conventional commits." >&2
     echo "Message should be formatted like this: '<type>[optional scope]: <description>'" >&2
     echo "Read more at https://www.conventionalcommits.org/en/v1.0.0/"
