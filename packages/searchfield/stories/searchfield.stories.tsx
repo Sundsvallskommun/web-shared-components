@@ -19,8 +19,8 @@ export const Template: StoryObj<typeof SearchField> = (args: SearchFieldProps) =
     setTerm(event.target.value);
     setDirty(true);
   };
-  const onCloseHandler = () => {
-    console.log('onCloseHandler');
+  const onResetHandler = () => {
+    console.log('onResetHandler');
     setDirty(false);
   };
   const onSearchHandler = (query: string) => {
@@ -32,9 +32,10 @@ export const Template: StoryObj<typeof SearchField> = (args: SearchFieldProps) =
     <SearchField
       {...args}
       value={term}
-      showSeachButton={dirty}
+      showSearchButton={dirty}
+      // showResetButton={!dirty}
       onChange={onChangeHandler}
-      onClose={onCloseHandler}
+      onReset={onResetHandler}
       onSearch={onSearchHandler}
     />
   );
