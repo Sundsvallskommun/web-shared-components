@@ -32,7 +32,9 @@ export interface PopupMenuComponentProps extends PopupMenuBaseProps {
   /**
    * PopupMenu.Button & PopupMenu.Panel
    */
-  children: [React.ReactComponentElement<typeof PopupMenuButton>, React.ReactComponentElement<typeof PopupMenuPanel>];
+  children:
+    | [React.ReactComponentElement<typeof PopupMenuButton>, React.ReactComponentElement<typeof PopupMenuPanel>]
+    | React.ReactComponentElement<typeof PopupMenuPanel>;
   // children: React.ReactNode;
   id?: string;
   /**
@@ -126,8 +128,6 @@ export const PopupMenuComponent: React.FC<PopupMenuComponentProps> = (props) => 
         ...button.props,
         ref: button.props.ref ? useForkRef(button.props.ref, buttonRef) : buttonRef,
       });
-    } else {
-      throw new Error('No PopupMenu.Button found');
     }
   }, [children]);
 
