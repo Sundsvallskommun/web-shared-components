@@ -7,7 +7,7 @@ import { createRoot } from 'react-dom/client';
 const isBrowser = typeof window !== 'undefined' && typeof window.document !== 'undefined';
 const PORTAL_ID = 'react-toast';
 
-class Toaster {
+export class Toaster {
   createNotification?: Function;
   removeAll?: Function;
   closeToast?: Function;

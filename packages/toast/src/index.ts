@@ -1,4 +1,4 @@
-import createToast, { useToastOptions } from './toast';
+import { createToast, useToastOptions } from './toast';
 
 export { createToast };
 export type { useToastOptions };

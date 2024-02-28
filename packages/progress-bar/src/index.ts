@@ -1,4 +1,4 @@
-import ProgressBar, { ProgressBarProps } from './progress-bar';
+import { ProgressBar, ProgressBarProps } from './progress-bar';
 
 export { ProgressBar };
 export type { ProgressBarProps };

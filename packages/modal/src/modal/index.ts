@@ -1,4 +1,4 @@
-import ModalComponent, { ModalComponentProps } from './modal';
+import { ModalComponent, ModalComponentProps } from './modal';
 import { ModalContent } from './modal-content';
 import { ModalFooter } from './modal-footer';
 
