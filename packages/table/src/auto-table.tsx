@@ -2,19 +2,24 @@ import { Input, Select } from '@sk-web-gui/forms';
 import { Pagination } from '@sk-web-gui/pagination';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
-import { AutoTableHeader } from './auto-table-headers';
-import { TableHeader, AutoTableColumn } from './table';
+import { TableHeader, AutoTableColumn, sortMode } from './table';
+import { TableHeader as HeaderComponent } from './table-header';
+import { TableHeaderColumn } from './table-header-column';
+import { TableSortButton } from './table-sort-button';
+import { TableRow } from './table-row';
+import { TableRowColumn } from './table-row-column';
+import { TableFooter } from './table-footer';
 
 export interface AutoTableProps extends DefaultProps, React.ComponentPropsWithRef<'table'> {
   headers: Array<TableHeader>;
   rows: AutoTableColumn[][];
   handleSort: (colIndex: number, asc: boolean) => void;
-  defaultSort: {
+  defaultSort?: {
     idx: number;
-    sortMode: boolean;
+    sortMode: sortMode;
   };
-  tableSortable: boolean;
-  sortAscending: boolean;
+  tableSortable?: boolean;
+  sortedOrder?: sortMode;
   pageSize: number;
   pages: number;
   page: number;
@@ -35,9 +40,6 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
     headers,
     rows,
     handleSort,
-    defaultSort,
-    sortAscending,
-    tableSortable,
     pageSize: _propsPageSize = 5,
     page = 1,
     pages: _pages,
@@ -52,11 +54,12 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
     dense: _dense = false,
     footer,
     className,
+    defaultSort = { idx: 0, sortMode: sortMode.ASC },
     ...rest
   } = props;
 
   const [managedRows, setManagedRows] = React.useState(rows);
-  const [sortModeAscending, setSortModeAscending] = React.useState(defaultSort.sortMode);
+  const [sortModeOrder, setSortModeOrder] = React.useState(defaultSort.sortMode);
   const [_pageSize, setPageSize] = React.useState<number>(_propsPageSize);
   const pageSize = _pageSize || 1;
   const [sortIndex, setSortIndex] = React.useState<number>(defaultSort.idx);
@@ -67,18 +70,20 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
   const captionShowPages = _captionShowPages || footer ? true : false;
 
   const internalSortHandler = (idx: number) => {
-    setSortModeAscending(sortIndex === idx ? !sortModeAscending : sortAscending);
+    setSortModeOrder(
+      sortIndex === idx ? (sortModeOrder === sortMode.DESC ? sortMode.ASC : sortMode.DESC) : sortMode.ASC
+    );
     setSortIndex(idx);
   };
   const [highlightedPage, setHighlightedPage] = React.useState<number>(0);
 
   React.useEffect(() => {
-    handleSort(sortIndex, sortModeAscending);
-  }, [sortIndex, sortModeAscending, handleSort]);
+    handleSort(sortIndex, sortModeOrder === sortMode.DESC ? false : true);
+  }, [sortIndex, sortModeOrder, handleSort]);
 
   React.useEffect(() => {
     setSortIndex(defaultSort.idx);
-    setSortModeAscending(defaultSort.sortMode);
+    setSortModeOrder(defaultSort.sortMode);
   }, []);
 
   React.useEffect(() => {
@@ -165,26 +170,37 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
                 </caption>
               )}
 
-              <thead className="sk-table-thead" data-background={background}>
-                <tr className={cx(`sk-table-thead-tr`)}>
-                  {headers.map((h, idx) => (
-                    <AutoTableHeader
-                      key={`header${idx}`}
-                      {...h}
-                      handleSort={internalSortHandler}
-                      index={idx}
-                      tableSortable={tableSortable}
-                      sortIndex={sortIndex}
-                      sortModeAscending={sortModeAscending}
-                    />
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="sk-table-tbody">
+              <HeaderComponent>
+                {headers.map((h, idx) =>
+                  h.isShown || h.isShown === null ? (
+                    <TableHeaderColumn
+                      key={`header-${idx}`}
+                      aria-sort={`${sortIndex == idx ? sortModeOrder : 'none'}`}
+                      data-iscolumnsortable={h.isColumnSortable === true || h.isColumnSortable === null}
+                    >
+                      <TableSortButton
+                        isActive={sortIndex == idx}
+                        aria-description={sortIndex == idx ? undefined : 'sortera'}
+                        sortOrder={sortModeOrder}
+                        onClick={() => {
+                          internalSortHandler(idx);
+                        }}
+                        isColumnSortable={h.isColumnSortable === true || h.isColumnSortable === null ? true : false}
+                        screenReaderOnly={h.screenReaderOnly === true || h.screenReaderOnly === null ? true : false}
+                      >
+                        <span>{h.element}</span>
+                      </TableSortButton>
+                    </TableHeaderColumn>
+                  ) : (
+                    <></>
+                  )
+                )}
+              </HeaderComponent>
+              <tbody>
                 {managedRows.map((cols, idx) => (
-                  <tr
+                  <TableRow
                     key={`row${idx}`}
-                    className={`sk-table-tbody-tr ${
+                    className={`${
                       highlightedItemIndex !== undefined &&
                       highlightedItemIndex % pageSize === idx &&
                       highlightedPage === currentPage
@@ -194,19 +210,21 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
                   >
                     {cols.map(({ element, isShown = true }, idx) =>
                       isShown ? (
-                        <td key={`col${idx}`} className="sk-table-tbody-td">
+                        <TableRowColumn key={`col${idx}`}>
                           <div className="sk-table-tbody-td-content">{element}</div>
-                        </td>
-                      ) : null
+                        </TableRowColumn>
+                      ) : (
+                        <> </>
+                      )
                     )}
-                  </tr>
+                  </TableRow>
                 ))}
               </tbody>
             </table>
           )}
         </div>
         {footer && (
-          <div className="sk-table-bottom">
+          <TableFooter>
             <div className="sk-table-bottom-section">
               <label className="sk-table-bottom-section-label" htmlFor="pagiPageSize">
                 Rader per sida:
@@ -249,7 +267,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
                 <Select.Option value={'dense'}>Tät</Select.Option>
               </Select>
             </div>
-          </div>
+          </TableFooter>
         )}
       </div>
     </>

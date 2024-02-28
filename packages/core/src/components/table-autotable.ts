@@ -71,13 +71,13 @@ export const TableAutoTable = () => ({
             '@apply last-of-type:-mt-4': {},
           },
 
-          "&[data-sortmodeascending='true']": {
+          "&[data-sortmode='ascending']": {
             '> *': {
               '@apply last-of-type:text-dark-ghost': {},
             },
           },
 
-          "&[data-sortmodeascending='false']": {
+          "&[data-sortmode='descending']": {
             '> *': {
               '@apply first-of-type:text-dark-ghost': {},
             },
@@ -94,6 +94,7 @@ export const TableAutoTable = () => ({
         '@apply hover:bg-background-100': {},
         '@apply border-b-1': {},
         '@apply last-of-type:border-b-transparent': {},
+        '@apply focus-visible:shadow-insetring': {},
       },
 
       '&-td': {
@@ -115,6 +116,7 @@ export const TableAutoTable = () => ({
           '@apply py-8 px-18': {},
           '@apply h-[6.3rem]': {},
           '@apply min-h-[6.3rem]': {},
+          '@apply focus-visible:shadow-insetring': {},
         },
       },
     },

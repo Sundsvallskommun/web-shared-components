@@ -7,6 +7,11 @@ import _ from 'lodash';
 type TableValue = any;
 type TableItem = Record<string | number, TableValue>;
 
+export enum sortMode {
+  ASC = 'ascending',
+  DESC = 'descending',
+}
+
 export interface AutoTableHeader {
   property?: string;
   label?: string;
@@ -33,8 +38,8 @@ interface UseTableProps {
   autoheaders?: Array<AutoTableHeader | string>;
   autodata?: Array<TableItem>;
   tableSortable?: boolean;
-  defaultSort?: { idx: number; sortMode: boolean };
-  sortAscending?: boolean;
+  defaultSort?: { idx: number; sortMode: sortMode.ASC | sortMode.DESC };
+  sortedOrder?: sortMode;
   pageSize?: number;
   page?: number;
   pages?: number;
@@ -60,15 +65,9 @@ export const TableComponent = React.forwardRef<HTMLTableElement, TableComponentP
   const {
     autoheaders,
     autodata,
-    sortAscending = true,
-    tableSortable = true,
-    defaultSort = { idx: 0, sortMode: true },
     pageSize,
     page,
     pages,
-    captionTitle,
-    captionBody,
-    captionClassName,
     captionShowPages,
     summary,
     changePage,
@@ -235,49 +234,29 @@ export const TableComponent = React.forwardRef<HTMLTableElement, TableComponentP
   );
 
   //TABLE VARIANTS
-  return (
-    <>
-      {captionTitle && (
-        <caption className={cx('text-left', captionClassName)} aria-hidden={true}>
-          {captionTitle}
-          {captionBody && (
-            <>
-              <br />
-              <small>{captionBody}</small>
-            </>
-          )}
-        </caption>
-      )}
-      <div className={cx('sk-table-wrapper', className)} data-background={background}>
-        <div className="sk-table-wrapper-inside">
-          {variant === 'table' ? (
-            <table ref={ref} {...rest} className={'sk-table'} summary={summary ? summary : undefined}>
-              {tableItems}
-            </table>
-          ) : (
-            <>
-              <AutoTable
-                headers={headers}
-                rows={autoTableRows()}
-                handleSort={handleSort}
-                defaultSort={defaultSort}
-                changePage={changePage}
-                page={page as number}
-                pageSize={pageSize as number}
-                pages={pages as number}
-                sortAscending={sortAscending as boolean}
-                tableSortable={tableSortable as boolean}
-                dense={dense}
-                captionShowPages={captionShowPages}
-                highlightedItemIndex={highlightedItemIndex}
-                footer={footer}
-                {...props}
-              />
-            </>
-          )}
-        </div>
+  return variant === 'table' ? (
+    <div className={cx('sk-table-wrapper', className)} data-background={background}>
+      <div className="sk-table-wrapper-inside">
+        <table ref={ref} {...rest} className={'sk-table'} summary={summary ? summary : undefined}>
+          {tableItems}
+        </table>
       </div>
-    </>
+    </div>
+  ) : (
+    <AutoTable
+      headers={headers}
+      rows={autoTableRows()}
+      handleSort={handleSort}
+      changePage={changePage}
+      page={page as number}
+      pageSize={pageSize as number}
+      pages={pages as number}
+      dense={dense}
+      captionShowPages={captionShowPages}
+      highlightedItemIndex={highlightedItemIndex}
+      footer={footer}
+      {...props}
+    />
   );
 });
 

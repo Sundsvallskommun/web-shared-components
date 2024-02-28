@@ -73,7 +73,6 @@ export const ZebraTable = React.forwardRef<HTMLTableElement, ZebraTableProps>((p
   const [rowHeight, setRowHeight] = React.useState<string>(_dense ? 'dense' : 'normal');
 
   const captionShowPages = _captionShowPages || variant === 'datatable' ? true : false;
-
   const internalSortHandler = (idx: number) => {
     setSortModeAscending(sortIndex === idx ? !sortModeAscending : sortAscending);
     setSortIndex(idx);
