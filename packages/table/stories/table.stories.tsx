@@ -1,7 +1,7 @@
 import { Meta } from '@storybook/react';
 import React from 'react';
 import { Table, TableProps } from '../src';
-import { AutoTableHeader } from '../src/table';
+import { AutoTableHeader } from '../src/auto-table';
 import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
 import { AutoTable, AutoTableProps } from '../src/auto-table';
