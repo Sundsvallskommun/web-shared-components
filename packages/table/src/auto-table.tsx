@@ -82,6 +82,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
     dense: _dense = false,
     footer = true,
     tableSortable = true,
+    background = false,
     defaultSort = { idx: 0, sortMode: sortMode.ASC },
     ...rest
   } = props;
@@ -337,7 +338,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
             </caption>
           )}
 
-          <HeaderComponent>
+          <HeaderComponent background={background}>
             {headers.map((h, idx) =>
               h.isShown || h.isShown === null ? (
                 <TableHeaderColumn

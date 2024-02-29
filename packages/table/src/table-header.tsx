@@ -1,8 +1,12 @@
 import React from 'react';
 import { cx, getValidChildren } from '@sk-web-gui/utils';
 
-export const TableHeader = React.forwardRef<HTMLTableRowElement, React.ComponentPropsWithoutRef<'tr'>>((props, ref) => {
-  const { className, children, ...rest } = props;
+export interface TableHeaderProps extends React.ComponentPropsWithoutRef<'tr'> {
+  background?: boolean;
+}
+
+export const TableHeader = React.forwardRef<HTMLTableRowElement, TableHeaderProps>((props, ref) => {
+  const { className, children, background, ...rest } = props;
 
   const validChildren = getValidChildren(children);
   const headerItems = validChildren.map((child, index) => {
@@ -12,7 +16,7 @@ export const TableHeader = React.forwardRef<HTMLTableRowElement, React.Component
   });
 
   return (
-    <thead className="sk-table-thead">
+    <thead className="sk-table-thead" data-background={background}>
       <tr ref={ref} className={cx(`sk-table-thead-tr`, className)} {...rest}>
         {headerItems}
       </tr>
