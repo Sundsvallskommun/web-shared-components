@@ -1,15 +1,7 @@
 import React from 'react';
-import { DefaultProps, cx, getValidChildren } from '@sk-web-gui/utils';
+import { cx, getValidChildren } from '@sk-web-gui/utils';
 
-interface ITableHeaderProps extends DefaultProps {
-  children: JSX.Element | JSX.Element[] | string;
-}
-
-export interface TableHeaderProps
-  extends Omit<React.HTMLAttributes<HTMLTableRowElement>, 'color' | 'children'>,
-    ITableHeaderProps {}
-
-export const TableHeader = React.forwardRef<HTMLTableRowElement, TableHeaderProps>((props, ref) => {
+export const TableHeader = React.forwardRef<HTMLTableRowElement, React.ComponentPropsWithoutRef<'tr'>>((props, ref) => {
   const { className, children, ...rest } = props;
 
   const validChildren = getValidChildren(children);

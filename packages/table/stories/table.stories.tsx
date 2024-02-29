@@ -4,6 +4,7 @@ import { Table, TableProps } from '../src';
 import { AutoTableHeader } from '../src/table';
 import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
+import { AutoTable, AutoTableProps } from '../src/auto-table';
 
 export default {
   title: 'Komponenter/Table/Table',
@@ -105,13 +106,20 @@ export const Template = (args: TableProps) => (
           return row;
         })}
       </tbody>
+      <Table.Footer>
+        <div className="sk-table-bottom-section">En footergrej</div>
+        <div className="sk-table-bottom-section">En annan footergrej</div>
+        <div className="sk-table-bottom-section">
+          <Icon name="alarm-clock" />
+        </div>
+      </Table.Footer>
     </Table>
   </div>
 );
 
 Template.story = { name: 'Table' };
 
-export const AutoTable = (args: TableProps) => {
+export const AutoTableComponent = (args: AutoTableProps) => {
   const ongoingCases = {
     data: [
       {
@@ -201,5 +209,5 @@ export const AutoTable = (args: TableProps) => {
     },
   ];
 
-  return <Table {...args} footer variant="autotable" autodata={ongoingCases.data} autoheaders={headers} />;
+  return <AutoTable {...args} footer autodata={ongoingCases.data} autoheaders={headers} />;
 };

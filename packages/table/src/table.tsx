@@ -1,7 +1,6 @@
 import { DefaultProps, __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
-import AutoTable from './auto-table';
-import _ from 'lodash';
+import { TableFooter } from './table-footer';
 
 //eslint-disable-next-line
 type TableValue = any;
@@ -53,7 +52,6 @@ interface UseTableProps {
   changePage?: (page: number) => void;
   background?: boolean;
   dense?: boolean;
-  variant?: 'table' | 'autotable';
 }
 
 export interface TableComponentProps
@@ -62,201 +60,28 @@ export interface TableComponentProps
     Omit<React.ComponentPropsWithRef<'table'>, 'color'> {}
 
 export const TableComponent = React.forwardRef<HTMLTableElement, TableComponentProps>((props, ref) => {
-  const {
-    autoheaders,
-    autodata,
-    pageSize,
-    page,
-    pages,
-    captionShowPages,
-    summary,
-    changePage,
-    background = false,
-    dense,
-    variant = 'table',
-    className,
-    highlightedItemIndex,
-    footer,
-    children,
-    ...rest
-  } = props;
+  const { summary, background = false, className, children, ...rest } = props;
 
   //MANUEL TABLE
   const validChildren = getValidChildren(children);
-  const tableItems = validChildren.map((child, index) => {
-    const props = { ...child.props, rowindex: index };
+  const tableItems = validChildren
+    .filter((child) => child.type !== TableFooter)
+    .map((child, index) => {
+      const props = { ...child.props, rowindex: index };
 
-    return React.cloneElement(child, props);
-  });
-
-  //AUTO TABLE
-  const [autoHeaders] = React.useState<Array<AutoTableHeader | string>>(
-    autoheaders?.length === 0 || autoheaders === undefined ? [] : (autoheaders as Array<AutoTableHeader | string>)
-  );
-  const [autoData] = React.useState<TableItem[]>(
-    autodata?.length === 0 || autodata === undefined ? [] : (autodata as Array<TableItem>)
-  );
-  const [tableData, setTableData] = React.useState<TableItem[]>(autodata as Array<TableItem>);
-
-  const getValue = (item: TableItem, header: string | AutoTableHeader): TableValue => {
-    let headerparts = [];
-
-    switch (typeof header) {
-      case 'string':
-        headerparts = header.split('.');
-        break;
-
-      default:
-        headerparts = header?.property ? header?.property.split('.') : [];
-        break;
-    }
-    const value = headerparts.reduce((value, headerpart) => {
-      if (value !== null) {
-        if (value) {
-          return value[headerpart] ? value[headerpart] : undefined;
-        }
-        return undefined;
-      }
-
-      return item[headerpart];
-    }, null);
-
-    return value || '';
-  };
-
-  const getLabel = (header: AutoTableHeader | string) => {
-    let headerparts;
-    switch (typeof header) {
-      case 'string':
-        headerparts = header.split('.');
-        return _.upperFirst(_.lowerCase(headerparts[headerparts.length - 1]));
-
-      default:
-        if (header.label) {
-          return header.label;
-        }
-        headerparts = header.property ? header.property.split('.') : [];
-        return headerparts.length ? _.upperFirst(_.lowerCase(headerparts[headerparts.length - 1])) : '';
-    }
-  };
-
-  const headers: TableHeader[] = autoHeaders?.map((header) => {
-    let label: string;
-    let isSortable = true;
-    let show = true;
-    let isScreenReaderOnly = false;
-
-    switch (typeof header) {
-      case 'string':
-        label = getLabel(header);
-        break;
-
-      default:
-        const { isColumnSortable = true, isShown = true, screenReaderOnly = false } = header;
-        label = getLabel(header);
-        isSortable = isColumnSortable;
-        show = isShown;
-        isScreenReaderOnly = screenReaderOnly;
-        break;
-    }
-
-    return {
-      element: <span>{label}</span>,
-      isColumnSortable: isSortable,
-      isShown: show,
-      screenReaderOnly: isScreenReaderOnly,
-    };
-  });
-
-  const autoTableRows = (): AutoTableColumn[][] => {
-    if (autoData.length < 1) return [[]];
-    return tableData?.map((item) => {
-      return autoHeaders?.map((header) => {
-        let position = 'left';
-        let show = true;
-        switch (typeof header) {
-          case 'string':
-            break;
-
-          default:
-            const { isShown = true } = header;
-            show = isShown;
-            position = header?.columnPosition || 'left';
-            break;
-        }
-
-        const value = getValue(item, header);
-
-        let element = <div className={`w-full text-${position}`}>{value}</div>;
-        if (typeof header !== 'string' && header.renderColumn) {
-          element = header.renderColumn(value, item);
-        }
-        return { element: element, isShown: show };
-      });
+      return React.cloneElement(child, props);
     });
-  };
 
-  const handleSort = React.useCallback(
-    (colIndex: number, asc: boolean) => {
-      if (autoData.length < 1) return;
-      const mode = asc ? 1 : -1;
-      const value = getValue(tableData[0], autoHeaders[colIndex]);
-      let sortedData = [...autoData];
-      switch (typeof value) {
-        case 'number':
-          sortedData = sortedData.sort(
-            (a, b) => getValue(asc ? a : b, autoHeaders[colIndex]) - getValue(asc ? b : a, autoHeaders[colIndex])
-          );
-
-          break;
-        case 'string':
-          sortedData = sortedData.sort((a, b) =>
-            getValue(a, autoHeaders[colIndex]).toLowerCase() > getValue(b, autoHeaders[colIndex]).toLowerCase()
-              ? 1 * mode
-              : getValue(a, autoHeaders[colIndex]).toLowerCase() < getValue(b, autoHeaders[colIndex]).toLowerCase()
-                ? -1 * mode
-                : 0
-          );
-          break;
-        default:
-          sortedData = sortedData.sort((a, b) =>
-            getValue(a, autoHeaders[colIndex]) > getValue(b, autoHeaders[colIndex])
-              ? 1 * mode
-              : getValue(a, autoHeaders[colIndex]) < getValue(b, autoHeaders[colIndex])
-                ? -1 * mode
-                : 0
-          );
-          break;
-      }
-      setTableData(sortedData);
-    },
-    [autodata]
-  );
-
-  //TABLE VARIANTS
-  return variant === 'table' ? (
+  const footerItem = validChildren.filter((child) => child.type === TableFooter);
+  return (
     <div className={cx('sk-table-wrapper', className)} data-background={background}>
       <div className="sk-table-wrapper-inside">
         <table ref={ref} {...rest} className={'sk-table'} summary={summary ? summary : undefined}>
           {tableItems}
         </table>
+        {footerItem}
       </div>
     </div>
-  ) : (
-    <AutoTable
-      headers={headers}
-      rows={autoTableRows()}
-      handleSort={handleSort}
-      changePage={changePage}
-      page={page as number}
-      pageSize={pageSize as number}
-      pages={pages as number}
-      dense={dense}
-      captionShowPages={captionShowPages}
-      highlightedItemIndex={highlightedItemIndex}
-      footer={footer}
-      {...props}
-    />
   );
 });
 
