@@ -67,7 +67,7 @@ const data = [
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const rows: any = data.map((d, idx: number) => {
   return (
-    <Table.TableRow
+    <Table.Row
       tabIndex={0}
       className={`${d.price && d.price < 10 && 'bg-success-background-200'} ${
         d.price && d.price > 10 && d.price < 16 && 'bg-warning-background-100'
@@ -75,16 +75,16 @@ const rows: any = data.map((d, idx: number) => {
       ${d.price && d.price >= 16 && 'bg-error-background-200'}`}
       key={`row-${idx}`}
     >
-      <Table.TableRowColumn tabIndex={0}>
+      <Table.Column tabIndex={0}>
         <span>{d.fruit}</span>
-      </Table.TableRowColumn>
-      <Table.TableRowColumn tabIndex={0}>
+      </Table.Column>
+      <Table.Column tabIndex={0}>
         <span>{`${d.price ? `${d.price} kr` : '-'}`}</span>
-      </Table.TableRowColumn>
-      <Table.TableRowColumn tabIndex={0}>
+      </Table.Column>
+      <Table.Column tabIndex={0}>
         <span>{d.country}</span>
-      </Table.TableRowColumn>
-    </Table.TableRow>
+      </Table.Column>
+    </Table.Row>
   );
 });
 
@@ -197,7 +197,7 @@ export const AutoTable = (args: TableProps) => {
           </Button>
         </div>
       ),
-      isColumnSortable: true,
+      isColumnSortable: false,
     },
   ];
 

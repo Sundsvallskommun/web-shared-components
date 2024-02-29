@@ -176,7 +176,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
                     <TableHeaderColumn
                       key={`header-${idx}`}
                       aria-sort={`${sortIndex == idx ? sortModeOrder : 'none'}`}
-                      data-iscolumnsortable={h.isColumnSortable === true || h.isColumnSortable === null}
+                      data-iscolumnsortable={h.isColumnSortable}
                     >
                       <TableSortButton
                         isActive={sortIndex == idx}
@@ -185,8 +185,8 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
                         onClick={() => {
                           internalSortHandler(idx);
                         }}
-                        isColumnSortable={h.isColumnSortable === true || h.isColumnSortable === null ? true : false}
-                        screenReaderOnly={h.screenReaderOnly === true || h.screenReaderOnly === null ? true : false}
+                        isColumnSortable={h.isColumnSortable as boolean}
+                        screenReaderOnly={h.screenReaderOnly as boolean}
                       >
                         <span>{h.element}</span>
                       </TableSortButton>

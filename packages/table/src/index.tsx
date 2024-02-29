@@ -4,14 +4,16 @@ import { TableHeader } from './table-header';
 import { TableHeaderColumn } from './table-header-column';
 import { TableRow } from './table-row';
 import { TableRowColumn } from './table-row-column';
+import { TableSortButton } from './table-sort-button';
 
 interface TableProps extends TableComponentProps, React.ForwardRefExoticComponent<TableComponentProps> {
   Component: typeof TableComponent;
   Header: typeof TableHeader;
   HeaderColumn: typeof TableHeaderColumn;
-  TableRow: typeof TableRow;
-  TableRowColumn: typeof TableRowColumn;
-  TableFooter: typeof TableFooter;
+  SortButton: typeof TableSortButton;
+  Row: typeof TableRow;
+  Column: typeof TableRowColumn;
+  Footer: typeof TableFooter;
 }
 
 const Table = {
@@ -19,9 +21,10 @@ const Table = {
   Component: TableComponent,
   Header: TableHeader,
   HeaderColumn: TableHeaderColumn,
-  TableRow: TableRow,
-  TableRowColumn: TableRowColumn,
-  TableFooter: TableFooter,
+  SortButton: TableSortButton,
+  Row: TableRow,
+  Column: TableRowColumn,
+  Footer: TableFooter,
 } as TableProps;
 
 export { Table };
