@@ -9,7 +9,7 @@ export interface TableRowProps
   extends Omit<React.HTMLAttributes<HTMLTableRowElement>, 'color' | 'children'>,
     ITableRowProps {}
 
-export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>((props, ref) => {
+export const TableRow = React.forwardRef<HTMLTableRowElement, React.ComponentPropsWithoutRef<'tr'>>((props, ref) => {
   const { children, className, ...rest } = props;
   const validChildren = getValidChildren(children);
   const rowItems = validChildren.map((child, index) => {
