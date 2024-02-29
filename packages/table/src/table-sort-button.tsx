@@ -17,7 +17,6 @@ export interface TableSortButtonProps
 
 export const TableSortButton = React.forwardRef<HTMLButtonElement, TableSortButtonProps>((props, ref) => {
   const { sortOrder, children, isActive, isColumnSortable, screenReaderOnly, ...rest } = props;
-  console.log(isColumnSortable);
   return isColumnSortable ? (
     <button ref={ref} {...rest} className="sk-table-sortbutton">
       {children}
