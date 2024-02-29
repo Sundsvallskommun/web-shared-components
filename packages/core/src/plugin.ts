@@ -47,7 +47,6 @@ import { TableAutoTable } from './components/table-autotable';
 import { Tabs } from './components/tabs';
 import { Tooltip } from './components/tooltip';
 import { UserMenu } from './components/user-menu';
-import { ZebraTable } from './components/zebratable';
 
 const components: ((colors: string[], theme: PluginAPI['theme']) => CSSRuleObject)[] = [
   Alert,
@@ -77,7 +76,6 @@ const components: ((colors: string[], theme: PluginAPI['theme']) => CSSRuleObjec
   Table,
   TableAutoTable,
   Tabs,
-  ZebraTable,
   CookieConsent,
   Modal,
   Accordion,

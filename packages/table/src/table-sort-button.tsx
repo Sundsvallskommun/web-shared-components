@@ -4,7 +4,6 @@ import React from 'react';
 import { sortMode } from './auto-table';
 
 export interface ITableSortButtonProps extends DefaultProps, React.ComponentPropsWithoutRef<'button'> {
-  children: JSX.Element | JSX.Element[] | string;
   isActive: boolean;
   sortOrder: sortMode.ASC | sortMode.DESC | null;
 }

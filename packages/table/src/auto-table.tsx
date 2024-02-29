@@ -10,6 +10,7 @@ import { TableRow } from './table-row';
 import { TableRowColumn } from './table-row-column';
 import { TableFooter } from './table-footer';
 import _ from 'lodash';
+import Table, { TableComponentProps } from './table';
 
 //eslint-disable-next-line
 type TableValue = any;
@@ -39,7 +40,7 @@ export interface AutoTableColumn {
   isShown?: boolean;
 }
 
-export interface AutoTableProps extends DefaultProps, React.ComponentPropsWithRef<'table'> {
+export interface AutoTableProps extends DefaultProps, TableComponentProps {
   autoheaders?: Array<AutoTableHeader | string>;
   autodata?: Array<TableItem>;
 
@@ -57,7 +58,6 @@ export interface AutoTableProps extends DefaultProps, React.ComponentPropsWithRe
   captionBody?: string;
   captionClassName?: string;
   captionShowPages?: boolean;
-  summary?: string;
   highlightedItemIndex?: number;
   changePage?: (page: number) => void;
   background?: boolean;
@@ -79,10 +79,9 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
     captionShowPages: _captionShowPages,
     summary,
     highlightedItemIndex,
-    background,
     dense: _dense = false,
-    footer,
-    className,
+    footer = true,
+    tableSortable = true,
     defaultSort = { idx: 0, sortMode: sortMode.ASC },
     ...rest
   } = props;
@@ -318,143 +317,135 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
           )}
         </caption>
       )}
-      <div className={cx('sk-table-wrapper', className)} data-footer={footer} data-background={background}>
-        <div className="sk-table-wrapper-inside">
-          {managedRows.length > 0 && (
-            <table
-              ref={ref}
-              {...rest}
-              className={'sk-table'}
-              summary={summary ? summary : undefined}
-              data-dense={rowHeight === 'dense'}
-            >
-              {captionTitle && (
-                <caption className="sr-only">
-                  {captionShowPages ? (
-                    <>
-                      {captionTitle}, sida {currentPage} av {pages}.
-                    </>
-                  ) : (
-                    captionTitle
-                  )}
-                  {captionBody && (
-                    <>
-                      <br />
-                      <small>{captionBody}</small>
-                    </>
-                  )}
-                </caption>
+      {managedRows.length > 0 && (
+        <Table ref={ref} summary={summary ? summary : undefined} data-dense={rowHeight === 'dense'}>
+          {captionTitle && (
+            <caption className="sr-only">
+              {captionShowPages ? (
+                <>
+                  {captionTitle}, sida {currentPage} av {pages}.
+                </>
+              ) : (
+                captionTitle
               )}
+              {captionBody && (
+                <>
+                  <br />
+                  <small>{captionBody}</small>
+                </>
+              )}
+            </caption>
+          )}
 
-              <HeaderComponent>
-                {headers.map((h, idx) =>
-                  h.isShown || h.isShown === null ? (
-                    <TableHeaderColumn
-                      key={`header-${idx}`}
-                      aria-sort={`${sortIndex == idx ? sortModeOrder : 'none'}`}
-                      data-iscolumnsortable={h.isColumnSortable}
+          <HeaderComponent>
+            {headers.map((h, idx) =>
+              h.isShown || h.isShown === null ? (
+                <TableHeaderColumn
+                  key={`header-${idx}`}
+                  aria-sort={`${sortIndex == idx ? sortModeOrder : 'none'}`}
+                  data-iscolumnsortable={h.isColumnSortable}
+                >
+                  {' '}
+                  {h.isColumnSortable && tableSortable ? (
+                    <TableSortButton
+                      isActive={sortIndex == idx}
+                      aria-description={sortIndex == idx ? undefined : 'sortera'}
+                      sortOrder={sortModeOrder}
+                      onClick={() => {
+                        internalSortHandler(idx);
+                      }}
                     >
-                      {' '}
-                      {h.isColumnSortable ? (
-                        <TableSortButton
-                          isActive={sortIndex == idx}
-                          aria-description={sortIndex == idx ? undefined : 'sortera'}
-                          sortOrder={sortModeOrder}
-                          onClick={() => {
-                            internalSortHandler(idx);
-                          }}
-                        >
-                          <span>{h.element}</span>
-                        </TableSortButton>
-                      ) : (
-                        <span
-                          ref={ref}
-                          {...rest}
-                          className={cx('sk-table-sortbutton', `${h.screenReaderOnly ? `sr-only` : ``}`)}
-                        >
-                          {h.element}
-                        </span>
-                      )}
-                    </TableHeaderColumn>
+                      <span>{h.element}</span>
+                    </TableSortButton>
                   ) : (
-                    <></>
+                    <span
+                      ref={ref}
+                      {...rest}
+                      className={cx('sk-table-sortbutton', `${h.screenReaderOnly ? `sr-only` : ``}`)}
+                    >
+                      {h.element}
+                    </span>
+                  )}
+                </TableHeaderColumn>
+              ) : (
+                <></>
+              )
+            )}
+          </HeaderComponent>
+          <tbody>
+            {managedRows.map((cols, idx) => (
+              <TableRow
+                key={`row${idx}`}
+                className={`${
+                  highlightedItemIndex !== undefined &&
+                  highlightedItemIndex % pageSize === idx &&
+                  highlightedPage === currentPage
+                    ? `highlighted`
+                    : ``
+                }`}
+              >
+                {cols.map(({ element, isShown = true }, idx) =>
+                  isShown ? (
+                    <TableRowColumn key={`col${idx}`}>
+                      <div className="sk-table-tbody-td-content">{element}</div>
+                    </TableRowColumn>
+                  ) : (
+                    <> </>
                   )
                 )}
-              </HeaderComponent>
-              <tbody>
-                {managedRows.map((cols, idx) => (
-                  <TableRow
-                    key={`row${idx}`}
-                    className={`${
-                      highlightedItemIndex !== undefined &&
-                      highlightedItemIndex % pageSize === idx &&
-                      highlightedPage === currentPage
-                        ? `highlighted`
-                        : ``
-                    }`}
-                  >
-                    {cols.map(({ element, isShown = true }, idx) =>
-                      isShown ? (
-                        <TableRowColumn key={`col${idx}`}>
-                          <div className="sk-table-tbody-td-content">{element}</div>
-                        </TableRowColumn>
-                      ) : (
-                        <> </>
-                      )
-                    )}
-                  </TableRow>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </div>
-        {footer && (
-          <TableFooter>
-            <div className="sk-table-bottom-section">
-              <label className="sk-table-bottom-section-label" htmlFor="pagiPageSize">
-                Rader per sida:
-              </label>
-              <Input
-                size="sm"
-                id="pagePageSize"
-                type="number"
-                min={1}
-                max={100}
-                className="max-w-[6rem]"
-                value={`${_pageSize}`}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => setPageSize(parseInt(event.target.value))}
-              />
-            </div>
+              </TableRow>
+            ))}
+          </tbody>
+          {footer ? (
+            <TableFooter>
+              <div className="sk-table-bottom-section">
+                <label className="sk-table-bottom-section-label" htmlFor="pagiPageSize">
+                  Rader per sida:
+                </label>
+                <Input
+                  size="sm"
+                  id="pagePageSize"
+                  type="number"
+                  min={1}
+                  max={100}
+                  className="max-w-[6rem]"
+                  value={`${_pageSize}`}
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => setPageSize(parseInt(event.target.value))}
+                />
+              </div>
 
-            <div className="sk-table-paginationwrapper">
-              <Pagination
-                className="sk-table-pagination"
-                pages={pages}
-                activePage={currentPage}
-                showConstantPages
-                pagesAfter={1}
-                pagesBefore={1}
-                changePage={(page: number) => setCurrentPage(page)}
-                fitContainer
-              />
-            </div>
-            <div className="sk-table-bottom-section">
-              <label className="sk-table-bottom-section-label" htmlFor="pagiRowHeight">
-                Radhöjd:
-              </label>
-              <Select
-                id="pagiRowHeight"
-                size="sm"
-                value={rowHeight}
-                onSelectValue={(value: string) => setRowHeight(value)}
-              >
-                <Select.Option value={'normal'}>Normal</Select.Option>
-                <Select.Option value={'dense'}>Tät</Select.Option>
-              </Select>
-            </div>
-          </TableFooter>
-        )}
-      </div>
+              <div className="sk-table-paginationwrapper">
+                <Pagination
+                  className="sk-table-pagination"
+                  pages={pages}
+                  activePage={currentPage}
+                  showConstantPages
+                  pagesAfter={1}
+                  pagesBefore={1}
+                  changePage={(page: number) => setCurrentPage(page)}
+                  fitContainer
+                />
+              </div>
+              <div className="sk-table-bottom-section">
+                <label className="sk-table-bottom-section-label" htmlFor="pagiRowHeight">
+                  Radhöjd:
+                </label>
+                <Select
+                  id="pagiRowHeight"
+                  size="sm"
+                  value={rowHeight}
+                  onSelectValue={(value: string) => setRowHeight(value)}
+                >
+                  <Select.Option value={'normal'}>Normal</Select.Option>
+                  <Select.Option value={'dense'}>Tät</Select.Option>
+                </Select>
+              </div>
+            </TableFooter>
+          ) : (
+            <></>
+          )}
+        </Table>
+      )}
     </>
   );
 });
