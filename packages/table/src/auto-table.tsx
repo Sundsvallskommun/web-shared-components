@@ -42,6 +42,7 @@ export interface AutoTableColumn {
 export interface AutoTableProps extends DefaultProps, React.ComponentPropsWithRef<'table'> {
   autoheaders?: Array<AutoTableHeader | string>;
   autodata?: Array<TableItem>;
+
   handleSort: (colIndex: number, asc: boolean) => void;
   defaultSort?: {
     idx: number;

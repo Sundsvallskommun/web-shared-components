@@ -32,6 +32,7 @@ export const TableComponent = React.forwardRef<HTMLTableElement, TableComponentP
         <table ref={ref} {...rest} className={'sk-table'} summary={summary ? summary : undefined}>
           {tableItems}
         </table>
+
         {footerItem}
       </div>
     </div>
