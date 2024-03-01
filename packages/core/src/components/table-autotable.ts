@@ -31,13 +31,6 @@ export const TableAutoTable = () => ({
 
       '&-th': {
         '@apply py-4': {},
-
-        "&[data-isColumnSortable='true']": {
-          '@apply cursor-pointer': {},
-        },
-      },
-      '&-manualth': {
-        '@apply py-4': {},
         '@apply px-16': {},
 
         "&[data-isColumnSortable='true']": {
@@ -98,17 +91,6 @@ export const TableAutoTable = () => ({
       },
 
       '&-td': {
-        '@apply text-small': {},
-        '&-content': {
-          '@apply inline-flex': {},
-          '@apply justify-start items-center': {},
-          '@apply gap-8': {},
-          '@apply py-8 px-18': {},
-          '@apply h-[6.3rem]': {},
-          '@apply min-h-[6.3rem]': {},
-        },
-      },
-      '&-manualtd': {
         '@apply text-small': {},
         '&-content': {
           '@apply justify-start items-center': {},

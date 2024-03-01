@@ -6,7 +6,7 @@ export const TableRowColumn = React.forwardRef<HTMLTableCellElement, React.Compo
     const { children, className, ...rest } = props;
 
     return (
-      <td ref={ref} className={cx('sk-table-tbody-td sk-table-tbody-manualtd-content', className)} {...rest}>
+      <td ref={ref} className={cx('sk-table-tbody-td sk-table-tbody-td-content', className)} {...rest}>
         {children}
       </td>
     );

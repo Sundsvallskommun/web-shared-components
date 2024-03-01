@@ -16,7 +16,7 @@ export const TableComponent = React.forwardRef<HTMLTableElement, TableComponentP
   const tableItems = validChildren
     .filter((child) => child.type !== TableFooter)
     .map((child, index) => {
-      const props = { ...child.props, rowindex: index };
+      const props = { ...child.props, rowindex: index, background: background };
 
       return React.cloneElement(child, props);
     });

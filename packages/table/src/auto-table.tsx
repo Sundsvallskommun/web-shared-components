@@ -60,7 +60,6 @@ export interface AutoTableProps extends DefaultProps, TableComponentProps {
   captionShowPages?: boolean;
   highlightedItemIndex?: number;
   changePage?: (page: number) => void;
-  background?: boolean;
   dense?: boolean;
   footer?: boolean;
 }
@@ -82,7 +81,6 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
     dense: _dense = false,
     footer = true,
     tableSortable = true,
-    background = false,
     defaultSort = { idx: 0, sortMode: sortMode.ASC },
     ...rest
   } = props;
@@ -319,7 +317,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
         </caption>
       )}
       {managedRows.length > 0 && (
-        <Table ref={ref} summary={summary ? summary : undefined} data-dense={rowHeight === 'dense'}>
+        <Table {...rest} ref={ref} summary={summary ? summary : undefined} data-dense={rowHeight === 'dense'}>
           {captionTitle && (
             <caption className="sr-only">
               {captionShowPages ? (
@@ -338,7 +336,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
             </caption>
           )}
 
-          <HeaderComponent background={background}>
+          <HeaderComponent>
             {headers.map((h, idx) =>
               h.isShown || h.isShown === null ? (
                 <TableHeaderColumn
