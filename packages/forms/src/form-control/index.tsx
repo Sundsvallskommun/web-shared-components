@@ -14,6 +14,8 @@ interface UseFormControlProps {
   readOnly?: boolean;
   /** The `id` to use for the form control. */
   id?: string;
+  /** The name of the input */
+  name?: string;
   /** If this is a group, set to true. */
   fieldset?: boolean;
   /** Set size for all children */
@@ -73,6 +75,7 @@ export const FormControl = React.forwardRef<HTMLElement, FormControlProps>((prop
     invalid,
     readOnly,
     id: idProp,
+    name,
     fieldset = false,
     size = 'md',
     ...rest
@@ -91,6 +94,7 @@ export const FormControl = React.forwardRef<HTMLElement, FormControlProps>((prop
     invalid,
     readOnly,
     id,
+    name,
     labelId,
     errorId,
     helpTextId,
