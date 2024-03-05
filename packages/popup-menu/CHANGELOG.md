@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/popup-menu@2.0.0...@sk-web-gui/popup-menu@2.0.1) (2024-03-05)
+
+### Bug Fixes
+
+- do not require button ([f1dbe2b](https://github.com/Sundsvallskommun/web-shared-components/commit/f1dbe2bf4cadfc24ca9b32672dfedb496818afd3))
+
 # [2.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/popup-menu@1.0.6...@sk-web-gui/popup-menu@2.0.0) (2024-02-27)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/toasted-notes@1.0.0...@sk-web-gui/toasted-notes@1.0.1) (2024-03-05)
+
+### Bug Fixes
+
+- uniform file-ending for src/index and autodocs-fixes ([63173ab](https://github.com/Sundsvallskommun/web-shared-components/commit/63173ab9474b4cb3bc97da6b780bdfb4ae65990c))
+
 # [1.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/toasted-notes@0.1.14...@sk-web-gui/toasted-notes@1.0.0) (2023-12-18)
 
 ### Bug Fixes

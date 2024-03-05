@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/card@1.0.4...@sk-web-gui/card@1.0.5) (2024-03-05)
+
+### Bug Fixes
+
+- uniform file-ending for src/index and autodocs-fixes ([63173ab](https://github.com/Sundsvallskommun/web-shared-components/commit/63173ab9474b4cb3bc97da6b780bdfb4ae65990c))
+
 ## [1.0.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/card@1.0.3...@sk-web-gui/card@1.0.4) (2024-02-02)
 
 **Note:** Version bump only for package @sk-web-gui/card

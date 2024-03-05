@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.8](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/user-menu@1.0.7...@sk-web-gui/user-menu@1.0.8) (2024-03-05)
+
+### Bug Fixes
+
+- show code and argstables ([55b1ad7](https://github.com/Sundsvallskommun/web-shared-components/commit/55b1ad76e98d0319ca6e7c664e618186dce40936))
+- uniform file-ending for src/index and autodocs-fixes ([63173ab](https://github.com/Sundsvallskommun/web-shared-components/commit/63173ab9474b4cb3bc97da6b780bdfb4ae65990c))
+
 ## [1.0.7](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/user-menu@1.0.6...@sk-web-gui/user-menu@1.0.7) (2024-02-27)
 
 ### Bug Fixes

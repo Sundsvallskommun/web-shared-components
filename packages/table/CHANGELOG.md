@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@1.0.7...@sk-web-gui/table@2.0.0) (2024-03-05)
+
+### Bug Fixes
+
+- background boolean prop, tbody subcomponent ([0062652](https://github.com/Sundsvallskommun/web-shared-components/commit/0062652150cf89ee94f8e2f42f0ad38bd0b257ac))
+- background with valid prop to children, rowindex to header column and row column, dense prop, row styling, sortedOrder, simplifying datatable ([3b288c8](https://github.com/Sundsvallskommun/web-shared-components/commit/3b288c8cf21458e69b999cebd6fdcd69f36d344f))
+- misspelled prop, removed unused prop in autotable ([d3a988d](https://github.com/Sundsvallskommun/web-shared-components/commit/d3a988d0ca4a07920429ed8bc0b5393760517b2a))
+- props background ([8991256](https://github.com/Sundsvallskommun/web-shared-components/commit/89912561ffc8c1df4b3009e4ef8eda5814089362))
+- remove unused rowindex ([27d50a7](https://github.com/Sundsvallskommun/web-shared-components/commit/27d50a7556f330618fbe158127d4431325c3a01a))
+- removing unused table components that are replaced, children prop fixes, autotable structure fix ([15c3b2a](https://github.com/Sundsvallskommun/web-shared-components/commit/15c3b2a3e05e8e374dc68765485c657f2ec708c3))
+- right header interface in stories ([3315809](https://github.com/Sundsvallskommun/web-shared-components/commit/3315809ee24fd2b134770f5c4b1f252722ac0bb3))
+- simple table and data table in stories for table, background props for background styling control ([6d26041](https://github.com/Sundsvallskommun/web-shared-components/commit/6d2604109a7860ca3cee715a944979f963ebcf8e))
+- uniform file-ending for src/index and autodocs-fixes ([63173ab](https://github.com/Sundsvallskommun/web-shared-components/commit/63173ab9474b4cb3bc97da6b780bdfb4ae65990c))
+
+### Features
+
+- **table:** subcomponents table and auto table ([ec5c6dd](https://github.com/Sundsvallskommun/web-shared-components/commit/ec5c6ddc50190592fd1c614516e3eeb3455c62fd))
+- **table:** subcomponents table and auto table ([6e9a246](https://github.com/Sundsvallskommun/web-shared-components/commit/6e9a2467765a64c56b9c94e2de29e8ba57da5f61))
+
+### BREAKING CHANGES
+
+- **table:** AutoTable replaces DataTable, Table replaces ZebraTable
+- **table:** AutoTable replaces DataTable, Table replaces ZebraTable
+
 ## [1.0.7](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@1.0.6...@sk-web-gui/table@1.0.7) (2024-02-27)
 
 **Note:** Version bump only for package @sk-web-gui/table

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.5](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/tabs@1.1.4...@sk-web-gui/tabs@1.1.5) (2024-03-05)
+
+### Bug Fixes
+
+- **tabs:** need named import of MenuBar ([2c11d3f](https://github.com/Sundsvallskommun/web-shared-components/commit/2c11d3f2c169b8b1e487d9ebaa17e851668377fa))
+
 ## [1.1.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/tabs@1.1.3...@sk-web-gui/tabs@1.1.4) (2024-02-27)
 
 **Note:** Version bump only for package @sk-web-gui/tabs

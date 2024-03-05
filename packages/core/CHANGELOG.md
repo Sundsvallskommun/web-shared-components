@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@2.0.0...@sk-web-gui/core@2.0.1) (2024-03-05)
+
+### Bug Fixes
+
+- background with valid prop to children, rowindex to header column and row column, dense prop, row styling, sortedOrder, simplifying datatable ([3b288c8](https://github.com/vechai/sk-web-gui/commit/3b288c8cf21458e69b999cebd6fdcd69f36d344f))
+- removing unused table components that are replaced, children prop fixes, autotable structure fix ([15c3b2a](https://github.com/vechai/sk-web-gui/commit/15c3b2a3e05e8e374dc68765485c657f2ec708c3))
+- simple table and data table in stories for table, background props for background styling control ([6d26041](https://github.com/vechai/sk-web-gui/commit/6d2604109a7860ca3cee715a944979f963ebcf8e))
+
 # [2.0.0](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@1.1.2...@sk-web-gui/core@2.0.0) (2024-02-27)
 
 ### Bug Fixes

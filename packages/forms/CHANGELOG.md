@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.7](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@1.0.6...@sk-web-gui/forms@1.0.7) (2024-03-05)
+
+### Bug Fixes
+
+- uniform file-ending for src/index and autodocs-fixes ([63173ab](https://github.com/Sundsvallskommun/web-shared-components/commit/63173ab9474b4cb3bc97da6b780bdfb4ae65990c))
+- updated to new popupmenu styles ([becb47a](https://github.com/Sundsvallskommun/web-shared-components/commit/becb47a3672786273dfd4db3551fc66e98b585d7))
+
 ## [1.0.6](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@1.0.5...@sk-web-gui/forms@1.0.6) (2024-02-27)
 
 ### Bug Fixes
