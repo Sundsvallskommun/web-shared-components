@@ -1,11 +1,11 @@
 import { Icon } from '@sk-web-gui/icon';
 import { DefaultProps } from '@sk-web-gui/utils';
 import React from 'react';
-import { sortMode } from './auto-table';
+import { SortMode } from './auto-table';
 
 export interface ITableSortButtonProps extends DefaultProps, React.ComponentPropsWithoutRef<'button'> {
   isActive: boolean;
-  sortOrder: sortMode.ASC | sortMode.DESC | null;
+  sortOrder: SortMode.ASC | SortMode.DESC | null;
 }
 
 export const TableSortButton = React.forwardRef<HTMLButtonElement, ITableSortButtonProps>((props, ref) => {

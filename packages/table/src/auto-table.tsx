@@ -46,10 +46,6 @@ export interface AutoTableProps extends DefaultProps, TableComponentProps {
   autodata?: Array<TableItem>;
 
   handleSort: (colIndex: number, asc: boolean) => void;
-  defaultSort?: {
-    idx: number;
-    sortMode: SortMode;
-  };
   tableSortable?: boolean;
   sortedOrder?: SortMode;
   pageSize: number;
