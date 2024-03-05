@@ -21,13 +21,13 @@ export const TableAutoTable = () => ({
 
     '&-thead': {
       '@apply border-b-1 border-dark-primary': {},
-      '@apply h-48': {},
+      '@apply h-[5.6rem]': {},
       '&-tr': {
         '@apply table-row': {},
         '@apply text-label-small': {},
       },
 
-      '&-th': {
+      '.sk-table-th': {
         '@apply py-4': {},
         '@apply px-16': {},
 
@@ -88,28 +88,27 @@ export const TableAutoTable = () => ({
         '@apply focus-visible:shadow-insetring': {},
       },
 
-      '&-td': {
+      '&-td, .sk-table-th': {
         '@apply text-small': {},
-        '&-content': {
-          '@apply justify-start items-center': {},
-          '@apply gap-8': {},
-          '@apply py-8 px-18': {},
-          '@apply h-[6.3rem]': {},
-          '@apply min-h-[6.3rem]': {},
-          '@apply focus-visible:shadow-insetring': {},
-        },
+        '@apply justify-start items-center': {},
+        '@apply gap-8': {},
+        '@apply py-8 px-18': {},
+        '@apply h-[6.3rem]': {},
+        '@apply min-h-[6.3rem]': {},
+        '@apply focus-visible:shadow-insetring': {},
       },
     },
 
     '&[data-dense="dense"]': {
       '.sk-table': {
         '&-thead': {
-          '&-th': {
-            '@apply py-4': {},
+          '@apply h-[4.8rem]': {},
+          '.sk-table-th': {
+            '@apply py-0': {},
           },
         },
         '&-tbody': {
-          '&-td-content': {
+          '&-td, .sk-table-th': {
             '@apply py-0': {},
             '@apply h-[4.7rem]': {},
             '@apply min-h-[4.7rem]': {},

@@ -6,7 +6,7 @@ import { TableBody } from './table-body';
 import { TableRow } from './table-row';
 import { TableRowColumn } from './table-row-column';
 import { TableSortButton } from './table-sort-button';
-import AutoTable, { AutoTableProps } from './auto-table';
+import AutoTable, { AutoTableProps, SortMode } from './auto-table';
 
 interface TableProps extends TableComponentProps, React.ForwardRefExoticComponent<TableComponentProps> {
   Component: typeof TableComponent;
@@ -32,5 +32,5 @@ const Table = {
 } as TableProps;
 
 export { Table, AutoTable };
-export type { TableProps, AutoTableProps };
+export type { TableProps, AutoTableProps, SortMode };
 export default Table;

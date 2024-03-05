@@ -5,7 +5,7 @@ export const TableHeaderColumn = React.forwardRef<HTMLTableCellElement, React.Co
   (props, ref) => {
     const { className, children, ...rest } = props;
     return (
-      <th ref={ref} className={cx('sk-table-thead-th', className)} {...rest}>
+      <th ref={ref} className={cx('sk-table-th', className)} {...rest}>
         {children}
       </th>
     );

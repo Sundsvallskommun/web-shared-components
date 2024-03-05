@@ -3,81 +3,16 @@ import React from 'react';
 import { Table, TableProps } from '../src';
 import { Icon } from '@sk-web-gui/icon';
 import { Button } from '@sk-web-gui/button';
-import { sortMode } from '../src/auto-table';
+import { SortMode } from '../src/auto-table';
 import { Input, Select } from '@sk-web-gui/forms';
 import { Pagination } from '@sk-web-gui/pagination';
+import { TableSortButton } from '../src/table-sort-button';
 
 export default {
   title: 'Komponenter/Table/Table',
   component: Table,
   tags: ['autodocs'],
 } as Meta<typeof Table>;
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-// const headerLabels = [{ label: 'Column 1' }, { label: 'Column 2' }, { label: 'Column 3' }];
-
-// const data = [
-//   {
-//     id: 1,
-//     column1: 'cell',
-//     column2: 'cell',
-//     column3: 'cell',
-//   },
-//   {
-//     id: 2,
-//     column1: 'cell',
-//     column2: 'cell',
-//     column3: 'cell',
-//   },
-//   {
-//     id: 3,
-//     column1: 'cell',
-//     column2: 'cell',
-//     column3: 'cell',
-//   },
-//   {
-//     id: 4,
-//     column1: 'cell',
-//     column2: 'cell',
-//     column3: 'cell',
-//   },
-//   {
-//     id: 5,
-//     column1: 'cell',
-//     column2: 'cell',
-//     column3: 'cell',
-//   },
-//   {
-//     id: 6,
-//     column1: 'cell',
-//     column2: 'cell',
-//     column3: 'cell',
-//   },
-
-//   {
-//     id: 7,
-//     column1: 'cell',
-//     column2: 'cell',
-//     column3: 'cell',
-//   },
-// ];
-
-// // eslint-disable-next-line @typescript-eslint/no-explicit-any
-// const rows: any = data.map((d, idx: number) => {
-//   return (
-//     <Table.Row key={`row-${idx}`}>
-//       <Table.Column>
-//         <span>{d.column1}</span>
-//       </Table.Column>
-//       <Table.Column>
-//         <span>{d.column2}</span>
-//       </Table.Column>
-//       <Table.Column>
-//         <span>{d.column3}</span>
-//       </Table.Column>
-//     </Table.Row>
-//   );
-// });
 
 export const Template = (args: TableProps) => (
   <div className="flex flex-col gap-16">
@@ -88,9 +23,21 @@ export const Template = (args: TableProps) => (
         <Table.HeaderColumn>Column 3</Table.HeaderColumn>
       </Table.Header>
       <Table.Body>
-        {rows.map((row) => {
-          return row;
-        })}
+        <Table.Row>
+          <Table.Column>Data 1</Table.Column>
+          <Table.Column>Data 2</Table.Column>
+          <Table.Column>Data 3</Table.Column>
+        </Table.Row>
+        <Table.Row>
+          <Table.Column>Data 1</Table.Column>
+          <Table.Column>Data 2</Table.Column>
+          <Table.Column>Data 3</Table.Column>
+        </Table.Row>
+        <Table.Row>
+          <Table.Column>Data 1</Table.Column>
+          <Table.Column>Data 2</Table.Column>
+          <Table.Column>Data 3</Table.Column>
+        </Table.Row>
       </Table.Body>
     </Table>
   </div>
@@ -99,13 +46,6 @@ export const Template = (args: TableProps) => (
 Template.story = { name: 'Table' };
 
 export const DataTable = (args: TableProps) => {
-  const headerlabels = [
-    { label: 'Ärende', isColumnSortable: true, screenReaderOnly: false },
-    { label: 'Status', isColumnSortable: true, screenReaderOnly: false },
-    { label: 'Handläggare', isColumnSortable: true, screenReaderOnly: false },
-    { label: 'Ärendeknapp', isColumnSortable: false, screenReaderOnly: true },
-  ];
-
   const dataTableData = [
     {
       id: 1,
@@ -138,135 +78,136 @@ export const DataTable = (args: TableProps) => {
       handler: 'Anders',
     },
   ];
-  const defaultSort = {
-    idx: 0,
-    sortMode: sortMode.ASC,
-  };
-  const page = 1;
 
   const [_pageSize, setPageSize] = React.useState<number>(5);
-  const [sortIndex, setSortIndex] = React.useState<number>(defaultSort.idx);
-  const [currentPage, setCurrentPage] = React.useState<number>(page);
-  const [sortModeOrder, setSortModeOrder] = React.useState(defaultSort.sortMode);
+  const [sortColumn, setSortColumn] = React.useState<string>('caseType');
+  const [sortOrder, setSortOrder] = React.useState(SortMode.ASC);
+  const [currentPage, setCurrentPage] = React.useState<number>(1);
   const [rowHeight, setRowHeight] = React.useState<string>('normal');
 
-  const tableSortable = true;
-
-  const internalSortHandler = (idx: number) => {
-    setSortModeOrder(
-      sortIndex === idx ? (sortModeOrder === sortMode.DESC ? sortMode.ASC : sortMode.DESC) : sortMode.ASC
-    );
-    setSortIndex(idx);
+  const handleSorting = (column: string) => {
+    if (sortColumn !== column) {
+      setSortColumn(column);
+    } else {
+      setSortOrder(sortOrder === SortMode.ASC ? SortMode.DESC : SortMode.ASC);
+    }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const datarows: any = dataTableData.map((d, idx: number) => {
-    return (
-      <Table.Row key={`row-${idx}`}>
-        <Table.Column>
-          <span>{d.caseType}</span>
-        </Table.Column>
-        <Table.Column>
-          <span>{d.status}</span>
-        </Table.Column>
-        <Table.Column>
-          <span>{d.handler}</span>
-        </Table.Column>
-        <Table.Column>
-          <Button
-            aria-label={`Till ärende ${d.id}`}
-            variant="tertiary"
-            onClick={() => console.log(d)}
-            size="sm"
-            iconButton
-          >
-            <Icon name="more-horizontal" />
-          </Button>
-        </Table.Column>
-      </Table.Row>
-    );
-  });
+  const datarows = dataTableData
+    .sort((a, b) => {
+      const order = sortOrder === SortMode.ASC ? -1 : 1;
+      return a[sortColumn] < b[sortColumn] ? order : a[sortColumn] > b[sortColumn] ? order * -1 : 0;
+    })
+    .slice((currentPage - 1) * _pageSize, currentPage * _pageSize)
+    .map((d, idx: number) => {
+      return (
+        <Table.Row key={`row-${idx}`}>
+          <Table.HeaderColumn scope="row">{d.caseType}</Table.HeaderColumn>
+          <Table.Column>{d.status}</Table.Column>
+          <Table.Column>{d.handler}</Table.Column>
+          <Table.Column>
+            <Button
+              aria-label={`Till ärende ${d.id}`}
+              variant="tertiary"
+              onClick={() => console.log(d)}
+              size="sm"
+              iconButton
+            >
+              <Icon name="more-horizontal" />
+            </Button>
+          </Table.Column>
+        </Table.Row>
+      );
+    });
 
   return (
     <>
-      {dataTableData.length > 0 && (
-        <Table {...args} summary={'data table'} background={true} dense={rowHeight === 'dense'}>
-          <Table.Header>
-            {headerlabels.map((h, idx) => (
-              <Table.HeaderColumn
-                key={`header-${idx}`}
-                aria-sort={sortModeOrder}
-                data-iscolumnsortable={h.isColumnSortable}
-              >
-                {' '}
-                {h.isColumnSortable && tableSortable ? (
-                  <Table.SortButton
-                    isActive={sortIndex == idx}
-                    aria-description={sortIndex == idx ? undefined : 'sortera'}
-                    sortOrder={sortModeOrder}
-                    onClick={() => {
-                      internalSortHandler(idx);
-                    }}
-                  >
-                    <span>{h.label}</span>
-                  </Table.SortButton>
-                ) : (
-                  <span className={`sk-table-sortbutton ${h.screenReaderOnly ? `sr-only` : ``}`}>{h.label}</span>
-                )}
-              </Table.HeaderColumn>
-            ))}
-          </Table.Header>
-          <Table.Body>
-            {datarows.map((row) => {
-              return row;
-            })}
-          </Table.Body>
-          <Table.Footer>
-            <div className="sk-table-bottom-section">
-              <label className="sk-table-bottom-section-label" htmlFor="pagiPageSize">
-                Rader per sida:
-              </label>
-              <Input
-                size="sm"
-                id="pagePageSize"
-                type="number"
-                min={1}
-                max={100}
-                className="max-w-[6rem]"
-                value={`${_pageSize}`}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => setPageSize(parseInt(event.target.value))}
-              />
-            </div>
+      <Table {...args} background={true} dense={rowHeight === 'dense'}>
+        <Table.Header>
+          <Table.HeaderColumn aria-sort={sortColumn === 'caseType' ? sortOrder : 'none'}>
+            <TableSortButton
+              isActive={sortColumn === 'caseType'}
+              sortOrder={sortOrder}
+              onClick={() => handleSorting('caseType')}
+            >
+              Ärende
+            </TableSortButton>
+          </Table.HeaderColumn>
+          <Table.HeaderColumn aria-sort={sortColumn === 'status' ? sortOrder : 'none'}>
+            <TableSortButton
+              isActive={sortColumn === 'status'}
+              sortOrder={sortOrder}
+              onClick={() => handleSorting('status')}
+            >
+              Status
+            </TableSortButton>
+          </Table.HeaderColumn>
+          <Table.HeaderColumn aria-sort={sortColumn === 'handler' ? sortOrder : 'none'}>
+            <TableSortButton
+              isActive={sortColumn === 'handler'}
+              sortOrder={sortOrder}
+              onClick={() => handleSorting('handler')}
+            >
+              Handläggare
+            </TableSortButton>
+          </Table.HeaderColumn>
+          <Table.HeaderColumn>
+            <span className="sr-only">Redigera</span>
+          </Table.HeaderColumn>
+        </Table.Header>
+        <Table.Body>
+          {datarows.map((row) => {
+            return row;
+          })}
+        </Table.Body>
+        <Table.Footer>
+          <div className="sk-table-bottom-section">
+            <label className="sk-table-bottom-section-label" htmlFor="pagiPageSize">
+              Rader per sida:
+            </label>
+            <Input
+              hideExtra={false}
+              size="sm"
+              id="pagePageSize"
+              type="number"
+              min={1}
+              max={100}
+              className="max-w-[6rem]"
+              value={`${_pageSize}`}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                event.target.value && setPageSize(parseInt(event.target.value))
+              }
+            />
+          </div>
 
-            <div className="sk-table-paginationwrapper">
-              <Pagination
-                className="sk-table-pagination"
-                pages={2}
-                activePage={currentPage}
-                showConstantPages
-                pagesAfter={1}
-                pagesBefore={1}
-                changePage={(page: number) => setCurrentPage(page)}
-                fitContainer
-              />
-            </div>
-            <div className="sk-table-bottom-section">
-              <label className="sk-table-bottom-section-label" htmlFor="pagiRowHeight">
-                Radhöjd:
-              </label>
-              <Select
-                id="pagiRowHeight"
-                size="sm"
-                value={rowHeight}
-                onSelectValue={(value: string) => setRowHeight(value)}
-              >
-                <Select.Option value={'normal'}>Normal</Select.Option>
-                <Select.Option value={'dense'}>Tät</Select.Option>
-              </Select>
-            </div>
-          </Table.Footer>
-        </Table>
-      )}
+          <div className="sk-table-paginationwrapper">
+            <Pagination
+              className="sk-table-pagination"
+              pages={Math.ceil(dataTableData.length / _pageSize)}
+              activePage={currentPage}
+              showConstantPages
+              pagesAfter={1}
+              pagesBefore={1}
+              changePage={(page: number) => setCurrentPage(page)}
+              fitContainer
+            />
+          </div>
+          <div className="sk-table-bottom-section">
+            <label className="sk-table-bottom-section-label" htmlFor="pagiRowHeight">
+              Radhöjd:
+            </label>
+            <Select
+              id="pagiRowHeight"
+              size="sm"
+              value={rowHeight}
+              onSelectValue={(value: string) => setRowHeight(value)}
+            >
+              <Select.Option value={'normal'}>Normal</Select.Option>
+              <Select.Option value={'dense'}>Tät</Select.Option>
+            </Select>
+          </div>
+        </Table.Footer>
+      </Table>
     </>
   );
 };

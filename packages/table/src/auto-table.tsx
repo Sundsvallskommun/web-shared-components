@@ -17,7 +17,7 @@ import Table, { TableComponentProps } from './table';
 type TableValue = any;
 type TableItem = Record<string | number, TableValue>;
 
-export enum sortMode {
+export enum SortMode {
   ASC = 'ascending',
   DESC = 'descending',
 }
@@ -48,10 +48,10 @@ export interface AutoTableProps extends DefaultProps, TableComponentProps {
   handleSort: (colIndex: number, asc: boolean) => void;
   defaultSort?: {
     idx: number;
-    sortMode: sortMode;
+    sortMode: SortMode;
   };
   tableSortable?: boolean;
-  sortedOrder?: sortMode;
+  sortedOrder?: SortMode;
   pageSize: number;
   pages: number;
   page: number;
@@ -80,7 +80,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
     highlightedItemIndex,
     footer = true,
     tableSortable = true,
-    sortedOrder = sortMode.ASC,
+    sortedOrder = SortMode.ASC,
     dense: _dense = false,
     background = true,
     ...rest
@@ -245,14 +245,14 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
 
   const internalSortHandler = (idx: number) => {
     setSortModeOrder(
-      sortIndex === idx ? (sortModeOrder === sortMode.DESC ? sortMode.ASC : sortMode.DESC) : sortMode.ASC
+      sortIndex === idx ? (sortModeOrder === SortMode.DESC ? SortMode.ASC : SortMode.DESC) : SortMode.ASC
     );
     setSortIndex(idx);
   };
   const [highlightedPage, setHighlightedPage] = React.useState<number>(0);
 
   React.useEffect(() => {
-    handleSort(sortIndex, sortModeOrder === sortMode.DESC ? false : true);
+    handleSort(sortIndex, sortModeOrder === SortMode.DESC ? false : true);
   }, [sortIndex, sortModeOrder, handleSort]);
 
   React.useEffect(() => {
