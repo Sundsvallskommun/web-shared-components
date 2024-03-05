@@ -2,9 +2,6 @@ import { DefaultProps, __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
 import { TableFooter } from './table-footer';
 import { TableHeader } from './table-header';
-import { TableHeaderColumn } from './table-header-column';
-import { TableRowColumn } from './table-row-column';
-
 export interface TableComponentProps extends DefaultProps, React.ComponentPropsWithRef<'table'> {
   background?: boolean;
   dense?: boolean;
@@ -17,12 +14,10 @@ export const TableComponent = React.forwardRef<HTMLTableElement, TableComponentP
   const validChildren = getValidChildren(children);
   const tableItems = validChildren
     .filter((child) => child.type !== TableFooter)
-    .map((child, index) => {
+    .map((child) => {
       let props;
       if (child.type === TableHeader) {
         props = { ...child.props, background: background };
-      } else if (child.type === TableHeaderColumn || child.type === TableRowColumn) {
-        props = { ...child.props, rowindex: index };
       } else {
         props = { ...child.props };
       }
