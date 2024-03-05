@@ -91,11 +91,11 @@ export const Template = (args: TableProps) => (
           );
         })}
       </Table.Header>
-      <tbody>
+      <Table.Body>
         {rows.map((row) => {
           return row;
         })}
-      </tbody>
+      </Table.Body>
     </Table>
   </div>
 );
@@ -194,7 +194,7 @@ export const DataTable = (args: TableProps) => {
   return (
     <>
       {dataTableData.length > 0 && (
-        <Table {...args} summary={'data table'} background="show" dense={rowHeight === 'dense'}>
+        <Table {...args} summary={'data table'} background={true} dense={rowHeight === 'dense'}>
           <Table.Header>
             {headerlabels.map((h, idx) => (
               <Table.HeaderColumn
@@ -220,11 +220,11 @@ export const DataTable = (args: TableProps) => {
               </Table.HeaderColumn>
             ))}
           </Table.Header>
-          <tbody>
+          <Table.Body>
             {datarows.map((row) => {
               return row;
             })}
-          </tbody>
+          </Table.Body>
           <Table.Footer>
             <div className="sk-table-bottom-section">
               <label className="sk-table-bottom-section-label" htmlFor="pagiPageSize">

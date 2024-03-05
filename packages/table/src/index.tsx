@@ -2,6 +2,7 @@ import { TableComponent, TableComponentProps } from './table';
 import { TableFooter } from './table-footer';
 import { TableHeader } from './table-header';
 import { TableHeaderColumn } from './table-header-column';
+import { TableBody } from './table-body';
 import { TableRow } from './table-row';
 import { TableRowColumn } from './table-row-column';
 import { TableSortButton } from './table-sort-button';
@@ -12,6 +13,7 @@ interface TableProps extends TableComponentProps, React.ForwardRefExoticComponen
   Header: typeof TableHeader;
   HeaderColumn: typeof TableHeaderColumn;
   SortButton: typeof TableSortButton;
+  Body: typeof TableBody;
   Row: typeof TableRow;
   Column: typeof TableRowColumn;
   Footer: typeof TableFooter;
@@ -23,6 +25,7 @@ const Table = {
   Header: TableHeader,
   HeaderColumn: TableHeaderColumn,
   SortButton: TableSortButton,
+  Body: TableBody,
   Row: TableRow,
   Column: TableRowColumn,
   Footer: TableFooter,

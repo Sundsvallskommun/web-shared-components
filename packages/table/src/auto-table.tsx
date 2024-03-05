@@ -6,6 +6,7 @@ import React from 'react';
 import { TableHeader as HeaderComponent } from './table-header';
 import { TableHeaderColumn } from './table-header-column';
 import { TableSortButton } from './table-sort-button';
+import { TableBody } from './table-body';
 import { TableRow } from './table-row';
 import { TableRowColumn } from './table-row-column';
 import { TableFooter } from './table-footer';
@@ -81,7 +82,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
     tableSortable = true,
     sortedOrder = sortMode.ASC,
     dense: _dense = false,
-    background = 'show',
+    background = true,
     ...rest
   } = props;
 
@@ -378,7 +379,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
               )
             )}
           </HeaderComponent>
-          <tbody>
+          <TableBody>
             {managedRows.map((cols, idx) => (
               <TableRow
                 key={`row${idx}`}
@@ -395,7 +396,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
                 )}
               </TableRow>
             ))}
-          </tbody>
+          </TableBody>
           {footer ? (
             <TableFooter>
               <div className="sk-table-bottom-section">
