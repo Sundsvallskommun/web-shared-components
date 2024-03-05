@@ -60,7 +60,6 @@ export interface AutoTableProps extends DefaultProps, TableComponentProps {
   captionShowPages?: boolean;
   highlightedItemIndex?: number;
   changePage?: (page: number) => void;
-  dense?: boolean;
   footer?: boolean;
 }
 
@@ -78,12 +77,15 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
     captionShowPages: _captionShowPages,
     summary,
     highlightedItemIndex,
-    dense: _dense = false,
     footer = true,
     tableSortable = true,
-    defaultSort = { idx: 0, sortMode: sortMode.ASC },
+    sortedOrder = sortMode.ASC,
+    dense: _dense = false,
+    background = 'show',
     ...rest
   } = props;
+
+  const defaultSort = { idx: 0, sortMode: sortedOrder };
 
   const [sortModeOrder, setSortModeOrder] = React.useState(defaultSort.sortMode);
   const [_pageSize, setPageSize] = React.useState<number>(_propsPageSize);
@@ -92,7 +94,6 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
   const [currentPage, setCurrentPage] = React.useState<number>(page);
 
   const [rowHeight, setRowHeight] = React.useState<string>(_dense ? 'dense' : 'normal');
-
   const [autoHeaders] = React.useState<Array<AutoTableHeader | string>>(
     autoheaders?.length === 0 || autoheaders === undefined ? [] : (autoheaders as Array<AutoTableHeader | string>)
   );
@@ -255,8 +256,8 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
 
   React.useEffect(() => {
     setSortIndex(defaultSort.idx);
-    setSortModeOrder(defaultSort.sortMode);
-  }, []);
+    setSortModeOrder(sortedOrder);
+  }, [sortedOrder]);
 
   React.useEffect(() => {
     setCurrentPage(page);
@@ -317,7 +318,13 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
         </caption>
       )}
       {managedRows.length > 0 && (
-        <Table {...rest} ref={ref} summary={summary ? summary : undefined} data-dense={rowHeight === 'dense'}>
+        <Table
+          {...rest}
+          background={background}
+          ref={ref}
+          dense={rowHeight === 'dense' || _dense}
+          summary={summary ? summary : undefined}
+        >
           {captionTitle && (
             <caption className="sr-only">
               {captionShowPages ? (
@@ -349,7 +356,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
                     <TableSortButton
                       isActive={sortIndex == idx}
                       aria-description={sortIndex == idx ? undefined : 'sortera'}
-                      sortOrder={sortModeOrder}
+                      sortOrder={sortModeOrder || defaultSort.sortMode}
                       onClick={() => {
                         internalSortHandler(idx);
                       }}
@@ -384,13 +391,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
                 }`}
               >
                 {cols.map(({ element, isShown = true }, idx) =>
-                  isShown ? (
-                    <TableRowColumn key={`col${idx}`}>
-                      <div className="sk-table-tbody-td-content">{element}</div>
-                    </TableRowColumn>
-                  ) : (
-                    <> </>
-                  )
+                  isShown ? <TableRowColumn key={`col${idx}`}>{element}</TableRowColumn> : <> </>
                 )}
               </TableRow>
             ))}

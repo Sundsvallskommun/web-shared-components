@@ -7,14 +7,12 @@ export const TableAutoTable = () => ({
       '@apply border-0 rounded-t-groups': {},
       '@apply overflow-hidden': {},
     },
-    '&[data-variant="table"]': {
-      '&:not([data-background="true"])': {
-        '@apply border-0': {},
-        '@apply bg-transparent': {},
-      },
-      '.sk-table-wrapper-inside': {
-        '@apply border-0 rounded-b-groups': {},
-      },
+    '&:not([data-background="true"])': {
+      '@apply border-0': {},
+      '@apply bg-transparent': {},
+    },
+    '.sk-table-wrapper-inside': {
+      '@apply border-0 rounded-b-groups': {},
     },
   },
   '.sk-table': {
@@ -48,7 +46,7 @@ export const TableAutoTable = () => ({
       '@apply focus-visible:ring ring-ring ring-offset-0': {},
       '@apply focus-visible:bg-vattjom-background-200': {},
       '@apply rounded-utility': {},
-      '@apply px-16': {},
+      '@apply pr-16': {},
       '@apply h-40': {},
 
       '&-icon': {
@@ -103,7 +101,7 @@ export const TableAutoTable = () => ({
       },
     },
 
-    '&[data-dense="true"]': {
+    '&[data-dense="dense"]': {
       '.sk-table': {
         '&-thead': {
           '&-th': {
