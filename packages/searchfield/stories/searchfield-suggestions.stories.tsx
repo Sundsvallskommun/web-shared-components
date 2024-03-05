@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
-import { SearchField, SearchFieldProps } from '../src';
+import { SearchField, SearchFieldProps } from '../index';
 
 export default {
   title: 'Komponenter/SearchFieldSuggestions',
@@ -97,36 +97,17 @@ const fruits = [
 export const Template: StoryObj<typeof SearchField.Suggestions> = (
   args: React.ComponentPropsWithRef<SearchFieldProps['SuggestionsInput']>
 ) => {
-  const [term, setTerm] = useState('');
-  const [dirty, setDirty] = useState(false);
-
-  const onChangeHandler = (event: React.BaseSyntheticEvent) => {
-    console.log('onChangeHandler', event.target.value);
-    setDirty(event.target.value.length ? true : false);
-  };
-
   const onResetHandler = () => {
     console.log('onResetHandler');
-    setDirty(false);
   };
   const onSearchHandler = (query: string) => {
     console.log('onSearchHandler', query);
-    setDirty(false);
-    setTerm(query);
   };
 
   return (
     <div className="h-[38rem]">
       <SearchField.Suggestions>
-        <SearchField.SuggestionsInput
-          {...args}
-          onChange={onChangeHandler}
-          value={term}
-          showSearchButton={dirty}
-          // showResetButton={!dirty}
-          onSearch={onSearchHandler}
-          onReset={onResetHandler}
-        />
+        <SearchField.SuggestionsInput {...args} onSearch={onSearchHandler} onReset={onResetHandler} />
         <SearchField.SuggestionsList>
           {fruits.map((fruit, index) => (
             <SearchField.SuggestionsOption key={`fruit-${index}`} value={fruit}>

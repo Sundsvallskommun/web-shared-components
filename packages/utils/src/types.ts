@@ -61,3 +61,9 @@ export type PolymorphicComponentPropsWithRef<C extends React.ElementType, Props 
   C,
   Props
 > & { ref?: PolymorphicRef<C> };
+
+/** Custom onChange event, used to return a simulated change from component to e.g. react-hook-form */
+export interface CustomOnChangeEvent<TValue = string | string[], TElement = HTMLInputElement>
+  extends Omit<React.ChangeEvent<TElement>, 'target'> {
+  target: { value: TValue; name: string };
+}
