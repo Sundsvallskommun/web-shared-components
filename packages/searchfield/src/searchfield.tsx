@@ -94,9 +94,9 @@ export const SearchFieldBase: React.FC<SearchFieldBaseProps> = React.forwardRef<
     }, [value]);
 
     return (
-      <div className={`sk-search-field sk-searchfieldBase-${size} ${className}`}>
+      <div className={`sk-search-field sk-searchfield-base-${size} ${className}`}>
         <Input.Group size={size}>
-          <Input.LeftAddin className="sk-searchfieldBase-icon">{searchIcon}</Input.LeftAddin>
+          <Input.LeftAddin className="sk-search-field-base-icon">{searchIcon}</Input.LeftAddin>
           <Input
             ref={internalRef}
             type="text"
@@ -109,6 +109,7 @@ export const SearchFieldBase: React.FC<SearchFieldBaseProps> = React.forwardRef<
           <Input.RightAddin>
             {_showResetButton ? (
               <Button
+                className="sk-search-field-button-reset"
                 aria-label={resetAriaLabel}
                 size="sm"
                 iconButton
@@ -121,7 +122,7 @@ export const SearchFieldBase: React.FC<SearchFieldBaseProps> = React.forwardRef<
               <></>
             )}
             {_showSearchButton ? (
-              <Button type="button" onClick={handleOnSearch} size="sm">
+              <Button className="sk-search-field-button-search" type="button" onClick={handleOnSearch} size="sm">
                 {searchLabel}
               </Button>
             ) : (
