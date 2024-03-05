@@ -56,6 +56,7 @@ const theme: RecursiveObject<Config['theme'] | string | string[]> = {
         0 0.188rem 0.338rem 0 rgba(13,13,14, 0.03),
         0 0.068rem 0.122rem 0 rgba(13,13,14, 0.02)
       `,
+      insetring: `0 0 0 0.25rem ${colors.ring} inset`,
     },
     ringColor: {
       DEFAULT: colors.ring,

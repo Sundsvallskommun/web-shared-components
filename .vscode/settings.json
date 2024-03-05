@@ -1,3 +1,5 @@
 {
-  "tailwindCSS.experimental.classRegex": ["'@apply (.*)'"]
+  "tailwindCSS.experimental.classRegex": [
+    "'@apply (.*)'"
+  ]
 }
