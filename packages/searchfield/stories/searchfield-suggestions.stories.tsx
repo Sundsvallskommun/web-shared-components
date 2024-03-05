@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { SearchField, SearchFieldProps } from '../index';
 
 export default {
-  title: 'Komponenter/SearchFieldSuggestions',
+  title: 'Komponenter/SearchField/SearchFieldSuggestions',
   component: SearchField.SuggestionsInput,
   tags: ['autodocs'],
   args: {
