@@ -23,7 +23,7 @@
     "baseUrl": ".",
     "paths": {
       "@stories/*": [".storybook/stories/*"],
-      "@sk-web-gui/*": ["packages/*"],
+      "@sk-web-gui/*": ["packages/*/src/"],
       "@public/*": [".storybook/public/*"]
     }
   },
