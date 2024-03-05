@@ -5,29 +5,28 @@ import { RecursiveObject, screens } from '@sk-web-gui/theme';
 import { Config } from 'tailwindcss/types/config';
 
 const theme: RecursiveObject<Config['theme'] | string | string[]> = {
-  fontSize: {
-    ...units.fontSizes,
-    tiny: '1rem',
-    xs: '1.2rem',
-    xl: units.fontSizes['h4'],
-    '2xl': units.fontSizes['h3'],
-    '3xl': units.fontSizes['h2'],
-    '4xl': units.fontSizes['h1'],
-    '5xl': units.fontSizes['h3'],
-  },
-  fontFamily: {
-    DEFAULT: ['Arial', 'Helvetica', 'sans-serif'],
-    sans: ['Arial', 'Helvetica', 'sans-serif'],
-    header: ['Raleway', 'Arial', 'Helvetica', 'sans-serif'],
-    display: ['Raleway', 'Arial', 'Helvetica', 'sans-serif'],
-  },
-  screens,
-  borderRadius: {
-    ...units.radius,
-    base: 'var(--sk-spacing-0)',
-  },
-
   extend: {
+    fontSize: {
+      ...units.fontSizes,
+      tiny: '1rem',
+      xs: '1.2rem',
+      xl: units.fontSizes['h4'],
+      '2xl': units.fontSizes['h3'],
+      '3xl': units.fontSizes['h2'],
+      '4xl': units.fontSizes['h1'],
+      '5xl': units.fontSizes['h3'],
+    },
+    fontFamily: {
+      DEFAULT: ['Arial', 'Helvetica', 'sans-serif'],
+      sans: ['Arial', 'Helvetica', 'sans-serif'],
+      header: ['Raleway', 'Arial', 'Helvetica', 'sans-serif'],
+      display: ['Raleway', 'Arial', 'Helvetica', 'sans-serif'],
+    },
+    screens,
+    borderRadius: {
+      ...units.radius,
+      base: 'var(--sk-spacing-0)',
+    },
     backgroundPosition: {
       ...(Object.keys(units.spacing) as Array<keyof typeof units.spacing>).reduce(
         (positions, spaceKey) => ({
@@ -104,10 +103,6 @@ const theme: RecursiveObject<Config['theme'] | string | string[]> = {
     },
     maxWidth: {
       content: screens['desktop-max'],
-    },
-    borderRadius: {
-      ...units.radius,
-      base: 'var(--sk-spacing-0)',
     },
     lineHeight: {
       ...units.lineHeights,

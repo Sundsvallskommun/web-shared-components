@@ -1,4 +1,4 @@
-import ComboboxBase, { ComboboxBaseProps } from './combobox';
+import { ComboboxBase, ComboboxBaseProps } from './combobox';
 import { ComboboxList } from './combobox-list';
 import { ComboboxOption } from './combobox-option';
 

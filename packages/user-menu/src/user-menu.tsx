@@ -47,7 +47,14 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>((props, 
   return (
     <div ref={ref} className={cx('sk-usermenu', className)} {...rest}>
       <PopupMenu align="end">
-        <PopupMenu.Button size="lg" iconButton className="sk-usermenu-button" rounded>
+        <PopupMenu.Button
+          size={buttonSize}
+          showBackground={false}
+          className="sk-usermenu-button"
+          rounded={buttonRounded}
+          variant="tertiary"
+          iconButton
+        >
           <Avatar
             size={buttonSize}
             rounded={buttonRounded}
@@ -58,19 +65,23 @@ export const UserMenu = React.forwardRef<HTMLDivElement, UserMenuProps>((props, 
             imageElement={imageElem}
           />
         </PopupMenu.Button>
-        {(menuTitle || menuSubTitle) && (
-          <PopupMenu.Group>
-            <label>{menuTitle}</label>
-            <small>{menuSubTitle}</small>
-          </PopupMenu.Group>
-        )}
-        {menuGroups.map((group, grindex) => (
-          <PopupMenu.Group key={`skum-${grindex}`} aria-label={group.label} role="group">
-            {group.elements.map((item, index) => (
-              <PopupMenu.Item key={`skum-${grindex}-${index}`}>{item.element()}</PopupMenu.Item>
+        <PopupMenu.Panel>
+          {(menuTitle || menuSubTitle) && (
+            <PopupMenu.Group>
+              <label>{menuTitle}</label>
+              <small>{menuSubTitle}</small>
+            </PopupMenu.Group>
+          )}
+          <PopupMenu.Items>
+            {menuGroups.map((group, grindex) => (
+              <PopupMenu.Group key={`skum-${grindex}`} aria-label={group.label} role="group">
+                {group.elements.map((item, index) => (
+                  <PopupMenu.Item key={`skum-${grindex}-${index}`}>{item.element()}</PopupMenu.Item>
+                ))}
+              </PopupMenu.Group>
             ))}
-          </PopupMenu.Group>
-        ))}
+          </PopupMenu.Items>
+        </PopupMenu.Panel>
       </PopupMenu>
     </div>
   );

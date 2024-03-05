@@ -1,6 +1,6 @@
 import { FilterRootProps, FilterRoot } from './filter';
-import FilterItem from './filter-item';
-import FilterLabel from './filter-label';
+import { FilterItem } from './filter-item';
+import { FilterLabel } from './filter-label';
 
 interface FilterProps extends React.ForwardRefExoticComponent<FilterRootProps> {
   Component: typeof FilterRoot;

@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@1.1.2...@sk-web-gui/core@2.0.0) (2024-02-27)
+
+### Bug Fixes
+
+- **checkbox:** removed color on hidden input ([40ed977](https://github.com/vechai/sk-web-gui/commit/40ed97748e9fbd9f1e4abe8de30e3dd4e53b0100))
+- **core:** extending instead of overwriting theme settings ([5eb7c9c](https://github.com/vechai/sk-web-gui/commit/5eb7c9ce7616cd7cf5aa1bd5f0f931422aef1c99))
+- **popup-menu:** fixed issues with buttons outside Menu Item ([bf06e62](https://github.com/vechai/sk-web-gui/commit/bf06e626952ff086b6d1589a0ea13c596de3c9e8))
+- updated button for better apperence with new popup menu ([48b95b1](https://github.com/vechai/sk-web-gui/commit/48b95b13ee4524eb0d1fe6835150d006338a691d))
+
+### Features
+
+- **popup-menu:** added panel and submenus ([11e93ba](https://github.com/vechai/sk-web-gui/commit/11e93ba2f3c16b1d0fe7ff3b3e66a4dad0ecb732))
+- **popup-menu:** added support for checkbox and radiobutton ([1b649c1](https://github.com/vechai/sk-web-gui/commit/1b649c153b001831cce5fa822aa634ca786fdcec))
+- **popup-menu:** moved content to PopupMenu.Panel ([123952f](https://github.com/vechai/sk-web-gui/commit/123952f87481bb04d30552fae4695cc64810451e))
+- **popup-menu:** Now handles all types of items ([3b5b2e8](https://github.com/vechai/sk-web-gui/commit/3b5b2e8f0dcafa85462fbc187ab5c907d335eead))
+
+### BREAKING CHANGES
+
+- **popup-menu:** To use menu keyboard navigation, you now have to wrap your list of <PopupMenu.Item> in a <PopupMenu.Items>
+
 ## [1.1.2](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@1.1.1...@sk-web-gui/core@1.1.2) (2024-02-02)
 
 ### Bug Fixes

@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/popup-menu@1.0.6...@sk-web-gui/popup-menu@2.0.0) (2024-02-27)
+
+### Bug Fixes
+
+- fixed button props issues ([4704a16](https://github.com/Sundsvallskommun/web-shared-components/commit/4704a162c5f7ece2e48c216ecca9b63dbfd06251))
+- make fake clicks bubble ([67df90c](https://github.com/Sundsvallskommun/web-shared-components/commit/67df90c0557f82d6aae69a1e22e220efacd63a08))
+- **popup-menu:** fixed issues with buttons outside Menu Item ([bf06e62](https://github.com/Sundsvallskommun/web-shared-components/commit/bf06e626952ff086b6d1589a0ea13c596de3c9e8))
+- prevent close on checkbox ([6e0fd6e](https://github.com/Sundsvallskommun/web-shared-components/commit/6e0fd6e3266abf47806f015f4df04724f501b9d2))
+
+### Features
+
+- **popup-menu:** added panel and submenus ([11e93ba](https://github.com/Sundsvallskommun/web-shared-components/commit/11e93ba2f3c16b1d0fe7ff3b3e66a4dad0ecb732))
+- **popup-menu:** added support for checkbox and radiobutton ([1b649c1](https://github.com/Sundsvallskommun/web-shared-components/commit/1b649c153b001831cce5fa822aa634ca786fdcec))
+- **popup-menu:** moved content to PopupMenu.Panel ([123952f](https://github.com/Sundsvallskommun/web-shared-components/commit/123952f87481bb04d30552fae4695cc64810451e))
+- **popup-menu:** Now handles all types of items ([3b5b2e8](https://github.com/Sundsvallskommun/web-shared-components/commit/3b5b2e8f0dcafa85462fbc187ab5c907d335eead))
+
+### BREAKING CHANGES
+
+- **popup-menu:** To use menu keyboard navigation, you now have to wrap your list of <PopupMenu.Item> in a <PopupMenu.Items>
+
 ## [1.0.6](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/popup-menu@1.0.5...@sk-web-gui/popup-menu@1.0.6) (2024-02-02)
 
 **Note:** Version bump only for package @sk-web-gui/popup-menu

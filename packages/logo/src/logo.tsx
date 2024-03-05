@@ -1,8 +1,7 @@
-import { cx, __DEV__ } from '@sk-web-gui/utils';
-import { Logo as LogoSvg, Symbol } from './assets';
-import { DefaultProps } from '@sk-web-gui/utils';
-import React from 'react';
 import { Divider } from '@sk-web-gui/divider';
+import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
+import React from 'react';
+import { Logo as LogoSvg, Symbol } from './assets';
 
 interface ILogoProps extends DefaultProps, Omit<React.ComponentPropsWithoutRef<'div'>, 'children'> {
   /**

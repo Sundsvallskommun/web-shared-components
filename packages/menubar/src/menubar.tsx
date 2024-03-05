@@ -107,7 +107,7 @@ export const MenuBarComponent = React.forwardRef<HTMLUListElement, MenuBarCompon
 });
 
 if (__DEV__) {
-  MenuBarComponent.displayName = 'Menubar';
+  MenuBarComponent.displayName = 'MenuBar';
 }
 
 export default MenuBarComponent;

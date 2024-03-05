@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/searchfield",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@sk-web-gui/button": "1.0.5",
-    "@sk-web-gui/forms": "1.0.5",
+    "@sk-web-gui/forms": "1.0.6",
     "@sk-web-gui/icon": "1.0.0",
     "@sk-web-gui/utils": "1.0.0"
   },

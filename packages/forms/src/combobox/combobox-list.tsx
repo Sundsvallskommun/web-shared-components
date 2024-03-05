@@ -47,14 +47,14 @@ export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListPr
       a.props.checked !== undefined
         ? a.props.checked
         : context?.value?.length > 0
-        ? context?.value.includes(a.props.value)
-        : false;
+          ? context?.value.includes(a.props.value)
+          : false;
     const bchecked =
       b.props.checked !== undefined
         ? b.props.checked
         : context?.value?.length > 0
-        ? context?.value.includes(b.props.value)
-        : false;
+          ? context?.value.includes(b.props.value)
+          : false;
     return achecked && !bchecked ? -1 : bchecked && !achecked ? 1 : 0;
   };
   const getFilteredChildren = () =>
@@ -87,13 +87,8 @@ export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListPr
     <fieldset
       id={context.listId}
       ref={useForkRef(ref, internalRef)}
-      className={cx(
-        className,
-        'sk-popup-menu-items',
-        `sk-popup-menu-items-${size}`,
-        'sk-form-combobox-list',
-        open && total && total > 0 ? 'visible' : 'invisible'
-      )}
+      className={cx(className, 'sk-popup-menu', `sk-popup-menu-${size}`, 'sk-form-combobox-list')}
+      data-open={open && total && total > 0}
       role="listbox"
       data-position={position}
       tabIndex={-1}

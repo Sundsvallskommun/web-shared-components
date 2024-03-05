@@ -1,5 +1,9 @@
 export const PopupMenu = () => ({
-  '.sk-popup-menu-items': {
+  '.sk-popup-menu': {
+    '@apply hidden': {},
+    '&[data-open="true"]': {
+      '@apply flex': {},
+    },
     '&[data-position="left"]': {
       '@apply mt-0 mr-8 right-[100%]': {},
       '&[data-align="end"]': {
@@ -35,7 +39,11 @@ export const PopupMenu = () => ({
         '@apply left-0': {},
       },
     },
-    '@apply absolute flex flex-col justify-start items-start mt-8': {},
+    '> *': {
+      '@apply max-w-full w-full': {},
+    },
+
+    '@apply absolute flex-col justify-start items-start mt-8': {},
     '@apply w-max': {},
     '@apply rounded-utility': {},
     '@apply bg-background-100': {},
@@ -45,8 +53,14 @@ export const PopupMenu = () => ({
     '@apply border-0': {},
     '@apply focus-within:border-0': {},
     '@apply focus:outline-0 focus-visible:outline-0 focus-visible:ring': {},
-
+    '.sk-form-checkbox-label-left .sk-icon': {
+      '@apply right-8': {},
+    },
+    '.sk-form-checkbox-label-right .sk-icon': {
+      '@apply left-8': {},
+    },
     '.sk-popup-menu-item': {
+      '@apply list-none': {},
       '@apply w-full': {},
       '@apply h-[4rem]': {},
       '@apply min-h-[4rem]': {},
@@ -54,11 +68,15 @@ export const PopupMenu = () => ({
       '@apply dark:hover:bg-primitives-overlay-lighten-1': {},
       '@apply cursor-pointer': {},
       '@apply flex flex-row shrink-0': {},
-      '@apply pl-8 pr-32 py-4 gap-12': {},
-
+      '@apply pl-8 pr-8 py-4 gap-12': {},
+      '@apply ring-offset-0': {},
+      '@apply focus-visible:ring ring-ring': {},
       '@apply rounded-utility': {},
       '@apply text-body font-normal': {},
-      '&.active, &:active': {
+      '> *': {
+        '@apply max-w-full': {},
+      },
+      '&:focus-visible, &:focus-within': {
         '@apply bg-primitives-gray-200': {},
         '@apply dark:bg-primitives-overlay-lighten-1': {},
       },
@@ -72,31 +90,48 @@ export const PopupMenu = () => ({
       '@apply items-center': {},
       '@apply no-underline': {},
     },
+
     '&-group': {
-      '@apply w-full flex flex-col border-b-1 border-divider pb-4 gap-4': {},
+      '@apply w-full flex flex-col border-b-1 border-divider pb-4 pt-4 gap-4': {},
       '&:first-child': {
         '@apply pt-0': {},
       },
       '&:last-child': {
         '@apply border-0 pb-0': {},
       },
-      '> *': {
-        '@apply pl-8 pr-32 py-4 gap-12': {},
+    },
+
+    '&-items': {
+      '@apply w-full': {},
+      '@apply rounded-utility': {},
+      '@apply focus-within:ring ring-ring': {},
+      '.sk-popup-menu-item': {
+        '@apply focus-visible:ring-0 ring-transparent ring-offset-0': {},
+        '> *': {
+          '@apply focus-visible:ring-0 ring-transparent ring-offset-0': {},
+        },
+      },
+      '&:focus-within': {
+        '.sk-popup-menu-item.active': {
+          '@apply bg-primitives-gray-200': {},
+          '@apply dark:bg-primitives-overlay-lighten-1': {},
+        },
       },
     },
+
     '&-sm': {
       '@apply p-8 gap-6': {},
 
       '.sk-popup-menu-item': {
         '@apply h-[3.2rem]': {},
         '@apply min-h-[3.2rem]': {},
-        '@apply gap-10 pl-8 pr-24 py-4': {},
+        '@apply gap-10 pl-8 pr-8 py-4': {},
 
         '@apply text-small': {},
         '&-group': {
           '@apply gap-6 pb-6': {},
           '> *': {
-            '@apply gap-10 pl-8 pr-24 py-4': {},
+            '@apply gap-10 pl-8 pr-8 py-4': {},
           },
         },
         svg: {

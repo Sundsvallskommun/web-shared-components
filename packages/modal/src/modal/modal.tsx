@@ -26,7 +26,7 @@ export interface ModalComponentProps extends DefaultProps, Omit<_internal_Compon
   'aria-label'?: string;
 }
 
-const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentProps>((props, ref) => {
+export const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentProps>((props, ref) => {
   const {
     show,
     label,
