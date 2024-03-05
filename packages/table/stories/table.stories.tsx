@@ -14,82 +14,78 @@ export default {
 } as Meta<typeof Table>;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const headerLabels = [{ label: 'Column 1' }, { label: 'Column 2' }, { label: 'Column 3' }];
+// const headerLabels = [{ label: 'Column 1' }, { label: 'Column 2' }, { label: 'Column 3' }];
 
-const data = [
-  {
-    id: 1,
-    column1: 'cell',
-    column2: 'cell',
-    column3: 'cell',
-  },
-  {
-    id: 2,
-    column1: 'cell',
-    column2: 'cell',
-    column3: 'cell',
-  },
-  {
-    id: 3,
-    column1: 'cell',
-    column2: 'cell',
-    column3: 'cell',
-  },
-  {
-    id: 4,
-    column1: 'cell',
-    column2: 'cell',
-    column3: 'cell',
-  },
-  {
-    id: 5,
-    column1: 'cell',
-    column2: 'cell',
-    column3: 'cell',
-  },
-  {
-    id: 6,
-    column1: 'cell',
-    column2: 'cell',
-    column3: 'cell',
-  },
+// const data = [
+//   {
+//     id: 1,
+//     column1: 'cell',
+//     column2: 'cell',
+//     column3: 'cell',
+//   },
+//   {
+//     id: 2,
+//     column1: 'cell',
+//     column2: 'cell',
+//     column3: 'cell',
+//   },
+//   {
+//     id: 3,
+//     column1: 'cell',
+//     column2: 'cell',
+//     column3: 'cell',
+//   },
+//   {
+//     id: 4,
+//     column1: 'cell',
+//     column2: 'cell',
+//     column3: 'cell',
+//   },
+//   {
+//     id: 5,
+//     column1: 'cell',
+//     column2: 'cell',
+//     column3: 'cell',
+//   },
+//   {
+//     id: 6,
+//     column1: 'cell',
+//     column2: 'cell',
+//     column3: 'cell',
+//   },
 
-  {
-    id: 7,
-    column1: 'cell',
-    column2: 'cell',
-    column3: 'cell',
-  },
-];
+//   {
+//     id: 7,
+//     column1: 'cell',
+//     column2: 'cell',
+//     column3: 'cell',
+//   },
+// ];
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const rows: any = data.map((d, idx: number) => {
-  return (
-    <Table.Row key={`row-${idx}`}>
-      <Table.Column>
-        <span>{d.column1}</span>
-      </Table.Column>
-      <Table.Column>
-        <span>{d.column2}</span>
-      </Table.Column>
-      <Table.Column>
-        <span>{d.column3}</span>
-      </Table.Column>
-    </Table.Row>
-  );
-});
+// // eslint-disable-next-line @typescript-eslint/no-explicit-any
+// const rows: any = data.map((d, idx: number) => {
+//   return (
+//     <Table.Row key={`row-${idx}`}>
+//       <Table.Column>
+//         <span>{d.column1}</span>
+//       </Table.Column>
+//       <Table.Column>
+//         <span>{d.column2}</span>
+//       </Table.Column>
+//       <Table.Column>
+//         <span>{d.column3}</span>
+//       </Table.Column>
+//     </Table.Row>
+//   );
+// });
 
 export const Template = (args: TableProps) => (
   <div className="flex flex-col gap-16">
     <Table {...args}>
       <Table.Header>
-        {headerLabels.map((l, idx) => {
-          return (
-            <Table.HeaderColumn key={`header-${idx}`}>
-              <span>{l.label}</span>
-            </Table.HeaderColumn>
-          );
-        })}
+        <Table.HeaderColumn>Column 1</Table.HeaderColumn>
+        <Table.HeaderColumn>Column 2</Table.HeaderColumn>
+        <Table.HeaderColumn>Column 3</Table.HeaderColumn>
       </Table.Header>
       <Table.Body>
         {rows.map((row) => {
