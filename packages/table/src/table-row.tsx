@@ -4,8 +4,8 @@ import { cx, getValidChildren } from '@sk-web-gui/utils';
 export const TableRow = React.forwardRef<HTMLTableRowElement, React.ComponentPropsWithoutRef<'tr'>>((props, ref) => {
   const { children, className, ...rest } = props;
   const validChildren = getValidChildren(children);
-  const rowItems = validChildren.map((child, index) => {
-    const props = { ...child.props, rowindex: index };
+  const rowItems = validChildren.map((child) => {
+    const props = { ...child.props };
 
     return React.cloneElement(child, props);
   });

@@ -9,8 +9,8 @@ export const TableHeader = React.forwardRef<HTMLTableRowElement, TableHeaderProp
   const { className, children, background, ...rest } = props;
 
   const validChildren = getValidChildren(children);
-  const headerItems = validChildren.map((child, index) => {
-    const props = { ...child.props, rowindex: index };
+  const headerItems = validChildren.map((child) => {
+    const props = { ...child.props };
 
     return React.cloneElement(child, props);
   });
