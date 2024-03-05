@@ -45,12 +45,11 @@ export interface AutoTableProps extends DefaultProps, TableComponentProps {
   autoheaders?: Array<AutoTableHeader | string>;
   autodata?: Array<TableItem>;
 
-  handleSort: (colIndex: number, asc: boolean) => void;
+  handleSort?: (colIndex: number, asc: boolean) => void;
   tableSortable?: boolean;
   sortedOrder?: SortMode;
-  pageSize: number;
-  pages: number;
-  page: number;
+  pageSize?: number;
+  page?: number;
   captionTitle?: string;
   captionBody?: string;
   captionClassName?: string;
@@ -66,7 +65,6 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
     autodata,
     pageSize: _propsPageSize = 5,
     page = 1,
-    pages: _pages,
     changePage,
     captionTitle,
     captionBody,
@@ -83,6 +81,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
   } = props;
 
   const defaultSort = { idx: 0, sortMode: sortedOrder };
+  const _pages = 1;
 
   const [sortModeOrder, setSortModeOrder] = React.useState(defaultSort.sortMode);
   const [_pageSize, setPageSize] = React.useState<number>(_propsPageSize);
@@ -261,10 +260,14 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
   }, [page]);
 
   React.useEffect(() => {
-    if (_pageSize) {
-      setPageSize(_pageSize);
+    if (_propsPageSize) {
+      setPageSize(_propsPageSize);
     }
-  }, [_pageSize]);
+  }, [_propsPageSize]);
+
+  React.useEffect(() => {
+    setPages(Math.ceil(_pages || tableRows.length / pageSize));
+  }, [page]);
 
   React.useEffect(() => {
     changePage && changePage(currentPage);
