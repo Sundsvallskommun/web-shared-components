@@ -7,7 +7,7 @@ export const SearchFeildSuggestionsBase = React.forwardRef<
   React.ComponentPropsWithRef<ComboboxProps['Component']>
 >((props, ref) => {
   return (
-    <Combobox ref={ref} {...props}>
+    <Combobox ref={ref} {...props} className="sk-search-field-suggestions">
       {props.children}
     </Combobox>
   );

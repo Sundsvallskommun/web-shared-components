@@ -1,4 +1,9 @@
 export const SearchField = () => ({
+  '.sk-search-field-suggestions': {
+    '&.sk-form-combobox': {
+      '@apply h-auto': {},
+    },
+  },
   '.sk-search-field': {
     '&-md': {
       '.sk-search-field-icon': {
