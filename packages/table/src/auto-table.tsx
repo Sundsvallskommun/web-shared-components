@@ -409,6 +409,23 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
           </TableBody>
           {footer ? (
             <TableFooter>
+              <div className="sk-table-bottom-section sk-table-pagination-mobile">
+                <label className="sk-table-bottom-section-label" htmlFor="paginationSelect">
+                  Sida:
+                </label>
+                <Select
+                  id="paginationSelect"
+                  size="sm"
+                  value={currentPage.toString()}
+                  onSelectValue={(value) => setCurrentPage(parseInt(value, 10))}
+                >
+                  {[...Array(pages).keys()].map((page) => (
+                    <Select.Option key={`pagipage-${page}`} value={(page + 1).toString()}>
+                      {page + 1}
+                    </Select.Option>
+                  ))}
+                </Select>
+              </div>
               <div className="sk-table-bottom-section">
                 <label className="sk-table-bottom-section-label" htmlFor="pagiPageSize">
                   Rader per sida:
@@ -437,6 +454,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
                   fitContainer
                 />
               </div>
+
               <div className="sk-table-bottom-section">
                 <label className="sk-table-bottom-section-label" htmlFor="pagiRowHeight">
                   Radhöjd:
