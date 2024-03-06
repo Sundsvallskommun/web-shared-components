@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@2.0.0...@sk-web-gui/table@2.0.1) (2024-03-06)
+
+### Bug Fixes
+
+- page props not mandatory, changed set value for prop control to work ([0d77fee](https://github.com/Sundsvallskommun/web-shared-components/commit/0d77feedb6e211ad95c047b7eef7c1300c703fa6))
+
 # [2.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@1.0.7...@sk-web-gui/table@2.0.0) (2024-03-05)
 
 ### Bug Fixes
