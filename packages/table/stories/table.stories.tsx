@@ -21,22 +21,38 @@ export const Template = (args: TableProps) => (
         <Table.HeaderColumn>Column 1</Table.HeaderColumn>
         <Table.HeaderColumn>Column 2</Table.HeaderColumn>
         <Table.HeaderColumn>Column 3</Table.HeaderColumn>
+        <Table.HeaderColumn>Column 4</Table.HeaderColumn>
+        <Table.HeaderColumn>Column 5</Table.HeaderColumn>
+        <Table.HeaderColumn>Column 6</Table.HeaderColumn>
+        <Table.HeaderColumn>Column 7</Table.HeaderColumn>
       </Table.Header>
       <Table.Body>
         <Table.Row>
           <Table.Column>Data 1</Table.Column>
           <Table.Column>Data 2</Table.Column>
           <Table.Column>Data 3</Table.Column>
+          <Table.Column>Data 4</Table.Column>
+          <Table.Column>Data 5</Table.Column>
+          <Table.Column>Data 6</Table.Column>
+          <Table.Column>Data 7</Table.Column>
         </Table.Row>
         <Table.Row>
           <Table.Column>Data 1</Table.Column>
           <Table.Column>Data 2</Table.Column>
           <Table.Column>Data 3</Table.Column>
+          <Table.Column>Data 4</Table.Column>
+          <Table.Column>Data 5</Table.Column>
+          <Table.Column>Data 6</Table.Column>
+          <Table.Column>Data 7</Table.Column>
         </Table.Row>
         <Table.Row>
           <Table.Column>Data 1</Table.Column>
           <Table.Column>Data 2</Table.Column>
           <Table.Column>Data 3</Table.Column>
+          <Table.Column>Data 4</Table.Column>
+          <Table.Column>Data 5</Table.Column>
+          <Table.Column>Data 6</Table.Column>
+          <Table.Column>Data 7</Table.Column>
         </Table.Row>
       </Table.Body>
     </Table>
@@ -102,7 +118,9 @@ export const DataTable = (args: TableProps) => {
     .map((d, idx: number) => {
       return (
         <Table.Row key={`row-${idx}`}>
-          <Table.HeaderColumn scope="row">{d.caseType}</Table.HeaderColumn>
+          <Table.HeaderColumn scope="row" sticky>
+            {d.caseType}
+          </Table.HeaderColumn>
           <Table.Column>{d.status}</Table.Column>
           <Table.Column>{d.handler}</Table.Column>
           <Table.Column>
@@ -124,7 +142,7 @@ export const DataTable = (args: TableProps) => {
     <>
       <Table {...args} background={true} dense={rowHeight === 'dense'}>
         <Table.Header>
-          <Table.HeaderColumn aria-sort={sortColumn === 'caseType' ? sortOrder : 'none'}>
+          <Table.HeaderColumn aria-sort={sortColumn === 'caseType' ? sortOrder : 'none'} sticky>
             <TableSortButton
               isActive={sortColumn === 'caseType'}
               sortOrder={sortOrder}
@@ -161,6 +179,23 @@ export const DataTable = (args: TableProps) => {
           })}
         </Table.Body>
         <Table.Footer>
+          <div className="sk-table-bottom-section sk-table-pagination-mobile">
+            <label className="sk-table-bottom-section-label" htmlFor="paginationSelect">
+              Sida:
+            </label>
+            <Select
+              id="paginationSelect"
+              size="sm"
+              value={currentPage.toString()}
+              onSelectValue={(value) => setCurrentPage(parseInt(value, 10))}
+            >
+              {[...Array(Math.ceil(dataTableData.length / _pageSize)).keys()].map((page) => (
+                <Select.Option key={`pagipage-${page}`} value={(page + 1).toString()}>
+                  {page + 1}
+                </Select.Option>
+              ))}
+            </Select>
+          </div>
           <div className="sk-table-bottom-section">
             <label className="sk-table-bottom-section-label" htmlFor="pagiPageSize">
               Rader per sida:

@@ -9,8 +9,10 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, React.ComponentPro
 
     return React.cloneElement(child, props);
   });
+
+  React.useEffect(() => {});
   return (
-    <tr ref={ref} className={cx('sk-table-tbody-tr', className)} {...rest}>
+    <tr ref={ref} className={cx('sk-table-tbody-tr', className)} data-scroll {...rest}>
       {rowItems}
     </tr>
   );

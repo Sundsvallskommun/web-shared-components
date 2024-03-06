@@ -75,6 +75,7 @@ const headers: Array<AutoTableHeader | string> = [
   {
     label: 'Ärende',
     property: 'caseType',
+    sticky: true,
     renderColumn: (value) => <strong>{value}</strong>,
   },
   'handler.name',
