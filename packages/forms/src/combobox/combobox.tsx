@@ -3,11 +3,12 @@ import React from 'react';
 import { useOnClickOutside } from 'usehooks-ts';
 import { useFormControl } from '../form-control';
 import { ComboboxContext, UseComboboxProps } from './combobox-context';
+import { useComboboxStyles } from './styles';
 
 export interface ComboboxBaseProps extends UseComboboxProps, Omit<React.ComponentPropsWithRef<'input'>, 'size'> {}
 
 export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((props, ref) => {
-  const { multiple, className, id: _id, children, autofilter = true, size: _size, ...rest } = props;
+  const { multiple, className, id: _id, variant, children, autofilter = true, size: _size, ...rest } = props;
 
   const [open, setOpen] = React.useState<boolean>(false);
   const [internalValue, setInternalValue] = React.useState<string[]>([]);
@@ -26,6 +27,7 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
   const listId = `${id}-list`;
   const name = `${id}-option`;
   const size = _size || fcSize || 'md';
+  const classes = useComboboxStyles({ size, variant });
 
   useOnClickOutside(internalRef, () => {
     setOpen(false);
@@ -121,7 +123,7 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
   return (
     <ComboboxContext.Provider value={context}>
       <div
-        className={cx('sk-combobox-base', className)}
+        className={cx('sk-combobox-base', 'sk-form-combobox', classes, className)}
         role="combobox"
         aria-controls={listId}
         ref={useForkRef(internalRef, ref)}

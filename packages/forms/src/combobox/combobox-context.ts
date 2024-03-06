@@ -4,6 +4,10 @@ export interface UseComboboxProps {
   multiple?: boolean;
   size?: 'sm' | 'md' | 'lg';
   /**
+   * @default primary
+   */
+  variant?: 'primary' | 'tertiary';
+  /**
    * Automatic filter options by value and label (children)
    * @default true
    */
