@@ -1,14 +1,25 @@
 import { cx } from '@sk-web-gui/utils';
 import React from 'react';
+import { useElementSize } from 'usehooks-ts';
 
-export const TableRowColumn = React.forwardRef<HTMLTableCellElement, React.ComponentPropsWithoutRef<'td'>>(
-  (props, ref) => {
-    const { children, className, ...rest } = props;
+interface TableRowColumnProps extends React.ComponentPropsWithoutRef<'td'> {
+  sticky?: boolean;
+}
 
-    return (
-      <td ref={ref} className={cx('sk-table-tbody-td', className)} {...rest}>
+export const TableRowColumn = React.forwardRef<HTMLTableCellElement, TableRowColumnProps>((props, ref) => {
+  const { children, className, sticky, ...rest } = props;
+  const [innerRef, { width }] = useElementSize();
+
+  return (
+    <td ref={ref} className="sk-table-tbody-td" data-sticky={sticky} {...rest}>
+      {sticky && (
+        <div className={cx('sk-table-sticky-col', className)} style={{ width: `${width}px` }}>
+          <span className={cx('sk-table-col-content', className)}>{children}</span>
+        </div>
+      )}
+      <span ref={innerRef} className={cx('sk-table-col-content', className)}>
         {children}
-      </td>
-    );
-  }
-);
+      </span>
+    </td>
+  );
+});

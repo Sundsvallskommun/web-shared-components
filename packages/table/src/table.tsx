@@ -1,16 +1,24 @@
-import { DefaultProps, __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
+import { DefaultProps, __DEV__, cx, getValidChildren, useForkRef } from '@sk-web-gui/utils';
 import React from 'react';
 import { TableFooter } from './table-footer';
 import { TableHeader } from './table-header';
+import { useElementSize } from 'usehooks-ts';
 export interface TableComponentProps extends DefaultProps, React.ComponentPropsWithRef<'table'> {
   background?: boolean;
   dense?: boolean;
+  scrollable?: 'x' | 'y' | boolean;
 }
 
 export const TableComponent = React.forwardRef<HTMLTableElement, TableComponentProps>((props, ref) => {
-  const { background = false, dense = false, className, children, ...rest } = props;
+  const { background = false, dense = false, className, children, scrollable = true, ...rest } = props;
+  const [sizeRef, { width: tableWidth }] = useElementSize();
+  const [wrapperRef, { width: wrapperWidth }] = useElementSize();
+  const [hasScroll, setHasScroll] = React.useState<boolean>(false);
 
-  //MANUEL TABLE
+  React.useEffect(() => {
+    setHasScroll(wrapperWidth < tableWidth);
+  }, [tableWidth, wrapperWidth]);
+
   const validChildren = getValidChildren(children);
   const tableItems = validChildren
     .filter((child) => child.type !== TableFooter)
@@ -27,18 +35,19 @@ export const TableComponent = React.forwardRef<HTMLTableElement, TableComponentP
 
   const footerItem = validChildren.filter((child) => child.type === TableFooter);
   return (
-    <div
-      className={cx('sk-table-wrapper', className)}
-      data-footer={validChildren.find((child) => child.type === TableFooter) ? true : false}
-      data-background={background}
-    >
-      <div className="sk-table-wrapper-inside">
-        <table ref={ref} data-dense={dense ? 'dense' : 'normal'} {...rest} className={'sk-table'}>
+    <div className={cx('sk-table-wrapper', className)} data-footer={!!footerItem} data-background={background}>
+      <div ref={wrapperRef} className="sk-table-wrapper-inside" data-scroll={scrollable}>
+        <table
+          ref={useForkRef(sizeRef, ref)}
+          data-dense={dense ? 'dense' : 'normal'}
+          {...rest}
+          data-hasscroll={hasScroll}
+          className={'sk-table'}
+        >
           {tableItems}
         </table>
-
-        {footerItem}
       </div>
+      {footerItem}
     </div>
   );
 });

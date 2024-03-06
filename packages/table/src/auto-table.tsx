@@ -28,6 +28,7 @@ export interface AutoTableHeader {
   isShown?: boolean;
   screenReaderOnly?: boolean;
   columnPosition?: 'left' | 'center' | 'right';
+  sticky?: boolean;
   renderColumn?: (value: TableValue, item: TableItem) => JSX.Element;
 }
 export interface TableHeader {
@@ -35,6 +36,7 @@ export interface TableHeader {
   isColumnSortable?: boolean;
   isShown?: boolean;
   screenReaderOnly?: boolean;
+  sticky?: boolean;
 }
 export interface AutoTableColumn {
   element: JSX.Element;
@@ -143,6 +145,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
     let isSortable = true;
     let show = true;
     let isScreenReaderOnly = false;
+    let isSticky = undefined;
 
     switch (typeof header) {
       case 'string':
@@ -150,11 +153,12 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
         break;
 
       default:
-        const { isColumnSortable = true, isShown = true, screenReaderOnly = false } = header;
+        const { isColumnSortable = true, isShown = true, screenReaderOnly = false, sticky } = header;
         label = getLabel(header);
         isSortable = isColumnSortable;
         show = isShown;
         isScreenReaderOnly = screenReaderOnly;
+        isSticky = sticky;
         break;
     }
 
@@ -163,6 +167,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
       isColumnSortable: isSortable,
       isShown: show,
       screenReaderOnly: isScreenReaderOnly,
+      sticky: isSticky,
     };
   });
 
@@ -350,8 +355,8 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
                   key={`header-${idx}`}
                   aria-sort={`${sortIndex == idx ? sortModeOrder : 'none'}`}
                   data-iscolumnsortable={h.isColumnSortable}
+                  sticky={h.sticky}
                 >
-                  {' '}
                   {h.isColumnSortable && tableSortable ? (
                     <TableSortButton
                       isActive={sortIndex == idx}
@@ -391,7 +396,13 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
                 }`}
               >
                 {cols.map(({ element, isShown = true }, idx) =>
-                  isShown ? <TableRowColumn key={`col${idx}`}>{element}</TableRowColumn> : <> </>
+                  isShown ? (
+                    <TableRowColumn sticky={headers[idx].sticky} key={`col${idx}`}>
+                      {element}
+                    </TableRowColumn>
+                  ) : (
+                    <> </>
+                  )
                 )}
               </TableRow>
             ))}
