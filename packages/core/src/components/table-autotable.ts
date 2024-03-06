@@ -197,21 +197,30 @@ export const TableAutoTable = () => ({
       },
     },
     '&-paginationwrapper': {
-      '@apply w-full max-w-[60rem]': {},
-      '@apply shrink': {},
+      '@apply max-w-[60rem]': {},
+      '@apply shrink grow': {},
+      '@apply hidden @screen-md/footer:flex': {},
     },
 
     '&-bottom': {
+      '@apply @container/footer': {},
       '@apply py-14 px-16': {},
       '@apply border-t-1': {},
       '@apply flex flex-row': {},
-      '@apply gap-32': {},
+      '@apply flex-wrap': {},
+      '@apply @screen-lg/footer:gap-32': {},
+      '@apply @screen-md/footer:gap-16': {},
+      '@apply gap-8': {},
       '@apply justify-between items-center': {},
       '&-section': {
         '@apply shrink-0': {},
-        '@apply flex flex-row': {},
+        '@apply flex flex-col': {},
         '@apply justify-start items-center': {},
+        '@apply @screen-sm/footer:flex-row': {},
         '@apply gap-8': {},
+        '&.sk-table-pagination-mobile': {
+          '@apply @screen-md/footer:hidden': {},
+        },
         '&-label': {
           '@apply font-normal': {},
           '@apply text-small': {},

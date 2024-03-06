@@ -6,6 +6,10 @@ import { Config } from 'tailwindcss/types/config';
 
 const theme: RecursiveObject<Config['theme'] | string | string[]> = {
   extend: {
+    containers: Object.keys(screens).reduce(
+      (containers, screenKey, index) => ({ ...containers, [`screen-${screenKey}`]: Object.values(screens)[index] }),
+      {}
+    ),
     fontSize: {
       ...units.fontSizes,
       tiny: '1rem',
