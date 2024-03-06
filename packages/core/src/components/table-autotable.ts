@@ -1,7 +1,7 @@
 export const TableAutoTable = () => ({
   '.sk-table-wrapper': {
     '@apply rounded-groups': {},
-    '@apply border-1': {},
+    '@apply border-1 border-divider': {},
     '@apply bg-background-content': {},
     '@apply relative': {},
 
@@ -114,7 +114,7 @@ export const TableAutoTable = () => ({
       '&-tr': {
         '@apply bg-transparent': {},
         '@apply hover:bg-background-100': {},
-        '@apply border-b-1': {},
+        '@apply border-b-1 border-divider': {},
         '@apply last-of-type:border-b-transparent': {},
         '@apply focus-visible:shadow-insetring': {},
         '&:hover': {
@@ -129,8 +129,8 @@ export const TableAutoTable = () => ({
         '@apply h-[6.3rem]': {},
         '@apply min-h-[6.3rem]': {},
         '.sk-table-sticky-col': {
-          '@apply h-[6.3rem]': {},
-          '@apply min-h-[6.3rem]': {},
+          '@apply h-[6.1rem]': {},
+          '@apply min-h-[6.1rem]': {},
         },
         '@apply focus-visible:shadow-insetring': {},
         '.sk-table-col-content': {
@@ -155,7 +155,7 @@ export const TableAutoTable = () => ({
         '&-thead': {
           '@apply h-[4.8rem]': {},
           '.sk-table-sticky-col': {
-            '@apply h-[4.8rem]': {},
+            '@apply h-[4.6rem]': {},
           },
         },
         '&-tbody': {
@@ -163,8 +163,8 @@ export const TableAutoTable = () => ({
             '@apply h-[4.7rem]': {},
             '@apply min-h-[4.7rem]': {},
             '.sk-table-sticky-col': {
-              '@apply h-[4.7rem]': {},
-              '@apply min-h-[4.7rem]': {},
+              '@apply h-[4.5rem]': {},
+              '@apply min-h-[4.5rem]': {},
             },
           },
         },
@@ -183,15 +183,23 @@ export const TableAutoTable = () => ({
     },
 
     '&[data-hasscroll="true"]': {
+      '.sk-table-sticky-col': {
+        '@apply box-content': {},
+      },
+      '.sk-table-tbody': {
+        '.sk-table-sticky-col': {
+          '@apply border-b-primitives-overlay-darken-2 dark:border-b-primitives-overlay-lighten-3 border-b-1': {},
+        },
+      },
       'td:first-of-type, th:first-of-type': {
         '.sk-table-sticky-col': {
           '@apply left-0': {},
-          '@apply border-r-1': {},
+          '@apply border-r-1 border-r-divider': {},
         },
       },
       'td:last-of-type, th:last-of-type': {
         '.sk-table-sticky-col': {
-          '@apply border-l-1': {},
+          '@apply border-l-1 border-r-divider': {},
           '@apply right-0': {},
         },
       },
@@ -205,7 +213,7 @@ export const TableAutoTable = () => ({
     '&-bottom': {
       '@apply @container/footer': {},
       '@apply py-14 px-16': {},
-      '@apply border-t-1': {},
+      '@apply border-t-1 border-divider': {},
       '@apply flex flex-row': {},
       '@apply flex-wrap': {},
       '@apply @screen-lg/footer:gap-32': {},
