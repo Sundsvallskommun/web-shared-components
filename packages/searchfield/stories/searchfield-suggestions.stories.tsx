@@ -97,9 +97,6 @@ const fruits = [
 export const Template: StoryObj<typeof SearchField.Suggestions> = (
   args: React.ComponentPropsWithRef<SearchFieldProps['SuggestionsInput']>
 ) => {
-  const onResetHandler = () => {
-    console.log('onResetHandler');
-  };
   const onSearchHandler = (query: string) => {
     console.log('onSearchHandler', query);
   };
@@ -107,7 +104,7 @@ export const Template: StoryObj<typeof SearchField.Suggestions> = (
   return (
     <div className="h-[38rem]">
       <SearchField.Suggestions>
-        <SearchField.SuggestionsInput {...args} onSearch={onSearchHandler} onReset={onResetHandler} />
+        <SearchField.SuggestionsInput {...args} onSearch={onSearchHandler} />
         <SearchField.SuggestionsList>
           {fruits.map((fruit, index) => (
             <SearchField.SuggestionsOption key={`fruit-${index}`} value={fruit}>
