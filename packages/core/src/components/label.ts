@@ -8,15 +8,15 @@ export const Label = (colors: string[]) => ({
 
     '@apply rounded-utility-sm md:rounded-utility-md xl:rounded-utility-lg': {},
 
-    '@apply bg-primary-surface': {},
+    '@apply bg-dark-primary': {},
     '@apply text-light-primary': {},
 
     '&[data-rounded="true"]': {
       '@apply rounded-full': {},
     },
     '&[data-inverted="true"]': {
-      '@apply bg-inverted-primary-surface': {},
-      '@apply text-inverted-light-primary': {},
+      '@apply bg-tertiary-surface': {},
+      '@apply text-dark-primary': {},
     },
 
     ...colors.reduce(
@@ -33,5 +33,13 @@ export const Label = (colors: string[]) => ({
       }),
       {}
     ),
+    '&[data-color="tertiary"]': {
+      '@apply bg-dark-primary': {},
+      '@apply text-light-primary': {},
+      '&[data-inverted="true"]': {
+        '@apply bg-tertiary-surface': {},
+        '@apply text-dark-primary': {},
+      },
+    },
   },
 });
