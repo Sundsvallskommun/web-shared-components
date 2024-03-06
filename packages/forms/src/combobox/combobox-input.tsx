@@ -74,6 +74,7 @@ export const ComboboxInput: React.FC<ComboboxInputProps> = React.forwardRef<HTML
     const {
       value: contextValue,
       setValue,
+      getValue,
       searchValue: contextSearchValue,
       setSearchValue,
       labels,
@@ -130,15 +131,6 @@ export const ComboboxInput: React.FC<ComboboxInputProps> = React.forwardRef<HTML
         }
       }
     }, [_incomingValue]);
-
-    const getValue = () => {
-      switch (open) {
-        case false:
-          return value.length > 0 && value[0] ? value.map((opt) => labels[opt]).join(', ') : searchValue;
-        case true:
-          return searchValue;
-      }
-    };
 
     const [valueMemo, setValueMemo] = React.useState<typeof value | null>(value);
     useEffect(() => {
@@ -215,6 +207,7 @@ export const ComboboxInput: React.FC<ComboboxInputProps> = React.forwardRef<HTML
       placeholder: open && !searchValue ? searchPlaceholder : searchValue.length < 1 ? placeholder : undefined,
       onChange: handleOnChange,
       'aria-autocomplete': 'none',
+      autoComplete: 'off',
       value: getValue(),
       ...rest,
     } as const;

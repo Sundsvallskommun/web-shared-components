@@ -39,6 +39,17 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
     setLabels(newLabels);
   };
 
+  const getValue = () => {
+    switch (open) {
+      case false:
+        return internalValue.length > 0 && internalValue[0]
+          ? internalValue.map((opt) => labels[opt]).join(', ')
+          : searchValue;
+      case true:
+        return searchValue;
+    }
+  };
+
   const close = () => {
     setSearchValue('');
     setOpen(false);
@@ -101,6 +112,7 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
     close,
     addLabel,
     setValue: setInternalValue,
+    getValue,
     open,
     setOpen,
     labels,
@@ -120,6 +132,8 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
     inputRef,
   };
 
+  const currentInputData = getValue();
+
   return (
     <ComboboxContext.Provider value={context}>
       <div
@@ -127,7 +141,8 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
         role="combobox"
         aria-controls={listId}
         ref={useForkRef(internalRef, ref)}
-        aria-expanded={open}
+        aria-expanded={open && total > 0}
+        data-showvalue={currentInputData !== searchValue ? true : undefined}
         {...rest}
       >
         {children}
