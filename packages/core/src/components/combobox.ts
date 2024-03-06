@@ -31,7 +31,7 @@ export const ComboBox = () => ({
       },
     },
 
-    '&:not([aria-expanded="true"])': {
+    '&[data-showvalue="true"]': {
       '.sk-form-combobox-select': {
         '@apply caret-transparent': {},
       },
