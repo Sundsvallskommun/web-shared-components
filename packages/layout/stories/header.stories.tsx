@@ -91,17 +91,21 @@ export const Template: StoryObj<typeof Header> = (args: React.ComponentProps<Hea
             <MenuBar.Item>
               <PopupMenu>
                 <PopupMenu.Button rightIcon={<Icon name="chevron-down" />}>Hjälp</PopupMenu.Button>
-                <PopupMenu.Item>
-                  <button>Underval 1</button>
-                </PopupMenu.Item>
-                <PopupMenu.Item>
-                  <a>Underval 2</a>
-                </PopupMenu.Item>
+                <PopupMenu.Panel>
+                  <PopupMenu.Items>
+                    <PopupMenu.Item>
+                      <button>Underval 1</button>
+                    </PopupMenu.Item>
+                    <PopupMenu.Item>
+                      <a>Underval 2</a>
+                    </PopupMenu.Item>
+                  </PopupMenu.Items>
+                </PopupMenu.Panel>
               </PopupMenu>
             </MenuBar.Item>
           </MenuBar>
         }
-      ></Header>
+      />
     </div>
   );
 };

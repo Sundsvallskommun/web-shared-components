@@ -38,9 +38,9 @@ interface LogoWithText extends ILogoProps {
   subtitle?: string;
 }
 
-export type InternalLogoProps = LogoWithText | LogoWithoutText;
+export type LogoProps = LogoWithText | LogoWithoutText;
 
-export const InternalLogo = React.forwardRef<HTMLDivElement, InternalLogoProps>((props, ref) => {
+export const Logo = React.forwardRef<HTMLDivElement, LogoProps>((props, ref) => {
   const { variant: _variant, title, subtitle, className, inverted = false, ...rest } = props;
   const variant = _variant || (!!title ? 'service' : 'logo');
 
@@ -65,7 +65,5 @@ export const InternalLogo = React.forwardRef<HTMLDivElement, InternalLogoProps>(
 });
 
 if (__DEV__) {
-  InternalLogo.displayName = 'Logo';
+  Logo.displayName = 'Logo';
 }
-
-export default InternalLogo;
