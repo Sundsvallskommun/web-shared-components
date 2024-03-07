@@ -193,7 +193,7 @@ export const Button = (colors: string[]) => ({
       '@apply px-14 py-8 gap-6': {},
       '@apply max-h-[3.2rem] h-[3.2rem]': {},
       '@apply rounded-button-sm': {},
-      svg: {
+      'svg, .sk-icon': {
         '@apply h-[1.6rem] w-[1.6rem]': {},
       },
     },
@@ -203,7 +203,7 @@ export const Button = (colors: string[]) => ({
       '@apply px-18 py-8 gap-8': {},
       '@apply max-h-[4rem] h-[4rem]': {},
       '@apply rounded-button-md': {},
-      svg: {
+      'svg, .sk-icon': {
         '@apply h-[1.8rem] w-[1.8rem]': {},
       },
     },
@@ -213,7 +213,7 @@ export const Button = (colors: string[]) => ({
       '@apply px-24 py-8 gap-8': {},
       '@apply max-h-[4.8rem] h-[4.8rem]': {},
       '@apply rounded-button-lg': {},
-      svg: {
+      'svg, .sk-icon': {
         '@apply h-[2rem] w-[2rem]': {},
       },
     },
@@ -277,7 +277,7 @@ export const Button = (colors: string[]) => ({
         minWidth: '3.2rem',
         width: '3.2rem',
         maxWidth: '3.2rem',
-        svg: {
+        'svg, .sk-icon': {
           '@apply h-[2rem] w-[2rem]': {},
         },
       },
@@ -286,7 +286,7 @@ export const Button = (colors: string[]) => ({
         minWidth: '4rem',
         width: '4rem',
         maxWidth: '4rem',
-        svg: {
+        'svg, .sk-icon': {
           '@apply h-[2rem] w-[2rem]': {},
         },
       },
@@ -295,7 +295,7 @@ export const Button = (colors: string[]) => ({
         minWidth: '4.8rem',
         width: '4.8rem',
         maxWidth: '4.8rem',
-        svg: {
+        'svg, .sk-icon': {
           '@apply h-[2.4rem] w-[2.4rem]': {},
         },
       },
