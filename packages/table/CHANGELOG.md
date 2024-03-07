@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@2.0.2...@sk-web-gui/table@2.1.0) (2024-03-07)
+
+### Bug Fixes
+
+- fixed issues with mobile footer ([77261ca](https://github.com/Sundsvallskommun/web-shared-components/commit/77261cac361121459ea3df3de67e3d63b1af891f))
+- **table:** fixed issues with screen reader and sticky columns ([6400885](https://github.com/Sundsvallskommun/web-shared-components/commit/64008853d77414dc1c1e9dc20f660b448df940c8))
+
+### Features
+
+- added scrollable table with sticky columns ([7991ba1](https://github.com/Sundsvallskommun/web-shared-components/commit/7991ba10d580ef32160df2c7be9b30d439f43ce7))
+
 ## [2.0.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@2.0.1...@sk-web-gui/table@2.0.2) (2024-03-06)
 
 ### Bug Fixes

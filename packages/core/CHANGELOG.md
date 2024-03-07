@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@2.0.1...@sk-web-gui/core@2.1.0) (2024-03-07)
+
+### Bug Fixes
+
+- **button:** make icon the right sizes in buttons ([82240af](https://github.com/vechai/sk-web-gui/commit/82240af592669a8998143e5b1d31510266fd2bcf))
+- **label:** updated tertiary (default) colors ([2d00176](https://github.com/vechai/sk-web-gui/commit/2d00176be11f8cd231ef2641f8707f92daf6933c))
+- **table:** added better styling for mobile footer ([657bc17](https://github.com/vechai/sk-web-gui/commit/657bc17620aff243a78ff2e5d0c877a2b4aea284))
+- **table:** added styling for sticky columns and scrollable table ([5c57a56](https://github.com/vechai/sk-web-gui/commit/5c57a564d839e2fd45ff839364d7bc2c7f14998f))
+- **table:** fixed colors on table borders ([5863a85](https://github.com/vechai/sk-web-gui/commit/5863a850734fb564e6753e98f19558ab604e5baa))
+- **table:** fixed issues with screen reader and sticky columns ([6400885](https://github.com/vechai/sk-web-gui/commit/64008853d77414dc1c1e9dc20f660b448df940c8))
+
+### Features
+
+- added tailwind container queries support ([4748504](https://github.com/vechai/sk-web-gui/commit/47485045fec3512cde0ad3bc81f64c5749757c68))
+
 ## [2.0.1](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@2.0.0...@sk-web-gui/core@2.0.1) (2024-03-05)
 
 ### Bug Fixes

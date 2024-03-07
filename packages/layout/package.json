@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/layout",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -39,7 +39,7 @@
   "dependencies": {
     "@sk-web-gui/divider": "1.0.2",
     "@sk-web-gui/link": "1.0.3",
-    "@sk-web-gui/logo": "1.0.3",
+    "@sk-web-gui/logo": "1.0.4",
     "@sk-web-gui/theme": "1.0.2",
     "@sk-web-gui/utils": "1.0.0"
   },
