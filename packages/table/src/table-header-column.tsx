@@ -14,11 +14,11 @@ export const TableHeaderColumn = React.forwardRef<HTMLTableCellElement, TableHea
   return (
     <th ref={ref} className={'sk-table-th'} data-sticky={sticky} {...rest}>
       {sticky && (
-        <div className="sk-table-sticky-col" style={{ width: `${width}px` }}>
+        <span className="sk-table-sticky-col" style={{ width: `${width}px` }}>
           <span className={cx('sk-table-col-content', className)}>{children}</span>
-        </div>
+        </span>
       )}
-      <span ref={innerRef} className={cx('sk-table-col-content', className)}>
+      <span ref={innerRef} className={cx('sk-table-col-content', className)} aria-hidden={sticky}>
         {children}
       </span>
     </th>

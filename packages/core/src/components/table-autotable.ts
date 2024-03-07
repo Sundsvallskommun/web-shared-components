@@ -178,7 +178,7 @@ export const TableAutoTable = () => ({
 
     '[data-sticky="true"]': {
       '> .sk-table-col-content': {
-        '@apply opacity-0': {},
+        '@apply collapse': {},
       },
     },
 
