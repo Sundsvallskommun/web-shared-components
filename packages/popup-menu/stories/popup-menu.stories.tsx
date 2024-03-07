@@ -116,7 +116,7 @@ export const CheckboxesAndFilter = () => {
               id="searchbar"
               onChange={(e) => setQuery(e.target.value)}
               value={query}
-              onClose={() => setQuery('')}
+              onReset={() => setQuery('')}
             />
           </PopupMenu.Group>
           <PopupMenu.Items autoFocus={false} aria-label="Sök eller välj ur lista" aria-labelledby="">
