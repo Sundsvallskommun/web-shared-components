@@ -3,6 +3,15 @@ export const SearchField = () => ({
     '&.sk-form-combobox': {
       '@apply h-auto': {},
     },
+    '.sk-form-combobox': {
+      '&-list': {
+        '&-option': {
+          '.sk-icon': {
+            '@apply hidden': {},
+          },
+        },
+      },
+    },
   },
   '.sk-search-field': {
     '&-md': {
