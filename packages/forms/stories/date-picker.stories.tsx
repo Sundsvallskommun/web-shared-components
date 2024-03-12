@@ -2,6 +2,7 @@ import React from 'react';
 import { Input } from '../src';
 import { Meta } from '@storybook/react';
 import { DatePicker, DatePickerProps } from '../src/date-picker/date-picker';
+import { useForm } from 'react-hook-form';
 
 export default {
   title: 'Komponenter/DatePicker',
@@ -70,3 +71,15 @@ export const DatumTid = () => (
     </div>
   </div>
 );
+
+export const WithForms = () => {
+  const { register, watch } = useForm<{ date: string }>();
+
+  const date = watch('date');
+
+  React.useEffect(() => {
+    console.log(date);
+  }, [date]);
+
+  return <DatePicker {...register('date')} />;
+};
