@@ -100,7 +100,7 @@ export const Template: StoryObj<typeof SearchField.Suggestions> = (
   const [query, setQuery] = useState('');
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('e', e.target.value);
+    console.log('handleOnChange', e.target.value);
     setQuery(e.target.value);
   };
 
