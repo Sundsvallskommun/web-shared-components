@@ -4,26 +4,47 @@ import React from 'react';
 import SearchField, { SearchFieldProps } from './index';
 
 interface SearchFieldSuggestionsInputProps
-  extends Omit<React.ComponentPropsWithRef<SearchFieldProps['Input']>, 'value' | 'onChange' | 'onSelect'> {
-  value?: string | string[];
-  searchValue?: string;
+  extends Omit<React.ComponentPropsWithRef<SearchFieldProps['Input']>, 'onSelect'> {
   defaultValue?: string;
-  onChange?: React.ComponentProps<ComboboxProps['Input']>['onChange'];
-  onChangeSearch?: React.ComponentProps<ComboboxProps['Input']>['onChangeSearch'];
   onSelect?: React.ComponentProps<ComboboxProps['Input']>['onSelect'];
 }
 
 export const SearchFieldSuggestionsInput = React.forwardRef<HTMLInputElement, SearchFieldSuggestionsInputProps>(
   (props, ref) => {
+    const [value, setValue] = React.useState<string | string[]>();
+    const [searchValue, setSearchValue] = React.useState(props.value);
+
+    const onResetHandler = () => {
+      setSearchValue('');
+      setValue([]);
+      props.onReset && props.onReset();
+    };
+
+    const comboboxOnChangeHandler: React.ComponentProps<ComboboxProps['Input']>['onChange'] = (e) => {
+      setValue(e.target.value);
+    };
+    const onChangeSearchHandler: React.ComponentProps<ComboboxProps['Input']>['onChangeSearch'] = (e) => {
+      props.onChange(e as React.ChangeEvent<HTMLInputElement>);
+    };
+
+    React.useEffect(() => {
+      setSearchValue(props.value);
+    }, [props.value]);
+
     return (
       <Combobox.Input
-        {...props}
+        {...omit(props, ['onChange', 'value'])}
+        value={value}
+        searchValue={searchValue}
+        onChange={comboboxOnChangeHandler}
+        onChangeSearch={onChangeSearchHandler}
         InputComp={
           <SearchField
             ref={ref}
-            {...omit(props, ['onChangeSearch', 'onSelect', 'searchValue'])}
-            value={props.searchValue || ''}
-            onChange={props.onChange ?? (() => ({}))}
+            {...omit(props, ['onSelect'])}
+            value={searchValue}
+            onChange={onChangeSearchHandler}
+            onReset={onResetHandler}
           />
         }
       />
