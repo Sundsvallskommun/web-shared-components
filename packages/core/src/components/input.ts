@@ -235,6 +235,11 @@ export const Input = () => ({
     '@apply focus:ring-offset': {},
     '@apply focus:border-primitives-overlay-lighten-10': {},
     '@apply dark:focus:border-primitives-overlay-darken-6': {},
+    '@apply focus-within:ring': {},
+    '@apply focus-within:ring-ring': {},
+    '@apply focus-within:ring-offset': {},
+    '@apply focus-within:border-primitives-overlay-lighten-10': {},
+    '@apply dark:focus-within:border-primitives-overlay-darken-6': {},
     '&:not(:invalid):not([aria-invalid="true"])': {
       '@apply focus:hover:border-primitives-overlay-lighten-10': {},
       '@apply dark:focus:hover:border-primitives-overlay-darken-6': {},
