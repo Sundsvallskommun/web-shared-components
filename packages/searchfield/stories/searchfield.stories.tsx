@@ -4,12 +4,12 @@ import { SearchField, SearchFieldProps } from '../src';
 
 export default {
   title: 'Komponenter/Searchfield',
-  component: SearchField,
+  component: SearchField.Component,
   tags: ['autodocs'],
   args: {
     placeholder: 'Sök',
   },
-} as Meta<typeof SearchField>;
+} as Meta<typeof SearchField.Component>;
 
 export const Template: StoryObj<typeof SearchField> = (args: SearchFieldProps) => {
   const [term, setTerm] = useState('');
