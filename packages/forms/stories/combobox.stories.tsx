@@ -145,10 +145,14 @@ export const Template = (args: React.ComponentPropsWithRef<typeof Combobox.Input
     setValue(e.target.value);
   };
 
+  const handleOnSelect = (e) => {
+    console.log('handleOnSelect', e.target.value);
+  };
+
   return (
     <div className="h-[45rem]">
       <Combobox>
-        <Combobox.Input {...args} value={value} onChange={handleOnChange} />
+        <Combobox.Input {...args} value={value} onChange={handleOnChange} onSelect={handleOnSelect} />
         <Combobox.List>
           {fruits.map((fruit, index) => (
             <Combobox.Option key={`fruit-${index}`} value={fruit}>

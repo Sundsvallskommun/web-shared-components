@@ -29,6 +29,7 @@ interface UseComboboxData extends UseComboboxProps {
   open: boolean;
   setOpen: (open: boolean) => void;
   setValue: (value: string[]) => void;
+  getValue: () => string;
   id: string;
   listId: string;
   name: string;
@@ -55,6 +56,7 @@ export const ComboboxContext = React.createContext<UseComboboxData>({
   open: false,
   setOpen: () => ({}),
   setValue: ([]) => ({}),
+  getValue: () => '',
   id: '',
   listId: '',
   name: '',

@@ -1,4 +1,4 @@
-import { __DEV__, cx, useForkRef } from '@sk-web-gui/utils';
+import { CustomOnChangeEvent, __DEV__, cx, useForkRef } from '@sk-web-gui/utils';
 import React, { useEffect } from 'react';
 import { useFormControl } from '../form-control';
 import { UseComboboxProps, useCombobox } from './combobox-context';
@@ -9,13 +9,9 @@ interface InputCompProps extends React.InputHTMLAttributes<HTMLInputElement> {
   // Define any additional props specific to InputComp
 }
 
-interface CustomOnChangeEvent extends Omit<React.ChangeEvent<HTMLInputElement>, 'target'> {
-  target: { value: string | string[]; name: string };
-}
-
 export interface ComboboxInputProps
   extends UseComboboxProps,
-    Omit<React.ComponentPropsWithRef<'input'>, 'size' | 'onChange'> {
+    Omit<React.ComponentPropsWithRef<'input'>, 'size' | 'onChange' | 'onSelect'> {
   /**
    * ChangeEvent list
    */
@@ -23,7 +19,11 @@ export interface ComboboxInputProps
   /**
    * ChangeEvent list
    */
-  onChangeSearch?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onSelect?: (event: CustomOnChangeEvent) => void;
+  /**
+   * ChangeEvent list
+   */
+  onChangeSearch?: (event: CustomOnChangeEvent<string>) => void;
   /**
    * Selected value
    */
@@ -61,6 +61,7 @@ export const ComboboxInput: React.FC<ComboboxInputProps> = React.forwardRef<HTML
       id: _id,
       onChange,
       onChangeSearch,
+      onSelect,
       placeholder,
       searchPlaceholder,
       size: _size,
@@ -73,6 +74,7 @@ export const ComboboxInput: React.FC<ComboboxInputProps> = React.forwardRef<HTML
     const {
       value: contextValue,
       setValue,
+      getValue,
       searchValue: contextSearchValue,
       setSearchValue,
       labels,
@@ -87,6 +89,7 @@ export const ComboboxInput: React.FC<ComboboxInputProps> = React.forwardRef<HTML
       multiple,
     } = useCombobox();
 
+    const value = contextValue || _incomingValue || '';
     const searchValue = contextSearchValue || _searchValue || '';
 
     useEffect(() => {
@@ -97,7 +100,7 @@ export const ComboboxInput: React.FC<ComboboxInputProps> = React.forwardRef<HTML
     useEffect(() => {
       const value = _searchValue || '';
       setSearchValue(value);
-    }, [_searchValue, _incomingValue]);
+    }, [_searchValue]);
 
     const {
       readOnly,
@@ -129,29 +132,26 @@ export const ComboboxInput: React.FC<ComboboxInputProps> = React.forwardRef<HTML
       }
     }, [_incomingValue]);
 
-    const getValue = () => {
-      switch (open) {
-        case false:
-          return contextValue.length > 0 ? contextValue.map((opt) => labels[opt]).join(', ') : '';
-        case true:
-          return searchValue;
-      }
-    };
-
-    const [contextValueMemo, setContextValueMemo] = React.useState<typeof contextValue | null>(contextValue);
+    const [valueMemo, setValueMemo] = React.useState<typeof value | null>(value);
     useEffect(() => {
-      const value = contextValue.map((opt) => labels[opt]);
-      if (_.isEqual(contextValue, contextValueMemo) === false) {
-        setContextValueMemo(contextValue);
-        onChange &&
-          onChange({
-            target: {
-              value: multiple ? value : value.length ? value.join('') : '',
-              name: name ?? '',
-            },
-          } as CustomOnChangeEvent);
+      const _value = value.map((opt) => labels[opt]);
+      if (_.isEqual(_value, valueMemo) === false) {
+        setValueMemo(_value);
+        const event = {
+          target: {
+            value: multiple ? _value : _value.length ? _value.join('') : '',
+            name: name ?? '',
+          },
+        } as CustomOnChangeEvent;
+        onChange && onChange(event);
+        if (multiple || (_value.length && _value[0])) {
+          onSelect && onSelect(event);
+        }
+        if (value.length > 0 && value[0]) {
+          onChangeSearch && onChangeSearch({ target: { value: '', name: name ?? '' } } as CustomOnChangeEvent<string>);
+        }
       }
-    }, [contextValue]);
+    }, [value]);
 
     const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       if (open) {
@@ -207,6 +207,7 @@ export const ComboboxInput: React.FC<ComboboxInputProps> = React.forwardRef<HTML
       placeholder: open && !searchValue ? searchPlaceholder : searchValue.length < 1 ? placeholder : undefined,
       onChange: handleOnChange,
       'aria-autocomplete': 'none',
+      autoComplete: 'off',
       value: getValue(),
       ...rest,
     } as const;

@@ -4,13 +4,14 @@ import { Icon } from '@sk-web-gui/icon';
 import { DefaultProps, __DEV__ } from '@sk-web-gui/utils';
 import React from 'react';
 
-export interface SearchFieldProps
+export interface SearchFieldBaseProps
   extends DefaultProps,
     React.ComponentProps<InputProps['Component']>,
     Omit<React.ComponentPropsWithRef<'input'>, 'size'> {
   // Parent should handle the state
   value: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
   onSearch?: (query: string) => void;
   onReset?: () => void;
   /** @default onValue */
@@ -30,107 +31,112 @@ export interface SearchFieldProps
   resetIcon?: React.ReactNode;
 }
 
-export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>((props, ref) => {
-  const {
-    value,
-    onChange,
-    placeholder,
-    onSearch,
-    onReset,
-    showSearchButton = 'onValue',
-    showResetButton = 'onValue',
-    size = 'lg',
-    className = '',
-    searchLabel = 'Sök',
-    resetAriaLabel = 'Rensa',
-    searchIcon = <Icon name="search" />,
-    resetIcon = <Icon name="x" />,
-    ...rest
-  } = props;
+export const SearchFieldBase: React.FC<SearchFieldBaseProps> = React.forwardRef<HTMLInputElement, SearchFieldBaseProps>(
+  (props, ref) => {
+    const {
+      value,
+      onChange,
+      placeholder,
+      onSearch,
+      onReset,
+      onKeyDown,
+      showSearchButton = 'onValue',
+      showResetButton = 'onValue',
+      size = 'lg',
+      className = '',
+      searchLabel = 'Sök',
+      resetAriaLabel = 'Rensa',
+      searchIcon = <Icon name="search" />,
+      resetIcon = <Icon name="x" />,
+      ...rest
+    } = props;
 
-  const [query, setQuery] = React.useState(value);
-  const internalRef = React.useRef<HTMLInputElement | null>(null);
-  React.useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(ref, () => internalRef.current);
+    const [query, setQuery] = React.useState(value);
+    const internalRef = React.useRef<HTMLInputElement | null>(null);
+    React.useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(ref, () => internalRef.current);
 
-  const _showSearchButton = showSearchButton === 'onValue' ? !!query.length : showSearchButton;
-  const _showResetButton = showResetButton === 'onValue' || showResetButton ? !!query.length : showResetButton;
+    const _showSearchButton = showSearchButton === 'onValue' ? !!query.length : showSearchButton;
+    const _showResetButton = showResetButton === 'onValue' || showResetButton ? !!query.length : showResetButton;
 
-  const setInputFocus = () => {
-    setTimeout(() => {
-      internalRef.current && internalRef.current.focus();
-    });
-  };
+    const setInputFocus = () => {
+      setTimeout(() => {
+        internalRef.current && internalRef.current.focus();
+      });
+    };
 
-  const handleOnSearch = () => {
-    onSearch && onSearch(query);
-  };
+    const handleOnSearch = () => {
+      onSearch && onSearch(query);
+    };
 
-  const handleOnReset = () => {
-    setQuery('');
-    setInputFocus();
-    onReset && onReset();
-  };
+    const handleOnReset = () => {
+      setQuery('');
+      setInputFocus();
+      onReset && onReset();
+    };
 
-  // Search on enter
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      handleOnSearch();
-    }
-  };
+    // Search on enter
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === 'Enter') {
+        handleOnSearch();
+      }
+      onKeyDown && onKeyDown(event);
+    };
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
-    onChange(e);
-  };
+    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setQuery(e.target.value);
+      onChange(e);
+    };
 
-  React.useEffect(() => {
-    if (value !== null || value !== undefined) {
-      setQuery(value);
-    }
-  }, [value]);
+    React.useEffect(() => {
+      if (value !== null || value !== undefined) {
+        setQuery(value);
+      }
+    }, [value]);
 
-  return (
-    <div className={`sk-search-field sk-searchfield-${size} ${className}`}>
-      <Input.Group size={size}>
-        <Input.LeftAddin className="sk-searchfield-icon">{searchIcon}</Input.LeftAddin>
-        <Input
-          ref={internalRef}
-          type="text"
-          onChange={handleOnChange}
-          value={query}
-          placeholder={placeholder}
-          onKeyDown={handleKeyDown}
-          {...rest}
-        />
-        <Input.RightAddin>
-          {_showResetButton ? (
-            <Button
-              aria-label={resetAriaLabel}
-              size="sm"
-              iconButton
-              variant={size === 'lg' ? 'primary' : 'ghost'}
-              onClick={handleOnReset}
-            >
-              {resetIcon}
-            </Button>
-          ) : (
-            <></>
-          )}
-          {_showSearchButton ? (
-            <Button type="button" onClick={handleOnSearch} size="sm">
-              {searchLabel}
-            </Button>
-          ) : (
-            <></>
-          )}
-        </Input.RightAddin>
-      </Input.Group>
-    </div>
-  );
-});
+    return (
+      <div className={`sk-search-field sk-searchfield-base-${size} ${className}`}>
+        <Input.Group size={size}>
+          <Input.LeftAddin className="sk-search-field-base-icon">{searchIcon}</Input.LeftAddin>
+          <Input
+            ref={internalRef}
+            type="text"
+            onChange={handleOnChange}
+            value={query}
+            placeholder={placeholder}
+            onKeyDown={handleKeyDown}
+            {...rest}
+          />
+          <Input.RightAddin>
+            {_showResetButton ? (
+              <Button
+                className="sk-search-field-button-reset"
+                aria-label={resetAriaLabel}
+                size="sm"
+                iconButton
+                variant={size === 'lg' ? 'primary' : 'ghost'}
+                onClick={handleOnReset}
+              >
+                {resetIcon}
+              </Button>
+            ) : (
+              <></>
+            )}
+            {_showSearchButton ? (
+              <Button className="sk-search-field-button-search" type="button" onClick={handleOnSearch} size="sm">
+                {searchLabel}
+              </Button>
+            ) : (
+              <></>
+            )}
+          </Input.RightAddin>
+        </Input.Group>
+      </div>
+    );
+  }
+);
 
-export default SearchField;
+export default SearchFieldBase;
 
 if (__DEV__) {
-  SearchField.displayName = 'SearchField';
+  SearchFieldBase.displayName = 'SearchFieldBase';
 }
