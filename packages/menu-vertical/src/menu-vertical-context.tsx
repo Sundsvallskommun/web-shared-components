@@ -104,13 +104,13 @@ export function MenuVerticalProvider({
 
   rootId: _rootId = 'sk-menu-vertical',
   rootMenuId: _rootMenuId = `${_rootId}-root`,
-
-  active: _active = null,
-  focused: _focused,
   activeMenuId: _activeMenuId = _rootMenuId,
-  current: _current = null,
   currentMenuId: _currentMenuId = _rootMenuId,
 
+  // state handle overrides
+  active: _active = null,
+  focused: _focused = null,
+  current: _current = null,
   setActive: _setActive,
   setFocused: _setFocused,
   setCurrent: _setCurrent,
@@ -119,10 +119,18 @@ export function MenuVerticalProvider({
   const rootMenuId: UseMenuVerticalProps['rootMenuId'] = _rootMenuId;
   const [menu, setMenu] = React.useState<UseMenuVerticalProps['menu']>({});
   const [active, setActive] = React.useState<UseMenuVerticalProps['active']>(_active);
-  const [focused, setFocused] = React.useState<UseMenuVerticalProps['focused']>(_active);
+  const [focused, setFocused] = React.useState<UseMenuVerticalProps['focused']>(_focused);
   const [current, setCurrent] = React.useState<UseMenuVerticalProps['current']>(_current);
   const [activeMenuId, setActiveMenuId] = React.useState<UseMenuVerticalProps['activeMenuId']>(_activeMenuId);
   const [currentMenuId, setCurrentMenuId] = React.useState<UseMenuVerticalProps['currentMenuId']>(_currentMenuId);
+
+  // state handle overrides
+  const context_Active = _active ?? active;
+  const context_Focused = _focused ?? focused;
+  const context_Current = _current ?? current;
+  const context_setActive = _setActive ?? setActive;
+  const context_setFocused = _setFocused ?? setFocused;
+  const context_setCurrent = _setCurrent ?? setCurrent;
 
   const getAboveSubmenuIds: UseMenuVerticalPropsFunctions['getAboveSubmenuIds'] = (
     menuId: string,
@@ -152,46 +160,28 @@ export function MenuVerticalProvider({
   const setCurrentActive: UseMenuVerticalPropsFunctions['setCurrentActive'] = (
     menuIndex: UseMenuVerticalProps['current']
   ) => {
-    _setCurrent ? _setCurrent(menuIndex) : setCurrent(menuIndex);
-    _setActive ? _setActive : setActive(menuIndex);
-
-    // without this the current menu containing the menuItem wont open because no state change is triggered in submenuItem for isCurrentItem
-    const __current = _current !== undefined ? _current : current;
-    if (menuIndex === __current) {
-      setSubmenus(false, { openMenuIds: getAboveSubmenuIds(currentMenuId) });
-    }
+    context_setCurrent(menuIndex);
+    context_setActive(menuIndex);
   };
 
   const setCurrentActiveFocus: UseMenuVerticalPropsFunctions['setCurrentActiveFocus'] = (
     menuIndex: UseMenuVerticalProps['focused']
   ) => {
-    _setCurrent ? _setCurrent(menuIndex) : setCurrent(menuIndex);
-    _setActive ? _setActive : setActive(menuIndex);
-    _setFocused ? _setFocused : setFocused(menuIndex);
-
-    // without this the current menu containing the menuItem wont open because no state change is triggered in submenuItem for isCurrentItem
-    const __current = _current !== undefined ? _current : current;
-    if (menuIndex === __current) {
-      setSubmenus(false, { openMenuIds: getAboveSubmenuIds(currentMenuId) });
-    }
+    context_setCurrent(menuIndex);
+    context_setActive(menuIndex);
+    context_setFocused(menuIndex);
   };
 
   const setActiveFocus: UseMenuVerticalPropsFunctions['setActiveFocus'] = (
     menuIndex: UseMenuVerticalProps['focused']
   ) => {
-    _setActive ? _setActive : setActive(menuIndex);
-    _setFocused ? _setFocused : setFocused(menuIndex);
-
-    // without this the current menu containing the menuItem wont open because no state change is triggered in submenuItem for isCurrentItem
-    const __current = _current !== undefined ? _current : current;
-    if (menuIndex === __current) {
-      setSubmenus(false, { openMenuIds: getAboveSubmenuIds(currentMenuId) });
-    }
+    context_setActive(menuIndex);
+    context_setFocused(menuIndex);
   };
 
   const next: UseMenuVerticalPropsFunctions['next'] = () => {
-    const activeMenuItemIndex = menu[activeMenuId].menuItems.findIndex((x) => x.props.menuIndex === active);
-    if (active === null) return;
+    const activeMenuItemIndex = menu[activeMenuId].menuItems.findIndex((x) => x.props.menuIndex === context_Active);
+    if (context_Active === null) return;
     if (activeMenuItemIndex === menu[activeMenuId].menuItems.length - 1) {
       setActiveFocus(menu[activeMenuId].menuItems[0].props.menuIndex as MenuIndex);
     } else {
@@ -200,8 +190,8 @@ export function MenuVerticalProvider({
   };
 
   const prev: UseMenuVerticalPropsFunctions['prev'] = () => {
-    const activeMenuItemIndex = menu[activeMenuId].menuItems.findIndex((x) => x.props.menuIndex === active);
-    if (active === null) return;
+    const activeMenuItemIndex = menu[activeMenuId].menuItems.findIndex((x) => x.props.menuIndex === context_Active);
+    if (context_Active === null) return;
     if (activeMenuItemIndex === 0) {
       setActiveFocus(menu[activeMenuId].menuItems[menu[activeMenuId].menuItems.length - 1].props.menuIndex as number);
     } else {
@@ -210,17 +200,9 @@ export function MenuVerticalProvider({
   };
 
   React.useEffect(() => {
-    _setActive
-      ? _setActive((menuIndex: MenuIndex) =>
-          menuIndex === null && menu[rootMenuId]
-            ? (menu[rootMenuId].menuItems[0].props.menuIndex as MenuIndex)
-            : menuIndex
-        )
-      : setActive((menuIndex) =>
-          menuIndex === null && menu[rootMenuId]
-            ? (menu[rootMenuId].menuItems[0].props.menuIndex as MenuIndex)
-            : menuIndex
-        );
+    context_setActive((menuIndex) =>
+      menuIndex === null && menu[rootMenuId] ? (menu[rootMenuId].menuItems[0].props.menuIndex as MenuIndex) : menuIndex
+    );
   }, []);
 
   const contextProps = {
@@ -230,14 +212,14 @@ export function MenuVerticalProvider({
     menu,
     setMenu,
 
-    active: _active ? _active : active,
-    setActive: _setActive ? _setActive : setActive,
+    active: context_Active,
+    setActive: context_setActive,
 
-    focused: _focused ? _focused : focused,
-    setFocused: _setFocused ? _setFocused : setFocused,
+    focused: context_Focused,
+    setFocused: context_setFocused,
 
-    current: _current ? _current : current,
-    setCurrent: _setCurrent ? _setCurrent : setCurrent,
+    current: context_Current,
+    setCurrent: context_setCurrent,
 
     activeMenuId,
     setActiveMenuId,

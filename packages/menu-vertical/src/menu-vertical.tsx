@@ -50,12 +50,8 @@ export const MenuVerticalComponent = React.forwardRef<HTMLUListElement, MenuVert
             const _menuId = `${object._menuId}-${submenuItemInnerText}`;
             object.submenuItem = React.cloneElement(child as React.ReactElement<MenuVerticalSubmenuButtonProps>, {
               ...child.props,
-              menuIndex: child.props.menuIndex
-                ? child.props.menuIndex
-                : parentLiMenuIndex
-                  ? parentLiMenuIndex
-                  : `${object._menuId}`,
-              menuId: parentLiMenuIndex && parentLiMenuIndex !== rootMenuId ? parentLiMenuIndex : `${object._menuId}`,
+              menuIndex: parentLiMenuIndex ? parentLiMenuIndex : `${object._menuId}`,
+              menuId: _menuId,
               parentMenuId: menuId ? menuId : rootMenuId,
             });
             object._menuId = _menuId;
