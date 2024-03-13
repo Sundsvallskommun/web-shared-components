@@ -12,16 +12,22 @@ export interface SearchFieldProps
   value: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   onSearch?: (query: string) => void;
-  onClose?: () => void;
-  showSeachButton?: boolean;
+  onReset?: () => void;
+  /** @default onValue */
+  showSearchButton?: 'onValue' | boolean;
+  /** @default onValue */
+  showResetButton?: 'onValue' | boolean;
   placeholder?: string;
   smallIcon?: boolean;
   rounded?: boolean;
+  /** @default lg */
   size?: 'md' | 'lg';
+  /** @default Sök */
   searchLabel?: string;
-  closeAriaLabel?: string;
+  /** @default Rensa */
+  resetAriaLabel?: string;
   searchIcon?: React.ReactNode;
-  closeIcon?: React.ReactNode;
+  resetIcon?: React.ReactNode;
 }
 
 export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>((props, ref) => {
@@ -30,20 +36,24 @@ export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
     onChange,
     placeholder,
     onSearch,
-    onClose,
-    showSeachButton,
+    onReset,
+    showSearchButton = 'onValue',
+    showResetButton = 'onValue',
     size = 'lg',
     className = '',
     searchLabel = 'Sök',
-    closeAriaLabel = 'Rensa',
+    resetAriaLabel = 'Rensa',
     searchIcon = <Icon name="search" />,
-    closeIcon = <Icon name="x" />,
+    resetIcon = <Icon name="x" />,
     ...rest
   } = props;
 
   const [query, setQuery] = React.useState(value);
   const internalRef = React.useRef<HTMLInputElement | null>(null);
   React.useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(ref, () => internalRef.current);
+
+  const _showSearchButton = showSearchButton === 'onValue' ? !!query.length : showSearchButton;
+  const _showResetButton = showResetButton === 'onValue' || showResetButton ? !!query.length : showResetButton;
 
   const setInputFocus = () => {
     setTimeout(() => {
@@ -55,10 +65,10 @@ export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
     onSearch && onSearch(query);
   };
 
-  const handleOnClose = () => {
+  const handleOnReset = () => {
     setQuery('');
     setInputFocus();
-    onClose && onClose();
+    onReset && onReset();
   };
 
   // Search on enter
@@ -93,17 +103,20 @@ export const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
           {...rest}
         />
         <Input.RightAddin>
-          {query && !showSeachButton ? (
+          {_showResetButton ? (
             <Button
-              aria-label={closeAriaLabel}
+              aria-label={resetAriaLabel}
               size="sm"
               iconButton
               variant={size === 'lg' ? 'primary' : 'ghost'}
-              onClick={() => handleOnClose()}
+              onClick={handleOnReset}
             >
-              {closeIcon}
+              {resetIcon}
             </Button>
-          ) : showSeachButton && query ? (
+          ) : (
+            <></>
+          )}
+          {_showSearchButton ? (
             <Button type="button" onClick={handleOnSearch} size="sm">
               {searchLabel}
             </Button>
