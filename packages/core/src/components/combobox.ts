@@ -1,4 +1,7 @@
 export const ComboBox = () => ({
+  '.sk-combobox-base': {
+    '@apply w-auto inline-block relative': {},
+  },
   '.sk-form-combobox': {
     '@apply focus-within:ring ring-ring ring-offset': {},
     '@apply relative w-auto': {},
@@ -35,7 +38,7 @@ export const ComboBox = () => ({
     },
 
     '&-select': {
-      '@apply h-full bg-right-12 bg-no-repeat': {},
+      '@apply bg-right-12 bg-no-repeat': {},
 
       '&.sk-form-select': { '@apply focus:outline-none focus:ring-0 focus:ring-transparent': {} },
       '@apply w-full': {},

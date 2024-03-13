@@ -5,117 +5,39 @@ import { useFormControl } from '../form-control';
 import { ComboboxContext, UseComboboxProps } from './combobox-context';
 import { useComboboxStyles } from './styles';
 
-interface ComboboxChangeEvent extends Partial<React.ChangeEvent<HTMLInputElement>> {
-  target: React.ChangeEvent<HTMLInputElement>['target'];
-}
-export interface ComboboxBaseProps extends UseComboboxProps, Omit<React.ComponentPropsWithRef<'input'>, 'size'> {
-  /**
-   * ChangeEvent list
-   */
-  onChange?: (event: ComboboxChangeEvent) => void;
-  /**
-   * Selected value
-   */
-  value?: string | string[];
-  /**
-   * Sets initial value
-   */
-  defaultValue?: string | string[];
-  /**
-   * ChangeEvent from search input
-   */
-  onChangeSearch?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  /**
-   * Search input value
-   */
-  searchValue?: string;
-  /**
-   * Placeholder when search is active
-   */
-  searchPlaceholder?: string;
-  /**
-   * @default primary
-   */
-  variant?: 'primary' | 'tertiary';
-  /* Makes input invalid */
-  invalid?: boolean;
-}
+export interface ComboboxBaseProps extends UseComboboxProps, Omit<React.ComponentPropsWithRef<'input'>, 'size'> {}
 
 export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((props, ref) => {
-  const {
-    multiple,
-    searchValue: _value,
-    value: _incomingValue,
-    defaultValue,
-    className,
-    disabled: _disabled,
-    id: _id,
-    onChange,
-    onChangeSearch,
-    placeholder,
-    searchPlaceholder,
-    children,
-    autofilter = true,
-    size: _size,
-    invalid: _invalid,
-    variant = 'primary',
-    ...rest
-  } = props;
+  const { multiple, className, id: _id, variant, children, autofilter = true, size: _size, ...rest } = props;
 
-  const initialValue = defaultValue || _incomingValue || [];
   const [open, setOpen] = React.useState<boolean>(false);
-  const [internalValue, setInternalValue] = React.useState<string[]>(
-    typeof initialValue === 'string' ? [initialValue] : initialValue
-  );
+  const [internalValue, setInternalValue] = React.useState<string[]>([]);
   const [labels, setLabels] = React.useState<Record<string, string>>({});
-  const [searchValue, setSearchValue] = React.useState<string>(_value || '');
+  const [searchValue, setSearchValue] = React.useState<string>('');
   const [active, setActive] = React.useState<number>(-1);
   const [total, setTotal] = React.useState<number>(0);
 
-  const value = _value !== undefined ? _value : searchValue;
-
-  const internalRef = React.useRef<HTMLDivElement>(null);
+  const internalRef = React.useRef<HTMLInputElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const {
-    readOnly,
-    disabled: fcDisabled,
-    invalid: formcontrolInvalid,
-    required,
-    errorId,
-    helpTextId,
-    id: fcId,
-    size: fcSize,
-  } = useFormControl(props);
+  const { id: fcId, size: fcSize } = useFormControl(props);
 
   const autoId = React.useId();
   const id = _id || fcId || `sk-form-combobox-${autoId}`;
   const listId = `${id}-list`;
   const name = `${id}-option`;
-  const disabled = _disabled !== undefined ? _disabled : fcDisabled;
   const size = _size || fcSize || 'md';
-  const invalid = _invalid !== undefined ? _invalid : formcontrolInvalid;
   const classes = useComboboxStyles({ size, variant });
+
+  useOnClickOutside(internalRef, () => {
+    setOpen(false);
+  });
 
   const addLabel = (label: string, value: string) => {
     const newLabels = labels;
     newLabels[value] = label;
     setLabels(newLabels);
   };
-
-  useOnClickOutside(internalRef, () => {
-    setOpen(false);
-  });
-
-  React.useEffect(() => {
-    if (_incomingValue !== undefined) {
-      if (typeof _incomingValue === 'string') {
-        setInternalValue([_incomingValue]);
-      } else {
-        setInternalValue(_incomingValue);
-      }
-    }
-  }, [_incomingValue]);
 
   const close = () => {
     setSearchValue('');
@@ -134,24 +56,12 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
       setInternalValue([value]);
       close();
     }
-    if (onChange && inputRef.current) {
-      const target = inputRef.current;
-      target.value = value;
-      target.checked = true;
-      onChange && onChange({ target });
-    }
   };
 
   const onRemove = (value: string) => {
     if (multiple && internalValue.includes(value)) {
       const newValues = internalValue.filter((oldOpt) => !!value && oldOpt !== value);
       setInternalValue(newValues);
-    }
-    if (onChange && inputRef.current) {
-      const target = inputRef.current;
-      target.value = value;
-      target.checked = false;
-      onChange && onChange({ target });
     }
   };
 
@@ -197,99 +107,29 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
     id,
     listId,
     name,
-    searchValue: value,
+    searchValue: searchValue,
+    setSearchValue: setSearchValue,
     active,
+    setActive,
     total,
     setTotal,
     next,
     prev,
     focusInput,
     autofilter,
-  };
-
-  const getValue = () => {
-    switch (open) {
-      case false:
-        return internalValue.length > 0 ? internalValue.map((opt) => labels[opt]).join(', ') : '';
-      case true:
-        return value;
-    }
-  };
-
-  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (open) {
-      if (onChangeSearch) {
-        onChangeSearch(event);
-      } else {
-        setSearchValue(event.target.value);
-      }
-    }
-  };
-
-  const handleKeyboard = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      if (!open) {
-        setOpen(!open);
-      }
-    } else if (event.key === ' ') {
-      if (!open) {
-        event.preventDefault();
-        setOpen(!open);
-      }
-    } else if (event.key === 'Escape') {
-      close();
-    } else if (event.key === 'Tab') {
-      setOpen(false);
-    } else if (event.key === 'ArrowDown') {
-      event.preventDefault();
-      next();
-    } else if (event.key === 'ArrowUp') {
-      event.preventDefault();
-      prev();
-    } else if (event.key.length === 1 || event.key === 'Backspace') {
-      setOpen(true);
-      setActive(-1);
-    }
+    inputRef,
   };
 
   return (
     <ComboboxContext.Provider value={context}>
       <div
-        className={cx(classes, className)}
+        className={cx('sk-combobox-base', 'sk-form-combobox', classes, className)}
         role="combobox"
         aria-controls={listId}
-        ref={internalRef}
+        ref={useForkRef(internalRef, ref)}
         aria-expanded={open}
+        {...rest}
       >
-        <input
-          ref={useForkRef(inputRef, ref)}
-          className={cx(
-            'sk-form-select',
-            `sk-form-select-${size}`,
-            `sk-form-select-${variant}`,
-            'sk-form-combobox-select',
-            open ? 'active' : ''
-          )}
-          tabIndex={0}
-          onKeyDown={handleKeyboard}
-          id={id}
-          readOnly={readOnly}
-          aria-readonly={readOnly}
-          disabled={disabled}
-          aria-disabled={disabled ? disabled : undefined}
-          aria-invalid={invalid}
-          required={required}
-          aria-required={required}
-          aria-describedby={errorId && helpTextId ? `${errorId} ${helpTextId}` : errorId || helpTextId}
-          onClick={() => setOpen(!open)}
-          placeholder={open && !value ? searchPlaceholder : internalValue.length < 1 ? placeholder : undefined}
-          onChange={handleOnChange}
-          aria-autocomplete="none"
-          value={getValue()}
-          {...rest}
-        ></input>
-
         {children}
       </div>
     </ComboboxContext.Provider>

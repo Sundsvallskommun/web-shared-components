@@ -79,7 +79,6 @@ export const TabsComponent = React.forwardRef<HTMLDivElement, TabsComponentProps
           ...contentComponent?.props,
           key: `panel-${index}`,
           selected: current === index,
-          menuIndex: index,
           id: contentComponent?.props?.id || `${id}-panel-${index}`,
           'aria-labelledby': buttonComponent?.props?.id || `${id}-tab-${index}`,
         });
