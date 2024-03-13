@@ -142,7 +142,6 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
             iconButton
             size={variant === 'default' ? size : 'sm'}
             className="sk-disclosure-header-icon"
-            onClick={onClick}
             aria-controls={`${id}-content`}
             aria-expanded={disclosureOpen}
             aria-labelledby={`${id}-label`}
