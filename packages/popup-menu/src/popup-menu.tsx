@@ -26,6 +26,16 @@ export interface PopupMenuBaseProps {
    * @default menu
    */
   type?: 'dialog' | 'menu';
+  /**
+   * This will flip the alignment if the panel doesn't fit on screen
+   * @default true
+   */
+  autoAlign?: boolean;
+  /**
+   * This will flip the position (under and over, left and right) if the panel doesn't fit on screen
+   * @default false
+   */
+  autoPosition?: boolean;
 }
 
 export interface PopupMenuComponentProps extends PopupMenuBaseProps {
@@ -61,6 +71,8 @@ export const PopupMenuComponent: React.FC<PopupMenuComponentProps> = (props) => 
     id: _id,
     open: _open,
     onToggleOpen,
+    autoAlign = true,
+    autoPosition = false,
   } = props;
   const buttonRef = React.useRef<HTMLButtonElement>(null);
   const internalRef = React.useRef<HTMLDivElement>(null);
@@ -116,6 +128,8 @@ export const PopupMenuComponent: React.FC<PopupMenuComponentProps> = (props) => 
     id,
     buttonId,
     setButtonId,
+    autoAlign,
+    autoPosition,
   };
 
   const getButton = React.useCallback(() => {
