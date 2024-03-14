@@ -1,4 +1,4 @@
-import { DefaultProps, cx, getValidChildren, useForkRef } from '@sk-web-gui/utils';
+import { DefaultProps, cx, getValidChildren, useForkRef, useOnElementOutside } from '@sk-web-gui/utils';
 import React, { useEffect, useState } from 'react';
 import { useCombobox } from './combobox-context';
 
@@ -9,29 +9,21 @@ export interface ComboboxListProps extends DefaultProps, React.ComponentPropsWit
 }
 
 export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListProps>((props, ref) => {
-  const [position, setPosition] = useState<'under' | 'over'>('under');
+  const [position, setPosition] = useState<'under' | 'over'>('over');
 
   const internalRef = React.useRef<HTMLFieldSetElement>(null);
   const { className, multiple: _multiple, size: _size, value: _value, children, ...rest } = props;
 
   const { total, setTotal, open, autofilter, ...context } = useCombobox();
 
-  React.useEffect(() => {
-    const handlePosition = () => {
-      if (internalRef.current) {
-        const positions = internalRef.current.parentElement?.getBoundingClientRect();
-        if (positions) {
-          if (window.innerHeight - positions.top < 280) {
-            setPosition('over');
-          } else {
-            setPosition('under');
-          }
-        }
-      }
-    };
-
-    handlePosition();
-  }, [open]);
+  useOnElementOutside(
+    internalRef,
+    ({ isOutsideBottom }) => {
+      setPosition(isOutsideBottom ? 'over' : 'under');
+    },
+    [open],
+    { padding: 20 }
+  );
 
   React.useEffect(() => {
     if (_value !== undefined) {

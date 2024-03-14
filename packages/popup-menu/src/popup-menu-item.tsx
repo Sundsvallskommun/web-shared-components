@@ -100,6 +100,7 @@ export const PopupMenuItem: React.FC<PopupMenuItemProps> = (props) => {
       const popupmenu = React.cloneElement(children, {
         ...children.props,
         position: children.props.position || 'right',
+        autoPosition: children.props.autoPosition !== undefined ? children.props : true,
         children: grandchildren,
       });
 

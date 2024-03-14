@@ -1,6 +1,6 @@
 import React from 'react';
 import { GoTo, usePopupMenu } from './popupmenu-context';
-import { cx, getValidChildren, useForkRef } from '@sk-web-gui/utils';
+import { cx, getValidChildren, useForkRef, useOnElementOutside } from '@sk-web-gui/utils';
 import { PopupMenuBaseProps } from './popup-menu';
 import { PopupMenuItem } from './popup-menu-item';
 import { PopupMenuItems } from './popup-menu-items';
@@ -9,11 +9,98 @@ import { PopupMenuButton } from './popup-menu-button';
 interface PopupMenuPanelProps extends Omit<PopupMenuBaseProps, 'type'>, React.ComponentPropsWithoutRef<'div'> {}
 
 export const PopupMenuPanel = React.forwardRef<HTMLDivElement, PopupMenuPanelProps>((props, ref) => {
-  const { size, position: _position, align, className, children, ...rest } = props;
+  const {
+    size,
+    position: _position,
+    align: _align,
+    className,
+    children,
+    autoAlign: _autoAlign,
+    autoPosition: _autoPosition,
+    ...rest
+  } = props;
   const { setGoTo, type, buttonId, goTo, isOpen, close, ...context } = usePopupMenu();
   const focusRef = React.useRef<HTMLElement>(null);
+  const internalRef = React.useRef<HTMLDivElement>(null);
+  const requestedAlign: PopupMenuBaseProps['align'] = _align || context.align || 'start';
+  const requestedPosition: PopupMenuBaseProps['position'] = _position || context.position || 'under';
+  const [align, setAlign] = React.useState<PopupMenuBaseProps['align']>(requestedAlign);
+  const [position, setPosition] = React.useState<PopupMenuBaseProps['position']>(requestedPosition);
+  const autoAlign = _autoAlign !== undefined ? _autoAlign : context.autoAlign !== undefined ? context.autoAlign : true;
+  const autoPosition =
+    _autoPosition !== undefined ? _autoPosition : context.autoPosition !== undefined ? context.autoPosition : true;
 
-  const position = _position || context.position;
+  React.useEffect(() => {
+    if (_align) {
+      setAlign(_align);
+    } else if (context.align) {
+      setAlign(context.align);
+    } else {
+      setAlign('start');
+    }
+  }, [_align, context.align]);
+
+  React.useEffect(() => {
+    if (_position) {
+      setPosition(_position);
+    } else if (context.position) {
+      setPosition(context.position);
+    } else {
+      setPosition('under');
+    }
+  }, [_position, context.position]);
+
+  useOnElementOutside(
+    internalRef,
+    ({ isOutsideTop, isOutsideBottom, isOutsideLeft, isOutsideRight }) => {
+      if (autoAlign) {
+        if (position === 'over' || position === 'under') {
+          switch (requestedAlign) {
+            case 'start':
+              setAlign(isOutsideRight ? 'end' : 'start');
+              break;
+            case 'end':
+              setAlign(isOutsideLeft ? 'start' : 'end');
+              break;
+          }
+        }
+        if (position === 'left' || position === 'right') {
+          switch (requestedAlign) {
+            case 'start':
+              setAlign(isOutsideBottom ? 'end' : 'start');
+              break;
+            case 'end':
+              setAlign(isOutsideTop ? 'start' : 'end');
+              break;
+          }
+        }
+      }
+    },
+    [isOpen, autoAlign, requestedAlign]
+  );
+
+  useOnElementOutside(
+    internalRef,
+    ({ isOutsideTop, isOutsideBottom, isOutsideLeft, isOutsideRight }) => {
+      if (autoPosition) {
+        switch (requestedPosition) {
+          case 'under':
+            setPosition(isOutsideBottom ? 'over' : 'under');
+            break;
+          case 'over':
+            setPosition(isOutsideTop ? 'under' : 'over');
+            break;
+          case 'left':
+            setPosition(isOutsideLeft ? 'right' : 'left');
+            break;
+          case 'right':
+            setPosition(isOutsideRight ? 'left' : 'right');
+            break;
+        }
+      }
+    },
+    [isOpen, autoPosition, requestedPosition]
+  );
 
   const handleKeyboard = (event: React.KeyboardEvent) => {
     switch (event.key) {
@@ -102,10 +189,10 @@ export const PopupMenuPanel = React.forwardRef<HTMLDivElement, PopupMenuPanelPro
   return (
     <div
       onKeyDown={handleKeyboard}
-      ref={ref}
+      ref={useForkRef(ref, internalRef)}
       className={cx('sk-popup-menu', `sk-popup-menu-${size || context.size}`, className)}
       data-position={position}
-      data-align={align || context.align}
+      data-align={align}
       role={type}
       data-open={isOpen}
       aria-labelledby={type ? buttonId : undefined}
