@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/image@1.0.2...@sk-web-gui/image@1.0.3) (2024-03-14)
+
+### Bug Fixes
+
+- show code and argstables ([55b1ad7](https://github.com/Sundsvallskommun/web-shared-components/commit/55b1ad76e98d0319ca6e7c664e618186dce40936))
+
 ## [1.0.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/image@1.0.1...@sk-web-gui/image@1.0.2) (2024-01-18)
 
 **Note:** Version bump only for package @sk-web-gui/image

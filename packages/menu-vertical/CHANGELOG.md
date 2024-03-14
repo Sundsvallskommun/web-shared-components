@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/menu-vertical@1.0.4...@sk-web-gui/menu-vertical@1.0.5) (2024-03-14)
+
+### Bug Fixes
+
+- **menu-vertical:** menuindex-prop did not work ([b2015cd](https://github.com/Sundsvallskommun/web-shared-components/commit/b2015cd26f88fb2f83f87242ad4027ac3dba7712))
+
 ## [1.0.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/menu-vertical@1.0.3...@sk-web-gui/menu-vertical@1.0.4) (2024-03-05)
 
 ### Bug Fixes

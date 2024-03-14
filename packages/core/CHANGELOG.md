@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@2.1.0...@sk-web-gui/core@2.2.0) (2024-03-14)
+
+### Bug Fixes
+
+- **combobox:** state to style matching ([84fbdf9](https://github.com/vechai/sk-web-gui/commit/84fbdf9ce3bacb99660dc980c9b41e8dd6d68188))
+- **forms:** fixed issue with datepicker not getting focus ring ([fdf711a](https://github.com/vechai/sk-web-gui/commit/fdf711a9970787474e669df4905f76725a1a4a33))
+- **searchfield-suggestions:** hiding check icon ([5126c94](https://github.com/vechai/sk-web-gui/commit/5126c94d61df5d9cfb2b181a8a584e71f5a42e7d))
+- **searchfield:** styling didnt follow correctly between sizes ([45eb7f6](https://github.com/vechai/sk-web-gui/commit/45eb7f655f6d44bba9568c0e6dab73dc76e13ff3))
+
+### Features
+
+- **combobox:** input separated from context ([57a27d7](https://github.com/vechai/sk-web-gui/commit/57a27d71062721f36f43233eef42639e8e855b6c))
+
 # [2.1.0](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@2.0.1...@sk-web-gui/core@2.1.0) (2024-03-07)
 
 ### Bug Fixes

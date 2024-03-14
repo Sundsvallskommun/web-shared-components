@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/utils@1.0.0...@sk-web-gui/utils@1.1.0) (2024-03-14)
+
+### Bug Fixes
+
+- **searchfield,combobox:** state corrections after testing ([19cda71](https://github.com/Sundsvallskommun/web-shared-components/commit/19cda71cfe818deb4c63e5c7d31430a76f38c278))
+
+### Features
+
+- useOnElementOutside ([7f501f4](https://github.com/Sundsvallskommun/web-shared-components/commit/7f501f469aadf6ff6ae56f2dd19f4e17d3691de6))
+
 # [1.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/utils@0.1.8...@sk-web-gui/utils@1.0.0) (2023-12-18)
 
 ### Bug Fixes

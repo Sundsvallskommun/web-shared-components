@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/searchfield@1.0.8...@sk-web-gui/searchfield@2.0.0) (2024-03-14)
+
+### Bug Fixes
+
+- **searchfield-story:** type resolved incorrectly ([399ec94](https://github.com/Sundsvallskommun/web-shared-components/commit/399ec9479f8efdcb6b20d3cd51de8abc1a4447e7))
+- **searchfield-suggestions:** proposed dirty fix for select to show searchvalue ([f1807f7](https://github.com/Sundsvallskommun/web-shared-components/commit/f1807f7e41c0a578c08c1bc96482c767e0d2adb1))
+- **searchfield,combobox:** state corrections after testing ([19cda71](https://github.com/Sundsvallskommun/web-shared-components/commit/19cda71cfe818deb4c63e5c7d31430a76f38c278))
+- **searchfield:** adjusted classnames ([9e4391f](https://github.com/Sundsvallskommun/web-shared-components/commit/9e4391f1604b0abcb677fa3ed0f76255475095e5))
+- **searchfield:** moved searchfield-suggestions to searchfield in docs ([d22d627](https://github.com/Sundsvallskommun/web-shared-components/commit/d22d6271f377e554800a9bc490c3c180b3dfb2e2))
+- **searchfield:** reduced callbacks and refined state handling ([5c768a3](https://github.com/Sundsvallskommun/web-shared-components/commit/5c768a3db77d6e3301f1baa3478c1a82104f79c1))
+- **searchfield:** state adjustment, ignorence is bliss ([67418f4](https://github.com/Sundsvallskommun/web-shared-components/commit/67418f485f1dfc44f36f0251e6b0a181ef99acdc))
+- **searchfield:** styling didnt follow correctly between sizes ([45eb7f6](https://github.com/Sundsvallskommun/web-shared-components/commit/45eb7f655f6d44bba9568c0e6dab73dc76e13ff3))
+
+### Features
+
+- **searchfield:** added suggestions thru forms/combobox ([14e1f56](https://github.com/Sundsvallskommun/web-shared-components/commit/14e1f560b7a34edc01914c48cd523b910eefa6aa))
+- **searchfield:** new default and added props ([fbda224](https://github.com/Sundsvallskommun/web-shared-components/commit/fbda224a9b2ce0678678d1f3b46c8a88f45eef7f))
+
+### BREAKING CHANGES
+
+- **searchfield:** reset is now shown on default, use showResetButton prop to control
+
 ## [1.0.8](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/searchfield@1.0.7...@sk-web-gui/searchfield@1.0.8) (2024-03-05)
 
 ### Bug Fixes

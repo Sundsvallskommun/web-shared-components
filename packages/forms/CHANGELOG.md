@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@1.0.7...@sk-web-gui/forms@1.1.0) (2024-03-14)
+
+### Bug Fixes
+
+- **combobox:** missing focus state ([0c1ca57](https://github.com/Sundsvallskommun/web-shared-components/commit/0c1ca5707fb218119d439c57aa53462dd7868916))
+- **combobox:** state to style matching ([84fbdf9](https://github.com/Sundsvallskommun/web-shared-components/commit/84fbdf9ce3bacb99660dc980c9b41e8dd6d68188))
+- **searchfield,combobox:** state corrections after testing ([19cda71](https://github.com/Sundsvallskommun/web-shared-components/commit/19cda71cfe818deb4c63e5c7d31430a76f38c278))
+
+### Features
+
+- **combobox:** input separated from context ([57a27d7](https://github.com/Sundsvallskommun/web-shared-components/commit/57a27d71062721f36f43233eef42639e8e855b6c))
+
 ## [1.0.7](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@1.0.6...@sk-web-gui/forms@1.0.7) (2024-03-05)
 
 ### Bug Fixes

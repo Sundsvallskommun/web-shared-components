@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/popup-menu@2.0.1...@sk-web-gui/popup-menu@2.1.0) (2024-03-14)
+
+### Bug Fixes
+
+- **searchfield,popupmenu:** wrong propname ([f21bbb7](https://github.com/Sundsvallskommun/web-shared-components/commit/f21bbb751e25e33d880544ee1b599af4f6e8c60e))
+
+### Features
+
+- added autoPosition and autoAlign ([e6a60ab](https://github.com/Sundsvallskommun/web-shared-components/commit/e6a60abb6e5d18346a476560b990ee4c8fde3702))
+
 ## [2.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/popup-menu@2.0.0...@sk-web-gui/popup-menu@2.0.1) (2024-03-05)
 
 ### Bug Fixes
