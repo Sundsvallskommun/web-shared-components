@@ -8,4 +8,5 @@ export * from './object';
 export * from './children';
 export * from './refs';
 export * from './slug';
+export * from './use-on-element-outside';
 export { cx };
