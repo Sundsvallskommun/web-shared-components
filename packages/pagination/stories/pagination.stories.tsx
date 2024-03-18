@@ -23,7 +23,10 @@ export const Template = (args: PaginationProps) => {
     <div>
       <div>paginationPage: {paginationPage}</div>
       <div>
-        <button className="p-sm my-md border rounded-lg text-white bg-primary" onClick={() => setPaginationPage(3)}>
+        <button
+          className="p-sm my-md border rounded-lg text-light-primary bg-primary"
+          onClick={() => setPaginationPage(3)}
+        >
           Go to page 3 from parent
         </button>
       </div>

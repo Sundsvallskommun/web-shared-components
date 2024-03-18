@@ -3153,6 +3153,14 @@
     "@sk-web-gui/utils" "1.0.0"
     lodash.set "^4.3.2"
 
+"@sk-web-gui/utils@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@sk-web-gui/utils/-/utils-1.0.0.tgz#370f757bb79120fcefe85afb9953d6b569a3afe3"
+  integrity sha512-agbG1d8Ofw2+sUPgRxxsGJT4HPXBrHOjRlwlQne+CIx+vxY6QCaJozQlP/wCQo3L9E0BfEbc97z1VLEba0afJA==
+  dependencies:
+    clsx "^1.2.1"
+    color-string "^1.9.1"
+
 "@storybook/addon-a11y@^7.6.7":
   version "7.6.7"
   resolved "https://registry.yarnpkg.com/@storybook/addon-a11y/-/addon-a11y-7.6.7.tgz#e71391ccff72432d6eb6f855153b3bcdff6a245b"
