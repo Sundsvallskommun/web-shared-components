@@ -24,7 +24,7 @@
     "build:nocache": "yarn build --skip-nx-cache",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "yarn storybook",
-    "storybook": "start-storybook -p 6006 -s public",
+    "storybook": "storybook dev -p 6006 -s public",
     "dev-storybook": "storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build -o ./storybook-static",
     "release": "changeset publish",
@@ -49,12 +49,11 @@
     "@changesets/cli": "^2.27.1",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-node-resolve": "^15.2.3",
-    "@storybook/addon-a11y": "^7.6.7",
-    "@storybook/addon-essentials": "^7.6.7",
-    "@storybook/builder-vite": "^7.6.7",
-    "@storybook/cli": "^7.6.7",
-    "@storybook/react": "^7.6.7",
-    "@storybook/react-vite": "^7.6.7",
+    "@storybook/addon-a11y": "^8.0.0",
+    "@storybook/addon-essentials": "^8.0.0",
+    "@storybook/cli": "^8.0.0",
+    "@storybook/react": "^8.0.0",
+    "@storybook/react-vite": "^8.0.0",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/forms": "^0.5.7",
     "@types/react": "^18.2.66",
@@ -77,16 +76,13 @@
     "react-dom": "^18.2.0",
     "rimraf": "^5.0.5",
     "sass": "^1.72.0",
-    "storybook": "7.6.7",
-    "storybook-dark-mode": "^3.0.3",
+    "storybook": "^8.0.0",
+    "storybook-dark-mode": "^4.0.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.4.2",
     "vite": "^5.1.6"
   },
   "dependencies": {
     "react-hook-form": "^7.51.1"
-  },
-  "dependenciesComments": {
-    "vite": "Wait for this until upgrade: https://github.com/storybookjs/storybook/issues/25127"
   }
 }
