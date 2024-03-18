@@ -2,9 +2,7 @@ import { __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
 import { Modal } from '../modal';
 
-export interface InternalDialogProps
-  extends Omit<React.ComponentProps<typeof Modal.Component>, 'onClose'>,
-    React.ComponentPropsWithRef<'div'> {
+export interface InternalDialogProps extends Omit<React.ComponentProps<typeof Modal.Component>, 'onClose'> {
   onClose?: (data?: boolean | string | undefined) => void;
 }
 

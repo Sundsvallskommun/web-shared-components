@@ -52,18 +52,6 @@
       @apply bg-background text-body;
     }
   }
-  // .docblock-argstable-body td {
-  //   @apply text-black;
-  // }
-
-  // body.dark .docblock-argstable {
-  //   tr:nth-of-type(2n) {
-  //     @apply bg-gray-700;
-  //   }
-  //   .docblock-argstable-head th {
-  //     @apply text-primitives-gray-lightest;
-  //   }
-  // }
 
   .sbdocs.sbdocs-preview {
     @apply border-divider;

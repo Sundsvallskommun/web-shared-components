@@ -4,7 +4,8 @@ import { useState, useMemo } from 'react';
 import './styles.scss';
 import { Canvas, DocsContainer, DocsContainerProps } from '@storybook/addon-docs';
 import type { Preview } from '@storybook/react';
-import { useDarkMode } from 'storybook-dark-mode';
+import { DARK_MODE_EVENT_NAME, useDarkMode } from 'storybook-dark-mode';
+import { addons } from '@storybook/preview-api';
 
 export const ComponentPreview = ({ children }) => {
   return (
@@ -15,6 +16,8 @@ export const ComponentPreview = ({ children }) => {
     </div>
   );
 };
+
+const channel = addons.getChannel();
 
 const parameters: Preview['parameters'] = {
   viewMode: 'docs',
@@ -43,55 +46,54 @@ ${code}`;
     //
     // container: DocsContainer,
     container: (props: DocsContainerProps) => {
-      const [colorScheme, setColorScheme] = useState(useDarkMode() ? 'dark' : 'light');
+      const [isDark, setDark] = useState(useDarkMode());
+
+      useEffect(() => {
+        // listen to DARK_MODE event
+        channel.on(DARK_MODE_EVENT_NAME, setDark);
+        return () => channel.off(DARK_MODE_EVENT_NAME, setDark);
+      }, [channel, setDark]);
+
       const theme = useMemo(
         () =>
           extendTheme({
-            cursor: colorScheme === 'light' ? 'pointer' : 'default',
+            cursor: !isDark ? 'pointer' : 'default',
             colorSchemes: defaultTheme.colorSchemes,
           }),
-        [colorScheme]
+        [isDark]
       );
-      const darkMode = useDarkMode();
-
-      useEffect(() => {
-        setColorScheme(darkMode ? 'dark' : 'light');
-      }, [darkMode]);
 
       return (
-        <GuiProvider theme={theme} colorScheme={colorScheme}>
+        <GuiProvider theme={theme} colorScheme={isDark ? 'dark' : 'light'}>
           <div className="docs-wrapper">
             <DocsContainer {...props} />
           </div>
         </GuiProvider>
       );
-      // return (
-      //   <div id="docs-wrapper">
-      //     <DocsContainer {...props} />
-      //   </div>
-      // );
     },
   },
 };
 
 const withGui = (StoryFn) => {
-  const [colorScheme, setColorScheme] = useState(useDarkMode() ? 'dark' : 'light');
+  const [isDark, setDark] = useState(useDarkMode());
+
+  useEffect(() => {
+    // listen to DARK_MODE event
+    channel.on(DARK_MODE_EVENT_NAME, setDark);
+    return () => channel.off(DARK_MODE_EVENT_NAME, setDark);
+  }, [channel, setDark]);
+
   const theme = useMemo(
     () =>
       extendTheme({
-        cursor: colorScheme === 'light' ? 'pointer' : 'default',
+        cursor: !isDark ? 'pointer' : 'default',
         colorSchemes: defaultTheme.colorSchemes,
       }),
-    [colorScheme]
+    [isDark]
   );
-  const darkMode = useDarkMode();
-
-  useEffect(() => {
-    setColorScheme(darkMode ? 'dark' : 'light');
-  }, [darkMode]);
 
   return (
-    <GuiProvider theme={theme} colorScheme={colorScheme}>
+    <GuiProvider theme={theme} colorScheme={isDark ? 'dark' : 'light'}>
       <div id="story-wrapper">
         <StoryFn />
       </div>

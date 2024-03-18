@@ -1,6 +1,6 @@
 import { cx } from '@sk-web-gui/utils';
 import React from 'react';
-import { useElementSize } from 'usehooks-ts';
+import { useResizeObserver } from 'usehooks-ts';
 
 interface TableRowColumnProps extends React.ComponentPropsWithoutRef<'td'> {
   sticky?: boolean;
@@ -8,7 +8,10 @@ interface TableRowColumnProps extends React.ComponentPropsWithoutRef<'td'> {
 
 export const TableRowColumn = React.forwardRef<HTMLTableCellElement, TableRowColumnProps>((props, ref) => {
   const { children, className, sticky, ...rest } = props;
-  const [innerRef, { width }] = useElementSize();
+  const innerRef = React.useRef<HTMLDivElement>(null);
+  const { width } = useResizeObserver({
+    ref: innerRef,
+  });
 
   return (
     <td ref={ref} className="sk-table-tbody-td" data-sticky={sticky} {...rest}>

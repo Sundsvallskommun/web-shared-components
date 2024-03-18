@@ -1,8 +1,8 @@
 import { DefaultProps, __DEV__, cx, getValidChildren, useForkRef } from '@sk-web-gui/utils';
 import React from 'react';
+import { useResizeObserver } from 'usehooks-ts';
 import { TableFooter } from './table-footer';
 import { TableHeader } from './table-header';
-import { useElementSize } from 'usehooks-ts';
 export interface TableComponentProps extends DefaultProps, React.ComponentPropsWithRef<'table'> {
   background?: boolean;
   dense?: boolean;
@@ -11,12 +11,20 @@ export interface TableComponentProps extends DefaultProps, React.ComponentPropsW
 
 export const TableComponent = React.forwardRef<HTMLTableElement, TableComponentProps>((props, ref) => {
   const { background = false, dense = false, className, children, scrollable = true, ...rest } = props;
-  const [sizeRef, { width: tableWidth }] = useElementSize();
-  const [wrapperRef, { width: wrapperWidth }] = useElementSize();
+  const sizeRef = React.useRef<HTMLDivElement>(null);
+  const { width: tableWidth } = useResizeObserver({
+    ref: sizeRef,
+  });
+  const wrapperRef = React.useRef<HTMLDivElement>(null);
+  const { width: wrapperWidth } = useResizeObserver({
+    ref: wrapperRef,
+  });
   const [hasScroll, setHasScroll] = React.useState<boolean>(false);
 
   React.useEffect(() => {
-    setHasScroll(wrapperWidth < tableWidth);
+    if (wrapperWidth && tableWidth) {
+      setHasScroll(wrapperWidth < tableWidth);
+    }
   }, [tableWidth, wrapperWidth]);
 
   const validChildren = getValidChildren(children);
