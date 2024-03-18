@@ -2,14 +2,11 @@ import { Checkbox, CheckboxProps } from '@sk-web-gui/forms';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
 
-export interface FilterItemProps
-  extends DefaultProps,
-    React.ComponentProps<CheckboxProps['Component']>,
-    Omit<React.ComponentPropsWithRef<'input'>, 'size'> {
+export interface FilterItemProps extends DefaultProps, React.ComponentProps<CheckboxProps['Component']> {
   children: JSX.Element;
 }
 
-export const FilterItem = React.forwardRef<HTMLInputElement, FilterItemProps>((props, ref) => {
+export const FilterItem = React.forwardRef<HTMLInputElement, Omit<FilterItemProps, 'ref'>>((props, ref) => {
   const { className, children, ...rest } = props;
 
   return (
