@@ -55,7 +55,7 @@ export const Pagination = () => ({
 
         '&:hover': {
           '@apply text-dark-primary': {},
-          '@apply bg-tertiary-surface': {},
+          '@apply bg-tertiary-surface-hover': {},
 
           '.sk-icon': {
             '@apply text-dark-primary': {},
