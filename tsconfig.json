@@ -22,9 +22,9 @@
     "downlevelIteration": true,
     "baseUrl": ".",
     "paths": {
-      "@stories/*": [".storybook/stories/*"],
+      "@public/*": [".storybook/public/*"],
       "@sk-web-gui/*": ["packages/*"],
-      "@public/*": [".storybook/public/*"]
+      "@stories/*": [".storybook/stories/*"]
     }
   },
   "include": ["packages/*/src"],

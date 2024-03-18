@@ -23,3 +23,5 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 .npmrc
+
+.nx/cache
