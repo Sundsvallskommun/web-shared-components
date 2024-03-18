@@ -54,10 +54,11 @@ export const Pagination = () => ({
         },
 
         '&:hover': {
-          '@apply text-white': {},
+          '@apply text-dark-primary': {},
+          '@apply bg-tertiary-surface-hover': {},
 
           '.sk-icon': {
-            '@apply text-white': {},
+            '@apply text-dark-primary': {},
           },
         },
       },
