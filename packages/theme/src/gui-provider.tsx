@@ -63,8 +63,7 @@ export function GuiProvider({ theme = defaultTheme, colorScheme: _colorScheme, c
     }
   }, [pickedColorScheme]);
 
-  const colorScheme =
-    pickedColorScheme === ColorSchemeMode.System ? preferredColorScheme : pickedColorScheme || preferredColorScheme;
+  const colorScheme = pickedColorScheme === ColorSchemeMode.System ? preferredColorScheme : pickedColorScheme;
 
   const computedTheme = useMemo(() => {
     const omittedTheme = omit(theme, ['colorSchemes']);
