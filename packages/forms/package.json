@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/forms",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -39,7 +39,7 @@
   "dependencies": {
     "@reach/auto-id": "^0.18.0",
     "@sk-web-gui/icon": "1.0.1",
-    "@sk-web-gui/theme": "1.0.3",
+    "@sk-web-gui/theme": "1.1.0",
     "@sk-web-gui/utils": "1.1.0",
     "usehooks-ts": "^2.12.0"
   },

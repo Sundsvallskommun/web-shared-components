@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@2.2.0...@sk-web-gui/core@2.2.1) (2024-03-21)
+
+### Bug Fixes
+
+- class detail, adding hover to name ([388d08e](https://github.com/vechai/sk-web-gui/commit/388d08ec47c5bbb00451201603d57816ef3c2c33))
+- Pagination button styling on hover dark/lightmode ([d2ddd86](https://github.com/vechai/sk-web-gui/commit/d2ddd86b22fe6e11d49019eb14f838f1154ef0a1))
+
 # [2.2.0](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@2.1.0...@sk-web-gui/core@2.2.0) (2024-03-14)
 
 ### Bug Fixes
