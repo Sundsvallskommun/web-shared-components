@@ -1,6 +1,6 @@
 import { __DEV__, cx, DefaultProps } from '@sk-web-gui/utils';
 import { icons } from 'lucide-react';
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import dynamicIconImports from 'lucide-react/dynamicIconImports';
 
 type IconNames = keyof typeof dynamicIconImports;
@@ -50,10 +50,11 @@ export const Icon = React.forwardRef<HTMLSpanElement, IconProps>((props, ref) =>
     className,
     ...rest
   } = props;
-  const LucideIcon = name ? icons[toPascalCase(name) as keyof typeof icons] : undefined;
-  return (
+  // const LucideIcon = name ? icons[toPascalCase(name) as keyof typeof icons] : undefined;
+  const LucideIcon = name ? lazy(dynamicIconImports[name]) : undefined;
+
+  const fallback = (
     <span
-      ref={ref}
       className={cx('sk-icon', className)}
       style={size ? { width: size, height: size } : undefined}
       aria-hidden={true}
@@ -64,9 +65,27 @@ export const Icon = React.forwardRef<HTMLSpanElement, IconProps>((props, ref) =>
       data-size={size ? size : undefined}
       data-testid={name ? `sk-icon-${name}` : undefined}
       {...rest}
-    >
-      {icon ? icon : LucideIcon ? <LucideIcon /> : undefined}
-    </span>
+    ></span>
+  );
+
+  return (
+    <Suspense fallback={fallback}>
+      <span
+        ref={ref}
+        className={cx('sk-icon', className)}
+        style={size ? { width: size, height: size } : undefined}
+        aria-hidden={true}
+        data-variant={variant}
+        data-color={color ? color : undefined}
+        data-rounded={rounded ? rounded : undefined}
+        data-inverted={inverted ? inverted : undefined}
+        data-size={size ? size : undefined}
+        data-testid={name ? `sk-icon-${name}` : undefined}
+        {...rest}
+      >
+        {icon ? icon : LucideIcon ? <LucideIcon /> : undefined}
+      </span>
+    </Suspense>
   );
 });
 
