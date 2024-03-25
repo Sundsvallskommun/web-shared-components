@@ -9,7 +9,17 @@ import { useDisclosureClass } from './styles';
 import { Icon, IconProps } from '@sk-web-gui/icon';
 
 export interface DisclosureProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
+  /**
+   * Open disclosure from start
+   * @default false
+   */
   initalOpen?: boolean;
+  /**
+   * Control open state externally
+   * @default false
+   */
+  open?: boolean;
+  /** Header. */
   header: React.ReactNode;
   /** Makes disclosure disabled */
   disabled?: boolean;
@@ -53,6 +63,7 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
   const {
     disabled,
     initalOpen,
+    open = false,
     header,
     children,
     className,
@@ -68,9 +79,9 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
     labelInverted = true,
     ...rest
   } = props;
-  const { open, onClose, onOpen, ...context } = useAccordion();
+  const { onClose, onOpen, ...context } = useAccordion();
   const size = _size || context.size || 'md';
-
+  const _open = context.open;
   const Comp = headerAs || context.headerAs || 'label';
 
   const [disclosureOpen, setDisclosureOpen] = React.useState(initalOpen || false);
@@ -78,18 +89,29 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
 
   React.useEffect(() => {
     if (onClose && onOpen) {
-      if (open?.includes(id)) {
+      if (_open?.includes(id)) {
         setDisclosureOpen(true);
       }
-      if (!open?.includes(id)) {
+      if (!_open?.includes(id)) {
         setDisclosureOpen(false);
       }
     }
-  }, [open]);
+  }, [_open]);
 
   React.useEffect(() => {
     initalOpen && onOpen && onOpen(id);
   }, [initalOpen]);
+
+  React.useEffect(() => {
+    if (open) {
+      onOpen && onOpen(id);
+      onToggleOpen && onToggleOpen(true);
+    } else {
+      onClose && onClose(id);
+      onToggleOpen && onToggleOpen(false);
+    }
+    setDisclosureOpen(open);
+  }, [open]);
 
   const onClick = () => {
     if (!disabled) {
