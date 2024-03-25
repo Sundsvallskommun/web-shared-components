@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.2](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@2.2.1...@sk-web-gui/core@2.2.2) (2024-03-25)
+
+### Bug Fixes
+
+- **table:** updated styling on sticky tables ([aa578dc](https://github.com/vechai/sk-web-gui/commit/aa578dc150e48c3dbb49dc64f548548365df3cd8))
+
 ## [2.2.1](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@2.2.0...@sk-web-gui/core@2.2.1) (2024-03-21)
 
 ### Bug Fixes
