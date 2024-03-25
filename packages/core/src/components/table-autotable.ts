@@ -9,6 +9,7 @@ export const TableAutoTable = () => ({
       '@apply border-0 rounded-t-groups': {},
       '@apply overflow-hidden': {},
       '@apply w-full': {},
+      '@apply h-full max-h-full': {},
       '&[data-scroll="x"]': {
         '@apply overflow-x-auto': {},
       },
@@ -33,17 +34,23 @@ export const TableAutoTable = () => ({
 
     '&-thead': {
       '@apply border-b-1 border-dark-primary': {},
-      '@apply h-[5.6rem]': {},
-      '.sk-table-sticky-col': {
-        '@apply top-0': {},
-        '@apply h-[5.6rem]': {},
+      '&[data-stickyheader="true"]': {
+        '@apply sticky top-0': {},
+        '@apply bg-background-content': {},
+        '@apply border-b-0': {},
+        '.sk-table-col-content': {
+          '@apply border-b-1 border-dark-primary': {},
+        },
       },
+
       '&-tr': {
         '@apply table-row': {},
         '@apply text-label-small': {},
       },
 
       '.sk-table-th': {
+        '@apply h-[5.6rem]': {},
+        '@apply p-0': {},
         '&:first-of-type': {
           '.sk-table-sticky-col': {
             '@apply rounded-tl-groups': {},
@@ -65,8 +72,12 @@ export const TableAutoTable = () => ({
       },
       '@apply bg-transparent': {},
       '&[data-background="true"]': {
+        '@apply border-b-0': {},
         '@apply bg-vattjom-background-200 border-b-transparent': {},
-        '.sk-table-sticky-col': {
+        '.sk-table-col-content': {
+          '@apply border-b-0': {},
+        },
+        '[data-sticky="true"]': {
           '@apply bg-vattjom-background-200': {},
         },
       },
@@ -118,20 +129,18 @@ export const TableAutoTable = () => ({
         '@apply last-of-type:border-b-transparent': {},
         '@apply focus-visible:shadow-insetring': {},
         '&:hover': {
-          '.sk-table-sticky-col': {
+          td: {
             '@apply bg-background-100': {},
           },
         },
       },
 
       '&-td, .sk-table-th': {
+        '@apply p-0': {},
         '@apply text-small': {},
         '@apply h-[6.3rem]': {},
         '@apply min-h-[6.3rem]': {},
-        '.sk-table-sticky-col': {
-          '@apply h-[6.1rem]': {},
-          '@apply min-h-[6.1rem]': {},
-        },
+
         '@apply focus-visible:shadow-insetring': {},
         '.sk-table-col-content': {
           '@apply py-8 px-18': {},
@@ -153,55 +162,44 @@ export const TableAutoTable = () => ({
           '@apply py-0': {},
         },
         '&-thead': {
-          '@apply h-[4.8rem]': {},
-          '.sk-table-sticky-col': {
-            '@apply h-[4.6rem]': {},
+          th: {
+            '@apply h-[4.8rem]': {},
           },
         },
         '&-tbody': {
           '&-td, .sk-table-th': {
             '@apply h-[4.7rem]': {},
             '@apply min-h-[4.7rem]': {},
-            '.sk-table-sticky-col': {
-              '@apply h-[4.5rem]': {},
-              '@apply min-h-[4.5rem]': {},
-            },
           },
         },
       },
     },
 
-    '.sk-table-sticky-col': {
-      '@apply absolute': {},
-      '@apply bg-background-content': {},
-    },
-
     '[data-sticky="true"]': {
-      '> .sk-table-col-content': {
-        '@apply collapse': {},
+      '@apply sticky': {},
+      '@apply bg-background-content': {},
+
+      '&:first-of-type': {
+        '@apply left-0': {},
+      },
+      '&:last-of-type': {
+        '@apply right-0': {},
       },
     },
 
     '&[data-hasscroll="true"]': {
-      '.sk-table-sticky-col': {
-        '@apply box-content': {},
-      },
-      '.sk-table-tbody': {
-        '.sk-table-sticky-col': {
-          '@apply border-b-primitives-overlay-darken-2 dark:border-b-primitives-overlay-lighten-3 border-b-1': {},
+      '[data-sticky="true"]': {
+        '&:first-of-type': {
+          '.sk-table-col-content': {
+            '@apply border-r-1 border-r-divider': {},
+          },
         },
-      },
-      'td:first-of-type, th:first-of-type': {
-        '.sk-table-sticky-col': {
-          '@apply left-0': {},
-          '@apply border-r-1 border-r-divider': {},
+        '&:last-of-type': {
+          '.sk-table-col-content': {
+            '@apply border-l-1 border-r-divider': {},
+          },
         },
-      },
-      'td:last-of-type, th:last-of-type': {
-        '.sk-table-sticky-col': {
-          '@apply border-l-1 border-r-divider': {},
-          '@apply right-0': {},
-        },
+        '.sk-table-col-content': {},
       },
     },
     '&-paginationwrapper': {
