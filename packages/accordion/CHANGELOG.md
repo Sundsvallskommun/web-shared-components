@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@1.1.4...@sk-web-gui/accordion@1.2.0) (2024-03-25)
+
+### Features
+
+- added props to disclosure ([7104b7c](https://github.com/Sundsvallskommun/web-shared-components/commit/7104b7c63ba87ada717cc81e49070494f5781475))
+
 ## [1.1.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@1.1.3...@sk-web-gui/accordion@1.1.4) (2024-03-21)
 
 **Note:** Version bump only for package @sk-web-gui/accordion
