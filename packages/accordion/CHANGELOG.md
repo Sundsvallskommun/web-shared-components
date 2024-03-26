@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@1.2.0...@sk-web-gui/accordion@1.2.1) (2024-03-26)
+
+### Bug Fixes
+
+- **disclosure:** added open ([7a86ac8](https://github.com/Sundsvallskommun/web-shared-components/commit/7a86ac809014d9f0ad33c26231567218cd62e8c1))
+- **disclosure:** conflict with initalOpen and open ([8f8f7e1](https://github.com/Sundsvallskommun/web-shared-components/commit/8f8f7e14dfb03b3d419495d601b0e2d8839d2b0d))
+
 # [1.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@1.1.4...@sk-web-gui/accordion@1.2.0) (2024-03-25)
 
 ### Features
