@@ -16,7 +16,7 @@ export interface DisclosureProps extends DefaultProps, React.ComponentPropsWithR
   initalOpen?: boolean;
   /**
    * Control open state externally
-   * @default false
+   * @default undefined
    */
   open?: boolean;
   /** Header. */
@@ -62,8 +62,8 @@ export interface DisclosureProps extends DefaultProps, React.ComponentPropsWithR
 export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((props, ref) => {
   const {
     disabled,
-    initalOpen,
-    open = false,
+    initalOpen = false,
+    open = undefined,
     header,
     children,
     className,
@@ -84,7 +84,7 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
   const _open = context.open;
   const Comp = headerAs || context.headerAs || 'label';
 
-  const [disclosureOpen, setDisclosureOpen] = React.useState(initalOpen || false);
+  const [disclosureOpen, setDisclosureOpen] = React.useState(initalOpen);
   const id = _id || `sk-disclosure-${useId()}`;
 
   React.useEffect(() => {
@@ -99,18 +99,14 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
   }, [_open]);
 
   React.useEffect(() => {
-    initalOpen && onOpen && onOpen(id);
-  }, [initalOpen]);
-
-  React.useEffect(() => {
-    if (open) {
-      onOpen && onOpen(id);
-      onToggleOpen && onToggleOpen(true);
-    } else {
-      onClose && onClose(id);
-      onToggleOpen && onToggleOpen(false);
+    if (open !== undefined) {
+      if (open) {
+        onClose && onClose(id);
+      } else {
+        onOpen && onOpen(id);
+      }
+      setDisclosureOpen(open);
     }
-    setDisclosureOpen(open);
   }, [open]);
 
   const onClick = () => {
