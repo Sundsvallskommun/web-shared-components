@@ -84,7 +84,7 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
   const _open = context.open;
   const Comp = headerAs || context.headerAs || 'label';
 
-  const [disclosureOpen, setDisclosureOpen] = React.useState(initalOpen);
+  const [disclosureOpen, setDisclosureOpen] = React.useState(open || initalOpen);
   const id = _id || `sk-disclosure-${useId()}`;
 
   React.useEffect(() => {
