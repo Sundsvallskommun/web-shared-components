@@ -6,7 +6,7 @@ export const DataAttributes = TailwindPlugin(function ({ addVariant }) {
     rounded: ['true', 'false'],
     inverted: ['true', 'false'],
     size: ['xs', 'sm', 'md', 'lg', 'xl'],
-    varaiant: ['primary', 'secondary', 'tertiary', 'default', 'alt'],
+    variant: ['primary', 'secondary', 'tertiary', 'default', 'alt'],
     accent: ['true', 'false'],
     background: ['true', 'false'],
   };
