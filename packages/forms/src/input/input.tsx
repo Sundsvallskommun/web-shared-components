@@ -37,7 +37,8 @@ export interface InputProps extends IInputProps, Omit<React.ComponentPropsWithRe
 export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const { size: _size, as: Comp = 'input', className, type = 'text', hideExtra = true, ...rest } = props;
 
-  const { readOnly, disabled, invalid, required, errorId, helpTextId, id, ...formControl } = useFormControl(props);
+  const { readOnly, disabled, invalid, required, errorId, helpTextId, hasErrorText, hasHelpText, id, ...formControl } =
+    useFormControl(props);
 
   const size = _size || formControl.size || 'md';
 
@@ -52,7 +53,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
       aria-invalid={invalid}
       required={required}
       aria-required={required}
-      aria-describedby={errorId && helpTextId ? `${errorId} ${helpTextId}` : errorId || helpTextId}
+      aria-describedby={
+        (hasErrorText && errorId) || (hasHelpText && helpTextId)
+          ? `${hasErrorText ? errorId : ''} ${hasHelpText ? helpTextId : ''}`
+          : undefined
+      }
       data-hideextra={hideExtra}
       className={cx(classes, className)}
       type={type}

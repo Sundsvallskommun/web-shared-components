@@ -25,13 +25,12 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>((pr
     size = 'md',
     color = 'primary',
     as: Comp = 'textarea',
-    'aria-label': ariaLabel,
-    'aria-describedby': ariaDescribedby,
     className,
     id,
     ...rest
   } = props;
-  const { readOnly, disabled, invalid, required, errorId, helpTextId, ...formControl } = useFormControl(props);
+  const { readOnly, disabled, invalid, required, errorId, helpTextId, hasErrorText, hasHelpText, ...formControl } =
+    useFormControl(props);
   const classes = useInputClass({ size, disabled });
   const [maxLengthWarning, setMaxCountWarning] = React.useState<boolean>(false);
   const [charCount, setCharCount] = React.useState<number>(0);
@@ -68,11 +67,14 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>((pr
         aria-readonly={readOnly}
         disabled={disabled}
         aria-disabled={disabled}
-        aria-label={ariaLabel}
         aria-invalid={invalid}
         required={required}
         aria-required={required}
-        aria-describedby={ariaDescribedby || `${errorId} ${helpTextId}`}
+        aria-describedby={
+          (hasErrorText && errorId) || (hasHelpText && helpTextId)
+            ? `${hasErrorText ? errorId : ''} ${hasHelpText ? helpTextId : ''}`
+            : undefined
+        }
         data-color={color ? color : undefined}
         className={cx('sk-form-input-textarea', classes, className)}
         id={id || formControl.id}
