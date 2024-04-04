@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@2.2.2...@sk-web-gui/core@2.3.0) (2024-04-04)
+
+### Features
+
+- added plugins for data-, and aria-attributes ([6c34e3d](https://github.com/vechai/sk-web-gui/commit/6c34e3dc2143d313763656b83c23221c98844543))
+
 ## [2.2.2](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@2.2.1...@sk-web-gui/core@2.2.2) (2024-03-25)
 
 ### Bug Fixes
