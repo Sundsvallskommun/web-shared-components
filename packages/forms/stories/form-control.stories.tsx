@@ -1,4 +1,4 @@
-import { FormControl, FormLabel, Input, FormErrorMessage, FormControlProps } from '../src';
+import { FormControl, FormLabel, Input, FormErrorMessage, FormControlProps, FormHelperText } from '../src';
 import { Meta } from '@storybook/react';
 
 export default {
@@ -12,6 +12,7 @@ export const Template = (args: FormControlProps) => {
     <FormControl {...args} id="firstname">
       <FormLabel>Förnamn</FormLabel>
       <Input placeholder="Leif" />
+      <FormHelperText>Ost</FormHelperText>
     </FormControl>
   );
 };

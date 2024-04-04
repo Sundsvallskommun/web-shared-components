@@ -1,4 +1,4 @@
-import { useFormControl } from '@sk-web-gui/forms';
+import { useFormControl } from '../form-control';
 import { Icon } from '@sk-web-gui/icon';
 import { __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
@@ -24,7 +24,14 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>((props, re
     ...rest
   } = props;
 
-  const { disabled: formcontrolDisabled, invalid } = useFormControl(props);
+  const {
+    disabled: formcontrolDisabled,
+    invalid,
+    hasErrorText,
+    errorId,
+    hasHelpText,
+    helpTextId,
+  } = useFormControl(props);
 
   const disabled = _disabled || formcontrolDisabled || false;
 
@@ -41,6 +48,11 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>((props, re
         checked={checked}
         disabled={disabled}
         className="sr-only"
+        aria-describedby={
+          (hasErrorText && errorId) || (hasHelpText && helpTextId)
+            ? `${hasErrorText ? errorId : ''} ${hasHelpText ? helpTextId : ''}`
+            : undefined
+        }
         {...rest}
       />
 

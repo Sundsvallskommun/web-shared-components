@@ -108,7 +108,9 @@ export const ComboboxInput: React.FC<ComboboxInputProps> = React.forwardRef<HTML
       invalid: formcontrolInvalid,
       required,
       errorId,
+      hasErrorText,
       helpTextId,
+      hasHelpText,
       size: fcSize,
       id: fcId,
       name,
@@ -202,7 +204,10 @@ export const ComboboxInput: React.FC<ComboboxInputProps> = React.forwardRef<HTML
       'aria-invalid': invalid,
       required: required,
       'aria-required': required,
-      'aria-describedby': errorId && helpTextId ? `${errorId} ${helpTextId}` : errorId || helpTextId,
+      'aria-describedby':
+        (hasErrorText && errorId) || (hasHelpText && helpTextId)
+          ? `${hasErrorText ? errorId : ''} ${hasHelpText ? helpTextId : ''}`
+          : errorId || helpTextId,
       onClick: () => setOpen(!open),
       placeholder: open && !searchValue ? searchPlaceholder : searchValue.length < 1 ? placeholder : undefined,
       onChange: handleOnChange,
