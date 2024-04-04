@@ -207,7 +207,7 @@ export const ComboboxInput: React.FC<ComboboxInputProps> = React.forwardRef<HTML
       'aria-describedby':
         (hasErrorText && errorId) || (hasHelpText && helpTextId)
           ? `${hasErrorText ? errorId : ''} ${hasHelpText ? helpTextId : ''}`
-          : errorId || helpTextId,
+          : undefined,
       onClick: () => setOpen(!open),
       placeholder: open && !searchValue ? searchPlaceholder : searchValue.length < 1 ? placeholder : undefined,
       onChange: handleOnChange,
