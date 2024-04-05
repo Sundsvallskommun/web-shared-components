@@ -1,6 +1,7 @@
 import { Meta } from '@storybook/react';
-import React from 'react';
-import { RadioButton } from '../src';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { FormControl, FormLabel, RadioButton } from '../src';
 
 export default {
   title: 'Komponenter/RadioButton/RadioButton.Group',
@@ -25,3 +26,27 @@ export const Template = (args: React.ComponentProps<typeof RadioButton.Group>) =
 );
 
 Template.storyName = 'Grupp';
+
+export const ExampleWithForm = () => {
+  const { register, watch } = useForm<{ toppings: string[] }>();
+  const allToppings = ['Skinka', 'Ost', 'Tomat'];
+
+  const value = watch().toppings;
+
+  useEffect(() => {
+    console.log('value', value);
+  }, [value]);
+
+  return (
+    <FormControl fieldset>
+      <FormLabel>Pålägg</FormLabel>
+      <RadioButton.Group>
+        {allToppings.map((topping) => (
+          <RadioButton key={topping} {...register('toppings')} value={topping}>
+            {topping}
+          </RadioButton>
+        ))}
+      </RadioButton.Group>
+    </FormControl>
+  );
+};
