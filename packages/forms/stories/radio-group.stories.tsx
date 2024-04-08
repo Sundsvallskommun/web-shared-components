@@ -28,10 +28,10 @@ export const Template = (args: React.ComponentProps<typeof RadioButton.Group>) =
 Template.storyName = 'Grupp';
 
 export const ExampleWithForm = () => {
-  const { register, watch } = useForm<{ toppings: string[] }>();
+  const { register, watch } = useForm<{ topping: string }>();
   const allToppings = ['Skinka', 'Ost', 'Tomat'];
 
-  const value = watch().toppings;
+  const value = watch().topping;
 
   useEffect(() => {
     console.log('value', value);
@@ -42,7 +42,7 @@ export const ExampleWithForm = () => {
       <FormLabel>Pålägg</FormLabel>
       <RadioButton.Group>
         {allToppings.map((topping) => (
-          <RadioButton key={topping} {...register('toppings')} value={topping}>
+          <RadioButton key={topping} {...register('topping')} value={topping}>
             {topping}
           </RadioButton>
         ))}
