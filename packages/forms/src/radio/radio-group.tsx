@@ -1,8 +1,6 @@
 import { useId } from '@reach/auto-id';
-import { DefaultProps } from '@sk-web-gui/utils';
-import { cx, getValidChildren, __DEV__ } from '@sk-web-gui/utils';
-import React from 'react';
-import { cloneElement, useImperativeHandle, useRef, useState } from 'react';
+import { DefaultProps, __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
+import React, { useImperativeHandle, useRef, useState } from 'react';
 
 import { RadioButtonProps } from './radio';
 import { useRadioButtonGroupClass } from './styles';
@@ -50,6 +48,18 @@ type RadioButtonGroupElement =
     }
   | undefined;
 
+interface UseRadioButtonGroupData {
+  handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  size?: RadioButtonProps['size'];
+  color?: RadioButtonProps['color'];
+  name?: RadioButtonProps['name'];
+  value?: RadioButtonProps['value'] | null;
+}
+
+const RadioButtonGroupContext = React.createContext<UseRadioButtonGroupData>({});
+
+export const useRadioButtonGroup = () => React.useContext(RadioButtonGroupContext);
+
 export const RadioButtonGroup = React.forwardRef<RadioButtonGroupElement, RadioButtonGroupProps>((props, ref) => {
   const {
     onChange,
@@ -67,7 +77,7 @@ export const RadioButtonGroup = React.forwardRef<RadioButtonGroupElement, RadioB
   const [value, setValue] = useState(defaultValue || null);
   const _value = isControlled ? valueProp : value;
 
-  const rootRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLUListElement>(null);
 
   const _onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!isControlled) {
@@ -83,19 +93,21 @@ export const RadioButtonGroup = React.forwardRef<RadioButtonGroupElement, RadioB
   const fallbackName = `radio-${useId()}`;
   const _name = name || fallbackName;
 
+  const context = {
+    handleChange: _onChange,
+    name: _name,
+    size: size,
+    color: color,
+    value: _value,
+  };
+
   const validChildren = getValidChildren(children);
 
   const clones = validChildren.map((child, index) => {
     return (
-      <div key={index}>
-        {cloneElement(child, {
-          size: child.props.size || size,
-          color: child.props.color || color,
-          name: _name,
-          onChange: _onChange,
-          checked: child.props.value === _value,
-        })}
-      </div>
+      <li key={index} className={cx(child.props.className)}>
+        {child}
+      </li>
     );
   });
 
@@ -121,15 +133,17 @@ export const RadioButtonGroup = React.forwardRef<RadioButtonGroupElement, RadioB
   const classes = useRadioButtonGroupClass({ size });
 
   return (
-    <div
-      ref={rootRef}
-      role="radiogroup"
-      className={cx(classes, className)}
-      data-direction={inline ? 'row' : 'column'}
-      {...rest}
-    >
-      {clones}
-    </div>
+    <RadioButtonGroupContext.Provider value={context}>
+      <ul
+        ref={rootRef}
+        role="radiogroup"
+        className={cx(classes, className)}
+        data-direction={inline ? 'row' : 'column'}
+        {...rest}
+      >
+        {clones}
+      </ul>
+    </RadioButtonGroupContext.Provider>
   );
 });
 

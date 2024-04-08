@@ -1,7 +1,8 @@
-import React from 'react';
 import { FormControl, FormHelperText, FormLabel } from '@sk-web-gui/forms';
 import { Meta } from '@storybook/react';
 import { RadioButton, RadioButtonProps } from '../src';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 
 export default {
   title: 'Komponenter/RadioButton',
@@ -68,16 +69,32 @@ export const Storlekar = () => (
   </div>
 );
 
-export const FormControlComp = () => (
-  <FormControl>
-    <FormLabel>Favorite Naruto Character</FormLabel>
-    <RadioButton.Group defaultValue="2" className="space-x-4" inline>
-      <RadioButton value="1">First</RadioButton>
-      <RadioButton value="2">Second</RadioButton>
-      <RadioButton value="3">Third</RadioButton>
-    </RadioButton.Group>
-    <FormHelperText>Helpertext</FormHelperText>
-  </FormControl>
-);
+export const FormControlComp = () => {
+  const { register, watch } = useForm<{ value: string }>();
+
+  const value = watch().value;
+
+  useEffect(() => {
+    console.log('value', value);
+  }, [value]);
+
+  return (
+    <FormControl>
+      <FormLabel>Favorite Naruto Character</FormLabel>
+      <RadioButton.Group defaultValue="2" className="space-x-4" inline>
+        <RadioButton {...register('value')} value="1">
+          First
+        </RadioButton>
+        <RadioButton {...register('value')} value="2">
+          Second
+        </RadioButton>
+        <RadioButton {...register('value')} value="3">
+          Third
+        </RadioButton>
+      </RadioButton.Group>
+      <FormHelperText>Helpertext</FormHelperText>
+    </FormControl>
+  );
+};
 
 FormControlComp.storyName = 'FormControl';

@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react';
-import React from 'react';
-import { Checkbox, CheckboxGroupProps, CheckboxItemProps } from '../src/checkbox';
+import React, { useEffect } from 'react';
+import { Checkbox } from '../src/checkbox';
 import { FormControl, FormLabel } from '../src';
 import { useForm } from 'react-hook-form';
 
@@ -10,7 +10,7 @@ export default {
   tags: ['autodocs'],
 } as Meta<typeof Checkbox.Group>;
 
-export const Template = (args: CheckboxGroupProps) => (
+export const Template = (args: React.ComponentProps<typeof Checkbox.Group>) => (
   <Checkbox.Group {...args} defaultValue={['one', 'three']}>
     <Checkbox value="one" onChange={(e) => console.log(e)}>
       One
@@ -23,8 +23,14 @@ export const Template = (args: CheckboxGroupProps) => (
 Template.storyName = 'Checkbox.Group';
 
 export const ExampleWithForm = () => {
-  const { register } = useForm<{ toppings: string[] }>();
+  const { register, watch } = useForm<{ toppings: string[] }>();
   const allToppings = ['Skinka', 'Ost', 'Tomat'];
+
+  const value = watch().toppings;
+
+  useEffect(() => {
+    console.log('value', value);
+  }, [value]);
 
   return (
     <FormControl fieldset>
@@ -42,7 +48,7 @@ export const ExampleWithForm = () => {
 
 export const ExampleWithState = () => {
   const allToppings = ['Skinka', 'Ost', 'Tomat'];
-  const [value, setValue] = React.useState<Array<CheckboxItemProps['value']>>([]);
+  const [value, setValue] = React.useState<Array<React.ComponentProps<typeof Checkbox.Component>['value']>>([]);
 
   return (
     <FormControl fieldset>
@@ -60,7 +66,7 @@ export const ExampleWithState = () => {
 
 export const ExampleWithIndeterminate = () => {
   const allToppings = ['Skinka', 'Ost', 'Tomat'];
-  const [value, setValue] = React.useState<Array<CheckboxItemProps['value']>>([]);
+  const [value, setValue] = React.useState<Array<React.ComponentProps<typeof Checkbox.Component>['value']>>([]);
 
   const indeterminate =
     allToppings.some((topping) => value.includes(topping)) && !allToppings.every((topping) => value.includes(topping));

@@ -4,6 +4,7 @@ import { DefaultProps } from '@sk-web-gui/utils';
 import React from 'react';
 
 import { useRadioButtonClass, useRadioButtonLabelClass } from './styles';
+import { useRadioButtonGroup } from './radio-group';
 
 export interface RadioButtonProps<T = HTMLInputElement>
   extends DefaultProps,
@@ -38,21 +39,30 @@ export interface RadioButtonProps<T = HTMLInputElement>
 export const InternalRadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>((props, ref) => {
   const {
     id,
-    name,
+    name: _name,
     value,
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
     'aria-describedby': ariaDescribedby,
     defaultChecked,
-    checked,
-    size = 'md',
+    color: _color,
+    checked: _checked,
+    size: _size = 'md',
     onChange,
     children,
     className,
     ...rest
   } = props;
 
-  const { disabled, invalid } = useFormControl(props);
+  const { disabled, invalid, ...formControl } = useFormControl(props);
+
+  const groupContext = useRadioButtonGroup();
+
+  const size = _size || groupContext?.size || formControl?.size || 'md';
+  const name = _name || groupContext?.name;
+  const color = _color || groupContext.color || 'primary';
+  const checked =
+    _checked !== undefined || ref ? _checked : groupContext.value ? groupContext.value === value : undefined;
 
   const radioClasses = useRadioButtonClass({
     size,
@@ -78,6 +88,7 @@ export const InternalRadioButton = React.forwardRef<HTMLInputElement, RadioButto
         checked={checked}
         disabled={disabled}
         aria-disabled={disabled}
+        data-color={color ? color : undefined}
         className={cx(radioClasses)}
         {...rest}
       />
