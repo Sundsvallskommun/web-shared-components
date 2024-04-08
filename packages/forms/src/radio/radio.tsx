@@ -9,11 +9,11 @@ import { useRadioButtonGroup } from './radio-group';
 export interface RadioButtonProps<T = HTMLInputElement>
   extends DefaultProps,
     Omit<React.ComponentPropsWithRef<'input'>, 'size'> {
-  /* Makes radio invalid */
+  /** Makes radio invalid */
   invalid?: boolean;
-  /* Makes radio required */
+  /** Makes radio required */
   required?: React.InputHTMLAttributes<T>['required'];
-  /* Makes radio readOnly */
+  /** Makes radio readOnly */
   readOnly?: React.InputHTMLAttributes<T>['readOnly'];
   /**
    * If `true`, the radio will be initially checked.
@@ -28,7 +28,9 @@ export interface RadioButtonProps<T = HTMLInputElement>
    * The callback invoked when the checked state of the `radio` changes..
    */
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  /* Size of the radio */
+  /** Size of the radio
+   * @default md
+   */
   size?: 'sm' | 'md' | 'lg';
   /**
    * The children is the label to be displayed to the right of the radio.
@@ -47,7 +49,7 @@ export const InternalRadioButton = React.forwardRef<HTMLInputElement, RadioButto
     defaultChecked,
     color: _color,
     checked: _checked,
-    size: _size = 'md',
+    size: _size,
     onChange,
     children,
     className,
