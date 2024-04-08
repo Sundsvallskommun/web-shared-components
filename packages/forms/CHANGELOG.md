@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@1.1.1...@sk-web-gui/forms@1.1.2) (2024-04-08)
+
+### Bug Fixes
+
+- added useForm logic w. feedback, and plural correction ([4ecfe11](https://github.com/Sundsvallskommun/web-shared-components/commit/4ecfe11aed0d9f7a3aeb790bbe6a268aca1d922b))
+- **checkbox-docs:** typefixes and added console log watch for hook-form example ([6f3b28d](https://github.com/Sundsvallskommun/web-shared-components/commit/6f3b28d0b5236cf95c6c26ac2c76f0c384a5818c))
+- only add describedby ids when using helpertext or errormessage ([68825ad](https://github.com/Sundsvallskommun/web-shared-components/commit/68825ad1804cf71d5ac28e2ef3efa40a51aacd90))
+- RadioButton.Group now reacts via hook-form-context ([4112503](https://github.com/Sundsvallskommun/web-shared-components/commit/41125034632523fa68272368eedaf0fc51f85553))
+
 ## [1.1.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@1.1.0...@sk-web-gui/forms@1.1.1) (2024-03-21)
 
 **Note:** Version bump only for package @sk-web-gui/forms
