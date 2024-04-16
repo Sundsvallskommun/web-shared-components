@@ -37,6 +37,7 @@ import { PopupMenu } from './components/popup-menu';
 import { ProgressBar } from './components/progress-bar';
 import { ProgressStepper } from './components/progress-stepper';
 import { Radio } from './components/radio';
+import { RichTextEditor } from './components/rich-text-editor';
 import { SearchField } from './components/search-field';
 import { Select } from './components/select';
 import { Snackbar } from './components/snackbar';
@@ -92,6 +93,7 @@ const components: ((colors: string[], theme: PluginAPI['theme']) => CSSRuleObjec
   ProgressStepper,
   ProgressBar,
   ComboBox,
+  RichTextEditor
 ];
 
 interface PluginOptions {
