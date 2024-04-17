@@ -154,11 +154,6 @@ export const Accordion = () => ({
       '.sk-disclosure-body': {
         '@apply overflow-visible animate-reset-overflow': {},
       },
-      '&[data-variant="default"]': {
-        '.sk-disclosure-title': {
-          '@apply text-vattjom-text-primary': {},
-        },
-      },
     },
   },
   '.sk-accordion': {
