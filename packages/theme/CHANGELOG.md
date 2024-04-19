@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@1.0.3...@sk-web-gui/theme@1.1.0) (2024-03-21)
+
+### Bug Fixes
+
+- removed redundant fallback ([c1638b7](https://github.com/Sundsvallskommun/web-shared-components/commit/c1638b7b0940d61df74c9f549ce008c121e3703d))
+
+### Features
+
+- change colorScheme from useGui() ([a339686](https://github.com/Sundsvallskommun/web-shared-components/commit/a339686dc87edfc2aacfb76fd37d6555301228e5))
+
 ## [1.0.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@1.0.2...@sk-web-gui/theme@1.0.3) (2024-03-14)
 
 **Note:** Version bump only for package @sk-web-gui/theme

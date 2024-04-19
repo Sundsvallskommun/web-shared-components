@@ -29,6 +29,17 @@ export const ProgressStepper = () => ({
         '@apply border-2 border-secondary-outline': {},
         '@apply text-dark-secondary': {},
         '@apply rounded-button-sm md:rounded-button-md xl:rounded-button-lg': {},
+        '&[data-rounded="true"]': {
+          '@apply rounded-full': {},
+        },
+
+        '&&-sm': {
+          '@apply h-[3.2rem] w-[3.2rem] min-h-[2.4rem] max-h-[3.2rem] min-w-[2.4rem] max-w-[3.2rem]': {},
+          '@apply text-label-small': {},
+        },
+        '&&-md': {
+          '@apply h-[4rem] w-[4rem] min-h-[3.2rem] max-h-[4rem] min-w-[3.2rem] max-w-[4rem]': {},
+        },
       },
       '&[data-progress="current"]': {
         '@apply font-bold': {},

@@ -8,10 +8,12 @@ export interface ProgressStepperProps extends DefaultProps, React.ComponentProps
   steps: string[];
   /** Index of current step */
   current?: number;
+  rounded?: boolean;
+  size?: 'sm' | 'md';
 }
 
 export const ProgressStepper = React.forwardRef<HTMLDivElement, ProgressStepperProps>((props, ref) => {
-  const { steps, current = 0, className, ...rest } = props;
+  const { steps, current = 0, className, rounded = false, size = 'md', ...rest } = props;
   const last = steps.length - 1;
   return (
     <div ref={ref} className={cx('sk-progress-stepper', className)} {...rest}>
@@ -24,6 +26,8 @@ export const ProgressStepper = React.forwardRef<HTMLDivElement, ProgressStepperP
             done={index < current}
             last={index === last}
             first={index === 0}
+            rounded={rounded}
+            size={size}
           />
           {index !== last && <Divider orientation="horizontal" />}
         </React.Fragment>

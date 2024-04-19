@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@2.2.0...@sk-web-gui/table@2.2.1) (2024-04-08)
+
+**Note:** Version bump only for package @sk-web-gui/table
+
+# [2.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@2.1.2...@sk-web-gui/table@2.2.0) (2024-03-25)
+
+### Features
+
+- header can now be sticky ([5ed9b0c](https://github.com/Sundsvallskommun/web-shared-components/commit/5ed9b0c9efda373ff7bc6b6804e22e8aca97a4f6))
+
+## [2.1.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@2.1.1...@sk-web-gui/table@2.1.2) (2024-03-21)
+
+**Note:** Version bump only for package @sk-web-gui/table
+
 ## [2.1.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@2.1.0...@sk-web-gui/table@2.1.1) (2024-03-14)
 
 **Note:** Version bump only for package @sk-web-gui/table

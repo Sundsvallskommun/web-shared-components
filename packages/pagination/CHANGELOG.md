@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.10](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/pagination@1.0.9...@sk-web-gui/pagination@1.0.10) (2024-04-08)
+
+**Note:** Version bump only for package @sk-web-gui/pagination
+
+## [1.0.9](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/pagination@1.0.8...@sk-web-gui/pagination@1.0.9) (2024-03-21)
+
+### Bug Fixes
+
+- Pagination button styling on hover dark/lightmode ([d2ddd86](https://github.com/Sundsvallskommun/web-shared-components/commit/d2ddd86b22fe6e11d49019eb14f838f1154ef0a1))
+
 ## [1.0.8](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/pagination@1.0.7...@sk-web-gui/pagination@1.0.8) (2024-03-14)
 
 **Note:** Version bump only for package @sk-web-gui/pagination

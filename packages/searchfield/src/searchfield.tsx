@@ -54,8 +54,8 @@ export const SearchFieldBase = React.forwardRef<HTMLInputElement, SearchFieldBas
   const internalRef = React.useRef<HTMLInputElement | null>(null);
   React.useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(ref, () => internalRef.current);
 
-  const _showSearchButton = showSearchButton === 'onValue' ? !!query.length : showSearchButton;
-  const _showResetButton = showResetButton === 'onValue' || showResetButton ? !!query.length : showResetButton;
+  const _showSearchButton = showSearchButton === 'onValue' ? !!query?.length : showSearchButton;
+  const _showResetButton = showResetButton === 'onValue' || showResetButton ? !!query?.length : showResetButton;
 
   const setInputFocus = () => {
     setTimeout(() => {

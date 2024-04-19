@@ -23,7 +23,8 @@ export interface InternalSelectProps
 const InternalSelect = React.forwardRef<HTMLSelectElement, InternalSelectProps>((props, ref) => {
   const { className, size: _size, onSelectValue, onChange, invalid: _invalid, variant = 'primary', ...rest } = props;
 
-  const { disabled, required, errorId, helpTextId, id, ...formControl } = useFormControl(props);
+  const { disabled, required, errorId, helpTextId, hasErrorText, hasHelpText, id, ...formControl } =
+    useFormControl(props);
   const size = _size || formControl.size || 'md';
   const invalid = _invalid !== undefined ? _invalid : formControl.invalid;
 
@@ -42,7 +43,11 @@ const InternalSelect = React.forwardRef<HTMLSelectElement, InternalSelectProps>(
       aria-invalid={invalid}
       required={required}
       aria-required={required}
-      aria-describedby={errorId && helpTextId ? `${errorId} ${helpTextId}` : errorId || helpTextId}
+      aria-describedby={
+        (hasErrorText && errorId) || (hasHelpText && helpTextId)
+          ? `${hasErrorText ? errorId : ''} ${hasHelpText ? helpTextId : ''}`
+          : undefined
+      }
       className={cx(classes, className)}
       id={id}
       onChange={handleSelect}

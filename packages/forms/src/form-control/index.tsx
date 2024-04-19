@@ -1,7 +1,9 @@
 import { useId } from '@reach/auto-id';
-import { DefaultProps } from '@sk-web-gui/utils';
+import { DefaultProps, getValidChildren } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import React from 'react';
+import FormErrorMessage from '../form-error-message';
+import FormHelperText from '../form-helper-text';
 
 interface UseFormControlProps {
   /** If `true`, this prop is passed to its children. */
@@ -26,6 +28,8 @@ interface UseFormControlData extends UseFormControlProps {
   labelId?: string;
   errorId?: string;
   helpTextId?: string;
+  hasErrorText?: boolean;
+  hasHelpText?: boolean;
 }
 
 interface IFormControlRegularProps extends DefaultProps, UseFormControlProps, React.ComponentPropsWithRef<'div'> {
@@ -88,6 +92,25 @@ export const FormControl = React.forwardRef<HTMLElement, FormControlProps>((prop
   const errorId = `${id}-error`;
   const helpTextId = `${id}-helptext`;
 
+  const crawlForType = (children: React.ReactNode, type: React.ComponentType): boolean => {
+    let hasType = false;
+    const validChildren = getValidChildren(children);
+    for (let index = 0; index < validChildren.length; index++) {
+      if (validChildren[index].type === type) {
+        hasType = true;
+        break;
+      }
+      if (validChildren[index].props.children && crawlForType(validChildren[index].props.children, type)) {
+        hasType = true;
+        break;
+      }
+    }
+    return hasType;
+  };
+
+  const hasErrorText = crawlForType(children, FormErrorMessage);
+  const hasHelpText = crawlForType(children, FormHelperText);
+
   const context = {
     required,
     disabled,
@@ -100,6 +123,8 @@ export const FormControl = React.forwardRef<HTMLElement, FormControlProps>((prop
     helpTextId,
     fieldset,
     size,
+    hasErrorText,
+    hasHelpText,
   };
 
   const getComp = (): React.ElementType => {
@@ -119,7 +144,11 @@ export const FormControl = React.forwardRef<HTMLElement, FormControlProps>((prop
     <FormControlContext.Provider value={context}>
       <Comp
         ref={ref}
-        aria-describedby={fieldset ? `${errorId} ${helpTextId}` : undefined}
+        aria-describedby={
+          fieldset && (hasErrorText || hasHelpText)
+            ? `${hasErrorText ? errorId : ''} ${hasHelpText ? helpTextId : ''}`
+            : undefined
+        }
         aria-invalid={invalid}
         className={classes}
         required={required}

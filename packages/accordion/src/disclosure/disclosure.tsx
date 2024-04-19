@@ -9,7 +9,17 @@ import { useDisclosureClass } from './styles';
 import { Icon, IconProps } from '@sk-web-gui/icon';
 
 export interface DisclosureProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
+  /**
+   * Open disclosure from start
+   * @default false
+   */
   initalOpen?: boolean;
+  /**
+   * Control open state externally
+   * @default undefined
+   */
+  open?: boolean;
+  /** Header. */
   header: React.ReactNode;
   /** Makes disclosure disabled */
   disabled?: boolean;
@@ -52,7 +62,8 @@ export interface DisclosureProps extends DefaultProps, React.ComponentPropsWithR
 export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((props, ref) => {
   const {
     disabled,
-    initalOpen,
+    initalOpen = false,
+    open = undefined,
     header,
     children,
     className,
@@ -68,28 +79,35 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
     labelInverted = true,
     ...rest
   } = props;
-  const { open, onClose, onOpen, ...context } = useAccordion();
+  const { onClose, onOpen, ...context } = useAccordion();
   const size = _size || context.size || 'md';
-
+  const _open = context.open;
   const Comp = headerAs || context.headerAs || 'label';
 
-  const [disclosureOpen, setDisclosureOpen] = React.useState(initalOpen || false);
+  const [disclosureOpen, setDisclosureOpen] = React.useState(open || initalOpen);
   const id = _id || `sk-disclosure-${useId()}`;
 
   React.useEffect(() => {
     if (onClose && onOpen) {
-      if (open?.includes(id)) {
+      if (_open?.includes(id)) {
         setDisclosureOpen(true);
       }
-      if (!open?.includes(id)) {
+      if (!_open?.includes(id)) {
         setDisclosureOpen(false);
       }
     }
-  }, [open]);
+  }, [_open]);
 
   React.useEffect(() => {
-    initalOpen && onOpen && onOpen(id);
-  }, [initalOpen]);
+    if (open !== undefined) {
+      if (open) {
+        onClose && onClose(id);
+      } else {
+        onOpen && onOpen(id);
+      }
+      setDisclosureOpen(open);
+    }
+  }, [open]);
 
   const onClick = () => {
     if (!disabled) {

@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.15](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@1.2.14...@sk-web-gui/react@1.2.15) (2024-04-08)
+
+**Note:** Version bump only for package @sk-web-gui/react
+
+## [1.2.14](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@1.2.13...@sk-web-gui/react@1.2.14) (2024-04-04)
+
+**Note:** Version bump only for package @sk-web-gui/react
+
+## [1.2.13](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@1.2.12...@sk-web-gui/react@1.2.13) (2024-03-26)
+
+**Note:** Version bump only for package @sk-web-gui/react
+
+## [1.2.12](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@1.2.11...@sk-web-gui/react@1.2.12) (2024-03-25)
+
+**Note:** Version bump only for package @sk-web-gui/react
+
+## [1.2.11](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@1.2.10...@sk-web-gui/react@1.2.11) (2024-03-25)
+
+**Note:** Version bump only for package @sk-web-gui/react
+
+## [1.2.10](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@1.2.9...@sk-web-gui/react@1.2.10) (2024-03-21)
+
+**Note:** Version bump only for package @sk-web-gui/react
+
 ## [1.2.9](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@1.2.8...@sk-web-gui/react@1.2.9) (2024-03-14)
 
 **Note:** Version bump only for package @sk-web-gui/react

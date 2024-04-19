@@ -4,15 +4,16 @@ import { DefaultProps } from '@sk-web-gui/utils';
 import React from 'react';
 
 import { useRadioButtonClass, useRadioButtonLabelClass } from './styles';
+import { useRadioButtonGroup } from './radio-group';
 
 export interface RadioButtonProps<T = HTMLInputElement>
   extends DefaultProps,
     Omit<React.ComponentPropsWithRef<'input'>, 'size'> {
-  /* Makes radio invalid */
+  /** Makes radio invalid */
   invalid?: boolean;
-  /* Makes radio required */
+  /** Makes radio required */
   required?: React.InputHTMLAttributes<T>['required'];
-  /* Makes radio readOnly */
+  /** Makes radio readOnly */
   readOnly?: React.InputHTMLAttributes<T>['readOnly'];
   /**
    * If `true`, the radio will be initially checked.
@@ -27,7 +28,9 @@ export interface RadioButtonProps<T = HTMLInputElement>
    * The callback invoked when the checked state of the `radio` changes..
    */
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  /* Size of the radio */
+  /** Size of the radio
+   * @default md
+   */
   size?: 'sm' | 'md' | 'lg';
   /**
    * The children is the label to be displayed to the right of the radio.
@@ -38,21 +41,30 @@ export interface RadioButtonProps<T = HTMLInputElement>
 export const InternalRadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>((props, ref) => {
   const {
     id,
-    name,
+    name: _name,
     value,
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledBy,
     'aria-describedby': ariaDescribedby,
     defaultChecked,
-    checked,
-    size = 'md',
+    color: _color,
+    checked: _checked,
+    size: _size,
     onChange,
     children,
     className,
     ...rest
   } = props;
 
-  const { disabled, invalid } = useFormControl(props);
+  const { disabled, invalid, ...formControl } = useFormControl(props);
+
+  const groupContext = useRadioButtonGroup();
+
+  const size = _size || groupContext?.size || formControl?.size || 'md';
+  const name = _name || groupContext?.name;
+  const color = _color || groupContext.color || 'primary';
+  const checked =
+    _checked !== undefined || ref ? _checked : groupContext.value ? groupContext.value === value : undefined;
 
   const radioClasses = useRadioButtonClass({
     size,
@@ -78,6 +90,7 @@ export const InternalRadioButton = React.forwardRef<HTMLInputElement, RadioButto
         checked={checked}
         disabled={disabled}
         aria-disabled={disabled}
+        data-color={color ? color : undefined}
         className={cx(radioClasses)}
         {...rest}
       />

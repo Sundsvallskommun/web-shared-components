@@ -2765,6 +2765,14 @@
     clsx "^1.2.1"
     color-string "^1.9.1"
 
+"@storybook/addon-a11y@^7.6.7":
+  version "7.6.7"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-a11y/-/addon-a11y-7.6.7.tgz#e71391ccff72432d6eb6f855153b3bcdff6a245b"
+  integrity sha512-poT2oXIYDwLnhqn6g9ACTQ+7gi8QDHVlib4TQANdcozC/qYg+Bs6Pd99wT6rT4lrC/npVNTSKKwLw+3oXqlCxg==
+  dependencies:
+    clsx "^1.2.1"
+    color-string "^1.9.1"
+
 "@storybook/addon-a11y@^8.0.0":
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/@storybook/addon-a11y/-/addon-a11y-8.0.0.tgz#115b23effab8b9f166a72ffee4085bea3ac3b2f9"
