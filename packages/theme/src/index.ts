@@ -1,7 +1,14 @@
 export * from './gui-provider';
+export type * from './gui-provider';
 export * from './create-memo-class';
+export type * from './create-memo-class';
 export * from './create-theme-vars';
+export type * from './create-theme-vars';
 export * from './default-theme';
+export type * from './default-theme';
 export * from './colors';
+export type * from './colors';
 export * from './types';
+export type * from './types';
 export * from './units';
+export type * from './units';

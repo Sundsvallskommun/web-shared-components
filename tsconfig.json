@@ -27,7 +27,7 @@
       "@stories/*": [".storybook/stories/*"]
     }
   },
-  "include": ["packages/*/src"],
+  "include": ["types.d.ts", "packages/*/src", "packages/*/stories"],
   "exclude": ["node_modules"],
   "ts-node": {
     "compilerOptions": {

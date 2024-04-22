@@ -1,4 +1,4 @@
-import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
+import { cx, __DEV__, DefaultProps, omit } from '@sk-web-gui/utils';
 import React from 'react';
 import { IInputProps } from '../input/input';
 import { useInputClass } from '../input/styles';
@@ -78,7 +78,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>((pr
         data-color={color ? color : undefined}
         className={cx('sk-form-input-textarea', classes, className)}
         id={id || formControl.id}
-        {...rest}
+        {...omit(rest, ['invalid'])}
       />
       {maxLengthWarning && (
         <p className="sr-only" aria-live="assertive" role="alert">

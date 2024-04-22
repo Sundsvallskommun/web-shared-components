@@ -1,12 +1,21 @@
 import cx from 'clsx';
 
 export * from './types';
+export type * from './types';
 export * from './color';
+export type * from './color';
 export * from './assertion';
+export type * from './assertion';
 export * from './walk-object';
+export type * from './walk-object';
 export * from './object';
+export type * from './object';
 export * from './children';
+export type * from './children';
 export * from './refs';
+export type * from './refs';
 export * from './slug';
+export type * from './slug';
 export * from './use-on-element-outside';
+export type * from './use-on-element-outside';
 export { cx };

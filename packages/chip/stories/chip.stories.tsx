@@ -18,7 +18,7 @@ export const AddAndRemove = () => {
   const [chips, setChips] = React.useState<string[]>(['Banan', 'Äpple']);
   const [text, setText] = React.useState<string>('');
 
-  const onSubmit = (event) => {
+  const onSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (text && !chips.includes(text)) {
       setChips((chips) => [...chips, text]);

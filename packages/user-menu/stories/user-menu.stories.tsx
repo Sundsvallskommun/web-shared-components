@@ -77,7 +77,7 @@ export const Template = (args: UserMenuProps) => (
         >
           <div className="flex items-center shrink-0 text-black mr-6">
             <Link href={'/'}>
-              <a className="flex items-center">
+              <span className="flex items-center">
                 <svg
                   className="lg:hidden"
                   width="16"
@@ -181,7 +181,7 @@ export const Template = (args: UserMenuProps) => (
                   />
                 </svg>
                 <span className="text-small tracking-tight lg:hidden">Mina sidor</span>
-              </a>
+              </span>
             </Link>
           </div>
 

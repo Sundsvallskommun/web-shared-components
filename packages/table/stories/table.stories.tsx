@@ -10,11 +10,11 @@ import { TableSortButton } from '../src/table-sort-button';
 
 export default {
   title: 'Komponenter/Table/Table',
-  component: Table,
+  component: Table.Component,
   tags: ['autodocs'],
-} as Meta<typeof Table>;
+} as Meta<typeof Table.Component>;
 
-export const Template = (args: TableProps) => (
+export const Template = (args: React.ComponentPropsWithRef<typeof Table.Component>) => (
   <div className="flex flex-col gap-16">
     <Table {...args}>
       <Table.Header>
@@ -61,8 +61,15 @@ export const Template = (args: TableProps) => (
 
 Template.story = { name: 'Table' };
 
+interface DataTableData {
+  id: number;
+  caseType: string;
+  status: string;
+  handler: string;
+}
+
 export const DataTable = (args: TableProps) => {
-  const dataTableData = [
+  const dataTableData: DataTableData[] = [
     {
       id: 1,
       caseType: 'Trasig bänk',
@@ -96,12 +103,12 @@ export const DataTable = (args: TableProps) => {
   ];
 
   const [_pageSize, setPageSize] = React.useState<number>(5);
-  const [sortColumn, setSortColumn] = React.useState<string>('caseType');
+  const [sortColumn, setSortColumn] = React.useState<keyof DataTableData>('caseType');
   const [sortOrder, setSortOrder] = React.useState(SortMode.ASC);
   const [currentPage, setCurrentPage] = React.useState<number>(1);
   const [rowHeight, setRowHeight] = React.useState<string>('normal');
 
-  const handleSorting = (column: string) => {
+  const handleSorting = (column: keyof DataTableData) => {
     if (sortColumn !== column) {
       setSortColumn(column);
     } else {

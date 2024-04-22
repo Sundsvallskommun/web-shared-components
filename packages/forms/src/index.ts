@@ -1,13 +1,26 @@
 export * from './input';
+export type * from './input';
 export * from './textarea';
+export type * from './textarea';
 export * from './date-picker';
+export type * from './date-picker';
 export * from './text-field';
+export type * from './text-field';
 export * from './select';
+export type * from './select';
 export * from './form-control';
+export type * from './form-control';
 export * from './form-error-message';
+export type * from './form-error-message';
 export * from './form-helper-text';
+export type * from './form-helper-text';
 export * from './form-label';
-export * from './switch'
+export type * from './form-label';
+export * from './switch';
+export type * from './switch';
 export * from './checkbox';
+export type * from './checkbox';
 export * from './combobox';
+export type * from './combobox';
 export * from './radio';
+export type * from './radio';

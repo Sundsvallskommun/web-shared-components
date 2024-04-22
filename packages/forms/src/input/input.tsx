@@ -1,4 +1,4 @@
-import { DefaultProps } from '@sk-web-gui/utils';
+import { DefaultProps, omit } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import React from 'react';
 
@@ -62,7 +62,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>((props, ref)
       className={cx(classes, className)}
       type={type}
       id={id}
-      {...rest}
+      {...omit(rest, ['invalid'])}
     />
   );
 });

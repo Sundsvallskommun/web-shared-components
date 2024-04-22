@@ -18,6 +18,7 @@ const config: StorybookConfig = {
     getAbsolutePath('storybook-dark-mode'),
   ],
   typescript: {
+    reactDocgen: 'react-docgen-typescript',
     check: false,
   },
   async viteFinal(config, { configType }) {
