@@ -138,7 +138,7 @@ export const DataTable = (args: TableProps) => {
               size="sm"
               iconButton
             >
-              <Icon name="more-horizontal" />
+              <Icon name="ellipsis" />
             </Button>
           </Table.Column>
         </Table.Row>

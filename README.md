@@ -9,16 +9,16 @@ Det finns just nu komponenter endast för React och för att använda stylingen 
 **NPM**
 
 ```
-npm i @sk-web-gui/core @sk-web-gui/react @tailwindcss/forms
+npm i @sk-web-gui/core @sk-web-gui/react && npm i --save-dev @tailwindcss/forms @tailwindcss/container-queries
 ```
 
 **Yarn**
 
 ```
-yarn add @sk-web-gui/core @sk-web-gui/react @tailwindcss/forms
+yarn add @sk-web-gui/core @sk-web-gui/react && yarn add -D @tailwindcss/forms @tailwindcss/container-queries
 ```
 
-Lägg till `sk-web-gui/core` och `tailwindcss/forms` i din Tailwindcss-configfil.
+Lägg till `sk-web-gui/core`, `tailwindcss/forms` och `tailwindcss/container-queries` i din Tailwindcss-configfil.
 
 ```TypeScript
 // tailwind.config.js
@@ -67,7 +67,16 @@ module.exports = {
     // ...
     './node_modules/@sk-web-gui/*/dist/**/*.js', // path to sk-web-gui
   ],
-  presets: [require('@sk-web-gui/core').preset({ tailwindForms: true, plugin: { colors: [], cssBase: true } })],
+  presets: [require('@sk-web-gui/core').preset(
+    /* defaults: */
+    {
+      tailwindForms: true,
+      tailwindContainers: true,
+      dataAttributes: true,
+      ariaAttributes: true,
+      plugin: { colors: [], cssBase: true },
+    }
+  )],
   ...
 }
 ```
@@ -89,7 +98,7 @@ function App() {
 
 ## Development
 
-**Prerequisites**: Node.js v12+, Yarn v1.22+
+**Prerequisites**: Node.js v20+, Yarn v1.22+
 
 Efter kloning, kör:
 
@@ -104,7 +113,7 @@ Styling för komponenter finns/läggs till i `packages/core`. Skapa en ny kompon
 
 ### Komponenter
 
-Skapa ett nytt paket i `packages` där du gör din react-komponent exportera den sedan via `packages/react`. Kom igår att även lägga till de nya paketen i `packages/react/package.json`. Använd Storybook för att testa och dokumentera komponenten.
+Skapa ett nytt paket i `packages` där du gör din react-komponent. Exportera den sedan via `packages/react`. Kom igår att även lägga till de nya paketen i `packages/react/package.json`. Använd Storybook för att testa och dokumentera komponenten.
 
 ## Release
 

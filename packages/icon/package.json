@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@sk-web-gui/utils": "1.1.0",
-    "lucide-react": "^0.292.0"
+    "lucide-react": "^0.372.0"
   },
   "peerDependencies": {
     "react": ">=18.2.0"
