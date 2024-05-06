@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/progress-stepper@1.0.5...@sk-web-gui/progress-stepper@1.1.0) (2024-05-06)
+
+### Features
+
+- **progress-stepper:** added size and rounded props ([162b780](https://github.com/Sundsvallskommun/web-shared-components/commit/162b780e33e77dd08aad303b313d1460d78e403f))
+
 ## [1.0.5](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/progress-stepper@1.0.4...@sk-web-gui/progress-stepper@1.0.5) (2024-03-21)
 
 **Note:** Version bump only for package @sk-web-gui/progress-stepper

@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@2.3.0...@sk-web-gui/core@2.4.0) (2024-05-06)
+
+### Bug Fixes
+
+- **disclosure:** removed title color change on open ([372c4a2](https://github.com/vechai/sk-web-gui/commit/372c4a21233a3a0ebd8455f2df7796e2588ddcef))
+
+### Features
+
+- **progress-stepper:** added size and rounded props ([162b780](https://github.com/vechai/sk-web-gui/commit/162b780e33e77dd08aad303b313d1460d78e403f))
+
 # [2.3.0](https://github.com/vechai/sk-web-gui/compare/@sk-web-gui/core@2.2.2...@sk-web-gui/core@2.3.0) (2024-04-04)
 
 ### Features
