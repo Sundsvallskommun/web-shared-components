@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/filter@1.0.11...@sk-web-gui/filter@1.1.0) (2024-05-17)
+
+### Bug Fixes
+
+- **eslint:** updated eslint and reactDocgen ([984a173](https://github.com/Sundsvallskommun/web-shared-components/commit/984a17371f052a0cbe23d01fd31722f0fa2a56eb))
+
+### Features
+
+- **dependencies:** patch+minor upgrade ([5e32222](https://github.com/Sundsvallskommun/web-shared-components/commit/5e322229e362aac60ad69771a41ee2ac1397f93b))
+
 ## [1.0.11](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/filter@1.0.10...@sk-web-gui/filter@1.0.11) (2024-05-06)
 
 **Note:** Version bump only for package @sk-web-gui/filter

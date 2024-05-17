@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/core",
-  "version": "2.4.0",
+  "version": "3.0.0",
   "license": "MIT",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -26,13 +26,13 @@
     "build:types": "tsc --emitDeclarationOnly --declaration --allowJs --declarationDir dist/types"
   },
   "peerDependencies": {
-    "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.7",
     "tailwindcss": "^3.4.0"
   },
   "devDependencies": {
-    "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.7",
     "autoprefixer": "^10.4.19",
     "clean-css": "^5.3.3",
     "postcss": "^8.4.38",
@@ -40,7 +40,7 @@
     "tailwindcss": "^3.4.3"
   },
   "dependencies": {
-    "@sk-web-gui/theme": "1.1.0",
+    "@sk-web-gui/theme": "2.0.0",
     "mini-svg-data-uri": "^1.4.4"
   }
 }

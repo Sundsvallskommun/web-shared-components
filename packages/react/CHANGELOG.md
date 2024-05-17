@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.17](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@1.2.16...@sk-web-gui/react@1.2.17) (2024-05-17)
+
+### Bug Fixes
+
+- **eslint:** updated eslint and reactDocgen ([984a173](https://github.com/Sundsvallskommun/web-shared-components/commit/984a17371f052a0cbe23d01fd31722f0fa2a56eb))
+
 ## [1.2.16](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@1.2.15...@sk-web-gui/react@1.2.16) (2024-05-06)
 
 **Note:** Version bump only for package @sk-web-gui/react

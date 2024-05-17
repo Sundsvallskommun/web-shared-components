@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@1.2.1...@sk-web-gui/accordion@1.3.0) (2024-05-17)
+
+### Bug Fixes
+
+- **eslint:** updated eslint and reactDocgen ([984a173](https://github.com/Sundsvallskommun/web-shared-components/commit/984a17371f052a0cbe23d01fd31722f0fa2a56eb))
+
+### Features
+
+- **dependencies:** patch+minor upgrade ([5e32222](https://github.com/Sundsvallskommun/web-shared-components/commit/5e322229e362aac60ad69771a41ee2ac1397f93b))
+
 ## [1.2.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@1.2.0...@sk-web-gui/accordion@1.2.1) (2024-03-26)
 
 ### Bug Fixes

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/menu-vertical@1.0.6...@sk-web-gui/menu-vertical@2.0.0) (2024-05-17)
+
+### Bug Fixes
+
+- **dependencies:** updated packages deps and README ([b3a0e23](https://github.com/Sundsvallskommun/web-shared-components/commit/b3a0e2314cebee5523d386f42ba3f7473bd4f36b))
+- **eslint:** updated eslint and reactDocgen ([984a173](https://github.com/Sundsvallskommun/web-shared-components/commit/984a17371f052a0cbe23d01fd31722f0fa2a56eb))
+- **menu-vertical:** broken prod build ([4f8ea4d](https://github.com/Sundsvallskommun/web-shared-components/commit/4f8ea4d93a07003822169316c5577fb7a93d0b79))
+
+### BREAKING CHANGES
+
+- **dependencies:** with this update some lucide icon names have changed, affects Icon-component
+
 ## [1.0.6](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/menu-vertical@1.0.5...@sk-web-gui/menu-vertical@1.0.6) (2024-03-21)
 
 **Note:** Version bump only for package @sk-web-gui/menu-vertical

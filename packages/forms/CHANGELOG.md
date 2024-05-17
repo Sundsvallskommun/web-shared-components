@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@1.1.3...@sk-web-gui/forms@2.0.0) (2024-05-17)
+
+### Bug Fixes
+
+- **dependencies:** updated packages deps and README ([b3a0e23](https://github.com/Sundsvallskommun/web-shared-components/commit/b3a0e2314cebee5523d386f42ba3f7473bd4f36b))
+- **eslint:** updated eslint and reactDocgen ([984a173](https://github.com/Sundsvallskommun/web-shared-components/commit/984a17371f052a0cbe23d01fd31722f0fa2a56eb))
+
+### Features
+
+- **dependencies:** patch+minor upgrade ([5e32222](https://github.com/Sundsvallskommun/web-shared-components/commit/5e322229e362aac60ad69771a41ee2ac1397f93b))
+
+### BREAKING CHANGES
+
+- **dependencies:** with this update some lucide icon names have changed, affects Icon-component
+
 ## [1.1.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@1.1.2...@sk-web-gui/forms@1.1.3) (2024-05-06)
 
 ### Bug Fixes

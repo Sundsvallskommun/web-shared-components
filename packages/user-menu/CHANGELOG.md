@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.12](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/user-menu@1.0.11...@sk-web-gui/user-menu@1.0.12) (2024-05-17)
+
+### Bug Fixes
+
+- **eslint:** updated eslint and reactDocgen ([984a173](https://github.com/Sundsvallskommun/web-shared-components/commit/984a17371f052a0cbe23d01fd31722f0fa2a56eb))
+
 ## [1.0.11](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/user-menu@1.0.10...@sk-web-gui/user-menu@1.0.11) (2024-03-21)
 
 **Note:** Version bump only for package @sk-web-gui/user-menu
