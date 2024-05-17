@@ -1,4 +1,4 @@
-import { DefaultProps, __DEV__, cx, getValidChildren, __REACT_NAME__ } from '@sk-web-gui/utils';
+import { DefaultProps, __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
 import { MenuVerticalComponent, MenuVerticalComponentProps } from './menu-vertical';
 import { MenuIndex, useMenuVertical } from './menu-vertical-context';
@@ -114,8 +114,8 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
 
       const submenu = React.Children.toArray(children).find((child) => {
         if (React.isValidElement(child) && typeof child?.type !== 'string') {
-          switch ((child?.type as React.FC)[__REACT_NAME__]) {
-            case MenuVerticalComponent[__REACT_NAME__]:
+          switch (child?.type) {
+            case MenuVerticalComponent:
               return true;
           }
         }

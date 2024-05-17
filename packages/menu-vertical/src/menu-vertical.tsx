@@ -1,4 +1,4 @@
-import { DefaultProps, __DEV__, cx, __REACT_NAME__ } from '@sk-web-gui/utils';
+import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 import React, { useState } from 'react';
 import { MenuItemTypes, useMenuVertical } from './menu-vertical-context';
 import { MenuVerticalItem, MenuVerticalItemProps } from './menu-vertical-item';
@@ -21,8 +21,8 @@ function extractString(obj: React.ReactNode): string {
     return extractString(obj.props.children);
   } else if (Array.isArray(obj)) {
     const submenuItem = obj.find((obj) => {
-      switch ((obj?.type as React.FC)[__REACT_NAME__]) {
-        case MenuVerticalSubmenuButton[__REACT_NAME__]:
+      switch (obj?.type) {
+        case MenuVerticalSubmenuButton:
           return true;
       }
     });
