@@ -4,11 +4,11 @@ import { Accordion, AccordionProps } from '../src';
 
 export default {
   title: 'Komponenter/Accordion',
-  component: Accordion,
+  component: Accordion.Component,
   tags: ['autodocs'],
-} as Meta<typeof Accordion>;
+} as Meta<typeof Accordion.Component>;
 
-export const Template = (args: React.ComponentProps<AccordionProps['Component']>) => {
+export const Template = (args: React.ComponentPropsWithRef<AccordionProps['Component']>) => {
   return (
     <div className="h-[30rem]">
       <Accordion {...args}>

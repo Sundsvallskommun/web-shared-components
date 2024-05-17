@@ -138,14 +138,14 @@ const fruits = [
 ];
 
 export const Template = (args: React.ComponentPropsWithRef<typeof Combobox.Input>) => {
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = React.useState<string | string[]>('');
 
-  const handleOnChange = (e) => {
+  const handleOnChange: React.ComponentProps<typeof Combobox.Input>['onChange'] = (e) => {
     console.log('handleOnChange', e.target.value);
     setValue(e.target.value);
   };
 
-  const handleOnSelect = (e) => {
+  const handleOnSelect: React.ComponentProps<typeof Combobox.Input>['onSelect'] = (e) => {
     console.log('handleOnSelect', e.target.value);
   };
 
@@ -177,7 +177,7 @@ export const CustomFilterHandler = (args: React.ComponentPropsWithRef<typeof Com
     }, 1000);
   }, []);
 
-  const handleOnChange = (e) => {
+  const handleOnChange: React.ComponentProps<typeof Combobox.Input>['onChange'] = (e) => {
     console.log('handleOnChange', e.target.value);
   };
 

@@ -93,7 +93,7 @@ const headers: Array<AutoTableHeader | string> = [
           size="sm"
           iconButton
         >
-          <Icon name="more-horizontal" />
+          <Icon name="ellipsis" />
         </Button>
       </div>
     ),

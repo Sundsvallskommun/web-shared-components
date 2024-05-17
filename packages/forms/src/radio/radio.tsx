@@ -1,5 +1,5 @@
 import { useFormControl } from '../form-control';
-import { cx, __DEV__ } from '@sk-web-gui/utils';
+import { cx, __DEV__, omit } from '@sk-web-gui/utils';
 import { DefaultProps } from '@sk-web-gui/utils';
 import React from 'react';
 
@@ -92,7 +92,7 @@ export const InternalRadioButton = React.forwardRef<HTMLInputElement, RadioButto
         aria-disabled={disabled}
         data-color={color ? color : undefined}
         className={cx(radioClasses)}
-        {...rest}
+        {...omit(rest, ['invalid'])}
       />
       {children}
     </label>

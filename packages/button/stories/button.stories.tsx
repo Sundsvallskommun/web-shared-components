@@ -118,7 +118,7 @@ export default {
   },
 } as Meta<typeof Button>;
 
-export const Template = ({ children, ...args }: ButtonProps) => (
+export const Template = ({ children, ...args }: React.ComponentPropsWithRef<ButtonProps>) => (
   <div className="flex flex-col items-start space-y-2">
     <Button {...args}>{args.iconButton ? <Icon name="candy-cane" /> : children}</Button>
     <Button {...args} leftIcon={<Icon name="candy-cane" />}>

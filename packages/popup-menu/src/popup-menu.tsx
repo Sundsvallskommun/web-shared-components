@@ -100,7 +100,7 @@ export const PopupMenuComponent: React.FC<PopupMenuComponentProps> = (props) => 
     }
   }, [_open]);
 
-  useOnClickOutside(internalRef, (event: MouseEvent) => {
+  useOnClickOutside(internalRef, (event: MouseEvent | TouchEvent | FocusEvent) => {
     const target = event.target as Node;
     const isOutsideButton = buttonRef.current && !buttonRef.current.contains(target);
     if (isOutsideButton) {

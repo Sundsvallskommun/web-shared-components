@@ -22,12 +22,12 @@
     "downlevelIteration": true,
     "baseUrl": ".",
     "paths": {
-      "@stories/*": [".storybook/stories/*"],
+      "@public/*": [".storybook/public/*"],
       "@sk-web-gui/*": ["packages/*"],
-      "@public/*": [".storybook/public/*"]
+      "@stories/*": [".storybook/stories/*"]
     }
   },
-  "include": ["packages/*/src"],
+  "include": ["types.d.ts", "packages/*/src", "packages/*/stories"],
   "exclude": ["node_modules"],
   "ts-node": {
     "compilerOptions": {

@@ -1,23 +1,4 @@
 {
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "nx/tasks-runners/default",
-      "options": {
-        "cacheableOperations": [
-          "build",
-          "test",
-          "lint",
-          "version",
-          "build:esm",
-          "build:cjs",
-          "build:types",
-          "test:cov",
-          "lint:src",
-          "lint:types"
-        ]
-      }
-    }
-  },
   "targetDefaults": {
     "prebuild": {
       "dependsOn": ["^prebuild"]
@@ -27,22 +8,49 @@
     },
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["{projectRoot}/dist"]
+      "outputs": ["{projectRoot}/dist"],
+      "cache": true
     },
     "build:esm": {
       "dependsOn": ["^build:esm"],
-      "outputs": ["{projectRoot}/dist"]
+      "outputs": ["{projectRoot}/dist"],
+      "cache": true
     },
     "build:cjs": {
       "dependsOn": ["^build:cjs"],
-      "outputs": ["{projectRoot}/dist"]
+      "outputs": ["{projectRoot}/dist"],
+      "cache": true
     },
     "build:types": {
       "dependsOn": ["^build:types"],
-      "outputs": ["{projectRoot}/dist"]
+      "outputs": ["{projectRoot}/dist"],
+      "cache": true
     },
     "dev": {
       "dependsOn": ["^build"]
+    },
+    "test": {
+      "cache": true
+    },
+    "lint": {
+      "cache": true
+    },
+    "version": {
+      "cache": true
+    },
+    "test:cov": {
+      "cache": true
+    },
+    "lint:src": {
+      "cache": true
+    },
+    "lint:types": {
+      "cache": true
     }
+  },
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "sharedGlobals": [],
+    "production": ["default"]
   }
 }

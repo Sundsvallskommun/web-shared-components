@@ -1,5 +1,4 @@
 {
-  "tailwindCSS.experimental.classRegex": [
-    "'@apply (.*)'"
-  ]
+  "tailwindCSS.experimental.classRegex": ["'@apply (.*)'"],
+  "eslint.experimental.useFlatConfig": true
 }

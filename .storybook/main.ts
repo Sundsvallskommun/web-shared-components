@@ -1,6 +1,6 @@
 import type { StorybookConfig } from '@storybook/react-vite';
 import { mergeConfig } from 'vite';
-import path from 'path';
+import path, { dirname, join } from 'path';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import rollupPluginBabel from '@rollup/plugin-babel';
 import fs from 'fs';
@@ -12,10 +12,13 @@ function getPackages() {
 
 const config: StorybookConfig = {
   stories: ['./stories/**/*.stories.@(tsx|mdx)', '../packages/*/stories/*.stories.@(tsx|mdx)'],
-  addons: ['@storybook/addon-essentials', '@storybook/addon-a11y', 'storybook-dark-mode'],
+  addons: [
+    getAbsolutePath('@storybook/addon-essentials'),
+    getAbsolutePath('@storybook/addon-a11y'),
+    getAbsolutePath('storybook-dark-mode'),
+  ],
   typescript: {
     reactDocgen: 'react-docgen-typescript',
-    skipBabel: true,
     check: false,
   },
   async viteFinal(config, { configType }) {
@@ -66,10 +69,11 @@ const config: StorybookConfig = {
     }
     return config;
   },
-  core: {
-    builder: '@storybook/builder-vite',
+  core: {},
+  framework: {
+    name: getAbsolutePath('@storybook/react-vite'),
+    options: {},
   },
-  framework: '@storybook/react-vite',
   staticDirs: ['./public'],
   docs: {
     autodocs: 'tag',
@@ -77,3 +81,7 @@ const config: StorybookConfig = {
   },
 };
 export default config;
+
+function getAbsolutePath(value: string): any {
+  return dirname(require.resolve(join(value, 'package.json')));
+}

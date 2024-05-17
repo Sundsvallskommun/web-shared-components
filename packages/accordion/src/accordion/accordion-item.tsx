@@ -9,16 +9,14 @@ export interface AccordionItemProps
     React.ComponentPropsWithRef<'div'>,
     Omit<DisclosureProps, 'size' | 'variant'> {}
 
-export const AccordionItem: React.FC<AccordionItemProps> = React.forwardRef<HTMLDivElement, AccordionItemProps>(
-  (props, ref) => {
-    const { className, ...rest } = props;
-    return (
-      <li className={cx('sk-accordion-item', className)}>
-        <Disclosure ref={ref} variant="default" {...rest} />
-      </li>
-    );
-  }
-);
+export const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps>((props, ref) => {
+  const { className, ...rest } = props;
+  return (
+    <li className={cx('sk-accordion-item', className)}>
+      <Disclosure ref={ref} variant="default" {...rest} />
+    </li>
+  );
+});
 
 if (__DEV__) {
   AccordionItem.displayName = 'AccordionItem';

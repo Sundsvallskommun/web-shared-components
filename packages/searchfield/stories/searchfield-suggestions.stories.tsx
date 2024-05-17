@@ -1,15 +1,15 @@
 import { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
-import { SearchField, SearchFieldProps } from '../index';
+import { SearchField, SearchFieldProps } from '../src';
 
 export default {
   title: 'Komponenter/SearchField/SearchFieldSuggestions',
-  component: SearchField.SuggestionsInput,
+  component: SearchField.Suggestions,
   tags: ['autodocs'],
   args: {
     placeholder: 'Sök',
   },
-} as Meta<typeof SearchField.SuggestionsInput>;
+} as Meta<typeof SearchField.Suggestions>;
 
 const fruits = [
   'apple',
@@ -108,7 +108,7 @@ export const Template: StoryObj<typeof SearchField.Suggestions> = (
     console.log('onSearchHandler', query);
   };
 
-  const onSelectHandler = (e) => {
+  const onSelectHandler: React.ComponentProps<typeof SearchField.SuggestionsInput>['onSelect'] = (e) => {
     console.log('onSelectHandler', e.target.value);
   };
 

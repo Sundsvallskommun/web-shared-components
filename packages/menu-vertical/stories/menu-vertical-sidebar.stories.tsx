@@ -49,7 +49,7 @@ export const Template = (args: MenuVerticalProps) => {
                 <MenuVertical {...args}>
                   <MenuVertical.SubmenuButton>
                     <a href="#">
-                      <Icon name="arrow-right-circle" />
+                      <Icon name="circle-arrow-right" />
                       <span>N1 - Subitem (a-tag)</span>
                     </a>
                   </MenuVertical.SubmenuButton>
@@ -77,7 +77,7 @@ export const Template = (args: MenuVerticalProps) => {
                 <MenuVertical {...args}>
                   <MenuVertical.SubmenuButton>
                     <button>
-                      <Icon name="arrow-right-circle" />
+                      <Icon name="circle-arrow-right" />
                       <span>N1 - Subitem</span>
                     </button>
                   </MenuVertical.SubmenuButton>
@@ -170,7 +170,7 @@ export const Template = (args: MenuVerticalProps) => {
                 <MenuVertical {...args}>
                   <MenuVertical.SubmenuButton disabled>
                     <a href="#">
-                      <Icon name="arrow-right-circle" />
+                      <Icon name="circle-arrow-right" />
                       <span>N1 - Subitem 2</span>
                     </a>
                   </MenuVertical.SubmenuButton>

@@ -10,6 +10,6 @@ export default {
   },
 } as Meta<typeof Icon.Padded>;
 
-export const Template = (props: IconProps) => <Icon.Padded {...props} />;
+export const Template = (props: React.ComponentProps<typeof Icon.Padded>) => <Icon.Padded {...props} />;
 
 Template.storyName = 'IconPadded';

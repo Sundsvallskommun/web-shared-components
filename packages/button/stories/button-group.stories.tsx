@@ -35,7 +35,7 @@ export const Template = ({ ...args }: ButtonProps) => (
         </Button>
 
         <Button iconButton>
-          <Icon name="arrow-down-circle" />
+          <Icon name="circle-arrow-down" />
         </Button>
       </Button.Group>
     </div>

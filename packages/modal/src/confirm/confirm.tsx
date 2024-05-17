@@ -102,9 +102,9 @@ export const ConfirmationDialogContextProvider: React.FC<ConfirmationDialogConte
       case 'info':
         return <Icon rounded name="lightbulb" color={content?.dialogType} />;
       case 'error':
-        return <Icon rounded name="alert-circle" color={content?.dialogType} />;
+        return <Icon rounded name="circle-alert" color={content?.dialogType} />;
       case 'question':
-        return <Icon rounded name="help-circle" color={content?.dialogType} />;
+        return <Icon rounded name="circle-help" color={content?.dialogType} />;
       default:
         return null;
     }
