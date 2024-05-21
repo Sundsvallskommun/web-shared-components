@@ -1,5 +1,5 @@
-import { useAssistantContext } from '../assistant-context';
-import { AssistantSettings, PaginatedResponseAssistantPublic, SkHeaders } from '../types/assistant';
+import { useAssistantStore } from '../assistant-store';
+import { AssistantFeedback, AssistantSettings, PaginatedResponseAssistantPublic, SkHeaders } from '../types/assistant';
 
 export const getSkHeaders = (options: AssistantSettings | undefined, settings: AssistantSettings): SkHeaders => {
   const assistantId = options?.assistantId || settings.assistantId || '';
@@ -23,8 +23,10 @@ export const getSkHeaders = (options: AssistantSettings | undefined, settings: A
 export const getAssistants: (options?: AssistantSettings) => Promise<PaginatedResponseAssistantPublic> = async (
   options
 ) => {
-  const { settings } = useAssistantContext();
-
+  const settings = useAssistantStore.getState().settings;
+  if (!settings.apiBaseUrl) {
+    throw new Error('No api url provided');
+  }
   const url = `${settings.apiBaseUrl}/assistants/`;
   const skHeaders = getSkHeaders(options, settings);
 
@@ -39,8 +41,12 @@ export const getAssistants: (options?: AssistantSettings) => Promise<PaginatedRe
 };
 
 export const getAssistantById = async (options?: AssistantSettings) => {
-  const { settings } = useAssistantContext();
+  const settings = useAssistantStore.getState().settings;
   const skHeaders = getSkHeaders(options, settings);
+  if (!settings.apiBaseUrl) {
+    throw new Error('No api url provided');
+  }
+
   const url = `${settings.apiBaseUrl}/assistants/${skHeaders._skassistant}`;
 
   return fetch(url, {
@@ -57,8 +63,12 @@ export const getAssistantById = async (options?: AssistantSettings) => {
 };
 
 export const getAssistantSessions = async (options?: AssistantSettings) => {
-  const { settings } = useAssistantContext();
+  const settings = useAssistantStore.getState().settings;
   const skHeaders = getSkHeaders(options, settings);
+  if (!settings.apiBaseUrl) {
+    throw new Error('No api url provided');
+  }
+
   const url = `${settings.apiBaseUrl}/assistants/${skHeaders._skassistant}/sessions/`;
   return fetch(url, {
     method: 'GET',
@@ -74,8 +84,12 @@ export const getAssistantSessions = async (options?: AssistantSettings) => {
 };
 
 export const getAssistantSessionById = async (sessionId: string, options?: AssistantSettings) => {
-  const { settings } = useAssistantContext();
+  const settings = useAssistantStore.getState().settings;
   const skHeaders = getSkHeaders(options, settings);
+  if (!settings.apiBaseUrl) {
+    throw new Error('No api url provided');
+  }
+
   const url = `${settings.apiBaseUrl}/assistants/${skHeaders._skassistant}/sessions/${sessionId}/`;
 
   return fetch(url, {
@@ -92,12 +106,44 @@ export const getAssistantSessionById = async (sessionId: string, options?: Assis
 };
 
 export const batchQuery = async (query: string, sessionId?: string, options?: AssistantSettings) => {
-  const { settings } = useAssistantContext();
+  const { settings, sessionId: savedSessionId } = useAssistantStore.getState();
   const skHeaders = getSkHeaders(options, settings);
-  const url = `${settings.apiBaseUrl}/assistants/${skHeaders._skassistant}/sessions/${sessionId || ''}?stream=false`;
+  if (!settings.apiBaseUrl) {
+    throw new Error('No api url provided');
+  }
+
+  const url = `${settings.apiBaseUrl}/assistants/${skHeaders._skassistant}/sessions/${
+    sessionId || savedSessionId || ''
+  }?stream=false`;
   return fetch(url, {
     method: 'POST',
     body: JSON.stringify({ body: query }),
+    headers: {
+      Accept: 'application/json',
+      ...skHeaders,
+    },
+  }).then((res) => {
+    if (res.status === 401) {
+      throw new Error('401 Not authorized');
+    }
+    return res.json();
+  });
+};
+
+export const giveFeedback = async (feedback: AssistantFeedback, sessionId?: string, options?: AssistantSettings) => {
+  const { settings, sessionId: savedSessionId } = useAssistantStore.getState();
+  const skHeaders = getSkHeaders(options, settings);
+  if (!settings.apiBaseUrl) {
+    throw new Error('No api url provided');
+  }
+
+  const url = `${settings.apiBaseUrl}/assistants/${skHeaders._skassistant}/sessions/${
+    sessionId || savedSessionId || ''
+  }/feedback`;
+
+  return fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(feedback),
     headers: {
       Accept: 'application/json',
       ...skHeaders,

@@ -47,6 +47,13 @@ import { TableAutoTable } from './components/table-autotable';
 import { Tabs } from './components/tabs';
 import { Tooltip } from './components/tooltip';
 import { UserMenu } from './components/user-menu';
+//AI COMPONENTS
+import { AIFeed } from './components/ai/ai-feed';
+import { Feedback } from './components/ai/feedback';
+import { MarkdownRendered } from './components/ai/markdown-rendered';
+import { Bubble } from './components/ai/bubble';
+import { TypingBubble } from './components/ai/typing-bubble';
+import { TypingSequence } from './components/ai/typing-sequence';
 
 const components: ((colors: string[], theme: PluginAPI['theme']) => CSSRuleObject)[] = [
   Alert,
@@ -92,6 +99,14 @@ const components: ((colors: string[], theme: PluginAPI['theme']) => CSSRuleObjec
   ProgressStepper,
   ProgressBar,
   ComboBox,
+
+  //AI COMPONENTS
+  AIFeed,
+  Bubble,
+  Feedback,
+  MarkdownRendered,
+  TypingBubble,
+  TypingSequence,
 ];
 
 interface PluginOptions {

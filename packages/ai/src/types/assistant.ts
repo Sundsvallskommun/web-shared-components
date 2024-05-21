@@ -42,6 +42,7 @@ export interface GroupPublic {
 export interface AssistantSettings {
   user?: string;
   assistantId?: string;
+  assistantName?: string;
   hash?: string;
   app?: string;
   stream?: boolean;
@@ -66,4 +67,9 @@ export interface SkHeaders {
   _skassistant: string;
   _skhash: string;
   _skapp: string;
+}
+
+export interface AssistantFeedback {
+  value: -1 | 1;
+  text: string | null;
 }
