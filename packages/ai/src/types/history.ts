@@ -9,6 +9,7 @@ export interface ChatHistoryEntry {
   text: string;
   references?: ChatEntryReference[];
   id: string;
+  done?: boolean;
 }
 
 export type ChatHistory = ChatHistoryEntry[];

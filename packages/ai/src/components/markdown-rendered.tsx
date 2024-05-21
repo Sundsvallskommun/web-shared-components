@@ -1,61 +1,72 @@
-import { Link } from "@sk-web-gui/link";
-import React from "react";
-import Markdown, {Options} from "react-markdown";
-import sanitized from "../services/sanitizer-service";
+import { Link } from '@sk-web-gui/link';
+import React from 'react';
+import Markdown, { Options } from 'react-markdown';
+import sanitized from '../services/sanitizer-service';
+import { cx } from '@sk-web-gui/utils';
 
-
-interface MarkdownRenderedProps extends React.ComponentPropsWithoutRef<'div'> {
-    text: string;
-    tabbable?: boolean;
-    loading?:boolean;
-    disallowedElements: Options['disallowedElements'],
-    components: Options['components'],
-    /**
-     * If the component should have aria-live feedback
-     * @default true
-     */
-    live?: boolean;
+interface MarkdownRenderedProps extends Options {
+  text: string;
+  messageId: string;
+  hideElements: boolean;
 }
 
-export const MarkdownRendered = React.forwardRef<HTMLDivElement, MarkdownRenderedProps>((props, ref) => {
- const { text, tabbable = true, loading, disallowedElements, components, live =true, ...rest } = props;
+const ParagraphComponent = (props: React.ComponentPropsWithoutRef<'p'>) => {
+  return <p className="sk-ai-markdown-p">{props.children}</p>;
+};
 
-    return (   
-    <div aria-live={live ? "polite" : undefined} aria-busy={loading} ref={ref} {...rest}>
+interface LinkComponentProps {
+  hidden: boolean;
+  id: string;
+}
 
-  <Markdown
-    disallowedElements={disallowedElements || ["script", "iframe"]}
-    components={{
-        p(props: React.ComponentPropsWithoutRef<'p'>) {
-            return <p className="my-md">{props.children}</p>;
-        },
-        a(props: React.ComponentPropsWithoutRef<'a'>) {
-            const { href } = props;
-            return (
-                <Link
-                tabIndex={tabbable ? 0 : -1}
-                external={href && href.startsWith("http")}
-                href={href}
-                className="my-sm"
-                >
-            {props.children || props.href}
-          </Link>
-        );
-    },
-    ol(props: React.ComponentPropsWithoutRef<'ol'>) {
-        return <ol className="list-decimal ml-24">{props.children}</ol>;
-    },
-    ul(props: React.ComponentPropsWithoutRef<'ul'>) {
-        return <ul className="list-disc ml-24">{props.children}</ul>;
-    },
-    li(props: React.ComponentPropsWithoutRef<'li'>) {
-        return <li className="my-md">{props.children}</li>;
-    },
-    ...components
-}}
->
-    {sanitized(text)}
-  </Markdown>
-     </div>
-    )
-});
+const LinkComponent =
+  ({ hidden, id }: LinkComponentProps) =>
+  (props: React.ComponentPropsWithoutRef<'a'>) => {
+    const { href, children } = props;
+    return (
+      <Link
+        key={id}
+        aria-hidden={hidden ? 'true' : 'false'}
+        external={href && href.startsWith('http')}
+        href={href}
+        className="sk-ai-markdown-a"
+        tabIndex={hidden ? -1 : 0}
+      >
+        {children || href}
+      </Link>
+    );
+  };
+
+const OlComponent = (props: React.ComponentPropsWithoutRef<'ol'>) => {
+  return <ol className="sk-ai-markdown-ol">{props.children}</ol>;
+};
+
+const UlComponent = (props: React.ComponentPropsWithoutRef<'ul'>) => {
+  return <ul className="sk-ai-markdown-ul">{props.children}</ul>;
+};
+
+const LiComponent = (props: React.ComponentPropsWithoutRef<'li'>) => {
+  return <li className="sk-ai-markdown-li">{props.children}</li>;
+};
+
+export const MarkdownRendered: React.FC<MarkdownRenderedProps> = (props) => {
+  const { text, components, className, messageId, hideElements, ...rest } = props;
+
+  return (
+    <Markdown
+      className={cx('sk-ai-markdown', className)}
+      disallowedElements={['script', 'iframe']}
+      components={{
+        p: ParagraphComponent,
+        a: LinkComponent({ hidden: hideElements, id: messageId }),
+        ol: OlComponent,
+        ul: UlComponent,
+        li: LiComponent,
+        ...components,
+      }}
+      {...rest}
+    >
+      {sanitized(text)}
+    </Markdown>
+  );
+};

@@ -167,9 +167,17 @@ const theme: RecursiveObject<Config['theme'] | string | string[]> = {
           overflow: 'hidden',
         },
       },
+      typingbounce: {
+        '0%': { transform: 'translateY(0)' },
+        '10%': { transform: 'translateY(-0.8rem)' },
+        '20%, 100%': { transform: 'translateY(0rem)' },
+      },
     },
     animation: {
       'reset-overflow': 'reset-overflow 180ms backwards',
+      'typing-bounce-1': 'typingbounce 1.5s ease-in-out 600ms infinite',
+      'typing-bounce-2': 'typingbounce 1.5s ease-in-out 800ms infinite',
+      'typing-bounce-3': 'typingbounce 1.5s ease-in-out 1s infinite',
     },
   },
 };
