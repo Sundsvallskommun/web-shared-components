@@ -141,7 +141,7 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
         onClick={onClick}
       >
         <div className="sk-disclosure-toggle">
-          {icon && <Icon name={icon} size={size === 'lg' ? '3.2rem' : size === 'md' ? '2.4rem' : '2rem'} />}
+          {icon && <Icon name={icon} />}
           <div className="sk-disclosure-title-wrapper">
             <Comp className="sk-disclosure-title" id={`${id}-label`}>
               {header}

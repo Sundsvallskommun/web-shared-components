@@ -35,6 +35,9 @@ export const Accordion = () => ({
     '&-toggle': {
       '@apply flex items-center justify-between': {},
       '@apply gap-16': {},
+      '.sk-icon': {
+        '@apply w-32 h-32': {},
+      },
     },
     '&-title': {
       '@apply text-dark-primary': {},
@@ -54,6 +57,9 @@ export const Accordion = () => ({
       },
       '.sk-disclosure-toggle': {
         '@apply gap-12': {},
+        '.sk-icon': {
+          '@apply w-20 h-20': {},
+        },
       },
       '.sk-disclosure-support': {
         '@apply text-small': {},
@@ -78,6 +84,9 @@ export const Accordion = () => ({
       },
       '.sk-disclosure-toggle': {
         '@apply gap-12': {},
+        '.sk-icon': {
+          '@apply w-24 h-24': {},
+        },
       },
       '.sk-disclosure-support': {
         '@apply text-body': {},
@@ -107,6 +116,7 @@ export const Accordion = () => ({
     },
 
     '&-body': {
+      '@apply text-base': {},
       '@apply flex flex-col': {},
       '@apply mb-32': {},
       '@apply mr-32': {},
@@ -138,13 +148,13 @@ export const Accordion = () => ({
         },
         '&[data-has-icon="true"]': {
           '&[data-size="sm"]': {
-            '@apply ml-[3.2rem]': {},
+            '@apply ml-32': {},
           },
           '&[data-size="md"]': {
-            '@apply ml-[3.6rem]': {},
+            '@apply ml-36': {},
           },
           '&[data-size="lg"]': {
-            '@apply ml-[4.8rem]': {},
+            '@apply ml-48': {},
           },
         },
       },
