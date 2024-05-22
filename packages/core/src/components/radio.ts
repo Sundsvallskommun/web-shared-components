@@ -20,7 +20,7 @@ export const Radio = () => ({
       '@apply absolute': {},
       '@apply rounded-full': {},
       '@apply bg-dark-placeholder': {},
-      '@apply m-[0.5rem]': {},
+      '@apply m-5': {},
       '@apply top-0 left-0 bottom-0 right-0': {},
     },
 
@@ -102,17 +102,17 @@ export const Radio = () => ({
       '@apply p-2': {},
       '&-sm': {
         '@apply text-small': {},
-        '@apply h-[2.8rem]': {},
+        '@apply h-28': {},
         '@apply gap-10': {},
       },
       '&-md': {
         '@apply text-base': {},
-        '@apply h-[2.8rem]': {},
+        '@apply h-28': {},
         '@apply gap-10': {},
       },
       '&-lg': {
         '@apply text-large': {},
-        '@apply h-[3rem]': {},
+        '@apply h-30': {},
         '@apply gap-12': {},
       },
       '&[data-disabled="true"]': {

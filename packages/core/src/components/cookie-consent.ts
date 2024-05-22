@@ -20,12 +20,12 @@ export const CookieConsent = () => ({
     },
 
     '&-content-wrapper': {
-      '@apply flex flex-col gap-24 container max-w-[102.4rem] relative': {},
+      '@apply flex flex-col gap-24 container max-w-[64em] relative': {},
     },
 
     '&-body': {
       '@apply flex flex-col gap-8': {},
-      '@apply max-w-[80rem]': {},
+      '@apply max-w-[50em]': {},
     },
     '&-title': {
       '@apply text-h2-sm md:text-h2-md xl:text-h2-lg': {},

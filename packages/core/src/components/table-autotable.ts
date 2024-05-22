@@ -1,5 +1,6 @@
 export const TableAutoTable = () => ({
   '.sk-table-wrapper': {
+    '@apply text-base': {},
     '@apply rounded-groups': {},
     '@apply border-1 border-divider': {},
     '@apply bg-background-content': {},
@@ -49,7 +50,7 @@ export const TableAutoTable = () => ({
       },
 
       '.sk-table-th': {
-        '@apply h-[5.6rem]': {},
+        '@apply h-56': {},
         '@apply p-0': {},
         '&:first-of-type': {
           '.sk-table-sticky-col': {
@@ -138,8 +139,8 @@ export const TableAutoTable = () => ({
       '&-td, .sk-table-th': {
         '@apply p-0': {},
         '@apply text-small': {},
-        '@apply h-[6.3rem]': {},
-        '@apply min-h-[6.3rem]': {},
+        '@apply h-64-1': {},
+        '@apply min-h-64-1': {},
 
         '@apply focus-visible:shadow-insetring': {},
         '.sk-table-col-content': {
@@ -163,13 +164,13 @@ export const TableAutoTable = () => ({
         },
         '&-thead': {
           th: {
-            '@apply h-[4.8rem]': {},
+            '@apply h-48': {},
           },
         },
         '&-tbody': {
           '&-td, .sk-table-th': {
-            '@apply h-[4.7rem]': {},
-            '@apply min-h-[4.7rem]': {},
+            '@apply h-48-1': {},
+            '@apply min-h-48-1': {},
           },
         },
       },
@@ -203,7 +204,7 @@ export const TableAutoTable = () => ({
       },
     },
     '&-paginationwrapper': {
-      '@apply max-w-[60rem]': {},
+      '@apply max-w-[37.5em]': {},
       '@apply shrink grow': {},
       '@apply hidden @screen-md/footer:flex': {},
     },

@@ -6,7 +6,7 @@ const MenuVerticalNav = () => ({
       '@apply gap-12': {},
 
       '&.ul, & ul': {
-        '@apply pt-12 pr-[1.6rem] pb-16': {},
+        '@apply pt-12 pr-16 pb-16': {},
       },
 
       '&-item': {
@@ -15,13 +15,13 @@ const MenuVerticalNav = () => ({
 
           '&-medium': {
             'button, a': {
-              '@apply py-[0.6rem] px-[1.4rem]': {},
+              '@apply py-6 px-14': {},
             },
           },
           '&-large': {
             'button, a': {
               '@apply text-large': {},
-              '@apply py-[1rem] px-[1.4rem]': {},
+              '@apply py-10 px-14': {},
             },
           },
         },
@@ -36,7 +36,7 @@ const MenuVerticalSidebar = () => ({
 
     '> ul > li > .sk-menu-vertical-item-submenu': {
       '> .sk-menu-vertical-item-submenu-button': {
-        '@apply min-h-[5.2rem]': {},
+        '@apply min-h-52': {},
       },
     },
 
@@ -67,7 +67,7 @@ const MenuVerticalSidebar = () => ({
       },
 
       '&.ul, & ul': {
-        '@apply py-8 pl-[2rem] ml-[2rem]': {},
+        '@apply py-8 pl-20 ml-20': {},
       },
 
       'li ul': {
@@ -75,26 +75,21 @@ const MenuVerticalSidebar = () => ({
 
         ul: {
           li: {
-            '@apply text-small leading-[1.8rem]': {},
+            '@apply text-small leading-18': {},
 
             '.sk-menu-vertical-item-submenu-button, .sk-menu-vertical-item-submenu-button-expand': {
-              '@apply py-[0.6rem] px-[1.4rem]': {},
+              '@apply py-6 px-14': {},
             },
           },
         },
 
         li: {
-          '@apply relative -ml-[.4rem]': {},
+          '@apply relative -ml-4': {},
 
           // hook
           '&:before': {
-            content: `""`,
-            position: 'absolute',
-            display: 'inline-flex',
-            width: '2rem',
-            height: '4.4rem',
-            top: '-.8rem',
-            left: '-1.6rem',
+            '@apply content-[""] absolute inline-flex w-20 h-44 -top-8 -left-16': {},
+
             backgroundImage: `url("${svgToDataUri(
               `<svg width="16" height="52" viewBox="0 0 16 52" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 17V17C1 24.1797 6.8203 30 14 30H15" stroke="#B7B7BA" stroke-linecap="round" />
@@ -105,13 +100,8 @@ const MenuVerticalSidebar = () => ({
 
           // line
           '&:not(:last-child):after': {
-            content: `""`,
-            position: 'absolute',
-            display: 'inline-flex',
-            width: '2rem',
-            top: '-.8rem',
-            bottom: '0px',
-            left: '-1.6rem',
+            '@apply content-[""] absolute inline-flex w-20 -top-8 bottom-0 -left-16': {},
+
             backgroundImage: `url("${svgToDataUri(
               `<svg width="16" viewBox="0 0 16 52" xmlns="http://www.w3.org/2000/svg"> 
               <line x1="1" y1="0" x2="1" y2="52" stroke="#B7B7BA" stroke-linecap="round" /> 
@@ -122,13 +112,8 @@ const MenuVerticalSidebar = () => ({
 
           // lastline
           '&:last-child:after': {
-            content: `""`,
-            position: 'absolute',
-            display: 'inline-flex',
-            width: '2rem',
-            top: '-.8rem',
-            bottom: '0px',
-            left: '-1.6rem',
+            '@apply content-[""] absolute inline-flex w-20 -top-8 bottom-0 -left-16': {},
+
             backgroundImage: `url("${svgToDataUri(
               `<svg width="16" height="17" viewBox="0 0 16 17" xmlns="http://www.w3.org/2000/svg"> 
               <line x1="1" y1="0" x2="1" y2="17" stroke="#B7B7BA" stroke-linecap="round" /> 
@@ -162,13 +147,14 @@ const MenuVerticalSidebar = () => ({
 export const MenuVertical = () => ({
   '.sk-menu-vertical': {
     '@apply flex flex-col': {},
+    '@apply text-base': {},
 
     '&.hide': {
       '@apply hidden': {},
     },
 
     '&-backbutton': {
-      '@apply flex items-center gap-[1.6rem] text-lead mb-40': {},
+      '@apply flex items-center gap-16 text-lead mb-40': {},
     },
 
     '&-label': {
@@ -193,14 +179,14 @@ export const MenuVertical = () => ({
       },
 
       '& > a, > button': {
-        '@apply flex items-center min-h-[4.4rem]': {},
+        '@apply flex items-center min-h-44': {},
 
         '&:focus-visible': {
           '@apply outline outline-2 outline-ring': {},
         },
 
         '> *': {
-          '@apply flex w-full py-[.6rem] px-[1.4rem]': {},
+          '@apply flex w-full py-6 px-14': {},
           '@apply rounded-button cursor-pointer': {},
         },
 
@@ -241,18 +227,18 @@ export const MenuVertical = () => ({
 
         '&-medium': {
           'button, a': {
-            '@apply py-[0.6rem] px-[1.4rem]': {},
+            '@apply py-6 px-14': {},
           },
         },
         '&-large': {
           'button, a': {
-            '@apply py-[1rem] px-[1.4rem]': {},
+            '@apply py-10 px-14': {},
           },
         },
 
         '&-button, &-button-expand': {
           '@apply items-center': {},
-          '@apply py-[1rem] px-[1.4rem]': {},
+          '@apply py-10 px-14': {},
         },
 
         '&-button-expand': {
@@ -276,7 +262,7 @@ export const MenuVertical = () => ({
       },
 
       '.sk-menu-vertical-item-tool-item': {
-        '@apply flex items-center gap-10 p-[.6rem] rounded-groups': {},
+        '@apply flex items-center gap-10 p-6 rounded-groups': {},
 
         '.sk-avatar': {
           '@apply border-2 border-background-content': {},

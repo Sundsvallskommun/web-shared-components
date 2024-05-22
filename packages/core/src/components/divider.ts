@@ -21,7 +21,7 @@ export const Divider = () => ({
     '&-sm': {
       '&.sk-divider': {
         '&-root': {
-          '@apply gap-[.8rem]': {},
+          '@apply gap-8': {},
         },
         '.sk-divider-text': {
           '@apply text-label-small': {},
@@ -31,7 +31,7 @@ export const Divider = () => ({
     '&-md': {
       '&.sk-divider': {
         '&-root': {
-          '@apply gap-[1rem]': {},
+          '@apply gap-10': {},
         },
         '.sk-divider-text': {
           '@apply text-label-medium': {},
@@ -41,7 +41,7 @@ export const Divider = () => ({
     '&-lg': {
       '&.sk-divider': {
         '&-root': {
-          '@apply gap-[1.2rem]': {},
+          '@apply gap-12': {},
         },
         '.sk-divider-text': {
           '@apply text-label-large': {},

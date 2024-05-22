@@ -24,7 +24,7 @@ export const ButtonGroup = () => ({
       '@apply grow bg-tertiary-surface px-6': {},
 
       hr: {
-        '@apply h-[2rem]': {},
+        '@apply h-20': {},
       },
     },
   },

@@ -1,6 +1,6 @@
 export const Breadcrumb = () => ({
   '.sk-breadcrumb': {
-    '@apply text-body relative': {},
+    '@apply text-body text-base relative': {},
 
     '&-item': {
       '@apply inline-flex items-center whitespace-nowrap': {},

@@ -12,7 +12,7 @@ export const List = () => ({
     '&[data-style="bullet"]': {
       li: {
         '&:before': {
-          "@apply content-['•'] my-[.5rem] text-[1.8rem]": {},
+          "@apply content-['•'] my-5 text-lead": {},
         },
       },
     },
@@ -23,7 +23,7 @@ export const List = () => ({
 
         '&:before': {
           '@apply text-small border-vattjom-surface-primary rounded-full leading-8': {},
-          '@apply my-[.6rem] h-[2.2rem] w-[2.2rem] border-[.2rem]': {},
+          '@apply my-6 h-22 w-22 border-2': {},
           content: 'counter(item)',
         },
       },
@@ -32,7 +32,7 @@ export const List = () => ({
     '&[data-style="stroke"]': {
       li: {
         '&:before': {
-          "@apply content-['–'] my-[.4rem] text-[1.6rem]": {},
+          "@apply content-['–'] my-4 text-base": {},
         },
       },
     },
@@ -51,11 +51,11 @@ export const List = () => ({
     },
 
     '&-header': {
-      '@apply text-large font-bold ml-[3.2rem]': {},
+      '@apply text-large font-bold ml-32': {},
     },
 
     '&-text': {
-      '@apply text-dark-secondary ml-[3.2rem]': {},
+      '@apply text-dark-secondary ml-32': {},
     },
   },
 });

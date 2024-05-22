@@ -11,7 +11,7 @@ export const Pagination = () => ({
       },
 
       li: {
-        '@apply min-w-[4rem] text-center': {},
+        '@apply min-w-40 text-center': {},
       },
 
       'li:first-child': {

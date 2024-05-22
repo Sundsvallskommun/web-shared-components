@@ -1,9 +1,10 @@
 export const Card = (colors: string[]) => ({
   '.sk-card': {
+    '@apply text-base': {},
     '@apply bg-white relative rounded-b-cards rounded-cards': {},
     '@apply flex flex-col': {},
     '@apply no-underline hover:no-underline': {},
-    '@apply h-[100%]': {},
+    '@apply h-full': {},
 
     '&-wrapper': {
       '@apply grid': {},
@@ -23,17 +24,16 @@ export const Card = (colors: string[]) => ({
       },
 
       '&-meta': {
-        '@apply flex space-x-12 mt-16': {},
+        '@apply flex space-x-12 mt-16 text-base': {},
         span: {
           '@apply flex space-x-4 items-center': {},
           time: {
-            '@apply h-[23px] leading-[24px]': {},
+            '@apply h-24': {},
           },
         },
 
         '&.sk-card-image': {
-          backgroundColor: 'green',
-          '@apply h-[278px]': {},
+          '@apply min-h-[12.5em] max-h-[20em]': {},
         },
       },
 
@@ -199,21 +199,21 @@ export const Card = (colors: string[]) => ({
     },
 
     [`&[data-layout="horizontal"]`]: {
-      '@apply flex-row h-[100%]': {},
+      '@apply flex-row h-full': {},
 
       '.sk-card': {
         '&-image': {
-          '@apply h-[100%] w-[128px]': {},
+          '@apply h-full w-[8em]': {},
           '@apply float-left': {},
           '@apply rounded-none rounded-l-cards grow-0': {},
         },
 
         '&-body': {
-          '@apply w-[100%]': {},
+          '@apply w-full': {},
           '@apply border-none': {},
 
           '&-wrapper': {
-            '@apply w-[100%]': {},
+            '@apply w-full': {},
           },
 
           '&-content': {
@@ -249,7 +249,7 @@ export const Card = (colors: string[]) => ({
   '.sk-meta-card': {
     '@apply no-underline hover:no-underline': {},
     '@apply flex bg-vattjom-surface-accent': {},
-    '@apply p-14 rounded-16 w-[454px]': {},
+    '@apply p-14 rounded-groups': {},
 
     '&[data-color="mono"]': {
       '@apply bg-primitives-overlay-darken-1 dark:bg-primitives-overlay-lighten-1': {},
@@ -279,14 +279,14 @@ export const Card = (colors: string[]) => ({
 
       '&-content': {
         'p, a': {
-          '@apply text-primitives-gray-700 dark:text-primitives-gray-200': {},
+          '@apply text-primitives-gray-700 dark:text-primitives-gray-200 text-small': {},
           '@apply text-dark-secondary line-clamp-1': {},
         },
       },
     },
 
     '&-external-link-icon': {
-      '@apply ml-auto h-[32px] w-[32px]': {},
+      '@apply ml-auto h-32 w-32': {},
       '@apply p-6 text-dark': {},
     },
   },

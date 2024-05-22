@@ -1,7 +1,7 @@
 const _base = {
   html: {
     '@apply text-base antialiased': {},
-    fontSize: '10px',
+    fontSize: '0.625em',
     textRendering: 'optimizeLegibility',
     touchAction: 'manipulation',
   },
@@ -40,7 +40,7 @@ const _base = {
   p: { '@apply my-4': {} },
 
   '.text-content': {
-    '@apply max-w-[80rem]': {},
+    '@apply max-w-content': {},
 
     p: { '@apply mt-sm text-base': {} },
   },

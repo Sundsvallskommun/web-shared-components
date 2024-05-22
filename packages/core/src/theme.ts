@@ -12,8 +12,9 @@ const theme: RecursiveObject<Config['theme'] | string | string[]> = {
     ),
     fontSize: {
       ...units.fontSizes,
-      tiny: '1rem',
-      xs: '1.2rem',
+
+      tiny: 'var(--sk-spacing-10)',
+      xs: 'var(--sk-spacing-12)',
       xl: units.fontSizes['h4'],
       '2xl': units.fontSizes['h3'],
       '3xl': units.fontSizes['h2'],
@@ -45,20 +46,20 @@ const theme: RecursiveObject<Config['theme'] | string | string[]> = {
     },
     boxShadow: {
       '50': `
-      0 0 0.3rem 0 rgba(10, 12, 15, 0.08),
-      0 0.1rem 0.8rem 0 rgba(10, 12, 15, 0.13)
+      0 0 var(--sk-spacing-3) 0 rgba(10, 12, 15, 0.08),
+      0 var(--sk-spacing-1) var(--sk-spacing-8) 0 rgba(10, 12, 15, 0.13)
       `,
       '100': `
-        0 0.6rem 1.6rem 0 rgba(13,13,14, 0.07),
-        0 0.181rem 1.2rem 0 rgba(13,13,14, 0.15),
-        0 0.075rem 0.2rem 0 rgba(13,13,14, 0.085),
-        0 0.027rem 0.072rem 0 rgba(13,13,14, 0.0583)
+        0 var(--sk-spacing-6) var(-sk-spacing-16) 0 rgba(13,13,14, 0.07),
+        0 var var(--sk-spacing-12) 0 rgba(13,13,14, 0.15),
+        0 var(--sk-spacing-0.75) var(--sk-spacing-2) 0 rgba(13,13,14, 0.085),
+        0 var(--sk-spacing-0.25) var(--sk-spacing-0.75) 0 rgba(13,13,14, 0.0583)
       `,
       '200': `
-        0 1.5rem 2.7rem 0 rgba(13,13,14, 0.1),
-        0 0.452rem 1.2rem 0 rgba(13,13,14, 0.06),
-        0 0.188rem 0.338rem 0 rgba(13,13,14, 0.03),
-        0 0.068rem 0.122rem 0 rgba(13,13,14, 0.02)
+        0 var(--sk-spacing-15) var(--sk-spacing-28) 0 rgba(13,13,14, 0.1),
+        0 var(--sk-spacing-46) var(--sk-spacing-12) 0 rgba(13,13,14, 0.06),
+        0 var(--sk-spacing-2) var(--sk-spacing-4) 0 rgba(13,13,14, 0.03),
+        0 var(--sk-spacing-0.75) var(--sk-spacing-1) 0 rgba(13,13,14, 0.02)
       `,
       insetring: `0 0 0 0.25rem ${colors.ring} inset`,
     },
@@ -67,14 +68,15 @@ const theme: RecursiveObject<Config['theme'] | string | string[]> = {
       ...colors,
     },
     ringOffsetWidth: {
-      DEFAULT: '0.2rem',
+      DEFAULT: 'var(--sk-spacing-2)',
+      ...units.spacing,
     },
     ringWidth: {
-      DEFAULT: '0.3rem',
+      DEFAULT: 'var(--sk-spacing-3)',
       0: '0px',
     },
     ringOpacity: {
-      DEFAULT: '1px',
+      DEFAULT: '1',
     },
     colors: {
       ...colors,
@@ -99,6 +101,16 @@ const theme: RecursiveObject<Config['theme'] | string | string[]> = {
     },
     spacing: {
       ...units.spacing,
+      ...(Object.keys(units.spacing) as Array<keyof typeof units.spacing>).reduce(
+        (smallerSpacings, spacingkey) => ({
+          ...smallerSpacings,
+          [`${spacingkey}-1`]: `calc(${units.spacing[spacingkey]} - var(--sk-spacing-1))`,
+          [`${spacingkey}-2`]: `calc(${units.spacing[spacingkey]} - var(--sk-spacing-2))`,
+          [`${spacingkey}+1`]: `calc(${units.spacing[spacingkey]} + var(--sk-spacing-1))`,
+          [`${spacingkey}+2`]: `calc(${units.spacing[spacingkey]} + var(--sk-spacing-2))`,
+        }),
+        {}
+      ),
       xs: units.spacing[4],
       sm: units.spacing[8],
       md: units.spacing[16],
@@ -110,7 +122,8 @@ const theme: RecursiveObject<Config['theme'] | string | string[]> = {
     },
     lineHeight: {
       ...units.lineHeights,
-      xs: '1.6rem',
+      ...units.spacing,
+      xs: 'var(-sk-spacing-16)',
       xl: units.lineHeights['h4'],
       '2xl': units.lineHeights['h3'],
       '3xl': units.lineHeights['h2'],
@@ -121,9 +134,8 @@ const theme: RecursiveObject<Config['theme'] | string | string[]> = {
       '15': '0.15',
     },
     borderWidth: {
-      DEFAULT: '0.2rem',
-      '1': '0.1rem',
-      '2': '0.2rem',
+      DEFAULT: 'var(--sk-spacing-2)',
+      ...units.spacing,
     },
     backgroundColor: {
       base: withOpacity('--sk-colors-primary-surface'),

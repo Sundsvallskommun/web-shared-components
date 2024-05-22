@@ -9,12 +9,12 @@ export const Footer = () => ({
     '&-innerwrapper': {
       '@apply w-full max-w-content': {},
       '@apply pb-20 sm:pb-32 md:pb-40 lg:pb-48 xl:pb-80': {},
-      '@apply flex flex-row flex-wrap gap-[10rem]': {},
+      '@apply flex flex-row flex-wrap gap-100': {},
       '@apply justify-between': {},
     },
 
     '&-logo': {
-      '@apply max-h-[7.2rem] h-[7.2rem]': {},
+      '@apply max-h-72 h-72': {},
     },
     '&-content': {
       '@apply flex flex-row gap-36 w-fit grow-0 flex-wrap': {},

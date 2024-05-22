@@ -53,7 +53,7 @@ function addin() {
           '@apply pr-10': {},
         },
         svg: {
-          '@apply w-[1.6rem] h-[1.6rem]': {},
+          '@apply w-16 h-16': {},
         },
       },
       '&-md': {
@@ -67,7 +67,7 @@ function addin() {
           '@apply pr-12': {},
         },
         svg: {
-          '@apply w-[2rem] h-[2rem]': {},
+          '@apply w-20 h-20': {},
         },
       },
       '&-lg': {
@@ -81,7 +81,7 @@ function addin() {
           '@apply pr-16': {},
         },
         svg: {
-          '@apply w-[2.2rem] h-[2.2rem]': {},
+          '@apply w-22 h-22': {},
         },
       },
     },
@@ -105,11 +105,6 @@ function inputGroup() {
         '@apply dark:focus-within:hover:border-primitives-overlay-darken-6': {},
       },
 
-      // '&:disabled, &[aria-disabled="true"]': {
-      //   '&::-webkit-inner-spin-button, &::-webkit-calendar-picker-indicator': {
-      //     '@apply color-black-disabled': {},
-      //   },
-      // },
       '&&-lg': {
         '@apply text-input-large': {},
         '@apply rounded-button-lg': {},
@@ -146,16 +141,16 @@ function timeAndDatePicker() {
       '@apply bg-none': {},
       '@apply bg-dark-secondary': {},
       '&.sk-form-input-sm': {
-        '@apply w-[1.6rem] h-[1.6rem]': {},
+        '@apply w-16 h-16': {},
         '@apply -mr-2': {},
       },
       '&.sk-form-input-md': {
         '@apply -mr-4': {},
-        '@apply w-[1.8rem] h-[1.8rem]': {},
+        '@apply w-18 h-18': {},
       },
       '&.sk-form-input-lg': {
         '@apply -mr-6': {},
-        '@apply w-[2rem] h-[2rem]': {},
+        '@apply w-20 h-20': {},
       },
     },
 
@@ -204,26 +199,26 @@ export const Input = () => ({
     '&&-lg': {
       '@apply rounded-button-lg': {},
       '@apply px-20': {},
-      '@apply py-[1.1rem]': {},
+      '@apply py-11': {},
       '@apply gap-8': {},
       '@apply text-input-large': {},
-      '@apply h-[4.8rem]': {},
+      '@apply h-48': {},
     },
     '&&-md': {
       '@apply rounded-button-md': {},
       '@apply px-16': {},
-      '@apply py-[0.7rem]': {},
+      '@apply py-7': {},
       '@apply gap-8': {},
       '@apply text-input-medium': {},
-      '@apply h-[4rem]': {},
+      '@apply h-40': {},
     },
     '&&-sm': {
       '@apply rounded-button-sm': {},
       '@apply px-12': {},
-      '@apply py-[0.5rem]': {},
+      '@apply py-5': {},
       '@apply gap-6': {},
       '@apply text-input-small': {},
-      '@apply h-[3.2rem]': {},
+      '@apply h-32': {},
     },
     '&&-textarea': {
       '@apply h-auto': {},

@@ -6,20 +6,20 @@ export const Checkbox = () => ({
 
     // sizing
     '&-sm': {
-      '@apply w-[2.4rem] h-[2.4rem]': {},
+      '@apply w-24 h-24': {},
     },
 
     '&-md': {
-      '@apply w-[2.4rem] h-[2.4rem]': {},
+      '@apply w-24 h-24': {},
     },
 
     '&-lg': {
-      '@apply w-[2.4rem] h-[2.4rem]': {},
+      '@apply w-24 h-24': {},
     },
 
     '+ .sk-icon': {
       '@apply absolute inset-0 my-auto bg-transparent': {},
-      '@apply border-[0.1rem] p-2 border-primitives-overlay-darken-6 dark:border-primitives-overlay-lighten-6': {},
+      '@apply border-1 p-2 border-primitives-overlay-darken-6 dark:border-primitives-overlay-lighten-6': {},
       '@apply bg-primitives-overlay-lighten-10 dark:bg-primitives-overlay-darken-6': {},
 
       svg: {
@@ -91,10 +91,10 @@ export const Checkbox = () => ({
 
     // label
     '&-label-left &-label': {
-      '@apply mr-[.8rem]': {},
+      '@apply mr-8': {},
     },
     '&-label-right &-label': {
-      '@apply ml-[.8rem]': {},
+      '@apply ml-8': {},
     },
 
     '&-label-left': {

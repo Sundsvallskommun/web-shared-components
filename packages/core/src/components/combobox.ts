@@ -7,27 +7,27 @@ export const ComboBox = () => ({
     '@apply relative w-auto': {},
     '@apply inline-block': {},
     '&-sm': {
-      '@apply h-[3.2rem]': {},
+      '@apply h-32': {},
       '@apply rounded-button-sm': {},
       '.sk-form-combobox-select.active': {
         '@apply text-input-small': {},
-        '@apply pr-[5.2rem]': {},
+        '@apply pr-52': {},
       },
     },
     '&-md': {
-      '@apply h-[4rem]': {},
+      '@apply h-40': {},
       '@apply rounded-button-md': {},
       '.sk-form-combobox-select.active': {
         '@apply text-input-medium': {},
-        '@apply pr-[6.1rem]': {},
+        '@apply pr-62': {},
       },
     },
     '&-lg': {
-      '@apply h-[4.8rem]': {},
+      '@apply h-48': {},
       '@apply rounded-button-lg': {},
       '.sk-form-combobox-select.active': {
         '@apply text-input-large': {},
-        '@apply pr-[6.8rem]': {},
+        '@apply pr-68': {},
       },
     },
 
@@ -58,7 +58,7 @@ export const ComboBox = () => ({
     },
     '&-list': {
       '@apply w-full': {},
-      '@apply max-h-[23rem] overflow-y-auto': {},
+      '@apply max-h-[15em] overflow-y-auto': {},
       '&-option': {
         '&.sk-popup-menu-item': {
           '@apply cursor-default': {},
