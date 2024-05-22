@@ -6,8 +6,8 @@ export const Chip = () => ({
     '@apply hover:bg-secondary-surface-hover': {},
     '@apply focus-visible:bg-secondary-surface-hover': {},
     '@apply focus-visible:ring': {},
-    '@apply px-[.9rem] gap-4': {},
-    '@apply h-[3.4rem]': {},
+    '@apply px-9 gap-4': {},
+    '@apply h-34': {},
     '@apply text-small': {},
     '@apply text-dark-secondary': {},
     '@apply border-1': {},
@@ -29,6 +29,9 @@ export const Chip = () => ({
       '@apply bg-inverted-secondary-surface': {},
       '@apply hover:bg-inverted-secondary-surface-hover': {},
       '@apply focus-visible:bg-inverted-secondary-surface-hover': {},
+    },
+    '.sk-icon': {
+      '@apply h-16 w-16': {},
     },
   },
 });
