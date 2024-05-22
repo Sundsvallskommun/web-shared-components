@@ -1,10 +1,8 @@
 import { Dict, WithCSSVar, deepmerge, omit } from '@sk-web-gui/utils';
 import React from 'react';
-import { createContext, useContext, useMemo } from 'react';
-
 import { toCSSVar } from './create-theme-vars';
 import { defaultTheme } from './default-theme';
-import { GuiTheme, GuiThemeOverride } from './types';
+import { GuiTheme, GuiThemeOverride, ThemeOption } from './types';
 import { useSafeEffect } from './use-safe-effect';
 import { isBrowser } from './utils';
 
@@ -14,7 +12,7 @@ export enum ColorSchemeMode {
   System = 'system',
 }
 
-export const GuiContext = createContext<
+export const GuiContext = React.createContext<
   | {
       theme: WithCSSVar<Dict>;
       /**
@@ -29,6 +27,7 @@ export const GuiContext = createContext<
        * Scheme that is used when set to "system"
        */
       preferredColorScheme: Exclude<ColorSchemeMode, ColorSchemeMode.System>;
+      units: { base: number; htmlBase: number };
     }
   | undefined
 >(undefined);
@@ -42,9 +41,25 @@ export interface GuiProviderProps {
    * @default system
    */
   colorScheme?: ColorSchemeMode;
+  /**
+   * Font size in px that the theme variables are based on
+   * @default 10
+   */
+  baseFontSize?: number;
+  /**
+   * Font base size in px that the site uses.
+   * @default 10
+   */
+  htmlFontSize?: number;
 }
 
-export function GuiProvider({ theme = defaultTheme, colorScheme: _colorScheme, children }: GuiProviderProps) {
+export function GuiProvider({
+  theme = defaultTheme,
+  colorScheme: _colorScheme,
+  baseFontSize = 10,
+  htmlFontSize = 10,
+  children,
+}: GuiProviderProps) {
   const [preferredColorScheme, setPreferredColorScheme] = React.useState<
     Exclude<ColorSchemeMode, ColorSchemeMode.System>
   >(ColorSchemeMode.Light);
@@ -65,7 +80,26 @@ export function GuiProvider({ theme = defaultTheme, colorScheme: _colorScheme, c
 
   const colorScheme = pickedColorScheme === ColorSchemeMode.System ? preferredColorScheme : pickedColorScheme;
 
-  const computedTheme = useMemo(() => {
+  const units = React.useMemo(() => {
+    let fontSize = theme.fontSize;
+    let lineHeight = theme.lineHeight;
+    let spacing = theme.spacing;
+    let screens = theme.screens;
+    let radius = theme.radius;
+
+    if (baseFontSize !== htmlFontSize) {
+      const diff = baseFontSize / htmlFontSize;
+      fontSize = crawlSizes(theme.fontSize, diff);
+      lineHeight = crawlSizes(theme.lineHeight, diff);
+      spacing = crawlSizes(theme.spacing, diff);
+      screens = crawlSizes(theme.screens, diff);
+      radius = crawlSizes(theme.radius, diff);
+    }
+
+    return { fontSize, lineHeight, spacing, screens, radius };
+  }, [baseFontSize, htmlFontSize]);
+
+  const computedTheme = React.useMemo(() => {
     const omittedTheme = omit(theme, ['colorSchemes']);
     const { colors, type } = theme.colorSchemes[colorScheme] || {};
     if (isBrowser) {
@@ -75,22 +109,34 @@ export function GuiProvider({ theme = defaultTheme, colorScheme: _colorScheme, c
 
     const normalizedTheme = {
       ...omittedTheme,
+      ...units,
       colors,
     };
 
+    if (baseFontSize !== htmlFontSize) {
+      const { fontSize, lineHeight, spacing, screens, radius } = theme;
+      const diff = baseFontSize / htmlFontSize;
+      normalizedTheme.fontSize = crawlSizes(fontSize, diff);
+      normalizedTheme.lineHeight = crawlSizes(lineHeight, diff);
+      normalizedTheme.spacing = crawlSizes(spacing, diff);
+      normalizedTheme.screens = crawlSizes(screens, diff);
+      normalizedTheme.radius = crawlSizes(radius, diff);
+    }
+
     return toCSSVar(normalizedTheme);
-  }, [theme, colorScheme, pickedColorScheme]);
+  }, [theme, colorScheme, pickedColorScheme, units]);
 
   useSafeEffect(() => {
     if (isBrowser) updateThemeVariables(computedTheme.__cssVars);
   }, [computedTheme]);
 
-  const value = useMemo(
+  const value = React.useMemo(
     () => ({
       theme: computedTheme,
       preferredColorScheme,
       colorScheme: pickedColorScheme,
       setColorScheme: setPickedColorScheme,
+      units: { base: baseFontSize, htmlBase: htmlFontSize },
     }),
     [computedTheme, preferredColorScheme]
   );
@@ -98,6 +144,21 @@ export function GuiProvider({ theme = defaultTheme, colorScheme: _colorScheme, c
   return <GuiContext.Provider value={value}>{children}</GuiContext.Provider>;
 }
 
+function crawlSizes(options: ThemeOption, diff: number): ThemeOption {
+  return Object.keys(options).reduce((newOptions, optionKey) => {
+    const value = options[optionKey];
+    let newValue = value;
+    if (value) {
+      if (typeof value === 'string' && value.includes('rem')) {
+        newValue = `${parseFloat(value.replace('rem', '')) * diff}rem`;
+      }
+      if (typeof value !== 'string') {
+        newValue = crawlSizes(value, diff);
+      }
+    }
+    return { ...newOptions, [optionKey]: newValue };
+  }, {});
+}
 function setStyleVariable(name: string, value: string) {
   const rootStyle = document.documentElement.style;
   rootStyle.setProperty(name, value);
@@ -115,7 +176,7 @@ function updateThemeVariables(vars: Record<string, string>) {
 }
 
 export function useGui<T extends object = Dict>() {
-  const theme = useContext(GuiContext as unknown as React.Context<T | undefined>);
+  const theme = React.useContext(GuiContext as unknown as React.Context<T | undefined>);
   if (!theme) {
     throw Error('useGui: `theme` is undefined. Seems you forgot to wrap your app in `<GuiProvider />`');
   }
