@@ -31,7 +31,7 @@ export const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>((props, re
         loop
         src={SpinnerAnimation}
         renderer="svg"
-        style={{ width: `${size * 2}rem`, height: `${size * 2}rem`, margin: '0px' }}
+        style={{ margin: '0px', marginLeft: '-50%' }}
         className={cx('sk-spinner-lottie')}
       ></Player>
     </div>
