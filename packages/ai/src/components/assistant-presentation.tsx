@@ -3,9 +3,9 @@ import { AssistantInfo } from '../types';
 import { cx } from '@sk-web-gui/utils';
 import { Avatar } from '@sk-web-gui/avatar';
 
-interface AssistantPresentationProps extends React.ComponentPropsWithoutRef<'div'> {
+export interface AssistantPresentationProps extends React.ComponentPropsWithoutRef<'div'> {
   assistant: AssistantInfo;
-  size?: 'lg' | 'md';
+  size?: 'lg' | 'sm';
 }
 
 export const AssistantPresentation = React.forwardRef<HTMLDivElement, AssistantPresentationProps>((props, ref) => {
@@ -18,8 +18,13 @@ export const AssistantPresentation = React.forwardRef<HTMLDivElement, AssistantP
         aria-hidden
         imageElement={typeof assistant.avatar !== 'string' ? assistant.avatar : undefined}
         imageUrl={typeof assistant.avatar === 'string' ? assistant.avatar : undefined}
+        initials={assistant.shortName}
         imageAlt=""
       />
+      <div className="sk-ai-assistant-presentation-header">
+        <div className="sk-ai-assistant-presentation-header-title">{assistant.name}</div>
+        <div className="sk-ai-assistant-presentation-header-description">{assistant.description}</div>
+      </div>
       <span></span>
     </div>
   );

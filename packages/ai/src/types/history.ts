@@ -13,3 +13,11 @@ export interface ChatHistoryEntry {
 }
 
 export type ChatHistory = ChatHistoryEntry[];
+
+export interface SessionHistoryEntry {
+  id: string;
+  title: string;
+  updatedAt: Date;
+}
+
+export type SessionHistory = SessionHistoryEntry[];

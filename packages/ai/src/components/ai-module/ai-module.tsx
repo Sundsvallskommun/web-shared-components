@@ -1,14 +1,20 @@
-import { cx } from '@sk-web-gui/utils';
 import React from 'react';
-import { AIModuleHeader } from './ai-module-header';
+import { AssistantInfo, ChatHistory, SessionHistory } from '../../types';
+import { AIFeed } from '../ai-feed';
+import { AssistantPresentation } from '../assistant-presentation';
+import { Bubble } from '../bubble';
 import { InputSection } from '../input-section';
-import { AssistantInfo } from '../../types';
+import { AIModuleHeader } from './ai-module-header';
+import { AIModuleWrapper } from './ai-module-wrapper';
+import { addDays, format } from 'date-fns';
+import { AIModuleSessionHistory } from './ai-module-session-history';
 
 export interface AIModuleDefaultProps {
+  history?: ChatHistory;
   docked?: boolean;
   color?: string;
   fullscreen?: boolean;
-  question?: string;
+  sessionTitle?: string;
   assistant: AssistantInfo;
   onOpen?: () => void;
   onClose?: () => void;
@@ -17,21 +23,32 @@ export interface AIModuleDefaultProps {
   onNewSession?: () => void;
 }
 
-export interface AIModuleProps extends AIModuleDefaultProps, React.ComponentPropsWithoutRef<'div'> {}
+export interface AIModuleProps extends AIModuleDefaultProps, React.ComponentPropsWithoutRef<'div'> {
+  questions?: string[];
+  questionsTitle?: string;
+  sessionHistory?: SessionHistory;
+  onChangeSession?: (sessionId: string) => void;
+}
 
 export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, ref) => {
   const {
+    history,
     docked: _docked,
     fullscreen: _fullscreen,
     color,
-    question,
+    sessionTitle,
     assistant,
     onOpen,
     onClose,
     onFullScreen,
     onCloseFullScreen,
     onNewSession,
+    onChangeSession,
     className,
+    children,
+    questions,
+    questionsTitle,
+    sessionHistory,
     ...rest
   } = props;
 
@@ -75,26 +92,74 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
     onCloseFullScreen && onCloseFullScreen();
   };
 
+  const today = format(new Date(), 'yyyyMMdd');
+  const tomorrow = format(addDays(new Date(), 1), 'yyyyMMdd');
+
+  const todaysSessions = sessionHistory?.filter((session) => format(new Date(session.updatedAt), 'yyyyMMdd') === today);
+  const tomorrowsSessions = sessionHistory?.filter(
+    (session) => format(new Date(session.updatedAt), 'yyyyMMdd') === tomorrow
+  );
+  const otherSessions = sessionHistory?.filter((session) => {
+    const date = format(new Date(session.updatedAt), 'yyyyMMdd');
+    return date !== tomorrow && date !== today;
+  });
+
   return (
-    <div ref={ref} className={cx('sk-ai-module', className)} {...rest} data-fullscreen={fullscreen}>
-      <AIModuleHeader
-        docked={docked}
-        fullscreen={fullscreen}
-        assistant={assistant}
-        color={color}
-        question={question}
-        onOpen={handleOnOpen}
-        onClose={handleOnClose}
-        onFullScreen={handleOnFullscreen}
-        onCloseFullScreen={handleOnCloseFullscreen}
-        onNewSession={onNewSession}
-      />
-      {!docked && !fullscreen && (
-        <>
-          <div className="sk-ai-module-feed h-80"></div>
-          <InputSection />
-        </>
-      )}
-    </div>
+    <AIModuleWrapper ref={ref} className={className} {...rest} fullscreen={fullscreen}>
+      <div className="sk-ai-module-content">
+        {fullscreen && (
+          <div className="sk-ai-module-content-row">
+            <div className="sk-ai-module-sidebar">
+              <AIModuleHeader variant="alt" assistant={assistant} />
+              {todaysSessions && (
+                <AIModuleSessionHistory sessions={todaysSessions} title="Idag" onSelectSession={onChangeSession} />
+              )}
+              {tomorrowsSessions && (
+                <AIModuleSessionHistory sessions={tomorrowsSessions} title="Igår" onSelectSession={onChangeSession} />
+              )}
+              {otherSessions && (
+                <AIModuleSessionHistory sessions={otherSessions} title="Tidigare" onSelectSession={onChangeSession} />
+              )}
+            </div>
+          </div>
+        )}
+        <div className="sk-ai-module-content-row">
+          <AIModuleHeader
+            docked={docked}
+            fullscreen={fullscreen}
+            assistant={assistant}
+            color={color}
+            sessionTitle={sessionTitle}
+            onOpen={handleOnOpen}
+            onClose={handleOnClose}
+            onFullScreen={handleOnFullscreen}
+            onCloseFullScreen={handleOnCloseFullscreen}
+            onNewSession={onNewSession}
+          />
+          {!docked && (
+            <>
+              <div className="sk-ai-module-feed">
+                {!history || history.length < 1 ? (
+                  <>
+                    <AssistantPresentation size={fullscreen ? 'lg' : 'sm'} assistant={assistant} />
+                    {questions && questions?.length > 0 && (
+                      <div className="sk-ai-module-feed-questions-wrapper">
+                        {questionsTitle && <div className="sk-ai-module-feed-questions-title">{questionsTitle}</div>}
+                        <div className="sk-ai-module-feed-questions">
+                          {questions?.map((question, index) => <Bubble key={`q-bubble-${index}`}>{question}</Bubble>)}
+                        </div>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <AIFeed history={history} />
+                )}
+              </div>
+              <InputSection shadow={!fullscreen} />
+            </>
+          )}
+        </div>
+      </div>
+    </AIModuleWrapper>
   );
 });
