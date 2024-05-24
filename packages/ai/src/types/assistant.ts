@@ -41,12 +41,21 @@ export interface GroupPublic {
 
 export interface AssistantSettings {
   user?: string;
-  assistantId?: string;
-  assistantName?: string;
+  assistantId: string;
   hash?: string;
   app?: string;
   stream?: boolean;
   apiBaseUrl?: string;
+}
+export interface AssistantInfo {
+  /**
+   * Image element, or url to image
+   */
+  avatar?: JSX.Element | string;
+  name: string;
+  shortName?: string;
+  title?: string;
+  description?: string;
 }
 
 export interface PaginatedResponseAssistantPublic {

@@ -1,11 +1,12 @@
-import { cx, useForkRef } from '@sk-web-gui/utils';
+import { useForkRef } from '@sk-web-gui/utils';
 import React from 'react';
-import { useChat } from '../hooks';
-import { ChatHistoryEntry } from '../types';
-import { AIFeedAvatarMap } from '../types/avatar';
+import { useChat } from '../../hooks';
+import { ChatHistoryEntry } from '../../types';
+import { AIFeedAvatarMap } from '../../types/avatar';
 import { AIFeedEntry } from './ai-feed-entry';
+import { AIFeedWrapper } from './ai-feed-wrapper';
 
-interface AIFeedProps extends React.ComponentPropsWithoutRef<'ul'> {
+export interface AIFeedProps extends React.ComponentPropsWithoutRef<'ul'> {
   showReferences?: boolean;
   avatars?: AIFeedAvatarMap;
   showFeedback?: boolean;
@@ -37,7 +38,7 @@ export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, re
 
   return (
     <>
-      <ul ref={useForkRef(ref, internalRef)} className={cx('sk-ai-feed', className)} tabIndex={0} {...rest}>
+      <AIFeedWrapper ref={useForkRef(ref, internalRef)} className={className} tabIndex={0} {...rest}>
         {history?.map((entry, index) => (
           <AIFeedEntry
             key={`${index}-${entry.id}`}
@@ -48,7 +49,7 @@ export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, re
             showTitle={showTitles}
           ></AIFeedEntry>
         ))}
-      </ul>
+      </AIFeedWrapper>
       <div className="sr-only" aria-live="polite" aria-atomic={false}>
         {lastMessage && (
           <AIFeedEntry showReferences={false} entry={lastMessage} showFeedback={false} showTitle={false}></AIFeedEntry>

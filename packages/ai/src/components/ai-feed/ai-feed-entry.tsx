@@ -1,13 +1,13 @@
 import React from 'react';
-import { ChatHistoryEntry } from '../types';
+import { ChatHistoryEntry } from '../../types';
 import { cx } from '@sk-web-gui/utils';
-import { MarkdownRendered } from './markdown-rendered';
-import { sanitized } from '../services';
+import { MarkdownRendered } from '../markdown-rendered';
+import { sanitized } from '../../services';
 import { Link } from '@sk-web-gui/link';
 import { Disclosure } from '@sk-web-gui/accordion';
-import { useAssistantStore } from '../assistant-store';
-import { Feedback } from './feedback';
-import { TypingBubble } from './typing-bubble';
+import { useAssistantStore } from '../../assistant-store';
+import { Feedback } from '../feedback';
+import { TypingBubble } from '../typing-bubble';
 
 interface AIFeedEntryProps extends React.ComponentPropsWithoutRef<'li'> {
   avatar?: React.ReactNode;
@@ -35,10 +35,10 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
     loadingComponent = <TypingBubble />,
     ...rest
   } = props;
-  const settings = useAssistantStore((state) => state.settings);
+  const info = useAssistantStore((state) => state.info);
   const { done } = entry;
   const [loading, setLoading] = React.useState<boolean>(false);
-  const title = _title || entry.origin === 'user' ? 'Du' : settings.assistantName;
+  const title = _title || entry.origin === 'user' ? 'Du' : info?.name || '';
 
   React.useEffect(() => {
     if (!done) {
@@ -63,7 +63,7 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
             ) : (
               <>
                 <span className={cx('sk-ai-feed-entry-heading', showTitle ? '' : 'sr-only')}>
-                  {title || settings.assistantName}
+                  {title || info?.name}
                 </span>
                 <MarkdownRendered text={sanitized(entry.text)} messageId={entry.id} hideElements={!entry.done} />
               </>

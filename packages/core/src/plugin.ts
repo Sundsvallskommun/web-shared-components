@@ -49,9 +49,12 @@ import { Tooltip } from './components/tooltip';
 import { UserMenu } from './components/user-menu';
 //AI COMPONENTS
 import { AIFeed } from './components/ai/ai-feed';
-import { Feedback } from './components/ai/feedback';
-import { MarkdownRendered } from './components/ai/markdown-rendered';
+import { AIModule } from './components/ai/ai-module';
+import { AssistantPresentation } from './components/ai/assistant-presentation';
 import { Bubble } from './components/ai/bubble';
+import { Feedback } from './components/ai/feedback';
+import { InputSection } from './components/ai/input-section';
+import { MarkdownRendered } from './components/ai/markdown-rendered';
 import { TypingBubble } from './components/ai/typing-bubble';
 import { TypingSequence } from './components/ai/typing-sequence';
 
@@ -102,8 +105,11 @@ const components: ((colors: string[], theme: PluginAPI['theme']) => CSSRuleObjec
 
   //AI COMPONENTS
   AIFeed,
+  AIModule,
+  AssistantPresentation,
   Bubble,
   Feedback,
+  InputSection,
   MarkdownRendered,
   TypingBubble,
   TypingSequence,
