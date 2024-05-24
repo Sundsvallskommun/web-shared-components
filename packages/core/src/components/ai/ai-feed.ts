@@ -24,7 +24,7 @@ export const AIFeed = () => ({
           '&-item': {
             '@apply max-w-full w-full my-8 rounded-6 whitespace-normal text-base': {},
             '.sk-link': {
-              '@apply dark:text-black': {},
+              '@apply dark:text-dark-primary': {},
             },
           },
         },

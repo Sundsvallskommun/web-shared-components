@@ -8,4 +8,4 @@ export default {
   tags: ['autodocs'],
 } as Meta<typeof Bubble>;
 
-export const Template = (args: typeof Bubble) => <Bubble {...args}>Hej</Bubble>;
+export const Template = (args: typeof Bubble) => <Bubble {...args}>Fråga</Bubble>;

@@ -1,11 +1,13 @@
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { createWithEqualityFn } from 'zustand/traditional';
-import { AssistantPublic, AssistantSettings } from './types/assistant';
+import { AssistantInfo, AssistantPublic, AssistantSettings } from './types/assistant';
 import { ChatHistory } from './types/history';
 
 export interface AssistantStoreInterface {
   settings: AssistantSettings;
   setSettings: (settings: AssistantSettings) => void;
+  info?: AssistantInfo;
+  setInfo: (settings: AssistantInfo) => void;
   assistant?: AssistantPublic;
   setAssistant: (assistant: AssistantPublic) => void;
   sessionId: string;
@@ -21,7 +23,7 @@ export const useAssistantStore = createWithEqualityFn(
   persist<AssistantStoreInterface>(
     (set) => {
       return {
-        settings: {},
+        settings: { assistantId: '' },
         setSettings: (settings) =>
           set(() => ({
             settings: {
@@ -30,6 +32,8 @@ export const useAssistantStore = createWithEqualityFn(
                 typeof settings.stream === 'boolean' ? settings.stream : settings.stream === 'true' ? true : false,
             },
           })),
+        info: undefined,
+        setInfo: (info) => set(() => ({ info })),
         assistant: undefined,
         setAssistant: (assistant) => set(() => ({ assistant })),
         sessionId: '',
