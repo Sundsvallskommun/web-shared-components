@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/chip@1.1.3...@sk-web-gui/chip@1.1.4) (2024-05-24)
+
+### Bug Fixes
+
+- **chip:** updated styling to only use theme vars ([459c60e](https://github.com/Sundsvallskommun/web-shared-components/commit/459c60edd07ce0c246e17458622e112b497ad4f3))
+- **types:** correction of export types ([5225289](https://github.com/Sundsvallskommun/web-shared-components/commit/52252890b4206faa9bc70111e75f1ef818e0d8fe))
+
 ## [1.1.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/chip@1.1.2...@sk-web-gui/chip@1.1.3) (2024-05-17)
 
 ### Bug Fixes

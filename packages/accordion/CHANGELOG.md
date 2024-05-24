@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@1.3.0...@sk-web-gui/accordion@1.3.1) (2024-05-24)
+
+### Bug Fixes
+
+- **accordion:** updated styling to only use theme vars ([95e543f](https://github.com/Sundsvallskommun/web-shared-components/commit/95e543f42554e1646c9943ddb0e588f19244e3b4))
+- **types:** correction of export types ([5225289](https://github.com/Sundsvallskommun/web-shared-components/commit/52252890b4206faa9bc70111e75f1ef818e0d8fe))
+
 # [1.3.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@1.2.1...@sk-web-gui/accordion@1.3.0) (2024-05-17)
 
 ### Bug Fixes

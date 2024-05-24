@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/utils@2.0.0...@sk-web-gui/utils@2.0.1) (2024-05-24)
+
+### Bug Fixes
+
+- **types:** correction of export types ([5225289](https://github.com/Sundsvallskommun/web-shared-components/commit/52252890b4206faa9bc70111e75f1ef818e0d8fe))
+
 # [2.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/utils@1.1.0...@sk-web-gui/utils@2.0.0) (2024-05-17)
 
 ### Bug Fixes

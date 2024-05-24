@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.18](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@1.2.17...@sk-web-gui/react@1.2.18) (2024-05-24)
+
+### Bug Fixes
+
+- **types:** correction of export types ([5225289](https://github.com/Sundsvallskommun/web-shared-components/commit/52252890b4206faa9bc70111e75f1ef818e0d8fe))
+
 ## [1.2.17](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@1.2.16...@sk-web-gui/react@1.2.17) (2024-05-17)
 
 ### Bug Fixes

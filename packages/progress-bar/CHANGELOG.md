@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/progress-bar@1.0.3...@sk-web-gui/progress-bar@1.0.4) (2024-05-24)
+
+### Bug Fixes
+
+- **types:** correction of export types ([5225289](https://github.com/Sundsvallskommun/web-shared-components/commit/52252890b4206faa9bc70111e75f1ef818e0d8fe))
+
 ## [1.0.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/progress-bar@1.0.2...@sk-web-gui/progress-bar@1.0.3) (2024-05-17)
 
 ### Bug Fixes

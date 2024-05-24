@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/table",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -37,11 +37,11 @@
     "react": "^18.2.0"
   },
   "dependencies": {
-    "@sk-web-gui/forms": "2.0.0",
-    "@sk-web-gui/icon": "2.0.0",
-    "@sk-web-gui/pagination": "1.0.12",
-    "@sk-web-gui/theme": "2.0.0",
-    "@sk-web-gui/utils": "2.0.0",
+    "@sk-web-gui/forms": "2.0.1",
+    "@sk-web-gui/icon": "2.0.1",
+    "@sk-web-gui/pagination": "1.0.13",
+    "@sk-web-gui/theme": "2.1.0",
+    "@sk-web-gui/utils": "2.0.1",
     "lodash": "^4.17.21",
     "usehooks-ts": "^3.1.0"
   },

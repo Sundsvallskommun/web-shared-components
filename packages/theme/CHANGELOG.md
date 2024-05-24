@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@2.0.0...@sk-web-gui/theme@2.1.0) (2024-05-24)
+
+### Bug Fixes
+
+- **types:** correction of export types ([5225289](https://github.com/Sundsvallskommun/web-shared-components/commit/52252890b4206faa9bc70111e75f1ef818e0d8fe))
+
+### Features
+
+- **theme:** added support for different base font sizes ([d53a7df](https://github.com/Sundsvallskommun/web-shared-components/commit/d53a7df8a137fc587e7fe9f222f3b01f43ca2b4e))
+
 # [2.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@1.1.0...@sk-web-gui/theme@2.0.0) (2024-05-17)
 
 ### Bug Fixes

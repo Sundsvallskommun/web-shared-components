@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/searchfield",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -34,10 +34,10 @@
     "lint:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@sk-web-gui/button": "2.0.0",
-    "@sk-web-gui/forms": "2.0.0",
-    "@sk-web-gui/icon": "2.0.0",
-    "@sk-web-gui/utils": "2.0.0"
+    "@sk-web-gui/button": "2.0.1",
+    "@sk-web-gui/forms": "2.0.1",
+    "@sk-web-gui/icon": "2.0.1",
+    "@sk-web-gui/utils": "2.0.1"
   },
   "devDependencies": {
     "react": "^18.2.0"

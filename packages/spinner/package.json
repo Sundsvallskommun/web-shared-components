@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/spinner",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -38,8 +38,8 @@
   },
   "dependencies": {
     "@lottiefiles/react-lottie-player": "3.5.3",
-    "@sk-web-gui/theme": "2.0.0",
-    "@sk-web-gui/utils": "2.0.0"
+    "@sk-web-gui/theme": "2.1.0",
+    "@sk-web-gui/utils": "2.0.1"
   },
   "peerDependencies": {
     "react": ">=18.2.0"

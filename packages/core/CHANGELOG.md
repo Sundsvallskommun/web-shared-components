@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.0.0...@sk-web-gui/core@3.0.1) (2024-05-24)
+
+### Bug Fixes
+
+- **accordion:** updated styling to only use theme vars ([95e543f](https://github.com/Sundsvallskommun/web-shared-components/commit/95e543f42554e1646c9943ddb0e588f19244e3b4))
+- **chip:** updated styling to only use theme vars ([459c60e](https://github.com/Sundsvallskommun/web-shared-components/commit/459c60edd07ce0c246e17458622e112b497ad4f3))
+- **core:** updated theme vars, and updated styling to only use theme vars ([4ea91e5](https://github.com/Sundsvallskommun/web-shared-components/commit/4ea91e51961d0d628316d0616f0a58bb2cdc11a2))
+- **spinner:** updated styling to only use theme vars ([b0c3fb6](https://github.com/Sundsvallskommun/web-shared-components/commit/b0c3fb6d750feb5acc4fd7474539db9f0a0c64df))
+- **types:** correction of export types ([5225289](https://github.com/Sundsvallskommun/web-shared-components/commit/52252890b4206faa9bc70111e75f1ef818e0d8fe))
+
 # [3.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@2.4.0...@sk-web-gui/core@3.0.0) (2024-05-17)
 
 ### Bug Fixes
