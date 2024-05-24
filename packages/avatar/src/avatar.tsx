@@ -40,6 +40,7 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref)
       data-color={color}
       data-accent={accent ? accent : undefined}
       data-rounded={rounded ? rounded : undefined}
+      data-hasimage={!!profile || !!imageElement}
       {...rest}
     >
       {imageElement ? (

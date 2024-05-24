@@ -7,6 +7,7 @@ export const Avatar = (colors: string[]) => ({
     '&[data-rounded="true"]': {
       '@apply rounded-circular': {},
     },
+
     '&&-sm': {
       '@apply h-32 w-32 min-h-24 max-h-32 min-w-24 max-w-32': {},
       '@apply text-label-small': {},
@@ -34,6 +35,9 @@ export const Avatar = (colors: string[]) => ({
     ),
     '&-img': {
       '@apply min-w-full min-h-full object-cover': {},
+    },
+    '&[data-hasimage="true"]': {
+      '@apply bg-transparent': {},
     },
   },
 });
