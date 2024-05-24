@@ -5,7 +5,9 @@ import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
 import { AIModuleDefaultProps } from './ai-module';
 
-export interface AIModuleHeaderProps extends AIModuleDefaultProps, React.ComponentPropsWithoutRef<'div'> {}
+export interface AIModuleHeaderProps extends AIModuleDefaultProps, React.ComponentPropsWithoutRef<'div'> {
+  variant?: 'default' | 'alt';
+}
 
 export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderProps>((props, ref) => {
   const {
@@ -13,8 +15,9 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
     color,
     assistant,
     fullscreen,
-    question,
+    sessionTitle,
     className,
+    variant = 'default',
     onOpen,
     onClose,
     onFullScreen,
@@ -44,9 +47,10 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
       data-color={color}
       data-docked={docked}
       data-fullscreen={fullscreen}
+      data-variant={variant}
       {...rest}
     >
-      {fullscreen ? (
+      {fullscreen && variant === 'default' ? (
         <>
           <Button
             size="sm"
@@ -58,14 +62,14 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
           </Button>
           <div className="sk-ai-module-header-title">
             <Icon name="message-circle" />
-            <span className="sk-ai-module-header-heading-name">{question ? question : 'Ny fråga'}</span>
+            <span className="sk-ai-module-header-heading-name">{sessionTitle ? sessionTitle : 'Ny fråga'}</span>
           </div>
         </>
       ) : (
         <div className="sk-ai-module-header-title">
           <Avatar
             className="sk-ai-module-header-avatar"
-            size={docked ? 'md' : 'sm'}
+            size={variant === 'alt' ? 'lg' : docked ? 'md' : 'sm'}
             imageElement={typeof assistant.avatar !== 'string' ? assistant.avatar : undefined}
             imageUrl={typeof assistant.avatar === 'string' ? assistant.avatar : undefined}
             imageAlt=""
@@ -73,29 +77,30 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
           />
           <div className="sk-ai-module-header-heading">
             <span className="sk-ai-module-header-heading-name">{assistant.name}</span>
-            {assistant.title && docked && (
+            {assistant.title && (docked || variant === 'alt') && (
               <span className="sk-ai-module-header-heading-subtitle">{assistant.title}</span>
             )}
           </div>
         </div>
       )}
-
-      <div className="sk-ai-module-header-menu" role="menu">
-        {!docked && (
-          <Button
-            variant="tertiary"
-            size="sm"
-            inverted={!fullscreen}
-            iconButton
-            onClick={() => handleToggleFullscreen()}
-          >
-            <Icon name={fullscreen ? 'arrow-down-right' : 'arrow-up-left'} />
+      {variant === 'default' && (
+        <div className="sk-ai-module-header-menu" role="menu">
+          {!docked && (
+            <Button
+              variant="tertiary"
+              size="sm"
+              inverted={!fullscreen}
+              iconButton
+              onClick={() => handleToggleFullscreen()}
+            >
+              <Icon name={fullscreen ? 'arrow-down-right' : 'arrow-up-left'} />
+            </Button>
+          )}
+          <Button variant="tertiary" size="sm" inverted={!fullscreen} iconButton onClick={() => handleToggleOpen()}>
+            <Icon name={docked ? 'chevrons-up' : 'chevrons-down'} />
           </Button>
-        )}
-        <Button variant="tertiary" size="sm" inverted={!fullscreen} iconButton onClick={() => handleToggleOpen()}>
-          <Icon name={docked ? 'chevrons-up' : 'chevrons-down'} />
-        </Button>
-      </div>
+        </div>
+      )}
     </div>
   );
 });

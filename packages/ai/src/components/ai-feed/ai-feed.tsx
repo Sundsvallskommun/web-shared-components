@@ -1,12 +1,12 @@
 import { useForkRef } from '@sk-web-gui/utils';
 import React from 'react';
-import { useChat } from '../../hooks';
-import { ChatHistoryEntry } from '../../types';
+import { ChatHistory, ChatHistoryEntry } from '../../types';
 import { AIFeedAvatarMap } from '../../types/avatar';
 import { AIFeedEntry } from './ai-feed-entry';
 import { AIFeedWrapper } from './ai-feed-wrapper';
 
 export interface AIFeedProps extends React.ComponentPropsWithoutRef<'ul'> {
+  history: ChatHistory;
   showReferences?: boolean;
   avatars?: AIFeedAvatarMap;
   showFeedback?: boolean;
@@ -17,8 +17,7 @@ export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, re
   const [lastMessage, setLastMessage] = React.useState<ChatHistoryEntry | undefined>(undefined);
   const [lastOwnMessage, setLastOwnMessage] = React.useState<ChatHistoryEntry | undefined>(undefined);
   const internalRef = React.useRef<HTMLUListElement>(null);
-  const { showReferences = true, avatars, className, showFeedback = true, showTitles = true, ...rest } = props;
-  const { history } = useChat();
+  const { history, showReferences = true, avatars, className, showFeedback = true, showTitles = true, ...rest } = props;
 
   React.useEffect(() => {
     const latest = history.at(-1);

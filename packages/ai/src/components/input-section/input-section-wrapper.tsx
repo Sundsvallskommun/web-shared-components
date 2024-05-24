@@ -1,10 +1,15 @@
 import { cx } from '@sk-web-gui/utils';
 import React from 'react';
 
-export const InputSectionWrapper = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<'div'>>(
-  (props, ref) => {
-    const { className, ...rest } = props;
+interface InputSectionWrapperProps extends React.ComponentPropsWithoutRef<'div'> {
+  /**
+   * @default true
+   */
+  shadow?: boolean;
+}
 
-    return <div ref={ref} className={cx('sk-ai-inputsection-wrapper', className)} {...rest} />;
-  }
-);
+export const InputSectionWrapper = React.forwardRef<HTMLDivElement, InputSectionWrapperProps>((props, ref) => {
+  const { className, shadow = true, ...rest } = props;
+
+  return <div ref={ref} data-shadow={shadow} className={cx('sk-ai-inputsection-wrapper', className)} {...rest} />;
+});

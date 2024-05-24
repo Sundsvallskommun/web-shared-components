@@ -6,10 +6,15 @@ import { InputSectionButton } from './input-section-button';
 import { InputSectionInput } from './input-section-input';
 import { InputSectionWrapper } from './input-section-wrapper';
 
-export interface InputSectionProps extends React.ComponentPropsWithoutRef<'form'> {}
+export interface InputSectionProps extends React.ComponentPropsWithoutRef<'form'> {
+  /**
+   * @default true
+   */
+  shadow?: boolean;
+}
 
 export const InputSection = React.forwardRef<HTMLFormElement, InputSectionProps>((props, ref) => {
-  const { className, ...rest } = props;
+  const { className, shadow, ...rest } = props;
   const [query, setQuery] = React.useState<string>('');
 
   const { sendQuery } = useChat();
@@ -25,7 +30,7 @@ export const InputSection = React.forwardRef<HTMLFormElement, InputSectionProps>
 
   return (
     <form ref={ref} className={cx('sk-ai-inputsection', className)} onSubmit={handleSubmit} {...rest}>
-      <InputSectionWrapper>
+      <InputSectionWrapper shadow={shadow}>
         <InputSectionInput
           placeholder={`Skriv till ${info ? info.name : 'assistanten'}`}
           onChange={(e) => setQuery(e.target.value)}
