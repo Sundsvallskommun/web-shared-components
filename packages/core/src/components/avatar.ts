@@ -8,15 +8,15 @@ export const Avatar = (colors: string[]) => ({
       '@apply rounded-circular': {},
     },
     '&&-sm': {
-      '@apply h-[3.2rem] w-[3.2rem] min-h-[2.4rem] max-h-[3.2rem] min-w-[2.4rem] max-w-[3.2rem]': {},
+      '@apply h-32 w-32 min-h-24 max-h-32 min-w-24 max-w-32': {},
       '@apply text-label-small': {},
     },
     '&&-md': {
-      '@apply h-[4rem] w-[4rem] min-h-[3.2rem] max-h-[4rem] min-w-[3.2rem] max-w-[4rem]': {},
+      '@apply h-40 w-40 min-h-32 max-h-40 min-w-32 max-w-40': {},
       '@apply text-label-medium': {},
     },
     '&&-lg': {
-      '@apply h-[6.4rem] w-[6.4rem] min-h-[4rem] max-h-[6.4rem] min-w-[4rem] max-w-[6.4rem]': {},
+      '@apply h-64 w-64 min-h-40 max-h-64 min-w-40 max-w-64': {},
       '@apply text-label-large': {},
     },
     ...colors.reduce(

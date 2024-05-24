@@ -37,7 +37,7 @@ export const Switch = () => ({
       },
 
       '.sk-form-switch-box': {
-        transform: 'translateX(2.4rem)',
+        transform: 'translateX(var(--sk-spacing-24))',
       },
 
       '@apply bg-primitives-overlay-darken-4 dark:bg-primitives-overlay-lighten-5': {},
@@ -65,7 +65,7 @@ export const Switch = () => ({
       },
     },
 
-    width: '5.6rem',
+    '@apply w-56': {},
   },
 
   // Knob

@@ -20,7 +20,7 @@ export const Chip = React.forwardRef<HTMLButtonElement, ChipProps>((props, ref) 
       {...rest}
     >
       {children}
-      <Icon name="x" size="1.6rem" />
+      <Icon name="x" />
     </button>
   );
 });

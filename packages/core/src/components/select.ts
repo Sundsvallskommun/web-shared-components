@@ -19,7 +19,7 @@ function tertiary() {
         '@apply bg-right-8': {},
 
         //Padding + icon width - border width
-        '@apply pr-[3.2rem]': {},
+        '@apply pr-32': {},
       },
       '&.sk-form-select-md': {
         //Padding - border width
@@ -27,7 +27,7 @@ function tertiary() {
         //Background position - border width
         '@apply bg-right-12': {},
         //Padding + icon width - border width
-        '@apply pr-[4.2rem]': {},
+        '@apply pr-42': {},
       },
       '&.sk-form-select-lg': {
         //Padding - border width
@@ -35,7 +35,7 @@ function tertiary() {
         //Background position - border width
         '@apply bg-right-16': {},
         //Padding + icon width - border width
-        '@apply pr-[4.8rem]': {},
+        '@apply pr-48': {},
       },
       //Disabled
       '&[aria-disabled="true"]': {
@@ -60,11 +60,11 @@ function primary() {
 
       '&.sk-form-select-sm': {
         //Padding - border width
-        '@apply pl-[1.3rem]': {},
+        '@apply pl-13': {},
         //Background position - border width
-        '@apply bg-[center_right_0.9rem]': {},
+        '@apply bg-[center_right_0.643em]': {},
         //Padding + icon width - border width
-        '@apply pr-[3.3rem]': {},
+        '@apply pr-34-1': {},
 
         '&[aria-invalid="true"]': {
           //Padding - border width
@@ -72,16 +72,16 @@ function primary() {
           //Background position - border width
           '@apply bg-right-8': {},
           //Padding + icon width - border width
-          '@apply pr-[3.2rem]': {},
+          '@apply pr-32': {},
         },
       },
       '&.sk-form-select-md': {
         //Padding - border width
-        '@apply pl-[1.7rem]': {},
+        '@apply pl-17': {},
         //Background position - border width
-        '@apply bg-[center_right_1.3rem]': {},
+        '@apply bg-[center_right_0.8125em]': {},
         //Padding + icon width - border width
-        '@apply pr-[4.3rem]': {},
+        '@apply pr-44-1': {},
 
         '&[aria-invalid="true"]': {
           //Padding - border width
@@ -89,16 +89,16 @@ function primary() {
           //Background position - border width
           '@apply bg-right-12': {},
           //Padding + icon width - border width
-          '@apply pr-[4.2rem]': {},
+          '@apply pr-42': {},
         },
       },
       '&.sk-form-select-lg': {
         //Padding - border width
-        '@apply pl-[1.9rem]': {},
+        '@apply pl-19': {},
         //Background position - border width
-        '@apply bg-[center_right_1.7rem]': {},
+        '@apply bg-[center_right_0.944em]': {},
         //Padding + icon width - border width
-        '@apply pr-[4.9rem]': {},
+        '@apply pr-50-1': {},
 
         '&[aria-invalid="true"]': {
           //Padding - border width
@@ -106,7 +106,7 @@ function primary() {
           //Background position - border width
           '@apply bg-right-16': {},
           //Padding + icon width - border width
-          '@apply pr-[4.8rem]': {},
+          '@apply pr-48': {},
         },
       },
       //Disabled
@@ -167,7 +167,7 @@ export const Select = () => ({
     },
 
     '&-sm': {
-      '@apply h-[3.2rem]': {},
+      '@apply h-32': {},
       '@apply text-label-small': {},
       '@apply rounded-button-sm': {},
       '*': {
@@ -175,7 +175,7 @@ export const Select = () => ({
       },
     },
     '&-md': {
-      '@apply h-[4rem]': {},
+      '@apply h-40': {},
       '@apply text-label-medium': {},
       '@apply rounded-button-md': {},
       '*': {
@@ -183,7 +183,7 @@ export const Select = () => ({
       },
     },
     '&-lg': {
-      '@apply h-[4.8rem]': {},
+      '@apply h-48': {},
       '@apply text-label-large': {},
       '@apply rounded-button-lg': {},
       '*': {

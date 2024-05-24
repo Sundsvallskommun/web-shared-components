@@ -1,7 +1,7 @@
 export const Snackbar = () => ({
   '.sk-snackbar': {
-    '@apply flex items-center gap-12 py-8 pl-16 pr-8 rounded-groups break-words max-w-[40rem]': {},
     '@apply text-label-small text-vattjom-text-secondary': {},
+    '@apply flex items-center gap-12 py-8 pl-16 pr-8 rounded-groups break-words max-w-[28.6em]': {},
 
     '&-text': {
       '@apply flex-grow': {},

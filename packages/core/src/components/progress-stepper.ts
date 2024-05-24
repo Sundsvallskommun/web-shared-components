@@ -2,7 +2,7 @@ export const ProgressStepper = () => ({
   '.sk-progress-stepper': {
     '@apply flex justify-between': {},
     hr: {
-      '@apply w-full mt-[1.9rem]': {},
+      '@apply w-full mt-19': {},
     },
     '&-step': {
       '@apply flex flex-col items-center': {},
@@ -16,13 +16,13 @@ export const ProgressStepper = () => ({
       '&-wrapper': {
         '@apply flex flex-row shrink w-full gap-4': {},
         hr: {
-          '@apply w-full grow shrink mt-[1.9rem]': {},
+          '@apply w-full grow shrink mt-19': {},
         },
       },
       '&-box': {
         '@apply box-border': {},
         '@apply shrink-0': {},
-        '@apply h-[4rem] w-[4rem]': {},
+        '@apply h-40 w-40': {},
         '@apply bg-secondary-surface': {},
         '@apply flex justify-center items-center': {},
         '@apply text-label-medium': {},
@@ -34,11 +34,11 @@ export const ProgressStepper = () => ({
         },
 
         '&&-sm': {
-          '@apply h-[3.2rem] w-[3.2rem] min-h-[2.4rem] max-h-[3.2rem] min-w-[2.4rem] max-w-[3.2rem]': {},
+          '@apply h-32 w-32 min-h-24 max-h-32 min-w-24 max-w-32': {},
           '@apply text-label-small': {},
         },
         '&&-md': {
-          '@apply h-[4rem] w-[4rem] min-h-[3.2rem] max-h-[4rem] min-w-[3.2rem] max-w-[4rem]': {},
+          '@apply h-40 w-40 min-h-32 max-h-40 min-w-32 max-w-40': {},
         },
       },
       '&[data-progress="current"]': {

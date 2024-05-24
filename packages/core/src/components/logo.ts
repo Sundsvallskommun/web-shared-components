@@ -16,10 +16,10 @@ export const Logo = () => ({
     '&[data-variant="service"]': {
       '@apply flex-row gap-6': {},
       '@apply w-max': {},
-      '@apply h-[6rem]': {},
+      '@apply h-60': {},
       '@apply pb-4': {},
       '.sk-logo-figure': {
-        '@apply w-auto h-[5.6rem]': {},
+        '@apply w-auto h-56': {},
       },
     },
     'a:focus-within &': {
@@ -37,7 +37,7 @@ export const Logo = () => ({
       '@apply pl-2 pt-2 pr-8 pb-0': {},
     },
     '&-title': {
-      '@apply text-[2.2rem] leading-[2.8rem] font-header font-bold': {},
+      '@apply font-header text-logo-header': {},
     },
     '&-subtitle': {
       '@apply text-small font-normal block': {},

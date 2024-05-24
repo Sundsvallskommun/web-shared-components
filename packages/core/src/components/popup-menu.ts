@@ -5,7 +5,7 @@ export const PopupMenu = () => ({
       '@apply flex': {},
     },
     '&[data-position="left"]': {
-      '@apply mt-0 mr-8 right-[100%]': {},
+      '@apply mt-0 mr-8 right-full': {},
       '&[data-align="end"]': {
         '@apply bottom-0': {},
       },
@@ -14,7 +14,7 @@ export const PopupMenu = () => ({
       },
     },
     '&[data-position="right"]': {
-      '@apply mt-0 ml-8 left-[100%]': {},
+      '@apply mt-0 ml-8 left-full': {},
       '&[data-align="end"]': {
         '@apply bottom-0': {},
       },
@@ -23,7 +23,7 @@ export const PopupMenu = () => ({
       },
     },
     '&[data-position="over"]': {
-      '@apply mt-0 mb-8 bottom-[100%]': {},
+      '@apply mt-0 mb-8 bottom-full': {},
       '&[data-align="end"]': {
         '@apply right-0': {},
       },
@@ -62,8 +62,8 @@ export const PopupMenu = () => ({
     '.sk-popup-menu-item': {
       '@apply list-none': {},
       '@apply w-full': {},
-      '@apply h-[4rem]': {},
-      '@apply min-h-[4rem]': {},
+      '@apply h-40': {},
+      '@apply min-h-40': {},
       '@apply bg-transparent hover:bg-primitives-gray-200': {},
       '@apply dark:hover:bg-primitives-overlay-lighten-1': {},
       '@apply cursor-pointer': {},
@@ -81,7 +81,7 @@ export const PopupMenu = () => ({
         '@apply dark:bg-primitives-overlay-lighten-1': {},
       },
       svg: {
-        '@apply w-[2rem] h-[2rem]': {},
+        '@apply w-20 h-20': {},
       },
 
       '@apply justify-start': {},
@@ -123,8 +123,8 @@ export const PopupMenu = () => ({
       '@apply p-8 gap-6': {},
 
       '.sk-popup-menu-item': {
-        '@apply h-[3.2rem]': {},
-        '@apply min-h-[3.2rem]': {},
+        '@apply h-32': {},
+        '@apply min-h-32': {},
         '@apply gap-10 pl-8 pr-8 py-4': {},
 
         '@apply text-small': {},
@@ -135,7 +135,7 @@ export const PopupMenu = () => ({
           },
         },
         svg: {
-          '@apply w-[1.8rem] h-[1.8rem]': {},
+          '@apply w-18 h-18': {},
         },
       },
     },

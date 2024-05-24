@@ -191,30 +191,30 @@ export const Button = (colors: string[]) => ({
     '&-sm': {
       '@apply text-label-small': {},
       '@apply px-14 py-8 gap-6': {},
-      '@apply max-h-[3.2rem] h-[3.2rem]': {},
+      '@apply max-h-32 h-32': {},
       '@apply rounded-button-sm': {},
       'svg, .sk-icon': {
-        '@apply h-[1.6rem] w-[1.6rem]': {},
+        '@apply h-16 w-16': {},
       },
     },
 
     '&-md': {
       '@apply text-label-medium': {},
       '@apply px-18 py-8 gap-8': {},
-      '@apply max-h-[4rem] h-[4rem]': {},
+      '@apply max-h-40 h-40': {},
       '@apply rounded-button-md': {},
       'svg, .sk-icon': {
-        '@apply h-[1.8rem] w-[1.8rem]': {},
+        '@apply h-18 w-18': {},
       },
     },
 
     '&-lg': {
       '@apply text-label-large': {},
       '@apply px-24 py-8 gap-8': {},
-      '@apply max-h-[4.8rem] h-[4.8rem]': {},
+      '@apply max-h-48 h-48': {},
       '@apply rounded-button-lg': {},
       'svg, .sk-icon': {
-        '@apply h-[2rem] w-[2rem]': {},
+        '@apply h-20 w-20': {},
       },
     },
 
@@ -274,29 +274,25 @@ export const Button = (colors: string[]) => ({
       },
 
       '&.sk-btn-sm': {
-        minWidth: '3.2rem',
-        width: '3.2rem',
-        maxWidth: '3.2rem',
+        '@apply w-32 min-w-32 max-w-32': {},
         'svg, .sk-icon': {
-          '@apply h-[2rem] w-[2rem]': {},
+          '@apply h-20 w-20': {},
         },
       },
 
       '&.sk-btn-md': {
-        minWidth: '4rem',
-        width: '4rem',
-        maxWidth: '4rem',
+        '@apply w-40 min-w-40 max-w-40': {},
+
         'svg, .sk-icon': {
-          '@apply h-[2rem] w-[2rem]': {},
+          '@apply h-20 w-20': {},
         },
       },
 
       '&.sk-btn-lg': {
-        minWidth: '4.8rem',
-        width: '4.8rem',
-        maxWidth: '4.8rem',
+        '@apply w-48 min-w-48 max-w-48': {},
+
         'svg, .sk-icon': {
-          '@apply h-[2.4rem] w-[2.4rem]': {},
+          '@apply h-24 w-24': {},
         },
       },
       '.btn-has-icon': {

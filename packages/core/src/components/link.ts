@@ -4,11 +4,11 @@ export const Link = () => ({
     '@apply rounded-utility': {},
 
     // focus
-    '@apply focus-visible:ring ring-offset-[.6rem]': {},
+    '@apply focus-visible:ring ring-offset-6': {},
 
     // sizes
     '&-sm': {
-      '@apply text-small leading-[2rem]': {},
+      '@apply text-small': {},
     },
     '&-md': {
       '@apply text-base': {},
@@ -17,7 +17,7 @@ export const Link = () => ({
       '@apply text-large': {},
     },
     '&-xl': {
-      '@apply text-lead leading-[3.2rem]': {},
+      '@apply text-lead': {},
     },
 
     // variants

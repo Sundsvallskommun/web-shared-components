@@ -13,7 +13,7 @@ export const Tooltip = () => ({
       '@apply font-bold': {},
       '@apply w-fit h-fit': {},
       '@apply grow-0': {},
-      '@apply min-h-[3.4rem]': {},
+      '@apply min-h-34': {},
     },
 
     //Arrow
@@ -26,7 +26,7 @@ export const Tooltip = () => ({
       '@apply flex-col': {},
       '@apply pb-2': {},
       '&::after': {
-        '@apply content-[""] border-solid border-[0.6rem] border-b-0': {},
+        '@apply content-[""] border-solid border-6 border-b-0': {},
         '@apply border-t-primary-surface border-r-transparent border-b-transparent border-l-transparent': {},
       },
     },
@@ -36,7 +36,7 @@ export const Tooltip = () => ({
       '@apply flex-col': {},
       '@apply pt-2': {},
       '&::before': {
-        '@apply content-[""] border-solid border-[0.6rem] border-t-0': {},
+        '@apply content-[""] border-solid border-6 border-t-0': {},
         '@apply border-t-transparent border-r-transparent border-b-primary-surface border-l-transparent': {},
       },
     },
@@ -44,9 +44,9 @@ export const Tooltip = () => ({
     // Left
     '&[data-position="left"]': {
       '@apply flex-row': {},
-      '@apply pr-2 py-[0.3rem]': {},
+      '@apply pr-2 py-3': {},
       '&::after': {
-        '@apply content-[""] border-solid border-[0.6rem] border-r-0': {},
+        '@apply content-[""] border-solid border-6 border-r-0': {},
         '@apply border-t-transparent border-r-transparent border-b-transparent border-l-primary-surface': {},
       },
     },
@@ -54,9 +54,9 @@ export const Tooltip = () => ({
     // Right
     '&[data-position="right"]': {
       '@apply flex-row': {},
-      '@apply pl-2 py-[0.3rem]': {},
+      '@apply pl-2 py-3': {},
       '&::before': {
-        '@apply content-[""] border-solid border-[0.6rem] border-l-0': {},
+        '@apply content-[""] border-solid border-6 border-l-0': {},
         '@apply border-t-transparent border-r-primary-surface border-b-transparent border-l-transparent': {},
       },
     },

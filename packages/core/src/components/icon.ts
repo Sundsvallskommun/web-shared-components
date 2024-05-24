@@ -9,7 +9,7 @@ export const Icon = (colors: string[]) => ({
     '&.sk-icon-padded': {
       '@apply rounded-utility': {},
       '@apply text-light-primary fill-light-primary': {},
-      '@apply p-[0.4rem]': {},
+      '@apply p-4': {},
 
       ...colors.reduce(
         (styles, color) => ({

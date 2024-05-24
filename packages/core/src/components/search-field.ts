@@ -16,17 +16,17 @@ export const SearchField = () => ({
   '.sk-search-field': {
     '&-md': {
       '.sk-search-field-icon': {
-        '@apply w-[2rem] h-[2rem]': {},
+        '@apply w-20 h-20': {},
         svg: {
-          '@apply w-[2rem] h-[2rem]': {},
+          '@apply w-20 h-20': {},
         },
       },
     },
     '&-lg': {
       '.sk-search-field-icon': {
-        '@apply w-[2.2rem] h-[2.2rem]': {},
+        '@apply w-22 h-22': {},
         svg: {
-          '@apply w-[2.2rem] h-[2.2rem]': {},
+          '@apply w-22 h-22': {},
         },
       },
     },
