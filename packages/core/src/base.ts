@@ -20,7 +20,7 @@ const _base = {
   small: {
     '@apply text-small': {},
   },
-  a: { '@apply rounded-button-sm md:rounded-button-md xl:rounded-button-lg': {} },
+  a: { '@apply rounded-button-md': {} },
   h1: {
     '@apply text-h1-sm md:text-h1-md xl:text-h1-lg': {},
     '@apply mb-md': {},
@@ -34,9 +34,7 @@ const _base = {
   'h4,h5,h6': {
     '@apply text-h4-sm md:text-h4-md xl:text-h4-lg': {},
   },
-  label: {
-    '@apply text-label-medium': {},
-  },
+
   p: { '@apply my-4': {} },
 
   '.text-content': {
