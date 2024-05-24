@@ -46,20 +46,21 @@ const theme: RecursiveObject<Config['theme'] | string | string[]> = {
     },
     boxShadow: {
       '50': `
-      0 0 var(--sk-spacing-3) 0 rgba(10, 12, 15, 0.08),
-      0 var(--sk-spacing-1) var(--sk-spacing-8) 0 rgba(10, 12, 15, 0.13)
+      0 0 3px 0 rgba(10, 12, 15, 0.08),
+      0 1px 8px 0 rgba(10, 12, 15, 0.13)
       `,
       '100': `
-        0 var(--sk-spacing-6) var(-sk-spacing-16) 0 rgba(13,13,14, 0.07),
-        0 var var(--sk-spacing-12) 0 rgba(13,13,14, 0.15),
-        0 var(--sk-spacing-0.75) var(--sk-spacing-2) 0 rgba(13,13,14, 0.085),
-        0 var(--sk-spacing-0.25) var(--sk-spacing-0.75) 0 rgba(13,13,14, 0.0583)
+        0 6px 16px 0 rgba(13,13,14, 0.07),
+        0 1.81px 12px 0 rgba(13,13,14, 0.15),
+        0 0.75px 2px 0 rgba(13,13,14, 0.085),
+        0 0.27px 0.72px 0 rgba(13,13,14, 0.0583)
       `,
       '200': `
-        0 var(--sk-spacing-15) var(--sk-spacing-28) 0 rgba(13,13,14, 0.1),
-        0 var(--sk-spacing-46) var(--sk-spacing-12) 0 rgba(13,13,14, 0.06),
-        0 var(--sk-spacing-2) var(--sk-spacing-4) 0 rgba(13,13,14, 0.03),
-        0 var(--sk-spacing-0.75) var(--sk-spacing-1) 0 rgba(13,13,14, 0.02)
+        0 0 2px 0 rgba(13,13,14, 0.15),
+        0 15px 27px 0 rgba(13,13,14, 0.1),
+        0 4.52px 8.14px 0 rgba(13,13,14, 0.06),
+        0 1.88px 3.38px 0 rgba(13,13,14, 0.03),
+        0 0.68px 1.22px 0 rgba(13,13,14, 0.02)
       `,
       insetring: `0 0 0 0.25rem ${colors.ring} inset`,
     },

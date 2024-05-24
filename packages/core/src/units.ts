@@ -49,6 +49,7 @@ const _units = {
     '68': 'var(--sk-spacing-68)',
     '72': 'var(--sk-spacing-72)',
     '80': 'var(--sk-spacing-80)',
+    '90': 'var(--sk-spacing-90)',
     '100': 'var(--sk-spacing-100)',
   },
 
