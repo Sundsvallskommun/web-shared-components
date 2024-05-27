@@ -24,7 +24,7 @@ export const Divider = () => ({
           '@apply gap-8': {},
         },
         '.sk-divider-text': {
-          '@apply text-label-small': {},
+          '@apply text-h4-sm': {},
         },
       },
     },
@@ -34,7 +34,7 @@ export const Divider = () => ({
           '@apply gap-10': {},
         },
         '.sk-divider-text': {
-          '@apply text-label-medium': {},
+          '@apply text-h4-md': {},
         },
       },
     },
@@ -44,7 +44,7 @@ export const Divider = () => ({
           '@apply gap-12': {},
         },
         '.sk-divider-text': {
-          '@apply text-label-large': {},
+          '@apply text-h4-lg': {},
         },
       },
     },
