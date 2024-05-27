@@ -12,6 +12,9 @@ export const AIModule = (colors: string[]) => ({
       '&-row': {
         '@apply flex flex-col': {},
       },
+      '&-main': {
+        '@apply grow items-center': {},
+      },
     },
 
     '&-sidebar': {
@@ -43,8 +46,12 @@ export const AIModule = (colors: string[]) => ({
       '@apply w-full h-full': {},
       '.sk-ai-module-feed': {
         '@apply gap-40 grow w-full items-center': {},
+        '@apply text-base max-w-[50em]': {},
         '&-questions': {
           '@apply flex-row gap-16': {},
+        },
+        '.sk-ai-inputsection': {
+          '@apply text-base max-w-[50em]': {},
         },
       },
     },

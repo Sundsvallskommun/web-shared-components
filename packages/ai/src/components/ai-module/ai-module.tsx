@@ -131,7 +131,7 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
             </div>
           </div>
         )}
-        <div className="sk-ai-module-content-row">
+        <div className="sk-ai-module-content-row sk-ai-module-content-main">
           <AIModuleHeader
             docked={docked}
             fullscreen={fullscreen}
