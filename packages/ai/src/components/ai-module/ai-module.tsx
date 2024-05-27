@@ -29,6 +29,7 @@ export interface AIModuleProps extends AIModuleDefaultProps, React.ComponentProp
   questionsTitle?: string;
   sessionHistory?: SessionHistory;
   onChangeSession?: (sessionId: string) => void;
+  onSelectQuestion?: (question: string) => void;
 }
 
 export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, ref) => {
@@ -50,6 +51,7 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
     questions,
     questionsTitle,
     sessionHistory,
+    onSelectQuestion,
     ...rest
   } = props;
 
@@ -154,7 +156,14 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
                       <div className="sk-ai-module-feed-questions-wrapper">
                         {questionsTitle && <div className="sk-ai-module-feed-questions-title">{questionsTitle}</div>}
                         <div className="sk-ai-module-feed-questions">
-                          {questions?.map((question, index) => <Bubble key={`q-bubble-${index}`}>{question}</Bubble>)}
+                          {questions?.map((question, index) => (
+                            <Bubble
+                              key={`q-bubble-${index}`}
+                              onClick={() => onSelectQuestion && onSelectQuestion(question)}
+                            >
+                              {question}
+                            </Bubble>
+                          ))}
                         </div>
                       </div>
                     )}
