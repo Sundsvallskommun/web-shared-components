@@ -2597,6 +2597,14 @@
     "@sk-web-gui/theme" "1.1.0"
     "@sk-web-gui/utils" "1.1.0"
 
+"@sk-web-gui/divider@1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@sk-web-gui/divider/-/divider-1.0.5.tgz#e2a7cfb336029d74a7d78bcc87bac5477ddc1471"
+  integrity sha512-Yoa43kew2BZZoTua6jeVnD9etiyOKSZZQXLZtEmuBDRBd+EJB+Yv5aXE9k53GUX2t6XsbqWRppH5Or+4vPBg5A==
+  dependencies:
+    "@sk-web-gui/theme" "2.0.0"
+    "@sk-web-gui/utils" "2.0.0"
+
 "@sk-web-gui/forms@1.1.3":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@sk-web-gui/forms/-/forms-1.1.3.tgz#711dc66250ecc896e3c70e1a1cd4e31af28eb74c"
@@ -2648,6 +2656,14 @@
     "@sk-web-gui/utils" "1.1.0"
     lodash.set "^4.3.2"
 
+"@sk-web-gui/theme@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@sk-web-gui/theme/-/theme-2.0.0.tgz#bd4475809599bdb0a07d57a057f3c75639014667"
+  integrity sha512-7ZbXFGRokye9+bzORAM2TBH6Xm1SPXoecLc7De9HwtElLWesXCEECjjyFTG89dJ9ix0oll/F27819a8H+VkR9Q==
+  dependencies:
+    "@sk-web-gui/utils" "2.0.0"
+    lodash.set "^4.3.2"
+
 "@sk-web-gui/utils@1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@sk-web-gui/utils/-/utils-1.1.0.tgz#538f21442517cbf6e8c02c00a8de72a480574e7f"
@@ -2656,6 +2672,15 @@
     clsx "^1.2.1"
     color-string "^1.9.1"
     usehooks-ts "^2.12.0"
+
+"@sk-web-gui/utils@2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@sk-web-gui/utils/-/utils-2.0.0.tgz#feac5f4f0bb3765dfd41c7f8ff8f94e5357419ed"
+  integrity sha512-g6tvB7O5w4YE/iay5v5APiiNcq90KTQArcPakU4yGEsOLv/ib30xVKzCd2e/rnqBxdhmX6lCX/CHzxEvQkVStQ==
+  dependencies:
+    clsx "^2.1.1"
+    color-string "^1.9.1"
+    usehooks-ts "^3.1.0"
 
 "@storybook/addon-a11y@^8.0.9":
   version "8.1.3"
@@ -9787,6 +9812,7 @@ prelude-ls@^1.2.1:
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
 "prettier-fallback@npm:prettier@^3", prettier@^3.1.1, prettier@^3.2.5:
+  name prettier-fallback
   version "3.2.5"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.2.5.tgz#e52bc3090586e824964a8813b09aba6233b28368"
   integrity sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==
