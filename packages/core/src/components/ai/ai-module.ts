@@ -1,6 +1,6 @@
 export const AIModule = (colors: string[]) => ({
   '.sk-ai-module': {
-    '@apply absolute': {},
+    '@apply fixed': {},
     '@apply flex flex-col gap-0 items-center justify-start': {},
     '@apply shadow-200': {},
     '@apply overflow-hidden': {},
