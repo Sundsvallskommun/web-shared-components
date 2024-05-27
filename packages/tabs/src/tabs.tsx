@@ -1,10 +1,10 @@
 import { MenuBar } from '@sk-web-gui/menubar';
 import { __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
 import React, { useId } from 'react';
-import { TabsContext } from './tabs-context';
 import { TabsButton } from './tabs-button';
-import { TabsItem } from './tabs-item';
 import { TabsContent } from './tabs-content';
+import { TabsContext } from './tabs-context';
+import { TabsItem } from './tabs-item';
 
 export interface TabsComponentProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'> {
   color?: React.ComponentProps<typeof MenuBar>['color'];
@@ -13,6 +13,7 @@ export interface TabsComponentProps extends Omit<React.HTMLAttributes<HTMLDivEle
   onTabChange?: (index: number) => void;
   tabslistClassName?: string;
   panelsClassName?: string;
+  size?: 'sm' | 'md' | 'lg';
 }
 
 export const TabsComponent = React.forwardRef<HTMLDivElement, TabsComponentProps>((props, ref) => {
@@ -26,6 +27,7 @@ export const TabsComponent = React.forwardRef<HTMLDivElement, TabsComponentProps
     children,
     id: _id,
     onTabChange,
+    size,
     ...rest
   } = props;
   const [current, setCurrent] = React.useState<number>(_current);
@@ -57,6 +59,7 @@ export const TabsComponent = React.forwardRef<HTMLDivElement, TabsComponentProps
           id: buttonComponent.props.id || `${id}-tab-${index}`,
           'aria-controls': contentComponent?.props?.id || `${id}-panel-${index}`,
           menuIndex: index,
+          size: size,
           ...buttonComponent.props,
         });
         return <MenuBar.Item key={`button-${index}`}>{newButton}</MenuBar.Item>;
