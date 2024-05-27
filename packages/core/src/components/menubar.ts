@@ -24,7 +24,6 @@ export const MenuBar = (colors: string[]) => ({
         '@apply font-bold': {},
         '@apply gap-2 px-14 py-8': {},
         '@apply h-full min-h-full': {},
-        '@apply leading-base': {},
         '@apply inline-flex shrink-0 flex-nowrap': {},
 
         '@apply border-0': {},
