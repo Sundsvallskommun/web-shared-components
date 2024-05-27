@@ -54,8 +54,7 @@ export const useAssistantStore = createWithEqualityFn(
  * Set the name of the assistant store.
  * This should be unique.
  * Leave name empty to create an auto id name.
- * @param name
- * @type string
+ * @param {string} name - Name of the assistant store
  */
 export const setAssistantStoreName = (name?: string) => {
   const autoId = crypto.randomUUID();
