@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.8](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/avatar@1.0.7...@sk-web-gui/avatar@1.0.8) (2024-05-27)
+
+### Bug Fixes
+
+- **avatar:** Removed background color when using image ([82ac603](https://github.com/Sundsvallskommun/web-shared-components/commit/82ac603e2f25886bd91657c653341c6ba454c5a3))
+
 ## [1.0.7](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/avatar@1.0.6...@sk-web-gui/avatar@1.0.7) (2024-05-24)
 
 ### Bug Fixes

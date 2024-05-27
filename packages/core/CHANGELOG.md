@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.0.1...@sk-web-gui/core@3.1.0) (2024-05-27)
+
+### Bug Fixes
+
+- **ai:** AI module position fixed ([d117ead](https://github.com/Sundsvallskommun/web-shared-components/commit/d117ead36d61222724d126ffa083eacb23bea28e))
+- **avatar:** Removed background color when using image ([82ac603](https://github.com/Sundsvallskommun/web-shared-components/commit/82ac603e2f25886bd91657c653341c6ba454c5a3))
+- **divider:** updated font sizes ([0e87bd6](https://github.com/Sundsvallskommun/web-shared-components/commit/0e87bd6bdada8228f6dfa6be4fa4c8a9a8eec499))
+- **theme:** updated units ([6fb6b17](https://github.com/Sundsvallskommun/web-shared-components/commit/6fb6b177e4d4f1a60b168c261918060efc0918ea))
+
+### Features
+
+- added bubble and feed components ([c481b7b](https://github.com/Sundsvallskommun/web-shared-components/commit/c481b7b0fdae2d58ebcf794c0d0126a03e858cbb))
+- **ai:** added AI Module components ([c964127](https://github.com/Sundsvallskommun/web-shared-components/commit/c964127f5e0155e8f55aee76cf52a75ff853636f))
+
 ## [3.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.0.0...@sk-web-gui/core@3.0.1) (2024-05-24)
 
 ### Bug Fixes

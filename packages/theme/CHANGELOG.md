@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@2.1.0...@sk-web-gui/theme@2.1.1) (2024-05-27)
+
+### Bug Fixes
+
+- **theme:** updated units ([6fb6b17](https://github.com/Sundsvallskommun/web-shared-components/commit/6fb6b177e4d4f1a60b168c261918060efc0918ea))
+
 # [2.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@2.0.0...@sk-web-gui/theme@2.1.0) (2024-05-24)
 
 ### Bug Fixes
