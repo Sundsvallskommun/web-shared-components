@@ -8,6 +8,7 @@ import { AIModuleHeader } from './ai-module-header';
 import { AIModuleWrapper } from './ai-module-wrapper';
 import { addDays, format } from 'date-fns';
 import { AIModuleSessionHistory } from './ai-module-session-history';
+import { Avatar } from '@sk-web-gui/avatar';
 
 export interface AIModuleDefaultProps {
   history?: ChatHistory;
@@ -55,6 +56,13 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
   const [docked, setDocked] = React.useState<boolean>(true);
   const [fullscreen, setFullscreen] = React.useState<boolean>(false);
 
+  const assistantAvatar = (
+    <Avatar
+      imageElement={typeof assistant.avatar !== 'string' ? assistant.avatar : undefined}
+      imageUrl={typeof assistant.avatar === 'string' ? assistant.avatar : undefined}
+      initials={assistant.shortName}
+    />
+  );
   React.useEffect(() => {
     if (typeof _docked === 'boolean') {
       setDocked(_docked);
@@ -152,7 +160,14 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
                     )}
                   </>
                 ) : (
-                  <AIFeed history={history} />
+                  <AIFeed
+                    history={history}
+                    avatars={{
+                      user: <Avatar initials="DU" color="bjornstigen" />,
+                      assistant: assistantAvatar,
+                      system: assistantAvatar,
+                    }}
+                  />
                 )}
               </div>
               <InputSection shadow={!fullscreen} />
