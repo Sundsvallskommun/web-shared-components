@@ -1,19 +1,20 @@
 export const AIModule = (colors: string[]) => ({
   '.sk-ai-module': {
     '@apply fixed': {},
+    '@apply overflow-hidden': {},
     '@apply flex flex-col gap-0 items-center justify-start': {},
     '@apply shadow-200': {},
-    '@apply overflow-hidden': {},
     '@apply transition-all': {},
     '@apply bottom-0 right-0': {},
 
     '&-content': {
       '@apply flex w-full gap-0 h-full justify-between': {},
+      '@apply overflow-hidden': {},
       '&-row': {
         '@apply flex flex-col': {},
       },
       '&-main': {
-        '@apply grow items-center': {},
+        '@apply grow shrink max-h-full items-center': {},
       },
     },
 
@@ -27,6 +28,7 @@ export const AIModule = (colors: string[]) => ({
     '&-feed': {
       '@apply flex flex-col grow': {},
       '@apply px-16 pt-16 pb-24 gap-16': {},
+      '@apply max-h-full overflow-y-auto': {},
       '&-questions': {
         '@apply flex flex-col gap-8 w-full': {},
         '&-title': {
@@ -37,28 +39,39 @@ export const AIModule = (colors: string[]) => ({
         },
       },
     },
-
+    '.sk-ai-inputsection': {
+      '@apply shrink-0': {},
+    },
     '&[data-fullscreen="false"]': {
       '@apply rounded-tl-groups': {},
       '@apply max-w-[26em]': {},
+      '@apply max-h-[39.5em]': {},
+      '&[data-docked="false"]': {
+        '@apply w-[26em]': {},
+        '@apply h-full': {},
+      },
     },
     '&[data-fullscreen="true"]': {
       '@apply w-full h-full': {},
       '.sk-ai-module-feed': {
         '@apply gap-40 grow w-full items-center': {},
-        '@apply text-base max-w-[50em]': {},
+        '.sk-ai-feed': {
+          '@apply text-base max-w-[50em]': {},
+        },
         '&-questions': {
           '@apply flex-row gap-16': {},
         },
-        '.sk-ai-inputsection': {
-          '@apply text-base max-w-[50em]': {},
-        },
+      },
+      '.sk-ai-inputsection': {
+        '@apply text-base max-w-[50em]': {},
+        '@apply pt-20 pb-32': {},
       },
     },
 
     '&-header': {
       '@apply flex items-center justify-between': {},
       '@apply w-full': {},
+      '@apply shrink-0': {},
       '@apply px-14 py-16': {},
       '@apply transition-all': {},
       '@apply bg-inverted-background-content': {},

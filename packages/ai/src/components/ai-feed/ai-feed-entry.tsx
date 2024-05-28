@@ -19,6 +19,9 @@ interface AIFeedEntryProps extends React.ComponentPropsWithoutRef<'li'> {
   loadingMessage?: string;
   loadingComponent?: React.ReactNode;
   showFeedback?: boolean;
+  sessionId?: string;
+  onGiveFeedback?: () => void;
+  size?: 'sm' | 'lg';
 }
 
 export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((props, ref) => {
@@ -31,8 +34,11 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
     loadingMessage = 'Inväntar svar',
     showReferences,
     referenceTitle = 'Kunskapskällor',
-    showFeedback = true,
+    showFeedback = false,
     loadingComponent = <TypingBubble />,
+    sessionId,
+    onGiveFeedback,
+    size,
     ...rest
   } = props;
   const info = useAssistantStore((state) => state.info);
@@ -52,7 +58,7 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
 
   return (
     <>
-      <li ref={ref} className={cx('sk-ai-feed-entry', className)} data-origin={entry.origin} {...rest}>
+      <li ref={ref} className={cx('sk-ai-feed-entry', className)} data-origin={entry.origin} data-size={size} {...rest}>
         <div className="sk-ai-feed-entry-avatar" aria-hidden="true">
           {avatar}
         </div>
@@ -92,7 +98,9 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
               </ul>
             </Disclosure>
           ) : null}
-          {showFeedback && entry.origin === 'assistant' && done && <Feedback entry={entry} />}
+          {showFeedback && entry.origin === 'assistant' && done && (
+            <Feedback sessionId={sessionId} onGiveFeedback={onGiveFeedback} />
+          )}
         </div>
       </li>
       <span className="sr-only" aria-live="polite">
