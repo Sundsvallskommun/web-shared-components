@@ -29,6 +29,10 @@ export interface AIModuleProps extends AIModuleDefaultProps, React.ComponentProp
   questionsTitle?: string;
   sessionHistory?: SessionHistory;
   onChangeSession?: (sessionId: string) => void;
+  /**
+   * @default true
+   */
+  showFeedback: boolean;
 }
 
 export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, ref) => {
@@ -50,19 +54,37 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
     questions,
     questionsTitle,
     sessionHistory,
+    showFeedback = true,
     ...rest
   } = props;
 
   const [docked, setDocked] = React.useState<boolean>(true);
   const [fullscreen, setFullscreen] = React.useState<boolean>(false);
 
+  const scrollRef = React.useRef<HTMLDivElement>(null);
+
   const assistantAvatar = (
     <Avatar
       imageElement={typeof assistant.avatar !== 'string' ? assistant.avatar : undefined}
       imageUrl={typeof assistant.avatar === 'string' ? assistant.avatar : undefined}
       initials={assistant.shortName}
+      size={fullscreen ? 'md' : 'sm'}
     />
   );
+  const userAvatar = <Avatar initials="DU" color="bjornstigen" size={fullscreen ? 'md' : 'sm'} />;
+
+  const handleAutoScroll = () => {
+    setTimeout(() => {
+      if (scrollRef.current) {
+        scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+      }
+    }, 10);
+  };
+
+  React.useEffect(() => {
+    handleAutoScroll();
+  }, [history, docked, fullscreen]);
+
   React.useEffect(() => {
     if (typeof _docked === 'boolean') {
       setDocked(_docked);
@@ -146,7 +168,7 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
           />
           {!docked && (
             <>
-              <div className="sk-ai-module-feed">
+              <div className="sk-ai-module-feed" ref={scrollRef}>
                 {!history || history.length < 1 ? (
                   <>
                     <AssistantPresentation size={fullscreen ? 'lg' : 'sm'} assistant={assistant} />
@@ -154,7 +176,9 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
                       <div className="sk-ai-module-feed-questions-wrapper">
                         {questionsTitle && <div className="sk-ai-module-feed-questions-title">{questionsTitle}</div>}
                         <div className="sk-ai-module-feed-questions">
-                          {questions?.map((question, index) => <Bubble key={`q-bubble-${index}`}>{question}</Bubble>)}
+                          {questions?.map((question, index) => (
+                            <Bubble key={`q-bubble-${index}`}>{question}</Bubble>
+                          ))}
                         </div>
                       </div>
                     )}
@@ -162,8 +186,11 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
                 ) : (
                   <AIFeed
                     history={history}
+                    showFeedback={showFeedback}
+                    onGiveFeedback={handleAutoScroll}
+                    size={fullscreen ? 'lg' : 'sm'}
                     avatars={{
-                      user: <Avatar initials="DU" color="bjornstigen" />,
+                      user: userAvatar,
                       assistant: assistantAvatar,
                       system: assistantAvatar,
                     }}

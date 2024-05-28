@@ -11,13 +11,25 @@ export interface AIFeedProps extends React.ComponentPropsWithoutRef<'ul'> {
   avatars?: AIFeedAvatarMap;
   showFeedback?: boolean;
   showTitles?: boolean;
+  onGiveFeedback?: () => void;
+  size?: 'sm' | 'lg';
 }
 
 export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, ref) => {
   const [lastMessage, setLastMessage] = React.useState<ChatHistoryEntry | undefined>(undefined);
   const [lastOwnMessage, setLastOwnMessage] = React.useState<ChatHistoryEntry | undefined>(undefined);
   const internalRef = React.useRef<HTMLUListElement>(null);
-  const { history, showReferences = true, avatars, className, showFeedback = true, showTitles = true, ...rest } = props;
+  const {
+    history,
+    onGiveFeedback,
+    showReferences = true,
+    avatars,
+    className,
+    showFeedback = true,
+    showTitles = true,
+    size,
+    ...rest
+  } = props;
 
   React.useEffect(() => {
     const latest = history.at(-1);
@@ -44,17 +56,19 @@ export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, re
             showReferences={showReferences}
             entry={entry}
             avatar={avatars ? avatars[entry.origin] : undefined}
-            showFeedback={showFeedback}
+            showFeedback={showFeedback && entry.done && entry.id === lastMessage?.id}
             showTitle={showTitles}
+            onGiveFeedback={onGiveFeedback}
+            size={size}
           ></AIFeedEntry>
         ))}
       </AIFeedWrapper>
-      <div className="sr-only" aria-live="polite" aria-atomic={false}>
+      <div className="sk-ai-feed-live-wrapper" aria-live="polite" aria-atomic={false}>
         {lastMessage && (
           <AIFeedEntry showReferences={false} entry={lastMessage} showFeedback={false} showTitle={false}></AIFeedEntry>
         )}
       </div>
-      <div className="sr-only" aria-live="polite" aria-atomic={false}>
+      <div className="sk-ai-feed-live-wrapper" aria-live="polite" aria-atomic={false}>
         {lastOwnMessage && (
           <AIFeedEntry
             showReferences={false}
