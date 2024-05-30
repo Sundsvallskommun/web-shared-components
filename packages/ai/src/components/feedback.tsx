@@ -1,15 +1,15 @@
 import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { giveFeedback } from '../services';
-import { ChatHistoryEntry } from '../types';
 
 interface FeedbackProps extends React.ComponentPropsWithoutRef<'div'> {
-  entry: ChatHistoryEntry;
+  sessionId?: string;
   reasons?: string[];
+  onGiveFeedback?: () => void;
 }
 export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, ref) => {
-  const { entry, reasons: _reasons, ...rest } = props;
+  const { sessionId, reasons: _reasons, onGiveFeedback, ...rest } = props;
   const [showFeedbackReason, setShowFeedbackReason] = useState(false);
   const [showThanks, setShowThanks] = useState(false);
   const [feedbackLoading, setFeedbackLoading] = useState(false);
@@ -24,11 +24,12 @@ export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, 
     setShowFeedbackReason(false);
     setShowThanks(false);
     setFeedbackLoading(true);
-
     setFeedback(val);
-    await giveFeedback({ value: val, text: reason || null });
+    onGiveFeedback && onGiveFeedback();
+    await giveFeedback({ value: val, text: reason || null }, sessionId);
     setFeedbackLoading(false);
     setShowThanks(true);
+    onGiveFeedback && onGiveFeedback();
     setTimeout(() => {
       const ref = val === 1 ? thumbUpButtonRef : thumbDownButtonRef;
       if (ref.current) {
@@ -39,6 +40,7 @@ export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, 
 
   const handleFeedback = (val: -1 | 1) => {
     if (val === -1) {
+      sendFeedback(-1);
       setShowFeedbackReason(true);
       setTimeout(() => {
         feedbackRef.current?.focus();
@@ -47,11 +49,6 @@ export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, 
       sendFeedback(val);
     }
   };
-
-  useEffect(() => {
-    setShowThanks(false);
-    setShowFeedbackReason(false);
-  }, [entry]);
 
   const CloseFeedbackButton = () => (
     <Button
@@ -87,7 +84,7 @@ export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, 
           aria-label="Bra svar"
           variant="tertiary"
           size="sm"
-          showBackground={false}
+          showBackground={feedback === 1}
           data-current={feedback === 1}
           className="sk-ai-feedback-button"
           onClick={() => handleFeedback(1)}
@@ -102,7 +99,7 @@ export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, 
           aria-expanded={showFeedbackReason}
           aria-controls="sk-ai-feedback-reason"
           variant="tertiary"
-          showBackground={false}
+          showBackground={feedback === -1}
           size="sm"
           data-current={feedback === -1}
           className="sk-ai-feedback-button"
