@@ -33,12 +33,6 @@ export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, 
     setShowThanks(true);
     onGiveFeedback && onGiveFeedback(val);
     updateSession(sessionId, (session) => ({ ...session, feedback: { value: val, text: reason || null } }));
-    // setTimeout(() => {
-    //   const ref = val === 1 ? thumbUpButtonRef : thumbDownButtonRef;
-    //   if (ref.current) {
-    //     ref.current.focus();
-    //   }
-    // }, 10);
   };
 
   const handleFeedback = (val: -1 | 1) => {
