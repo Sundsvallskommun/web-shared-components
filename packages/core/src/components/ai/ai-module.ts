@@ -63,7 +63,7 @@ export const AIModule = (colors: string[]) => ({
       '@apply w-full': {},
     },
     '&[data-fullscreen="true"]': {
-      '@apply w-full h-full': {},
+      '@apply w-full': {},
       '.sk-ai-module-feed': {
         '@apply gap-40 grow w-full items-center': {},
         '.sk-ai-feed': {
