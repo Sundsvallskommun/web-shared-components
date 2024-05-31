@@ -11,19 +11,25 @@ export interface InputSectionProps extends React.ComponentPropsWithoutRef<'form'
    * @default true
    */
   shadow?: boolean;
+  sessionId?: string;
+  onSendQuery?: (query: string) => void;
 }
 
 export const InputSection = React.forwardRef<HTMLFormElement, InputSectionProps>((props, ref) => {
-  const { className, shadow, ...rest } = props;
+  const { className, shadow, sessionId, onSendQuery, ...rest } = props;
   const [query, setQuery] = React.useState<string>('');
 
-  const { sendQuery } = useChat();
+  const { sendQuery } = useChat({ sessionId });
   const info = useAssistantStore((state) => state.info);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     if (query) {
-      sendQuery(query);
+      if (onSendQuery) {
+        onSendQuery(query);
+      } else {
+        sendQuery(query);
+      }
       setQuery('');
     }
   };

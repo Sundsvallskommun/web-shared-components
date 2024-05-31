@@ -2,28 +2,75 @@ import { EventSourceMessage, fetchEventSource } from '@microsoft/fetch-event-sou
 import React from 'react';
 import { useAssistantStore } from '../assistant-store';
 import { batchQuery } from '../services/assistant-service';
-import { SkHeaders } from '../types/assistant';
+import { AssistantSettings, SkHeaders } from '../types/assistant';
 import { ChatEntryReference, ChatHistory, ChatHistoryEntry, Origin } from '../types/history';
 import { ResponseData } from '../types/response';
+import { useSessions } from '../session-store';
 
 const MAX_REFERENCE_COUNT = 3;
 
-export const useChat = () => {
-  const [history, setHistory, clearHistory, done, setDone, sessionId, setSessionId, settings] = useAssistantStore(
-    (state) => [
-      state.history,
-      state.setHistory,
-      state.clearHistory,
-      state.done,
-      state.setDone,
-      state.sessionId,
-      state.setSessionId,
-      state.settings,
-    ]
-  );
+interface useChatOptions {
+  settings?: AssistantSettings;
+  sessionId?: string;
+}
+
+export const useChat = (options?: useChatOptions) => {
+  const sessionId = React.useMemo(() => options?.sessionId || '', [options?.sessionId]);
+  const _incomingSettings = React.useMemo(() => options?.settings, [options?.settings]);
+
+  const [currentSession, setCurrentSession] = React.useState<string>(sessionId || '');
+  const _settings = useAssistantStore((state) => state.settings);
+  const settings = _incomingSettings || _settings;
   const { assistantId, user: _user, hash, apiBaseUrl, app, stream: _stream } = settings;
   const user = _user || '';
   const stream = _stream === undefined ? true : _stream;
+
+  const [session, getSession, newSession, updateHistory, updateSession, setDone, changeSessionId] = useSessions(
+    (state) => [
+      state.sessions[currentSession],
+      state.getSession,
+      state.newSession,
+      state.updateHistory,
+      state.updateSession,
+      state.setDone,
+      state.changeSessionId,
+    ]
+  );
+
+  const history = session?.history || [];
+  const done = session?.done;
+  const isNew = session?.isNew;
+
+  const createNewSession = React.useCallback(() => {
+    const id = newSession();
+    setCurrentSession(id);
+  }, [sessionId]);
+
+  const updateSessionId = (id: string) => {
+    changeSessionId(currentSession, id);
+    setCurrentSession(id);
+  };
+
+  const setSessionName = () => {
+    const name = history.at(0)?.text || '';
+    updateSession(currentSession, (session) => ({ ...session, name }));
+  };
+
+  React.useEffect(() => {
+    if (sessionId) {
+      if (sessionId !== currentSession)
+        getSession(sessionId).then((session) => {
+          if (!session) {
+            console.log('Session not available. Creating new');
+            createNewSession();
+          } else {
+            setCurrentSession(sessionId);
+          }
+        });
+    } else {
+      createNewSession();
+    }
+  }, [sessionId]);
 
   const addHistoryEntry = (
     origin: Origin,
@@ -39,7 +86,7 @@ export const useChat = () => {
       done,
       ...references,
     };
-    setHistory((history) => [...(history || []), historyEntry]);
+    updateHistory(currentSession, (history) => [...(history || []), historyEntry]);
   };
 
   const streamQuery = React.useCallback(
@@ -48,7 +95,7 @@ export const useChat = () => {
       const answerId = crypto.randomUUID();
       const questionId = crypto.randomUUID();
       addHistoryEntry('user', query, questionId, true);
-      setDone(false);
+      setDone(currentSession, false);
       const url = `${apiBaseUrl}/assistants/${assistantId}/sessions/${session_id || ''}?stream=true`;
 
       let _id = '';
@@ -70,9 +117,9 @@ export const useChat = () => {
           ...skHeaders,
         },
         onopen(res: Response) {
-          setDone(false);
+          setDone(currentSession, false);
           if (res.ok && res.status === 200) {
-            setHistory((history: ChatHistory) => {
+            updateHistory(currentSession, (history: ChatHistory) => {
               return [
                 ...history,
                 {
@@ -84,7 +131,7 @@ export const useChat = () => {
               ];
             });
           } else if (res.status >= 400 && res.status < 500 && res.status !== 429) {
-            addHistoryEntry('system', 'Ett fel inträffade, assistenten gav inget svar.', answerId, done);
+            addHistoryEntry('system', 'Ett fel inträffade, assistenten gav inget svar.', answerId, done || false);
             console.error('Client-side error ', res);
           }
           return Promise.resolve();
@@ -98,7 +145,7 @@ export const useChat = () => {
             console.error('Error when parsing response as json. Returning.');
             return;
           }
-          if (!sessionId) {
+          if (currentSession !== parsedData.session_id && isNew) {
             _id = parsedData.session_id;
           }
 
@@ -109,7 +156,7 @@ export const useChat = () => {
                 title: reference.metadata.title || reference.metadata.url || '',
                 url: reference.metadata.url || '',
               })) || []),
-            setHistory((history: ChatHistory) => {
+            updateHistory(currentSession, (history: ChatHistory) => {
               const newHistory = [...history];
               const index = history.findIndex((chat) => chat.id === answerId);
               if (index === -1) {
@@ -132,11 +179,12 @@ export const useChat = () => {
             });
         },
         onclose() {
-          if (!sessionId) {
-            setSessionId(_id);
+          if ((!session?.name || currentSession !== _id) && isNew) {
+            setSessionName();
+            updateSessionId(_id);
           }
           let answer = '';
-          setHistory((history: ChatHistory) => {
+          updateHistory(currentSession, (history: ChatHistory) => {
             const newHistory = [...history];
             const index = newHistory.findIndex((chat) => chat.id === answerId);
             answer = history[index].text;
@@ -150,12 +198,12 @@ export const useChat = () => {
             };
             return newHistory;
           });
-          setDone(true);
+          setDone(currentSession, true);
         },
         onerror(err: unknown) {
           console.error('There was an error from server', err);
           addHistoryEntry('system', 'Ett fel inträffade, kunde inte kommunicera med assistent.', '0', true);
-          setDone(true);
+          setDone(currentSession, true);
         },
       });
     },
@@ -166,23 +214,20 @@ export const useChat = () => {
   const sendQuery = (query: string) => {
     if (!assistantId || !hash) {
       addHistoryEntry('system', 'Ett fel inträffade, assistenten gav inget svar.', '0', true);
-      setDone(true);
+      setDone(currentSession, true);
       return;
     }
     if (stream) {
-      streamQuery(query, assistantId, sessionId, user, hash);
+      streamQuery(query, assistantId, isNew ? '' : currentSession, user, hash);
     } else {
-      setDone(false);
+      setDone(currentSession, false);
       const answerId = crypto.randomUUID();
       const questionId = crypto.randomUUID();
       addHistoryEntry('user', query, questionId, true);
       addHistoryEntry('assistant', '', answerId, false);
-      return batchQuery(query, sessionId, settings)
+      return batchQuery(query, isNew ? '' : currentSession, settings)
         .then((res: ResponseData) => {
-          if (!sessionId) {
-            setSessionId(res.session_id);
-          }
-          setHistory((history) => {
+          updateHistory(currentSession, (history) => {
             const newHistory = [...history];
             const index = history.findIndex((entry) => entry.id === answerId);
             newHistory[index].text = res.answer;
@@ -197,12 +242,16 @@ export const useChat = () => {
 
             return newHistory;
           });
-          setDone(true);
+          setDone(currentSession, true);
+          if ((!session?.name || session.id !== res.session_id) && isNew) {
+            setSessionName();
+            updateSessionId(res.session_id);
+          }
           return res;
         })
         .catch((e) => {
           console.error('Error occured:', e);
-          setHistory((history) => {
+          updateHistory(currentSession, (history) => {
             const newHistory = [...history];
             const index = history.findIndex((entry) => entry.id === answerId);
             newHistory[index].origin = 'system';
@@ -210,7 +259,7 @@ export const useChat = () => {
             newHistory[index].done = true;
             return newHistory;
           });
-          setDone(true);
+          setDone(currentSession, true);
         });
     }
   };
@@ -218,9 +267,9 @@ export const useChat = () => {
   return {
     history,
     addHistoryEntry,
-    clearHistory,
+    newSession: createNewSession,
     done,
+    session,
     sendQuery,
-    setSessionId,
   };
 };

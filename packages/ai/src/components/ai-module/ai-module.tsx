@@ -1,22 +1,23 @@
+import { Avatar } from '@sk-web-gui/avatar';
+import { addDays, format } from 'date-fns';
 import React from 'react';
-import { AssistantInfo, ChatHistory, SessionHistory } from '../../types';
-import { AIFeed } from '../ai-feed';
+import { useAssistantStore } from '../../assistant-store';
+import { useChat } from '../../hooks';
+import { SessionStoreSession, useSessions } from '../../session-store';
+import { AssistantInfo, AssistantSession, SessionHistory } from '../../types';
+import { AIFeed } from '../ai-feed/ai-feed';
 import { AssistantPresentation } from '../assistant-presentation';
 import { Bubble } from '../bubble';
 import { InputSection } from '../input-section';
 import { AIModuleHeader } from './ai-module-header';
-import { AIModuleWrapper } from './ai-module-wrapper';
-import { addDays, format } from 'date-fns';
 import { AIModuleSessionHistory } from './ai-module-session-history';
-import { Avatar } from '@sk-web-gui/avatar';
+import { AIModuleWrapper } from './ai-module-wrapper';
 
 export interface AIModuleDefaultProps {
-  history?: ChatHistory;
   docked?: boolean;
   color?: string;
   fullscreen?: boolean;
-  sessionTitle?: string;
-  assistant: AssistantInfo;
+  session?: AssistantSession;
   onOpen?: () => void;
   onClose?: () => void;
   onFullScreen?: () => void;
@@ -25,31 +26,35 @@ export interface AIModuleDefaultProps {
 }
 
 export interface AIModuleProps extends AIModuleDefaultProps, React.ComponentPropsWithoutRef<'div'> {
+  sessionId?: string;
+  assistant?: AssistantInfo;
   questions?: string[];
   questionsTitle?: string;
   sessionHistory?: SessionHistory;
+  onSendQuery?: (query: string) => void;
   onChangeSession?: (sessionId: string) => void;
   onSelectQuestion?: (question: string) => void;
   /**
    * @default true
    */
-  showFeedback: boolean;
+  showFeedback?: boolean;
 }
 
 export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, ref) => {
   const {
-    history,
     docked: _docked,
     fullscreen: _fullscreen,
+    session: _propsSession,
     color,
-    sessionTitle,
-    assistant,
+    sessionId: _sessionId,
+    assistant: _propsAssistant,
     onOpen,
     onClose,
     onFullScreen,
     onCloseFullScreen,
     onNewSession,
     onChangeSession,
+    onSendQuery,
     className,
     children,
     questions,
@@ -60,11 +65,38 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
     ...rest
   } = props;
 
+  const [sessionId, setSessionId] = React.useState<string>('');
+  const [sessions, setSessions] = React.useState<Array<AssistantSession | SessionStoreSession>>([]);
+  const { history: _history, session: _session, sendQuery } = useChat({ sessionId });
+  const _assistant = useAssistantStore((state) => state.info);
+  const assistant = _propsAssistant || _assistant;
+  const [_sessions, refreshSessions] = useSessions((state) => [state.sessions, state.refreshSessions]);
+  const session = _propsSession || _session;
+  const history = _propsSession?.history || _history || [];
   const [docked, setDocked] = React.useState<boolean>(true);
   const [fullscreen, setFullscreen] = React.useState<boolean>(false);
 
   const scrollRef = React.useRef<HTMLDivElement>(null);
 
+  React.useEffect(() => {
+    refreshSessions();
+  }, []);
+
+  React.useEffect(() => {
+    if (sessionHistory) {
+      setSessions(sessionHistory);
+    } else {
+      setSessions(
+        Object.values({ ..._sessions })
+          .filter((session) => !session.isNew)
+          .sort((a, b) => (a.updated_at < b.updated_at ? 1 : -1))
+      );
+    }
+  }, [sessionHistory, _sessions]);
+
+  if (!assistant) {
+    throw new Error('No assistant found');
+  }
   const assistantAvatar = (
     <Avatar
       imageElement={typeof assistant.avatar !== 'string' ? assistant.avatar : undefined}
@@ -82,6 +114,43 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
       }
     }, 10);
   };
+
+  const handleChangeSession = (id: string) => {
+    if (onChangeSession) {
+      onChangeSession(id);
+    } else {
+      setSessionId(id);
+    }
+  };
+
+  const handleSelectQuestion = (question: string) => {
+    if (onSelectQuestion) {
+      onSelectQuestion(question);
+    } else {
+      sendQuery(question);
+    }
+  };
+
+  const handleSendQuery = (query: string) => {
+    if (onSendQuery) {
+      onSendQuery(query);
+    } else {
+      sendQuery(query);
+    }
+  };
+
+  React.useEffect(() => {
+    if (_sessionId) {
+      setSessionId(_sessionId);
+    }
+  }, [_sessionId]);
+
+  React.useEffect(() => {
+    if (session?.id && session.id !== sessionId) {
+      setSessionId(session.id);
+    }
+    refreshSessions();
+  }, [session?.id]);
 
   React.useEffect(() => {
     handleAutoScroll();
@@ -102,6 +171,14 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
   const handleOnOpen = () => {
     setDocked(false);
     onOpen && onOpen();
+  };
+
+  const handleNewSession = () => {
+    if (onNewSession) {
+      onNewSession;
+    } else {
+      setSessionId('');
+    }
   };
 
   const handleOnClose = () => {
@@ -125,15 +202,17 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
   };
 
   const today = format(new Date(), 'yyyyMMdd');
-  const tomorrow = format(addDays(new Date(), 1), 'yyyyMMdd');
+  const yesterday = format(addDays(new Date(), -1), 'yyyyMMdd');
 
-  const todaysSessions = sessionHistory?.filter((session) => format(new Date(session.updatedAt), 'yyyyMMdd') === today);
-  const tomorrowsSessions = sessionHistory?.filter(
-    (session) => format(new Date(session.updatedAt), 'yyyyMMdd') === tomorrow
+  const todaysSessions = sessions?.filter(
+    (session) => session.name && format(session.updated_at, 'yyyyMMdd') === today
   );
-  const otherSessions = sessionHistory?.filter((session) => {
-    const date = format(new Date(session.updatedAt), 'yyyyMMdd');
-    return date !== tomorrow && date !== today;
+  const yesterdaysSessions = sessions?.filter(
+    (session) => session.name && format(session.updated_at, 'yyyyMMdd') === yesterday
+  );
+  const otherSessions = sessions?.filter((session) => {
+    const date = format(session.updated_at, 'yyyyMMdd');
+    return session.name && date !== yesterday && date !== today;
   });
 
   return (
@@ -143,15 +222,29 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
           <div className="sk-ai-module-content-row">
             <div className="sk-ai-module-sidebar">
               <AIModuleHeader variant="alt" assistant={assistant} />
-              {todaysSessions && (
-                <AIModuleSessionHistory sessions={todaysSessions} title="Idag" onSelectSession={onChangeSession} />
-              )}
-              {tomorrowsSessions && (
-                <AIModuleSessionHistory sessions={tomorrowsSessions} title="Igår" onSelectSession={onChangeSession} />
-              )}
-              {otherSessions && (
-                <AIModuleSessionHistory sessions={otherSessions} title="Tidigare" onSelectSession={onChangeSession} />
-              )}
+              <div className="sk-ai-module-sidebar-sessions">
+                {todaysSessions.length > 0 && (
+                  <AIModuleSessionHistory
+                    sessions={todaysSessions}
+                    title="Idag"
+                    onSelectSession={handleChangeSession}
+                  />
+                )}
+                {yesterdaysSessions.length > 0 && (
+                  <AIModuleSessionHistory
+                    sessions={yesterdaysSessions}
+                    title="Igår"
+                    onSelectSession={handleChangeSession}
+                  />
+                )}
+                {otherSessions.length > 0 && (
+                  <AIModuleSessionHistory
+                    sessions={otherSessions}
+                    title="Tidigare"
+                    onSelectSession={handleChangeSession}
+                  />
+                )}
+              </div>
             </div>
           </div>
         )}
@@ -161,12 +254,12 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
             fullscreen={fullscreen}
             assistant={assistant}
             color={color}
-            sessionTitle={sessionTitle}
+            session={session}
             onOpen={handleOnOpen}
             onClose={handleOnClose}
             onFullScreen={handleOnFullscreen}
             onCloseFullScreen={handleOnCloseFullscreen}
-            onNewSession={onNewSession}
+            onNewSession={handleNewSession}
           />
           {!docked && (
             <>
@@ -179,10 +272,7 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
                         {questionsTitle && <div className="sk-ai-module-feed-questions-title">{questionsTitle}</div>}
                         <div className="sk-ai-module-feed-questions">
                           {questions?.map((question, index) => (
-                            <Bubble
-                              key={`q-bubble-${index}`}
-                              onClick={() => onSelectQuestion && onSelectQuestion(question)}
-                            >
+                            <Bubble key={`q-bubble-${index}`} onClick={() => handleSelectQuestion(question)}>
                               {question}
                             </Bubble>
                           ))}
@@ -201,10 +291,11 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
                       assistant: assistantAvatar,
                       system: assistantAvatar,
                     }}
+                    sessionId={session.id}
                   />
                 )}
               </div>
-              <InputSection shadow={!fullscreen} />
+              <InputSection shadow={!fullscreen} sessionId={session?.id} onSendQuery={handleSendQuery} />
             </>
           )}
         </div>

@@ -31,7 +31,7 @@ export const AIModuleSessionHistory = React.forwardRef<HTMLDivElement, AIModuleS
               onClick={() => onSelectSession && onSelectSession(session.id)}
               leftIcon={<Icon name="message-circle" />}
             >
-              {session.title}
+              {session.name}
             </Button>
           </li>
         ))}

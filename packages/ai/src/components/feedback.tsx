@@ -2,18 +2,20 @@ import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
 import React, { useRef, useState } from 'react';
 import { giveFeedback } from '../services';
+import { useSessions } from '../session-store';
 
 interface FeedbackProps extends React.ComponentPropsWithoutRef<'div'> {
-  sessionId?: string;
+  sessionId: string;
   reasons?: string[];
-  onGiveFeedback?: () => void;
+  onGiveFeedback?: (value: -1 | 1) => void;
 }
 export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, ref) => {
   const { sessionId, reasons: _reasons, onGiveFeedback, ...rest } = props;
+  const [session, updateSession] = useSessions((state) => [state.sessions[sessionId], state.updateSession]);
   const [showFeedbackReason, setShowFeedbackReason] = useState(false);
   const [showThanks, setShowThanks] = useState(false);
   const [feedbackLoading, setFeedbackLoading] = useState(false);
-  const [feedback, setFeedback] = useState<-1 | 1 | null>(null);
+  const [feedback, setFeedback] = useState<-1 | 1 | undefined>(session.feedback?.value);
   const feedbackRef = useRef<HTMLButtonElement>(null);
   const thumbDownButtonRef = useRef<HTMLButtonElement>(null);
   const thumbUpButtonRef = useRef<HTMLButtonElement>(null);
@@ -25,17 +27,18 @@ export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, 
     setShowThanks(false);
     setFeedbackLoading(true);
     setFeedback(val);
-    onGiveFeedback && onGiveFeedback();
+    onGiveFeedback && onGiveFeedback(val);
     await giveFeedback({ value: val, text: reason || null }, sessionId);
     setFeedbackLoading(false);
     setShowThanks(true);
-    onGiveFeedback && onGiveFeedback();
-    setTimeout(() => {
-      const ref = val === 1 ? thumbUpButtonRef : thumbDownButtonRef;
-      if (ref.current) {
-        ref.current.focus();
-      }
-    }, 10);
+    onGiveFeedback && onGiveFeedback(val);
+    updateSession(sessionId, (session) => ({ ...session, feedback: { value: val, text: reason || null } }));
+    // setTimeout(() => {
+    //   const ref = val === 1 ? thumbUpButtonRef : thumbDownButtonRef;
+    //   if (ref.current) {
+    //     ref.current.focus();
+    //   }
+    // }, 10);
   };
 
   const handleFeedback = (val: -1 | 1) => {

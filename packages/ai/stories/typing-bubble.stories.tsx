@@ -1,5 +1,4 @@
 import { Meta } from '@storybook/react';
-import React from 'react';
 import { TypingBubble } from '../src';
 import { TypingBubbleProps } from '../src/components';
 

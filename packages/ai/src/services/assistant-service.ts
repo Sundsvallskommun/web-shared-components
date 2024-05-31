@@ -1,5 +1,14 @@
 import { useAssistantStore } from '../assistant-store';
-import { AssistantFeedback, AssistantSettings, PaginatedResponseAssistantPublic, SkHeaders } from '../types/assistant';
+import {
+  ChatEntryReference,
+  ChatHistory,
+  ChatHistoryEntry,
+  PaginatedResponseAssistantPublic,
+  Reference,
+  SessionMessage,
+  SessionsResponse,
+} from '../types';
+import { AssistantFeedback, AssistantSettings, SkHeaders } from '../types/assistant';
 
 export const getSkHeaders = (options: AssistantSettings | undefined, settings: AssistantSettings): SkHeaders => {
   const assistantId = options?.assistantId || settings.assistantId || '';
@@ -62,7 +71,7 @@ export const getAssistantById = async (options?: AssistantSettings) => {
     });
 };
 
-export const getAssistantSessions = async (options?: AssistantSettings) => {
+export const getAssistantSessions = async (options?: AssistantSettings): Promise<SessionsResponse> => {
   const settings = useAssistantStore.getState().settings;
   const skHeaders = getSkHeaders(options, settings);
   if (!settings.apiBaseUrl) {
@@ -106,15 +115,13 @@ export const getAssistantSessionById = async (sessionId: string, options?: Assis
 };
 
 export const batchQuery = async (query: string, sessionId?: string, options?: AssistantSettings) => {
-  const { settings, sessionId: savedSessionId } = useAssistantStore.getState();
+  const { settings } = useAssistantStore.getState();
   const skHeaders = getSkHeaders(options, settings);
   if (!settings.apiBaseUrl) {
     throw new Error('No api url provided');
   }
 
-  const url = `${settings.apiBaseUrl}/assistants/${skHeaders._skassistant}/sessions/${
-    sessionId || savedSessionId || ''
-  }?stream=false`;
+  const url = `${settings.apiBaseUrl}/assistants/${skHeaders._skassistant}/sessions/${sessionId || ''}?stream=false`;
   return fetch(url, {
     method: 'POST',
     body: JSON.stringify({ body: query }),
@@ -130,16 +137,14 @@ export const batchQuery = async (query: string, sessionId?: string, options?: As
   });
 };
 
-export const giveFeedback = async (feedback: AssistantFeedback, sessionId?: string, options?: AssistantSettings) => {
-  const { settings, sessionId: savedSessionId } = useAssistantStore.getState();
+export const giveFeedback = async (feedback: AssistantFeedback, sessionId: string, options?: AssistantSettings) => {
+  const { settings } = useAssistantStore.getState();
   const skHeaders = getSkHeaders(options, settings);
   if (!settings.apiBaseUrl) {
     throw new Error('No api url provided');
   }
 
-  const url = `${settings.apiBaseUrl}/assistants/${skHeaders._skassistant}/sessions/${
-    sessionId || savedSessionId || ''
-  }/feedback`;
+  const url = `${settings.apiBaseUrl}/assistants/${skHeaders._skassistant}/sessions/${sessionId || ''}/feedback`;
 
   return fetch(url, {
     method: 'POST',
@@ -154,4 +159,26 @@ export const giveFeedback = async (feedback: AssistantFeedback, sessionId?: stri
     }
     return res.json();
   });
+};
+
+export const mapReferencesToChatEntryReferences = (references: Reference[]): ChatEntryReference[] => {
+  return references.map((reference) => ({ title: reference.metadata.title || '', url: reference.metadata.url || '' }));
+};
+export const mapSessionMessagesToChatHistory = (messages: SessionMessage[]): ChatHistory => {
+  return messages.reduce((history: ChatHistory, message) => {
+    const question: ChatHistoryEntry = {
+      id: `${message.id}-1`,
+      text: message.question,
+      origin: 'user',
+      done: true,
+    };
+    const answer: ChatHistoryEntry = {
+      id: `${message.id}-2`,
+      text: message.answer,
+      origin: 'assistant',
+      done: true,
+      references: mapReferencesToChatEntryReferences(message.references),
+    };
+    return [...history, question, answer];
+  }, []);
 };
