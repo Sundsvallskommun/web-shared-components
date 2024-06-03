@@ -148,7 +148,12 @@ export const createSessionStore = (assistantId: string) => {
 
           newSession: () => {
             const mySession = newSession();
-            set((state) => ({ sessions: { ...state.sessions, [mySession.id]: mySession } }));
+            set((state) => ({
+              sessions: {
+                ...state.sessions,
+                [mySession.id]: { ...mySession, created_at: new Date(), updated_at: new Date() },
+              },
+            }));
             return mySession.id;
           },
 

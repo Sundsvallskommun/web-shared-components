@@ -216,7 +216,7 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
   });
 
   return (
-    <AIModuleWrapper ref={ref} className={className} {...rest} fullscreen={fullscreen}>
+    <AIModuleWrapper ref={ref} className={className} {...rest} docked={docked} fullscreen={fullscreen}>
       <div className="sk-ai-module-content">
         {fullscreen && (
           <div className="sk-ai-module-content-row">

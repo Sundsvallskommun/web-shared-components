@@ -54,9 +54,9 @@ export const AIModule = (colors: string[]) => ({
       '@apply rounded-tl-groups': {},
       '@apply max-w-[26em]': {},
       '@apply w-[26em]': {},
-      '@apply max-h-[45em]': {},
+      '@apply max-h-[44em]': {},
       '&[data-docked="false"]': {
-        '@apply h-[45em]': {},
+        '@apply h-full': {},
       },
     },
     '.sk-ai-feed': {
