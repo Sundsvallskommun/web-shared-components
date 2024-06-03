@@ -21,7 +21,7 @@ export const TableAutoTable = () => ({
         '@apply overflow-auto': {},
       },
     },
-    '&:not([data-background="true"])': {
+    '&:not([data-background="true"]):not([data-wrappingborder="true"])': {
       '@apply border-0': {},
       '@apply bg-transparent': {},
     },
