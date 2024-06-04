@@ -2,7 +2,7 @@ import { Icon } from '@sk-web-gui/icon';
 import { cx } from '@sk-web-gui/utils';
 import React from 'react';
 
-interface BubbleProps extends React.ComponentPropsWithoutRef<'button'> {
+export interface BubbleProps extends React.ComponentPropsWithoutRef<'button'> {
   /**
    * @default vattjom
    */

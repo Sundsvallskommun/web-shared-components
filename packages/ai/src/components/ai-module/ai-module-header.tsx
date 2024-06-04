@@ -4,9 +4,11 @@ import React from 'react';
 import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
 import { AIModuleDefaultProps } from './ai-module';
+import { AssistantInfo } from '../../types';
 
 export interface AIModuleHeaderProps extends AIModuleDefaultProps, React.ComponentPropsWithoutRef<'div'> {
   variant?: 'default' | 'alt';
+  assistant: AssistantInfo;
 }
 
 export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderProps>((props, ref) => {
@@ -15,7 +17,7 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
     color,
     assistant,
     fullscreen,
-    sessionTitle,
+    session,
     className,
     variant = 'default',
     onOpen,
@@ -62,7 +64,7 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
           </Button>
           <div className="sk-ai-module-header-title">
             <Icon name="message-circle" />
-            <span className="sk-ai-module-header-heading-name">{sessionTitle ? sessionTitle : 'Ny fråga'}</span>
+            <span className="sk-ai-module-header-heading-name">{session?.name ? session?.name : 'Ny fråga'}</span>
           </div>
         </>
       ) : (

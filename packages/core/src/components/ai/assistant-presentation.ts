@@ -2,6 +2,7 @@ export const AssistantPresentation = () => ({
   '.sk-ai-assistant-presentation': {
     '@apply flex flex-col gap-16 items-center justify-center': {},
     '@apply text-base': {},
+    '@apply h-full grow': {},
 
     '&-header': {
       '@apply flex flex-col items-center justify-start': {},
@@ -14,7 +15,7 @@ export const AssistantPresentation = () => ({
     },
 
     '&[data-size="lg"]': {
-      '@apply min-h-[25.5em] h-full grow': {},
+      '@apply min-h-[25.5em]': {},
       '@apply p-24': {},
       '@apply max-w-[27em]': {},
 
@@ -33,7 +34,6 @@ export const AssistantPresentation = () => ({
       },
     },
     '&[data-size="sm"]': {
-      '@apply min-h-[24em]': {},
       '.sk-avatar': {
         '@apply w-72 h-72': {},
         '@apply max-w-72 max-h-72': {},

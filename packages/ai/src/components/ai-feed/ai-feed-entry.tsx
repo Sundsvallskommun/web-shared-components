@@ -20,7 +20,7 @@ interface AIFeedEntryProps extends React.ComponentPropsWithoutRef<'li'> {
   loadingComponent?: React.ReactNode;
   showFeedback?: boolean;
   sessionId?: string;
-  onGiveFeedback?: () => void;
+  onGiveFeedback?: (value: -1 | 1) => void;
   size?: 'sm' | 'lg';
 }
 
@@ -68,7 +68,7 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
               <>{loadingComponent}</>
             ) : (
               <>
-                <span className={cx('sk-ai-feed-entry-heading', showTitle ? '' : 'sr-only')}>
+                <span className={cx('sk-ai-feed-entry-heading')} data-showtitle={showTitle}>
                   {title || info?.name}
                 </span>
                 <MarkdownRendered text={sanitized(entry.text)} messageId={entry.id} hideElements={!entry.done} />
@@ -98,12 +98,12 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
               </ul>
             </Disclosure>
           ) : null}
-          {showFeedback && entry.origin === 'assistant' && done && (
+          {showFeedback && sessionId && entry.origin === 'assistant' && done && (
             <Feedback sessionId={sessionId} onGiveFeedback={onGiveFeedback} />
           )}
         </div>
       </li>
-      <span className="sr-only" aria-live="polite">
+      <span className="sk-ai-feed-live-wrapper" aria-live="polite">
         {loading && !done && loadingMessage}
       </span>
     </>

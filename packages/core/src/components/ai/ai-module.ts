@@ -22,12 +22,20 @@ export const AIModule = (colors: string[]) => ({
       '@apply flex flex-col': {},
       '@apply min-w-[22em]': {},
       '@apply h-full': {},
+      '@apply overflow-hidden': {},
       '@apply border-r-1 border-r-divider': {},
-      '@apply pt-20 px-24 gap-16': {},
+      '@apply pt-20 px-0 gap-16': {},
+      '&-sessions': {
+        '@apply flex flex-col': {},
+        '@apply grow w-full': {},
+        '@apply overflow-y-auto': {},
+        '@apply px-24 pb-20 gap-16': {},
+      },
     },
     '&-feed': {
       '@apply flex flex-col grow': {},
       '@apply px-16 pt-16 pb-24 gap-16': {},
+      '@apply w-full': {},
       '@apply max-h-full overflow-y-auto': {},
       '&-questions': {
         '@apply flex flex-col gap-8 w-full': {},
@@ -45,14 +53,17 @@ export const AIModule = (colors: string[]) => ({
     '&[data-fullscreen="false"]': {
       '@apply rounded-tl-groups': {},
       '@apply max-w-[26em]': {},
-      '@apply max-h-[39.5em]': {},
+      '@apply w-[26em]': {},
+      '@apply max-h-[44em]': {},
       '&[data-docked="false"]': {
-        '@apply w-[26em]': {},
         '@apply h-full': {},
       },
     },
+    '.sk-ai-feed': {
+      '@apply w-full': {},
+    },
     '&[data-fullscreen="true"]': {
-      '@apply w-full h-full': {},
+      '@apply w-full': {},
       '.sk-ai-module-feed': {
         '@apply gap-40 grow w-full items-center': {},
         '.sk-ai-feed': {
@@ -60,6 +71,9 @@ export const AIModule = (colors: string[]) => ({
         },
         '&-questions': {
           '@apply flex-row gap-16': {},
+          '&-wrapper': {
+            '@apply text-base max-w-[50em]': {},
+          },
         },
       },
       '.sk-ai-inputsection': {
@@ -101,7 +115,7 @@ export const AIModule = (colors: string[]) => ({
       },
 
       '&[data-variant="alt"]': {
-        '@apply p-0': {},
+        '@apply pt-0 px-24': {},
         '@apply bg-transparent': {},
         '.sk-avatar': {
           '@apply w-56 h-56': {},

@@ -10,16 +10,6 @@ export default {
   tags: ['autodocs'],
 } as Meta<AIModuleProps>;
 
-const sessions: SessionHistory = [
-  { id: '1', title: 'Vem är min chef?', updatedAt: new Date() },
-  { id: '2', title: 'Varför kan jag inte argumentera?', updatedAt: new Date() },
-  { id: '3', title: 'Vem är min chef?', updatedAt: new Date() },
-  { id: '4', title: 'Summera förra veckans nyheter', updatedAt: addDays(new Date(), 1) },
-  { id: '5', title: 'Hur skapar jag en egen assistent?', updatedAt: addDays(new Date(), 1) },
-  { id: '6', title: 'Vad kan du göra Qwerty?', updatedAt: addDays(new Date(), 2) },
-  { id: '7', title: 'Varför heter du Qwerty?', updatedAt: addDays(new Date(), 3) },
-];
-
 const assistant: AssistantInfo = {
   name: 'Qwerty',
   title: 'Din AI-guide på intranätet',
@@ -104,6 +94,40 @@ const history: ChatHistory = [
   },
 ];
 
+const sessions: SessionHistory = [
+  { id: '1', name: 'Vem är min chef?', updated_at: new Date(), created_at: new Date(), history },
+  { id: '2', name: 'Varför kan jag inte argumentera?', updated_at: new Date(), created_at: new Date(), history },
+  { id: '3', name: 'Vem är min chef?', updated_at: new Date(), created_at: new Date(), history },
+  {
+    id: '4',
+    name: 'Summera förra veckans nyheter',
+    updated_at: addDays(new Date(), 1),
+    created_at: addDays(new Date(), 1),
+    history,
+  },
+  {
+    id: '5',
+    name: 'Hur skapar jag en egen assistent?',
+    updated_at: addDays(new Date(), 1),
+    created_at: addDays(new Date(), 1),
+    history,
+  },
+  {
+    id: '6',
+    name: 'Vad kan du göra Qwerty?',
+    updated_at: addDays(new Date(), 2),
+    created_at: addDays(new Date(), 2),
+    history,
+  },
+  {
+    id: '7',
+    name: 'Varför heter du Qwerty?',
+    updated_at: addDays(new Date(), 3),
+    created_at: addDays(new Date(), 3),
+    history,
+  },
+];
+
 export const Template = (args: AIModuleProps) => {
   return (
     <div className="w-full h-[50em] relative">
@@ -127,7 +151,7 @@ export const WithHistory = (args: AIModuleProps) => {
         questionsTitle="Vad kan jag hjälpa dig med?"
         questions={['Vad är Querty?', 'Jag har tappat bort mitt passerkort', 'Vilka dagar jobbar vi halvdag']}
         sessionHistory={sessions}
-        history={history}
+        session={sessions[0]}
       ></AIModule>
     </div>
   );

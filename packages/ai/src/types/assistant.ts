@@ -1,3 +1,5 @@
+import { ChatHistory } from './history';
+
 export interface AssistantPublic {
   /**
    * Id
@@ -58,17 +60,13 @@ export interface AssistantInfo {
   description?: string;
 }
 
-export interface PaginatedResponseAssistantPublic {
-  /**
-   * Count
-   * Number of items returned in the response
-   */
-  count: number;
-  /**
-   * Items
-   * List of items returned in the response
-   */
-  items: AssistantPublic[];
+export interface AssistantSession {
+  name?: string;
+  id: string;
+  history: ChatHistory;
+  feedback?: AssistantFeedback;
+  updated_at: Date;
+  created_at: Date;
 }
 
 export interface SkHeaders {

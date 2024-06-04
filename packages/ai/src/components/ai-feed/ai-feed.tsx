@@ -8,10 +8,11 @@ import { AIFeedWrapper } from './ai-feed-wrapper';
 export interface AIFeedProps extends React.ComponentPropsWithoutRef<'ul'> {
   history: ChatHistory;
   showReferences?: boolean;
+  sessionId?: string;
   avatars?: AIFeedAvatarMap;
   showFeedback?: boolean;
   showTitles?: boolean;
-  onGiveFeedback?: () => void;
+  onGiveFeedback?: (value: -1 | 1) => void;
   size?: 'sm' | 'lg';
 }
 
@@ -27,6 +28,7 @@ export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, re
     className,
     showFeedback = true,
     showTitles = true,
+    sessionId,
     size,
     ...rest
   } = props;
@@ -60,6 +62,7 @@ export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, re
             showTitle={showTitles}
             onGiveFeedback={onGiveFeedback}
             size={size}
+            sessionId={sessionId}
           ></AIFeedEntry>
         ))}
       </AIFeedWrapper>

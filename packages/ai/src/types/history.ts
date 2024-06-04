@@ -1,3 +1,5 @@
+import { AssistantSession } from './assistant';
+
 export type Origin = 'user' | 'assistant' | 'system';
 
 export interface ChatEntryReference {
@@ -14,10 +16,4 @@ export interface ChatHistoryEntry {
 
 export type ChatHistory = ChatHistoryEntry[];
 
-export interface SessionHistoryEntry {
-  id: string;
-  title: string;
-  updatedAt: Date;
-}
-
-export type SessionHistory = SessionHistoryEntry[];
+export type SessionHistory = AssistantSession[];

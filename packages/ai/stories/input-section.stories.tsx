@@ -1,5 +1,4 @@
 import { Meta } from '@storybook/react';
-import React from 'react';
 import { InputSection } from '../src';
 import { InputSectionComponentProps } from '../src/components';
 

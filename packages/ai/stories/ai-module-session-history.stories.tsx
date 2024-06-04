@@ -9,9 +9,9 @@ export default {
 } as Meta<typeof AIModuleSessionHistory>;
 
 const sessions: SessionHistory = [
-  { id: '1', title: 'Vem är min chef?', updatedAt: new Date() },
-  { id: '2', title: 'Varför kan jag inte argumentera?', updatedAt: new Date() },
-  { id: '3', title: 'Vem är min chef?', updatedAt: new Date() },
+  { id: '1', name: 'Vem är min chef?', updated_at: new Date(), created_at: new Date(), history: [] },
+  { id: '2', name: 'Varför kan jag inte argumentera?', updated_at: new Date(), created_at: new Date(), history: [] },
+  { id: '3', name: 'Vem är min chef?', updated_at: new Date(), created_at: new Date(), history: [] },
 ];
 export const Template = (args: typeof AIModuleSessionHistory) => {
   return (
