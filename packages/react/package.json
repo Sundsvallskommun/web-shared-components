@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/react",
-  "version": "1.2.19",
+  "version": "1.2.20",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -67,7 +67,7 @@
     "@sk-web-gui/snackbar": "1.0.11",
     "@sk-web-gui/spinner": "1.0.10",
     "@sk-web-gui/table": "3.0.2",
-    "@sk-web-gui/tabs": "1.1.10",
+    "@sk-web-gui/tabs": "1.2.0",
     "@sk-web-gui/text": "1.0.8",
     "@sk-web-gui/theme": "2.1.1",
     "@sk-web-gui/tooltip": "1.0.4",

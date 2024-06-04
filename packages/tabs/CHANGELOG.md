@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/tabs@1.1.10...@sk-web-gui/tabs@1.2.0) (2024-06-04)
+
+### Features
+
+- **tab:** added props to set size ([dc9a5e0](https://github.com/Sundsvallskommun/web-shared-components/commit/dc9a5e05532d79293f21936ba9cc94a101f51553))
+
 ## [1.1.10](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/tabs@1.1.9...@sk-web-gui/tabs@1.1.10) (2024-05-27)
 
 **Note:** Version bump only for package @sk-web-gui/tabs

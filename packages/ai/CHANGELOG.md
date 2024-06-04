@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.1.0...@sk-web-gui/ai@0.2.0) (2024-06-04)
+
+### Bug Fixes
+
+- **ai:** better chat feed ([990945a](https://github.com/Sundsvallskommun/web-shared-components/commit/990945af4d118ae1b6424cc45c94028afaead62f))
+- **ai:** centered content in ai module ([0e86a85](https://github.com/Sundsvallskommun/web-shared-components/commit/0e86a8515e5186bb073c786fe45b5cda2e408fe7))
+
+### Features
+
+- **ai:** added onSelectQuestion to AIModule ([8f7c754](https://github.com/Sundsvallskommun/web-shared-components/commit/8f7c754d277ec758af387649d3d35d27915801de))
+- **ai:** handle sessions ([5dd327b](https://github.com/Sundsvallskommun/web-shared-components/commit/5dd327bbe9c941409e823e08bb91e4f4ae67cfca))
+
 # 0.1.0 (2024-05-27)
 
 ### Bug Fixes

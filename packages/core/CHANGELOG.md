@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.1.0...@sk-web-gui/core@3.2.0) (2024-06-04)
+
+### Bug Fixes
+
+- **ai:** better chat feed ([990945a](https://github.com/Sundsvallskommun/web-shared-components/commit/990945af4d118ae1b6424cc45c94028afaead62f))
+- **ai:** centered content in ai module ([0e86a85](https://github.com/Sundsvallskommun/web-shared-components/commit/0e86a8515e5186bb073c786fe45b5cda2e408fe7))
+- **ai:** fixed bubble rem-styling ([3d32aae](https://github.com/Sundsvallskommun/web-shared-components/commit/3d32aae883dc4c6ef596834c74cb07970f233d32))
+- **tab:** Remove the line-height. ([49a4843](https://github.com/Sundsvallskommun/web-shared-components/commit/49a48433a1bcfe4790d045b996939a9b2fa1b0ff))
+
+### Features
+
+- **ai:** handle sessions ([5dd327b](https://github.com/Sundsvallskommun/web-shared-components/commit/5dd327bbe9c941409e823e08bb91e4f4ae67cfca))
+- **tab:** added props to set size ([dc9a5e0](https://github.com/Sundsvallskommun/web-shared-components/commit/dc9a5e05532d79293f21936ba9cc94a101f51553))
+
 # [3.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.0.1...@sk-web-gui/core@3.1.0) (2024-05-27)
 
 ### Bug Fixes
