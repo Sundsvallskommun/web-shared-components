@@ -91,8 +91,6 @@ export const useChat = (options?: useChatOptions) => {
 
   const streamQuery = (query: string, assistantId: string, session_id: string, user: string, hash: string) => {
     const answerId = crypto.randomUUID();
-    const questionId = crypto.randomUUID();
-    addHistoryEntry('user', query, questionId, true);
 
     if (!session.name) {
       setSessionName(query);
@@ -214,13 +212,14 @@ export const useChat = (options?: useChatOptions) => {
       setDone(currentSession, true);
       return;
     }
+    const questionId = crypto.randomUUID();
+    addHistoryEntry('user', query, questionId, true);
+
     if (stream) {
       streamQuery(query, assistantId, isNew ? '' : currentSession, user, hash);
     } else {
       setDone(currentSession, false);
       const answerId = crypto.randomUUID();
-      const questionId = crypto.randomUUID();
-      addHistoryEntry('user', query, questionId, true);
       if (!session.name) {
         setSessionName(query);
       }

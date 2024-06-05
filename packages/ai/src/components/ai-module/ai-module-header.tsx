@@ -42,6 +42,37 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
       onFullScreen && onFullScreen();
     }
   };
+
+  const handleKeyboardNavigation = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    const target = event.target as HTMLElement;
+    switch (event.key) {
+      case 'ArrowLeft': {
+        const prev = target && (target.previousSibling as HTMLElement);
+        if (prev) {
+          prev.focus();
+        } else {
+          const last = target.parentElement?.lastChild as HTMLElement;
+          if (last) {
+            last.focus();
+          }
+        }
+        break;
+      }
+      case 'ArrowRight': {
+        const next = target && (target.nextSibling as HTMLElement);
+        if (next) {
+          next.focus();
+        } else {
+          const first = target.parentElement?.firstChild as HTMLElement;
+          if (first) {
+            first.focus();
+          }
+        }
+        break;
+      }
+    }
+  };
+
   return (
     <div
       ref={ref}
@@ -86,19 +117,33 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
         </div>
       )}
       {variant === 'default' && (
-        <div className="sk-ai-module-header-menu" role="menu">
+        <div className="sk-ai-module-header-menu" role="menubar">
           {!docked && (
             <Button
               variant="tertiary"
               size="sm"
+              role="menuitem"
+              aria-label={`${fullscreen ? 'Stäng' : 'Öppna'} fullskärmsläge`}
               inverted={!fullscreen}
               iconButton
               onClick={() => handleToggleFullscreen()}
+              tabIndex={0}
+              onKeyDown={handleKeyboardNavigation}
             >
               <Icon name={fullscreen ? 'arrow-down-right' : 'arrow-up-left'} />
             </Button>
           )}
-          <Button variant="tertiary" size="sm" inverted={!fullscreen} iconButton onClick={() => handleToggleOpen()}>
+          <Button
+            variant="tertiary"
+            size="sm"
+            role="menuitem"
+            aria-label={docked ? 'Öppna assistent' : 'Minimera'}
+            inverted={!fullscreen}
+            iconButton
+            tabIndex={docked ? 0 : -1}
+            onClick={() => handleToggleOpen()}
+            onKeyDown={handleKeyboardNavigation}
+          >
             <Icon name={docked ? 'chevrons-up' : 'chevrons-down'} />
           </Button>
         </div>

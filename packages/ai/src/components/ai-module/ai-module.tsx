@@ -1,5 +1,4 @@
 import { Avatar } from '@sk-web-gui/avatar';
-import { addDays, format } from 'date-fns';
 import React from 'react';
 import { useAssistantStore } from '../../assistant-store';
 import { useChat } from '../../hooks';
@@ -10,7 +9,7 @@ import { AssistantPresentation } from '../assistant-presentation';
 import { Bubble } from '../bubble';
 import { InputSection } from '../input-section';
 import { AIModuleHeader } from './ai-module-header';
-import { AIModuleSessionHistory } from './ai-module-session-history';
+import { AIModuleSessions } from './ai-module-sessions';
 import { AIModuleWrapper } from './ai-module-wrapper';
 
 export interface AIModuleDefaultProps {
@@ -71,16 +70,12 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
   const _assistant = useAssistantStore((state) => state.info);
   const assistant = _propsAssistant || _assistant;
   const [_sessions, refreshSessions] = useSessions((state) => [state.sessions, state.refreshSessions]);
-  const session = _propsSession || _session;
+  const session: SessionStoreSession | AssistantSession | undefined = _propsSession || _session;
   const history = _propsSession?.history || _history || [];
   const [docked, setDocked] = React.useState<boolean>(true);
   const [fullscreen, setFullscreen] = React.useState<boolean>(false);
 
   const scrollRef = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    refreshSessions();
-  }, []);
 
   React.useEffect(() => {
     if (sessionHistory) {
@@ -140,7 +135,7 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
   };
 
   React.useEffect(() => {
-    if (_sessionId) {
+    if (typeof _sessionId === 'string') {
       setSessionId(_sessionId);
     }
   }, [_sessionId]);
@@ -148,8 +143,8 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
   React.useEffect(() => {
     if (session?.id && session.id !== sessionId) {
       setSessionId(session.id);
+      refreshSessions();
     }
-    refreshSessions();
   }, [session?.id]);
 
   React.useEffect(() => {
@@ -172,6 +167,12 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
     setDocked(false);
     onOpen && onOpen();
   };
+
+  React.useEffect(() => {
+    if (!sessions && !sessionHistory) {
+      refreshSessions();
+    }
+  }, []);
 
   const handleNewSession = () => {
     if (onNewSession) {
@@ -201,20 +202,6 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
     onCloseFullScreen && onCloseFullScreen();
   };
 
-  const today = format(new Date(), 'yyyyMMdd');
-  const yesterday = format(addDays(new Date(), -1), 'yyyyMMdd');
-
-  const todaysSessions = sessions?.filter(
-    (session) => session.name && format(session.updated_at, 'yyyyMMdd') === today
-  );
-  const yesterdaysSessions = sessions?.filter(
-    (session) => session.name && format(session.updated_at, 'yyyyMMdd') === yesterday
-  );
-  const otherSessions = sessions?.filter((session) => {
-    const date = format(session.updated_at, 'yyyyMMdd');
-    return session.name && date !== yesterday && date !== today;
-  });
-
   return (
     <AIModuleWrapper ref={ref} className={className} {...rest} docked={docked} fullscreen={fullscreen}>
       <div className="sk-ai-module-content">
@@ -222,29 +209,11 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
           <div className="sk-ai-module-content-row">
             <div className="sk-ai-module-sidebar">
               <AIModuleHeader variant="alt" assistant={assistant} />
-              <div className="sk-ai-module-sidebar-sessions">
-                {todaysSessions.length > 0 && (
-                  <AIModuleSessionHistory
-                    sessions={todaysSessions}
-                    title="Idag"
-                    onSelectSession={handleChangeSession}
-                  />
-                )}
-                {yesterdaysSessions.length > 0 && (
-                  <AIModuleSessionHistory
-                    sessions={yesterdaysSessions}
-                    title="Igår"
-                    onSelectSession={handleChangeSession}
-                  />
-                )}
-                {otherSessions.length > 0 && (
-                  <AIModuleSessionHistory
-                    sessions={otherSessions}
-                    title="Tidigare"
-                    onSelectSession={handleChangeSession}
-                  />
-                )}
-              </div>
+              <AIModuleSessions
+                current={!_propsSession && _session?.isNew ? '' : sessionId}
+                sessions={sessions}
+                onSelectSession={handleChangeSession}
+              />
             </div>
           </div>
         )}
@@ -260,6 +229,7 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
             onFullScreen={handleOnFullscreen}
             onCloseFullScreen={handleOnCloseFullscreen}
             onNewSession={handleNewSession}
+            onClick={docked ? handleOnOpen : undefined}
           />
           {!docked && (
             <>

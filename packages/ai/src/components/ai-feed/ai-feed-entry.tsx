@@ -20,6 +20,10 @@ interface AIFeedEntryProps extends React.ComponentPropsWithoutRef<'li'> {
   loadingComponent?: React.ReactNode;
   showFeedback?: boolean;
   sessionId?: string;
+  /**
+   * @default true
+   */
+  tabbable?: boolean;
   onGiveFeedback?: (value: -1 | 1) => void;
   size?: 'sm' | 'lg';
 }
@@ -37,6 +41,7 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
     showFeedback = false,
     loadingComponent = <TypingBubble />,
     sessionId,
+    tabbable,
     onGiveFeedback,
     size,
     ...rest
@@ -71,7 +76,12 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
                 <span className={cx('sk-ai-feed-entry-heading')} data-showtitle={showTitle}>
                   {title || info?.name}
                 </span>
-                <MarkdownRendered text={sanitized(entry.text)} messageId={entry.id} hideElements={!entry.done} />
+                <MarkdownRendered
+                  text={sanitized(entry.text)}
+                  messageId={entry.id}
+                  hideElements={!entry.done}
+                  tabbable={tabbable}
+                />
               </>
             )}
           </div>

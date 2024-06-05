@@ -2,6 +2,7 @@ export const Bubble = (colors: string[]) => ({
   '.sk-ai-bubble': {
     '@apply inline-flex text-left items-center justify-start': {},
     '@apply w-fit': {},
+    '@apply focus-visible:ring ring-ring': {},
     '@apply relative': {},
     '@apply rounded-t-button rounded-br-button': {},
     '@apply pt-10 pr-12 pb-10 pl-14': {},

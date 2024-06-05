@@ -2,7 +2,7 @@ export const MarkdownRendered = () => ({
   '.sk-ai-markdown': {
     '@apply flex flex-col gap-32': {},
     '&-p': {
-      '@apply mb-0 my-0': {},
+      '@apply mb-0 my-0 break-words': {},
     },
     '&-a': {
       '@apply my-8': {},
