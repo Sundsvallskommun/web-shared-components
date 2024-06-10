@@ -8,6 +8,11 @@ interface MarkdownRenderedProps extends Options {
   text: string;
   messageId: string;
   hideElements: boolean;
+  /**
+   * If links should be tabbable
+   * @default true
+   */
+  tabbable?: boolean;
 }
 
 const ParagraphComponent = (props: React.ComponentPropsWithoutRef<'p'>) => {
@@ -17,10 +22,11 @@ const ParagraphComponent = (props: React.ComponentPropsWithoutRef<'p'>) => {
 interface LinkComponentProps {
   hidden: boolean;
   id: string;
+  tabbable: boolean;
 }
 
 const LinkComponent =
-  ({ hidden, id }: LinkComponentProps) =>
+  ({ hidden, id, tabbable }: LinkComponentProps) =>
   (props: React.ComponentPropsWithoutRef<'a'>) => {
     const { href, children } = props;
     return (
@@ -30,7 +36,7 @@ const LinkComponent =
         external={href && href.startsWith('http')}
         href={href}
         className="sk-ai-markdown-a"
-        tabIndex={hidden ? -1 : 0}
+        tabIndex={hidden || !tabbable ? -1 : 0}
       >
         {children || href}
       </Link>
@@ -50,7 +56,7 @@ const LiComponent = (props: React.ComponentPropsWithoutRef<'li'>) => {
 };
 
 export const MarkdownRendered: React.FC<MarkdownRenderedProps> = (props) => {
-  const { text, components, className, messageId, hideElements, ...rest } = props;
+  const { text, components, className, messageId, hideElements, tabbable = true, ...rest } = props;
 
   return (
     <Markdown
@@ -58,7 +64,7 @@ export const MarkdownRendered: React.FC<MarkdownRenderedProps> = (props) => {
       disallowedElements={['script', 'iframe']}
       components={{
         p: ParagraphComponent,
-        a: LinkComponent({ hidden: hideElements, id: messageId }),
+        a: LinkComponent({ hidden: hideElements, id: messageId, tabbable }),
         ol: OlComponent,
         ul: UlComponent,
         li: LiComponent,

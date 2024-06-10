@@ -5,6 +5,7 @@ export const AIModule = (colors: string[]) => ({
     '@apply flex flex-col gap-0 items-center justify-start': {},
     '@apply shadow-200': {},
     '@apply transition-all': {},
+    '@apply duration-300': {},
     '@apply bottom-0 right-0': {},
 
     '&-content': {
@@ -14,7 +15,7 @@ export const AIModule = (colors: string[]) => ({
         '@apply flex flex-col': {},
       },
       '&-main': {
-        '@apply grow shrink max-h-full items-center': {},
+        '@apply grow shrink max-h-full max-w-full items-center': {},
       },
     },
 
@@ -37,6 +38,7 @@ export const AIModule = (colors: string[]) => ({
       '@apply px-16 pt-16 pb-24 gap-16': {},
       '@apply w-full': {},
       '@apply max-h-full overflow-y-auto': {},
+      '@apply max-w-full overflow-x-hidden': {},
       '&-questions': {
         '@apply flex flex-col gap-8 w-full': {},
         '&-title': {
@@ -56,9 +58,10 @@ export const AIModule = (colors: string[]) => ({
       '@apply w-[26em]': {},
       '@apply max-h-[44em]': {},
       '&[data-docked="false"]': {
-        '@apply h-full': {},
+        '@apply h-[44em]': {},
       },
     },
+
     '.sk-ai-feed': {
       '@apply w-full': {},
     },
@@ -81,7 +84,9 @@ export const AIModule = (colors: string[]) => ({
         '@apply pt-20 pb-32': {},
       },
     },
-
+    '&[data-docked="true"]': {
+      '@apply h-64 w-[19em]': {},
+    },
     '&-header': {
       '@apply flex items-center justify-between': {},
       '@apply w-full': {},
@@ -93,6 +98,7 @@ export const AIModule = (colors: string[]) => ({
 
       '&[data-docked="true"]': {
         '@apply px-12 pt-10 pb-12': {},
+        '@apply cursor-pointer': {},
       },
 
       '&-title': {
@@ -152,6 +158,9 @@ export const AIModule = (colors: string[]) => ({
           '@apply flex flex-col p-0 gap-8': {},
         },
       },
+    },
+    '.sk-avatar': {
+      '@apply transition-all duration-500': {},
     },
   },
 });

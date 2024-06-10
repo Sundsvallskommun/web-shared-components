@@ -33,15 +33,24 @@ export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, re
     ...rest
   } = props;
 
+  const assistantHistory = React.useMemo(() => history.filter((message) => message.origin !== 'user'), [history]);
+  const userHistory = React.useMemo(() => history.filter((message) => message.origin === 'user'), [history]);
+
   React.useEffect(() => {
-    const latest = history.at(-1);
-    if (latest?.done && latest.origin !== 'user') {
+    const latest = assistantHistory.at(-1);
+
+    if (latest?.done && latest.id !== lastMessage?.id) {
       setLastMessage(latest);
     }
-    if (latest?.done && latest.origin === 'user') {
+  }, [assistantHistory]);
+
+  React.useEffect(() => {
+    const latest = userHistory.at(-1);
+
+    if (latest?.done && latest.id !== lastOwnMessage?.id) {
       setLastOwnMessage(latest);
     }
-  }, [history]);
+  }, [userHistory]);
 
   React.useEffect(() => {
     if (internalRef.current) {
@@ -51,7 +60,7 @@ export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, re
 
   return (
     <>
-      <AIFeedWrapper ref={useForkRef(ref, internalRef)} className={className} tabIndex={0} {...rest}>
+      <AIFeedWrapper ref={useForkRef(ref, internalRef)} className={className} {...rest}>
         {history?.map((entry, index) => (
           <AIFeedEntry
             key={`${index}-${entry.id}`}
@@ -68,7 +77,13 @@ export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, re
       </AIFeedWrapper>
       <div className="sk-ai-feed-live-wrapper" aria-live="polite" aria-atomic={false}>
         {lastMessage && (
-          <AIFeedEntry showReferences={false} entry={lastMessage} showFeedback={false} showTitle={false}></AIFeedEntry>
+          <AIFeedEntry
+            showReferences={false}
+            entry={lastMessage}
+            showFeedback={false}
+            showTitle={true}
+            tabbable={false}
+          />
         )}
       </div>
       <div className="sk-ai-feed-live-wrapper" aria-live="polite" aria-atomic={false}>
@@ -77,8 +92,9 @@ export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, re
             showReferences={false}
             entry={lastOwnMessage}
             showFeedback={false}
-            showTitle={false}
-          ></AIFeedEntry>
+            showTitle={true}
+            tabbable={false}
+          />
         )}
       </div>
     </>
