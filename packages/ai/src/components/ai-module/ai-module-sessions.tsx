@@ -52,10 +52,6 @@ export const AIModuleSessions = React.forwardRef<HTMLDivElement, AIModuleSession
     }
   };
 
-  React.useEffect(() => {
-    console.log(current);
-  }, []);
-
   return (
     <div
       ref={ref}
