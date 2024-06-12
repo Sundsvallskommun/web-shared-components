@@ -223,10 +223,6 @@ export const Button = (colors: string[]) => ({
       '@apply shadow-none disabled:shadow-none disabled:cursor-default cursor-default': {},
       '@apply disabled:text-dark-disabled text-dark-disabled disabled:bg-primary-surface-disabled bg-primary-surface-disabled disabled:border-transparent border-transparent !important':
         {},
-      '&[data-inverted="true"]': {
-        '@apply disabled:text-inverted-dark-disabled text-inverted-dark-disabled disabled:bg-inverted-primary-surface-disabled bg-inverted-primary-surface-disabled disabled:border-transparent border-transparent !important':
-          {},
-      },
     },
 
     // variants
