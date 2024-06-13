@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.2.0...@sk-web-gui/ai@0.2.1) (2024-06-13)
+
+### Bug Fixes
+
+- **ai:** Removed client logging. ([71ac635](https://github.com/Sundsvallskommun/web-shared-components/commit/71ac635a380df3a58088b38e6d37a7794dc229e1))
+- **ai:** wcag improvements ([4627acc](https://github.com/Sundsvallskommun/web-shared-components/commit/4627acc9ae67a0ed91aedf04579c2a7d7592bbe5))
+
 # [0.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.1.0...@sk-web-gui/ai@0.2.0) (2024-06-04)
 
 ### Bug Fixes

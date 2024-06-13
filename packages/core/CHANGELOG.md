@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.2.0...@sk-web-gui/core@3.3.0) (2024-06-13)
+
+### Bug Fixes
+
+- **ai:** background on ai module ([001f518](https://github.com/Sundsvallskommun/web-shared-components/commit/001f518707158b859972b083ed10e199570bc270))
+- **ai:** wcag improvements ([4627acc](https://github.com/Sundsvallskommun/web-shared-components/commit/4627acc9ae67a0ed91aedf04579c2a7d7592bbe5))
+- **button:** Controlled by style instead of props. ([3f71e25](https://github.com/Sundsvallskommun/web-shared-components/commit/3f71e257c284bbaf8740f98da3b7a10250232931))
+
+### Features
+
+- added support to control wrapping border ([72e88ed](https://github.com/Sundsvallskommun/web-shared-components/commit/72e88ed007e0c3924a228f61bc644538011fd166))
+
 # [3.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.1.0...@sk-web-gui/core@3.2.0) (2024-06-04)
 
 ### Bug Fixes

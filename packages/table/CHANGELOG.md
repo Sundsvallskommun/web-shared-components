@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@3.0.2...@sk-web-gui/table@3.1.0) (2024-06-13)
+
+### Features
+
+- added support to control wrapping border ([72e88ed](https://github.com/Sundsvallskommun/web-shared-components/commit/72e88ed007e0c3924a228f61bc644538011fd166))
+
 ## [3.0.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@3.0.1...@sk-web-gui/table@3.0.2) (2024-05-27)
 
 **Note:** Version bump only for package @sk-web-gui/table

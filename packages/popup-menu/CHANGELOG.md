@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/popup-menu@3.0.2...@sk-web-gui/popup-menu@3.0.3) (2024-06-13)
+
+### Bug Fixes
+
+- enables button to fire click on Enter ([83ae2f1](https://github.com/Sundsvallskommun/web-shared-components/commit/83ae2f19f0b9f42bc2aeb8adb06430b85b5ee3da))
+
 ## [3.0.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/popup-menu@3.0.1...@sk-web-gui/popup-menu@3.0.2) (2024-05-27)
 
 **Note:** Version bump only for package @sk-web-gui/popup-menu

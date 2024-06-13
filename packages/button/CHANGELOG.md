@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/button@2.0.2...@sk-web-gui/button@2.0.3) (2024-06-13)
+
+### Bug Fixes
+
+- **button:** Controlled by style instead of props. ([3f71e25](https://github.com/Sundsvallskommun/web-shared-components/commit/3f71e257c284bbaf8740f98da3b7a10250232931))
+- **button:** fixed the issue where the button disappeared when using inverted and disabled at the same time ([3691251](https://github.com/Sundsvallskommun/web-shared-components/commit/36912515c425c96b8b8ff8dd42c08847440268fb))
+
 ## [2.0.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/button@2.0.1...@sk-web-gui/button@2.0.2) (2024-05-27)
 
 **Note:** Version bump only for package @sk-web-gui/button
