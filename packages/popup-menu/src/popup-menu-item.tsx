@@ -42,10 +42,8 @@ export const PopupMenuItem: React.FC<PopupMenuItemProps> = (props) => {
         prev && prev();
         break;
       case 'Enter':
-        if (target?.nodeName !== 'BUTTON') {
-          target?.dispatchEvent(clickEvent);
-          !preventClose && close && close();
-        }
+        target?.dispatchEvent(clickEvent);
+        !preventClose && close && close();
         break;
       case ' ':
         if (target?.nodeName !== 'INPUT') {
