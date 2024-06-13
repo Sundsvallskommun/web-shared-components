@@ -5,12 +5,21 @@ import { TableFooter } from './table-footer';
 import { TableHeader } from './table-header';
 export interface TableComponentProps extends DefaultProps, React.ComponentPropsWithRef<'table'> {
   background?: boolean;
+  wrappingBorder?: boolean;
   dense?: boolean;
   scrollable?: 'x' | 'y' | boolean;
 }
 
 export const TableComponent = React.forwardRef<HTMLTableElement, TableComponentProps>((props, ref) => {
-  const { background = false, dense = false, className, children, scrollable = true, ...rest } = props;
+  const {
+    background = false,
+    wrappingBorder = background,
+    dense = false,
+    className,
+    children,
+    scrollable = true,
+    ...rest
+  } = props;
   const sizeRef = React.useRef<HTMLDivElement>(null);
   const { width: tableWidth } = useResizeObserver({
     ref: sizeRef,
@@ -43,7 +52,12 @@ export const TableComponent = React.forwardRef<HTMLTableElement, TableComponentP
 
   const footerItem = validChildren.filter((child) => child.type === TableFooter);
   return (
-    <div className={cx('sk-table-wrapper', className)} data-footer={!!footerItem} data-background={background}>
+    <div
+      className={cx('sk-table-wrapper', className)}
+      data-footer={!!footerItem}
+      data-background={background}
+      data-wrappingborder={wrappingBorder}
+    >
       <div ref={wrapperRef} className="sk-table-wrapper-inside" data-scroll={scrollable}>
         <table
           ref={useForkRef(sizeRef, ref)}
