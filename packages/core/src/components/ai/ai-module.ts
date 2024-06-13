@@ -98,6 +98,13 @@ export const AIModule = (colors: string[]) => ({
       '@apply bg-inverted-background-content': {},
       '@apply text-inverted-dark-primary': {},
 
+      '#sk-ai-module-mobile-menu': {
+        '@apply md:hidden': {},
+      },
+      '#sk-ai-module-fullscreen-toggle': {
+        '@apply max-md:hidden': {},
+      },
+
       '&[data-docked="true"]': {
         '@apply px-12 pt-10 pb-12': {},
         '@apply cursor-pointer': {},
