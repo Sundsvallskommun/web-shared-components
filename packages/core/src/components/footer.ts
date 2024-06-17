@@ -3,26 +3,33 @@ export const Footer = () => ({
     '@apply bg-background-content': {},
     '@apply flex justify-center': {},
     '@apply w-full': {},
-    '@apply p-20 sm:p-32 md:p-40 lg:p-48 xl:p-80': {},
+    '@apply py-40 px-20 lg:px-80': {},
     '@apply text-dark-secondary': {},
 
-    '&-innerwrapper': {
-      '@apply w-full max-w-content': {},
-      '@apply pb-20 sm:pb-32 md:pb-40 lg:pb-48 xl:pb-80': {},
-      '@apply flex flex-row flex-wrap gap-100': {},
-      '@apply justify-between': {},
-    },
+    '&-logo-wrapper': {
+      '@apply mr-80 mb-40': {},
 
-    '&-logo': {
-      '@apply max-h-72 h-72': {},
+      '.sk-logo': {
+        '@apply max-h-72 h-72': {},
+      },
     },
     '&-content': {
-      '@apply flex flex-row gap-36 w-fit grow-0 flex-wrap': {},
+      '@apply flex flex-row w-fit grow flex-wrap': {},
+      '@apply w-full max-w-content': {},
     },
     '&-list': {
-      '@apply flex flex-col gap-16': {},
+      '@apply flex grow flex-col gap-16': {},
+
+      '&-wrapper': {
+        '@apply flex flex-wrap justify-start grow gap-36': {},
+      },
+
       '&-item': {
-        '@apply flex flex-row justify-start items-center gap-8': {},
+        '@apply text-[1.4rem] w-[13.79em] flex flex-row justify-start items-center gap-8': {},
+
+        label: {
+          '@apply text-label-medium': {},
+        },
       },
     },
   },
