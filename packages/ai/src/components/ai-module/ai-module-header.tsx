@@ -208,6 +208,7 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
               size="sm"
               role="menuitem"
               aria-label={`Alternativ`}
+              aria-haspopup="menu"
               aria-expanded={menuOpen}
               inverted
               iconButton
@@ -216,7 +217,7 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
               onKeyDown={handleKeyboardNavigation}
               id="sk-ai-module-mobile-menu"
             >
-              <Icon name={menuOpen ? 'x' : 'menu'} />
+              <Icon name="menu" />
             </Button>
           )}
         </div>

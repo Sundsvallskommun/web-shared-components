@@ -22,7 +22,7 @@ export const AIModuleSessionHistory = React.forwardRef<HTMLDivElement, AIModuleS
   const { sessions, title, className, onSelectSession, current, onKeyNext, onKeyPrev, ...rest } = props;
   const autoId = React.useId();
   const id = `sk-ai-module-sessions-history-title-${autoId}`;
-
+  const idPrefix = 'sk-ai-session-item-';
   const focusable = current ? current : sessions[0].id;
 
   const handleKeyboardNavigation = (event: React.KeyboardEvent<HTMLButtonElement>, id: string) => {
@@ -40,15 +40,8 @@ export const AIModuleSessionHistory = React.forwardRef<HTMLDivElement, AIModuleS
 
   return (
     <div ref={ref} className={cx('sk-ai-module-sessions-history', className)} {...rest}>
-      <Divider.Section size="sm" id={id}>
-        {title}
-      </Divider.Section>
-      <ul
-        role="menubar"
-        aria-orientation="vertical"
-        aria-labelledby={id}
-        className="sk-ai-module-sessions-history-list"
-      >
+      <Divider.Section size="sm">{title}</Divider.Section>
+      <ul role="group" aria-orientation="vertical" aria-label={title} className="sk-ai-module-sessions-history-list">
         {sessions.map((session) => (
           <li key={session.id} className="sk-ai-module-sessions-history-list-entry" role="none">
             <Button
@@ -60,7 +53,7 @@ export const AIModuleSessionHistory = React.forwardRef<HTMLDivElement, AIModuleS
               id={`sk-ai-session-item-${session.id}`}
               onClick={() => onSelectSession && onSelectSession(session.id)}
               leftIcon={<Icon name="message-circle" />}
-              onKeyDown={(e) => handleKeyboardNavigation(e, session.id)}
+              onKeyDown={(e) => handleKeyboardNavigation(e, idPrefix + session.id)}
             >
               {session.name}
             </Button>

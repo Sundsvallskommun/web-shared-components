@@ -9,6 +9,7 @@ import { AssistantPresentation } from '../assistant-presentation';
 import { Bubble } from '../bubble';
 import { InputSection } from '../input-section';
 import { AIModuleHeader } from './ai-module-header';
+import { AIModuleMobileMenu } from './ai-module-mobile-menu';
 import { AIModuleSessions } from './ai-module-sessions';
 import { AIModuleWrapper } from './ai-module-wrapper';
 
@@ -25,6 +26,7 @@ export interface AIModuleDefaultProps {
 }
 
 export interface AIModuleProps extends AIModuleDefaultProps, React.ComponentPropsWithoutRef<'div'> {
+  isMobile?: boolean;
   sessionId?: string;
   assistant?: AssistantInfo;
   questions?: string[];
@@ -47,6 +49,7 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
     color,
     sessionId: _sessionId,
     assistant: _propsAssistant,
+    isMobile,
     onOpen,
     onClose,
     onFullScreen,
@@ -74,7 +77,8 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
   const history = _propsSession?.history || _history || [];
   const [docked, setDocked] = React.useState<boolean>(true);
   const [fullscreen, setFullscreen] = React.useState<boolean>(false);
-
+  const [menuIsOpen, setMenuIsOpen] = React.useState<boolean>(false);
+  const isFullscreen = fullscreen && !isMobile;
   const scrollRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -203,9 +207,9 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
   };
 
   return (
-    <AIModuleWrapper ref={ref} className={className} {...rest} docked={docked} fullscreen={fullscreen}>
+    <AIModuleWrapper ref={ref} className={className} {...rest} docked={docked} fullscreen={isFullscreen}>
       <div className="sk-ai-module-content">
-        {fullscreen && (
+        {isFullscreen && (
           <div className="sk-ai-module-content-row">
             <div className="sk-ai-module-sidebar">
               <AIModuleHeader variant="alt" assistant={assistant} />
@@ -220,7 +224,7 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
         <div className="sk-ai-module-content-row sk-ai-module-content-main">
           <AIModuleHeader
             docked={docked}
-            fullscreen={fullscreen}
+            fullscreen={isFullscreen}
             assistant={assistant}
             color={color}
             session={session}
@@ -230,13 +234,16 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
             onCloseFullScreen={handleOnCloseFullscreen}
             onNewSession={handleNewSession}
             onClick={docked ? handleOnOpen : undefined}
+            onOpenMenu={() => setMenuIsOpen(true)}
+            onCloseMenu={() => setMenuIsOpen(false)}
+            menuOpen={menuIsOpen}
           />
           {!docked && (
             <>
               <div className="sk-ai-module-feed" ref={scrollRef}>
                 {!history || history.length < 1 ? (
                   <>
-                    <AssistantPresentation size={fullscreen ? 'lg' : 'sm'} assistant={assistant} />
+                    <AssistantPresentation size={isFullscreen ? 'lg' : 'sm'} assistant={assistant} />
                     {questions && questions?.length > 0 && (
                       <div className="sk-ai-module-feed-questions-wrapper">
                         {questionsTitle && <div className="sk-ai-module-feed-questions-title">{questionsTitle}</div>}
@@ -255,7 +262,7 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
                     history={history}
                     showFeedback={showFeedback}
                     onGiveFeedback={handleAutoScroll}
-                    size={fullscreen ? 'lg' : 'sm'}
+                    size={isFullscreen ? 'lg' : 'sm'}
                     avatars={{
                       user: userAvatar,
                       assistant: assistantAvatar,
@@ -265,11 +272,25 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
                   />
                 )}
               </div>
-              <InputSection shadow={!fullscreen} sessionId={session?.id} onSendQuery={handleSendQuery} />
+              <InputSection
+                isMobile={isMobile}
+                shadow={!isFullscreen}
+                sessionId={session?.id}
+                onSendQuery={handleSendQuery}
+              />
             </>
           )}
         </div>
       </div>
+      {isMobile && (
+        <AIModuleMobileMenu
+          show={menuIsOpen && !!isMobile}
+          onClose={() => setMenuIsOpen(false)}
+          assistant={assistant}
+          sessions={sessions}
+          onNewSession={handleNewSession}
+        />
+      )}
     </AIModuleWrapper>
   );
 });

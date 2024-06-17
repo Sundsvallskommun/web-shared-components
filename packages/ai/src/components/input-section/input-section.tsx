@@ -13,10 +13,11 @@ export interface InputSectionProps extends React.ComponentPropsWithoutRef<'form'
   shadow?: boolean;
   sessionId?: string;
   onSendQuery?: (query: string) => void;
+  isMobile?: boolean;
 }
 
 export const InputSection = React.forwardRef<HTMLFormElement, InputSectionProps>((props, ref) => {
-  const { className, shadow, sessionId, onSendQuery, ...rest } = props;
+  const { className, shadow, sessionId, onSendQuery, isMobile, ...rest } = props;
   const [query, setQuery] = React.useState<string>('');
 
   const { sendQuery } = useChat({ sessionId });
@@ -41,8 +42,9 @@ export const InputSection = React.forwardRef<HTMLFormElement, InputSectionProps>
           placeholder={`Skriv till ${info ? info.name : 'assistanten'}`}
           onChange={(e) => setQuery(e.target.value)}
           value={query}
+          isMobile={isMobile}
         />
-        <InputSectionButton />
+        <InputSectionButton isMobile={isMobile} />
       </InputSectionWrapper>
     </form>
   );
