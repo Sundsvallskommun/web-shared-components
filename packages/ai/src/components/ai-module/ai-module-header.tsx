@@ -1,14 +1,17 @@
-import { cx } from '@sk-web-gui/utils';
 import { Avatar } from '@sk-web-gui/avatar';
-import React from 'react';
 import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
-import { AIModuleDefaultProps } from './ai-module';
+import { cx } from '@sk-web-gui/utils';
+import React from 'react';
 import { AssistantInfo } from '../../types';
+import { AIModuleDefaultProps } from './ai-module';
 
 export interface AIModuleHeaderProps extends AIModuleDefaultProps, React.ComponentPropsWithoutRef<'div'> {
   variant?: 'default' | 'alt';
   assistant: AssistantInfo;
+  onOpenMenu?: () => void;
+  onCloseMenu?: () => void;
+  menuOpen?: boolean;
 }
 
 export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderProps>((props, ref) => {
@@ -24,6 +27,9 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
     onClose,
     onFullScreen,
     onCloseFullScreen,
+    onOpenMenu,
+    onCloseMenu,
+    menuOpen,
     onNewSession,
     ...rest
   } = props;
@@ -32,6 +38,7 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
     if (docked) {
       onOpen && onOpen();
     } else {
+      onCloseMenu && onCloseMenu();
       onClose && onClose();
     }
   };
@@ -43,29 +50,77 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
     }
   };
 
+  const handleOpenMenu = () => {
+    if (menuOpen) {
+      onCloseMenu && onCloseMenu();
+    } else {
+      onOpenMenu && onOpenMenu();
+    }
+  };
+
+  const getPrevElement = (element: HTMLElement): HTMLElement | undefined => {
+    const prev = element.previousSibling as HTMLElement;
+    if (prev) {
+      if (window.getComputedStyle(prev).display !== 'none') {
+        return prev;
+      } else {
+        return getPrevElement(prev);
+      }
+    } else {
+      return undefined;
+    }
+  };
+
+  const getNextElement = (element: HTMLElement): HTMLElement | undefined => {
+    const next = element.nextSibling as HTMLElement;
+    if (next) {
+      if (window.getComputedStyle(next).display !== 'none') {
+        return next;
+      } else {
+        return getPrevElement(next);
+      }
+    } else {
+      return undefined;
+    }
+  };
+
   const handleKeyboardNavigation = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     const target = event.target as HTMLElement;
     switch (event.key) {
       case 'ArrowLeft': {
-        const prev = target && (target.previousSibling as HTMLElement);
+        const prev = target && getPrevElement(target);
         if (prev) {
           prev.focus();
         } else {
           const last = target.parentElement?.lastChild as HTMLElement;
           if (last) {
-            last.focus();
+            if (window.getComputedStyle(last).display !== 'none') {
+              last.focus();
+            } else {
+              const nextToLast = getPrevElement(last);
+              if (nextToLast) {
+                nextToLast.focus();
+              }
+            }
           }
         }
         break;
       }
       case 'ArrowRight': {
-        const next = target && (target.nextSibling as HTMLElement);
+        const next = target && getNextElement(target);
         if (next) {
           next.focus();
         } else {
           const first = target.parentElement?.firstChild as HTMLElement;
           if (first) {
-            first.focus();
+            if (window.getComputedStyle(first).display !== 'none') {
+              first.focus();
+            } else {
+              const nextToLast = getNextElement(first);
+              if (nextToLast) {
+                nextToLast.focus();
+              }
+            }
           }
         }
         break;
@@ -129,6 +184,7 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
               onClick={() => handleToggleFullscreen()}
               tabIndex={0}
               onKeyDown={handleKeyboardNavigation}
+              id="sk-ai-module-fullscreen-toggle"
             >
               <Icon name={fullscreen ? 'arrow-down-right' : 'arrow-up-left'} />
             </Button>
@@ -146,6 +202,24 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
           >
             <Icon name={docked ? 'chevrons-up' : 'chevrons-down'} />
           </Button>
+          {!docked && !fullscreen && (
+            <Button
+              variant="tertiary"
+              size="sm"
+              role="menuitem"
+              aria-label={`Alternativ`}
+              aria-haspopup="menu"
+              aria-expanded={menuOpen}
+              inverted
+              iconButton
+              onClick={() => handleOpenMenu()}
+              tabIndex={0}
+              onKeyDown={handleKeyboardNavigation}
+              id="sk-ai-module-mobile-menu"
+            >
+              <Icon name="menu" />
+            </Button>
+          )}
         </div>
       )}
     </div>

@@ -35,13 +35,13 @@ export const AssistantPresentation = () => ({
     },
     '&[data-size="sm"]': {
       '.sk-avatar': {
-        '@apply w-72 h-72': {},
+        '@apply w-64 sm:w-72 h-64 sm:h-72': {},
         '@apply max-w-72 max-h-72': {},
       },
       '.sk-ai-assistant-presentation-header': {
         '@apply gap-4 pb-16': {},
         '&-title': {
-          '@apply text-h3-md': {},
+          '@apply text-h3-sm sm:text-h3-md': {},
         },
         '&-description': {
           '@apply text-small': {},
