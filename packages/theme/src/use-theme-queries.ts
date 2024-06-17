@@ -159,37 +159,37 @@ export const useThemeQueries: (theme?: GuiTheme) => ThemeQueries = (theme) => {
   const { theme: _guiTheme } = useGui();
   const myTheme = theme || _guiTheme || defaultTheme;
 
-  const isMinXs = useMediaQuery(`screen and (min-width: ${myTheme?.screens['phone-min']})`);
-  const isMaxXs = useMediaQuery(`screen and (max-width: ${myTheme?.screens['phone-max']})`);
+  const isMinXs = useMediaQuery(`screen and (min-width: ${myTheme?.screens?.['phone-min']})`);
+  const isMaxXs = useMediaQuery(`screen and (max-width: ${myTheme?.screens?.['phone-max']})`);
   const isXs = isMinXs && isMaxXs;
   const isPhone = isXs;
   const isMinPhone = isMinXs;
   const isMaxPhone = isMaxXs;
 
-  const isMinSm = useMediaQuery(`screen and (min-width: ${myTheme?.screens['small-device-min']})`);
-  const isMaxSm = useMediaQuery(`screen and (max-width: ${myTheme?.screens['small-device-max']})`);
+  const isMinSm = useMediaQuery(`screen and (min-width: ${myTheme?.screens?.['small-device-min']})`);
+  const isMaxSm = useMediaQuery(`screen and (max-width: ${myTheme?.screens?.['small-device-max']})`);
   const isSm = isMinSm && isMaxSm;
   const isSmallDevice = isSm;
   const isMinSmallDevice = isMinSm;
   const isMaxSmallDevice = isMaxSm;
 
-  const isMinMd = useMediaQuery(`screen and (min-width: ${myTheme?.screens['medium-device-min']})`);
-  const isMaxMd = useMediaQuery(`screen and (max-width: ${myTheme?.screens['medium-device-max']})`);
+  const isMinMd = useMediaQuery(`screen and (min-width: ${myTheme?.screens?.['medium-device-min']})`);
+  const isMaxMd = useMediaQuery(`screen and (max-width: ${myTheme?.screens?.['medium-device-max']})`);
   const isMd = isMinMd && isMaxMd;
   const isMediumDevice = isMd;
   const isMinMediumDevice = isMinMd;
   const isMaxMediumDevice = isMaxMd;
 
-  const isMinLg = useMediaQuery(`screen and (min-width: ${myTheme?.screens['large-device-min']})`);
-  const isMaxLg = useMediaQuery(`screen and (max-width: ${myTheme?.screens['large-device-max']})`);
+  const isMinLg = useMediaQuery(`screen and (min-width: ${myTheme?.screens?.['large-device-min']})`);
+  const isMaxLg = useMediaQuery(`screen and (max-width: ${myTheme?.screens?.['large-device-max']})`);
   const isLg = isMinLg && isMaxLg;
   const isLargeDevice = isLg;
   const isMinLargeDevice = isMinLg;
   const isMaxLargeDevice = isMaxLg;
   const isDevice = isSmallDevice || isMediumDevice || isLargeDevice;
 
-  const isMinXl = useMediaQuery(`screen and (min-width: ${myTheme?.screens['desktop-min']})`);
-  const isMaxXl = useMediaQuery(`screen and (max-width: ${myTheme?.screens['desktop-max']})`);
+  const isMinXl = useMediaQuery(`screen and (min-width: ${myTheme?.screens?.['desktop-min']})`);
+  const isMaxXl = useMediaQuery(`screen and (max-width: ${myTheme?.screens?.['desktop-max']})`);
   const isXl = isMinXl && isMaxXl;
   const isDesktop = isXl;
   const isMinDesktop = isMinXl;
