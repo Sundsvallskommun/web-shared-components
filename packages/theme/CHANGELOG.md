@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@2.1.1...@sk-web-gui/theme@2.2.0) (2024-06-18)
+
+### Bug Fixes
+
+- **theme:** double check for empty values ([3e7e575](https://github.com/Sundsvallskommun/web-shared-components/commit/3e7e57593d9a26094b2d167ab5a15d3562324db3))
+
+### Features
+
+- **theme:** added hook to get media queries from theme ([296d977](https://github.com/Sundsvallskommun/web-shared-components/commit/296d977af40e481e2b32767f5c285f27f15cbc99))
+
 ## [2.1.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@2.1.0...@sk-web-gui/theme@2.1.1) (2024-05-27)
 
 ### Bug Fixes

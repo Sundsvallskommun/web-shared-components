@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/menu-vertical",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -37,8 +37,8 @@
     "react": "^18.2.0"
   },
   "dependencies": {
-    "@sk-web-gui/button": "2.0.3",
-    "@sk-web-gui/divider": "1.0.7",
+    "@sk-web-gui/button": "2.0.4",
+    "@sk-web-gui/divider": "1.0.8",
     "@sk-web-gui/icon": "2.0.1",
     "@sk-web-gui/utils": "2.0.1"
   },

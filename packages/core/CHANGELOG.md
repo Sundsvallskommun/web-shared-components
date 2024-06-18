@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.3.0...@sk-web-gui/core@3.4.0) (2024-06-18)
+
+### Bug Fixes
+
+- **ai:** added styling for mobile menu ([04012fa](https://github.com/Sundsvallskommun/web-shared-components/commit/04012fa2c4978e3bea96c2e354136169a9511fb1))
+- **ai:** responsive module ([73896ae](https://github.com/Sundsvallskommun/web-shared-components/commit/73896aef076a7265542e3ffa49ac0f4b719a1f39))
+- mobile adjustments to design ([0b2a750](https://github.com/Sundsvallskommun/web-shared-components/commit/0b2a750c35a481644808a5a25546ee701086b65f))
+
+### Features
+
+- updated footer to figma and to better access structure ([cdfc7f7](https://github.com/Sundsvallskommun/web-shared-components/commit/cdfc7f7715200eb99a6b648afcf545985dc9c050))
+
 # [3.3.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.2.0...@sk-web-gui/core@3.3.0) (2024-06-13)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/layout@1.0.9...@sk-web-gui/layout@1.1.0) (2024-06-18)
+
+### Features
+
+- updated footer to figma and to better access structure ([cdfc7f7](https://github.com/Sundsvallskommun/web-shared-components/commit/cdfc7f7715200eb99a6b648afcf545985dc9c050))
+
 ## [1.0.9](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/layout@1.0.8...@sk-web-gui/layout@1.0.9) (2024-05-27)
 
 **Note:** Version bump only for package @sk-web-gui/layout

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.2.1...@sk-web-gui/ai@0.3.0) (2024-06-18)
+
+### Features
+
+- added mobile menu and responsive features ([7a67005](https://github.com/Sundsvallskommun/web-shared-components/commit/7a670056f602054347b16876f3fb4903696dc853))
+- **module-header:** mobile menu button ([fc26685](https://github.com/Sundsvallskommun/web-shared-components/commit/fc26685aacf9b21066df14a09b10357b7fd70b70))
+
 ## [0.2.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.2.0...@sk-web-gui/ai@0.2.1) (2024-06-13)
 
 ### Bug Fixes

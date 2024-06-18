@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/core",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "license": "MIT",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -40,7 +40,7 @@
     "tailwindcss": "^3.4.3"
   },
   "dependencies": {
-    "@sk-web-gui/theme": "2.1.1",
+    "@sk-web-gui/theme": "2.2.0",
     "mini-svg-data-uri": "^1.4.4"
   }
 }
