@@ -3,14 +3,14 @@ export const Footer = () => ({
     '@apply bg-background-content': {},
     '@apply flex justify-center': {},
     '@apply w-full': {},
-    '@apply py-40 px-20 lg:px-80': {},
+    '@apply py-24 lg:py-40 px-20 lg:px-80': {},
     '@apply text-dark-secondary': {},
 
     '&-logo-wrapper': {
       '@apply mr-80 mb-40': {},
 
       '.sk-logo': {
-        '@apply max-h-72 h-72': {},
+        '@apply max-h-56 h-56 lg:max-h-72 lg:h-72': {},
       },
     },
     '&-content': {
