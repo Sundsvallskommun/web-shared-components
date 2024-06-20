@@ -9,6 +9,9 @@ export const AssistantPresentation = () => ({
       '&-title': {
         '@apply text-dark-primary text-center w-full': {},
       },
+      '&-descriptions': {
+        '@apply w-full flex flex-col gap-24': {},
+      },
       '&-description': {
         '@apply text-dark-secondary text-center w-full': {},
       },
@@ -16,7 +19,7 @@ export const AssistantPresentation = () => ({
 
     '&[data-size="lg"]': {
       '@apply min-h-[25.5em]': {},
-      '@apply p-24': {},
+      '@apply m-24': {},
       '@apply max-w-[27em]': {},
 
       '.sk-avatar': {

@@ -2,6 +2,7 @@ export const AIModule = (colors: string[]) => ({
   '.sk-ai-module': {
     '@apply fixed': {},
     '@apply max-w-full': {},
+    '@apply max-h-full': {},
     '@apply z-50': {},
     '@apply overflow-hidden': {},
     '@apply flex flex-col gap-0 items-center justify-start': {},
@@ -43,6 +44,11 @@ export const AIModule = (colors: string[]) => ({
       '@apply w-full': {},
       '@apply max-h-full overflow-y-auto': {},
       '@apply max-w-full overflow-x-hidden': {},
+      '&-readmore': {
+        '@apply w-full text-center': {},
+        '@apply max-w-[29em]': {},
+        '@apply px-24 pb-16 pt-0': {},
+      },
       '&-questions': {
         '@apply flex flex-col gap-8 w-full': {},
         '&-title': {
