@@ -24,6 +24,8 @@ export interface ModalComponentProps extends DefaultProps, Omit<_internal_Compon
   labelAs?: React.ElementType;
   hideLabel?: boolean;
   'aria-label'?: string;
+  overlayTransitionProps?: React.ComponentPropsWithRef<typeof Transition.Child>;
+  contentTransitionProps?: React.ComponentPropsWithRef<typeof Transition.Child>;
 }
 
 export const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentProps>((props, ref) => {
@@ -40,6 +42,8 @@ export const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentPro
     labelAs = 'label',
     hideLabel = false,
     closeButtonProps,
+    overlayTransitionProps,
+    contentTransitionProps,
     ...rest
   } = props;
 
@@ -62,16 +66,17 @@ export const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentPro
   return (
     <div className="sk-modal" ref={ref}>
       <Transition appear show={show} as={React.Fragment}>
-        <Dialog ref={modalRef} open={show} as="div" className="sk-modal-wrapper" onClose={onCloseHandler} {...rest}>
+        <Dialog ref={modalRef} as="div" className="sk-modal-wrapper" onClose={onCloseHandler} {...rest}>
           <div className="sk-modal-wrapper-inner">
             <Transition.Child
               as={React.Fragment}
-              enter="ease-out duration-300"
+              enter="ease-out duration-200"
               enterFrom="opacity-0"
               enterTo="opacity-100"
-              leave="ease-in duration-200"
+              leave="ease-in duration-0"
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
+              {...(typeof overlayTransitionProps === 'object' ? overlayTransitionProps : {})}
             >
               <Dialog.Overlay
                 className="sk-modal-overlay"
@@ -85,12 +90,13 @@ export const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentPro
             </span>
             <Transition.Child
               as={React.Fragment}
-              enter="ease-out duration-300"
+              enter="ease-out duration-200"
               enterFrom="opacity-0 scale-95"
               enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
+              leave="ease-in duration-0"
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
+              {...(typeof contentTransitionProps === 'object' ? contentTransitionProps : {})}
             >
               <Content className={cx('sk-modal-dialog', className)}>
                 {(!hideLabel || !hideClosebutton) && (
