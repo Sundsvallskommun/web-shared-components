@@ -2,6 +2,7 @@ import { DefaultProps, __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
 import { MenuVerticalComponent, MenuVerticalComponentProps } from './menu-vertical';
 import { MenuIndex, useMenuVertical } from './menu-vertical-context';
+import { Divider } from '@sk-web-gui/divider';
 
 export interface IMenuVerticalItemProps extends DefaultProps {
   /** Set true to set to current */
@@ -9,7 +10,7 @@ export interface IMenuVerticalItemProps extends DefaultProps {
   /** Set to override menuIndex */
   menuIndex?: MenuIndex;
   /** Use <a> or <button>. For dropdown, use Another <MenuVertical> with a <MenuVertical.SubmenuButton> instead of first item */
-  children: JSX.Element;
+  children?: JSX.Element;
   /** For e.g. Next Links to work, they need to be wrapped this way */
   wrapper?: JSX.Element;
   menuId?: string;
@@ -35,6 +36,7 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
       parentMenuId = '',
       wrapper,
       disabled = false,
+      role,
       ...rest
     } = props;
 
@@ -132,19 +134,23 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
           ...child.props,
           onKeyDown: handleKeyboard,
           ref: menuRef,
-          role: 'menuitem',
+          role: child.props.role ?? 'menuitem',
           'aria-current': isCurrentItem ? 'page' : undefined,
           tabIndex: isActiveItem ? 0 : -1,
           'aria-disabled': disabled ? disabled : undefined,
           onClick: disabled ? undefined : child.props.onClick,
           children: React.cloneElement(<span />, { children: child.props.children }),
         });
+      } else if (role === 'separator') {
+        return React.cloneElement(child, {
+          ...child.props,
+        });
       } else {
         return React.cloneElement(child, {
           ...child.props,
           onKeyDown: handleKeyboard,
           ref: menuRef,
-          role: 'menuitem',
+          role: child.props.role ?? 'menuitem',
           'aria-current': isCurrentItem ? 'page' : undefined,
           tabIndex: isActiveItem ? 0 : -1,
           'aria-disabled': disabled ? disabled : undefined,
@@ -153,10 +159,18 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
       }
     };
     const getChildWithWrapper = () => {
-      if (wrapper) {
-        return React.cloneElement(wrapper, { ...wrapper.props, children: getClonedChild(children) });
+      if (children) {
+        if (wrapper) {
+          return React.cloneElement(wrapper, { ...wrapper.props, children: getClonedChild(children) });
+        } else {
+          return getClonedChild(children);
+        }
       } else {
-        return getClonedChild(children);
+        if (role === 'separator') {
+          return React.cloneElement(<Divider />, {
+            tabIndex: -1,
+          });
+        }
       }
     };
 
@@ -164,7 +178,7 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
       <li
         ref={ref}
         className={cx('sk-menu-vertical-item', className, !menu[menuId].submenuOpen && 'hide')}
-        role="none"
+        role={role ?? 'none'}
         {...rest}
       >
         {getChildWithWrapper()}

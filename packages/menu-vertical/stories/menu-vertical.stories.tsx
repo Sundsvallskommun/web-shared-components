@@ -32,6 +32,7 @@ export const Template = (args: MenuVerticalProps) => {
               <MenuVertical.Item>
                 <button onClick={() => setCurrentActiveFocus(1002)}>Set nested current item</button>
               </MenuVertical.Item>
+              <MenuVertical.Item role="separator" />
               <MenuVertical.Item>
                 <MenuVertical {...args}>
                   <MenuVertical.SubmenuButton>
