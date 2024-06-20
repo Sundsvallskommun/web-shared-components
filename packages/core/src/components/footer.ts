@@ -25,7 +25,7 @@ export const Footer = () => ({
       },
 
       '&-item': {
-        '@apply text-[1.4rem] w-[13.79em] flex flex-row justify-start items-center gap-8': {},
+        '@apply text-[1.4rem] flex flex-row justify-start items-center gap-8': {},
 
         label: {
           '@apply text-label-medium': {},
