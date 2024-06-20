@@ -12,6 +12,7 @@ import { AIModuleHeader } from './ai-module-header';
 import { AIModuleMobileMenu } from './ai-module-mobile-menu';
 import { AIModuleSessions } from './ai-module-sessions';
 import { AIModuleWrapper } from './ai-module-wrapper';
+import { Link } from '@sk-web-gui/link';
 
 export interface AIModuleDefaultProps {
   docked?: boolean;
@@ -25,6 +26,7 @@ export interface AIModuleDefaultProps {
   onNewSession?: () => void;
 }
 
+type InfoLink = { url: string; description: string };
 export interface AIModuleProps extends AIModuleDefaultProps, React.ComponentPropsWithoutRef<'div'> {
   isMobile?: boolean;
   sessionId?: string;
@@ -32,6 +34,7 @@ export interface AIModuleProps extends AIModuleDefaultProps, React.ComponentProp
   questions?: string[];
   questionsTitle?: string;
   sessionHistory?: SessionHistory;
+  readmore?: InfoLink;
   onSendQuery?: (query: string) => void;
   onChangeSession?: (sessionId: string) => void;
   onSelectQuestion?: (question: string) => void;
@@ -63,6 +66,7 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
     questionsTitle,
     sessionHistory,
     onSelectQuestion,
+    readmore,
     showFeedback = true,
     ...rest
   } = props;
@@ -244,6 +248,13 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
                 {!history || history.length < 1 ? (
                   <>
                     <AssistantPresentation size={isFullscreen ? 'lg' : 'sm'} assistant={assistant} />
+                    {readmore && (
+                      <div className="sk-ai-module-feed-readmore">
+                        <Link external href={readmore.url}>
+                          {readmore.description}
+                        </Link>
+                      </div>
+                    )}
                     {questions && questions?.length > 0 && (
                       <div className="sk-ai-module-feed-questions-wrapper">
                         {questionsTitle && <div className="sk-ai-module-feed-questions-title">{questionsTitle}</div>}
