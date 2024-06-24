@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.4.0...@sk-web-gui/core@3.4.1) (2024-06-24)
+
+### Bug Fixes
+
+- **ai:** language and readmore support ([8e96032](https://github.com/Sundsvallskommun/web-shared-components/commit/8e96032dac73838f6b9d037d48d4289f16dae7a2))
+- items should not have fixed width ([39667e8](https://github.com/Sundsvallskommun/web-shared-components/commit/39667e81583ae14872f71c2e6378d034105d5ebc))
+- **uf-8920:** adjusted margins ([d3c04fb](https://github.com/Sundsvallskommun/web-shared-components/commit/d3c04fb0839b6e281f157fedb2c7ab39dee9518c))
+
 # [3.4.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.3.0...@sk-web-gui/core@3.4.0) (2024-06-18)
 
 ### Bug Fixes

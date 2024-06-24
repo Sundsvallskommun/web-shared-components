@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.3.0...@sk-web-gui/ai@0.4.0) (2024-06-24)
+
+### Features
+
+- added language support on description ([750791f](https://github.com/Sundsvallskommun/web-shared-components/commit/750791f6b541ac4b90495b7238e3cdbbbde0f6d7))
+
 # [0.3.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.2.1...@sk-web-gui/ai@0.3.0) (2024-06-18)
 
 ### Features

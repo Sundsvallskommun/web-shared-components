@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/menu-vertical@2.0.4...@sk-web-gui/menu-vertical@2.1.0) (2024-06-24)
+
+### Features
+
+- added support for separator, default and custom ([a630b70](https://github.com/Sundsvallskommun/web-shared-components/commit/a630b70769227b2a82cb396c738c244ce08adf6d))
+
 ## [2.0.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/menu-vertical@2.0.3...@sk-web-gui/menu-vertical@2.0.4) (2024-06-18)
 
 **Note:** Version bump only for package @sk-web-gui/menu-vertical

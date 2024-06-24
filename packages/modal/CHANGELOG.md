@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/modal@2.0.4...@sk-web-gui/modal@2.1.0) (2024-06-24)
+
+### Features
+
+- controlled modal transitions ([006a170](https://github.com/Sundsvallskommun/web-shared-components/commit/006a170d6c727980f40564d278755fe92807ce62))
+
 ## [2.0.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/modal@2.0.3...@sk-web-gui/modal@2.0.4) (2024-06-18)
 
 **Note:** Version bump only for package @sk-web-gui/modal
