@@ -7,21 +7,21 @@ export const Footer = () => ({
     '@apply text-dark-secondary': {},
 
     '&-logo-wrapper': {
-      '@apply mr-80 mb-40': {},
+      '@apply mr-80 mb-40 w-fit': {},
 
       '.sk-logo': {
         '@apply max-h-56 h-56 lg:max-h-72 lg:h-72': {},
       },
     },
     '&-content': {
-      '@apply flex flex-row w-fit grow flex-wrap': {},
+      '@apply w-fit grow flex flex-col desktop:flex-row desktop:flex-wrap': {},
       '@apply w-full max-w-content': {},
     },
     '&-list': {
       '@apply flex grow flex-col gap-16': {},
 
       '&-wrapper': {
-        '@apply flex flex-wrap justify-start grow gap-36': {},
+        '@apply flex flex-col desktop:flex-row flex-wrap justify-start grow gap-y-36 gap-x-80 desktop:ml-80': {},
       },
 
       '&-item': {
