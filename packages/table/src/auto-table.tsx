@@ -79,6 +79,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
     sortedOrder = SortMode.ASC,
     dense: _dense = false,
     background = true,
+    wrappingBorder = true,
     ...rest
   } = props;
 
@@ -222,8 +223,8 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
             getValue(a, autoHeaders[colIndex]).toLowerCase() > getValue(b, autoHeaders[colIndex]).toLowerCase()
               ? 1 * mode
               : getValue(a, autoHeaders[colIndex]).toLowerCase() < getValue(b, autoHeaders[colIndex]).toLowerCase()
-                ? -1 * mode
-                : 0
+              ? -1 * mode
+              : 0
           );
           break;
         default:
@@ -231,8 +232,8 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
             getValue(a, autoHeaders[colIndex]) > getValue(b, autoHeaders[colIndex])
               ? 1 * mode
               : getValue(a, autoHeaders[colIndex]) < getValue(b, autoHeaders[colIndex])
-                ? -1 * mode
-                : 0
+              ? -1 * mode
+              : 0
           );
           break;
       }
