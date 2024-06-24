@@ -11,6 +11,30 @@ export interface AssistantPresentationProps extends React.ComponentPropsWithoutR
 export const AssistantPresentation = React.forwardRef<HTMLDivElement, AssistantPresentationProps>((props, ref) => {
   const { className, assistant, size = 'lg', ...rest } = props;
 
+  const getDefaultDescription = () => {
+    switch (typeof assistant.description) {
+      case 'string':
+        return assistant.description;
+      case 'object':
+        return assistant.description?.default || undefined;
+      default:
+        return undefined;
+    }
+  };
+
+  const languages =
+    typeof assistant.description === 'object'
+      ? Object.keys(assistant.description).filter((key) => key !== 'default')
+      : undefined;
+
+  const getLanguageDescriptions = (language: string): string | undefined => {
+    if (typeof assistant.description === 'object') {
+      return assistant.description[language];
+    }
+
+    return undefined;
+  };
+
   return (
     <div ref={ref} className={cx('sk-ai-assistant-presentation', className)} data-size={size} {...rest}>
       <Avatar
@@ -23,9 +47,18 @@ export const AssistantPresentation = React.forwardRef<HTMLDivElement, AssistantP
       />
       <div className="sk-ai-assistant-presentation-header">
         <div className="sk-ai-assistant-presentation-header-title">{assistant.name}</div>
-        <div className="sk-ai-assistant-presentation-header-description">{assistant.description}</div>
+        <div className="sk-ai-assistant-presentation-header-descriptions">
+          {getDefaultDescription() && (
+            <div className="sk-ai-assistant-presentation-header-description">{getDefaultDescription()}</div>
+          )}
+          {languages &&
+            languages.map((lang, index) => (
+              <div key={`${lang}-${index}`} lang={lang} className="sk-ai-assistant-presentation-header-description">
+                {getLanguageDescriptions(lang)}
+              </div>
+            ))}
+        </div>
       </div>
-      <span></span>
     </div>
   );
 });

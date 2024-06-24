@@ -16,8 +16,11 @@ export const Template = (args: AssistantPresentationProps) => (
       name: 'Qwerty',
       title: 'Din AI-guide på intranätet',
       avatar: avatarSrc,
-      description:
-        'Din personliga AI-guide på intranätet. Svarar med glädje på frågor som rör din anställning på Sundsvalls Kommun.',
+      description: {
+        default:
+          'Din personliga AI-guide på intranätet. Svarar med glädje på frågor som rör din anställning på Sundsvalls Kommun.',
+        en: 'The AI assistant can answer your questions in multiple languages.',
+      },
     }}
   >
     Fråga

@@ -8,6 +8,14 @@ export default {
   title: 'AI/Komponenter/AIModule',
   component: AIModule,
   tags: ['autodocs'],
+  args: {
+    readmore: {
+      url: 'https://www.sundsvall.se/AI',
+      description: 'Hur Sundsvalls kommun använder artificiell intelligens (AI): www.sundsvall.se/AI',
+    },
+    questionsTitle: 'Vad kan jag hjälpa dig med?',
+    questions: ['Vad är Querty?', 'Jag har tappat bort mitt passerkort', 'Vilka dagar jobbar vi halvdag'],
+  },
 } as Meta<AIModuleProps>;
 
 const assistant: AssistantInfo = {
@@ -131,13 +139,7 @@ const sessions: SessionHistory = [
 export const Template = (args: AIModuleProps) => {
   return (
     <div className="w-full h-[50em] relative">
-      <AIModule
-        {...args}
-        assistant={assistant}
-        questionsTitle="Vad kan jag hjälpa dig med?"
-        questions={['Vad är Querty?', 'Jag har tappat bort mitt passerkort', 'Vilka dagar jobbar vi halvdag']}
-        sessionHistory={sessions}
-      ></AIModule>
+      <AIModule {...args} assistant={assistant} sessionHistory={sessions}></AIModule>
     </div>
   );
 };

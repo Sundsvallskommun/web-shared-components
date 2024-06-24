@@ -49,6 +49,12 @@ export interface AssistantSettings {
   stream?: boolean;
   apiBaseUrl?: string;
 }
+
+type LanguageCode = string | 'default';
+
+export type AssistantDescriptionWithLanguage = Record<LanguageCode, string>;
+
+export type AssistantDescription = string | AssistantDescriptionWithLanguage;
 export interface AssistantInfo {
   /**
    * Image element, or url to image
@@ -57,7 +63,7 @@ export interface AssistantInfo {
   name: string;
   shortName?: string;
   title?: string;
-  description?: string;
+  description?: AssistantDescription;
 }
 
 export interface AssistantSession {
