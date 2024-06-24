@@ -49,10 +49,10 @@ export const MenuVerticalComponent = React.forwardRef<HTMLUListElement, MenuVert
             const submenuItemInnerText = encodeURIComponent(extractString(submenuItem));
             const _menuId = `${object._menuId}-${submenuItemInnerText}`;
             object.submenuItem = React.cloneElement(child as React.ReactElement<MenuVerticalSubmenuButtonProps>, {
-              ...child.props,
               menuIndex: parentLiMenuIndex ? parentLiMenuIndex : `${object._menuId}`,
               menuId: _menuId,
               parentMenuId: menuId ? menuId : rootMenuId,
+              ...child.props,
             });
             object._menuId = _menuId;
             break;
@@ -60,13 +60,13 @@ export const MenuVerticalComponent = React.forwardRef<HTMLUListElement, MenuVert
             const innerText = encodeURIComponent(extractString(child));
             object.menuItems = object.menuItems.concat([
               React.cloneElement(child as React.ReactElement<MenuVerticalItemProps>, {
-                ...child.props,
                 menuIndex: child.props.menuIndex ? child.props.menuIndex : `${object._menuId}-${innerText}`,
                 menuId: object._menuId,
                 parentMenuId: child.props.parentMenuId ? child.props.parentMenuId : menuId ? menuId : rootMenuId,
                 'data-menuindex': child.props.menuIndex ? child.props.menuIndex : `${object._menuId}-${innerText}`,
                 'data-menuid': object._menuId,
                 'data-parentmenuid': child.props.parentMenuId ? child.props.parentMenuId : menuId ? menuId : rootMenuId,
+                ...child.props,
               }),
             ]);
             break;
@@ -80,7 +80,7 @@ export const MenuVerticalComponent = React.forwardRef<HTMLUListElement, MenuVert
 
   _menu[_menuId] = {
     submenuItem: submenuItem,
-    menuItems: menuItems,
+    menuItems: menuItems.filter((item) => item.props.role !== 'separator'),
     parentMenuId: menuId ? menuId : rootMenuId,
     parentLiMenuIndex: parentLiMenuIndex,
     submenuOpen: submenuOpen,
