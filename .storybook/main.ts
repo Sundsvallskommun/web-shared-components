@@ -1,8 +1,6 @@
 import type { StorybookConfig } from '@storybook/react-vite';
 import { mergeConfig } from 'vite';
 import path, { dirname, join } from 'path';
-import nodeResolve from '@rollup/plugin-node-resolve';
-import rollupPluginBabel from '@rollup/plugin-babel';
 import fs from 'fs';
 
 function getPackages() {
@@ -11,7 +9,11 @@ function getPackages() {
 }
 
 const config: StorybookConfig = {
-  stories: ['./stories/**/*.stories.@(tsx|mdx)', '../packages/*/stories/*.stories.@(tsx|mdx)'],
+  stories: [
+    './stories/intro/intro.mdx' /** child 0: Start/Index */,
+    './stories/**/*.@(tsx|mdx)',
+    '../packages/*/stories/*.stories.@(tsx|mdx)',
+  ],
   addons: [
     getAbsolutePath('@storybook/addon-essentials'),
     getAbsolutePath('@storybook/addon-a11y'),
@@ -33,7 +35,6 @@ const config: StorybookConfig = {
               }
               warn(warning);
             },
-            plugins: [rollupPluginBabel(), nodeResolve()],
             input: getPackages().reduce((entries, packageName) => {
               entries[packageName] = path.resolve(__dirname, `../packages/${packageName}/dist/esm/index.js`);
               return entries;

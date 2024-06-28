@@ -24,4 +24,4 @@ yarn-error.log
 .yarn-integrity
 .npmrc
 
-.nx/cache
+.nx
