@@ -5,6 +5,7 @@ export {
   AIFeed,
   AIModule,
   AIModuleHeader,
+  AIModuleHeaderMenu,
   InputSection,
   MarkdownRendered,
   TypingBubble,
