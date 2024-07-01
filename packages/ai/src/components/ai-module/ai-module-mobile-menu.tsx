@@ -13,29 +13,19 @@ interface AIModuleMobileMenuProps extends Omit<React.ComponentPropsWithoutRef<'d
   assistant: AssistantInfo;
   sessions: SessionHistory;
   onClose?: () => void;
-  onNewSession?: () => void;
   onChangeSession?: AIModuleProps['onChangeSession'];
 }
 
 export const AIModuleMobileMenu = React.forwardRef<HTMLDivElement, AIModuleMobileMenuProps>((props, ref) => {
-  const { className, show, onClose, onNewSession, assistant, sessions, onChangeSession, ...rest } = props;
+  const { className, show, onClose, assistant, sessions, onChangeSession, ...rest } = props;
   const [focusMenu, setFocusMenu] = React.useState<boolean>(false);
-  const buttonRef = React.useRef<HTMLButtonElement>(null);
   const internalRef = React.useRef<HTMLDivElement>(null);
-
-  const handleNewSession = () => {
-    onNewSession && onNewSession();
-    onClose && onClose();
-  };
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   const handleChangeSession = (id: string) => {
     onChangeSession && onChangeSession(id);
     onClose && onClose();
   };
-
-  React.useEffect(() => {
-    show && buttonRef.current && buttonRef.current.focus();
-  }, [show]);
 
   const focusTheMenu = () => {
     setFocusMenu(true);
@@ -43,6 +33,10 @@ export const AIModuleMobileMenu = React.forwardRef<HTMLDivElement, AIModuleMobil
       setFocusMenu(false);
     }, 10);
   };
+
+  React.useEffect(() => {
+    show && buttonRef.current && buttonRef.current.focus();
+  }, [show]);
 
   useOnClickOutside(internalRef, () => {
     onClose && onClose();
@@ -71,6 +65,12 @@ export const AIModuleMobileMenu = React.forwardRef<HTMLDivElement, AIModuleMobil
             }
             break;
         }
+        break;
+      }
+      case 'Enter': {
+        const target = document.activeElement as HTMLElement;
+        target.click();
+        break;
       }
     }
   };
@@ -86,6 +86,7 @@ export const AIModuleMobileMenu = React.forwardRef<HTMLDivElement, AIModuleMobil
       <div className="sk-ai-module-mobile-menu-top-bar">
         <AIModuleHeader variant="alt" assistant={assistant} />
         <Button
+          ref={buttonRef}
           variant="tertiary"
           size="sm"
           iconButton
@@ -97,22 +98,7 @@ export const AIModuleMobileMenu = React.forwardRef<HTMLDivElement, AIModuleMobil
         </Button>
       </div>
       <div className="sk-ai-module-mobile-menu-content">
-        <AIModuleSessions
-          sessions={sessions}
-          onSelectSession={handleChangeSession}
-          focus={focusMenu}
-          itemsBefore={[
-            <Button
-              ref={buttonRef}
-              size="sm"
-              color="vattjom"
-              rightIcon={<Icon name="plus" />}
-              onClick={() => handleNewSession()}
-            >
-              Ny fråga
-            </Button>,
-          ]}
-        />
+        <AIModuleSessions sessions={sessions} onSelectSession={handleChangeSession} focus={focusMenu} />
       </div>
     </div>
   );

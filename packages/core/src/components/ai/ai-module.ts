@@ -4,20 +4,18 @@ export const AIModule = (colors: string[]) => ({
     '@apply max-w-full': {},
     '@apply max-h-full': {},
     '@apply z-50': {},
-    '@apply overflow-hidden': {},
     '@apply flex flex-col gap-0 items-center justify-start': {},
     '@apply shadow-200': {},
     '@apply transition-all': {},
     '@apply duration-300': {},
     '@apply bottom-0 right-0': {},
+    '@apply bg-background-content': {},
 
     '&-content': {
       '@apply flex w-full gap-0 h-full justify-between': {},
       '@apply relative': {},
-      '@apply overflow-hidden': {},
       '&-row': {
         '@apply flex flex-col': {},
-        '@apply bg-background-content': {},
       },
       '&-main': {
         '@apply grow shrink max-h-full max-w-full items-center': {},
@@ -45,7 +43,7 @@ export const AIModule = (colors: string[]) => ({
       '@apply max-h-full overflow-y-auto': {},
       '@apply max-w-full overflow-x-hidden': {},
       '&-readmore': {
-        '@apply w-full text-center': {},
+        '@apply text-center': {},
         '@apply max-w-[29em]': {},
         '@apply px-24 pb-16 pt-0': {},
       },
@@ -63,15 +61,31 @@ export const AIModule = (colors: string[]) => ({
       '@apply shrink-0': {},
     },
     '&[data-fullscreen="false"]': {
-      '@apply md:rounded-tl-groups': {},
-      '@apply md:max-w-[26em]': {},
-      '@apply w-full md:w-[26em]': {},
-      '@apply md:max-h-[44em]': {},
+      '@apply rounded-tl-groups': {},
+      '@apply max-w-[26em]': {},
+      '@apply w-[26em]': {},
+      '@apply max-h-[44em]': {},
+      '&[data-mobile="true"]': {
+        '@apply rounded-tl-none': {},
+        '@apply max-w-full': {},
+        '@apply w-full': {},
+        '@apply max-h-full': {},
+      },
       '&[data-docked="false"]': {
-        '@apply h-full md:h-[44em]': {},
+        '@apply h-[44em]': {},
+        '&[data-mobile="true"]': {
+          '@apply h-full': {},
+        },
       },
     },
 
+    '&[data-mobile="true"]': {
+      '.sk-ai-module-feed': {
+        '&-readmore': {
+          '@apply max-w-full': {},
+        },
+      },
+    },
     '.sk-ai-feed': {
       '@apply w-full': {},
     },
@@ -95,7 +109,10 @@ export const AIModule = (colors: string[]) => ({
       },
     },
     '&[data-docked="true"]': {
-      '@apply h-64 w-full md:w-[19em]': {},
+      '@apply h-64 md:w-[19em]': {},
+      '&[data-mobile="true"]': {
+        '@apply w-full': {},
+      },
     },
     '&-header': {
       '@apply flex items-center justify-between': {},
@@ -105,14 +122,11 @@ export const AIModule = (colors: string[]) => ({
       '@apply transition-all': {},
       '@apply bg-inverted-background-content': {},
       '@apply text-inverted-dark-primary': {},
+      '@apply rounded-tl-groups': {},
 
-      '#sk-ai-module-mobile-menu': {
-        '@apply md:hidden': {},
+      '&[data-mobile="true"]': {
+        '@apply rounded-tl-none': {},
       },
-      '#sk-ai-module-fullscreen-toggle': {
-        '@apply max-md:hidden': {},
-      },
-
       '&[data-docked="true"]': {
         '@apply px-12 pt-10 pb-12': {},
         '@apply cursor-pointer': {},
@@ -135,6 +149,24 @@ export const AIModule = (colors: string[]) => ({
       '&-menu': {
         '@apply flex justify-center items-center': {},
         '@apply gap-12': {},
+        '&-item': {
+          '@apply relative flex justify-center': {},
+          '.sk-tooltip': {
+            '@apply absolute w-max': {},
+            '&[data-position="below"]': {
+              '@apply top-full': {},
+              '@apply mt-12': {},
+            },
+            '&[data-position="above"]': {
+              '@apply bottom-full': {},
+              '@apply mb-12': {},
+            },
+            '&[data-rightoutside="true"]': {
+              '@apply ml-[-100%]': {},
+              '@apply w-auto': {},
+            },
+          },
+        },
       },
 
       '&[data-variant="alt"]': {
@@ -162,6 +194,7 @@ export const AIModule = (colors: string[]) => ({
         {}
       ),
       '&[data-fullscreen="true"]': {
+        '@apply rounded-tl-none': {},
         '@apply bg-background-content': {},
         '@apply text-dark-primary': {},
         '@apply px-20 pt-20 pb-12': {},

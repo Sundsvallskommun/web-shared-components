@@ -19,6 +19,7 @@ export interface AIModuleDefaultProps {
   color?: string;
   fullscreen?: boolean;
   session?: AssistantSession;
+  isMobile?: boolean;
   onOpen?: () => void;
   onClose?: () => void;
   onFullScreen?: () => void;
@@ -28,7 +29,6 @@ export interface AIModuleDefaultProps {
 
 type InfoLink = { url: string; description: string };
 export interface AIModuleProps extends AIModuleDefaultProps, React.ComponentPropsWithoutRef<'div'> {
-  isMobile?: boolean;
   sessionId?: string;
   assistant?: AssistantInfo;
   questions?: string[];
@@ -81,7 +81,7 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
   const history = _propsSession?.history || _history || [];
   const [docked, setDocked] = React.useState<boolean>(true);
   const [fullscreen, setFullscreen] = React.useState<boolean>(false);
-  const [menuIsOpen, setMenuIsOpen] = React.useState<boolean>(false);
+  const [showMobileHistory, setShowMobileHistory] = React.useState<boolean>(false);
   const isFullscreen = fullscreen && !isMobile;
   const scrollRef = React.useRef<HTMLDivElement>(null);
 
@@ -211,7 +211,14 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
   };
 
   return (
-    <AIModuleWrapper ref={ref} className={className} {...rest} docked={docked} fullscreen={isFullscreen}>
+    <AIModuleWrapper
+      ref={ref}
+      className={className}
+      {...rest}
+      docked={docked}
+      fullscreen={isFullscreen}
+      isMobile={isMobile}
+    >
       <div className="sk-ai-module-content">
         {isFullscreen && (
           <div className="sk-ai-module-content-row">
@@ -238,9 +245,10 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
             onCloseFullScreen={handleOnCloseFullscreen}
             onNewSession={handleNewSession}
             onClick={docked ? handleOnOpen : undefined}
-            onOpenMenu={() => setMenuIsOpen(true)}
-            onCloseMenu={() => setMenuIsOpen(false)}
-            menuOpen={menuIsOpen}
+            onOpenHistory={() => setShowMobileHistory(true)}
+            onCloseHistory={() => setShowMobileHistory(false)}
+            historyOpen={showMobileHistory}
+            isMobile={isMobile}
           />
           {!docked && (
             <>
@@ -295,11 +303,10 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
       </div>
       {isMobile && (
         <AIModuleMobileMenu
-          show={menuIsOpen && !!isMobile}
-          onClose={() => setMenuIsOpen(false)}
+          show={showMobileHistory && !!isMobile}
+          onClose={() => setShowMobileHistory(false)}
           assistant={assistant}
           sessions={sessions}
-          onNewSession={handleNewSession}
         />
       )}
     </AIModuleWrapper>
