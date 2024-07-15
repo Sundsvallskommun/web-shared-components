@@ -5,13 +5,15 @@ import { cx } from '@sk-web-gui/utils';
 import React from 'react';
 import { AssistantInfo } from '../../types';
 import { AIModuleDefaultProps } from './ai-module';
+import { Tooltip } from '@sk-web-gui/tooltip';
+import { AIModuleHeaderMenu } from './ai-module-header-menu';
 
 export interface AIModuleHeaderProps extends AIModuleDefaultProps, React.ComponentPropsWithoutRef<'div'> {
   variant?: 'default' | 'alt';
   assistant: AssistantInfo;
-  onOpenMenu?: () => void;
-  onCloseMenu?: () => void;
-  menuOpen?: boolean;
+  onOpenHistory?: () => void;
+  onCloseHistory?: () => void;
+  historyOpen?: boolean;
 }
 
 export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderProps>((props, ref) => {
@@ -27,106 +29,13 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
     onClose,
     onFullScreen,
     onCloseFullScreen,
-    onOpenMenu,
-    onCloseMenu,
-    menuOpen,
+    onOpenHistory,
+    onCloseHistory,
+    historyOpen,
     onNewSession,
+    isMobile,
     ...rest
   } = props;
-
-  const handleToggleOpen = () => {
-    if (docked) {
-      onOpen && onOpen();
-    } else {
-      onCloseMenu && onCloseMenu();
-      onClose && onClose();
-    }
-  };
-  const handleToggleFullscreen = () => {
-    if (fullscreen) {
-      onCloseFullScreen && onCloseFullScreen();
-    } else {
-      onFullScreen && onFullScreen();
-    }
-  };
-
-  const handleOpenMenu = () => {
-    if (menuOpen) {
-      onCloseMenu && onCloseMenu();
-    } else {
-      onOpenMenu && onOpenMenu();
-    }
-  };
-
-  const getPrevElement = (element: HTMLElement): HTMLElement | undefined => {
-    const prev = element.previousSibling as HTMLElement;
-    if (prev) {
-      if (window.getComputedStyle(prev).display !== 'none') {
-        return prev;
-      } else {
-        return getPrevElement(prev);
-      }
-    } else {
-      return undefined;
-    }
-  };
-
-  const getNextElement = (element: HTMLElement): HTMLElement | undefined => {
-    const next = element.nextSibling as HTMLElement;
-    if (next) {
-      if (window.getComputedStyle(next).display !== 'none') {
-        return next;
-      } else {
-        return getPrevElement(next);
-      }
-    } else {
-      return undefined;
-    }
-  };
-
-  const handleKeyboardNavigation = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-    const target = event.target as HTMLElement;
-    switch (event.key) {
-      case 'ArrowLeft': {
-        const prev = target && getPrevElement(target);
-        if (prev) {
-          prev.focus();
-        } else {
-          const last = target.parentElement?.lastChild as HTMLElement;
-          if (last) {
-            if (window.getComputedStyle(last).display !== 'none') {
-              last.focus();
-            } else {
-              const nextToLast = getPrevElement(last);
-              if (nextToLast) {
-                nextToLast.focus();
-              }
-            }
-          }
-        }
-        break;
-      }
-      case 'ArrowRight': {
-        const next = target && getNextElement(target);
-        if (next) {
-          next.focus();
-        } else {
-          const first = target.parentElement?.firstChild as HTMLElement;
-          if (first) {
-            if (window.getComputedStyle(first).display !== 'none') {
-              first.focus();
-            } else {
-              const nextToLast = getNextElement(first);
-              if (nextToLast) {
-                nextToLast.focus();
-              }
-            }
-          }
-        }
-        break;
-      }
-    }
-  };
 
   return (
     <div
@@ -135,6 +44,7 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
       data-color={color}
       data-docked={docked}
       data-fullscreen={fullscreen}
+      data-mobile={isMobile}
       data-variant={variant}
       {...rest}
     >
@@ -172,55 +82,19 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
         </div>
       )}
       {variant === 'default' && (
-        <div className="sk-ai-module-header-menu" role="menubar">
-          {!docked && (
-            <Button
-              variant="tertiary"
-              size="sm"
-              role="menuitem"
-              aria-label={`${fullscreen ? 'Stäng' : 'Öppna'} fullskärmsläge`}
-              inverted={!fullscreen}
-              iconButton
-              onClick={() => handleToggleFullscreen()}
-              tabIndex={0}
-              onKeyDown={handleKeyboardNavigation}
-              id="sk-ai-module-fullscreen-toggle"
-            >
-              <Icon name={fullscreen ? 'arrow-down-right' : 'arrow-up-left'} />
-            </Button>
-          )}
-          <Button
-            variant="tertiary"
-            size="sm"
-            role="menuitem"
-            aria-label={docked ? 'Öppna assistent' : 'Minimera'}
-            inverted={!fullscreen}
-            iconButton
-            tabIndex={docked ? 0 : -1}
-            onClick={() => handleToggleOpen()}
-            onKeyDown={handleKeyboardNavigation}
-          >
-            <Icon name={docked ? 'chevrons-up' : 'chevrons-down'} />
-          </Button>
-          {!docked && !fullscreen && (
-            <Button
-              variant="tertiary"
-              size="sm"
-              role="menuitem"
-              aria-label={`Alternativ`}
-              aria-haspopup="menu"
-              aria-expanded={menuOpen}
-              inverted
-              iconButton
-              onClick={() => handleOpenMenu()}
-              tabIndex={0}
-              onKeyDown={handleKeyboardNavigation}
-              id="sk-ai-module-mobile-menu"
-            >
-              <Icon name="menu" />
-            </Button>
-          )}
-        </div>
+        <AIModuleHeaderMenu
+          historyOpen={historyOpen}
+          onOpenHistory={onOpenHistory}
+          onCloseHistory={onCloseHistory}
+          docked={docked}
+          fullscreen={fullscreen}
+          isMobile={isMobile}
+          onNewSession={onNewSession}
+          onClose={onClose}
+          onOpen={onOpen}
+          onCloseFullScreen={onCloseFullScreen}
+          onFullScreen={onFullScreen}
+        />
       )}
     </div>
   );

@@ -50,13 +50,15 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
   const { done } = entry;
   const [loading, setLoading] = React.useState<boolean>(false);
   const title = _title || entry.origin === 'user' ? 'Du' : info?.name || '';
+  const timeout = React.useRef(setTimeout(() => {}));
 
   React.useEffect(() => {
     if (!done) {
-      setTimeout(() => {
+      timeout.current = setTimeout(() => {
         setLoading(true);
       }, 3500);
     } else {
+      clearTimeout(timeout.current);
       setLoading(false);
     }
   }, [done]);
