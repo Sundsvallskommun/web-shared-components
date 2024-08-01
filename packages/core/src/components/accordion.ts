@@ -179,4 +179,28 @@ export const Accordion = () => ({
       },
     },
   },
+
+  '&[data-inverted="true"]': {
+    '&.sk-disclosure': {
+      '&-icon': {
+        '@apply text-inverted-dark-secondary': {},
+      },
+
+      '&[data-disabled="true"]': {
+        '@apply text-inverted-dark-disabled': {},
+        '.sk-disclosure-title': {
+          '@apply text-inverted-dark-disabled': {},
+        },
+      },
+
+      '&-title': {
+        '@apply text-inverted-dark-primary': {},
+      },
+    },
+    '&.sk-accordion': {
+      '&-item': {
+        '@apply border-inverted-divider': {},
+      },
+    },
+  },
 });
