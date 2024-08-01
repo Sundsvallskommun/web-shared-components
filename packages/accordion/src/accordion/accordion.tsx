@@ -15,6 +15,11 @@ export interface UseAccordionProps extends Pick<DisclosureProps, 'headerAs'> {
    * @default md
    */
   size?: 'sm' | 'md';
+  /**
+   * Inverted colors (light mode as dark mode colors and vice versa)
+   * @default false
+   */
+  inverted?: boolean;
 }
 
 interface UseAccordionData extends UseAccordionProps {
@@ -50,7 +55,7 @@ export const AccordionComponent = React.forwardRef<HTMLUListElement, AccordionIn
     setOpen((open) => open.filter((openId) => openId !== id));
   };
 
-  const { className, children, allowMultipleOpen, id: _id, headerAs = 'label', size = 'md', ...rest } = props;
+  const { className, children, allowMultipleOpen, id: _id, headerAs = 'label', size = 'md', inverted, ...rest } = props;
   const id = _id || `sk-accordion-${useId()}`;
   const labelId = `${id}-label`;
 
@@ -61,6 +66,7 @@ export const AccordionComponent = React.forwardRef<HTMLUListElement, AccordionIn
     onClose,
     headerAs,
     size,
+    inverted,
   };
 
   const getChildren = (): React.ReactNode => {
@@ -77,7 +83,7 @@ export const AccordionComponent = React.forwardRef<HTMLUListElement, AccordionIn
 
   return (
     <AccordionContext.Provider value={context}>
-      <div className={cx('sk-accordion', className)}>
+      <div className={cx('sk-accordion', className)} data-inverted={inverted}>
         <ul ref={ref} id={id} aria-labelledby={labelId} {...rest}>
           {getChildren()}
         </ul>

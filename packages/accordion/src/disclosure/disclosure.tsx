@@ -54,9 +54,14 @@ export interface DisclosureProps extends DefaultProps, React.ComponentPropsWithR
    */
   labelColor?: React.ComponentProps<typeof Label>['color'];
   /** Inverts the colors of the label
-   * @default true
+   * @default true - if inverted is false.
    */
   labelInverted?: React.ComponentProps<typeof Label>['inverted'];
+  /**
+   * Inverted colors (light mode as dark mode colors and vice versa)
+   * @default false
+   */
+  inverted?: boolean;
 }
 
 export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((props, ref) => {
@@ -75,15 +80,17 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
     icon,
     supportText,
     label,
+    inverted: _inverted,
     labelColor = 'gronsta',
-    labelInverted = true,
+    labelInverted: _labelInverted,
     ...rest
   } = props;
   const { onClose, onOpen, ...context } = useAccordion();
   const size = _size || context.size || 'md';
   const _open = context.open;
   const Comp = headerAs || context.headerAs || 'label';
-
+  const inverted = _inverted ?? context.inverted;
+  const labelInverted = _labelInverted ?? inverted ? false : true;
   const [disclosureOpen, setDisclosureOpen] = React.useState(open || initalOpen);
   const id = _id || `sk-disclosure-${useId()}`;
 
@@ -131,6 +138,7 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
       id={id}
       data-open={disclosureOpen}
       data-variant={variant}
+      data-inverted={inverted}
       {...rest}
     >
       <div
@@ -158,6 +166,7 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
             disabled={disabled}
             variant={variant === 'default' ? 'ghost' : 'tertiary'}
             iconButton
+            inverted={inverted}
             size={variant === 'default' ? size : 'sm'}
             className="sk-disclosure-header-icon"
             aria-controls={`${id}-content`}
