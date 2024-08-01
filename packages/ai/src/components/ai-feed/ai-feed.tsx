@@ -4,6 +4,7 @@ import { ChatHistory, ChatHistoryEntry } from '../../types';
 import { AIFeedAvatarMap } from '../../types/avatar';
 import { AIFeedEntry } from './ai-feed-entry';
 import { AIFeedWrapper } from './ai-feed-wrapper';
+import { OriginTitleMap } from '../../types/titles';
 
 export interface AIFeedProps extends React.ComponentPropsWithoutRef<'ul'> {
   history: ChatHistory;
@@ -15,6 +16,7 @@ export interface AIFeedProps extends React.ComponentPropsWithoutRef<'ul'> {
   onGiveFeedback?: (value: -1 | 1) => void;
   size?: 'sm' | 'lg';
   inverted?: boolean;
+  titles?: OriginTitleMap;
 }
 
 export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, ref) => {
@@ -32,6 +34,7 @@ export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, re
     sessionId,
     size,
     inverted,
+    titles,
     ...rest
   } = props;
 
@@ -70,7 +73,8 @@ export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, re
             entry={entry}
             avatar={avatars ? avatars[entry.origin] : undefined}
             showFeedback={showFeedback && entry.done && entry.id === lastMessage?.id}
-            showTitle={showTitles}
+            showTitle={titles?.[entry.origin]?.show ?? showTitles}
+            title={titles?.[entry.origin]?.title}
             onGiveFeedback={onGiveFeedback}
             size={size}
             sessionId={sessionId}
@@ -85,6 +89,7 @@ export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, re
             entry={lastMessage}
             showFeedback={false}
             showTitle={true}
+            title={titles?.[lastMessage.origin]?.title}
             tabbable={false}
           />
         )}
@@ -95,6 +100,7 @@ export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, re
             showReferences={false}
             entry={lastOwnMessage}
             showFeedback={false}
+            title={titles?.[lastOwnMessage.origin]?.title}
             showTitle={true}
             tabbable={false}
           />
