@@ -64,7 +64,7 @@ export const Link = React.forwardRef(
       >
         {children}
         {!hideExternalIcon && external && (
-          <Icon inverted={inverted} className="sk-link-external-icon" name="external-link" size="fit" variant="ghost" />
+          <Icon className="sk-link-external-icon" name="external-link" size="fit" variant="ghost" />
         )}
       </Comp>
     );
