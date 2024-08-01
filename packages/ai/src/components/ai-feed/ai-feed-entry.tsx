@@ -26,7 +26,7 @@ interface AIFeedEntryProps extends React.ComponentPropsWithoutRef<'li'> {
   tabbable?: boolean;
   onGiveFeedback?: (value: -1 | 1) => void;
   size?: 'sm' | 'lg';
-  inverted?:boolean;
+  inverted?: boolean;
 }
 
 export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((props, ref) => {
@@ -45,7 +45,7 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
     onGiveFeedback,
     size,
     inverted,
-    loadingComponent = <TypingBubble inverted={inverted}/>,
+    loadingComponent = <TypingBubble inverted={inverted} />,
     ...rest
   } = props;
   const info = useAssistantStore((state) => state.info);
@@ -93,9 +93,9 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
             <Disclosure
               size="sm"
               className="sk-ai-feed-entry-references"
-              data-inverted={inverted}
+              inverted={inverted}
               header={
-                <span className="sk-ai-feed-entry-references-header"  data-inverted={inverted}>
+                <span className="sk-ai-feed-entry-references-header" data-inverted={inverted}>
                   {referenceTitle} ({entry.references?.length || 0})
                 </span>
               }

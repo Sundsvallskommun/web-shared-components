@@ -85,8 +85,8 @@ const history: ChatHistory = [
 
 export const Template = (args: typeof AIFeed) => {
   return (
-    <div className="bg-bjornstigen-surface-primary !text-light-primary w-full h-fit relative">
-      <AIFeed {...args} history={history} className='text-light-primary'></AIFeed>
+    <div className="w-full h-fit relative">
+      <AIFeed {...args} history={history} className="text-light-primary"></AIFeed>
     </div>
   );
 };
