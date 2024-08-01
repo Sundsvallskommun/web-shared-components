@@ -18,6 +18,11 @@ export interface LinkProps extends DefaultProps, React.AnchorHTMLAttributes<HTML
   strong?: boolean;
   /** @default primary */
   variant?: 'primary' | 'tertiary';
+  /**
+   * Inverted colors (light mode as dark mode colors and vice versa)
+   * @default false
+   */
+  inverted?:boolean;
 }
 
 type ILinkProps<C extends React.ElementType> = PolymorphicComponentPropsWithRef<C, LinkProps>;
@@ -35,6 +40,7 @@ export const Link = React.forwardRef(
       size = '',
       strong = false,
       variant = 'primary',
+      inverted,
       ...rest
     } = props;
     const externalProps = external ? { target: '_blank', rel: 'noopener noreferrer' } : null;
@@ -52,12 +58,13 @@ export const Link = React.forwardRef(
         aria-disabled={disabled}
         onClick={disabled ? (event: React.MouseEvent<HTMLAnchorElement>) => event.preventDefault() : onClick}
         className={cx('sk-link', classes, strong && 'font-bold', disabled && 'sk-link-disabled', className)}
+        data-inverted={inverted}
         {...externalProps}
         {...rest}
       >
         {children}
         {!hideExternalIcon && external && (
-          <Icon className="sk-link-external-icon" name="external-link" size="fit" variant="ghost" />
+          <Icon inverted={inverted} className="sk-link-external-icon" name="external-link" size="fit" variant="ghost" />
         )}
       </Comp>
     );

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, LinkProps } from '../src';
 import { Meta } from '@storybook/react';
 
@@ -66,8 +65,17 @@ export default {
       control: 'select',
       defaultValue: 'primary',
     },
+    inverted: {
+      type: { name: 'string', required: false },
+      description: 'Inverted colors',
+      table: {
+        defaultValue: { summary: 'false' },
+      },
+      control: 'boolean',
+      defaultValue: false,
+    },
   },
-} as Meta<typeof Link>;
+} as Meta<LinkProps>;
 
 export const Template = (args: LinkProps) => <Link {...args}>En länk</Link>;
 
