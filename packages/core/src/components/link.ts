@@ -22,15 +22,16 @@ export const Link = () => ({
 
     // variants
     '&-primary': {
-      '@apply text-vattjom-surface-primary': {},
-      '&:hover': {
-        '@apply text-vattjom-surface-primary-hover': {},
+      '@apply text-vattjom-surface-primary hover:text-vattjom-surface-primary-hover': {},
+  
+      '&[data-inverted="true"]':{
+        '@apply text-inverted-vattjom-surface-primary  hover:text-inverted-vattjom-surface-primary-hover': {},
       },
     },
     '&-tertiary': {
-      '@apply text-dark-secondary': {},
-      '&:hover': {
-        '@apply text-dark-primary': {},
+      '@apply text-dark-secondary hover:text-dark-primary': {},
+      '&[data-inverted="true"]':{
+        '@apply text-inverted-dark-secondary hover:text-inverted-dark-primary': {},
       },
     },
 
@@ -48,6 +49,9 @@ export const Link = () => ({
 
     '&-disabled': {
       '@apply text-dark-disabled cursor-default': {},
+      '&[data-inverted="true"]':{
+        '@apply text-inverted-dark-disabled': {},
+      },
     },
   },
 });
