@@ -1,12 +1,12 @@
-import React from 'react';
-import { ChatHistoryEntry } from '../../types';
-import { cx } from '@sk-web-gui/utils';
-import { MarkdownRendered } from '../markdown-rendered';
-import { sanitized } from '../../services';
-import { Link } from '@sk-web-gui/link';
 import { Disclosure } from '@sk-web-gui/accordion';
+import { Link } from '@sk-web-gui/link';
+import { cx } from '@sk-web-gui/utils';
+import React from 'react';
 import { useAssistantStore } from '../../assistant-store';
+import { sanitized } from '../../services';
+import { ChatHistoryEntry } from '../../types';
 import { Feedback } from '../feedback';
+import { MarkdownRendered } from '../markdown-rendered';
 import { TypingBubble } from '../typing-bubble';
 
 interface AIFeedEntryProps extends React.ComponentPropsWithoutRef<'li'> {
@@ -26,6 +26,7 @@ interface AIFeedEntryProps extends React.ComponentPropsWithoutRef<'li'> {
   tabbable?: boolean;
   onGiveFeedback?: (value: -1 | 1) => void;
   size?: 'sm' | 'lg';
+  inverted?: boolean;
 }
 
 export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((props, ref) => {
@@ -39,11 +40,12 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
     showReferences,
     referenceTitle = 'Kunskapskällor',
     showFeedback = false,
-    loadingComponent = <TypingBubble />,
     sessionId,
     tabbable,
     onGiveFeedback,
     size,
+    inverted,
+    loadingComponent = <TypingBubble inverted={inverted} />,
     ...rest
   } = props;
   const info = useAssistantStore((state) => state.info);
@@ -91,8 +93,9 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
             <Disclosure
               size="sm"
               className="sk-ai-feed-entry-references"
+              inverted={inverted}
               header={
-                <span className="sk-ai-feed-entry-references-header">
+                <span className="sk-ai-feed-entry-references-header" data-inverted={inverted}>
                   {referenceTitle} ({entry.references?.length || 0})
                 </span>
               }
@@ -101,7 +104,7 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
                 {entry.references?.map((reference, refIndex) => (
                   <li className="sk-ai-feed-entry-references-list-item" key={`ref-${refIndex}`}>
                     <small>
-                      <Link external href={reference.url}>
+                      <Link external href={reference.url} inverted={inverted}>
                         {reference.title}
                       </Link>
                     </small>
@@ -111,7 +114,7 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
             </Disclosure>
           ) : null}
           {showFeedback && sessionId && entry.origin === 'assistant' && done && (
-            <Feedback sessionId={sessionId} onGiveFeedback={onGiveFeedback} />
+            <Feedback sessionId={sessionId} onGiveFeedback={onGiveFeedback} inverted={inverted} />
           )}
         </div>
       </li>
