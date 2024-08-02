@@ -18,8 +18,14 @@ export const TypingBubble = React.forwardRef<HTMLSpanElement, TypingBubbleProps>
   const { position = 'right', className, inverted, ...rest } = props;
 
   return (
-    <span className={cx('sk-ai-typing-bubble', className)} data-inverted={inverted} data-position={position} ref={ref} {...rest}>
-      <TypingSequence inverted={inverted}/>
+    <span
+      className={cx('sk-ai-typing-bubble', className)}
+      data-inverted={inverted}
+      data-position={position}
+      ref={ref}
+      {...rest}
+    >
+      <TypingSequence inverted={inverted} />
     </span>
   );
 });

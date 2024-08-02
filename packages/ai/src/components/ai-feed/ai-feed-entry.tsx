@@ -1,12 +1,12 @@
-import React from 'react';
-import { ChatHistoryEntry } from '../../types';
-import { cx } from '@sk-web-gui/utils';
-import { MarkdownRendered } from '../markdown-rendered';
-import { sanitized } from '../../services';
-import { Link } from '@sk-web-gui/link';
 import { Disclosure } from '@sk-web-gui/accordion';
+import { Link } from '@sk-web-gui/link';
+import { cx } from '@sk-web-gui/utils';
+import React from 'react';
 import { useAssistantStore } from '../../assistant-store';
+import { sanitized } from '../../services';
+import { ChatHistoryEntry } from '../../types';
 import { Feedback } from '../feedback';
+import { MarkdownRendered } from '../markdown-rendered';
 import { TypingBubble } from '../typing-bubble';
 
 interface AIFeedEntryProps extends React.ComponentPropsWithoutRef<'li'> {

@@ -8,7 +8,7 @@ export interface FeedbackProps extends React.ComponentPropsWithoutRef<'div'> {
   sessionId: string;
   reasons?: string[];
   onGiveFeedback?: (value: -1 | 1) => void;
-  inverted?:boolean;
+  inverted?: boolean;
 }
 export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, ref) => {
   const { sessionId, reasons: _reasons, onGiveFeedback, inverted, ...rest } = props;

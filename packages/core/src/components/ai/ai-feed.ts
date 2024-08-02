@@ -24,12 +24,12 @@ export const AIFeed = () => ({
         '@apply rounded-button py-0 pl-20 pr-12 gap-8': {},
         '@apply bg-background-200 text-dark-primary': {},
 
-        '&[data-inverted="true"]':{
+        '&[data-inverted="true"]': {
           '@apply bg-inverted-background-200 text-inverted-dark-primary': {},
         },
         '&-header': {
           '@apply text-dark-primary': {},
-          '&[data-inverted="true"]':{
+          '&[data-inverted="true"]': {
             '@apply text-inverted-dark-primary': {},
           },
         },

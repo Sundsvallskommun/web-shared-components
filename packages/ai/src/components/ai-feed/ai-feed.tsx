@@ -14,7 +14,7 @@ export interface AIFeedProps extends React.ComponentPropsWithoutRef<'ul'> {
   showTitles?: boolean;
   onGiveFeedback?: (value: -1 | 1) => void;
   size?: 'sm' | 'lg';
-  inverted?:boolean;
+  inverted?: boolean;
 }
 
 export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, ref) => {

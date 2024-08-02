@@ -11,8 +11,8 @@ export const TypingBubble = () => ({
     '&[data-position="right"]': {
       '@apply rounded-bl-0': {},
     },
-    '&[data-inverted="true"]':{
+    '&[data-inverted="true"]': {
       '@apply bg-inverted-tertiary-surface': {},
-    }
+    },
   },
 });
