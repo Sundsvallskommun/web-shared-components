@@ -138,7 +138,7 @@ const sessions: SessionHistory = [
 
 export const Template = (args: AIModuleProps) => {
   return (
-    <div className="w-full h-[50em] relative">
+    <div className="w-full h-[60em] relative">
       <AIModule {...args} assistant={assistant} sessionHistory={sessions}></AIModule>
     </div>
   );
@@ -146,7 +146,7 @@ export const Template = (args: AIModuleProps) => {
 
 export const WithHistory = (args: AIModuleProps) => {
   return (
-    <div className="w-full h-[50em] relative">
+    <div className="w-full h-[60em] relative">
       <AIModule
         {...args}
         assistant={assistant}

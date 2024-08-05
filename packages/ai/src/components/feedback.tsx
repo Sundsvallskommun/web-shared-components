@@ -4,13 +4,14 @@ import React, { useRef, useState } from 'react';
 import { giveFeedback } from '../services';
 import { useSessions } from '../session-store';
 
-interface FeedbackProps extends React.ComponentPropsWithoutRef<'div'> {
+export interface FeedbackProps extends React.ComponentPropsWithoutRef<'div'> {
   sessionId: string;
   reasons?: string[];
   onGiveFeedback?: (value: -1 | 1) => void;
+  inverted?: boolean;
 }
 export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, ref) => {
-  const { sessionId, reasons: _reasons, onGiveFeedback, ...rest } = props;
+  const { sessionId, reasons: _reasons, onGiveFeedback, inverted, ...rest } = props;
   const [session, updateSession] = useSessions((state) => [state.sessions[sessionId], state.updateSession]);
   const [showFeedbackReason, setShowFeedbackReason] = useState(false);
   const [showThanks, setShowThanks] = useState(false);
@@ -53,6 +54,7 @@ export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, 
       aria-label="Stäng"
       variant="tertiary"
       size="sm"
+      inverted={inverted}
       showBackground={false}
       onClick={() => {
         setShowFeedbackReason(false);
@@ -81,6 +83,7 @@ export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, 
           aria-label="Bra svar"
           variant="tertiary"
           size="sm"
+          inverted={inverted}
           showBackground={feedback === 1}
           data-current={feedback === 1}
           className="sk-ai-feedback-button"
@@ -91,6 +94,7 @@ export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, 
         <Button
           ref={thumbDownButtonRef}
           iconButton
+          inverted={inverted}
           aria-label="Dåligt svar"
           aria-haspopup="true"
           aria-expanded={showFeedbackReason}
@@ -106,7 +110,7 @@ export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, 
         </Button>
       </div>
       {showFeedbackReason || feedbackLoading || showThanks ? (
-        <div className="sk-ai-feedback-more">
+        <div className="sk-ai-feedback-more" data-inverted={inverted}>
           <>
             <div className="sk-ai-feedback-more-header">
               <span>
@@ -121,6 +125,7 @@ export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, 
                     key={`reason-${index}`}
                     role="menuitem"
                     ref={index === 0 ? feedbackRef : null}
+                    inverted={inverted}
                     variant="secondary"
                     size="sm"
                     onClick={() => sendFeedback(-1, reason)}

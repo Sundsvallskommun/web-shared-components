@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.4.0...@sk-web-gui/ai@0.5.0) (2024-07-15)
+
+### Features
+
+- split module header menu. ([38c520c](https://github.com/Sundsvallskommun/web-shared-components/commit/38c520cf338f93e2462d7cf4d0b4c1fab31b84da))
+
 # [0.4.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.3.0...@sk-web-gui/ai@0.4.0) (2024-06-24)
 
 ### Features

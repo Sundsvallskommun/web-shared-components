@@ -8,6 +8,9 @@ export const TypingSequence = (colors: string[]) => ({
       '@apply block': {},
       '@apply w-[0.5rem] h-[0.5rem]': {},
       '@apply bg-dark-secondary': {},
+      '&[data-inverted="true"]': {
+        [`@apply bg-inverted-dark-secondary`]: {},
+      },
       '&[data-order="1"]': {
         '@apply animate-typing-bounce-1': {},
       },
@@ -23,6 +26,9 @@ export const TypingSequence = (colors: string[]) => ({
 
           [`&[data-color="${color}"]`]: {
             [`@apply bg-${color}-surface-primary`]: {},
+            '&[data-inverted="true"]': {
+              [`@apply bg-inverted-${color}-surface-primary`]: {},
+            },
           },
         }),
         {}
