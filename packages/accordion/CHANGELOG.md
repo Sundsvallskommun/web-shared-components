@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@1.3.4...@sk-web-gui/accordion@1.4.0) (2024-08-06)
+
+### Features
+
+- added inverted colors ([5f8d610](https://github.com/Sundsvallskommun/web-shared-components/commit/5f8d610ef97d30965770c67bf863221a79941cf9))
+
 ## [1.3.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@1.3.3...@sk-web-gui/accordion@1.3.4) (2024-06-18)
 
 **Note:** Version bump only for package @sk-web-gui/accordion

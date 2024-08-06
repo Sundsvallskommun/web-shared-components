@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.5.0...@sk-web-gui/ai@0.6.0) (2024-08-06)
+
+### Bug Fixes
+
+- added missing export ([c21d60b](https://github.com/Sundsvallskommun/web-shared-components/commit/c21d60b55e2c5f0fe49dd4567237f8fe0d6e4a13))
+- **ai:** small changes in the structure ([36dd726](https://github.com/Sundsvallskommun/web-shared-components/commit/36dd726b1e6e8e491e684ac79fe91914f5d9bbed))
+
+### Features
+
+- added inverted colors to ai feed, feedback and typing bubble ([8b9f6e8](https://github.com/Sundsvallskommun/web-shared-components/commit/8b9f6e879cdfb357a1bee91e76e3c993e6d9e6bf))
+- added titles to feed ([229a030](https://github.com/Sundsvallskommun/web-shared-components/commit/229a0302cd453be03ba18825bbf7bf245c77143d))
+
 # [0.5.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.4.0...@sk-web-gui/ai@0.5.0) (2024-07-15)
 
 ### Features

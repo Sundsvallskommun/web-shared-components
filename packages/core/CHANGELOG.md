@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.4.2...@sk-web-gui/core@3.4.3) (2024-08-06)
+
+### Bug Fixes
+
+- **accordion:** styling for inverted colors ([895776e](https://github.com/Sundsvallskommun/web-shared-components/commit/895776e98cbe43edaba3ff6a2fad8390c7e19535))
+- **ai:** fixed styling for inverted colors ([1fa4d4c](https://github.com/Sundsvallskommun/web-shared-components/commit/1fa4d4cf5424ba327cefbf6bb06e9cf25f9cd24c))
+- **ai:** small changes in the structure ([36dd726](https://github.com/Sundsvallskommun/web-shared-components/commit/36dd726b1e6e8e491e684ac79fe91914f5d9bbed))
+- **link:** added styling for inverted colors ([b174b36](https://github.com/Sundsvallskommun/web-shared-components/commit/b174b36efc9cc871b3f8c9a32afe35dd1a60718d))
+
 ## [3.4.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.4.1...@sk-web-gui/core@3.4.2) (2024-07-15)
 
 ### Bug Fixes

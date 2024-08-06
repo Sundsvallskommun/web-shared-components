@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/menubar",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -37,7 +37,7 @@
     "react": "^18.2.0"
   },
   "dependencies": {
-    "@sk-web-gui/popup-menu": "3.0.4",
+    "@sk-web-gui/popup-menu": "3.0.5",
     "@sk-web-gui/utils": "2.0.1"
   },
   "peerDependencies": {
