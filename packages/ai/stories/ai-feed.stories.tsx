@@ -1,5 +1,7 @@
 import { Meta } from '@storybook/react';
 import { AIFeed, ChatHistory } from '../src';
+import React from 'react';
+import { OriginTitleMap } from '../src/types/titles';
 
 export default {
   title: 'AI/Komponenter/AIFeed',
@@ -83,10 +85,16 @@ const history: ChatHistory = [
   },
 ];
 
+const titles: OriginTitleMap = {
+  user: { title: 'Användare' },
+  assistant: { title: 'Sundsvalls AI' },
+  system: { title: 'Felmeddelande' },
+};
+
 export const Template = (args: typeof AIFeed) => {
   return (
-    <div className="w-full h-fit relative">
-      <AIFeed {...args} history={history} className="text-light-primary"></AIFeed>
+    <div className="w-full h-[50em] relative">
+      <AIFeed {...args} titles={titles} history={history}></AIFeed>
     </div>
   );
 };

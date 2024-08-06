@@ -51,7 +51,7 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
   const info = useAssistantStore((state) => state.info);
   const { done } = entry;
   const [loading, setLoading] = React.useState<boolean>(false);
-  const title = _title || entry.origin === 'user' ? 'Du' : info?.name || '';
+  const title = _title ?? (entry.origin === 'user' ? 'Du' : info?.name || '');
   const timeout = React.useRef(setTimeout(() => {}));
 
   React.useEffect(() => {
@@ -78,7 +78,7 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
             ) : (
               <>
                 <span className={cx('sk-ai-feed-entry-heading')} data-showtitle={showTitle}>
-                  {title || info?.name}
+                  {title}
                 </span>
                 <MarkdownRendered
                   text={sanitized(entry.text)}
