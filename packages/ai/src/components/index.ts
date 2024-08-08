@@ -7,3 +7,4 @@ export * from './typing-bubble';
 export * from './typing-sequence';
 export * from './bubble';
 export * from './assistant-presentation';
+export * from './new-session-button';

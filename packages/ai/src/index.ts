@@ -12,6 +12,7 @@ export {
   TypingSequence,
   Bubble,
   AssistantPresentation,
+  NewSessionButton,
 } from './components';
 export { useChat, useSpeechToText } from './hooks';
 export * from './services';
