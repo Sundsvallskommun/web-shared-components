@@ -55,6 +55,7 @@ import { Bubble } from './components/ai/bubble';
 import { Feedback } from './components/ai/feedback';
 import { InputSection } from './components/ai/input-section';
 import { MarkdownRendered } from './components/ai/markdown-rendered';
+import { NewSessionButton } from './components/ai/new-session-button';
 import { TypingBubble } from './components/ai/typing-bubble';
 import { TypingSequence } from './components/ai/typing-sequence';
 
@@ -111,6 +112,7 @@ const components: ((colors: string[], theme: PluginAPI['theme']) => CSSRuleObjec
   Feedback,
   InputSection,
   MarkdownRendered,
+  NewSessionButton,
   TypingBubble,
   TypingSequence,
 ];
