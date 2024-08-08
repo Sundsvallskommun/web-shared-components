@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  build:
+    image: node:alpine
+    container_name: stilguide-test_build
+    working_dir: /app
+    volumes:
+      - .:/app
+      - build:/app/storybook-static
+    command: sh -c "yarn boot && yarn build-storybook && chmod -R 755 storybook-static && touch /app/build_complete"
+    network_mode: bridge
+    restart: 'no'
+    healthcheck:
+      test: ['CMD', 'test', '-f', '/app/build_complete']
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  stilguide:
+    image: httpd:alpine
+    container_name: stilguide-test
+    ports:
+      - '8080:80'
+    volumes:
+      - build:/usr/local/apache2/htdocs
+    network_mode: bridge
+    depends_on:
+      build:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  build:
