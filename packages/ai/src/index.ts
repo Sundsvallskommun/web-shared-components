@@ -6,6 +6,8 @@ export {
   AIModule,
   AIModuleHeader,
   AIModuleHeaderMenu,
+  AIModuleMobileMenu,
+  AIModuleWrapper,
   InputSection,
   MarkdownRendered,
   TypingBubble,
