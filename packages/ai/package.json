@@ -50,6 +50,7 @@
     "@sk-web-gui/utils": "2.0.1",
     "@types/sanitize-html": "^2.11.0",
     "date-fns": "^3.6.0",
+    "regenerator-runtime": "^0.14.1",
     "microsoft-cognitiveservices-speech-sdk": "^1.36.0",
     "react-markdown": "^9.0.1",
     "sanitize-html": "^2.13.0",
