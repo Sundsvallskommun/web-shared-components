@@ -25,14 +25,14 @@ export const InputSection = React.forwardRef<HTMLFormElement, InputSectionProps>
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    if (query) {
-      if (onSendQuery) {
-        onSendQuery(query);
-      } else {
+    if (onSendQuery) {
+      onSendQuery(query);
+    } else {
+      if (query) {
         sendQuery(query);
       }
-      setQuery('');
     }
+    setQuery('');
   };
 
   return (
