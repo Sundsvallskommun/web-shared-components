@@ -41,6 +41,8 @@ export interface GroupPublic {
   embedding_model: string;
 }
 
+type AdditionalOptions = Record<string, any>;
+
 export interface AssistantSettings {
   user?: string;
   assistantId: string;
@@ -48,6 +50,7 @@ export interface AssistantSettings {
   app?: string;
   stream?: boolean;
   apiBaseUrl?: string;
+  options?: AdditionalOptions;
 }
 
 type LanguageCode = string | 'default';
