@@ -12,4 +12,6 @@ export * from './types';
 export type * from './types';
 export * from './units';
 export type * from './units';
+export * from './fonts';
+export type * from './fonts';
 export * from './use-theme-queries';

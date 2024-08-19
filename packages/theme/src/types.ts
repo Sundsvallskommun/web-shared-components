@@ -48,6 +48,7 @@ export interface GuiTheme {
   readonly rounded: string;
   readonly colorSchemes: Record<string, ColorScheme>;
   readonly fontSize: ThemeOption;
+  readonly fontFamily: ThemeOption;
   readonly lineHeight: ThemeOption;
   readonly spacing: ThemeOption;
   readonly screens: ThemeOption;
