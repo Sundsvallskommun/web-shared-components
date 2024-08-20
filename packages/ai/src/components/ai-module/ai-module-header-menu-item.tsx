@@ -3,7 +3,6 @@ import { Icon, IconProps } from '@sk-web-gui/icon';
 import { Tooltip, TooltipProps } from '@sk-web-gui/tooltip';
 import { useOnElementOutside } from '@sk-web-gui/utils';
 import React from 'react';
-import { AIModuleDefaultProps } from './ai-module';
 
 interface AIModuleHeaderMenuItemProps extends Omit<React.ComponentPropsWithoutRef<'li'>, 'onClick' | 'children'> {
   onClick?: React.ComponentPropsWithoutRef<'button'>['onClick'];

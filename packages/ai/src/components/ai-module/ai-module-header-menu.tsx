@@ -21,6 +21,7 @@ export const AIModuleHeaderMenu = React.forwardRef<HTMLUListElement, AIModuleHea
     onCloseFullScreen,
     onFullScreen,
     historyOpen,
+    showSessionHistory = true,
     onCloseHistory,
     onOpenHistory,
     className,
@@ -156,7 +157,7 @@ export const AIModuleHeaderMenu = React.forwardRef<HTMLUListElement, AIModuleHea
               onClick={() => handleToggleFullscreen()}
             />
           )}
-          {!docked && isMobile && (
+          {!docked && isMobile && showSessionHistory && (
             <AIModuleHeaderMenuItem
               icon="history"
               tabIndex={-1}
