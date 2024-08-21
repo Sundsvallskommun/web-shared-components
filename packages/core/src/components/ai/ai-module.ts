@@ -115,6 +115,7 @@ export const AIModule = (colors: string[]) => ({
       },
     },
     '&-header': {
+      '@apply h-64': {},
       '@apply flex items-center justify-between': {},
       '@apply w-full': {},
       '@apply shrink-0': {},
