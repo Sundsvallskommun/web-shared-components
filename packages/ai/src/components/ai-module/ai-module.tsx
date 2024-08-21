@@ -20,6 +20,10 @@ export interface AIModuleDefaultProps {
   fullscreen?: boolean;
   session?: AssistantSession;
   isMobile?: boolean;
+  /**
+   * @default true
+   */
+  showSessionHistory?: boolean;
   onOpen?: () => void;
   onClose?: () => void;
   onFullScreen?: () => void;
@@ -64,6 +68,7 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
     children,
     questions,
     questionsTitle,
+    showSessionHistory = true,
     sessionHistory,
     onSelectQuestion,
     readmore,
@@ -86,16 +91,20 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
   const scrollRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    if (sessionHistory) {
-      setSessions(sessionHistory);
+    if (showSessionHistory) {
+      if (sessionHistory) {
+        setSessions(sessionHistory);
+      } else {
+        setSessions(
+          Object.values({ ..._sessions })
+            .filter((session) => !session.isNew)
+            .sort((a, b) => (a.updated_at < b.updated_at ? 1 : -1))
+        );
+      }
     } else {
-      setSessions(
-        Object.values({ ..._sessions })
-          .filter((session) => !session.isNew)
-          .sort((a, b) => (a.updated_at < b.updated_at ? 1 : -1))
-      );
+      setSessions([]);
     }
-  }, [sessionHistory, _sessions]);
+  }, [sessionHistory, _sessions, showSessionHistory]);
 
   if (!assistant) {
     throw new Error('No assistant found');
@@ -224,11 +233,13 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
           <div className="sk-ai-module-content-row">
             <div className="sk-ai-module-sidebar">
               <AIModuleHeader variant="alt" assistant={assistant} />
-              <AIModuleSessions
-                current={!_propsSession && _session?.isNew ? '' : sessionId}
-                sessions={sessions}
-                onSelectSession={handleChangeSession}
-              />
+              {showSessionHistory && (
+                <AIModuleSessions
+                  current={!_propsSession && _session?.isNew ? '' : sessionId}
+                  sessions={sessions}
+                  onSelectSession={handleChangeSession}
+                />
+              )}
             </div>
           </div>
         )}

@@ -32,6 +32,7 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
     onOpenHistory,
     onCloseHistory,
     historyOpen,
+    showSessionHistory = true,
     onNewSession,
     isMobile,
     ...rest
@@ -92,6 +93,7 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
           onNewSession={onNewSession}
           onClose={onClose}
           onOpen={onOpen}
+          showSessionHistory={showSessionHistory}
           onCloseFullScreen={onCloseFullScreen}
           onFullScreen={onFullScreen}
         />
