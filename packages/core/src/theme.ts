@@ -3,6 +3,7 @@ import { colors } from './colors';
 import { units } from './units';
 import { RecursiveObject, screens } from '@sk-web-gui/theme';
 import { Config } from 'tailwindcss/types/config';
+import { fonts } from './fonts';
 
 const theme: RecursiveObject<Config['theme'] | string | string[]> = {
   extend: {
@@ -22,10 +23,7 @@ const theme: RecursiveObject<Config['theme'] | string | string[]> = {
       '5xl': units.fontSizes['h3'],
     },
     fontFamily: {
-      DEFAULT: ['Arial', 'Helvetica', 'sans-serif'],
-      sans: ['Arial', 'Helvetica', 'sans-serif'],
-      header: ['Raleway', 'Arial', 'Helvetica', 'sans-serif'],
-      display: ['Raleway', 'Arial', 'Helvetica', 'sans-serif'],
+      ...fonts,
     },
     screens,
     borderRadius: {
