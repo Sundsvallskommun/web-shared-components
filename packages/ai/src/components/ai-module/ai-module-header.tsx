@@ -22,6 +22,7 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
     color,
     assistant,
     fullscreen,
+    disableFullscreen,
     session,
     className,
     variant = 'default',
@@ -35,6 +36,8 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
     showSessionHistory = true,
     onNewSession,
     isMobile,
+    title,
+    subtitle,
     ...rest
   } = props;
 
@@ -49,7 +52,7 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
       data-variant={variant}
       {...rest}
     >
-      {fullscreen && variant === 'default' ? (
+      {!disableFullscreen && fullscreen && variant === 'default' ? (
         <>
           <Button
             size="sm"
@@ -75,9 +78,9 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
             aria-hidden
           />
           <div className="sk-ai-module-header-heading">
-            <span className="sk-ai-module-header-heading-name">{assistant.name}</span>
-            {assistant.title && (docked || variant === 'alt') && (
-              <span className="sk-ai-module-header-heading-subtitle">{assistant.title}</span>
+            <span className="sk-ai-module-header-heading-name">{title || assistant.name}</span>
+            {(subtitle || assistant.title) && (docked || variant === 'alt') && (
+              <span className="sk-ai-module-header-heading-subtitle">{subtitle || assistant.title}</span>
             )}
           </div>
         </div>
@@ -89,6 +92,7 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
           onCloseHistory={onCloseHistory}
           docked={docked}
           fullscreen={fullscreen}
+          disableFullscreen={disableFullscreen}
           isMobile={isMobile}
           onNewSession={onNewSession}
           onClose={onClose}

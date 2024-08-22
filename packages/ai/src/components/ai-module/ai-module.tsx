@@ -19,6 +19,10 @@ export interface AIModuleDefaultProps {
   color?: string;
   fullscreen?: boolean;
   session?: AssistantSession;
+  /**
+   * @default false
+   */
+  disableFullscreen?: boolean;
   isMobile?: boolean;
   /**
    * @default true
@@ -29,6 +33,16 @@ export interface AIModuleDefaultProps {
   onFullScreen?: () => void;
   onCloseFullScreen?: () => void;
   onNewSession?: () => void;
+  /**
+   * Title shown in header
+   * @default assistant.name
+   */
+  title?: string;
+  /**
+   * Subtitle shown in header when closed
+   * @default assistant.title
+   */
+  subtitle?: string;
 }
 
 type InfoLink = { url: string; description: string };
@@ -54,6 +68,7 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
   const {
     docked: _docked,
     fullscreen: _fullscreen,
+    disableFullscreen,
     session: _propsSession,
     color,
     sessionId: _sessionId,
@@ -75,6 +90,8 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
     onSelectQuestion,
     readmore,
     showFeedback = true,
+    title,
+    subtitle,
     avatars,
     originTitles,
     ...rest
@@ -179,10 +196,14 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
   }, [_docked]);
 
   React.useEffect(() => {
-    if (typeof _fullscreen === 'boolean') {
-      setFullscreen(_fullscreen);
+    if (disableFullscreen) {
+      setFullscreen(false);
+    } else {
+      if (typeof _fullscreen === 'boolean') {
+        setFullscreen(_fullscreen);
+      }
     }
-  }, [_fullscreen]);
+  }, [_fullscreen, disableFullscreen]);
 
   const handleOnOpen = () => {
     setDocked(false);
@@ -264,6 +285,9 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
             onCloseHistory={() => setShowMobileHistory(false)}
             historyOpen={showMobileHistory}
             isMobile={isMobile}
+            disableFullscreen={disableFullscreen}
+            title={title}
+            subtitle={subtitle}
           />
           {!docked && (
             <>
