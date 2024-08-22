@@ -4,7 +4,9 @@ import { AIModuleDefaultProps } from './ai-module';
 import { AIModuleHeaderProps } from './ai-module-header';
 import { AIModuleHeaderMenuItem } from './ai-module-header-menu-item';
 
-export interface AIModuleHeaderMenuProps extends AIModuleDefaultProps, React.ComponentPropsWithoutRef<'ul'> {
+export interface AIModuleHeaderMenuProps
+  extends Omit<AIModuleDefaultProps, 'title' | 'subtitle'>,
+    React.ComponentPropsWithoutRef<'ul'> {
   historyOpen?: AIModuleHeaderProps['historyOpen'];
   onOpenHistory?: AIModuleHeaderProps['onOpenHistory'];
   onCloseHistory?: AIModuleHeaderProps['onCloseHistory'];
@@ -26,6 +28,7 @@ export const AIModuleHeaderMenu = React.forwardRef<HTMLUListElement, AIModuleHea
     onOpenHistory,
     className,
     children,
+    disableFullscreen,
     ...rest
   } = props;
 
@@ -147,7 +150,7 @@ export const AIModuleHeaderMenu = React.forwardRef<HTMLUListElement, AIModuleHea
               onClick={() => onNewSession && onNewSession()}
             />
           )}
-          {!docked && !isMobile && (
+          {!disableFullscreen && !docked && !isMobile && (
             <AIModuleHeaderMenuItem
               icon={fullscreen ? 'arrow-down-right' : 'arrow-up-left'}
               tabIndex={!isMobile && fullscreen ? 0 : -1}
