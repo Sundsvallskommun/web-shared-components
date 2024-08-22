@@ -3,7 +3,7 @@ import React from 'react';
 import { useAssistantStore } from '../../assistant-store';
 import { useChat } from '../../hooks';
 import { SessionStoreSession, useSessions } from '../../session-store';
-import { AssistantInfo, AssistantSession, SessionHistory } from '../../types';
+import { AIFeedAvatarMap, AssistantInfo, AssistantSession, OriginTitleMap, SessionHistory } from '../../types';
 import { AIFeed } from '../ai-feed/ai-feed';
 import { AssistantPresentation } from '../assistant-presentation';
 import { Bubble } from '../bubble';
@@ -46,6 +46,8 @@ export interface AIModuleProps extends AIModuleDefaultProps, React.ComponentProp
    * @default true
    */
   showFeedback?: boolean;
+  avatars?: AIFeedAvatarMap;
+  originTitles?: OriginTitleMap;
 }
 
 export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, ref) => {
@@ -73,6 +75,8 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
     onSelectQuestion,
     readmore,
     showFeedback = true,
+    avatars,
+    originTitles,
     ...rest
   } = props;
 
@@ -293,11 +297,14 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
                     showFeedback={showFeedback}
                     onGiveFeedback={handleAutoScroll}
                     size={isFullscreen ? 'lg' : 'sm'}
-                    avatars={{
-                      user: userAvatar,
-                      assistant: assistantAvatar,
-                      system: assistantAvatar,
-                    }}
+                    avatars={
+                      avatars || {
+                        user: userAvatar,
+                        assistant: assistantAvatar,
+                        system: assistantAvatar,
+                      }
+                    }
+                    titles={originTitles}
                     sessionId={session.id}
                   />
                 )}
