@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@2.2.0...@sk-web-gui/theme@2.3.0) (2024-08-22)
+
+### Features
+
+- **theme:** moved fontFamily to theme ([4757f55](https://github.com/Sundsvallskommun/web-shared-components/commit/4757f55c092b354f819bb66d2531e72fa91866d9))
+
 # [2.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@2.1.1...@sk-web-gui/theme@2.2.0) (2024-06-18)
 
 ### Bug Fixes

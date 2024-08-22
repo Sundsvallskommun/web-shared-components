@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.14](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/card@1.0.13...@sk-web-gui/card@1.0.14) (2024-08-22)
+
+### Bug Fixes
+
+- added type support for Link when href ([664b829](https://github.com/Sundsvallskommun/web-shared-components/commit/664b8290f4cdada640e506aee2145094c345a50a))
+- missing styling, correction for storybook type-generation ([d5d1500](https://github.com/Sundsvallskommun/web-shared-components/commit/d5d150079f175ebe78ea1dfee54e963271dfbb65))
+
 ## [1.0.13](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/card@1.0.12...@sk-web-gui/card@1.0.13) (2024-08-06)
 
 **Note:** Version bump only for package @sk-web-gui/card

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.4.3...@sk-web-gui/core@3.5.0) (2024-08-22)
+
+### Bug Fixes
+
+- **ai:** added height to module header ([b1c16b1](https://github.com/Sundsvallskommun/web-shared-components/commit/b1c16b1bd66bad3c758423991569d631160b36c0))
+- missing styling, correction for storybook type-generation ([d5d1500](https://github.com/Sundsvallskommun/web-shared-components/commit/d5d150079f175ebe78ea1dfee54e963271dfbb65))
+
+### Features
+
+- **ai:** new session button ([75b0fdb](https://github.com/Sundsvallskommun/web-shared-components/commit/75b0fdb5c39b5db358c5133413142807bab43c4e))
+- **theme:** moved fontFamily to theme ([4757f55](https://github.com/Sundsvallskommun/web-shared-components/commit/4757f55c092b354f819bb66d2531e72fa91866d9))
+
 ## [3.4.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.4.2...@sk-web-gui/core@3.4.3) (2024-08-06)
 
 ### Bug Fixes

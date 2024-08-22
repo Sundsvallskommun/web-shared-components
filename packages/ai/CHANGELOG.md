@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.6.0...@sk-web-gui/ai@0.7.0) (2024-08-22)
+
+### Bug Fixes
+
+- add missing exports ([64015a2](https://github.com/Sundsvallskommun/web-shared-components/commit/64015a26cdd04c8404505669aed5e28fe4f97e63))
+- added missing dep ([c3b1bc0](https://github.com/Sundsvallskommun/web-shared-components/commit/c3b1bc014f6357eed1cff423b427ae417f07219c))
+- dont prevent onSendQuery on empty string ([427c0f2](https://github.com/Sundsvallskommun/web-shared-components/commit/427c0f2cb26b37d4fcde689c2a213834322c7e59))
+
+### Features
+
+- added additional options to assistant store ([9ba41bb](https://github.com/Sundsvallskommun/web-shared-components/commit/9ba41bb7f69a5a24de9f4e2e56a867565ae60f94))
+- added prop to hide session history ([0e12c39](https://github.com/Sundsvallskommun/web-shared-components/commit/0e12c397334e2e01b5cfffa595bca264f69c184d))
+- change avatars and titles from ai module ([e759b9f](https://github.com/Sundsvallskommun/web-shared-components/commit/e759b9fbc973e673fd5b8fa6a06d869142476475))
+- modify module header from header component ([ee00eee](https://github.com/Sundsvallskommun/web-shared-components/commit/ee00eeefd847099fd6ea058a3644d6367c2520c2))
+- new session button ([d999069](https://github.com/Sundsvallskommun/web-shared-components/commit/d9990691443804fdc86fd01aa0da5c3cccb36318))
+
 # [0.6.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.5.0...@sk-web-gui/ai@0.6.0) (2024-08-06)
 
 ### Bug Fixes
