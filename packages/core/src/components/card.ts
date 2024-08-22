@@ -49,7 +49,7 @@ export const Card = (colors: string[]) => ({
       '&-content': {
         '@apply w-full': {},
         'p, a': {
-          '@apply line-clamp-3 m-0 pt-8 text-base': {},
+          '@apply line-clamp-3 m-0 pt-8 text-base text-body': {},
         },
       },
 
