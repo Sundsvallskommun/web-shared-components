@@ -34,26 +34,31 @@
     @apply hidden;
   }
 
-  .sbdocs {
+  #storybook-docs > .docs-wrapper > .sbdocs {
+    &.sbdocs-preview,
     &.sbdocs-wrapper,
-    .sbdocs-preview,
+    &.sbdocs-wrapper .sb-anchor > .sbdocs.sbdocs-preview,
+    &.sbdocs-wrapper > .sbdocs-content > *:not(.sb-anchor) p,
+    &.sbdocs-wrapper > .sbdocs-content > *:not(.sb-anchor) h1,
+    &.sbdocs-wrapper > .sbdocs-content > *:not(.sb-anchor) h2,
+    &.sbdocs-wrapper > .sbdocs-content > *:not(.sb-anchor) h3,
+    &.sbdocs-wrapper > .sbdocs-content > *:not(.sb-anchor) h4,
+    &.sbdocs-wrapper > .sbdocs-content > *:not(.sb-anchor) h5,
+    &.sbdocs-wrapper > .sbdocs-content > *:not(.sb-anchor) h6,
+    &.sbdocs-wrapper > .sbdocs-content > *:not(.sb-anchor) th,
+    &.sbdocs-wrapper > .sbdocs-content > *:not(.sb-anchor) td,
+    &.sbdocs-wrapper > .sbdocs-content > *:not(.sb-anchor) ul,
+    &.sbdocs-wrapper > .sbdocs-content > *:not(.sb-anchor) li,
     .docblock-argstable tbody.docblock-argstable-body > tr > *,
     .docblock-argstable-head td,
     thead.docblock-argstable-head th,
-    th,
-    td,
-    p,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    ul,
-    li,
-    .material-icons,
     .docblock-typeset,
     .docblock-typeset > * > * {
       @apply bg-background text-body;
+    }
+
+    &.sbdocs-wrapper > *:not(.sb-anchor) tr:nth-of-type(2n) {
+      @apply bg-background-100;
     }
   }
 
