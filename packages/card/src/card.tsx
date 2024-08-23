@@ -143,6 +143,7 @@ export const CardBody = React.forwardRef<HTMLDivElement, CardBodyProps>((props, 
         {children}
       </div>
       <Button
+        as="div"
         iconButton
         color={color === 'mono' || color === 'tertiary' ? 'primary' : color}
         rounded
