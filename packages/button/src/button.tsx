@@ -40,6 +40,10 @@ export interface ButtonProps extends DefaultProps, React.ComponentPropsWithRef<'
    * @default true
    */
   showBackground?: boolean;
+  /**
+   * @default button
+   */
+  as?: React.ElementType;
 }
 
 export interface ButtonContentProps {
@@ -92,7 +96,7 @@ export const Button = React.forwardRef(
       showBackground = true,
       ...rest
     } = props;
-    const Component = as || 'button';
+    const Component: React.ElementType = as || 'button';
 
     const disabled = _disabled || loading;
     const classes = useButtonClass({
