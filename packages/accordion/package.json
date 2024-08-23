@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/accordion",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -37,7 +37,7 @@
     "react": "^18.2.0"
   },
   "dependencies": {
-    "@sk-web-gui/button": "2.0.6",
+    "@sk-web-gui/button": "2.0.7",
     "@sk-web-gui/divider": "1.0.9",
     "@sk-web-gui/icon": "2.0.1",
     "@sk-web-gui/label": "1.0.4",

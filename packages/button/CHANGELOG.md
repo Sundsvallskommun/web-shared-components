@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.7](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/button@2.0.6...@sk-web-gui/button@2.0.7) (2024-08-23)
+
+### Bug Fixes
+
+- **card,button:** added missing type, using button as div in card ([41edd17](https://github.com/Sundsvallskommun/web-shared-components/commit/41edd17933beb36db6a9b8136c02528c6306482b))
+
 ## [2.0.6](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/button@2.0.5...@sk-web-gui/button@2.0.6) (2024-08-22)
 
 **Note:** Version bump only for package @sk-web-gui/button

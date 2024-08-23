@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/ai",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -38,9 +38,9 @@
   },
   "dependencies": {
     "@microsoft/fetch-event-source": "^2.0.1",
-    "@sk-web-gui/accordion": "1.4.1",
+    "@sk-web-gui/accordion": "1.4.2",
     "@sk-web-gui/avatar": "1.0.10",
-    "@sk-web-gui/button": "2.0.6",
+    "@sk-web-gui/button": "2.0.7",
     "@sk-web-gui/divider": "1.0.9",
     "@sk-web-gui/forms": "2.0.4",
     "@sk-web-gui/icon": "2.0.1",
