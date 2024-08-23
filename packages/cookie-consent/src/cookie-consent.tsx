@@ -58,6 +58,7 @@ export interface CookieConsentProps extends DefaultProps, Omit<React.ComponentPr
   body: React.ReactNode;
   resetConsentOnInit: boolean;
   options?: CookieSetOptions;
+  basePath?: string;
 }
 
 export const CookieConsent: React.FC<CookieConsentProps> = ({
@@ -67,9 +68,11 @@ export const CookieConsent: React.FC<CookieConsentProps> = ({
   cookies = [],
   resetConsentOnInit = false,
   className,
+  basePath = '',
   options = {
     maxAge: 31536000, // default 12 months according to ePrivacy, EU
     sameSite: 'strict',
+    path: basePath + '/',
   },
 }) => {
   const [isOpen, setIsOpen] = React.useState(false);
