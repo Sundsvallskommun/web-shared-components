@@ -130,15 +130,58 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
   if (!assistant) {
     throw new Error('No assistant found');
   }
-  const assistantAvatar = (
-    <Avatar
-      imageElement={typeof assistant.avatar !== 'string' ? assistant.avatar : undefined}
-      imageUrl={typeof assistant.avatar === 'string' ? assistant.avatar : undefined}
-      initials={assistant.shortName}
-      size={fullscreen ? 'md' : 'sm'}
-    />
-  );
-  const userAvatar = <Avatar initials="DU" color="bjornstigen" size={fullscreen ? 'md' : 'sm'} />;
+
+  const getAssistantAvatar = (): JSX.Element => {
+    if (avatars?.assistant) {
+      if (avatars.assistant.type === Avatar) {
+        return React.cloneElement(avatars.assistant, {
+          ...avatars.assistant.props,
+          size: fullscreen ? 'md' : 'sm',
+        });
+      } else {
+        return avatars.assistant;
+      }
+    } else {
+      return (
+        <Avatar
+          imageElement={typeof assistant.avatar !== 'string' ? assistant.avatar : undefined}
+          imageUrl={typeof assistant.avatar === 'string' ? assistant.avatar : undefined}
+          initials={assistant.shortName}
+          size={fullscreen ? 'md' : 'sm'}
+        />
+      );
+    }
+  };
+
+  const getUserAvatar = (): JSX.Element => {
+    if (avatars?.user) {
+      if (avatars.user.type === Avatar) {
+        return React.cloneElement(avatars.user, {
+          ...avatars.user.props,
+          size: fullscreen ? 'md' : 'sm',
+        });
+      } else {
+        return avatars.user;
+      }
+    } else {
+      return <Avatar initials="DU" color="bjornstigen" size={fullscreen ? 'md' : 'sm'} />;
+    }
+  };
+
+  const getSystemAvatar = (): JSX.Element => {
+    if (avatars?.system) {
+      if (avatars.system.type === Avatar) {
+        return React.cloneElement(avatars.system, {
+          ...avatars.system.props,
+          size: fullscreen ? 'md' : 'sm',
+        });
+      } else {
+        return avatars.system;
+      }
+    } else {
+      return getAssistantAvatar();
+    }
+  };
 
   const handleAutoScroll = () => {
     setTimeout(() => {
@@ -257,7 +300,13 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
         {isFullscreen && (
           <div className="sk-ai-module-content-row">
             <div className="sk-ai-module-sidebar">
-              <AIModuleHeader variant="alt" assistant={assistant} />
+              <AIModuleHeader
+                variant="alt"
+                assistant={assistant}
+                avatar={avatars?.assistant}
+                title={title}
+                subtitle={subtitle}
+              />
               {showSessionHistory && (
                 <AIModuleSessions
                   current={!_propsSession && _session?.isNew ? '' : sessionId}
@@ -288,13 +337,18 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
             disableFullscreen={disableFullscreen}
             title={title}
             subtitle={subtitle}
+            avatar={avatars?.assistant}
           />
           {!docked && (
             <>
               <div className="sk-ai-module-feed" ref={scrollRef}>
                 {!history || history.length < 1 ? (
                   <>
-                    <AssistantPresentation size={isFullscreen ? 'lg' : 'sm'} assistant={assistant} />
+                    <AssistantPresentation
+                      size={isFullscreen ? 'lg' : 'sm'}
+                      assistant={assistant}
+                      avatar={avatars?.assistant}
+                    />
                     {readmore && (
                       <div className="sk-ai-module-feed-readmore">
                         <Link external href={readmore.url}>
@@ -321,13 +375,11 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
                     showFeedback={showFeedback}
                     onGiveFeedback={handleAutoScroll}
                     size={isFullscreen ? 'lg' : 'sm'}
-                    avatars={
-                      avatars || {
-                        user: userAvatar,
-                        assistant: assistantAvatar,
-                        system: assistantAvatar,
-                      }
-                    }
+                    avatars={{
+                      user: getUserAvatar(),
+                      assistant: getAssistantAvatar(),
+                      system: getSystemAvatar(),
+                    }}
                     titles={originTitles}
                     sessionId={session.id}
                   />

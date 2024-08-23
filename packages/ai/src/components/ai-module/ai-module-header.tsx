@@ -3,9 +3,8 @@ import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
 import { cx } from '@sk-web-gui/utils';
 import React from 'react';
-import { AssistantInfo } from '../../types';
+import { AIFeedAvatar, AssistantInfo } from '../../types';
 import { AIModuleDefaultProps } from './ai-module';
-import { Tooltip } from '@sk-web-gui/tooltip';
 import { AIModuleHeaderMenu } from './ai-module-header-menu';
 
 export interface AIModuleHeaderProps extends AIModuleDefaultProps, React.ComponentPropsWithoutRef<'div'> {
@@ -14,6 +13,7 @@ export interface AIModuleHeaderProps extends AIModuleDefaultProps, React.Compone
   onOpenHistory?: () => void;
   onCloseHistory?: () => void;
   historyOpen?: boolean;
+  avatar?: AIFeedAvatar;
 }
 
 export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderProps>((props, ref) => {
@@ -38,8 +38,37 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
     isMobile,
     title,
     subtitle,
+    avatar,
     ...rest
   } = props;
+
+  const AssistantAvatar: React.FC = () => {
+    if (avatar) {
+      if (avatar.type === Avatar) {
+        return React.cloneElement(avatar, {
+          ...avatar.props,
+          imageAlt: '',
+          'aria-hidden': 'true',
+          className: `${avatar.props.className} sk-ai-module-header-avatar`,
+          size: variant === 'alt' ? 'lg' : docked ? 'md' : 'sm',
+        });
+      } else {
+        return avatar;
+      }
+    } else {
+      return (
+        <Avatar
+          className="sk-ai-module-header-avatar"
+          size={variant === 'alt' ? 'lg' : docked ? 'md' : 'sm'}
+          imageElement={typeof assistant.avatar !== 'string' ? assistant.avatar : undefined}
+          imageUrl={typeof assistant.avatar === 'string' ? assistant.avatar : undefined}
+          initials={assistant.shortName}
+          imageAlt=""
+          aria-hidden
+        />
+      );
+    }
+  };
 
   return (
     <div
@@ -69,14 +98,7 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
         </>
       ) : (
         <div className="sk-ai-module-header-title">
-          <Avatar
-            className="sk-ai-module-header-avatar"
-            size={variant === 'alt' ? 'lg' : docked ? 'md' : 'sm'}
-            imageElement={typeof assistant.avatar !== 'string' ? assistant.avatar : undefined}
-            imageUrl={typeof assistant.avatar === 'string' ? assistant.avatar : undefined}
-            imageAlt=""
-            aria-hidden
-          />
+          <AssistantAvatar />
           <div className="sk-ai-module-header-heading">
             <span className="sk-ai-module-header-heading-name">{title || assistant.name}</span>
             {(subtitle || assistant.title) && (docked || variant === 'alt') && (

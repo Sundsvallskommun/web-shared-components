@@ -3,6 +3,7 @@ import { AIModule, AssistantInfo, ChatHistory, SessionHistory } from '../src';
 import { AIModuleProps } from '../src/components';
 import avatarSrc from './images/qwerty-avatar.png';
 import { addDays } from 'date-fns';
+import { Avatar } from '@sk-web-gui/avatar';
 
 export default {
   title: 'AI/Komponenter/AIModule',
@@ -76,14 +77,19 @@ const history: ChatHistory = [
     ],
   },
   {
+    origin: 'system',
+    text: 'Något gick fel',
+    id: '5',
+  },
+  {
     origin: 'user',
     text: 'Vad är Qwerty?',
-    id: '5',
+    id: '6',
   },
   {
     origin: 'assistant',
     text: 'Jag är Qwerty, en AI-assistent här för att hjälpa medarbetare på Sundsvalls Kommun med information och kommunikation. Jag pratar enkelt och vänligt, och kan hjälpa till med frågor om HR och vårt intranät. \r\rMitt mål är att göra ditt jobb lite lättare och roligare. Hur kan jag hjälpa dig idag?',
-    id: '6',
+    id: '7',
     done: true,
     references: [
       {
@@ -136,6 +142,12 @@ const sessions: SessionHistory = [
   },
 ];
 
+const avatars = {
+  assistant: <Avatar size="lg" initials="AI" color="vattjom" />,
+  user: <Avatar size="lg" initials="DU" color="bjornstigen" />,
+  system: <Avatar initials="!" color="juniskar" />,
+};
+
 export const Template = (args: AIModuleProps) => {
   return (
     <div className="w-full h-[60em] relative">
@@ -150,10 +162,16 @@ export const WithHistory = (args: AIModuleProps) => {
       <AIModule
         {...args}
         assistant={assistant}
+        avatars={avatars}
         questionsTitle="Vad kan jag hjälpa dig med?"
         questions={['Vad är Querty?', 'Jag har tappat bort mitt passerkort', 'Vilka dagar jobbar vi halvdag']}
         sessionHistory={sessions}
         session={sessions[0]}
+        originTitles={{
+          user: { title: 'Du', show: false },
+          assistant: { title: 'Qwerty', show: true },
+          system: { title: 'Fel', show: false },
+        }}
       ></AIModule>
     </div>
   );
