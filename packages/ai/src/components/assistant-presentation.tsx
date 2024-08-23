@@ -23,7 +23,7 @@ export const AssistantPresentation = React.forwardRef<HTMLDivElement, AssistantP
     }
   };
 
-  const getAvatar = (): JSX.Element => {
+  const AssistantAvatar: React.FC = () => {
     if (avatar) {
       if (avatar.type === Avatar) {
         return React.cloneElement(avatar, {
@@ -48,6 +48,7 @@ export const AssistantPresentation = React.forwardRef<HTMLDivElement, AssistantP
       );
     }
   };
+
   const languages =
     typeof assistant.description === 'object'
       ? Object.keys(assistant.description).filter((key) => key !== 'default')
@@ -63,7 +64,7 @@ export const AssistantPresentation = React.forwardRef<HTMLDivElement, AssistantP
 
   return (
     <div ref={ref} className={cx('sk-ai-assistant-presentation', className)} data-size={size} {...rest}>
-      {getAvatar()}
+      <AssistantAvatar />
       <div className="sk-ai-assistant-presentation-header">
         <div className="sk-ai-assistant-presentation-header-title">{assistant.name}</div>
         <div className="sk-ai-assistant-presentation-header-descriptions">

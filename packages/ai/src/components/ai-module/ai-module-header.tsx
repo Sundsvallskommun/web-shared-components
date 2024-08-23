@@ -42,7 +42,7 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
     ...rest
   } = props;
 
-  const getAvatar = (): JSX.Element => {
+  const AssistantAvatar: React.FC = () => {
     if (avatar) {
       if (avatar.type === Avatar) {
         return React.cloneElement(avatar, {
@@ -98,7 +98,7 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
         </>
       ) : (
         <div className="sk-ai-module-header-title">
-          {getAvatar()}
+          <AssistantAvatar />
           <div className="sk-ai-module-header-heading">
             <span className="sk-ai-module-header-heading-name">{title || assistant.name}</span>
             {(subtitle || assistant.title) && (docked || variant === 'alt') && (
