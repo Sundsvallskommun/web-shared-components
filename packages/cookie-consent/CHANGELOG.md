@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.8](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/cookie-consent@2.0.7...@sk-web-gui/cookie-consent@2.0.8) (2024-08-26)
+
+### Bug Fixes
+
+- **cookies:** path was set to current pathname, added basePath prop ([cec3f85](https://github.com/Sundsvallskommun/web-shared-components/commit/cec3f853b4678a73ceda74cd8941c80f188a45e2))
+
 ## [2.0.7](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/cookie-consent@2.0.6...@sk-web-gui/cookie-consent@2.0.7) (2024-08-23)
 
 **Note:** Version bump only for package @sk-web-gui/cookie-consent

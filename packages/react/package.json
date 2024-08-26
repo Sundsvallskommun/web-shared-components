@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/react",
-  "version": "1.2.26",
+  "version": "1.2.27",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -45,7 +45,7 @@
     "@sk-web-gui/button": "2.0.7",
     "@sk-web-gui/card": "1.0.15",
     "@sk-web-gui/chip": "1.1.4",
-    "@sk-web-gui/cookie-consent": "2.0.7",
+    "@sk-web-gui/cookie-consent": "2.0.8",
     "@sk-web-gui/divider": "1.0.9",
     "@sk-web-gui/filter": "1.1.4",
     "@sk-web-gui/forms": "2.0.4",

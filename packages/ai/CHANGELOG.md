@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.7.1...@sk-web-gui/ai@0.7.2) (2024-08-26)
+
+### Bug Fixes
+
+- use custom avatar in all instances ([1ee6bdc](https://github.com/Sundsvallskommun/web-shared-components/commit/1ee6bdcf2a411da81f2fc160df54dc070256cd64))
+
 ## [0.7.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.7.0...@sk-web-gui/ai@0.7.1) (2024-08-23)
 
 **Note:** Version bump only for package @sk-web-gui/ai
