@@ -6,6 +6,7 @@ import Cookies, { CookieSetOptions } from 'universal-cookie';
 import React from 'react';
 
 export const defaultCookieConsentName = 'SKCookieConsent';
+export const defaultCookieConsentPath = '/';
 
 export interface ConsentCookie {
   optional: boolean;
@@ -34,8 +35,8 @@ export function getConsent(): string[] {
   return cookieValue.split(',');
 }
 
-export function resetConsent() {
-  userCookie.remove(defaultCookieConsentName);
+export function resetConsent(options: { path: string } = { path: defaultCookieConsentPath }) {
+  userCookie.remove(defaultCookieConsentName, options);
 }
 
 export function getCheckableCookies(cookies: ConsentCookie[]): CheckableConsentCookie[] {
@@ -72,7 +73,7 @@ export const CookieConsent: React.FC<CookieConsentProps> = ({
   options = {
     maxAge: 31536000, // default 12 months according to ePrivacy, EU
     sameSite: 'strict',
-    path: basePath + '/',
+    path: basePath + defaultCookieConsentPath,
   },
 }) => {
   const [isOpen, setIsOpen] = React.useState(false);
