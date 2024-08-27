@@ -3,6 +3,7 @@ import {
   CookieConsent,
   CookieConsentProps,
   defaultCookieConsentName,
+  defaultCookieConsentPath,
   getCheckableCookies,
   getConsent,
   resetConsent,
@@ -10,6 +11,7 @@ import {
 
 const CookieConsentUtils = {
   defaultCookieConsentName,
+  defaultCookieConsentPath,
   getConsent,
   resetConsent,
   getCheckableCookies,

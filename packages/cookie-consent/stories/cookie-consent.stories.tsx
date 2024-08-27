@@ -1,6 +1,8 @@
 import { Link } from '@sk-web-gui/link';
 import { Meta } from '@storybook/react';
-import { CookieConsent, CookieConsentProps } from '../src';
+import { CookieConsent, CookieConsentProps, CookieConsentUtils } from '../src';
+import React from 'react';
+import { Button } from '@sk-web-gui/button';
 
 export default {
   title: 'Komponenter/CookieConsent',
@@ -40,18 +42,27 @@ export default {
         cookieName: 'stats',
       },
     ],
-    resetConsentOnInit: true,
   },
 } as Meta<typeof CookieConsent>;
 
-export const Template = (args: CookieConsentProps) => (
-  <CookieConsent
-    {...args}
-    onConsent={(cookies) => {
-      // Do stuff with the cookies
-      alert(JSON.stringify(cookies));
-    }}
-  />
-);
+export const Template = (args: CookieConsentProps) => {
+  const handleResetCookie = () => {
+    CookieConsentUtils.resetConsent();
+    location.reload();
+  };
+
+  return (
+    <>
+      <Button onClick={handleResetCookie}>Hantera kakor (cookies)</Button>
+      <CookieConsent
+        {...args}
+        onConsent={(cookies) => {
+          // Do stuff with the cookies
+          alert(JSON.stringify(cookies));
+        }}
+      />
+    </>
+  );
+};
 
 Template.storyName = 'CookieConsent';
