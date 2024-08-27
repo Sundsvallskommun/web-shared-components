@@ -2,19 +2,25 @@ import { addDays, format } from 'date-fns';
 import AIModuleSessionHistory, { AIModuleSessionHistoryProps } from './ai-module-session-history';
 import React, { useId } from 'react';
 import { cx } from '@sk-web-gui/utils';
+import { AssistantSession, SessionHistory } from '../../types';
+import { SessionStoreSession, useSessions } from '../../session-store';
 
-export interface AIModuleSessionsProps extends Omit<AIModuleSessionHistoryProps, 'title' | 'onKeyNext' | 'onKeyPrev'> {
+export interface AIModuleSessionsProps
+  extends Omit<AIModuleSessionHistoryProps, 'title' | 'onKeyNext' | 'onKeyPrev' | 'sessions'> {
+  sessions?: SessionHistory;
   itemsBefore?: JSX.Element[];
   itemsAfter?: JSX.Element[];
   focus?: boolean;
 }
 
 export const AIModuleSessions = React.forwardRef<HTMLDivElement, AIModuleSessionsProps>((props, ref) => {
+  const [sessions, setSessions] = React.useState<Array<AssistantSession | SessionStoreSession>>([]);
+  const [_sessions, refreshSessions] = useSessions((state) => [state.sessions, state.refreshSessions]);
   const [itemsBefore, setItemsBefore] = React.useState<JSX.Element[] | undefined>(undefined);
   const [itemsAfter, setItemsAfter] = React.useState<JSX.Element[] | undefined>(undefined);
   const [ids, setIds] = React.useState<string[]>([]);
   const {
-    sessions,
+    sessions: _propssessions,
     className,
     onSelectSession,
     current,
@@ -23,6 +29,29 @@ export const AIModuleSessions = React.forwardRef<HTMLDivElement, AIModuleSession
     focus,
     ...rest
   } = props;
+
+  React.useEffect(() => {
+    if (_propssessions) {
+      setSessions(_propssessions);
+    } else {
+      setSessions(
+        Object.values({ ..._sessions })
+          .filter((session) => !session.isNew)
+          .sort((a, b) => (a.updated_at < b.updated_at ? 1 : -1))
+      );
+    }
+  }, [_propssessions, _sessions]);
+
+  React.useEffect(() => {
+    refreshSessions();
+  }, [current]);
+
+  React.useEffect(() => {
+    if (typeof _propssessions === 'undefined' && !_sessions) {
+      refreshSessions();
+    }
+  }, []);
+
   const autoId = useId();
   const idPrefix = 'sk-ai-session-item-';
 
