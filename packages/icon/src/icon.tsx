@@ -1,5 +1,4 @@
 import { __DEV__, cx, DefaultProps } from '@sk-web-gui/utils';
-import { icons } from 'lucide-react';
 import React from 'react';
 import dynamicIconImports from 'lucide-react/dynamicIconImports';
 
@@ -30,14 +29,6 @@ export interface IconProps extends DefaultProps, React.ComponentPropsWithRef<'sp
   size?: number | string | 'fit';
 }
 
-function toPascalCase(text: string) {
-  return text.replace(/(^\w|-\w)/g, clearAndUpper);
-}
-
-function clearAndUpper(text: string) {
-  return text.replace(/-/, '').toUpperCase();
-}
-
 export const Icon = React.forwardRef<HTMLSpanElement, IconProps>((props, ref) => {
   const {
     name,
@@ -50,7 +41,14 @@ export const Icon = React.forwardRef<HTMLSpanElement, IconProps>((props, ref) =>
     className,
     ...rest
   } = props;
-  const LucideIcon = name ? icons[toPascalCase(name) as keyof typeof icons] : undefined;
+
+  let LucideIcon: React.ReactElement | undefined;
+
+  if (name) {
+    const IconComponent = React.lazy(dynamicIconImports[name]);
+    LucideIcon = <IconComponent />;
+  }
+
   return (
     <span
       ref={ref}
@@ -65,7 +63,7 @@ export const Icon = React.forwardRef<HTMLSpanElement, IconProps>((props, ref) =>
       data-testid={name ? `sk-icon-${name}` : undefined}
       {...rest}
     >
-      {icon ? icon : LucideIcon ? <LucideIcon /> : undefined}
+      {icon ? icon : LucideIcon ? <React.Suspense fallback={<></>}>{LucideIcon}</React.Suspense> : undefined}
     </span>
   );
 });
