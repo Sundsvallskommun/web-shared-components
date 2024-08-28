@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.9](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/cookie-consent@2.0.8...@sk-web-gui/cookie-consent@2.0.9) (2024-08-28)
+
+### Bug Fixes
+
+- cookie consent not resetting correctly due to relative path ([547963b](https://github.com/Sundsvallskommun/web-shared-components/commit/547963b33440b9b35371d187c28f9d9a8768082a))
+
 ## [2.0.8](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/cookie-consent@2.0.7...@sk-web-gui/cookie-consent@2.0.8) (2024-08-26)
 
 ### Bug Fixes

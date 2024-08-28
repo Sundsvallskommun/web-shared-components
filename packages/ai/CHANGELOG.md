@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.7.2...@sk-web-gui/ai@0.7.3) (2024-08-28)
+
+### Bug Fixes
+
+- moved session to session history component ([c8fa6ee](https://github.com/Sundsvallskommun/web-shared-components/commit/c8fa6ee2cf0171e44065e11f667a5b4453d7565b))
+
 ## [0.7.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.7.1...@sk-web-gui/ai@0.7.2) (2024-08-26)
 
 ### Bug Fixes
