@@ -11,7 +11,7 @@ import { AIModuleSessions } from './ai-module-sessions';
 interface AIModuleMobileMenuProps extends Omit<React.ComponentPropsWithoutRef<'div'>, 'children'> {
   show: boolean;
   assistant: AssistantInfo;
-  sessions: SessionHistory;
+  sessions?: SessionHistory;
   onClose?: () => void;
   onChangeSession?: AIModuleProps['onChangeSession'];
 }

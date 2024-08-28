@@ -98,11 +98,9 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
   } = props;
 
   const [sessionId, setSessionId] = React.useState<string>('');
-  const [sessions, setSessions] = React.useState<Array<AssistantSession | SessionStoreSession>>([]);
   const { history: _history, session: _session, sendQuery } = useChat({ sessionId });
   const _assistant = useAssistantStore((state) => state.info);
   const assistant = _propsAssistant || _assistant;
-  const [_sessions, refreshSessions] = useSessions((state) => [state.sessions, state.refreshSessions]);
   const session: SessionStoreSession | AssistantSession | undefined = _propsSession || _session;
   const history = _propsSession?.history || _history || [];
   const [docked, setDocked] = React.useState<boolean>(true);
@@ -110,22 +108,6 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
   const [showMobileHistory, setShowMobileHistory] = React.useState<boolean>(false);
   const isFullscreen = fullscreen && !isMobile;
   const scrollRef = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    if (showSessionHistory) {
-      if (sessionHistory) {
-        setSessions(sessionHistory);
-      } else {
-        setSessions(
-          Object.values({ ..._sessions })
-            .filter((session) => !session.isNew)
-            .sort((a, b) => (a.updated_at < b.updated_at ? 1 : -1))
-        );
-      }
-    } else {
-      setSessions([]);
-    }
-  }, [sessionHistory, _sessions, showSessionHistory]);
 
   if (!assistant) {
     throw new Error('No assistant found');
@@ -224,7 +206,6 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
   React.useEffect(() => {
     if (session?.id && session.id !== sessionId) {
       setSessionId(session.id);
-      refreshSessions();
     }
   }, [session?.id]);
 
@@ -252,12 +233,6 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
     setDocked(false);
     onOpen && onOpen();
   };
-
-  React.useEffect(() => {
-    if (!sessions && !sessionHistory) {
-      refreshSessions();
-    }
-  }, []);
 
   const handleNewSession = () => {
     if (onNewSession) {
@@ -310,7 +285,7 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
               {showSessionHistory && (
                 <AIModuleSessions
                   current={!_propsSession && _session?.isNew ? '' : sessionId}
-                  sessions={sessions}
+                  sessions={sessionHistory}
                   onSelectSession={handleChangeSession}
                 />
               )}
@@ -395,12 +370,12 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
           )}
         </div>
       </div>
-      {isMobile && (
+      {showSessionHistory && isMobile && (
         <AIModuleMobileMenu
           show={showMobileHistory && !!isMobile}
           onClose={() => setShowMobileHistory(false)}
           assistant={assistant}
-          sessions={sessions}
+          sessions={sessionHistory}
         />
       )}
     </AIModuleWrapper>
