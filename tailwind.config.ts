@@ -8,5 +8,4 @@ export default {
     './.storybook/components/**/*.{tsx,mdx}',
   ],
   darkMode: 'class', // or 'media' or 'class'
-  // plugins: [require('@tailwindcss/forms'), require('./packages/core/src/plugin')()],
 };
