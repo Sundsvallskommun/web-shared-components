@@ -25,27 +25,29 @@ const getComponentWithDependencies = (compName: string): Component[] => {
     }
   }
 
-  return comps.filter((val, index, arr) => arr.indexOf(val) === index);
+  return comps;
 };
 
 const plugin = TailwindPlugin.withOptions<PluginOptions>(
   function (_options) {
     const options = { ...pluginDefaults, ..._options };
 
-    const pickedComponents = components.reduce((comps: Component[], compWithDeps) => {
-      if (options?.components && !options.components.includes(compWithDeps.comp.name)) {
-        return comps;
-      }
-
-      let deps: Component[] = [];
-      if (compWithDeps?.deps) {
-        for (let index = 0; index < compWithDeps.deps.length; index++) {
-          deps = [...getComponentWithDependencies(compWithDeps.deps[index].name), ...deps];
+    const pickedComponents = components
+      .reduce((comps: Component[], compWithDeps) => {
+        if (options?.components && !options.components.includes(compWithDeps.comp.name)) {
+          return comps;
         }
-      }
 
-      return [...comps, ...deps, compWithDeps.comp].filter((val, index, arr) => arr.indexOf(val) === index);
-    }, []);
+        let deps: Component[] = [];
+        if (compWithDeps?.deps) {
+          for (let index = 0; index < compWithDeps.deps.length; index++) {
+            deps = [...getComponentWithDependencies(compWithDeps.deps[index].name), ...deps];
+          }
+        }
+
+        return [...comps, ...deps, compWithDeps.comp];
+      }, [])
+      .filter((val, index, arr) => arr.indexOf(val) === index);
 
     return function ({ addComponents, addBase, theme }: PluginAPI) {
       const optionColors = [...defaultColors, ...(options.colors || [])];
