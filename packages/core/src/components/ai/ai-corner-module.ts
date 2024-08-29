@@ -1,4 +1,4 @@
-export const AIModule = (colors: string[]) => ({
+export const AICornerModule = (colors: string[]) => ({
   '.sk-ai-corner-module': {
     '@apply fixed': {},
     '@apply max-w-full': {},

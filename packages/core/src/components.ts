@@ -44,7 +44,7 @@ import { Tooltip } from './components/tooltip';
 import { UserMenu } from './components/user-menu';
 //AI COMPONENTS
 import { AIFeed } from './components/ai/ai-feed';
-import { AIModule } from './components/ai/ai-module';
+import { AICornerModule } from './components/ai/ai-corner-module';
 import { AssistantPresentation } from './components/ai/assistant-presentation';
 import { Bubble } from './components/ai/bubble';
 import { Feedback } from './components/ai/feedback';
@@ -107,7 +107,7 @@ export const components: ComponentWithDeps[] = [
 
   { comp: AIFeed, deps: [Accordion, Button, Avatar, TypingBubble, Feedback, MarkdownRendered] },
   {
-    comp: AIModule,
+    comp: AICornerModule,
     deps: [AIFeed, AssistantPresentation, InputSection, Avatar, Bubble, Link, Button, Divider, Icon, Tooltip],
   },
   { comp: AssistantPresentation, deps: [Avatar] },
