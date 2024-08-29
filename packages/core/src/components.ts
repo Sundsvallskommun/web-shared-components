@@ -45,6 +45,7 @@ import { UserMenu } from './components/user-menu';
 //AI COMPONENTS
 import { AIFeed } from './components/ai/ai-feed';
 import { AICornerModule } from './components/ai/ai-corner-module';
+import { AIServiceModule } from './components/ai/ai-service-module';
 import { AssistantPresentation } from './components/ai/assistant-presentation';
 import { Bubble } from './components/ai/bubble';
 import { Feedback } from './components/ai/feedback';
@@ -110,6 +111,7 @@ export const components: ComponentWithDeps[] = [
     comp: AICornerModule,
     deps: [AIFeed, AssistantPresentation, InputSection, Avatar, Bubble, Link, Button, Divider, Icon, Tooltip],
   },
+  { comp: AIServiceModule, deps: [AIFeed, Bubble, InputSection] },
   { comp: AssistantPresentation, deps: [Avatar] },
   { comp: Bubble, deps: [Icon] },
   { comp: Feedback, deps: [Button, Icon] },

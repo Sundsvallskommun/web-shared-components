@@ -1,4 +1,4 @@
-import { cx } from '@sk-web-gui/utils/dist/types';
+import { cx } from '@sk-web-gui/utils';
 import React from 'react';
 
 interface AIServiceModuleWrapperProps extends React.ComponentPropsWithoutRef<'div'> {}
