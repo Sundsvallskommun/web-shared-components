@@ -1,7 +1,7 @@
 export const InputSection = () => ({
   '.sk-ai-inputsection': {
     '@apply w-full': {},
-    '&-input': {
+    '&-input, &-group': {
       '@apply w-full': {},
     },
     '&-wrapper': {
