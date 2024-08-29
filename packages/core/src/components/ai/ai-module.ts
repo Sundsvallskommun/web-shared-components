@@ -1,5 +1,5 @@
 export const AIModule = (colors: string[]) => ({
-  '.sk-ai-module': {
+  '.sk-ai-corner-module': {
     '@apply fixed': {},
     '@apply max-w-full': {},
     '@apply max-h-full': {},
@@ -80,7 +80,7 @@ export const AIModule = (colors: string[]) => ({
     },
 
     '&[data-mobile="true"]': {
-      '.sk-ai-module-feed': {
+      '.sk-ai-corner-module-feed': {
         '&-readmore': {
           '@apply max-w-full': {},
         },
@@ -91,7 +91,7 @@ export const AIModule = (colors: string[]) => ({
     },
     '&[data-fullscreen="true"]': {
       '@apply w-full': {},
-      '.sk-ai-module-feed': {
+      '.sk-ai-corner-module-feed': {
         '@apply gap-40 grow w-full items-center': {},
         '.sk-ai-feed': {
           '@apply text-base max-w-[50em]': {},
@@ -176,10 +176,10 @@ export const AIModule = (colors: string[]) => ({
         '.sk-avatar': {
           '@apply w-40 h-40 lg:w-56 lg:h-56': {},
         },
-        '.sk-ai-module-header-heading-name': {
+        '.sk-ai-corner-module-header-heading-name': {
           '@apply text-label-large text-dark-primary': {},
         },
-        '.sk-ai-module-header-heading-subtitle': {
+        '.sk-ai-corner-module-header-heading-subtitle': {
           '@apply text-small text-dark-secondary': {},
         },
       },
@@ -231,7 +231,7 @@ export const AIModule = (colors: string[]) => ({
       '&-top-bar': {
         '@apply flex justify-between items-start': {},
         '@apply pl-0 pr-16': {},
-        '.sk-ai-module-header': {
+        '.sk-ai-corner-module-header': {
           '@apply shrink': {},
         },
       },
@@ -246,7 +246,7 @@ export const AIModule = (colors: string[]) => ({
       },
       '&[data-show="false"]': {
         '@apply w-0 h-0 left-full': {},
-        '.sk-ai-module-mobile-menu': {
+        '.sk-ai-corner-module-mobile-menu': {
           '&-top-bar': {
             '@apply hidden': {},
           },

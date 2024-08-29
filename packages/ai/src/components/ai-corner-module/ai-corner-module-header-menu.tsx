@@ -136,7 +136,7 @@ export const AICornerModuleHeaderMenu = React.forwardRef<HTMLUListElement, AICor
     };
 
     return (
-      <ul ref={ref} className={cx('sk-ai-module-header-menu', className)} role="menubar" {...rest}>
+      <ul ref={ref} className={cx('sk-ai-corner-module-header-menu', className)} role="menubar" {...rest}>
         {children ? (
           children
         ) : (
@@ -171,7 +171,7 @@ export const AICornerModuleHeaderMenu = React.forwardRef<HTMLUListElement, AICor
                   inverted: true,
                   'aria-haspopup': 'menu',
                   'aria-expanded': historyOpen,
-                  id: 'sk-ai-module-mobile-menu',
+                  id: 'sk-ai-corner-module-mobile-menu',
                 }}
                 onClick={() => handleOpenHistory()}
               />

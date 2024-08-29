@@ -12,7 +12,7 @@ export const AICornerModuleWrapper = React.forwardRef<HTMLDivElement, AICornerMo
   return (
     <div
       ref={ref}
-      className={cx('sk-ai-module', className)}
+      className={cx('sk-ai-corner-module', className)}
       data-fullscreen={fullscreen}
       data-docked={docked}
       data-mobile={isMobile}

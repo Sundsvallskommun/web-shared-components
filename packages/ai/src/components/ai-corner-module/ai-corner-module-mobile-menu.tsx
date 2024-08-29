@@ -54,13 +54,13 @@ export const AICornerModuleMobileMenu = React.forwardRef<HTMLDivElement, AICorne
 
           switch (event.shiftKey) {
             case false:
-              if (target.id !== 'sk-ai-module-mobile-menu-close-button') {
+              if (target.id !== 'sk-ai-corner-module-mobile-menu-close-button') {
                 event.preventDefault();
-                document.getElementById('sk-ai-module-mobile-menu-close-button')?.focus();
+                document.getElementById('sk-ai-corner-module-mobile-menu-close-button')?.focus();
               }
               break;
             case true:
-              if (target.id === 'sk-ai-module-mobile-menu-close-button') {
+              if (target.id === 'sk-ai-corner-module-mobile-menu-close-button') {
                 event.preventDefault();
                 focusTheMenu();
               }
@@ -78,13 +78,13 @@ export const AICornerModuleMobileMenu = React.forwardRef<HTMLDivElement, AICorne
 
     return (
       <div
-        className={cx('sk-ai-module-mobile-menu', className)}
+        className={cx('sk-ai-corner-module-mobile-menu', className)}
         data-show={show}
         ref={useForkRef(ref, internalRef)}
         onKeyDown={handleKeyboardNavigation}
         {...rest}
       >
-        <div className="sk-ai-module-mobile-menu-top-bar">
+        <div className="sk-ai-corner-module-mobile-menu-top-bar">
           <AICornerModuleHeader variant="alt" assistant={assistant} />
           <Button
             ref={buttonRef}
@@ -92,13 +92,13 @@ export const AICornerModuleMobileMenu = React.forwardRef<HTMLDivElement, AICorne
             size="sm"
             iconButton
             aria-label="Stäng meny"
-            id="sk-ai-module-mobile-menu-close-button"
+            id="sk-ai-corner-module-mobile-menu-close-button"
             onClick={() => onClose && onClose()}
           >
             <Icon name="x" />
           </Button>
         </div>
-        <div className="sk-ai-module-mobile-menu-content">
+        <div className="sk-ai-corner-module-mobile-menu-content">
           <AICornerModuleSessions sessions={sessions} onSelectSession={handleChangeSession} focus={focusMenu} />
         </div>
       </div>

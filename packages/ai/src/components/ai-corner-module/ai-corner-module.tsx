@@ -271,10 +271,10 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
       fullscreen={isFullscreen}
       isMobile={isMobile}
     >
-      <div className="sk-ai-module-content">
+      <div className="sk-ai-corner-module-content">
         {isFullscreen && (
-          <div className="sk-ai-module-content-row">
-            <div className="sk-ai-module-sidebar">
+          <div className="sk-ai-corner-module-content-row">
+            <div className="sk-ai-corner-module-sidebar">
               <AICornerModuleHeader
                 variant="alt"
                 assistant={assistant}
@@ -292,7 +292,7 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
             </div>
           </div>
         )}
-        <div className="sk-ai-module-content-row sk-ai-module-content-main">
+        <div className="sk-ai-corner-module-content-row sk-ai-corner-module-content-main">
           <AICornerModuleHeader
             docked={docked}
             fullscreen={isFullscreen}
@@ -316,7 +316,7 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
           />
           {!docked && (
             <>
-              <div className="sk-ai-module-feed" ref={scrollRef}>
+              <div className="sk-ai-corner-module-feed" ref={scrollRef}>
                 {!history || history.length < 1 ? (
                   <>
                     <AssistantPresentation
@@ -325,16 +325,18 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
                       avatar={avatars?.assistant}
                     />
                     {readmore && (
-                      <div className="sk-ai-module-feed-readmore">
+                      <div className="sk-ai-corner-module-feed-readmore">
                         <Link external href={readmore.url}>
                           {readmore.description}
                         </Link>
                       </div>
                     )}
                     {questions && questions?.length > 0 && (
-                      <div className="sk-ai-module-feed-questions-wrapper">
-                        {questionsTitle && <div className="sk-ai-module-feed-questions-title">{questionsTitle}</div>}
-                        <div className="sk-ai-module-feed-questions">
+                      <div className="sk-ai-corner-module-feed-questions-wrapper">
+                        {questionsTitle && (
+                          <div className="sk-ai-corner-module-feed-questions-title">{questionsTitle}</div>
+                        )}
+                        <div className="sk-ai-corner-module-feed-questions">
                           {questions?.map((question, index) => (
                             <Bubble key={`q-bubble-${index}`} onClick={() => handleSelectQuestion(question)}>
                               {question}

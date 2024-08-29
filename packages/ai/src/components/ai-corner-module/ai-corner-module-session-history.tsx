@@ -22,7 +22,7 @@ export const AICornerModuleSessionHistory = React.forwardRef<HTMLDivElement, AIC
   (props, ref) => {
     const { sessions, title, className, onSelectSession, current, onKeyNext, onKeyPrev, ...rest } = props;
     const autoId = React.useId();
-    const id = `sk-ai-module-sessions-history-title-${autoId}`;
+    const id = `sk-ai-corner-module-sessions-history-title-${autoId}`;
     const idPrefix = 'sk-ai-session-item-';
     const focusable = current ? current : sessions[0].id;
 
@@ -40,11 +40,16 @@ export const AICornerModuleSessionHistory = React.forwardRef<HTMLDivElement, AIC
     };
 
     return (
-      <div ref={ref} className={cx('sk-ai-module-sessions-history', className)} {...rest}>
+      <div ref={ref} className={cx('sk-ai-corner-module-sessions-history', className)} {...rest}>
         <Divider.Section size="sm">{title}</Divider.Section>
-        <ul role="group" aria-orientation="vertical" aria-label={title} className="sk-ai-module-sessions-history-list">
+        <ul
+          role="group"
+          aria-orientation="vertical"
+          aria-label={title}
+          className="sk-ai-corner-module-sessions-history-list"
+        >
           {sessions.map((session) => (
-            <li key={session.id} className="sk-ai-module-sessions-history-list-entry" role="none">
+            <li key={session.id} className="sk-ai-corner-module-sessions-history-list-entry" role="none">
               <Button
                 aria-current={current === session.id}
                 tabIndex={focusable === session.id ? 0 : -1}

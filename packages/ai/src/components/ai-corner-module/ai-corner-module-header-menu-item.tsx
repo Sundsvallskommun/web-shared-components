@@ -61,7 +61,7 @@ export const AICornerModuleHeaderMenuItem = React.forwardRef<HTMLLIElement, AICo
     };
 
     return (
-      <li ref={ref} role="none" className="sk-ai-module-header-menu-item" {...rest}>
+      <li ref={ref} role="none" className="sk-ai-corner-module-header-menu-item" {...rest}>
         <Button
           variant="tertiary"
           size="sm"

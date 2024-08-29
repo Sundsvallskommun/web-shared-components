@@ -175,11 +175,11 @@ export const AICornerModuleSessions = React.forwardRef<HTMLDivElement, AICornerM
       role="menubar"
       aria-label="Tidigare sessioner"
       aria-orientation="vertical"
-      className={cx('sk-ai-module-sessions', className)}
+      className={cx('sk-ai-corner-module-sessions', className)}
       {...rest}
     >
       {itemsBefore && itemsBefore?.length > 0 ? (
-        <div className="sk-ai-module-sessions-group" role="group">
+        <div className="sk-ai-corner-module-sessions-group" role="group">
           {itemsBefore.map((item, index) =>
             React.cloneElement(item, {
               ...item.props,
@@ -229,7 +229,7 @@ export const AICornerModuleSessions = React.forwardRef<HTMLDivElement, AICornerM
         />
       )}
       {itemsAfter && itemsAfter?.length > 0 ? (
-        <div className="sk-ai-module-sidebar-sessions-group" role="group">
+        <div className="sk-ai-corner-module-sidebar-sessions-group" role="group">
           {itemsAfter.map((item) =>
             React.cloneElement(item, {
               ...item.props,
