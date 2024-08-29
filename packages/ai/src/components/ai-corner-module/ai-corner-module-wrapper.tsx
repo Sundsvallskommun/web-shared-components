@@ -1,12 +1,12 @@
 import React from 'react';
-import { AIModuleDefaultProps } from './ai-module';
+import { AICornerModuleDefaultProps } from './ai-corner-module';
 import { cx } from '@sk-web-gui/utils';
 
-interface AIModuleWrapperProps
-  extends Pick<AIModuleDefaultProps, 'fullscreen' | 'docked' | 'isMobile'>,
+interface AICornerModuleWrapperProps
+  extends Pick<AICornerModuleDefaultProps, 'fullscreen' | 'docked' | 'isMobile'>,
     React.ComponentPropsWithoutRef<'div'> {}
 
-export const AIModuleWrapper = React.forwardRef<HTMLDivElement, AIModuleWrapperProps>((props, ref) => {
+export const AICornerModuleWrapper = React.forwardRef<HTMLDivElement, AICornerModuleWrapperProps>((props, ref) => {
   const { className, fullscreen, docked, isMobile, ...rest } = props;
 
   return (

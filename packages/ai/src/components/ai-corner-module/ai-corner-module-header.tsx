@@ -4,10 +4,10 @@ import { Icon } from '@sk-web-gui/icon';
 import { cx } from '@sk-web-gui/utils';
 import React from 'react';
 import { AIFeedAvatar, AssistantInfo } from '../../types';
-import { AIModuleDefaultProps } from './ai-module';
-import { AIModuleHeaderMenu } from './ai-module-header-menu';
+import { AICornerModuleDefaultProps } from './ai-corner-module';
+import { AICornerModuleHeaderMenu } from './ai-corner-module-header-menu';
 
-export interface AIModuleHeaderProps extends AIModuleDefaultProps, React.ComponentPropsWithoutRef<'div'> {
+export interface AICornerModuleHeaderProps extends AICornerModuleDefaultProps, React.ComponentPropsWithoutRef<'div'> {
   variant?: 'default' | 'alt';
   assistant: AssistantInfo;
   onOpenHistory?: () => void;
@@ -16,7 +16,7 @@ export interface AIModuleHeaderProps extends AIModuleDefaultProps, React.Compone
   avatar?: AIFeedAvatar;
 }
 
-export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderProps>((props, ref) => {
+export const AICornerModuleHeader = React.forwardRef<HTMLDivElement, AICornerModuleHeaderProps>((props, ref) => {
   const {
     docked,
     color,
@@ -108,7 +108,7 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
         </div>
       )}
       {variant === 'default' && (
-        <AIModuleHeaderMenu
+        <AICornerModuleHeaderMenu
           historyOpen={historyOpen}
           onOpenHistory={onOpenHistory}
           onCloseHistory={onCloseHistory}

@@ -1,14 +1,14 @@
 import { Meta } from '@storybook/react';
 import { SessionHistory } from '../src';
-import { AIModuleSessions } from '../src/components';
-import { AIModuleSessionsProps } from '../src/components/ai-module/ai-module-sessions';
+import { AICornerModuleSessions } from '../src/components';
+import { AICornerModuleSessionsProps } from '../src/components/ai-corner-module/ai-corner-module-sessions';
 import { addDays } from 'date-fns';
 
 export default {
-  title: 'AI/Komponenter/AIModuleSessions',
-  component: AIModuleSessions,
+  title: 'AI/Komponenter/AICornerModule/Sessions',
+  component: AICornerModuleSessions,
   tags: ['autodocs'],
-} as Meta<AIModuleSessionsProps>;
+} as Meta<AICornerModuleSessionsProps>;
 
 const sessions: SessionHistory = [
   { id: '1', name: 'Vem är min chef?', updated_at: new Date(), created_at: new Date(), history: [] },
@@ -44,10 +44,10 @@ const sessions: SessionHistory = [
   },
 ];
 
-export const Template = (args: AIModuleSessionsProps) => {
+export const Template = (args: AICornerModuleSessionsProps) => {
   return (
     <div className="w-full h-[50em] relative">
-      <AIModuleSessions {...args} sessions={sessions} current="" />
+      <AICornerModuleSessions {...args} sessions={sessions} current="" />
     </div>
   );
 };
