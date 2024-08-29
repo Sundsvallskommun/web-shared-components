@@ -3,7 +3,7 @@ import { useThemeQueries } from '@sk-web-gui/theme';
 import { cx } from '@sk-web-gui/utils';
 import React from 'react';
 
-interface InputSectionInputProps extends React.ComponentPropsWithoutRef<typeof Input.Component> {
+export interface InputSectionInputProps extends React.ComponentPropsWithoutRef<typeof Input.Component> {
   isMobile?: boolean;
 }
 
