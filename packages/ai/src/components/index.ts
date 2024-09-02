@@ -1,6 +1,6 @@
 export * from './markdown-rendered';
 export * from './ai-feed';
-export * from './ai-module';
+export * from './ai-corner-module';
 export * from './input-section';
 export * from './feedback';
 export * from './typing-bubble';

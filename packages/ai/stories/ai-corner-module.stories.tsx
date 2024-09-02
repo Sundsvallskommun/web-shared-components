@@ -1,13 +1,13 @@
 import { Meta } from '@storybook/react';
-import { AIModule, AssistantInfo, ChatHistory, SessionHistory } from '../src';
-import { AIModuleProps } from '../src/components';
+import { AICornerModule, AssistantInfo, ChatHistory, SessionHistory } from '../src';
+import { AICornerModuleProps } from '../src/components';
 import avatarSrc from './images/qwerty-avatar.png';
 import { addDays } from 'date-fns';
 import { Avatar } from '@sk-web-gui/avatar';
 
 export default {
-  title: 'AI/Komponenter/AIModule',
-  component: AIModule,
+  title: 'AI/Komponenter/AICornerModule',
+  component: AICornerModule,
   tags: ['autodocs'],
   args: {
     readmore: {
@@ -17,7 +17,7 @@ export default {
     questionsTitle: 'Vad kan jag hjälpa dig med?',
     questions: ['Vad är Querty?', 'Jag har tappat bort mitt passerkort', 'Vilka dagar jobbar vi halvdag'],
   },
-} as Meta<AIModuleProps>;
+} as Meta<AICornerModuleProps>;
 
 const assistant: AssistantInfo = {
   name: 'Qwerty',
@@ -148,18 +148,18 @@ const avatars = {
   system: <Avatar initials="!" color="juniskar" />,
 };
 
-export const Template = (args: AIModuleProps) => {
+export const Template = (args: AICornerModuleProps) => {
   return (
     <div className="w-full h-[60em] relative">
-      <AIModule {...args} assistant={assistant} sessionHistory={sessions}></AIModule>
+      <AICornerModule {...args} assistant={assistant} sessionHistory={sessions}></AICornerModule>
     </div>
   );
 };
 
-export const WithHistory = (args: AIModuleProps) => {
+export const WithHistory = (args: AICornerModuleProps) => {
   return (
     <div className="w-full h-[60em] relative">
-      <AIModule
+      <AICornerModule
         {...args}
         assistant={assistant}
         avatars={avatars}
@@ -172,7 +172,7 @@ export const WithHistory = (args: AIModuleProps) => {
           assistant: { title: 'Qwerty', show: true },
           system: { title: 'Fel', show: false },
         }}
-      ></AIModule>
+      ></AICornerModule>
     </div>
   );
 };

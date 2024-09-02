@@ -4,10 +4,10 @@ import { Icon } from '@sk-web-gui/icon';
 import { cx } from '@sk-web-gui/utils';
 import React from 'react';
 import { AIFeedAvatar, AssistantInfo } from '../../types';
-import { AIModuleDefaultProps } from './ai-module';
-import { AIModuleHeaderMenu } from './ai-module-header-menu';
+import { AICornerModuleDefaultProps } from './ai-corner-module';
+import { AICornerModuleHeaderMenu } from './ai-corner-module-header-menu';
 
-export interface AIModuleHeaderProps extends AIModuleDefaultProps, React.ComponentPropsWithoutRef<'div'> {
+export interface AICornerModuleHeaderProps extends AICornerModuleDefaultProps, React.ComponentPropsWithoutRef<'div'> {
   variant?: 'default' | 'alt';
   assistant: AssistantInfo;
   onOpenHistory?: () => void;
@@ -16,7 +16,7 @@ export interface AIModuleHeaderProps extends AIModuleDefaultProps, React.Compone
   avatar?: AIFeedAvatar;
 }
 
-export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderProps>((props, ref) => {
+export const AICornerModuleHeader = React.forwardRef<HTMLDivElement, AICornerModuleHeaderProps>((props, ref) => {
   const {
     docked,
     color,
@@ -49,7 +49,7 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
           ...avatar.props,
           imageAlt: '',
           'aria-hidden': 'true',
-          className: `${avatar.props.className} sk-ai-module-header-avatar`,
+          className: `${avatar.props.className} sk-ai-corner-module-header-avatar`,
           size: variant === 'alt' ? 'lg' : docked ? 'md' : 'sm',
         });
       } else {
@@ -58,7 +58,7 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
     } else {
       return (
         <Avatar
-          className="sk-ai-module-header-avatar"
+          className="sk-ai-corner-module-header-avatar"
           size={variant === 'alt' ? 'lg' : docked ? 'md' : 'sm'}
           imageElement={typeof assistant.avatar !== 'string' ? assistant.avatar : undefined}
           imageUrl={typeof assistant.avatar === 'string' ? assistant.avatar : undefined}
@@ -73,7 +73,7 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
   return (
     <div
       ref={ref}
-      className={cx('sk-ai-module-header', className)}
+      className={cx('sk-ai-corner-module-header', className)}
       data-color={color}
       data-docked={docked}
       data-fullscreen={fullscreen}
@@ -91,24 +91,26 @@ export const AIModuleHeader = React.forwardRef<HTMLDivElement, AIModuleHeaderPro
           >
             Ny fråga
           </Button>
-          <div className="sk-ai-module-header-title">
+          <div className="sk-ai-corner-module-header-title">
             <Icon name="message-circle" />
-            <span className="sk-ai-module-header-heading-name">{session?.name ? session?.name : 'Ny fråga'}</span>
+            <span className="sk-ai-corner-module-header-heading-name">
+              {session?.name ? session?.name : 'Ny fråga'}
+            </span>
           </div>
         </>
       ) : (
-        <div className="sk-ai-module-header-title">
+        <div className="sk-ai-corner-module-header-title">
           <AssistantAvatar />
-          <div className="sk-ai-module-header-heading">
-            <span className="sk-ai-module-header-heading-name">{title || assistant.name}</span>
+          <div className="sk-ai-corner-module-header-heading">
+            <span className="sk-ai-corner-module-header-heading-name">{title || assistant.name}</span>
             {(subtitle || assistant.title) && (docked || variant === 'alt') && (
-              <span className="sk-ai-module-header-heading-subtitle">{subtitle || assistant.title}</span>
+              <span className="sk-ai-corner-module-header-heading-subtitle">{subtitle || assistant.title}</span>
             )}
           </div>
         </div>
       )}
       {variant === 'default' && (
-        <AIModuleHeaderMenu
+        <AICornerModuleHeaderMenu
           historyOpen={historyOpen}
           onOpenHistory={onOpenHistory}
           onCloseHistory={onCloseHistory}

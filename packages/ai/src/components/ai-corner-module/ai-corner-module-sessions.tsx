@@ -1,19 +1,19 @@
 import { addDays, format } from 'date-fns';
-import AIModuleSessionHistory, { AIModuleSessionHistoryProps } from './ai-module-session-history';
+import AICornerModuleSessionHistory, { AICornerModuleSessionHistoryProps } from './ai-corner-module-session-history';
 import React, { useId } from 'react';
 import { cx } from '@sk-web-gui/utils';
 import { AssistantSession, SessionHistory } from '../../types';
 import { SessionStoreSession, useSessions } from '../../session-store';
 
-export interface AIModuleSessionsProps
-  extends Omit<AIModuleSessionHistoryProps, 'title' | 'onKeyNext' | 'onKeyPrev' | 'sessions'> {
+export interface AICornerModuleSessionsProps
+  extends Omit<AICornerModuleSessionHistoryProps, 'title' | 'onKeyNext' | 'onKeyPrev' | 'sessions'> {
   sessions?: SessionHistory;
   itemsBefore?: JSX.Element[];
   itemsAfter?: JSX.Element[];
   focus?: boolean;
 }
 
-export const AIModuleSessions = React.forwardRef<HTMLDivElement, AIModuleSessionsProps>((props, ref) => {
+export const AICornerModuleSessions = React.forwardRef<HTMLDivElement, AICornerModuleSessionsProps>((props, ref) => {
   const [sessions, setSessions] = React.useState<Array<AssistantSession | SessionStoreSession>>([]);
   const [_sessions, refreshSessions] = useSessions((state) => [state.sessions, state.refreshSessions]);
   const [itemsBefore, setItemsBefore] = React.useState<JSX.Element[] | undefined>(undefined);
@@ -175,11 +175,11 @@ export const AIModuleSessions = React.forwardRef<HTMLDivElement, AIModuleSession
       role="menubar"
       aria-label="Tidigare sessioner"
       aria-orientation="vertical"
-      className={cx('sk-ai-module-sessions', className)}
+      className={cx('sk-ai-corner-module-sessions', className)}
       {...rest}
     >
       {itemsBefore && itemsBefore?.length > 0 ? (
-        <div className="sk-ai-module-sessions-group" role="group">
+        <div className="sk-ai-corner-module-sessions-group" role="group">
           {itemsBefore.map((item, index) =>
             React.cloneElement(item, {
               ...item.props,
@@ -194,7 +194,7 @@ export const AIModuleSessions = React.forwardRef<HTMLDivElement, AIModuleSession
         <></>
       )}
       {todaysSessions.length > 0 && (
-        <AIModuleSessionHistory
+        <AICornerModuleSessionHistory
           sessions={todaysSessions}
           title="Idag"
           current={current || (itemsBefore && itemsBefore.length > 0 ? 'nothing' : '')}
@@ -204,7 +204,7 @@ export const AIModuleSessions = React.forwardRef<HTMLDivElement, AIModuleSession
         />
       )}
       {yesterdaysSessions.length > 0 && (
-        <AIModuleSessionHistory
+        <AICornerModuleSessionHistory
           sessions={yesterdaysSessions}
           title="Igår"
           current={current || (todaysSessions.length > 0 ? 'nothing' : '')}
@@ -214,7 +214,7 @@ export const AIModuleSessions = React.forwardRef<HTMLDivElement, AIModuleSession
         />
       )}
       {otherSessions.length > 0 && (
-        <AIModuleSessionHistory
+        <AICornerModuleSessionHistory
           sessions={otherSessions}
           title="Tidigare"
           current={
@@ -229,7 +229,7 @@ export const AIModuleSessions = React.forwardRef<HTMLDivElement, AIModuleSession
         />
       )}
       {itemsAfter && itemsAfter?.length > 0 ? (
-        <div className="sk-ai-module-sidebar-sessions-group" role="group">
+        <div className="sk-ai-corner-module-sidebar-sessions-group" role="group">
           {itemsAfter.map((item) =>
             React.cloneElement(item, {
               ...item.props,

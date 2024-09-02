@@ -8,13 +8,13 @@ import { AIFeed } from '../ai-feed/ai-feed';
 import { AssistantPresentation } from '../assistant-presentation';
 import { Bubble } from '../bubble';
 import { InputSection } from '../input-section';
-import { AIModuleHeader } from './ai-module-header';
-import { AIModuleMobileMenu } from './ai-module-mobile-menu';
-import { AIModuleSessions } from './ai-module-sessions';
-import { AIModuleWrapper } from './ai-module-wrapper';
+import { AICornerModuleHeader } from './ai-corner-module-header';
+import { AICornerModuleMobileMenu } from './ai-corner-module-mobile-menu';
+import { AICornerModuleSessions } from './ai-corner-module-sessions';
+import { AICornerModuleWrapper } from './ai-corner-module-wrapper';
 import { Link } from '@sk-web-gui/link';
 
-export interface AIModuleDefaultProps {
+export interface AICornerModuleDefaultProps {
   docked?: boolean;
   color?: string;
   fullscreen?: boolean;
@@ -46,7 +46,7 @@ export interface AIModuleDefaultProps {
 }
 
 type InfoLink = { url: string; description: string };
-export interface AIModuleProps extends AIModuleDefaultProps, React.ComponentPropsWithoutRef<'div'> {
+export interface AICornerModuleProps extends AICornerModuleDefaultProps, React.ComponentPropsWithoutRef<'div'> {
   sessionId?: string;
   assistant?: AssistantInfo;
   questions?: string[];
@@ -64,7 +64,7 @@ export interface AIModuleProps extends AIModuleDefaultProps, React.ComponentProp
   originTitles?: OriginTitleMap;
 }
 
-export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, ref) => {
+export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModuleProps>((props, ref) => {
   const {
     docked: _docked,
     fullscreen: _fullscreen,
@@ -263,7 +263,7 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
   };
 
   return (
-    <AIModuleWrapper
+    <AICornerModuleWrapper
       ref={ref}
       className={className}
       {...rest}
@@ -271,11 +271,11 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
       fullscreen={isFullscreen}
       isMobile={isMobile}
     >
-      <div className="sk-ai-module-content">
+      <div className="sk-ai-corner-module-content">
         {isFullscreen && (
-          <div className="sk-ai-module-content-row">
-            <div className="sk-ai-module-sidebar">
-              <AIModuleHeader
+          <div className="sk-ai-corner-module-content-row">
+            <div className="sk-ai-corner-module-sidebar">
+              <AICornerModuleHeader
                 variant="alt"
                 assistant={assistant}
                 avatar={avatars?.assistant}
@@ -283,7 +283,7 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
                 subtitle={subtitle}
               />
               {showSessionHistory && (
-                <AIModuleSessions
+                <AICornerModuleSessions
                   current={!_propsSession && _session?.isNew ? '' : sessionId}
                   sessions={sessionHistory}
                   onSelectSession={handleChangeSession}
@@ -292,8 +292,8 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
             </div>
           </div>
         )}
-        <div className="sk-ai-module-content-row sk-ai-module-content-main">
-          <AIModuleHeader
+        <div className="sk-ai-corner-module-content-row sk-ai-corner-module-content-main">
+          <AICornerModuleHeader
             docked={docked}
             fullscreen={isFullscreen}
             assistant={assistant}
@@ -316,7 +316,7 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
           />
           {!docked && (
             <>
-              <div className="sk-ai-module-feed" ref={scrollRef}>
+              <div className="sk-ai-corner-module-feed" ref={scrollRef}>
                 {!history || history.length < 1 ? (
                   <>
                     <AssistantPresentation
@@ -325,16 +325,18 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
                       avatar={avatars?.assistant}
                     />
                     {readmore && (
-                      <div className="sk-ai-module-feed-readmore">
+                      <div className="sk-ai-corner-module-feed-readmore">
                         <Link external href={readmore.url}>
                           {readmore.description}
                         </Link>
                       </div>
                     )}
                     {questions && questions?.length > 0 && (
-                      <div className="sk-ai-module-feed-questions-wrapper">
-                        {questionsTitle && <div className="sk-ai-module-feed-questions-title">{questionsTitle}</div>}
-                        <div className="sk-ai-module-feed-questions">
+                      <div className="sk-ai-corner-module-feed-questions-wrapper">
+                        {questionsTitle && (
+                          <div className="sk-ai-corner-module-feed-questions-title">{questionsTitle}</div>
+                        )}
+                        <div className="sk-ai-corner-module-feed-questions">
                           {questions?.map((question, index) => (
                             <Bubble key={`q-bubble-${index}`} onClick={() => handleSelectQuestion(question)}>
                               {question}
@@ -371,13 +373,13 @@ export const AIModule = React.forwardRef<HTMLDivElement, AIModuleProps>((props, 
         </div>
       </div>
       {showSessionHistory && isMobile && (
-        <AIModuleMobileMenu
+        <AICornerModuleMobileMenu
           show={showMobileHistory && !!isMobile}
           onClose={() => setShowMobileHistory(false)}
           assistant={assistant}
           sessions={sessionHistory}
         />
       )}
-    </AIModuleWrapper>
+    </AICornerModuleWrapper>
   );
 });

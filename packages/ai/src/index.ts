@@ -3,11 +3,11 @@ import { useSessions, createSessionStore } from './session-store';
 
 export {
   AIFeed,
-  AIModule,
-  AIModuleHeader,
-  AIModuleHeaderMenu,
-  AIModuleMobileMenu,
-  AIModuleWrapper,
+  AICornerModule,
+  AICornerModuleHeader,
+  AICornerModuleHeaderMenu,
+  AICornerModuleMobileMenu,
+  AICornerModuleWrapper,
   InputSection,
   MarkdownRendered,
   TypingBubble,
