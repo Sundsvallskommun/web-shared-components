@@ -1,16 +1,21 @@
 import { Input } from '@sk-web-gui/forms';
-import { useThemeQueries } from '@sk-web-gui/theme';
 import { cx } from '@sk-web-gui/utils';
 import React from 'react';
+import { InputSectionDefaultProps } from './input-section';
 
-interface InputSectionInputProps extends React.ComponentPropsWithoutRef<typeof Input.Component> {
-  isMobile?: boolean;
-}
+export interface InputSectionInputProps
+  extends React.ComponentPropsWithoutRef<typeof Input.Component>,
+    Omit<InputSectionDefaultProps, 'shadow'> {}
 
 export const InputSectionInput = React.forwardRef<HTMLInputElement, InputSectionInputProps>((props, ref) => {
-  const { className, isMobile, ...rest } = props;
+  const { className, isMobile, variant = 'default', ...rest } = props;
 
   return (
-    <Input ref={ref} className={cx('sk-ai-inputsection-input', className)} size={isMobile ? 'sm' : 'md'} {...rest} />
+    <Input
+      ref={ref}
+      className={cx('sk-ai-inputsection-input', className)}
+      size={isMobile && variant === 'default' ? 'sm' : 'md'}
+      {...rest}
+    />
   );
 });
