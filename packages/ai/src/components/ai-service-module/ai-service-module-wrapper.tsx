@@ -1,10 +1,13 @@
 import { cx } from '@sk-web-gui/utils';
 import React from 'react';
+import { AIServiceModuleDefaultProps } from './ai-service-module';
 
-interface AIServiceModuleWrapperProps extends React.ComponentPropsWithoutRef<'div'> {}
+export interface AIServiceModuleWrapperProps
+  extends React.ComponentPropsWithoutRef<'section'>,
+    Pick<AIServiceModuleDefaultProps, 'inverted'> {}
 
 export const AIServiceModuleWrapper = React.forwardRef<HTMLDivElement, AIServiceModuleWrapperProps>((props, ref) => {
-  const { className, ...rest } = props;
+  const { className, inverted, ...rest } = props;
 
-  return <div ref={ref} className={cx('sk-ai-service-module', className)} {...rest} />;
+  return <section ref={ref} className={cx('sk-ai-service-module', className)} data-inverted={inverted} {...rest} />;
 });

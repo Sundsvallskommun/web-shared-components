@@ -1,10 +1,7 @@
 import { cx } from '@sk-web-gui/utils';
 import React from 'react';
-
-interface AIServiceModuleRowProps extends React.ComponentPropsWithoutRef<'div'> {
-  color?: string;
-  inverted?: boolean;
-}
+import { AIServiceModuleDefaultProps } from './ai-service-module';
+interface AIServiceModuleRowProps extends React.ComponentPropsWithoutRef<'div'>, AIServiceModuleDefaultProps {}
 
 export const AIServiceModuleRow = React.forwardRef<HTMLDivElement, AIServiceModuleRowProps>((props, ref) => {
   const { className, color, inverted, ...rest } = props;

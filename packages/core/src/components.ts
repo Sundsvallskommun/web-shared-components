@@ -111,7 +111,7 @@ export const components: ComponentWithDeps[] = [
     comp: AICornerModule,
     deps: [AIFeed, AssistantPresentation, InputSection, Avatar, Bubble, Link, Button, Divider, Icon, Tooltip],
   },
-  { comp: AIServiceModule, deps: [AIFeed, Bubble, InputSection] },
+  { comp: AIServiceModule, deps: [AIFeed, Bubble, InputSection, Forms, Link, Button, Icon] },
   { comp: AssistantPresentation, deps: [Avatar] },
   { comp: Bubble, deps: [Icon] },
   { comp: Feedback, deps: [Button, Icon] },

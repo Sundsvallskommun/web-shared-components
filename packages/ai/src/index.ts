@@ -15,6 +15,7 @@ export {
   Bubble,
   AssistantPresentation,
   NewSessionButton,
+  AIServiceModule,
 } from './components';
 export { useChat, useSpeechToText } from './hooks';
 export * from './services';

@@ -1,30 +1,18 @@
 import { Meta } from '@storybook/react';
-import { AIServiceModule, AIServiceModuleProps } from '../src/components';
-import { AssistantInfo, AssistantSession, ChatHistory } from '../src';
-import { Avatar } from '@sk-web-gui/react';
+import { AssistantInfo, ChatHistory } from '../src';
+import { AIServiceModule } from '../src/components';
+import { type AIServiceModuleAssistantProps } from '../src/components/ai-service-module/ai-service-module-assistant';
 import avatarSrc from './images/qwerty-avatar.png';
 
 export default {
-  title: 'AI/Komponenter/AIServiceModule',
-  component: AIServiceModule,
+  title: 'AI/Komponenter/AIServiceModule/Assistant',
+  component: AIServiceModule.Assistant,
   tags: ['autodocs'],
-  args: {
-    questions: [
-      { question: 'Can I ask in my native language?', lang: 'en' },
-      'Vad är vuxenutbildning?',
-      'Hur ansöker jag till en kurs?',
-      'Kan jag få studievägledning?',
-    ],
-  },
-} as Meta<AIServiceModuleProps>;
+} as Meta<AIServiceModuleAssistantProps>;
 
-const assistant: AssistantInfo = {
-  name: 'Qwerty',
-  title: 'Din AI-guide på intranätet',
-  avatar: avatarSrc,
-  description:
-    'Din personliga AI-guide på intranätet. Svarar med glädje på frågor som rör din anställning på Sundsvalls Kommun.',
-};
+export const Template = (args: AIServiceModuleAssistantProps) => (
+  <AIServiceModule.Assistant {...args}></AIServiceModule.Assistant>
+);
 
 const history: ChatHistory = [
   {
@@ -107,37 +95,16 @@ const history: ChatHistory = [
   },
 ];
 
-const session: AssistantSession = {
-  id: '1',
-  name: 'Vem är min chef?',
-  updated_at: new Date(),
-  created_at: new Date(),
-  history,
+const assistant: AssistantInfo = {
+  name: 'Qwerty',
+  title: 'Din AI-guide på intranätet',
+  avatar: avatarSrc,
+  description:
+    'Din personliga AI-guide på intranätet. Svarar med glädje på frågor som rör din anställning på Sundsvalls Kommun.',
 };
 
-const avatars = {
-  assistant: <Avatar size="lg" initials="AI" color="vattjom" />,
-  user: <Avatar size="lg" initials="DU" color="bjornstigen" />,
-  system: <Avatar initials="!" color="juniskar" />,
-};
-
-export const Template = (args: AIServiceModuleProps) => (
-  <AIServiceModule {...args} assistant={assistant}>
-    Fråga
-  </AIServiceModule>
-);
-
-export const ManualWithHistory = () => (
-  <div className="h-[65rem]">
-    <AIServiceModule.Wrapper>
-      <AIServiceModule.Row color="bjornstigen">
-        <AIServiceModule.Content>
-          <AIServiceModule.Header>
-            <h2>Kan jag hjälpa dig med något?</h2>
-          </AIServiceModule.Header>
-          <AIServiceModule.Assistant history={history} avatars={avatars} assistant={assistant} />
-        </AIServiceModule.Content>
-      </AIServiceModule.Row>
-    </AIServiceModule.Wrapper>
+export const Expanded = () => (
+  <div className="h-[60rem]">
+    <AIServiceModule.Assistant history={history} assistant={assistant}></AIServiceModule.Assistant>
   </div>
 );
