@@ -1,10 +1,12 @@
-import { Dialog, Transition, _internal_ComponentDialog } from '@headlessui/react';
+import { Dialog, Transition } from '@headlessui/react';
 import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
 
-export interface ModalComponentProps extends DefaultProps, Omit<_internal_ComponentDialog, 'displayName'> {
+export interface ModalComponentProps
+  extends DefaultProps,
+    Omit<React.ComponentPropsWithRef<typeof Dialog>, 'displayName' | 'onClose' | 'unmount'> {
   show: boolean;
   label?: string | JSX.Element;
   closeLabel?: string;
@@ -66,7 +68,7 @@ export const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentPro
   return (
     <div className="sk-modal" ref={ref}>
       <Transition appear show={show} as={React.Fragment}>
-        <Dialog ref={modalRef} as="div" className="sk-modal-wrapper" onClose={onCloseHandler} {...rest}>
+        <Dialog as="div" className="sk-modal-wrapper" onClose={onCloseHandler} {...rest} ref={modalRef}>
           <div className="sk-modal-wrapper-inner">
             <Transition.Child
               as={React.Fragment}

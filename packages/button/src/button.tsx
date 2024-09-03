@@ -74,7 +74,7 @@ export const ButtonContent: React.FC<ButtonContentProps> = (props: ButtonContent
 
 export type IButtonProps<C extends React.ElementType> = PolymorphicComponentPropsWithRef<C, ButtonProps>;
 export const Button = React.forwardRef(
-  <C extends React.ElementType = 'button'>(props: IButtonProps<C>, ref?: PolymorphicRef<C>) => {
+  <C extends React.ElementType = 'button'>(props: IButtonProps<C>, ref: React.Ref<PolymorphicRef<C>>) => {
     const {
       disabled: _disabled,
       'aria-disabled': ariaDisabled,
