@@ -12,8 +12,7 @@ export interface DividerSectionProps extends DividerProps, DefaultProps {
 }
 
 export const DividerSection = React.forwardRef<HTMLDivElement, DividerSectionProps>(
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  ({ size = 'md', className, children, ref: _ref, ...rest }, ref) => {
+  ({ size = 'md', className, children, ...rest }, ref) => {
     const classes = useDividerClass({ size });
     return (
       <div ref={ref} className={cx('sk-divider-root', className, classes)}>

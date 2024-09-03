@@ -22,13 +22,13 @@ export interface LinkProps extends DefaultProps, React.AnchorHTMLAttributes<HTML
    * Inverted colors (light mode as dark mode colors and vice versa)
    * @default false
    */
-  inverted?:boolean;
+  inverted?: boolean;
 }
 
 type ILinkProps<C extends React.ElementType> = PolymorphicComponentPropsWithRef<C, LinkProps>;
 
 export const Link = React.forwardRef(
-  <C extends React.ElementType = 'a'>(props: ILinkProps<C>, ref?: PolymorphicRef<C>) => {
+  <C extends React.ElementType = 'a'>(props: ILinkProps<C>, ref: React.Ref<PolymorphicRef<C>>) => {
     const {
       disabled,
       external,
