@@ -41,8 +41,6 @@ export const useSpeechToTextTranslation: UseSpeechToText = (
   const [translations, setTranslations] = useState<string[]>(['']);
   const recognizer = React.useRef<TranslationRecognizer | undefined>();
   const [done, setDone] = useState<boolean>(false);
-  // const [sourcelang, setSourcelang] = useState<string>(sourceLanguage)
-  // const [targetLanguage, setTargetlang] = useState<string>(targetLanguage)
   const [listening, setListening] = useState(false);
 
   const transcript = transcripts.join(' ');
@@ -140,6 +138,10 @@ export const useSpeechToTextTranslation: UseSpeechToText = (
       if (continuous) {
         recognizer.current.stopContinuousRecognitionAsync();
         setDone(false);
+        setListening(false);
+      } else {
+        recognizer.current.stopContinuousRecognitionAsync();
+        setDone(true);
         setListening(false);
       }
     }
