@@ -16,7 +16,7 @@ export {
   AssistantPresentation,
   NewSessionButton,
 } from './components';
-export { useChat, useSpeechToText } from './hooks';
+export { useChat, useSpeechToText, useTextToSpeech } from './hooks';
 export * from './services';
 export { useAssistantStore, setAssistantStoreName, useSessions, createSessionStore };
 export * from './types';

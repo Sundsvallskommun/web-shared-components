@@ -1,5 +1,6 @@
 import Cookie from 'universal-cookie';
 import { useAssistantStore } from '../assistant-store';
+import * as sdk from 'microsoft-cognitiveservices-speech-sdk';
 
 const azureLogin = (baseUrl?: string) => {
   return fetch(`${baseUrl}/azure/login`, {
@@ -36,4 +37,44 @@ export const getAzureToken = async () => {
       region: speechToken.slice(0, index),
     };
   }
+};
+
+export interface TextToSpeechOptions {
+  /**
+   * @default sv-SE
+   */
+
+  language?: string;
+  /**
+   * @default "en-US-AvaMultilingualNeural"
+   */
+  voice?: string;
+}
+
+export type TextToSpeech = (text: string, options?: TextToSpeechOptions) => void;
+
+export const textToSpeech: TextToSpeech = async (text, options) => {
+  const tokens = await getAzureToken();
+  const language = options?.language || 'sv-SE';
+  const voice = options?.voice || 'en-US-AvaMultilingualNeural';
+
+  const speechConfig = sdk.SpeechConfig.fromAuthorizationToken(tokens.authToken, tokens.region);
+
+  const audioConfig = sdk.AudioConfig.fromDefaultSpeakerOutput();
+  speechConfig.speechSynthesisLanguage = language;
+  speechConfig.speechSynthesisVoiceName = voice;
+  const speechSynthesizer = new sdk.SpeechSynthesizer(speechConfig, audioConfig);
+  speechSynthesizer.speakTextAsync(
+    text,
+    (result) => {
+      if (result) {
+        speechSynthesizer.close();
+        return result.audioData;
+      }
+    },
+    (error) => {
+      console.log(error);
+      speechSynthesizer.close();
+    }
+  );
 };
