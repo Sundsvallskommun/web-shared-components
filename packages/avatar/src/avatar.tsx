@@ -9,7 +9,7 @@ interface IAvatarProps extends DefaultProps {
   imageUrl?: string;
   initials?: string;
   size?: 'sm' | 'md' | 'lg';
-  color?: 'juniskar' | 'bjornstigen' | 'gronsta' | 'vattjom';
+  color?: 'juniskar' | 'bjornstigen' | 'gronsta' | 'vattjom' | string;
   accent?: boolean;
   rounded?: boolean;
 }
