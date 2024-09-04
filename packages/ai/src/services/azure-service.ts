@@ -45,9 +45,7 @@ export interface TextToSpeechOptions {
    */
 
   language?: string;
-  /**
-   * @default "en-US-AvaMultilingualNeural"
-   */
+
   voice?: string;
 }
 
@@ -56,13 +54,14 @@ export type TextToSpeech = (text: string, options?: TextToSpeechOptions) => void
 export const textToSpeech: TextToSpeech = async (text, options) => {
   const tokens = await getAzureToken();
   const language = options?.language || 'sv-SE';
-  const voice = options?.voice || 'en-US-AvaMultilingualNeural';
 
   const speechConfig = sdk.SpeechConfig.fromAuthorizationToken(tokens.authToken, tokens.region);
 
   const audioConfig = sdk.AudioConfig.fromDefaultSpeakerOutput();
   speechConfig.speechSynthesisLanguage = language;
-  speechConfig.speechSynthesisVoiceName = voice;
+  if (options?.voice) {
+    speechConfig.speechSynthesisVoiceName = options.voice;
+  }
   const speechSynthesizer = new sdk.SpeechSynthesizer(speechConfig, audioConfig);
   speechSynthesizer.speakTextAsync(
     text,
