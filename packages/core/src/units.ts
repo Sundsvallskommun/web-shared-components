@@ -56,51 +56,51 @@ const _units = {
   fontSizes: {
     'display-1': [
       'var(--sk-fontSize-display-1-DEFAULT)',
-      { lineHeight: 'var(--sk-lineHeight-display-1-DEFAULT)', fontWeight: 700 },
+      { lineHeight: 'var(--sk-lineHeight-display-1-DEFAULT)', fontWeight: 800 },
     ],
     'display-1-lg': [
       'var(--sk-fontSize-display-1-lg)',
-      { lineHeight: 'var(--sk-lineHeight-display-1-lg)', fontWeight: 700 },
+      { lineHeight: 'var(--sk-lineHeight-display-1-lg)', fontWeight: 800 },
     ],
     'display-1-md': [
       'var(--sk-fontSize-display-1-md)',
-      { lineHeight: 'var(--sk-lineHeight-display-1-md)', fontWeight: 700 },
+      { lineHeight: 'var(--sk-lineHeight-display-1-md)', fontWeight: 800 },
     ],
     'display-1-sm': [
       'var(--sk-fontSize-display-1-sm)',
-      { lineHeight: 'var(--sk-lineHeight-display-1-sm)', fontWeight: 700 },
+      { lineHeight: 'var(--sk-lineHeight-display-1-sm)', fontWeight: 800 },
     ],
     'display-2': [
       'var(--sk-fontSize-display-2-DEFAULT)',
-      { lineHeight: 'var(--sk-lineHeight-display-2-DEFAULT)', fontWeight: 700 },
+      { lineHeight: 'var(--sk-lineHeight-display-2-DEFAULT)', fontWeight: 800 },
     ],
     'display-2-lg': [
       'var(--sk-fontSize-display-2-lg)',
-      { lineHeight: 'var(--sk-lineHeight-display-2-lg)', fontWeight: 700 },
+      { lineHeight: 'var(--sk-lineHeight-display-2-lg)', fontWeight: 800 },
     ],
     'display-2-md': [
       'var(--sk-fontSize-display-2-md)',
-      { lineHeight: 'var(--sk-lineHeight-display-2-md)', fontWeight: 700 },
+      { lineHeight: 'var(--sk-lineHeight-display-2-md)', fontWeight: 800 },
     ],
     'display-2-sm': [
       'var(--sk-fontSize-display-2-sm)',
-      { lineHeight: 'var(--sk-lineHeight-display-2-sm)', fontWeight: 700 },
+      { lineHeight: 'var(--sk-lineHeight-display-2-sm)', fontWeight: 800 },
     ],
     'display-3': [
       'var(--sk-fontSize-display-3-DEFAULT)',
-      { lineHeight: 'var(--sk-lineHeight-display-3-DEFAULT)', fontWeight: 700 },
+      { lineHeight: 'var(--sk-lineHeight-display-3-DEFAULT)', fontWeight: 800 },
     ],
     'display-3-lg': [
       'var(--sk-fontSize-display-3-lg)',
-      { lineHeight: 'var(--sk-lineHeight-display-3-lg)', fontWeight: 700 },
+      { lineHeight: 'var(--sk-lineHeight-display-3-lg)', fontWeight: 800 },
     ],
     'display-3-md': [
       'var(--sk-fontSize-display-3-md)',
-      { lineHeight: 'var(--sk-lineHeight-display-3-md)', fontWeight: 700 },
+      { lineHeight: 'var(--sk-lineHeight-display-3-md)', fontWeight: 800 },
     ],
     'display-3-sm': [
       'var(--sk-fontSize-display-3-sm)',
-      { lineHeight: 'var(--sk-lineHeight-display-3-sm)', fontWeight: 700 },
+      { lineHeight: 'var(--sk-lineHeight-display-3-sm)', fontWeight: 800 },
     ],
 
     h1: ['var(--sk-fontSize-h-1-DEFAULT)', { lineHeight: 'var(--sk-lineHeight-h-1-DEFAULT)', fontWeight: 700 }],
