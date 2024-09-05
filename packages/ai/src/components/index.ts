@@ -8,3 +8,4 @@ export * from './typing-sequence';
 export * from './bubble';
 export * from './assistant-presentation';
 export * from './new-session-button';
+export * from './ai-service-module';

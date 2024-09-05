@@ -1,6 +1,7 @@
 import Cookie from 'universal-cookie';
 import { useAssistantStore } from '../assistant-store';
 import * as sdk from 'microsoft-cognitiveservices-speech-sdk';
+import { AzureToken } from '../types/azure';
 
 const azureLogin = (baseUrl?: string) => {
   return fetch(`${baseUrl}/azure/login`, {
@@ -10,14 +11,16 @@ const azureLogin = (baseUrl?: string) => {
     .catch((e) => console.log(e.message));
 };
 
-export const getAzureToken = async () => {
+export const getAzureToken = async (baseUrl?: string): Promise<AzureToken> => {
   const cookie = new Cookie();
   const speechToken = cookie.get('speech-token');
-  const settings = useAssistantStore((state) => state.settings);
+  const settings = useAssistantStore.getState().settings;
+
+  const apiBaseUrl = baseUrl || settings.apiBaseUrl;
 
   if (speechToken === undefined) {
     try {
-      const res = await azureLogin(settings.apiBaseUrl);
+      const res = await azureLogin(apiBaseUrl);
       const token = res.data.token;
       const region = res.data.region;
       cookie.set('speech-token', region + ':' + token, {
@@ -28,7 +31,7 @@ export const getAzureToken = async () => {
       return { authToken: token, region: region };
     } catch (err) {
       console.log(err);
-      return { authToken: null, region: null };
+      return { authToken: '', region: '' };
     }
   } else {
     const index = speechToken.indexOf(':');

@@ -33,6 +33,13 @@ export const Avatar = (colors: string[]) => ({
       }),
       {}
     ),
+    '&[data-color="primary"]': {
+      '@apply bg-primary-surface  text-light-primary': {},
+
+      '&[data-accent="true"]': {
+        '@apply bg-inverted-primary-surface  text-inverted-light-primary': {},
+      },
+    },
     '&-img': {
       '@apply min-w-full min-h-full object-cover': {},
     },

@@ -12,5 +12,10 @@ export const InputSection = () => ({
         '@apply shadow-100': {},
       },
     },
+    '&-group': {
+      '.sk-form-input-addin-right': {
+        '@apply pr-4': {},
+      },
+    },
   },
 });
