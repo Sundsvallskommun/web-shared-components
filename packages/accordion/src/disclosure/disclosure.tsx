@@ -7,6 +7,7 @@ import { Label } from '@sk-web-gui/label';
 import { Divider } from '@sk-web-gui/divider';
 import { useDisclosureClass } from './styles';
 import { Icon, IconProps } from '@sk-web-gui/icon';
+import { Minus, Plus } from 'lucide-react';
 
 export interface DisclosureProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   /**
@@ -44,7 +45,7 @@ export interface DisclosureProps extends DefaultProps, React.ComponentPropsWithR
    */
   variant?: 'default' | 'alt';
   /** Leading icon. Will be displayed before the header */
-  icon?: React.ComponentProps<IconProps>['name'];
+  icon?: React.ReactNode;
   /** Support text. Will be displayed after the header. */
   supportText?: string;
   /** Label. Will be displayed after the header. */
@@ -90,7 +91,7 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
   const _open = context.open;
   const Comp = headerAs || context.headerAs || 'label';
   const inverted = _inverted ?? context.inverted;
-  const labelInverted = _labelInverted ?? inverted ? false : true;
+  const labelInverted = (_labelInverted ?? inverted) ? false : true;
   const [disclosureOpen, setDisclosureOpen] = React.useState(open || initalOpen);
   const id = _id || `sk-disclosure-${useId()}`;
 
@@ -149,7 +150,7 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
         onClick={onClick}
       >
         <div className="sk-disclosure-toggle">
-          {icon && <Icon name={icon} />}
+          {icon}
           <div className="sk-disclosure-title-wrapper">
             <Comp className="sk-disclosure-title" id={`${id}-label`}>
               {header}
@@ -173,7 +174,7 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
             aria-expanded={disclosureOpen}
             aria-labelledby={`${id}-label`}
           >
-            {disclosureOpen ? <Icon name="minus" /> : <Icon name="plus" />}
+            {<Icon icon={disclosureOpen ? <Minus /> : <Plus />} />}
           </Button>
         </div>
       </div>
