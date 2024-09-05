@@ -3,6 +3,7 @@ import { Input, InputProps } from '@sk-web-gui/forms';
 import { Icon } from '@sk-web-gui/icon';
 import { DefaultProps, __DEV__ } from '@sk-web-gui/utils';
 import React from 'react';
+import { Search, X } from 'lucide-react';
 
 export interface SearchFieldBaseProps
   extends DefaultProps,
@@ -45,8 +46,8 @@ export const SearchFieldBase = React.forwardRef<HTMLInputElement, SearchFieldBas
     className = '',
     searchLabel = 'Sök',
     resetAriaLabel = 'Rensa',
-    searchIcon = <Icon name="search" />,
-    resetIcon = <Icon name="x" />,
+    searchIcon = <Icon icon={<Search />} />,
+    resetIcon = <Icon icon={<X />} />,
     ...rest
   } = props;
 

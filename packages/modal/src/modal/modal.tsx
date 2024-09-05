@@ -3,6 +3,7 @@ import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
+import { X } from 'lucide-react';
 
 export interface ModalComponentProps
   extends DefaultProps,
@@ -124,7 +125,7 @@ export const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentPro
                         onClick={onCloseHandler}
                         {...closeButtonProps}
                       >
-                        <Icon name="x" />
+                        <Icon icon={<X />} />
                       </Button>
                     )}
                   </div>
