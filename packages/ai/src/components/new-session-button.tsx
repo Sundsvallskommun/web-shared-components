@@ -2,6 +2,7 @@ import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
 import { cx } from '@sk-web-gui/utils';
 import React from 'react';
+import { Plus } from 'lucide-react';
 
 export interface NewSessionButtonProps extends React.ComponentPropsWithoutRef<typeof Button> {
   helperText?: string;
@@ -24,7 +25,7 @@ export const NewSessionButton = React.forwardRef<HTMLButtonElement, NewSessionBu
   const helperText =
     _helperText ?? '💡 För att få relevanta svar på frågor som rör andra ämnen behöver du starta en ny konversation.';
 
-  const icon = _icon ?? <Icon name="plus" />;
+  const icon = _icon ?? <Icon icon={<Plus />} />;
 
   return (
     <div className={cx('sk-ai-newsession', wrapperClassName)}>

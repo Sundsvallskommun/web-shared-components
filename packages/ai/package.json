@@ -57,7 +57,8 @@
     "sanitize-html": "^2.13.0",
     "universal-cookie": "^6.1.1",
     "usehooks-ts": "^3.1.0",
-    "zustand": "^4.5.2"
+    "zustand": "^4.5.2",
+    "lucide-react": "^0.372.0"
   },
   "peerDependencies": {
     "react": ">=18.2.0"

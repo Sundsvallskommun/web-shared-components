@@ -3,6 +3,7 @@ import { Icon } from '@sk-web-gui/icon';
 import { cx } from '@sk-web-gui/utils';
 import React from 'react';
 import { InputSectionDefaultProps } from './input-section';
+import { SendHorizontal } from 'lucide-react';
 
 interface InputSectionButtonProps
   extends React.ComponentPropsWithoutRef<typeof Button.Component>,
@@ -18,7 +19,7 @@ export const InputSectionButton = React.forwardRef<HTMLButtonElement, InputSecti
       size={isMobile || variant === 'inset' ? 'sm' : 'md'}
       iconButton={isMobile}
       variant="primary"
-      children={isMobile ? <Icon name="send-horizontal" /> : 'Skicka'}
+      children={isMobile ? <Icon icon={<SendHorizontal />} /> : 'Skicka'}
       aria-label={isMobile ? 'Skicka' : undefined}
       type="submit"
       {...rest}

@@ -8,6 +8,7 @@ import { AICornerModuleDefaultProps } from './ai-corner-module';
 import { AICornerModuleHeaderMenu } from './ai-corner-module-header-menu';
 import { AssistantSwitch, AssistantSwitchProps } from '../assistant-switch';
 import { AssistantAvatar } from '../assistant-avatar';
+import { Plus, MessageCircle } from 'lucide-react';
 
 export interface AICornerModuleHeaderProps extends AICornerModuleDefaultProps, React.ComponentPropsWithoutRef<'div'> {
   variant?: 'default' | 'alt';
@@ -64,13 +65,13 @@ export const AICornerModuleHeader = React.forwardRef<HTMLDivElement, AICornerMod
           <Button
             size="sm"
             color="vattjom"
-            rightIcon={<Icon name="plus" />}
+            rightIcon={<Icon icon={<Plus />} />}
             onClick={() => onNewSession && onNewSession()}
           >
             Ny fråga
           </Button>
           <div className="sk-ai-corner-module-header-title">
-            <Icon name="message-circle" />
+            <Icon icon={<MessageCircle />} />
             <span className="sk-ai-corner-module-header-heading-name">
               {session?.name ? session?.name : 'Ny fråga'}
             </span>

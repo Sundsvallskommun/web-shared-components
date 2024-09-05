@@ -3,6 +3,7 @@ import { Icon } from '@sk-web-gui/icon';
 import React, { useRef, useState } from 'react';
 import { giveFeedback } from '../services';
 import { useSessions } from '../session-store';
+import { X, ThumbsUp, ThumbsDown } from 'lucide-react';
 
 export interface FeedbackProps extends React.ComponentPropsWithoutRef<'div'> {
   sessionId: string;
@@ -70,7 +71,7 @@ export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, 
         }
       }}
     >
-      <Icon name="x" size={28} />
+      <Icon icon={<X />} size={28} />
     </Button>
   );
 
@@ -89,7 +90,7 @@ export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, 
           className="sk-ai-feedback-button"
           onClick={() => handleFeedback(1)}
         >
-          <Icon name="thumbs-up" />
+          <Icon icon={<ThumbsUp />} />
         </Button>
         <Button
           ref={thumbDownButtonRef}
@@ -106,7 +107,7 @@ export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, 
           className="sk-ai-feedback-button"
           onClick={() => handleFeedback(-1)}
         >
-          <Icon name="thumbs-down" />
+          <Icon icon={<ThumbsDown />} />
         </Button>
       </div>
       {showFeedbackReason || feedbackLoading || showThanks ? (
