@@ -2,7 +2,7 @@ import { useFormControl } from '../form-control';
 import { Icon } from '@sk-web-gui/icon';
 import { __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
-
+import { Check } from 'lucide-react';
 export interface SwitchProps extends Omit<React.ComponentPropsWithRef<'input'>, 'size'> {
   /** Set the switch color
    * @default tertiary
@@ -59,7 +59,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>((props, re
       <div className={'sk-form-switch'} data-disabled={disabled} data-color={color ? color : undefined}>
         <div className={'sk-form-switch-box'}>
           <Icon.Padded
-            name="check"
+            icon={<Check />}
             color={color}
             variant={disabled ? 'ghost' : 'tertiary'}
             rounded

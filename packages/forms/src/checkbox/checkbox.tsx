@@ -3,6 +3,7 @@ import { cx, useForkRef, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 import React from 'react';
 import { useEffect, useRef } from 'react';
 import { Icon } from '@sk-web-gui/icon';
+import { Minus, Check } from 'lucide-react';
 
 import { useCheckboxClass, useCheckboxLabelClass } from './styles';
 import { useCheckboxGroup } from './checkbox-group';
@@ -136,7 +137,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxItemProps>((p
         className={cx(checkboxClasses)}
         {...rest}
       />
-      <Icon.Padded variant="ghost" name={indeterminate ? 'minus' : 'check'} />
+      <Icon.Padded variant="ghost" icon={indeterminate ? <Minus /> : <Check />} />
       {children && labelPosition === 'right' && <span className={cx(checkboxLabelClasses)}>{children}</span>}
     </label>
   );
