@@ -17,7 +17,8 @@ export {
   NewSessionButton,
   AIServiceModule,
 } from './components';
-export { useChat, useSpeechToText, useSpeechToTextTranslation } from './hooks';
+
+export { useChat, useSpeechToText, useSpeechToTextTranslation, useTextToSpeech } from './hooks';
 export * from './services';
 export { useAssistantStore, setAssistantStoreName, useSessions, createSessionStore };
 export * from './types';
