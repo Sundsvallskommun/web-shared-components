@@ -1,6 +1,5 @@
-import { DefaultProps } from '@sk-web-gui/utils';
+import { __DEV__, cx, DefaultProps } from '@sk-web-gui/utils';
 import React, { cloneElement } from 'react';
-import { cx, __DEV__ } from '@sk-web-gui/utils';
 
 interface IAvatarProps extends DefaultProps {
   imageAlt?: string;
@@ -9,7 +8,7 @@ interface IAvatarProps extends DefaultProps {
   imageUrl?: string;
   initials?: string;
   size?: 'sm' | 'md' | 'lg';
-  color?: 'juniskar' | 'bjornstigen' | 'gronsta' | 'vattjom';
+  color?: 'juniskar' | 'bjornstigen' | 'gronsta' | 'vattjom' | string;
   accent?: boolean;
   rounded?: boolean;
 }
