@@ -1,8 +1,7 @@
-import React from 'react';
-import { Text, TextProps } from '../src';
-import { Meta } from '@storybook/react';
 import { Button } from '@sk-web-gui/button';
-import { Icon } from '@sk-web-gui/icon';
+import Icon from '@sk-web-gui/icon';
+import { Meta } from '@storybook/react';
+import { Text, TextProps } from '../src';
 const text =
   'Hej!\n\nDenna komponent hanterar line feed (n) och carriage return (r). \nDen kan också hantera länkar; om du t.ex. skriver https://sundsvall.se, så blir den klickbar. \r\n\r\n/Utvecklingsfabriken';
 export default {

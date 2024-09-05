@@ -1,6 +1,6 @@
 import { Button } from '@sk-web-gui/button';
 import { Checkbox, DatePicker, FormControl, FormLabel } from '@sk-web-gui/forms';
-import { Icon } from '@sk-web-gui/icon';
+import Icon from '@sk-web-gui/icon';
 import { Link } from '@sk-web-gui/link';
 import { SearchField } from '@sk-web-gui/searchfield';
 import { Meta } from '@storybook/react';

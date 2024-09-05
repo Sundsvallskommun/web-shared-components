@@ -1,9 +1,8 @@
-import React from 'react';
+import Icon from '@sk-web-gui/icon';
+import { Link } from '@sk-web-gui/link';
+import { Logo } from '@sk-web-gui/logo';
 import { Meta } from '@storybook/react';
 import { Footer, FooterProps } from '../src';
-import { Link } from '@sk-web-gui/link';
-import { Icon } from '@sk-web-gui/icon';
-import { Logo } from '@sk-web-gui/logo';
 
 export default {
   title: 'Layout/Footer',
