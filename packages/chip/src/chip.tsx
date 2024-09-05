@@ -1,6 +1,7 @@
 import { cx } from '@sk-web-gui/utils';
 import { Icon } from '@sk-web-gui/icon';
 import React from 'react';
+import { X } from 'lucide-react';
 
 export interface ChipProps extends React.ComponentPropsWithRef<'button'> {
   strong?: boolean;
@@ -20,7 +21,7 @@ export const Chip = React.forwardRef<HTMLButtonElement, ChipProps>((props, ref) 
       {...rest}
     >
       {children}
-      <Icon name="x" />
+      <Icon icon={<X />} />
     </button>
   );
 });
