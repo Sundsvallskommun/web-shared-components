@@ -2,6 +2,7 @@ import { Link } from '@sk-web-gui/link';
 import { Icon } from '@sk-web-gui/icon';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
+import { Text, ExternalLink } from 'lucide-react';
 
 // NOTE: Meta Card component
 
@@ -36,13 +37,13 @@ export const MetaCard = React.forwardRef<HTMLDivElement, MetaCardProps>((props, 
           {...rest}
           ref={ref}
         >
-          <Icon className={cx('sk-meta-card-text-icon', className)} size={36} name="text"></Icon>
+          <Icon className={cx('sk-meta-card-text-icon', className)} size={36} icon={<Text />}></Icon>
           <div className={cx('sk-meta-card-body', className)}>{children}</div>
-          <Icon className={cx('sk-meta-card-external-link-icon', className)} size={32} name="external-link"></Icon>
+          <Icon className={cx('sk-meta-card-external-link-icon', className)} size={32} icon={<ExternalLink />}></Icon>
         </Link>
       ) : (
         <div className={cx('sk-meta-card', className)} data-color={color ? color : undefined} {...rest} ref={ref}>
-          <Icon className={cx('sk-meta-card-text-icon', className)} size={36} name="text"></Icon>
+          <Icon className={cx('sk-meta-card-text-icon', className)} size={36} icon={<Text />}></Icon>
           <div className={cx('sk-meta-card-body', className)}>{children}</div>
           <div className={cx('sk-meta-card-external-link-icon', className)}></div>
         </div>
