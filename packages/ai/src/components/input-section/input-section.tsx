@@ -28,6 +28,7 @@ export interface InputSectionProps extends React.ComponentPropsWithoutRef<'form'
   onChangeValue?: InputSectionInputProps['onChange'];
   value?: string;
   button?: JSX.Element;
+  autoFocus?: boolean;
 }
 
 export const InputSection = React.forwardRef<HTMLFormElement, InputSectionProps>((props, ref) => {
@@ -42,12 +43,21 @@ export const InputSection = React.forwardRef<HTMLFormElement, InputSectionProps>
     onChangeValue,
     variant = 'default',
     button = <InputSectionButton isMobile={isMobile} variant={variant} />,
+    autoFocus,
     ...rest
   } = props;
   const [query, setQuery] = React.useState<string>('');
 
   const { sendQuery } = useChat({ sessionId });
   const info = useAssistantStore((state) => state.info);
+
+  const inputref = React.useRef<HTMLInputElement>(null);
+
+  React.useEffect(() => {
+    if (autoFocus && inputref.current) {
+      inputref.current.focus();
+    }
+  }, [autoFocus, inputref.current]);
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChangeValue && onChangeValue(event);
@@ -74,6 +84,7 @@ export const InputSection = React.forwardRef<HTMLFormElement, InputSectionProps>
           onChange={handleOnChange}
           value={value ?? query}
           isMobile={isMobile}
+          ref={inputref}
         />
         {variant === 'inset' ? <Input.RightAddin>{button}</Input.RightAddin> : button}
       </InputSectionWrapper>
