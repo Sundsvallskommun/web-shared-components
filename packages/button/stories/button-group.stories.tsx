@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import { Button, ButtonProps } from '../src';
-import { Icon } from '@sk-web-gui/icon';
+import Icon from '@sk-web-gui/icon';
 
 export default {
   title: 'Komponenter/Button/Button.Group',
