@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.17](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/snackbar@1.0.16...@sk-web-gui/snackbar@1.0.17) (2024-09-05)
+
+**Note:** Version bump only for package @sk-web-gui/snackbar
+
 ## [1.0.16](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/snackbar@1.0.15...@sk-web-gui/snackbar@1.0.16) (2024-08-23)
 
 **Note:** Version bump only for package @sk-web-gui/snackbar

@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.7.3...@sk-web-gui/ai@0.8.0) (2024-09-05)
+
+### Bug Fixes
+
+- **ai:** AI Corner module name ([aa138ad](https://github.com/Sundsvallskommun/web-shared-components/commit/aa138ad90b7b3f96845335dd0b57c02494e48271))
+- **ai:** minor issues with input section ([a20a1de](https://github.com/Sundsvallskommun/web-shared-components/commit/a20a1deb25227a07e831524df666b91d43d089ec))
+- no default voice ([35a3051](https://github.com/Sundsvallskommun/web-shared-components/commit/35a305139222007d08145891addf61616cba477a))
+
+### Features
+
+- added placeholder, onchange and value to InputSection ([7f2ce18](https://github.com/Sundsvallskommun/web-shared-components/commit/7f2ce187477ddd255cc3fca95308ae1ab6eda293))
+- added speech to text with translations as hook ([ca7bcf4](https://github.com/Sundsvallskommun/web-shared-components/commit/ca7bcf4b6e408340561c9bbd7e741576a70869a6))
+- **ai:** AI Service module ([6ee3ad2](https://github.com/Sundsvallskommun/web-shared-components/commit/6ee3ad2d6ef5c42fe705bfc26f18f8451b7ee4de))
+- **inputsection:** added inset variant ([a6c5ce8](https://github.com/Sundsvallskommun/web-shared-components/commit/a6c5ce8ef3b9345a01a1c567655af071ad5d3ca1))
+- Renamed AI Module to AI Corner Module ([4a3d9d9](https://github.com/Sundsvallskommun/web-shared-components/commit/4a3d9d9cc2f9e23bddf40b7fb1adca25896b013f))
+- textToSpeech service and hook ([4340484](https://github.com/Sundsvallskommun/web-shared-components/commit/4340484f46895073516ca14da63ce074db0345df))
+
+### BREAKING CHANGES
+
+- Renamed AI Module to AI Corner Module
+
 ## [0.7.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.7.2...@sk-web-gui/ai@0.7.3) (2024-08-28)
 
 ### Bug Fixes

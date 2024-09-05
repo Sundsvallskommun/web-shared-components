@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.5.0...@sk-web-gui/core@3.6.0) (2024-09-05)
+
+### Bug Fixes
+
+- **ai:** added styling for inset input section ([fb9013a](https://github.com/Sundsvallskommun/web-shared-components/commit/fb9013a9cb66a5bed388e58ec02c808273b7288c))
+- **ai:** AI Corner module name ([aa138ad](https://github.com/Sundsvallskommun/web-shared-components/commit/aa138ad90b7b3f96845335dd0b57c02494e48271))
+- **ai:** minor issues with input section ([a20a1de](https://github.com/Sundsvallskommun/web-shared-components/commit/a20a1deb25227a07e831524df666b91d43d089ec))
+- **ai:** renamed AI Corner Module file and function ([f0dcc35](https://github.com/Sundsvallskommun/web-shared-components/commit/f0dcc350cabfadd2f484c81e62b828268cc9f67b))
+- **avatar:** added styling for primary (black) ([55bce4f](https://github.com/Sundsvallskommun/web-shared-components/commit/55bce4fcd01a691542befcd60f3f1fdd2a571d86))
+- display fontweight to extra bold ([81d81fb](https://github.com/Sundsvallskommun/web-shared-components/commit/81d81fb97c12e213e3914eb0823fd5c62bcea062))
+
+### Features
+
+- **ai:** AI Service module ([6ee3ad2](https://github.com/Sundsvallskommun/web-shared-components/commit/6ee3ad2d6ef5c42fe705bfc26f18f8451b7ee4de))
+- Pick components when loading plugin ([9340cbf](https://github.com/Sundsvallskommun/web-shared-components/commit/9340cbfc35bf7d4087d9e5ac3c1408ff28d1da0a))
+
 # [3.5.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.4.3...@sk-web-gui/core@3.5.0) (2024-08-22)
 
 ### Bug Fixes

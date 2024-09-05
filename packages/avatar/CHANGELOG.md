@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.11](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/avatar@1.0.10...@sk-web-gui/avatar@1.0.11) (2024-09-05)
+
+### Bug Fixes
+
+- allow all colors ([f2ca8d4](https://github.com/Sundsvallskommun/web-shared-components/commit/f2ca8d48bc80a0228cd5890eebfd28b1f59d0a0d))
+- **avatar:** Small clean up! ([69dffd1](https://github.com/Sundsvallskommun/web-shared-components/commit/69dffd166142bf7e62ac9d01910720b515e79b60))
+
 ## [1.0.10](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/avatar@1.0.9...@sk-web-gui/avatar@1.0.10) (2024-08-22)
 
 **Note:** Version bump only for package @sk-web-gui/avatar

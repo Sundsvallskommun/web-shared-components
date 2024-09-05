@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/link@1.1.1...@sk-web-gui/link@1.1.2) (2024-09-05)
+
+### Bug Fixes
+
+- added missing dependency ([83b9123](https://github.com/Sundsvallskommun/web-shared-components/commit/83b9123b551a2a6a91c36697726a32c6493bf23a))
+- typefixes ([419d28d](https://github.com/Sundsvallskommun/web-shared-components/commit/419d28da9e1c0ebe5bf5318c5a0b9c7354e2ece7))
+
 ## [1.1.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/link@1.1.0...@sk-web-gui/link@1.1.1) (2024-08-22)
 
 **Note:** Version bump only for package @sk-web-gui/link

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/layout@1.1.2...@sk-web-gui/layout@1.1.3) (2024-09-05)
+
+**Note:** Version bump only for package @sk-web-gui/layout
+
 ## [1.1.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/layout@1.1.1...@sk-web-gui/layout@1.1.2) (2024-08-22)
 
 **Note:** Version bump only for package @sk-web-gui/layout

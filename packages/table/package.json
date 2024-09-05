@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/table",
-  "version": "3.1.5",
+  "version": "3.1.6",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -39,7 +39,7 @@
   "dependencies": {
     "@sk-web-gui/forms": "2.0.4",
     "@sk-web-gui/icon": "2.0.1",
-    "@sk-web-gui/pagination": "1.0.19",
+    "@sk-web-gui/pagination": "1.0.20",
     "@sk-web-gui/theme": "2.3.0",
     "@sk-web-gui/utils": "2.0.1",
     "lodash": "^4.17.21",

@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/divider",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",

@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/modal",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.19",
-    "@sk-web-gui/button": "2.0.7",
+    "@sk-web-gui/button": "2.0.8",
     "@sk-web-gui/icon": "2.0.1",
     "@sk-web-gui/utils": "2.0.1"
   },

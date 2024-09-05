@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.8](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/button@2.0.7...@sk-web-gui/button@2.0.8) (2024-09-05)
+
+### Bug Fixes
+
+- typefixes ([419d28d](https://github.com/Sundsvallskommun/web-shared-components/commit/419d28da9e1c0ebe5bf5318c5a0b9c7354e2ece7))
+
 ## [2.0.7](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/button@2.0.6...@sk-web-gui/button@2.0.7) (2024-08-23)
 
 ### Bug Fixes
