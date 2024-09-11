@@ -1,5 +1,6 @@
 export const AIFeed = () => ({
   '.sk-ai-feed': {
+    '@apply text-left': {},
     '@apply h-auto max-h-full flex flex-col gap-32': {},
     '&-entry': {
       '@apply flex items-start gap-12': {},
