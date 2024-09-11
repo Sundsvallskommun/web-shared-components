@@ -64,7 +64,7 @@ export const AICornerModule = (colors: string[]) => ({
       '@apply rounded-tl-groups': {},
       '@apply max-w-[26em]': {},
       '@apply w-[26em]': {},
-      '@apply max-h-[44em]': {},
+      '@apply max-h-[calc(100%-1em)]': {},
       '&[data-mobile="true"]': {
         '@apply rounded-tl-none': {},
         '@apply max-w-full': {},
