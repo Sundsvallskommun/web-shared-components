@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/react';
-import { SelectProps, Select } from '../src';
+import { Select, SelectProps } from '../src';
 
 export default {
   title: 'Komponenter/Select',
@@ -70,6 +70,22 @@ export const Storlekar = () => (
     </Select>
 
     <Select size="lg">
+      <Select.Option>Option 1</Select.Option>
+      <Select.Option>Option 2</Select.Option>
+      <Select.Option>Option 3</Select.Option>
+    </Select>
+  </div>
+);
+
+export const Grupp = () => (
+  <div className="flex gap-16">
+    <Select>
+      <Select.Optgroup label="Grupp 1"></Select.Optgroup>
+      <Select.Option>Option 1</Select.Option>
+      <Select.Option>Option 2</Select.Option>
+      <Select.Option>Option 3</Select.Option>
+
+      <Select.Optgroup label="Grupp 2"></Select.Optgroup>
       <Select.Option>Option 1</Select.Option>
       <Select.Option>Option 2</Select.Option>
       <Select.Option>Option 3</Select.Option>
