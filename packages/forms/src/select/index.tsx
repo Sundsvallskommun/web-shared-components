@@ -13,6 +13,14 @@ const Option = React.forwardRef<HTMLOptionElement, SelectOptionProps>((props, re
   return <option ref={ref} {...props} />;
 });
 
+export interface SelectOptgroupProps extends React.ComponentPropsWithRef<'optgroup'> {
+  label?: string;
+}
+
+const Optgroup = React.forwardRef<HTMLOptGroupElement, SelectOptgroupProps>((props, ref) => {
+  return <optgroup ref={ref} {...props} />;
+});
+
 export interface InternalSelectProps
   extends IInputProps<HTMLSelectElement>,
     Omit<React.ComponentPropsWithRef<'select'>, 'size' | 'value'> {
@@ -63,12 +71,14 @@ if (__DEV__) {
 interface SelectProps extends React.ForwardRefExoticComponent<InternalSelectProps> {
   Component: typeof InternalSelect;
   Option: typeof Option;
+  Optgroup: typeof Optgroup;
 }
 
 export const Select = {
   ...InternalSelect,
   Component: InternalSelect,
   Option: Option,
+  Optgroup: Optgroup,
 } as SelectProps;
 
 export type { SelectProps };
