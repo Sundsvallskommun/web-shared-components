@@ -13,6 +13,7 @@ import { AICornerModuleMobileMenu } from './ai-corner-module-mobile-menu';
 import { AICornerModuleSessions } from './ai-corner-module-sessions';
 import { AICornerModuleWrapper } from './ai-corner-module-wrapper';
 import { Link } from '@sk-web-gui/link';
+import { AssistantAvatar } from '../assistant-avatar';
 
 export interface AICornerModuleDefaultProps {
   docked?: boolean;
@@ -113,28 +114,6 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
     throw new Error('No assistant found');
   }
 
-  const getAssistantAvatar = (): JSX.Element => {
-    if (avatars?.assistant) {
-      if (avatars.assistant.type === Avatar) {
-        return React.cloneElement(avatars.assistant, {
-          ...avatars.assistant.props,
-          size: fullscreen ? 'md' : 'sm',
-        });
-      } else {
-        return avatars.assistant;
-      }
-    } else {
-      return (
-        <Avatar
-          imageElement={typeof assistant.avatar !== 'string' ? assistant.avatar : undefined}
-          imageUrl={typeof assistant.avatar === 'string' ? assistant.avatar : undefined}
-          initials={assistant.shortName}
-          size={fullscreen ? 'md' : 'sm'}
-        />
-      );
-    }
-  };
-
   const getUserAvatar = (): JSX.Element => {
     if (avatars?.user) {
       if (avatars.user.type === Avatar) {
@@ -161,7 +140,7 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
         return avatars.system;
       }
     } else {
-      return getAssistantAvatar();
+      return <AssistantAvatar assistant={assistant} avatar={avatars?.assistant} size={fullscreen ? 'md' : 'sm'} />;
     }
   };
 
@@ -354,7 +333,13 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
                     size={isFullscreen ? 'lg' : 'sm'}
                     avatars={{
                       user: getUserAvatar(),
-                      assistant: getAssistantAvatar(),
+                      assistant: (
+                        <AssistantAvatar
+                          assistant={assistant}
+                          avatar={avatars?.assistant}
+                          size={fullscreen ? 'md' : 'sm'}
+                        />
+                      ),
                       system: getSystemAvatar(),
                     }}
                     titles={originTitles}
