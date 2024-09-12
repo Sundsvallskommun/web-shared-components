@@ -16,6 +16,7 @@ export {
   AssistantPresentation,
   NewSessionButton,
   AIServiceModule,
+  AssistantSwitch,
 } from './components';
 
 export { useChat, useSpeechToText, useSpeechToTextTranslation, useTextToSpeech } from './hooks';
