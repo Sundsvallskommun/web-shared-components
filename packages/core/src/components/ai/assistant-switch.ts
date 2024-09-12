@@ -14,7 +14,6 @@ export const AssistantSwitch = () => ({
         '.sk-avatar-img': {
           '@apply min-w-18 max-w-18 w-18 min-h-18 max-h-18 h-18': {},
         },
-        '@apply bg-background-content': {},
       },
     },
 
@@ -33,6 +32,17 @@ export const AssistantSwitch = () => ({
     },
     '&:hover > &-hover-icon, &:focus-visible > &-hover-icon': {
       '@apply opacity-100': {},
+    },
+
+    '&[data-inverted="true"]': {
+      '.sk-ai-assistant-switch': {
+        '&-text': {
+          '@apply text-inverted-dark-primary': {},
+        },
+        '&-hover-icon': {
+          '@apply text-inverted-dark-secondary': {},
+        },
+      },
     },
   },
 });

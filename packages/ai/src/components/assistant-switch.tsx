@@ -24,6 +24,8 @@ export interface AssistantSwitchProps extends React.ComponentPropsWithoutRef<'bu
    * @default ArrowDownUp
    */
   pressedIcon?: JSX.Element;
+
+  inverted?: boolean;
 }
 
 export const AssistantSwitch = React.forwardRef<HTMLButtonElement, AssistantSwitchProps>((props, ref) => {
@@ -34,6 +36,7 @@ export const AssistantSwitch = React.forwardRef<HTMLButtonElement, AssistantSwit
     pressed,
     pressedText = 'Byt assistent',
     pressedIcon = <ArrowDownUp />,
+    inverted,
     ...rest
   } = props;
 
@@ -43,6 +46,7 @@ export const AssistantSwitch = React.forwardRef<HTMLButtonElement, AssistantSwit
       className={cx('sk-ai-assistant-switch', className)}
       ref={ref}
       aria-label={pressed ? pressedText : `${assistant.name}. ${pressedText}`}
+      data-inverted={inverted}
       {...rest}
     >
       <span className="sk-ai-assistant-switch-icon">
