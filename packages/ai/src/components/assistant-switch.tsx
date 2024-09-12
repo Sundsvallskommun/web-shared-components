@@ -20,14 +20,10 @@ export interface AssistantSwitchProps extends React.ComponentPropsWithoutRef<'bu
    */
   pressedText?: string;
   /**
-   * Text to be displayed when pressed
-   * @default "Byt assistent"
-   */
-  pressedIcon?: JSX.Element;
-  /**
    * Icon to be displayed when pressed
    * @default ArrowDownUp
    */
+  pressedIcon?: JSX.Element;
 }
 
 export const AssistantSwitch = React.forwardRef<HTMLButtonElement, AssistantSwitchProps>((props, ref) => {
