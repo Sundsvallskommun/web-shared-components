@@ -8,6 +8,7 @@ import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
 import { X } from 'lucide-react';
 import { Avatar } from '@sk-web-gui/avatar';
+import { AssistantAvatar } from '../assistant-avatar';
 
 export interface AIServiceModuleAssistantExpandedProps
   extends React.ComponentPropsWithoutRef<'div'>,
@@ -57,28 +58,6 @@ export const AIServiceModuleAssistantExpanded = React.forwardRef<HTMLDivElement,
       handleAutoScroll();
     };
 
-    const getAssistantAvatar = (): JSX.Element => {
-      if (avatars?.assistant) {
-        if (avatars.assistant.type === Avatar) {
-          return React.cloneElement(avatars.assistant, {
-            ...avatars.assistant.props,
-            size: 'sm',
-          });
-        } else {
-          return avatars.assistant;
-        }
-      } else {
-        return (
-          <Avatar
-            imageElement={typeof assistant.avatar !== 'string' ? assistant.avatar : undefined}
-            imageUrl={typeof assistant.avatar === 'string' ? assistant.avatar : undefined}
-            initials={assistant.shortName}
-            size="sm"
-          />
-        );
-      }
-    };
-
     const getUserAvatar = (): JSX.Element => {
       if (avatars?.user) {
         if (avatars.user.type === Avatar) {
@@ -105,7 +84,7 @@ export const AIServiceModuleAssistantExpanded = React.forwardRef<HTMLDivElement,
           return avatars.system;
         }
       } else {
-        return getAssistantAvatar();
+        return <AssistantAvatar assistant={assistant} avatar={avatars?.assistant} size="sm" />;
       }
     };
 
@@ -122,7 +101,7 @@ export const AIServiceModuleAssistantExpanded = React.forwardRef<HTMLDivElement,
             sessionId={sessionId}
             avatars={{
               user: getUserAvatar(),
-              assistant: getAssistantAvatar(),
+              assistant: <AssistantAvatar assistant={assistant} avatar={avatars?.assistant} size="sm" />,
               system: getSystemAvatar(),
             }}
             showFeedback={showFeedback}
