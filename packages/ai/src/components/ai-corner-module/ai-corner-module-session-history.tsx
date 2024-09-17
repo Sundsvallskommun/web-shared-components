@@ -21,8 +21,6 @@ export interface AICornerModuleSessionHistoryProps extends React.ComponentPropsW
 export const AICornerModuleSessionHistory = React.forwardRef<HTMLDivElement, AICornerModuleSessionHistoryProps>(
   (props, ref) => {
     const { sessions, title, className, onSelectSession, current, onKeyNext, onKeyPrev, ...rest } = props;
-    const autoId = React.useId();
-    const id = `sk-ai-corner-module-sessions-history-title-${autoId}`;
     const idPrefix = 'sk-ai-session-item-';
     const focusable = current ? current : sessions[0].id;
 

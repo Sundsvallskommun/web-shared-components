@@ -48,6 +48,7 @@
     "@sk-web-gui/theme": "2.3.0",
     "@sk-web-gui/tooltip": "1.0.4",
     "@sk-web-gui/utils": "2.0.1",
+    "@sk-web-gui/menubar": "1.0.14",
     "@types/sanitize-html": "^2.11.0",
     "date-fns": "^3.6.0",
     "microsoft-cognitiveservices-speech-sdk": "^1.36.0",

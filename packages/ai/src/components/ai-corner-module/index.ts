@@ -9,6 +9,10 @@ import { AICornerModuleSessionHistory } from './ai-corner-module-session-history
 import { AICornerModuleSessions } from './ai-corner-module-sessions';
 import { AICornerModuleWrapper } from './ai-corner-module-wrapper';
 import { AICornerModuleMobileMenu } from './ai-corner-module-mobile-menu';
+import {
+  AICornerModuleAssistantLibrary,
+  type AICornerModuleAssistantLibraryProps,
+} from './ai-corner-module-assistant-library';
 
 interface AICornerModuleHeaderMenuProps extends React.ForwardRefExoticComponent<InternalAICornerModuleHeaderMenuProps> {
   Component: typeof InternalAICornerModuleHeaderMenu;
@@ -29,10 +33,12 @@ export {
   AICornerModuleHeaderMenu,
   AICornerModuleWrapper,
   AICornerModuleMobileMenu,
+  AICornerModuleAssistantLibrary,
 };
 export type {
   AICornerModuleHeaderProps,
   AICornerModuleProps,
   AICornerModuleHeaderMenuProps,
+  AICornerModuleAssistantLibraryProps,
   InternalAICornerModuleHeaderMenuProps,
 };

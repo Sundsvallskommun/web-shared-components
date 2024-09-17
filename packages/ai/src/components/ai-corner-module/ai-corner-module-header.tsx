@@ -3,17 +3,21 @@ import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
 import { cx } from '@sk-web-gui/utils';
 import React from 'react';
-import { AIFeedAvatar, AssistantInfo } from '../../types';
+import { AIFeedAvatar, Assistant, AssistantInfo } from '../../types';
 import { AICornerModuleDefaultProps } from './ai-corner-module';
 import { AICornerModuleHeaderMenu } from './ai-corner-module-header-menu';
+import { AssistantSwitch, AssistantSwitchProps } from '../assistant-switch';
+import { AssistantAvatar } from '../assistant-avatar';
 
 export interface AICornerModuleHeaderProps extends AICornerModuleDefaultProps, React.ComponentPropsWithoutRef<'div'> {
   variant?: 'default' | 'alt';
   assistant: AssistantInfo;
+  assistants?: Assistant[];
   onOpenHistory?: () => void;
   onCloseHistory?: () => void;
   historyOpen?: boolean;
   avatar?: AIFeedAvatar;
+  assistantSwitchProps?: Omit<AssistantSwitchProps, 'assistant' | 'avatar'>;
 }
 
 export const AICornerModuleHeader = React.forwardRef<HTMLDivElement, AICornerModuleHeaderProps>((props, ref) => {
@@ -21,6 +25,7 @@ export const AICornerModuleHeader = React.forwardRef<HTMLDivElement, AICornerMod
     docked,
     color,
     assistant,
+    assistants,
     fullscreen,
     disableFullscreen,
     session,
@@ -39,36 +44,9 @@ export const AICornerModuleHeader = React.forwardRef<HTMLDivElement, AICornerMod
     title,
     subtitle,
     avatar,
+    assistantSwitchProps,
     ...rest
   } = props;
-
-  const AssistantAvatar: React.FC = () => {
-    if (avatar) {
-      if (avatar.type === Avatar) {
-        return React.cloneElement(avatar, {
-          ...avatar.props,
-          imageAlt: '',
-          'aria-hidden': 'true',
-          className: `${avatar.props.className} sk-ai-corner-module-header-avatar`,
-          size: variant === 'alt' ? 'lg' : docked ? 'md' : 'sm',
-        });
-      } else {
-        return avatar;
-      }
-    } else {
-      return (
-        <Avatar
-          className="sk-ai-corner-module-header-avatar"
-          size={variant === 'alt' ? 'lg' : docked ? 'md' : 'sm'}
-          imageElement={typeof assistant.avatar !== 'string' ? assistant.avatar : undefined}
-          imageUrl={typeof assistant.avatar === 'string' ? assistant.avatar : undefined}
-          initials={assistant.shortName}
-          imageAlt=""
-          aria-hidden
-        />
-      );
-    }
-  };
 
   return (
     <div
@@ -98,9 +76,11 @@ export const AICornerModuleHeader = React.forwardRef<HTMLDivElement, AICornerMod
             </span>
           </div>
         </>
+      ) : variant === 'default' && !fullscreen && !docked && assistants && assistants.length > 1 ? (
+        <AssistantSwitch {...assistantSwitchProps} assistant={assistant} avatar={avatar} inverted />
       ) : (
         <div className="sk-ai-corner-module-header-title">
-          <AssistantAvatar />
+          <AssistantAvatar assistant={assistant} avatar={avatar} size="sm" />
           <div className="sk-ai-corner-module-header-heading">
             <span className="sk-ai-corner-module-header-heading-name">{title || assistant.name}</span>
             {(subtitle || assistant.title) && (docked || variant === 'alt') && (
