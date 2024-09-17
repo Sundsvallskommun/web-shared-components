@@ -256,5 +256,42 @@ export const AICornerModule = (colors: string[]) => ({
         },
       },
     },
+
+    //ASSISTANT LIBRARY
+    '&-assistant-library': {
+      '@apply flex justify-between items-center': {},
+      '@apply pl-20 pr-14 py-0': {},
+      '@apply h-80': {},
+      '@apply bg-background-content': {},
+
+      '&-menu': {
+        '@apply flex gap-12': {},
+        '@apply p-0 m-0': {},
+        '&-item': {
+          '@apply h-52 w-52': {},
+          '@apply rounded-groups': {},
+          '@apply relative': {},
+          '@apply flex justify-center': {},
+          '&-button, & > *:first-child': {
+            '@apply h-52 w-52': {},
+            '@apply gap-0': {},
+            '@apply rounded-groups': {},
+            '@apply p-6': {},
+            '.sk-ai-assistant-avatar': {
+              '@apply w-40 h-40': {},
+            },
+            '&[aria-current]:not([aria-current="false"])': {
+              '@apply bg-primary-surface': {},
+              '.sk-ai-assistant-avatar': {
+                '@apply ring-1 ring-background-content': {},
+              },
+            },
+          },
+          '.sk-tooltip': {
+            '@apply absolute top-full mt-4': {},
+          },
+        },
+      },
+    },
   },
 });
