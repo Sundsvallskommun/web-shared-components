@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Combobox, FormControl, FormErrorMessage, FormHelperText, FormLabel } from '../src';
+import { Combobox, ComboboxProps, FormControl, FormErrorMessage, FormHelperText, FormLabel } from '../src';
 export default {
   title: 'Komponenter/Combobox',
   component: Combobox.Input,
@@ -137,7 +137,7 @@ const fruits = [
   'watermelon',
 ];
 
-export const Template = (args: React.ComponentPropsWithRef<typeof Combobox.Input>) => {
+export const Template = (args: ComboboxProps) => {
   const [value, setValue] = React.useState<string | string[]>('');
 
   const handleOnChange: React.ComponentProps<typeof Combobox.Input>['onChange'] = (e) => {
@@ -151,8 +151,8 @@ export const Template = (args: React.ComponentPropsWithRef<typeof Combobox.Input
 
   return (
     <div className="h-[45rem]">
-      <Combobox>
-        <Combobox.Input {...args} value={value} onChange={handleOnChange} onSelect={handleOnSelect} />
+      <Combobox {...args} value={value} onChange={handleOnChange} onSelect={handleOnSelect}>
+        <Combobox.Input />
         <Combobox.List>
           {fruits.map((fruit, index) => (
             <Combobox.Option key={`fruit-${index}`} value={fruit}>
@@ -167,7 +167,7 @@ export const Template = (args: React.ComponentPropsWithRef<typeof Combobox.Input
 
 Template.storyName = 'Combobox';
 
-export const CustomFilterHandler = (args: React.ComponentPropsWithRef<typeof Combobox.Input>) => {
+export const CustomFilterHandler = (args: ComboboxProps) => {
   const [query, setQuery] = React.useState<string>('');
   const [delayedList, setDelayedList] = React.useState<typeof applesAndPears>([]);
 
@@ -185,15 +185,16 @@ export const CustomFilterHandler = (args: React.ComponentPropsWithRef<typeof Com
     <div className="h-[40rem]">
       <FormControl>
         <FormLabel>Favoritfrukt</FormLabel>
-        <Combobox autofilter={false}>
-          <Combobox.Input
-            {...args}
-            searchPlaceholder="Search apple or pear"
-            searchValue={query}
-            defaultValue={delayedList.length > 0 ? delayedList[0].id.toString() : ''}
-            onChange={handleOnChange}
-            onChangeSearch={(e) => setQuery(e.target.value.toLowerCase())}
-          />
+        <Combobox
+          autofilter={false}
+          {...args}
+          searchPlaceholder="Search apple or pear"
+          searchValue={query}
+          defaultValue={delayedList.length > 0 ? delayedList[0].id.toString() : ''}
+          onChange={handleOnChange}
+          onChangeSearch={(e) => setQuery(e.target.value.toLowerCase())}
+        >
+          <Combobox.Input />
           <Combobox.List>
             {delayedList
               .filter((fruit) => fruit.name.toLowerCase().includes(query) || fruit.type.includes(query))
@@ -209,7 +210,7 @@ export const CustomFilterHandler = (args: React.ComponentPropsWithRef<typeof Com
   );
 };
 
-export const SingleChoiceWithForm = (args: React.ComponentPropsWithRef<typeof Combobox.Input>) => {
+export const SingleChoiceWithForm = (args: ComboboxProps) => {
   const { register, formState, watch } = useForm<{ fruit: string }>({ defaultValues: { fruit: 'lime' } });
   const myfruit = watch().fruit;
   React.useEffect(() => {
@@ -220,13 +221,13 @@ export const SingleChoiceWithForm = (args: React.ComponentPropsWithRef<typeof Co
     <div className="h-[40rem]">
       <FormControl>
         <FormLabel>Favoritfrukt</FormLabel>
-        <Combobox>
-          <Combobox.Input
-            {...args}
-            placeholder="Välj en frukt"
-            {...register('fruit')}
-            defaultValue={formState?.defaultValues?.fruit}
-          />
+        <Combobox
+          {...args}
+          placeholder="Välj en frukt"
+          {...register('fruit')}
+          defaultValue={formState?.defaultValues?.fruit}
+        >
+          <Combobox.Input />
           <Combobox.List>
             {fruits.map((fruit) => (
               <Combobox.Option key={`singlefruit-${fruit}`} value={fruit}>
@@ -241,7 +242,7 @@ export const SingleChoiceWithForm = (args: React.ComponentPropsWithRef<typeof Co
   );
 };
 
-export const MultipleChoicesWithForm = (args: React.ComponentPropsWithRef<typeof Combobox.Input>) => {
+export const MultipleChoicesWithForm = (args: ComboboxProps) => {
   const {
     register,
     setError,
@@ -263,8 +264,8 @@ export const MultipleChoicesWithForm = (args: React.ComponentPropsWithRef<typeof
     <div className="h-[40rem]">
       <FormControl required invalid={!!errors.fruits}>
         <FormLabel>Favoritfrukt</FormLabel>
-        <Combobox multiple>
-          <Combobox.Input {...args} {...register('fruits')} placeholder="Välj en frukt" />
+        <Combobox multiple {...args} {...register('fruits')} placeholder="Välj en frukt">
+          <Combobox.Input />
           <Combobox.List>
             {fruits.map((fruit) => (
               <Combobox.Option key={`multifruit-${fruit}`} value={fruit}>

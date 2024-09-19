@@ -5,6 +5,7 @@ export const SearchField = () => ({
     },
     '.sk-form-combobox': {
       '&-list': {
+        '@apply w-full': {},
         '&-option': {
           '.sk-icon': {
             '@apply hidden': {},

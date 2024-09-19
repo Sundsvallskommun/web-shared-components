@@ -1,3 +1,4 @@
+import { CustomOnChangeEvent } from '@sk-web-gui/utils';
 import React from 'react';
 
 export interface UseComboboxProps {
@@ -12,6 +13,43 @@ export interface UseComboboxProps {
    * @default true
    */
   autofilter?: boolean;
+  /**
+   * Show selected first in list
+   * @default true
+   */
+  sortSelectedFirst?: boolean;
+  /**
+   * Placeholder when search is active
+   */
+  searchPlaceholder?: string;
+  /**
+   * Placeholder when no value is selected
+   */
+  placeholder?: string;
+  /**
+   * Search input value
+   */
+  searchValue?: string;
+  /**
+   * ChangeEvent list
+   */
+  onChange?: (event: CustomOnChangeEvent) => void;
+  /**
+   * ChangeEvent list
+   */
+  onSelect?: (event: CustomOnChangeEvent) => void;
+  /**
+   * ChangeEvent list
+   */
+  onChangeSearch?: (event: CustomOnChangeEvent<string>) => void;
+  /**
+   * Selected value
+   */
+  value?: string | string[];
+  /**
+   * Sets initial value
+   */
+  defaultValue?: string | string[];
 }
 
 interface UseComboboxData extends UseComboboxProps {
