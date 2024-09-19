@@ -165,6 +165,47 @@ export const Template = (args: ComboboxProps) => {
   );
 };
 
+export const WithOptionGroups = (args: ComboboxProps) => {
+  const [value, setValue] = React.useState<string | string[]>('');
+
+  const handleOnChange: React.ComponentProps<typeof Combobox.Input>['onChange'] = (e) => {
+    console.log('handleOnChange', e.target.value);
+    setValue(e.target.value);
+  };
+
+  const handleOnSelect: React.ComponentProps<typeof Combobox.Input>['onSelect'] = (e) => {
+    console.log('handleOnSelect', e.target.value);
+  };
+
+  return (
+    <div className="h-[45rem]">
+      <Combobox {...args} value={value} onChange={handleOnChange} onSelect={handleOnSelect}>
+        <Combobox.Input />
+        <Combobox.List>
+          <Combobox.Optgroup label={'Päron'}>
+            {applesAndPears
+              .filter((fruit) => fruit.type === 'pear')
+              .map((fruit, index) => (
+                <Combobox.Option key={`pear-${index}`} value={fruit.name}>
+                  {fruit.name}
+                </Combobox.Option>
+              ))}
+          </Combobox.Optgroup>
+          <Combobox.Optgroup label={'Äpplen'}>
+            {applesAndPears
+              .filter((fruit) => fruit.type === 'apple')
+              .map((fruit, index) => (
+                <Combobox.Option key={`apple-${index}`} value={fruit.name}>
+                  {fruit.name}
+                </Combobox.Option>
+              ))}
+          </Combobox.Optgroup>
+        </Combobox.List>
+      </Combobox>
+    </div>
+  );
+};
+
 Template.storyName = 'Combobox';
 
 export const CustomFilterHandler = (args: ComboboxProps) => {

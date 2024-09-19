@@ -22,6 +22,7 @@ export const ComboboxOption = React.forwardRef<HTMLInputElement, ComboboxOptionP
     onChange,
     disabled,
     index,
+    id,
     ...rest
   } = props;
 
@@ -29,10 +30,10 @@ export const ComboboxOption = React.forwardRef<HTMLInputElement, ComboboxOptionP
   const context = useCombobox();
 
   React.useEffect(() => {
-    if (context.active === index && inputRef.current) {
+    if (context.activeId === id && inputRef.current) {
       inputRef.current.focus();
     }
-  }, [context.active]);
+  }, [context.activeId]);
 
   React.useEffect(() => {
     if (children && value) {
@@ -97,7 +98,7 @@ export const ComboboxOption = React.forwardRef<HTMLInputElement, ComboboxOptionP
         className,
         'sk-form-combobox-list-option',
         'sk-popup-menu-item',
-        context.active === index ? 'active' : ''
+        context.activeId === id ? 'active' : ''
       )}
     >
       <Icon name="check" aria-hidden className={cx(checked ? 'opacity-1' : 'opacity-0')} />
@@ -114,6 +115,7 @@ export const ComboboxOption = React.forwardRef<HTMLInputElement, ComboboxOptionP
         checked={checked}
         aria-selected={checked}
         onChange={handleChange}
+        id={id}
         {...rest}
       />
     </label>

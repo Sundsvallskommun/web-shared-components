@@ -1,6 +1,8 @@
 import { DefaultProps, cx, getValidChildren, useForkRef, useOnElementOutside } from '@sk-web-gui/utils';
 import React, { useEffect, useState } from 'react';
 import { useCombobox } from './combobox-context';
+import { ComboboxOptgroup } from './combobox-optgroup';
+import { ComboboxOption } from './combobox-option';
 
 export interface ComboboxListProps extends DefaultProps, React.ComponentPropsWithRef<'fieldset'> {
   multiple?: boolean;
@@ -14,7 +16,7 @@ export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListPr
   const internalRef = React.useRef<HTMLFieldSetElement>(null);
   const { className, multiple: _multiple, size: _size, value: _value, children, ...rest } = props;
 
-  const { total, setTotal, open, autofilter, sortSelectedFirst, ...context } = useCombobox();
+  const { total, setTotal, open, autofilter, sortSelectedFirst, setIds, ...context } = useCombobox();
 
   useOnElementOutside(
     internalRef,
@@ -51,31 +53,51 @@ export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListPr
           : false;
     return achecked && !bchecked ? -1 : bchecked && !achecked ? 1 : 0;
   };
-  const getFilteredChildren = () =>
+
+  const getFilteredChildren = (children: React.ReactNode, groupIndex?: number) =>
     getValidChildren(children)
+      .filter((child) => child.type === ComboboxOption)
       .sort(sortSelected)
-      .filter(
-        (child) =>
-          child.props.value?.toLowerCase().includes(context.searchValue?.toLowerCase()) ||
-          child.props.children?.toLowerCase().includes(context.searchValue?.toLowerCase())
+      .filter((child) =>
+        autofilter
+          ? child.props.value?.toLowerCase().includes(context.searchValue?.toLowerCase()) ||
+            child.props.children?.toLowerCase().includes(context.searchValue?.toLowerCase())
+          : true
       )
       .map((child, index) =>
-        React.cloneElement(child, { ...child.props, index: index, id: `${context.listId}-${index}` })
+        React.cloneElement(child, {
+          ...child.props,
+          id: `${context.listId}-${groupIndex ? `${groupIndex}-` : ''}${index}`,
+        })
       );
 
+  const getOptionsAndGroups = () => {
+    const options = getFilteredChildren(children);
+    const groups = getValidChildren(children)
+      .filter((child) => child.type === ComboboxOptgroup)
+      .map((group, index) => {
+        return React.cloneElement(group, {
+          ...group.props,
+          children: getFilteredChildren(group.props.children, index + 1),
+        });
+      });
+
+    return [...options, ...groups];
+  };
+
   const options = React.useMemo(() => {
-    return autofilter
-      ? getFilteredChildren()
-      : getValidChildren(children)
-          .sort(sortSelected)
-          .map((child, index) =>
-            React.cloneElement(child, { ...child.props, index: index, id: `${context.listId}-${index}` })
-          );
+    return getOptionsAndGroups();
   }, [context.searchValue, open]);
 
-  useEffect(() => {
-    setTotal && setTotal(React.Children.count(options));
-  }, [context.searchValue, options, setTotal]);
+  React.useEffect(() => {
+    if (setTotal && setIds && options) {
+      const allFlat = options.map((opt) => (opt.type === ComboboxOptgroup ? opt.props.children : opt)).flat();
+      const ids = allFlat.map((child) => child.props.id);
+      const count = React.Children.count(allFlat);
+      setIds(ids);
+      setTotal(count);
+    }
+  }, [options, setTotal, setIds]);
 
   return (
     <fieldset
