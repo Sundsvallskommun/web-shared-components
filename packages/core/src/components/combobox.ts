@@ -56,14 +56,26 @@ export const ComboBox = () => ({
         '@apply border-transparent': {},
       },
     },
-    '&-list': {
+    '&-list, &-list.sk-popup-menu': {
       '@apply w-full': {},
       '@apply max-h-[15em] overflow-y-auto': {},
-      '&-option': {
+      '.sk-form-combobox-list-option': {
         '&.sk-popup-menu-item': {
           '@apply cursor-default': {},
           '@apply leading-none': {},
           '@apply h-auto': {},
+        },
+        '&-group': {
+          '&-label': {
+            '&.sk-popup-menu-item': {
+              '@apply cursor-default': {},
+              '@apply leading-none': {},
+              '@apply h-auto': {},
+              '@apply text-label-medium': {},
+              '@apply pl-6': {},
+              '@apply bg-transparent hover:bg-transparent': {},
+            },
+          },
         },
 
         '&-checkbox': {
