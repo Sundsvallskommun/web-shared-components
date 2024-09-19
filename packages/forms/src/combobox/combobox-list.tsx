@@ -14,7 +14,7 @@ export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListPr
   const internalRef = React.useRef<HTMLFieldSetElement>(null);
   const { className, multiple: _multiple, size: _size, value: _value, children, ...rest } = props;
 
-  const { total, setTotal, open, autofilter, ...context } = useCombobox();
+  const { total, setTotal, open, autofilter, sortSelectedFirst, ...context } = useCombobox();
 
   useOnElementOutside(
     internalRef,
@@ -35,6 +35,8 @@ export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListPr
   const multiple = _multiple !== undefined ? _multiple : context.multiple || false;
 
   const sortSelected = (a: React.ReactElement, b: React.ReactElement) => {
+    if (!sortSelectedFirst) return 0;
+
     const achecked =
       a.props.checked !== undefined
         ? a.props.checked
@@ -69,7 +71,7 @@ export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListPr
           .map((child, index) =>
             React.cloneElement(child, { ...child.props, index: index, id: `${context.listId}-${index}` })
           );
-  }, [context.searchValue, open, children]);
+  }, [context.searchValue, open]);
 
   useEffect(() => {
     setTotal && setTotal(React.Children.count(options));

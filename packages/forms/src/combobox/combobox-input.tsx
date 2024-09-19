@@ -10,40 +10,8 @@ interface InputCompProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 export interface ComboboxInputProps
-  extends UseComboboxProps,
-    Omit<React.ComponentPropsWithRef<'input'>, 'size' | 'onChange' | 'onSelect'> {
-  /**
-   * ChangeEvent list
-   */
-  onChange?: (event: CustomOnChangeEvent) => void;
-  /**
-   * ChangeEvent list
-   */
-  onSelect?: (event: CustomOnChangeEvent) => void;
-  /**
-   * ChangeEvent list
-   */
-  onChangeSearch?: (event: CustomOnChangeEvent<string>) => void;
-  /**
-   * Selected value
-   */
-  value?: string | string[];
-  /**
-   * Sets initial value
-   */
-  defaultValue?: string | string[];
-  /**
-   * Search input value
-   */
-  searchValue?: string;
-  /**
-   * Placeholder when search is active
-   */
-  searchPlaceholder?: string;
-  /**
-   * @default primary
-   */
-  variant?: 'primary' | 'tertiary';
+  extends Omit<UseComboboxProps, 'autofilter' | 'sortSelectedFirst'>,
+    Omit<React.ComponentPropsWithRef<'input'>, 'size' | 'onChange' | 'onSelect' | 'value' | 'defaultValue'> {
   /* Makes input invalid */
   disabled?: boolean;
   invalid?: boolean;
@@ -61,12 +29,13 @@ export const ComboboxInput = React.forwardRef<HTMLInputElement, ComboboxInputPro
     onChange,
     onChangeSearch,
     onSelect,
-    placeholder,
-    searchPlaceholder,
+    placeholder: _placeholder,
+    searchPlaceholder: _searchPlaceholder,
     size: _size,
     invalid: _invalid,
-    variant = 'primary',
+    variant: _variant,
     InputComp,
+    name: _name,
     ...rest
   } = props;
 
@@ -79,6 +48,7 @@ export const ComboboxInput = React.forwardRef<HTMLInputElement, ComboboxInputPro
     labels,
     next,
     prev,
+    close,
     setActive,
     open,
     setOpen,
@@ -86,6 +56,10 @@ export const ComboboxInput = React.forwardRef<HTMLInputElement, ComboboxInputPro
     id: _useId,
     size: _useSize,
     multiple,
+    name: contextName,
+    searchPlaceholder: contextSearchPlaceholder,
+    placeholder: contextPlaceholder,
+    variant: contextVariant,
   } = useCombobox();
 
   const value = contextValue || _incomingValue || '';
@@ -112,15 +86,18 @@ export const ComboboxInput = React.forwardRef<HTMLInputElement, ComboboxInputPro
     hasHelpText,
     size: fcSize,
     id: fcId,
-    name,
+    name: fcName,
   } = useFormControl(props);
 
   const autoId = React.useId();
   const id = _id || _useId || fcId || `sk-form-combobox-${autoId}`;
-
+  const name = _name || contextName || fcName;
   const disabled = _disabled !== undefined ? _disabled : fcDisabled;
   const size = _size || _useSize || fcSize || 'md';
   const invalid = _invalid !== undefined ? _invalid : formcontrolInvalid;
+  const placeholder = _placeholder || contextPlaceholder;
+  const searchPlaceholder = _searchPlaceholder || contextSearchPlaceholder;
+  const variant = _variant || contextVariant || 'primary';
   const classes = useComboboxStyles({ size, variant });
 
   React.useEffect(() => {
@@ -134,8 +111,10 @@ export const ComboboxInput = React.forwardRef<HTMLInputElement, ComboboxInputPro
   }, [_incomingValue]);
 
   const [valueMemo, setValueMemo] = React.useState<typeof value | null>(value);
+
   useEffect(() => {
     const _value = value.map((opt) => labels[opt]);
+
     if (_.isEqual(_value, valueMemo) === false) {
       setValueMemo(_value);
       const event = {
@@ -144,10 +123,12 @@ export const ComboboxInput = React.forwardRef<HTMLInputElement, ComboboxInputPro
           name: name ?? '',
         },
       } as CustomOnChangeEvent;
+
       onChange && onChange(event);
       if (multiple || (_value.length && _value[0])) {
         onSelect && onSelect(event);
       }
+
       if (value.length > 0 && value[0]) {
         onChangeSearch && onChangeSearch({ target: { value: '', name: name ?? '' } } as CustomOnChangeEvent<string>);
       }

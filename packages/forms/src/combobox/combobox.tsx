@@ -1,14 +1,35 @@
-import { __DEV__, cx, useForkRef } from '@sk-web-gui/utils';
+import { __DEV__, CustomOnChangeEvent, cx, useForkRef } from '@sk-web-gui/utils';
 import React from 'react';
 import { useOnClickOutside } from 'usehooks-ts';
 import { useFormControl } from '../form-control';
 import { ComboboxContext, UseComboboxProps } from './combobox-context';
 import { useComboboxStyles } from './styles';
 
-export interface ComboboxBaseProps extends UseComboboxProps, Omit<React.ComponentPropsWithRef<'input'>, 'size'> {}
+export interface ComboboxBaseProps
+  extends UseComboboxProps,
+    Omit<React.ComponentPropsWithRef<'input'>, 'size' | 'value' | 'defaultValue' | 'onChange' | 'onSelect'> {}
 
 export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps>((props, ref) => {
-  const { multiple, className, id: _id, variant, children, autofilter = true, size: _size, ...rest } = props;
+  const {
+    multiple,
+    className,
+    id: _id,
+    variant = 'primary',
+    children,
+    autofilter = true,
+    size: _size,
+    sortSelectedFirst = true,
+    onChange,
+    onSelect: _onSelect,
+    onChangeSearch,
+    value,
+    defaultValue,
+    placeholder,
+    searchPlaceholder,
+    name: _name,
+    searchValue: _searchValue,
+    ...rest
+  } = props;
 
   const [open, setOpen] = React.useState<boolean>(false);
   const [internalValue, setInternalValue] = React.useState<string[]>([]);
@@ -20,14 +41,38 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
   const internalRef = React.useRef<HTMLInputElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const { id: fcId, size: fcSize } = useFormControl(props);
+  const { id: fcId, size: fcSize, name: fcName } = useFormControl(props);
 
   const autoId = React.useId();
   const id = _id || fcId || `sk-form-combobox-${autoId}`;
   const listId = `${id}-list`;
-  const name = `${id}-option`;
+  const name = _name || fcName || `${id}-option`;
   const size = _size || fcSize || 'md';
   const classes = useComboboxStyles({ size, variant });
+
+  React.useEffect(() => {
+    if (_searchValue) {
+      setSearchValue(_searchValue);
+    }
+  }, [_searchValue]);
+
+  React.useEffect(() => {
+    onChangeSearch && onChangeSearch({ target: { value: searchValue, name } } as CustomOnChangeEvent<string>);
+  }, [searchValue]);
+
+  React.useEffect(() => {
+    const event = {
+      target: {
+        value: multiple ? internalValue : internalValue.length ? internalValue.join('') : '',
+        name: name ?? '',
+      },
+    } as CustomOnChangeEvent;
+
+    onChange && onChange(event);
+    if (multiple || (internalValue.length && internalValue[0])) {
+      _onSelect && _onSelect(event);
+    }
+  }, [internalValue]);
 
   useOnClickOutside(internalRef, () => {
     setOpen(false);
@@ -119,8 +164,8 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
     id,
     listId,
     name,
-    searchValue: searchValue,
-    setSearchValue: setSearchValue,
+    searchValue,
+    setSearchValue,
     active,
     setActive,
     total,
@@ -129,7 +174,11 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
     prev,
     focusInput,
     autofilter,
+    sortSelectedFirst,
     inputRef,
+    placeholder,
+    searchPlaceholder,
+    variant,
   };
 
   const currentInputData = getValue();
