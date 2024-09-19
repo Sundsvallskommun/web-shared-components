@@ -2,11 +2,11 @@ export const TypingSequence = (colors: string[]) => ({
   '.sk-ai-typing-sequence': {
     '@apply bg-transparent': {},
     '@apply inline-flex': {},
-    '@apply h-[0.5rem] w-fit gap-6': {},
+    '@apply h-5 w-fit gap-6': {},
     '&-dot': {
       '@apply rounded-full': {},
       '@apply block': {},
-      '@apply w-[0.5rem] h-[0.5rem]': {},
+      '@apply w-5 h-5': {},
       '@apply bg-dark-secondary': {},
       '&[data-inverted="true"]': {
         [`@apply bg-inverted-dark-secondary`]: {},
