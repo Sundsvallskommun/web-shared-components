@@ -1,7 +1,9 @@
 import { Meta } from '@storybook/react';
-import { AICornerModule, AssistantInfo, ChatHistory, SessionHistory } from '../src';
+import { AICornerModule, type Assistant, ChatHistory, SessionHistory } from '../src';
 import { AICornerModuleProps } from '../src/components';
-import avatarSrc from './images/qwerty-avatar.png';
+import qwertySrc from './images/qwerty-avatar.png';
+import paragrafSrc from './images/paragrafryttaren.png';
+
 import { addDays } from 'date-fns';
 import { Avatar } from '@sk-web-gui/avatar';
 
@@ -19,12 +21,17 @@ export default {
   },
 } as Meta<AICornerModuleProps>;
 
-const assistant: AssistantInfo = {
-  name: 'Qwerty',
-  title: 'Din AI-guide på intranätet',
-  avatar: avatarSrc,
-  description:
-    'Din personliga AI-guide på intranätet. Svarar med glädje på frågor som rör din anställning på Sundsvalls Kommun.',
+const qwerty: Assistant = {
+  settings: { assistantId: '12345' },
+  info: { name: 'Qwerty', title: 'Din AI-guide på intranätet', avatar: qwertySrc },
+};
+const paragrafryttaren: Assistant = {
+  settings: { assistantId: '2345' },
+  info: {
+    name: 'Paragrafryttaren',
+    title: 'Din AI-guide på intranätet',
+    avatar: paragrafSrc,
+  },
 };
 
 const history: ChatHistory = [
@@ -151,7 +158,12 @@ const avatars = {
 export const Template = (args: AICornerModuleProps) => {
   return (
     <div className="w-full h-[60em] relative">
-      <AICornerModule {...args} assistant={assistant} sessionHistory={sessions}></AICornerModule>
+      <AICornerModule
+        {...args}
+        assistant={qwerty.info}
+        assistants={[qwerty, paragrafryttaren]}
+        sessionHistory={sessions}
+      ></AICornerModule>
     </div>
   );
 };
@@ -161,7 +173,7 @@ export const WithHistory = (args: AICornerModuleProps) => {
     <div className="w-full h-[60em] relative">
       <AICornerModule
         {...args}
-        assistant={assistant}
+        assistant={qwerty.info}
         avatars={avatars}
         questionsTitle="Vad kan jag hjälpa dig med?"
         questions={['Vad är Querty?', 'Jag har tappat bort mitt passerkort', 'Vilka dagar jobbar vi halvdag']}

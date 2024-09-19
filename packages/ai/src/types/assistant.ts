@@ -41,16 +41,13 @@ export interface GroupPublic {
   embedding_model: string;
 }
 
-type AdditionalOptions = Record<string, any>;
+export type AdditionalAssistantOptions = Record<string, any>;
 
 export interface AssistantSettings {
   user?: string;
   assistantId: string;
   hash?: string;
   app?: string;
-  stream?: boolean;
-  apiBaseUrl?: string;
-  options?: AdditionalOptions;
 }
 
 type LanguageCode = string | 'default';
@@ -67,6 +64,7 @@ export interface AssistantInfo {
   shortName?: string;
   title?: string;
   description?: AssistantDescription;
+  id?: string;
 }
 
 export interface AssistantSession {
@@ -88,4 +86,9 @@ export interface SkHeaders {
 export interface AssistantFeedback {
   value: -1 | 1;
   text: string | null;
+}
+
+export interface Assistant {
+  info: AssistantInfo;
+  settings: AssistantSettings;
 }

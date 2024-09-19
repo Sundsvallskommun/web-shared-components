@@ -3,7 +3,14 @@ import React from 'react';
 import { useAssistantStore } from '../../assistant-store';
 import { useChat } from '../../hooks';
 import { SessionStoreSession, useSessions } from '../../session-store';
-import { AIFeedAvatarMap, AssistantInfo, AssistantSession, OriginTitleMap, SessionHistory } from '../../types';
+import {
+  AIFeedAvatarMap,
+  Assistant,
+  AssistantInfo,
+  AssistantSession,
+  OriginTitleMap,
+  SessionHistory,
+} from '../../types';
 import { AIFeed } from '../ai-feed/ai-feed';
 import { AssistantPresentation } from '../assistant-presentation';
 import { Bubble } from '../bubble';
@@ -14,6 +21,7 @@ import { AICornerModuleSessions } from './ai-corner-module-sessions';
 import { AICornerModuleWrapper } from './ai-corner-module-wrapper';
 import { Link } from '@sk-web-gui/link';
 import { AssistantAvatar } from '../assistant-avatar';
+import { AICornerModuleAssistantLibrary } from './ai-corner-module-assistant-library';
 
 export interface AICornerModuleDefaultProps {
   docked?: boolean;
@@ -49,7 +57,14 @@ export interface AICornerModuleDefaultProps {
 type InfoLink = { url: string; description: string };
 export interface AICornerModuleProps extends AICornerModuleDefaultProps, React.ComponentPropsWithoutRef<'div'> {
   sessionId?: string;
+  /**
+   * Current assistant
+   */
   assistant?: AssistantInfo;
+  /**
+   * Avalable assistants
+   */
+  assistants?: Assistant[];
   questions?: string[];
   questionsTitle?: string;
   sessionHistory?: SessionHistory;
@@ -63,6 +78,7 @@ export interface AICornerModuleProps extends AICornerModuleDefaultProps, React.C
   showFeedback?: boolean;
   avatars?: AIFeedAvatarMap;
   originTitles?: OriginTitleMap;
+  onChangeAssistant?: (assistantId: string) => void;
 }
 
 export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModuleProps>((props, ref) => {
@@ -74,6 +90,7 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
     color,
     sessionId: _sessionId,
     assistant: _propsAssistant,
+    assistants,
     isMobile,
     onOpen,
     onClose,
@@ -95,18 +112,22 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
     subtitle,
     avatars,
     originTitles,
+    onChangeAssistant,
     ...rest
   } = props;
 
   const [sessionId, setSessionId] = React.useState<string>('');
   const { history: _history, session: _session, sendQuery } = useChat({ sessionId });
-  const _assistant = useAssistantStore((state) => state.info);
+  const [_assistant, _setAssistant] = useAssistantStore((state) => [state.info, state.setInfo]);
+  const [settings, setSettings] = useAssistantStore((state) => [state.settings, state.setSettings]);
+  const resetSessions = useSessions((state) => state.resetSessions);
   const assistant = _propsAssistant || _assistant;
   const session: SessionStoreSession | AssistantSession | undefined = _propsSession || _session;
   const history = _propsSession?.history || _history || [];
   const [docked, setDocked] = React.useState<boolean>(true);
   const [fullscreen, setFullscreen] = React.useState<boolean>(false);
   const [showMobileHistory, setShowMobileHistory] = React.useState<boolean>(false);
+  const [showAssistantSelector, setShowAssistantSelector] = React.useState<boolean>(false);
   const isFullscreen = fullscreen && !isMobile;
   const scrollRef = React.useRef<HTMLDivElement>(null);
 
@@ -150,6 +171,21 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
         scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
       }
     }, 10);
+  };
+
+  const handleChangeAssistant = (assistantId: string) => {
+    if (onChangeAssistant) {
+      onChangeAssistant(assistantId);
+    } else {
+      const newAssistant = assistants?.find((ass) => ass.settings.assistantId === assistantId);
+      if (newAssistant) {
+        _setAssistant(newAssistant.info);
+        setSettings(newAssistant.settings);
+        resetSessions();
+        handleNewSession();
+      }
+    }
+    setShowAssistantSelector(false);
   };
 
   const handleChangeSession = (id: string) => {
@@ -214,6 +250,7 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
   };
 
   const handleNewSession = () => {
+    setShowAssistantSelector(false);
     if (onNewSession) {
       onNewSession;
     } else {
@@ -225,6 +262,7 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
     setDocked(true);
     setFullscreen(false);
     onCloseFullScreen && onCloseFullScreen();
+    setShowAssistantSelector(false);
     onClose && onClose();
   };
 
@@ -233,6 +271,7 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
       handleOnOpen();
     }
     setFullscreen(true);
+    setShowAssistantSelector(false);
     onFullScreen && onFullScreen();
   };
 
@@ -292,10 +331,29 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
             title={title}
             subtitle={subtitle}
             avatar={avatars?.assistant}
+            assistants={assistants}
+            assistantSwitchProps={{
+              onClick: () => setShowAssistantSelector((prev) => !prev),
+              pressed: showAssistantSelector,
+              'aria-controls': 'sk-ai-corner-module-assistant-library',
+              'aria-expanded': showAssistantSelector,
+              'aria-pressed': undefined,
+              'aria-haspopup': 'menu',
+            }}
           />
           {!docked && (
             <>
               <div className="sk-ai-corner-module-feed" ref={scrollRef}>
+                {showAssistantSelector && assistants && (
+                  <AICornerModuleAssistantLibrary
+                    current={settings.assistantId}
+                    assistants={assistants}
+                    onClose={() => setShowAssistantSelector(false)}
+                    onSelectAssistant={handleChangeAssistant}
+                    autofocus
+                    id="sk-ai-corner-module-assistant-library"
+                  />
+                )}
                 {!history || history.length < 1 ? (
                   <>
                     <AssistantPresentation
@@ -347,12 +405,14 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
                   />
                 )}
               </div>
-              <InputSection
-                isMobile={isMobile}
-                shadow={!isFullscreen}
-                sessionId={session?.id}
-                onSendQuery={handleSendQuery}
-              />
+              {!showAssistantSelector && (
+                <InputSection
+                  isMobile={isMobile}
+                  shadow={!isFullscreen}
+                  sessionId={session?.id}
+                  onSendQuery={handleSendQuery}
+                />
+              )}
             </>
           )}
         </div>

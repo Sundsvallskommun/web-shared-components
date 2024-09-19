@@ -32,11 +32,11 @@ export const getSkHeaders = (options: AssistantSettings | undefined, settings: A
 export const getAssistants: (options?: AssistantSettings) => Promise<PaginatedResponseAssistantPublic> = async (
   options
 ) => {
-  const settings = useAssistantStore.getState().settings;
-  if (!settings.apiBaseUrl) {
+  const { settings, apiBaseUrl } = useAssistantStore.getState();
+  if (!apiBaseUrl) {
     throw new Error('No api url provided');
   }
-  const url = `${settings.apiBaseUrl}/assistants/`;
+  const url = `${apiBaseUrl}/assistants/`;
   const skHeaders = getSkHeaders(options, settings);
 
   return fetch(url, {
@@ -50,13 +50,13 @@ export const getAssistants: (options?: AssistantSettings) => Promise<PaginatedRe
 };
 
 export const getAssistantById = async (options?: AssistantSettings) => {
-  const settings = useAssistantStore.getState().settings;
+  const { settings, apiBaseUrl } = useAssistantStore.getState();
   const skHeaders = getSkHeaders(options, settings);
-  if (!settings.apiBaseUrl) {
+  if (!apiBaseUrl) {
     throw new Error('No api url provided');
   }
 
-  const url = `${settings.apiBaseUrl}/assistants/${skHeaders._skassistant}`;
+  const url = `${apiBaseUrl}/assistants/${skHeaders._skassistant}`;
 
   return fetch(url, {
     method: 'GET',
@@ -72,13 +72,13 @@ export const getAssistantById = async (options?: AssistantSettings) => {
 };
 
 export const getAssistantSessions = async (options?: AssistantSettings): Promise<SessionsResponse> => {
-  const settings = useAssistantStore.getState().settings;
+  const { settings, apiBaseUrl } = useAssistantStore.getState();
   const skHeaders = getSkHeaders(options, settings);
-  if (!settings.apiBaseUrl) {
+  if (!apiBaseUrl) {
     throw new Error('No api url provided');
   }
 
-  const url = `${settings.apiBaseUrl}/assistants/${skHeaders._skassistant}/sessions/`;
+  const url = `${apiBaseUrl}/assistants/${skHeaders._skassistant}/sessions/`;
   return fetch(url, {
     method: 'GET',
     headers: {
@@ -93,13 +93,13 @@ export const getAssistantSessions = async (options?: AssistantSettings): Promise
 };
 
 export const getAssistantSessionById = async (sessionId: string, options?: AssistantSettings) => {
-  const settings = useAssistantStore.getState().settings;
+  const { settings, apiBaseUrl } = useAssistantStore.getState();
   const skHeaders = getSkHeaders(options, settings);
-  if (!settings.apiBaseUrl) {
+  if (!apiBaseUrl) {
     throw new Error('No api url provided');
   }
 
-  const url = `${settings.apiBaseUrl}/assistants/${skHeaders._skassistant}/sessions/${sessionId}/`;
+  const url = `${apiBaseUrl}/assistants/${skHeaders._skassistant}/sessions/${sessionId}/`;
 
   return fetch(url, {
     method: 'GET',
@@ -115,13 +115,13 @@ export const getAssistantSessionById = async (sessionId: string, options?: Assis
 };
 
 export const batchQuery = async (query: string, sessionId?: string, options?: AssistantSettings) => {
-  const { settings } = useAssistantStore.getState();
+  const { apiBaseUrl, settings } = useAssistantStore.getState();
   const skHeaders = getSkHeaders(options, settings);
-  if (!settings.apiBaseUrl) {
+  if (!apiBaseUrl) {
     throw new Error('No api url provided');
   }
 
-  const url = `${settings.apiBaseUrl}/assistants/${skHeaders._skassistant}/sessions/${sessionId || ''}?stream=false`;
+  const url = `${apiBaseUrl}/assistants/${skHeaders._skassistant}/sessions/${sessionId || ''}?stream=false`;
   return fetch(url, {
     method: 'POST',
     body: JSON.stringify({ body: query }),
@@ -138,13 +138,13 @@ export const batchQuery = async (query: string, sessionId?: string, options?: As
 };
 
 export const giveFeedback = async (feedback: AssistantFeedback, sessionId: string, options?: AssistantSettings) => {
-  const { settings } = useAssistantStore.getState();
+  const { settings, apiBaseUrl } = useAssistantStore.getState();
   const skHeaders = getSkHeaders(options, settings);
-  if (!settings.apiBaseUrl) {
+  if (!apiBaseUrl) {
     throw new Error('No api url provided');
   }
 
-  const url = `${settings.apiBaseUrl}/assistants/${skHeaders._skassistant}/sessions/${sessionId || ''}/feedback`;
+  const url = `${apiBaseUrl}/assistants/${skHeaders._skassistant}/sessions/${sessionId || ''}/feedback`;
 
   return fetch(url, {
     method: 'POST',
@@ -162,10 +162,10 @@ export const giveFeedback = async (feedback: AssistantFeedback, sessionId: strin
 };
 
 export const mapReferencesToChatEntryReferences = (references: Reference[]): ChatEntryReference[] => {
-  return references.map((reference) => ({ title: reference.metadata.title || '', url: reference.metadata.url || '' }));
+  return references?.map((reference) => ({ title: reference.metadata.title || '', url: reference.metadata.url || '' }));
 };
 export const mapSessionMessagesToChatHistory = (messages: SessionMessage[]): ChatHistory => {
-  return messages.reduce((history: ChatHistory, message) => {
+  return messages?.reduce((history: ChatHistory, message) => {
     const question: ChatHistoryEntry = {
       id: `${message.id}-1`,
       text: message.question,

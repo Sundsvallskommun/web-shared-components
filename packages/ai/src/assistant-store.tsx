@@ -1,6 +1,6 @@
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { createWithEqualityFn } from 'zustand/traditional';
-import { AssistantInfo, AssistantPublic, AssistantSettings } from './types/assistant';
+import { AdditionalAssistantOptions, AssistantInfo, AssistantPublic, AssistantSettings } from './types/assistant';
 
 export interface AssistantStoreInterface {
   settings: AssistantSettings;
@@ -9,6 +9,12 @@ export interface AssistantStoreInterface {
   setInfo: (settings: AssistantInfo) => void;
   assistant?: AssistantPublic;
   setAssistant: (assistant: AssistantPublic) => void;
+  stream?: boolean;
+  setStream: (stream: boolean) => void;
+  options?: AdditionalAssistantOptions;
+  setOptions: (options: AdditionalAssistantOptions) => void;
+  apiBaseUrl?: string;
+  setApiBaseUrl: (apiBaseUrl: string) => void;
 }
 
 export const useAssistantStore = createWithEqualityFn(
@@ -16,18 +22,18 @@ export const useAssistantStore = createWithEqualityFn(
     (set) => {
       return {
         settings: { assistantId: '' },
-        setSettings: (settings) =>
-          set(() => ({
-            settings: {
-              ...settings,
-              stream:
-                typeof settings.stream === 'boolean' ? settings.stream : settings.stream === 'true' ? true : false,
-            },
-          })),
+        setSettings: (settings) => set(() => ({ settings })),
         info: undefined,
         setInfo: (info) => set(() => ({ info })),
         assistant: undefined,
         setAssistant: (assistant) => set(() => ({ assistant })),
+        stream: false,
+        setStream: (stream) =>
+          set(() => ({ stream: typeof stream === 'boolean' ? stream : stream === 'true' ? true : false })),
+        options: undefined,
+        setOptions: (options) => set(() => ({ options })),
+        apiBaseUrl: undefined,
+        setApiBaseUrl: (apiBaseUrl) => set(() => ({ apiBaseUrl })),
       };
     },
     { name: `sk-ai-assistant`, storage: createJSONStorage(() => sessionStorage) }

@@ -12,6 +12,8 @@ const MAX_REFERENCE_COUNT = 3;
 interface useChatOptions {
   settings?: AssistantSettings;
   sessionId?: string;
+  apiBaseUrl?: string;
+  stream?: boolean;
 }
 
 export const useChat = (options?: useChatOptions) => {
@@ -19,11 +21,16 @@ export const useChat = (options?: useChatOptions) => {
   const _incomingSettings = React.useMemo(() => options?.settings, [options?.settings]);
 
   const [currentSession, setCurrentSession] = React.useState<string>(sessionId || '');
-  const _settings = useAssistantStore((state) => state.settings);
+  const [_settings, _stream, _apiBaseUrl] = useAssistantStore((state) => [
+    state.settings,
+    state.stream,
+    state.apiBaseUrl,
+  ]);
   const settings = _incomingSettings || _settings;
-  const { assistantId, user: _user, hash, apiBaseUrl, app, stream: _stream } = settings;
+  const { assistantId, user: _user, hash, app } = settings;
   const user = _user || '';
-  const stream = _stream === undefined ? true : _stream;
+  const stream = (options?.stream || _stream) ?? true;
+  const apiBaseUrl = options?.apiBaseUrl || _apiBaseUrl;
 
   const [session, getSession, newSession, updateHistory, updateSession, setDone, changeSessionId] = useSessions(
     (state) => [

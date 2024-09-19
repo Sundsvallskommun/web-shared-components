@@ -14,9 +14,9 @@ const azureLogin = (baseUrl?: string) => {
 export const getAzureToken = async (baseUrl?: string): Promise<AzureToken> => {
   const cookie = new Cookie();
   const speechToken = cookie.get('speech-token');
-  const settings = useAssistantStore.getState().settings;
+  const _apiBaseUrl = useAssistantStore.getState().apiBaseUrl;
 
-  const apiBaseUrl = baseUrl || settings.apiBaseUrl;
+  const apiBaseUrl = baseUrl || _apiBaseUrl;
 
   if (speechToken === undefined) {
     try {

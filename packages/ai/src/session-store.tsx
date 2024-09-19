@@ -70,6 +70,10 @@ export interface SessionStore {
    */
   getSession: (id: string) => Promise<SessionStoreSession | undefined>;
   /**
+   * Remove all sessions
+   */
+  resetSessions: () => void;
+  /**
    * Load sessions from server.
    */
   refreshSessions: () => void;
@@ -136,13 +140,18 @@ export const createSessionStore = (assistantId: string) => {
             }
             return undefined;
           },
+          resetSessions: () => set(() => ({ sessions: {} })),
 
           refreshSessions: async () => {
-            const newSessions = await getAssistantSessions();
-            if (newSessions) {
-              return set((state) => ({
-                sessions: { ...mapSessionsResponseToStoreData(newSessions), ...state.sessions },
-              }));
+            try {
+              const newSessions = await getAssistantSessions();
+              if (newSessions) {
+                return set((state) => ({
+                  sessions: { ...mapSessionsResponseToStoreData(newSessions), ...state.sessions },
+                }));
+              }
+            } catch {
+              return;
             }
           },
 
