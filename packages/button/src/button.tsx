@@ -59,15 +59,16 @@ export const ButtonContent: React.FC<ButtonContentProps> = (props: ButtonContent
   const { size = 'md', loading, loadingText, leftIcon, rightIcon, children } = props;
   return (
     <>
-      {leftIcon && !loading ? <span className="btn-has-icon-left">{leftIcon}</span> : null}
+      {leftIcon && !loading ? <span className="sk-btn-has-icon-left">{leftIcon}</span> : null}
       {loading && (
         <Spinner
           size={size === 'sm' ? 1.6 : size === 'md' ? 1.8 : 2}
-          className={cx(loadingText ? 'relative' : 'absolute', loadingText ? `mr-2` : 'mr-0')}
+          className="sk-btn-loading-spinner"
+          data-hastext={!!loadingText}
         />
       )}
-      {loading ? loadingText || <span className="opacity-0">{children}</span> : children}
-      {rightIcon && !loading ? <span className="btn-has-icon-right">{rightIcon}</span> : null}
+      {loading ? loadingText || <span className="sk-btn-loading-text">{children}</span> : children}
+      {rightIcon && !loading ? <span className="sk-btn-has-icon-right">{rightIcon}</span> : null}
     </>
   );
 };
