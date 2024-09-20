@@ -102,7 +102,7 @@ export const PopupMenuItem: React.FC<PopupMenuItemProps> = (props) => {
         children: grandchildren,
       });
 
-      return <div className="relative">{popupmenu}</div>;
+      return <div className="sk-popup-menu-item-submenu-wrapper">{popupmenu}</div>;
     }
     return mapItem(children, !closeOnClick);
   }, [children, active]);

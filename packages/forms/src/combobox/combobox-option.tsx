@@ -101,7 +101,7 @@ export const ComboboxOption = React.forwardRef<HTMLInputElement, ComboboxOptionP
         context.activeId === id ? 'active' : ''
       )}
     >
-      <Icon name="check" aria-hidden className={cx(checked ? 'opacity-1' : 'opacity-0')} />
+      <Icon name="check" aria-hidden data-checked={checked} className="sk-form-combobox-list-option-tick" />
       {children}
       <input
         tabIndex={-1}

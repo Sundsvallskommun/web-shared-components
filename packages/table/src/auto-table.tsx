@@ -191,7 +191,11 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
 
         const value = getValue(item, header);
 
-        let element = <div className={`w-full text-${position}`}>{value}</div>;
+        let element = (
+          <div className={'sk-table-auto-cell'} data-textalign={position}>
+            {value}
+          </div>
+        );
         if (typeof header !== 'string' && header.renderColumn) {
           element = header.renderColumn(value, item);
         }
@@ -223,8 +227,8 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
             getValue(a, autoHeaders[colIndex]).toLowerCase() > getValue(b, autoHeaders[colIndex]).toLowerCase()
               ? 1 * mode
               : getValue(a, autoHeaders[colIndex]).toLowerCase() < getValue(b, autoHeaders[colIndex]).toLowerCase()
-              ? -1 * mode
-              : 0
+                ? -1 * mode
+                : 0
           );
           break;
         default:
@@ -232,8 +236,8 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
             getValue(a, autoHeaders[colIndex]) > getValue(b, autoHeaders[colIndex])
               ? 1 * mode
               : getValue(a, autoHeaders[colIndex]) < getValue(b, autoHeaders[colIndex])
-              ? -1 * mode
-              : 0
+                ? -1 * mode
+                : 0
           );
           break;
       }
@@ -307,7 +311,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
   return (
     <>
       {captionTitle && (
-        <caption className={cx('text-left', captionClassName)} aria-hidden={true}>
+        <caption className={cx('sk-table-caption', captionClassName)} aria-hidden={true}>
           {captionShowPages ? (
             <>
               {captionTitle}, sida {currentPage} av {pages}.
@@ -332,7 +336,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
           summary={summary ? summary : undefined}
         >
           {captionTitle && (
-            <caption className="sr-only">
+            <caption className="sk-table-caption-sr">
               {captionShowPages ? (
                 <>
                   {captionTitle}, sida {currentPage} av {pages}.
@@ -370,11 +374,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
                       <span>{h.element}</span>
                     </TableSortButton>
                   ) : (
-                    <span
-                      ref={ref}
-                      {...rest}
-                      className={cx('sk-table-sortbutton', `${h.screenReaderOnly ? `sr-only` : ``}`)}
-                    >
+                    <span ref={ref} {...rest} className="sk-table-sortbutton" data-sronly={h.screenReaderOnly}>
                       {h.element}
                     </span>
                   )}
@@ -437,7 +437,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
                   type="number"
                   min={1}
                   max={100}
-                  className="max-w-[6rem]"
+                  className="sk-table-bottom-section-pagesize"
                   value={`${_pageSize}`}
                   onChange={(event: React.ChangeEvent<HTMLInputElement>) => setPageSize(parseInt(event.target.value))}
                 />

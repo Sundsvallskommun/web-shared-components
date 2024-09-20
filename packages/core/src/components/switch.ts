@@ -24,6 +24,10 @@ export const Switch = () => ({
       '@apply ring ring-blue-500': {},
     },
 
+    '&-input': {
+      '@apply sr-only': {},
+    },
+
     // Checked
     'input[type=checkbox]:checked + &': {
       [`&[data-color="gronsta"]`]: {

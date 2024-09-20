@@ -225,6 +225,17 @@ export const Button = (colors: string[]) => ({
         {},
     },
 
+    '&-loading': {
+      '&-spinner': {
+        '@apply absolute mr-0': {},
+        '&[data-hastext="true"]': {
+          '@apply relative mr-2': {},
+        },
+      },
+      '&-text': {
+        '@apply opacity-0': {},
+      },
+    },
     // variants
     ...buttonPrimary(colors),
     ...buttonSecondary(),
@@ -235,7 +246,7 @@ export const Button = (colors: string[]) => ({
     '&[data-background="false"]:not(:hover)': {
       '@apply bg-transparent': {},
     },
-    '.btn-has-icon': {
+    '.sk-btn-has-icon': {
       '&-left': {
         '@apply h-full flex items-center justify-center -ml-2': {},
         '.sk-icon': {
@@ -251,10 +262,10 @@ export const Button = (colors: string[]) => ({
         },
       },
     },
-    '&-lg .btn-has-icon-left': {
+    '&-lg .sk-btn-has-icon-left': {
       '@apply -ml-4': {},
     },
-    '&-lg .btn-has-icon-right': {
+    '&-lg .sk-btn-has-icon-right': {
       '@apply -mr-4': {},
     },
     '&[data-icon=true]': {
@@ -291,7 +302,7 @@ export const Button = (colors: string[]) => ({
           '@apply h-24 w-24': {},
         },
       },
-      '.btn-has-icon': {
+      '.sk-btn-has-icon': {
         '&-left': {
           '@apply m-0': {},
         },

@@ -81,12 +81,12 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>((pr
         {...omit(rest, ['invalid'])}
       />
       {maxLengthWarning && (
-        <p className="sr-only" aria-live="assertive" role="alert">
+        <p className="sk-form-input-textarea-warning" aria-live="assertive" role="alert">
           {maxLengthWarningText}
         </p>
       )}
       {showCount && (
-        <div className="form-textarea-counter">
+        <div className="sk-form-textarea-counter">
           {charCount}/{maxLength}
         </div>
       )}

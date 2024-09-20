@@ -117,6 +117,7 @@ export const Radio = () => ({
       },
       '&[data-disabled="true"]': {
         '@apply text-dark-disabled': {},
+        '@apply cursor-default': {},
       },
     },
     '&-group': {

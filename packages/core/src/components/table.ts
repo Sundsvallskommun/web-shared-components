@@ -33,6 +33,28 @@ export const Table = () => ({
     '@apply w-full text-left table-auto': {},
     '@apply text-dark-secondary': {},
 
+    '&-caption': {
+      '@apply text-left': {},
+      '@apply w-full': {},
+      ...['left', 'center', 'right'].reduce(
+        (classes, position) => ({
+          ...classes,
+          [`&[data-textalign="${position}"]`]: {
+            [`@apply text-${position}`]: {},
+          },
+        }),
+        {}
+      ),
+      '&-sr': {
+        '@apply sr-only': {},
+      },
+    },
+    '&-auto': {
+      '&-cell': {
+        '@apply w-full': {},
+      },
+    },
+
     '&-thead': {
       '@apply border-b-1 border-dark-primary': {},
       '&[data-stickyheader="true"]': {
@@ -91,6 +113,9 @@ export const Table = () => ({
       '@apply rounded-utility': {},
       '@apply pr-16': {},
       '@apply h-40': {},
+      '&[data-sronly="true"]': {
+        '@apply sr-only': {},
+      },
 
       '&-icon': {
         '@apply inline-flex pl-sm': {},
@@ -232,6 +257,9 @@ export const Table = () => ({
           '@apply font-normal': {},
           '@apply text-small': {},
           '@apply shrink-0': {},
+        },
+        '&-pagesize': {
+          '@apply max-w-60': {},
         },
       },
       '&-pagination': {

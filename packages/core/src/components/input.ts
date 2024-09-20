@@ -222,6 +222,9 @@ export const Input = () => ({
     },
     '&&-textarea': {
       '@apply h-auto': {},
+      '&-warning': {
+        '@apply sr-only': {},
+      },
     },
 
     //Focus

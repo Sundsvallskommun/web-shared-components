@@ -132,9 +132,7 @@ export const ConfirmationDialogContextProvider: React.FC<ConfirmationDialogConte
           aria-label={`${getIconLabel()} ${content.title} ${content.message}`}
           show={show}
           label={
-            <span
-              className={cx(`text-${content.dialogType || 'dark-primary'}`, 'flex items-center justify-start gap-4')}
-            >
+            <span className="sk-dialog-confirm-label" data-color={content.dialogType}>
               {switchIcon(content.icon || '')} {getIconLabel()}
             </span>
           }
@@ -143,7 +141,7 @@ export const ConfirmationDialogContextProvider: React.FC<ConfirmationDialogConte
           onClose={handleDismiss}
         >
           <Dialog.Content>
-            <h1 className={cx('text-h3')}>{content.title}</h1>
+            <h1 className="sk-dialog-confirm-heading">{content.title}</h1>
             <p>{content.message}</p>
           </Dialog.Content>
           <Dialog.Buttons>

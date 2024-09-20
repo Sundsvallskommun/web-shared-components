@@ -81,6 +81,12 @@ export const ComboBox = () => ({
         '&-checkbox': {
           '@apply w-0 h-0 m-0 p-0 opacity-0': {},
         },
+        '&-tick': {
+          '@apply opacity-0': {},
+          '&[data-checked="true"]': {
+            '@apply opacity-100': {},
+          },
+        },
       },
     },
   },

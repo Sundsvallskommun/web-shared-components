@@ -47,7 +47,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>((props, re
         onChange={onChange}
         checked={checked}
         disabled={disabled}
-        className="sr-only"
+        className="sk-form-switch-input"
         aria-describedby={
           (hasErrorText && errorId) || (hasHelpText && helpTextId)
             ? `${hasErrorText ? errorId : ''} ${hasHelpText ? helpTextId : ''}`
