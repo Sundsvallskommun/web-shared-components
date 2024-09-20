@@ -74,7 +74,7 @@ export const InternalRadioButton = React.forwardRef<HTMLInputElement, RadioButto
   const radioLabelClasses = useRadioButtonLabelClass({ size });
 
   return (
-    <label className={cx(disabled && 'cursor-not-allowed', radioLabelClasses, className)} data-disabled={disabled}>
+    <label className={cx(radioLabelClasses, className)} data-disabled={disabled}>
       <input
         type="radio"
         aria-label={ariaLabel}
