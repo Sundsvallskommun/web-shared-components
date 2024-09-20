@@ -14,6 +14,10 @@ export const Modal = () => ({
       '@apply fixed inset-0': {},
     },
 
+    '&-trixter': {
+      '@apply inline-block h-screen align-middle': {},
+    },
+
     '&-dialog': {
       '@apply text-dark-secondary': {},
       '@apply inline-flex flex-col': {},

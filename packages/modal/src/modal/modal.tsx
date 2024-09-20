@@ -87,7 +87,7 @@ export const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentPro
             </Transition.Child>
 
             {/* This element is to trick the browser into centering the modal contents. */}
-            <span className="inline-block h-screen align-middle" aria-hidden="true">
+            <span className="sk-modal-trixter" aria-hidden="true">
               &#8203;
             </span>
             <Transition.Child
