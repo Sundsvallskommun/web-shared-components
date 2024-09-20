@@ -171,7 +171,9 @@ export const CookieConsent: React.FC<CookieConsentProps> = ({
                 {isHandlingOptions && (
                   <>
                     <fieldset className="sk-cookie-consent-custom-wrapper">
-                      <legend className="text-label font-bold">Välj vilka kakor vi får använda</legend>
+                      <legend className="sk-cookie-consent-custom-wrapper-legend">
+                        Välj vilka kakor vi får använda
+                      </legend>
                       {checkableCookies.map((cookie, index) => (
                         <div key={cookie.cookieName}>
                           <Checkbox

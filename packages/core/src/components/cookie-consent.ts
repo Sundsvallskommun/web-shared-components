@@ -32,6 +32,9 @@ export const CookieConsent = () => ({
     },
     '&-custom-wrapper': {
       '@apply flex flex-col gap-24': {},
+      '&-legend': {
+        '@apply text-label-medium': {},
+      },
     },
 
     '&-description': {
