@@ -79,7 +79,7 @@ export const components: ComponentWithDeps[] = [
   { comp: Dot },
   { comp: Filter, deps: [Badge, Forms] },
   { comp: Footer, deps: [Divider, Link, Logo] },
-  { comp: Forms, deps: [Icon, Checkbox, ComboBox, Select, Input, Radio, Switch] },
+  { comp: Forms, deps: [Icon, Checkbox, ComboBox, Select, Input, Radio, Switch, PopupMenu] },
   { comp: Header, deps: [Divider, Link, Logo] },
   { comp: Input },
   { comp: Label },

@@ -37,6 +37,8 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
   const [searchValue, setSearchValue] = React.useState<string>('');
   const [active, setActive] = React.useState<number>(-1);
   const [total, setTotal] = React.useState<number>(0);
+  const [ids, setIds] = React.useState<string[]>([]);
+  const activeId = ids[active];
 
   const internalRef = React.useRef<HTMLInputElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -168,6 +170,8 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
     setSearchValue,
     active,
     setActive,
+    activeId,
+    setIds,
     total,
     setTotal,
     next,

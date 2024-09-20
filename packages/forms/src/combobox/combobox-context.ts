@@ -55,6 +55,8 @@ export interface UseComboboxProps {
 interface UseComboboxData extends UseComboboxProps {
   active: number;
   setActive: React.Dispatch<React.SetStateAction<number>>;
+  activeId?: string;
+  setIds?: (ids: string[]) => void;
   total: number;
   next: () => void;
   prev: () => void;

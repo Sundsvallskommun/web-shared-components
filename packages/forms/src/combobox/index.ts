@@ -1,6 +1,7 @@
 import { ComboboxBase, ComboboxBaseProps } from './combobox';
 import { ComboboxInput } from './combobox-input';
 import { ComboboxList } from './combobox-list';
+import { ComboboxOptgroup } from './combobox-optgroup';
 import { ComboboxOption } from './combobox-option';
 
 interface ComboboxProps extends React.ForwardRefExoticComponent<ComboboxBaseProps> {
@@ -8,6 +9,7 @@ interface ComboboxProps extends React.ForwardRefExoticComponent<ComboboxBaseProp
   Input: typeof ComboboxInput;
   List: typeof ComboboxList;
   Option: typeof ComboboxOption;
+  Optgroup: typeof ComboboxOptgroup;
 }
 
 const Combobox = {
@@ -16,6 +18,7 @@ const Combobox = {
   Input: ComboboxInput,
   List: ComboboxList,
   Option: ComboboxOption,
+  Optgroup: ComboboxOptgroup,
 } as ComboboxProps;
 
 export { Combobox };
