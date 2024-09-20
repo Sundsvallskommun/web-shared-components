@@ -89,6 +89,11 @@ export const PopupMenu = () => ({
       '@apply border-0': {},
       '@apply items-center': {},
       '@apply no-underline': {},
+      '&-submenu': {
+        '&-wrapper': {
+          '@apply relative': {},
+        },
+      },
     },
 
     '&-group': {
