@@ -19,6 +19,16 @@ export const ProgressStepper = () => ({
           '@apply w-full grow shrink mt-19': {},
         },
       },
+      '&:first-of-type': {
+        '.sk-divider:first-of-type': {
+          '@apply invisible': {},
+        },
+      },
+      '&:last-of-type': {
+        '.sk-divider:last-of-type': {
+          '@apply invisible': {},
+        },
+      },
       '&-box': {
         '@apply box-border': {},
         '@apply shrink-0': {},

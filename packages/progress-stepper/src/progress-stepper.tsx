@@ -24,8 +24,6 @@ export const ProgressStepper = React.forwardRef<HTMLDivElement, ProgressStepperP
             number={index + 1}
             current={index === current}
             done={index < current}
-            last={index === last}
-            first={index === 0}
             rounded={rounded}
             size={size}
           />
