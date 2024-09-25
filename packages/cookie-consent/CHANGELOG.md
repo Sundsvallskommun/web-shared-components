@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.11](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/cookie-consent@2.0.10...@sk-web-gui/cookie-consent@2.0.11) (2024-09-25)
+
+### Bug Fixes
+
+- **cookie-consent:** moved styling to core ([f1f30ef](https://github.com/Sundsvallskommun/web-shared-components/commit/f1f30ef30780b12375a7bf5aba2d332859c1f57b))
+
 ## [2.0.10](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/cookie-consent@2.0.9...@sk-web-gui/cookie-consent@2.0.10) (2024-09-05)
 
 **Note:** Version bump only for package @sk-web-gui/cookie-consent

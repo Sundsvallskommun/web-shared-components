@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.5](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/modal@2.1.4...@sk-web-gui/modal@2.1.5) (2024-09-25)
+
+### Bug Fixes
+
+- **confirm-dialog:** moved styling to core ([268551c](https://github.com/Sundsvallskommun/web-shared-components/commit/268551c4d2ee69623d334ebd515c9b112e620b4f))
+- **modal:** moved styling to core ([ce66c9a](https://github.com/Sundsvallskommun/web-shared-components/commit/ce66c9a428628976e16ba3898e87ac518394e67f))
+
 ## [2.1.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/modal@2.1.3...@sk-web-gui/modal@2.1.4) (2024-09-05)
 
 ### Bug Fixes

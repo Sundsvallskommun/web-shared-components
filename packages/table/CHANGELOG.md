@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.7](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@3.1.6...@sk-web-gui/table@3.1.7) (2024-09-25)
+
+### Bug Fixes
+
+- **table:** moved styling to core ([327a157](https://github.com/Sundsvallskommun/web-shared-components/commit/327a1577822be125bbada9484010f3d5cfb0a0c0))
+
 ## [3.1.6](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@3.1.5...@sk-web-gui/table@3.1.6) (2024-09-05)
 
 **Note:** Version bump only for package @sk-web-gui/table

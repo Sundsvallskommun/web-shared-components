@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.7.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.6.0...@sk-web-gui/core@3.7.0) (2024-09-25)
+
+### Bug Fixes
+
+- **ai:** added inverted to assistant switch ([26ccc89](https://github.com/Sundsvallskommun/web-shared-components/commit/26ccc89d050aad6884c20273bd0ab119285e0e09))
+- **ai:** added text left ([1fc9f43](https://github.com/Sundsvallskommun/web-shared-components/commit/1fc9f43f330321734ddc9d7c92fe96c5824a9bb4))
+- **ai:** max height on corner module ([b0da4cf](https://github.com/Sundsvallskommun/web-shared-components/commit/b0da4cfb4b75500a4fff8f5e7a660b6b23606e48))
+- **ai:** size of typing sequence ([9e18b22](https://github.com/Sundsvallskommun/web-shared-components/commit/9e18b22f339a860e1495194ffd4a421776b934ae))
+- **ai:** styling for assistant library ([d815fa4](https://github.com/Sundsvallskommun/web-shared-components/commit/d815fa419a2988d7f877059593bc486fa485dd14))
+- **button:** moved styling to core ([d1a0fab](https://github.com/Sundsvallskommun/web-shared-components/commit/d1a0fab34a6be753babd3a416b8e38df6b99936a))
+- **confirm-dialog:** moved styling to core ([268551c](https://github.com/Sundsvallskommun/web-shared-components/commit/268551c4d2ee69623d334ebd515c9b112e620b4f))
+- **cookie-consent:** moved styling to core ([f1f30ef](https://github.com/Sundsvallskommun/web-shared-components/commit/f1f30ef30780b12375a7bf5aba2d332859c1f57b))
+- **forms:** moved styling to core ([92cbec1](https://github.com/Sundsvallskommun/web-shared-components/commit/92cbec1c7d88e0316ba2bd223e30740fbb9dcf72))
+- **forms:** styling for combobox.optgroup ([87acde2](https://github.com/Sundsvallskommun/web-shared-components/commit/87acde2e438f046ac8470283fc97af924e1df9af))
+- **modal:** moved styling to core ([ce66c9a](https://github.com/Sundsvallskommun/web-shared-components/commit/ce66c9a428628976e16ba3898e87ac518394e67f))
+- **popup-menu:** moved styling to core ([bafbe3f](https://github.com/Sundsvallskommun/web-shared-components/commit/bafbe3f804ab58771c3a2389c05842d12b2d050a))
+- **progress-stepper:** moved styling to core ([347f685](https://github.com/Sundsvallskommun/web-shared-components/commit/347f68523a8fdb40cb44bc76cf992243956b4152))
+- **searchfield:** suggestionlist did not get full width ([3c5b7d5](https://github.com/Sundsvallskommun/web-shared-components/commit/3c5b7d5399d6d6f6bb3a03371bd30fce5e136ac9))
+- **table:** moved styling to core ([327a157](https://github.com/Sundsvallskommun/web-shared-components/commit/327a1577822be125bbada9484010f3d5cfb0a0c0))
+
+### Features
+
+- **ai:** new component - assistant switch ([8f466c4](https://github.com/Sundsvallskommun/web-shared-components/commit/8f466c4d41ffe1b563c3d346d9c37b177947c358))
+
 # [3.6.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.5.0...@sk-web-gui/core@3.6.0) (2024-09-05)
 
 ### Bug Fixes

@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/logo",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -37,7 +37,7 @@
     "react": "^18.2.0"
   },
   "dependencies": {
-    "@sk-web-gui/divider": "1.0.10",
+    "@sk-web-gui/divider": "1.0.11",
     "@sk-web-gui/utils": "2.0.1"
   },
   "peerDependencies": {

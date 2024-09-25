@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@2.3.0...@sk-web-gui/theme@2.3.1) (2024-09-25)
+
+### Bug Fixes
+
+- updated placeholder color ([59f0f96](https://github.com/Sundsvallskommun/web-shared-components/commit/59f0f96204e184c130d3835a8249efcf146741c2))
+
 # [2.3.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@2.2.0...@sk-web-gui/theme@2.3.0) (2024-08-22)
 
 ### Features

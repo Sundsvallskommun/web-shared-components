@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.0.4...@sk-web-gui/forms@2.1.0) (2024-09-25)
+
+### Bug Fixes
+
+- added optgroup ([5c988ed](https://github.com/Sundsvallskommun/web-shared-components/commit/5c988edfabec159f71431bfd66f7c232e70999dc))
+- **forms:** moved styling to core ([92cbec1](https://github.com/Sundsvallskommun/web-shared-components/commit/92cbec1c7d88e0316ba2bd223e30740fbb9dcf72))
+
+### Features
+
+- **combobox:** Optgroup ([da5df12](https://github.com/Sundsvallskommun/web-shared-components/commit/da5df12df5d139c2077e8a0e81c602332dcf008d))
+- input props in context ([2dda468](https://github.com/Sundsvallskommun/web-shared-components/commit/2dda4688d432dd17151918485f9dbfab68b9cbde))
+
 ## [2.0.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.0.3...@sk-web-gui/forms@2.0.4) (2024-08-22)
 
 **Note:** Version bump only for package @sk-web-gui/forms

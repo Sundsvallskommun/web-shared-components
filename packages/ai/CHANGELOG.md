@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.8.0...@sk-web-gui/ai@0.9.0) (2024-09-25)
+
+### Bug Fixes
+
+- **ai:** added inverted to assistant switch ([26ccc89](https://github.com/Sundsvallskommun/web-shared-components/commit/26ccc89d050aad6884c20273bd0ab119285e0e09))
+- moved assistantAvatar to own component ([777690d](https://github.com/Sundsvallskommun/web-shared-components/commit/777690db809fb8354af695af0920a1859212e630))
+
+### Features
+
+- **ai:** new component - assistant switch ([8f466c4](https://github.com/Sundsvallskommun/web-shared-components/commit/8f466c4d41ffe1b563c3d346d9c37b177947c358))
+- **corner-module:** Assistant library ([4de2be6](https://github.com/Sundsvallskommun/web-shared-components/commit/4de2be67d734955c0d7dac19b3ef04b578c0bbf3))
+
+### BREAKING CHANGES
+
+- **corner-module:** Stream and apiBaseUrl is no longer a part of the assistant settings, but will be found in the root of the store.
+
 # [0.8.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.7.3...@sk-web-gui/ai@0.8.0) (2024-09-05)
 
 ### Bug Fixes

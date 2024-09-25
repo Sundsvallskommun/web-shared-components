@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.9](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/popup-menu@3.0.8...@sk-web-gui/popup-menu@3.0.9) (2024-09-25)
+
+### Bug Fixes
+
+- **popup-menu:** moved styling to core ([bafbe3f](https://github.com/Sundsvallskommun/web-shared-components/commit/bafbe3f804ab58771c3a2389c05842d12b2d050a))
+
 ## [3.0.8](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/popup-menu@3.0.7...@sk-web-gui/popup-menu@3.0.8) (2024-09-05)
 
 **Note:** Version bump only for package @sk-web-gui/popup-menu
