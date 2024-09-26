@@ -8,13 +8,17 @@ export interface BubbleProps extends React.ComponentPropsWithoutRef<'button'> {
    * @default vattjom
    */
   color?: string;
+  /**
+   * @default false
+   */
+  inverted?: boolean;
 }
 
 export const Bubble = React.forwardRef<HTMLButtonElement, BubbleProps>((props, ref) => {
-  const { className, children, color = 'vattjom', ...rest } = props;
+  const { className, children, color = 'vattjom', inverted, ...rest } = props;
 
   return (
-    <button ref={ref} className={cx('sk-ai-bubble', className)} data-color={color} {...rest}>
+    <button ref={ref} className={cx('sk-ai-bubble', className)} data-inverted={inverted} data-color={color} {...rest}>
       {children}
       <Icon icon={<ArrowRight />} size={18} />
       <span className="sk-ai-bubble-tail" />
