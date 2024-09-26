@@ -40,7 +40,8 @@
     "@sk-web-gui/button": "2.0.9",
     "@sk-web-gui/divider": "1.0.11",
     "@sk-web-gui/icon": "2.0.1",
-    "@sk-web-gui/utils": "2.0.1"
+    "@sk-web-gui/utils": "2.0.1",
+    "lucide-react": "^0.372.0"
   },
   "peerDependencies": {
     "react": ">=18.2.0"

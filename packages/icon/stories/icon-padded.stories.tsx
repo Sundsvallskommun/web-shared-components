@@ -1,15 +1,17 @@
 import { Meta } from '@storybook/react';
-import { Icon, IconProps } from '../src';
+import { IconProps } from '../src/icon';
+import { Check } from 'lucide-react';
+import IconPadded from '../src/icon-padded';
 
 export default {
   title: 'Komponenter/Icon/Icon.Padded',
-  component: Icon.Padded,
+  component: IconPadded,
   tags: ['autodocs'],
   args: {
-    name: 'check',
+    icon: <Check />,
   },
-} as Meta<typeof Icon.Padded>;
+} as Meta<typeof IconPadded>;
 
-export const Template = (props: React.ComponentProps<typeof Icon.Padded>) => <Icon.Padded {...props} />;
+export const Template = (props: IconProps) => <IconPadded {...props} />;
 
 Template.storyName = 'IconPadded';

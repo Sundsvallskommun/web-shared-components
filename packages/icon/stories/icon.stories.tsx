@@ -1,13 +1,13 @@
-import React from 'react';
-import { Icon, IconProps } from '../src/icon';
 import { Meta } from '@storybook/react';
+import { Check } from 'lucide-react';
+import { Icon, IconProps } from '../src/icon';
 
 export default {
-  title: 'Komponenter/Icon',
+  title: 'Komponenter/Icon/Icon',
   component: Icon,
   tags: ['autodocs'],
   args: {
-    name: 'check',
+    icon: <Check />,
   },
 } as Meta<typeof Icon>;
 

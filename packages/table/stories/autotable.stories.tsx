@@ -1,9 +1,7 @@
-import { Meta } from '@storybook/react';
-import React from 'react';
-import { AutoTableHeader } from '../src/auto-table';
 import { Button } from '@sk-web-gui/button';
-import { Icon } from '@sk-web-gui/icon';
-import { AutoTable, AutoTableProps } from '../src/auto-table';
+import Icon from '@sk-web-gui/icon';
+import { Meta } from '@storybook/react';
+import { AutoTable, AutoTableHeader, AutoTableProps } from '../src/auto-table';
 
 export default {
   title: 'Komponenter/Table/AutoTable',

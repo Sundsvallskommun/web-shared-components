@@ -3,6 +3,7 @@ import React from 'react';
 import { AICornerModuleDefaultProps } from './ai-corner-module';
 import { AICornerModuleHeaderProps } from './ai-corner-module-header';
 import { AICornerModuleHeaderMenuItem } from './ai-corner-module-header-menu-item';
+import { Pencil, ArrowDownRight, ArrowUpLeft, History, ChevronsDown, ChevronsUp } from 'lucide-react';
 
 export interface AICornerModuleHeaderMenuProps
   extends Omit<AICornerModuleDefaultProps, 'title' | 'subtitle'>,
@@ -143,7 +144,7 @@ export const AICornerModuleHeaderMenu = React.forwardRef<HTMLUListElement, AICor
           <>
             {!docked && !fullscreen && (
               <AICornerModuleHeaderMenuItem
-                icon="pencil"
+                icon={<Pencil />}
                 tabIndex={0}
                 onKeyDown={handleKeyboardNavigation}
                 label="Ny fråga"
@@ -153,7 +154,7 @@ export const AICornerModuleHeaderMenu = React.forwardRef<HTMLUListElement, AICor
             )}
             {!disableFullscreen && !docked && !isMobile && (
               <AICornerModuleHeaderMenuItem
-                icon={fullscreen ? 'arrow-down-right' : 'arrow-up-left'}
+                icon={fullscreen ? <ArrowDownRight /> : <ArrowUpLeft />}
                 tabIndex={!isMobile && fullscreen ? 0 : -1}
                 onKeyDown={handleKeyboardNavigation}
                 label={`${fullscreen ? 'Stäng' : 'Öppna'} fullskärmsläge`}
@@ -163,7 +164,7 @@ export const AICornerModuleHeaderMenu = React.forwardRef<HTMLUListElement, AICor
             )}
             {!docked && isMobile && showSessionHistory && (
               <AICornerModuleHeaderMenuItem
-                icon="history"
+                icon={<History />}
                 tabIndex={-1}
                 onKeyDown={handleKeyboardNavigation}
                 label="Tidigare frågor"
@@ -177,7 +178,7 @@ export const AICornerModuleHeaderMenu = React.forwardRef<HTMLUListElement, AICor
               />
             )}
             <AICornerModuleHeaderMenuItem
-              icon={docked ? 'chevrons-up' : 'chevrons-down'}
+              icon={docked ? <ChevronsUp /> : <ChevronsDown />}
               tabIndex={docked ? 0 : -1}
               onKeyDown={handleKeyboardNavigation}
               label={docked ? 'Öppna assistent' : 'Minimera'}

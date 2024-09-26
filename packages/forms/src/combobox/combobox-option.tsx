@@ -2,6 +2,7 @@ import { Icon } from '@sk-web-gui/icon';
 import { DefaultProps, cx, useForkRef } from '@sk-web-gui/utils';
 import React from 'react';
 import { useCombobox } from './combobox-context';
+import { Check } from 'lucide-react';
 
 export interface ComboboxOptionProps extends DefaultProps, Omit<React.ComponentPropsWithRef<'input'>, 'onClick'> {
   value: string;
@@ -101,7 +102,7 @@ export const ComboboxOption = React.forwardRef<HTMLInputElement, ComboboxOptionP
         context.activeId === id ? 'active' : ''
       )}
     >
-      <Icon name="check" aria-hidden data-checked={checked} className="sk-form-combobox-list-option-tick" />
+      <Icon icon={<Check />} aria-hidden data-checked={checked} className="sk-form-combobox-list-option-tick" />
       {children}
       <input
         tabIndex={-1}

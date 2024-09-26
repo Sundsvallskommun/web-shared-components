@@ -1,7 +1,7 @@
 import { Meta } from '@storybook/react';
 import React from 'react';
 import { Table, TableProps } from '../src';
-import { Icon } from '@sk-web-gui/icon';
+import Icon from '@sk-web-gui/icon';
 import { Button } from '@sk-web-gui/button';
 import { SortMode } from '../src/auto-table';
 import { Input, Select } from '@sk-web-gui/forms';

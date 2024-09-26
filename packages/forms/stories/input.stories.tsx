@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input, InputProps } from '../src';
 import { Meta } from '@storybook/react';
-import { Icon } from '@sk-web-gui/icon';
+import Icon from '@sk-web-gui/icon';
 
 export default {
   title: 'Komponenter/Formulär',

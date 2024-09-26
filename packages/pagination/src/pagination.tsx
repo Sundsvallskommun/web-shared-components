@@ -4,6 +4,7 @@ import { usePaginationClass } from './styles';
 import { Select } from '@sk-web-gui/forms';
 import { Icon } from '@sk-web-gui/icon';
 import { Button } from '@sk-web-gui/button';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 export interface PaginationProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   /* Total amount of pages */
@@ -263,7 +264,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
             {prevNextButton({
               next: false,
               label: prevLabel,
-              icon: <Icon name="arrow-left" size="fit" />,
+              icon: <Icon icon={<ArrowLeft />} size="fit" />,
               triggerNumber: minPage,
               step: -1,
               tabIndex: activePage == pages ? undefined : -1,
@@ -305,7 +306,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
             {prevNextButton({
               next: true,
               label: nextLabel,
-              icon: <Icon name="arrow-right" size="fit" />,
+              icon: <Icon icon={<ArrowRight />} size="fit" />,
               triggerNumber: pages,
               step: 1,
               tabIndex: activePage == pages ? -1 : undefined,

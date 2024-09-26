@@ -7,7 +7,7 @@ import React from 'react';
 interface AICornerModuleHeaderMenuItemProps extends Omit<React.ComponentPropsWithoutRef<'li'>, 'onClick' | 'children'> {
   onClick?: React.ComponentPropsWithoutRef<'button'>['onClick'];
   buttonProps?: React.ComponentProps<ButtonProps>;
-  icon: React.ComponentProps<IconProps>['name'];
+  icon: React.ComponentProps<IconProps>['icon'];
   label: string;
 }
 
@@ -76,7 +76,7 @@ export const AICornerModuleHeaderMenuItem = React.forwardRef<HTMLLIElement, AICo
           tabIndex={tabIndex}
           {...buttonProps}
         >
-          <Icon name={icon} />
+          <Icon icon={icon} />
         </Button>
         {showTooltip && (
           <Tooltip ref={tooltipRef} position={tooltipPosition} data-rightoutside={tooltipRightOutside}>

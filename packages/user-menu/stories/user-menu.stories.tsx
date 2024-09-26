@@ -1,7 +1,6 @@
-import React from 'react';
+import { Link, LucideIcon, MenuItemGroup, UserMenu, UserMenuProps } from '@sk-web-gui/react';
 import { cx } from '@sk-web-gui/utils';
 import { Meta } from '@storybook/react';
-import { UserMenu, Link, Icon, MenuItemGroup, UserMenuProps } from '@sk-web-gui/react';
 
 export default {
   title: 'Komponenter/UserMenu',
@@ -23,7 +22,7 @@ const menuGroups: MenuItemGroup[] = [
         label: 'Min profil',
         element: () => (
           <Link href="/pagaende">
-            <Icon name="user" />
+            <LucideIcon name="user" />
             Profil
           </Link>
         ),
@@ -32,7 +31,7 @@ const menuGroups: MenuItemGroup[] = [
         label: 'Konto',
         element: () => (
           <Link href="/beslutade">
-            <Icon name="wallet" />
+            <LucideIcon name="wallet" />
             Konto
           </Link>
         ),
@@ -41,7 +40,7 @@ const menuGroups: MenuItemGroup[] = [
         label: 'Inställningar',
         element: () => (
           <Link href="/handlingsplan">
-            <Icon name="settings-2" />
+            <LucideIcon name="settings-2" />
             Inställningar
           </Link>
         ),
@@ -55,7 +54,7 @@ const menuGroups: MenuItemGroup[] = [
         label: 'Logga ut',
         element: () => (
           <Link href="/myaccount">
-            <Icon name="log-out" /> Mina uppgifter{' '}
+            <LucideIcon name="log-out" /> Mina uppgifter{' '}
           </Link>
         ),
       },

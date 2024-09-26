@@ -3,6 +3,7 @@ import { Icon } from '@sk-web-gui/icon';
 import { __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
 import { Dialog } from '../dialog';
+import { Lightbulb, CircleAlert, CircleHelp } from 'lucide-react';
 
 type UseDialogShowReturnType = {
   show: boolean;
@@ -100,11 +101,11 @@ export const ConfirmationDialogContextProvider: React.FC<ConfirmationDialogConte
   const switchIcon = (parameter: string) => {
     switch (parameter) {
       case 'info':
-        return <Icon rounded name="lightbulb" color={content?.dialogType} />;
+        return <Icon rounded icon={<Lightbulb />} color={content?.dialogType} />;
       case 'error':
-        return <Icon rounded name="circle-alert" color={content?.dialogType} />;
+        return <Icon rounded icon={<CircleAlert />} color={content?.dialogType} />;
       case 'question':
-        return <Icon rounded name="circle-help" color={content?.dialogType} />;
+        return <Icon rounded icon={<CircleHelp />} color={content?.dialogType} />;
       default:
         return null;
     }

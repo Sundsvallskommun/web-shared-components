@@ -2,6 +2,7 @@ import { cx, __DEV__, PolymorphicComponentPropsWithRef, PolymorphicRef, DefaultP
 import React from 'react';
 import { useLinkClass } from './styles';
 import { Icon } from '@sk-web-gui/icon';
+import { ExternalLink } from 'lucide-react';
 
 export interface LinkProps extends DefaultProps, React.AnchorHTMLAttributes<HTMLAnchorElement> {
   /** Makes link disabled */
@@ -64,7 +65,7 @@ export const Link = React.forwardRef(
       >
         {children}
         {!hideExternalIcon && external && (
-          <Icon className="sk-link-external-icon" name="external-link" size="fit" variant="ghost" />
+          <Icon className="sk-link-external-icon" icon={<ExternalLink />} size="fit" variant="ghost" />
         )}
       </Comp>
     );

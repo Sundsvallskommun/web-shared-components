@@ -3,7 +3,7 @@ import { Meta } from '@storybook/react';
 import { MenuBar, MenuBarProps } from '../src';
 import { Button } from '@sk-web-gui/button';
 import { PopupMenu } from '@sk-web-gui/popup-menu';
-import { Icon } from '@sk-web-gui/icon';
+import Icon from '@sk-web-gui/icon';
 
 export default {
   title: 'Komponenter/Menu-horizontal',

@@ -2,34 +2,35 @@ import { Button } from '@sk-web-gui/button';
 import { Icon, IconProps } from '@sk-web-gui/icon';
 import { createToast, useToastOptions } from '@sk-web-gui/toast';
 import { __DEV__, cx as clsx } from '@sk-web-gui/utils';
+import { Lightbulb, Check, AlertTriangle, AlertCircle } from 'lucide-react';
 import React from 'react';
 
 interface Status {
   [key: string]: {
-    icon: IconProps['name'];
+    icon: React.ComponentProps<IconProps['Component']>['icon'];
     cx: string;
   };
 }
 
 const statuses: Status = {
   primary: {
-    icon: 'lightbulb',
+    icon: <Lightbulb />,
     cx: 'sk-snackbar-primary',
   },
   info: {
-    icon: 'lightbulb',
+    icon: <Lightbulb />,
     cx: 'sk-snackbar-info',
   },
   success: {
-    icon: 'check',
+    icon: <Check />,
     cx: 'sk-snackbar-success',
   },
   warning: {
-    icon: 'alert-triangle',
+    icon: <AlertTriangle />,
     cx: 'sk-snackbar-warning',
   },
   error: {
-    icon: 'alert-circle',
+    icon: <AlertCircle />,
     cx: 'sk-snackbar-error',
   },
 };
@@ -95,13 +96,7 @@ export const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>((props, 
           (CustomIcon ? (
             <CustomIcon />
           ) : (
-            <Icon
-              variant="ghost"
-              inverted
-              size="fit"
-              name={icon as React.ComponentProps<typeof Icon>['name']}
-              className={clsx('sk-snackbar-icon')}
-            />
+            <Icon variant="ghost" inverted size="fit" icon={icon} className={clsx('sk-snackbar-icon')} />
           ))}
         <span className={clsx('sk-snackbar-text')}>{message}</span>
       </span>

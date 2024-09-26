@@ -1,7 +1,7 @@
 import { Tooltip, TooltipProps } from '../src';
 import { Meta } from '@storybook/react';
 import { Button } from '@sk-web-gui/button';
-import { Icon } from '@sk-web-gui/icon';
+import Icon from '@sk-web-gui/icon';
 import React from 'react';
 
 export default {

@@ -5,6 +5,7 @@ import { MenuIndex } from '../src/menu-vertical-context';
 import { Icon } from '@sk-web-gui/icon';
 import { Avatar } from '@sk-web-gui/avatar';
 import { Logo } from '@sk-web-gui/logo';
+import { CircleArrowRight } from 'lucide-react';
 
 export default {
   title: 'Komponenter/Sidebar',
@@ -49,7 +50,7 @@ export const Template = (args: MenuVerticalProps) => {
                 <MenuVertical {...args}>
                   <MenuVertical.SubmenuButton>
                     <a href="#">
-                      <Icon name="circle-arrow-right" />
+                      <Icon icon={<CircleArrowRight />} />
                       <span>N1 - Subitem (a-tag)</span>
                     </a>
                   </MenuVertical.SubmenuButton>
@@ -77,7 +78,7 @@ export const Template = (args: MenuVerticalProps) => {
                 <MenuVertical {...args}>
                   <MenuVertical.SubmenuButton>
                     <button>
-                      <Icon name="circle-arrow-right" />
+                      <Icon icon={<CircleArrowRight />} />
                       <span>N1 - Subitem</span>
                     </button>
                   </MenuVertical.SubmenuButton>
@@ -170,7 +171,7 @@ export const Template = (args: MenuVerticalProps) => {
                 <MenuVertical {...args}>
                   <MenuVertical.SubmenuButton disabled>
                     <a href="#">
-                      <Icon name="circle-arrow-right" />
+                      <Icon icon={<CircleArrowRight />} />
                       <span>N1 - Subitem 2</span>
                     </a>
                   </MenuVertical.SubmenuButton>

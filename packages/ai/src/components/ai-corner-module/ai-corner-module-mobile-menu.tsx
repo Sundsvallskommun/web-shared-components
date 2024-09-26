@@ -7,7 +7,7 @@ import { AssistantInfo, SessionHistory } from '../../types';
 import { AICornerModuleProps } from './ai-corner-module';
 import { AICornerModuleHeader } from './ai-corner-module-header';
 import { AICornerModuleSessions } from './ai-corner-module-sessions';
-
+import { X } from 'lucide-react';
 interface AICornerModuleMobileMenuProps extends Omit<React.ComponentPropsWithoutRef<'div'>, 'children'> {
   show: boolean;
   assistant: AssistantInfo;
@@ -95,7 +95,7 @@ export const AICornerModuleMobileMenu = React.forwardRef<HTMLDivElement, AICorne
             id="sk-ai-corner-module-mobile-menu-close-button"
             onClick={() => onClose && onClose()}
           >
-            <Icon name="x" />
+            <Icon icon={<X />} />
           </Button>
         </div>
         <div className="sk-ai-corner-module-mobile-menu-content">

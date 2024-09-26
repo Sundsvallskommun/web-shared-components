@@ -4,7 +4,7 @@ import { Icon } from '@sk-web-gui/icon';
 import { cx } from '@sk-web-gui/utils';
 import React from 'react';
 import { SessionHistory } from '../../types';
-
+import { MessageCircle } from 'lucide-react';
 export interface AICornerModuleSessionHistoryProps extends React.ComponentPropsWithoutRef<'div'> {
   sessions: SessionHistory;
   title: string;
@@ -56,7 +56,7 @@ export const AICornerModuleSessionHistory = React.forwardRef<HTMLDivElement, AIC
                 role="menuitem"
                 id={`sk-ai-session-item-${session.id}`}
                 onClick={() => onSelectSession && onSelectSession(session.id)}
-                leftIcon={<Icon name="message-circle" />}
+                leftIcon={<Icon icon={<MessageCircle />} />}
                 onKeyDown={(e) => handleKeyboardNavigation(e, idPrefix + session.id)}
               >
                 {session.name}

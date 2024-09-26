@@ -2,6 +2,7 @@ import { Icon } from '@sk-web-gui/icon';
 import { DefaultProps } from '@sk-web-gui/utils';
 import React from 'react';
 import { SortMode } from './auto-table';
+import { ChevronUp, ChevronDown } from 'lucide-react';
 
 export interface ITableSortButtonProps extends DefaultProps, React.ComponentPropsWithoutRef<'button'> {
   isActive: boolean;
@@ -16,13 +17,13 @@ export const TableSortButton = React.forwardRef<HTMLButtonElement, ITableSortBut
       <div className="sk-table-sortbutton-icon">
         {isActive ? (
           <span className="sk-table-sortbutton-icon-sort" data-sortmode={isActive ? sortOrder : undefined}>
-            <Icon name="chevron-up" size="fit" />
-            <Icon name="chevron-down" size="fit" />
+            <Icon icon={<ChevronUp />} size="fit" />
+            <Icon icon={<ChevronDown />} size="fit" />
           </span>
         ) : (
           <span className="sk-table-sortbutton-icon-sort">
-            <Icon name="chevron-up" size="fit" />
-            <Icon name="chevron-down" size="fit" />
+            <Icon icon={<ChevronUp />} size="fit" />
+            <Icon icon={<ChevronDown />} size="fit" />
           </span>
         )}
       </div>

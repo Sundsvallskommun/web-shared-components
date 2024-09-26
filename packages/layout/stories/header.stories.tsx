@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@sk-web-gui/button';
 import { MenuBar } from '@sk-web-gui/menubar';
-import { Icon } from '@sk-web-gui/icon';
+import Icon from '@sk-web-gui/icon';
 import { PopupMenu } from '@sk-web-gui/popup-menu';
 import { UserMenu, MenuItemGroup } from '@sk-web-gui/user-menu';
 import { Meta, StoryObj } from '@storybook/react';

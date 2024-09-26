@@ -3,6 +3,7 @@ import { DefaultProps, __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
 import { useMenuVertical } from './menu-vertical-context';
 import { IMenuVerticalItemProps } from './menu-vertical-item';
+import { ChevronUp, ChevronDown } from 'lucide-react';
 
 export interface MenuVerticalSubmenuButtonProps extends DefaultProps, Omit<IMenuVerticalItemProps, 'children'> {
   children: string | JSX.Element;
@@ -202,7 +203,7 @@ export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps>
         onClick={disabled ? undefined : handleExpandToggle}
         aria-disabled={disabled ? disabled : undefined}
       >
-        <Icon name={isSubmenuOpen ? 'chevron-up' : 'chevron-down'} />
+        <Icon icon={isSubmenuOpen ? <ChevronUp /> : <ChevronDown />} />
       </button>
     );
   };

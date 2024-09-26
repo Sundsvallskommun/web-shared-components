@@ -3,6 +3,7 @@ import { Icon } from '@sk-web-gui/icon';
 import { Link } from '@sk-web-gui/link';
 import { __DEV__, cx, DefaultProps, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
+import { ArrowRight, Calendar, Clock4 } from 'lucide-react';
 
 import { cloneElement } from 'react';
 
@@ -150,7 +151,7 @@ export const CardBody = React.forwardRef<HTMLDivElement, CardBodyProps>((props, 
         inverted={inverted == 'true' ? false : true}
         className="sk-card-body-icon"
       >
-        <Icon name="arrow-right" size={20} />
+        <Icon icon={<ArrowRight />} size={20} />
       </Button>
     </div>
   );
@@ -189,13 +190,13 @@ export const CardMeta = React.forwardRef<HTMLDivElement, CardMetaProps>((props, 
       {datetime ? (
         <>
           <span>
-            <Icon name="calendar" variant="ghost" size={20} />
+            <Icon icon={<Calendar />} variant="ghost" size={20} />
             <time dateTime={datetime?.toISOString().split('T')[0]}>
               {datetime?.getDay()} {monthNames[datetime?.getMonth()]} {datetime?.getFullYear()}
             </time>
           </span>
           <span>
-            <Icon name="clock-4" variant="ghost" size={20} />
+            <Icon icon={<Clock4 />} variant="ghost" size={20} />
             <time dateTime={datetime?.getHours() + ':' + datetime?.getMinutes()}>
               {datetime?.getHours()}:{('0' + datetime?.getMinutes()).slice(-2)}
             </time>

@@ -2,7 +2,7 @@ import { Meta } from '@storybook/react';
 import React from 'react';
 import { Input } from '../src';
 import { TextField, TextFieldProps } from '../src/text-field/text-field';
-import { Icon } from '@sk-web-gui/icon';
+import Icon from '@sk-web-gui/icon';
 
 export default {
   title: 'Komponenter/TextField',
