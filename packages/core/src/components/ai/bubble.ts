@@ -10,6 +10,9 @@ export const Bubble = (colors: string[]) => ({
     '@apply shadow-[0_1px_0_0_rgba(0,0,0,0.2)]': {},
     '@apply text-small': {},
     '@apply text-dark-secondary': {},
+    '&[data-inverted="true"]': {
+      '@apply text-inverted-dark-secondary': {},
+    },
     ...colors.reduce(
       (styles, color) => ({
         ...styles,
@@ -24,10 +27,43 @@ export const Bubble = (colors: string[]) => ({
               [`@apply shadow-${color}-surface-accent-hover`]: {},
             },
           },
+          '&[data-inverted="true"]': {
+            [`@apply bg-${color}-surface-primary hover:bg-${color}-surface-primary-hover`]: {},
+            '.sk-ai-bubble-tail': {
+              [`@apply shadow-${color}-surface-primary`]: {},
+            },
+            '&:hover': {
+              '.sk-ai-bubble-tail': {
+                [`@apply shadow-${color}-surface-primary-hover`]: {},
+              },
+            },
+          },
         },
       }),
       {}
     ),
+    '&[data-color="primary"]': {
+      '@apply bg-inverted-primary-surface hover:bg-inverted-primary-surface-hover': {},
+      '.sk-ai-bubble-tail': {
+        [`@apply shadow-inverted-primary-surface`]: {},
+      },
+      '&:hover': {
+        '.sk-ai-bubble-tail': {
+          [`@apply shadow-inverted-primary-surface-hover`]: {},
+        },
+      },
+      '&[data-inverted="true"]': {
+        '@apply bg-primary-surface hover:bg-primary-surface-hover': {},
+        '.sk-ai-bubble-tail': {
+          [`@apply shadow-primary-surface`]: {},
+        },
+        '&:hover': {
+          '.sk-ai-bubble-tail': {
+            [`@apply shadow-primary-surface-hover`]: {},
+          },
+        },
+      },
+    },
     '&-tail': {
       '@apply text-base': {},
       '@apply absolute left-0 bottom-[-1.25em]': {},
