@@ -4,7 +4,7 @@ import { AIServiceModuleDefaultProps } from './ai-service-module';
 interface AIServiceModuleRowProps extends React.ComponentPropsWithoutRef<'div'>, AIServiceModuleDefaultProps {}
 
 export const AIServiceModuleRow = React.forwardRef<HTMLDivElement, AIServiceModuleRowProps>((props, ref) => {
-  const { className, color, inverted, ...rest } = props;
+  const { className, color, inverted, variant = 'primary', ...rest } = props;
 
   return (
     <div
@@ -13,6 +13,7 @@ export const AIServiceModuleRow = React.forwardRef<HTMLDivElement, AIServiceModu
       {...rest}
       data-color={color}
       data-inverted={inverted}
+      data-variant={variant}
     />
   );
 });

@@ -1,7 +1,8 @@
 import { Meta } from '@storybook/react';
 import { AIServiceModule, AIServiceModuleProps } from '../src/components';
 import { AssistantInfo, AssistantSession, ChatHistory } from '../src';
-import { Avatar } from '@sk-web-gui/react';
+import { Avatar, Icon } from '@sk-web-gui/react';
+import { Sparkles } from 'lucide-react';
 import avatarSrc from './images/qwerty-avatar.png';
 
 export default {
@@ -122,10 +123,22 @@ const avatars = {
 };
 
 export const Template = (args: AIServiceModuleProps) => (
-  <AIServiceModule {...args} assistant={assistant}>
-    Fråga
-  </AIServiceModule>
+  <AIServiceModule {...args} assistant={assistant}></AIServiceModule>
 );
+
+export const SecondaryStyle = (args: AIServiceModuleProps) => {
+  return (
+    <AIServiceModule
+      {...args}
+      headerIcon={<Icon icon={<Sparkles />} />}
+      assistant={assistant}
+      questions={[]}
+      variant="secondary"
+    >
+      <p>Text som förklarar vad som kommer att ske nedan och till vilken nytta.</p>
+    </AIServiceModule>
+  );
+};
 
 export const ManualWithHistory = () => (
   <div className="h-[65rem]">

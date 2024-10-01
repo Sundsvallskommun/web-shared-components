@@ -3,19 +3,37 @@ export const AIServiceModule = (colors: string[]) => ({
     '@apply flex gap-0': {},
     '@apply rounded-groups': {},
     '@apply bg-background-content': {},
-    '@apply shadow-100': {},
 
     '&[data-inverted="true"]': {
       '@apply text-inverted-dark-primary': {},
       '@apply bg-inverted-background-content': {},
     },
+
+    '&[data-variant="secondary"]': {
+      '@apply border-1 border-divider': {},
+      '@apply bg-transparent': {},
+      '@apply flex-col': {},
+    },
+    '&[data-variant="primary"]': {
+      '@apply shadow-100': {},
+    },
     '&-row': {
       '@apply flex flex-col': {},
       '@apply grow shrink': {},
-      '@apply p-16 md:p-32': {},
       '@apply bg-transparent': {},
-      '@apply first:rounded-l-groups': {},
-      '@apply last:rounded-r-groups': {},
+      '&[data-variant="primary"]': {
+        '@apply p-16 md:p-32': {},
+        '@apply first:rounded-l-groups': {},
+        '@apply last:rounded-r-groups': {},
+      },
+      '&[data-variant="secondary"]': {
+        '@apply px-24 md:px-32 pb-20': {},
+        '@apply first:pt-24 first:md:pt-32': {},
+        '@apply last:pb-24 last:md:pb-32': {},
+        '@apply first:rounded-t-groups': {},
+        '@apply last:rounded-b-groups': {},
+      },
+
       ...colors.reduce(
         (styles, color) => ({
           ...styles,
@@ -36,10 +54,38 @@ export const AIServiceModule = (colors: string[]) => ({
       '@apply flex flex-col gap-6 md:gap-24': {},
       '@apply p-4 md:p-8': {},
       '@apply w-full': {},
+      '&[data-variant="secondary"]': {
+        '@apply md:gap-16': {},
+        '@apply py-4 md:py-8 px-24 md:px-48': {},
+      },
     },
 
-    '&-header, &-header > *': {
-      '@apply font-header text-display-3-sm md:text-display-3-md xl:text-display-3-lg': {},
+    '&-header': {
+      '@apply relative': {},
+      '&, > *': {
+        '@apply font-header text-display-3-sm md:text-display-3-md xl:text-display-3-lg': {},
+      },
+      '&[data-variant="secondary"], &[data-variant="secondary"] > *': {
+        '@apply font-header text-h2-sm md:text-h2-md': {},
+      },
+      '&-icon': {
+        '@apply absolute -left-52 -top-2': {},
+        '.sk-icon, svg': {
+          '@apply h-40 w-40': {},
+        },
+        ...colors.reduce(
+          (styles, color) => ({
+            ...styles,
+            [`&[data-color="${color}"]`]: {
+              [`@apply text-${color}-surface-primary`]: {},
+              '&[data-inverted="true"]': {
+                [`@apply text-inverted-${color}-surface-primary`]: {},
+              },
+            },
+          }),
+          {}
+        ),
+      },
     },
 
     '&-form': {
@@ -118,7 +164,6 @@ export const AIServiceModule = (colors: string[]) => ({
     },
 
     '&-questions': {
-      '@apply w-[22.5em] max-w-[22.5em] min-w-[22.5em]': {},
       '@apply flex flex-col gap-12': {},
       '@apply pb-8': {},
       '@apply text-dark-primary': {},
@@ -131,6 +176,16 @@ export const AIServiceModule = (colors: string[]) => ({
 
       '&[data-inverted="true"]': {
         '@apply text-inverted-dark-primary': {},
+      },
+      '&[data-variant="primary"]': {
+        '@apply w-[22.5em] max-w-[22.5em] min-w-[22.5em]': {},
+      },
+      '&[data-variant="secondary"]': {
+        '@apply w-full': {},
+        '@apply px-24 md:px-48': {},
+        '.sk-ai-service-module-questions-list': {
+          '@apply flex-row flex-wrap': {},
+        },
       },
     },
   },

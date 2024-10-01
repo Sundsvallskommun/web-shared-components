@@ -35,11 +35,18 @@ export const AIServiceModuleQuestions = React.forwardRef<HTMLDivElement, AIServi
       color,
       inverted,
       onSelectQuestion,
+      variant = 'primary',
       ...rest
     } = props;
 
     return (
-      <aside ref={ref} className={cx('sk-ai-service-module-questions', className)} data-inverted={inverted} {...rest}>
+      <aside
+        ref={ref}
+        className={cx('sk-ai-service-module-questions', className)}
+        data-variant={variant}
+        data-inverted={inverted}
+        {...rest}
+      >
         {questionsTitle && (
           <div className="sk-ai-service-module-questions-title">
             {typeof questionsTitle === 'string' ? <h3>{questionsTitle}</h3> : questionsTitle}
@@ -52,7 +59,11 @@ export const AIServiceModuleQuestions = React.forwardRef<HTMLDivElement, AIServi
               const lang = typeof item === 'object' ? item.lang : undefined;
               return (
                 <li key={`sk-ai-sm-question-${index}`}>
-                  <Bubble color={color} lang={lang} onClick={() => onSelectQuestion && onSelectQuestion(question)}>
+                  <Bubble
+                    color={variant === 'primary' ? color : 'primary'}
+                    lang={lang}
+                    onClick={() => onSelectQuestion && onSelectQuestion(question)}
+                  >
                     {question}
                   </Bubble>
                 </li>

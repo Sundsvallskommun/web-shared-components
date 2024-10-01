@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useAssistantStore } from '../../assistant-store';
 import { useChat } from '../../hooks';
 import { AssistantInfo, AssistantSession, OriginTitleMap } from '../../types';
 import { AIFeedProps } from '../ai-feed/ai-feed';
@@ -8,8 +9,6 @@ import { AIServiceModuleHeader } from './ai-service-module-header';
 import { AIServiceModuleQuestions, AIServiceModuleQuestionsEssentialProps } from './ai-service-module-questions';
 import { AIServiceModuleRow } from './ai-service-module-row';
 import { AIServiceModuleWrapper, AIServiceModuleWrapperProps } from './ai-service-module-wrapper';
-import { Avatar } from '@sk-web-gui/avatar';
-import { useAssistantStore } from '../../assistant-store';
 
 export interface AIServiceModuleDefaultProps {
   /**
@@ -20,6 +19,10 @@ export interface AIServiceModuleDefaultProps {
    * @default false
    */
   inverted?: boolean;
+  /**
+   * @default primary
+   */
+  variant?: 'primary' | 'secondary';
 }
 export interface AIServiceModuleProps
   extends AIServiceModuleWrapperProps,
@@ -39,6 +42,10 @@ export interface AIServiceModuleProps
    */
   isMobile?: boolean;
   originTitles?: OriginTitleMap;
+  /**
+   * Header-icon shown in secondary variant
+   */
+  headerIcon?: JSX.Element;
 }
 
 export const AIServiceModule = React.forwardRef<HTMLDivElement, AIServiceModuleProps>((props, ref) => {
@@ -46,7 +53,7 @@ export const AIServiceModule = React.forwardRef<HTMLDivElement, AIServiceModuleP
     className,
     header,
     color = 'vattjom',
-    inverted,
+    inverted: _inverted,
     label,
     helperText,
     readmore,
@@ -65,12 +72,16 @@ export const AIServiceModule = React.forwardRef<HTMLDivElement, AIServiceModuleP
     showReferences,
     showFeedback,
     showTitles,
+    children,
+    variant = 'primary',
+    headerIcon,
     ...rest
   } = props;
 
   const [sessionId, setSessionId] = React.useState<string>('');
   const { session: _session, newSession, sendQuery } = useChat({ sessionId });
   const session = propsSession ?? _session;
+  const inverted = _inverted ?? (variant === 'secondary' ? true : undefined);
 
   const history = session?.history;
 
@@ -109,12 +120,13 @@ export const AIServiceModule = React.forwardRef<HTMLDivElement, AIServiceModuleP
   };
 
   return (
-    <AIServiceModuleWrapper ref={ref} inverted={inverted} {...rest}>
-      <AIServiceModuleRow color={color} inverted={inverted}>
-        <AIServiceModuleContent>
-          <AIServiceModuleHeader>
+    <AIServiceModuleWrapper ref={ref} inverted={inverted} variant={variant} {...rest}>
+      <AIServiceModuleRow color={color} inverted={inverted} variant={variant}>
+        <AIServiceModuleContent variant={variant}>
+          <AIServiceModuleHeader icon={headerIcon} variant={variant} color={color}>
             {typeof header === 'string' ? <h2>{header}</h2> : header || <h2>Hej, vad vill du ha hjälp med?</h2>}
           </AIServiceModuleHeader>
+          {children}
           <AIServiceModuleAssistant
             assistant={assistant}
             avatars={avatars}
@@ -134,13 +146,18 @@ export const AIServiceModule = React.forwardRef<HTMLDivElement, AIServiceModuleP
           />
         </AIServiceModuleContent>
       </AIServiceModuleRow>
-      {!isMobile && questions && (
-        <AIServiceModuleRow>
+      {!isMobile && questions && questions.length > 0 && (
+        <AIServiceModuleRow
+          color={variant === 'secondary' ? color : undefined}
+          inverted={variant === 'secondary' ? inverted : undefined}
+          variant={variant}
+        >
           <AIServiceModuleQuestions
             questionsTitle={questionsTitle}
             questions={questions}
             onSelectQuestion={handleSelectQuestion}
-            inverted={inverted}
+            inverted={variant === 'secondary' ? !inverted : inverted}
+            variant={variant}
           />
         </AIServiceModuleRow>
       )}
