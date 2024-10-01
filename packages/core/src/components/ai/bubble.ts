@@ -7,12 +7,14 @@ export const Bubble = (colors: string[]) => ({
     '@apply rounded-t-button rounded-br-button': {},
     '@apply pt-10 pr-12 pb-10 pl-14': {},
     '@apply gap-16': {},
-    '@apply shadow-[0_1px_0_0_rgba(0,0,0,0.2)]': {},
+
     '@apply text-small': {},
     '@apply text-dark-secondary': {},
+
     '&[data-inverted="true"]': {
       '@apply text-inverted-dark-secondary': {},
     },
+
     ...colors.reduce(
       (styles, color) => ({
         ...styles,
@@ -73,6 +75,13 @@ export const Bubble = (colors: string[]) => ({
       '@apply shadow-[0_-1em_0_0_var(--tw-shadow-color)]': {},
       '@apply scale-y-[25%]': {},
       '&:before': {
+        '&[data-shadow="true"]': {},
+      },
+    },
+
+    '&[data-shadow="true"]': {
+      '@apply shadow-[0_1px_0_0_rgba(0,0,0,0.2)]': {},
+      '.sk-ai-bubble-tail:before': {
         '@apply content-[""]': {},
         '@apply absolute left-0 bottom-[-0.15625em]': {},
         '@apply w-32 h-32': {},
