@@ -26,7 +26,7 @@ export interface BubbleProps extends React.ComponentPropsWithoutRef<'button'> {
    * Trailing icon.
    * @default <ArrowRight/>
    */
-  icon?: JSX.Element;
+  icon?: React.ReactElement;
   /**
    * @default true
    */
@@ -57,7 +57,7 @@ export const Bubble = React.forwardRef<HTMLButtonElement, BubbleProps>((props, r
       {...rest}
     >
       {children}
-      {!hideIcon && icon.type === Icon ? icon : <Icon icon={icon} size={18} />}
+      {!hideIcon && (icon?.type === Icon ? icon : <Icon icon={icon} size={18} />)}
       {variant === 'default' && <span className="sk-ai-bubble-tail" />}
     </button>
   );
