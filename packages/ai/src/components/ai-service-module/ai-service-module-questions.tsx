@@ -61,7 +61,6 @@ export const AIServiceModuleQuestions = React.forwardRef<HTMLDivElement, AIServi
                 <li key={`sk-ai-sm-question-${index}`}>
                   <Bubble
                     color={variant === 'primary' ? color : 'primary'}
-                    // inverted={variant === "primary" ? undefined : true}
                     lang={lang}
                     onClick={() => onSelectQuestion && onSelectQuestion(question)}
                   >
