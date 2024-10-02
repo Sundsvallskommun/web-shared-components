@@ -12,16 +12,53 @@ export interface BubbleProps extends React.ComponentPropsWithoutRef<'button'> {
    * @default false
    */
   inverted?: boolean;
+  /**
+   * Variant.
+   * default or simple (without extra decoration)
+   * @default default
+   */
+  variant?: 'default' | 'simple';
+  /**
+   * @default false
+   */
+  hideIcon?: boolean;
+  /**
+   * Trailing icon.
+   * @default <ArrowRight/>
+   */
+  icon?: React.ReactElement;
+  /**
+   * @default true
+   */
+  shadow?: boolean;
 }
 
 export const Bubble = React.forwardRef<HTMLButtonElement, BubbleProps>((props, ref) => {
-  const { className, children, color = 'vattjom', inverted, ...rest } = props;
+  const {
+    className,
+    children,
+    color = 'vattjom',
+    inverted,
+    hideIcon = false,
+    icon = <ArrowRight />,
+    variant = 'default',
+    shadow = true,
+    ...rest
+  } = props;
 
   return (
-    <button ref={ref} className={cx('sk-ai-bubble', className)} data-inverted={inverted} data-color={color} {...rest}>
+    <button
+      ref={ref}
+      className={cx('sk-ai-bubble', className)}
+      data-inverted={inverted}
+      data-variant={variant}
+      data-color={color}
+      data-shadow={shadow}
+      {...rest}
+    >
       {children}
-      <Icon icon={<ArrowRight />} size={18} />
-      <span className="sk-ai-bubble-tail" />
+      {!hideIcon && (icon?.type === Icon ? icon : <Icon icon={icon} size={18} />)}
+      {variant === 'default' && <span className="sk-ai-bubble-tail" />}
     </button>
   );
 });
