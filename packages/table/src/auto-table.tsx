@@ -93,9 +93,8 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
   const [currentPage, setCurrentPage] = React.useState<number>(page);
 
   const [rowHeight, setRowHeight] = React.useState<string>(_dense ? 'dense' : 'normal');
-  const [autoHeaders] = React.useState<Array<AutoTableHeader | string>>(
-    autoheaders?.length === 0 || autoheaders === undefined ? [] : (autoheaders as Array<AutoTableHeader | string>)
-  );
+  const autoHeaders =
+    autoheaders?.length === 0 || autoheaders === undefined ? [] : (autoheaders as Array<AutoTableHeader | string>);
   const autoData = autodata?.length === 0 || autodata === undefined ? [] : (autodata as Array<TableItem>);
   const [tableData, setTableData] = React.useState<TableItem[]>(autodata as Array<TableItem>);
 
@@ -306,7 +305,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
     } else {
       setManagedRows(newRows);
     }
-  }, [pageSize, currentPage, pages, sortModeOrder, sortIndex]);
+  }, [pageSize, currentPage, pages, sortModeOrder, sortIndex, autoHeaders]);
 
   return (
     <>
@@ -355,14 +354,14 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
 
           <HeaderComponent>
             {headers.map((h, idx) =>
-              h.isShown || h.isShown === null ? (
+              h?.isShown || h?.isShown === null ? (
                 <TableHeaderColumn
                   key={`header-${idx}`}
                   aria-sort={`${sortIndex == idx ? sortModeOrder : 'none'}`}
-                  data-iscolumnsortable={h.isColumnSortable}
-                  sticky={h.sticky}
+                  data-iscolumnsortable={h?.isColumnSortable}
+                  sticky={h?.sticky}
                 >
-                  {h.isColumnSortable && tableSortable ? (
+                  {h?.isColumnSortable && tableSortable ? (
                     <TableSortButton
                       isActive={sortIndex == idx}
                       aria-description={sortIndex == idx ? undefined : 'sortera'}
@@ -371,11 +370,11 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
                         internalSortHandler(idx);
                       }}
                     >
-                      <span>{h.element}</span>
+                      <span>{h?.element}</span>
                     </TableSortButton>
                   ) : (
-                    <span ref={ref} {...rest} className="sk-table-sortbutton" data-sronly={h.screenReaderOnly}>
-                      {h.element}
+                    <span ref={ref} {...rest} className="sk-table-sortbutton" data-sronly={h?.screenReaderOnly}>
+                      {h?.element}
                     </span>
                   )}
                 </TableHeaderColumn>
@@ -398,7 +397,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
               >
                 {cols.map(({ element, isShown = true }, idx) =>
                   isShown ? (
-                    <TableRowColumn sticky={headers[idx].sticky} key={`col${idx}`}>
+                    <TableRowColumn sticky={headers?.[idx]?.sticky} key={`col${idx}`}>
                       {element}
                     </TableRowColumn>
                   ) : (
