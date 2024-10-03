@@ -93,10 +93,9 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
   const [currentPage, setCurrentPage] = React.useState<number>(page);
 
   const [rowHeight, setRowHeight] = React.useState<string>(_dense ? 'dense' : 'normal');
-  const autoHeaders =
-    autoheaders?.length === 0 || autoheaders === undefined ? [] : (autoheaders as Array<AutoTableHeader | string>);
-  const autoData = autodata?.length === 0 || autodata === undefined ? [] : (autodata as Array<TableItem>);
-  const [tableData, setTableData] = React.useState<TableItem[]>(autodata as Array<TableItem>);
+  const autoHeaders = autoheaders ?? [];
+  const autoData = autodata ?? [];
+  const [tableData, setTableData] = React.useState<TableItem[]>(autoData as Array<TableItem>);
 
   const getValue = (item: TableItem, header: string | AutoTableHeader): TableValue => {
     let headerparts = [];
@@ -171,7 +170,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
     };
   });
 
-  const autoTableRows = (): AutoTableColumn[][] => {
+  const getAutoTableRows = (): AutoTableColumn[][] => {
     if (autoData.length < 1) return [[]];
     return tableData?.map((item) => {
       return autoHeaders?.map((header) => {
@@ -203,7 +202,9 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
     });
   };
 
-  const tableRows: AutoTableColumn[][] = autoTableRows();
+  const tableRows: AutoTableColumn[][] = React.useMemo(() => {
+    return getAutoTableRows();
+  }, [autoData, autoHeaders, tableData]);
 
   const [managedRows, setManagedRows] = React.useState(tableRows);
   const [pages, setPages] = React.useState<number>(Math.ceil(_pages || tableRows.length / pageSize));
@@ -242,7 +243,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
       }
       setTableData(sortedData);
     },
-    [autoData, sortIndex, sortModeOrder]
+    [autoData, sortIndex, sortModeOrder, autodata]
   );
 
   const captionShowPages = _captionShowPages || footer ? true : false;
@@ -254,6 +255,10 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
     setSortIndex(idx);
   };
   const [highlightedPage, setHighlightedPage] = React.useState<number>(0);
+
+  React.useEffect(() => {
+    setCurrentPage(page ?? 1);
+  }, [autodata]);
 
   React.useEffect(() => {
     handleSort(sortIndex, sortModeOrder === SortMode.DESC ? false : true);
@@ -291,7 +296,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
   }, [highlightedItemIndex]);
 
   React.useEffect(() => {
-    const newRows = [...tableRows];
+    const newRows = tableRows ? [...tableRows.map((row) => [...row])] : [[]];
     if (pages > 0) {
       const newPages = Math.ceil(tableRows.length / pageSize);
       setPages(newPages);
@@ -305,7 +310,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
     } else {
       setManagedRows(newRows);
     }
-  }, [pageSize, currentPage, pages, sortModeOrder, sortIndex, autoHeaders]);
+  }, [pageSize, currentPage, pages, sortModeOrder, sortIndex, autoHeaders, autoData, tableData]);
 
   return (
     <>
