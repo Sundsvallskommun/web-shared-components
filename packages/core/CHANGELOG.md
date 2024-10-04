@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.7.0...@sk-web-gui/core@3.7.1) (2024-10-04)
+
+### Bug Fixes
+
+- **ai:** added additional styling for bubble ([ffe0686](https://github.com/Sundsvallskommun/web-shared-components/commit/ffe06869c2b5a0cbd001ca2bc0381ad23fccc290))
+- **ai:** styling for secondary variant of service module ([6e19695](https://github.com/Sundsvallskommun/web-shared-components/commit/6e19695a391f97b411079280f0a0db5e83f969dc))
+
 # [3.7.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.6.0...@sk-web-gui/core@3.7.0) (2024-09-25)
 
 ### Bug Fixes

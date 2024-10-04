@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.8](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@3.1.7...@sk-web-gui/table@3.1.8) (2024-10-04)
+
+### Bug Fixes
+
+- header bud causing rendering issues ([5fcb4b2](https://github.com/Sundsvallskommun/web-shared-components/commit/5fcb4b2bdc6bc2390c82bfb80b48ba539c47c012))
+- re-render on new data issue ([1c2a67c](https://github.com/Sundsvallskommun/web-shared-components/commit/1c2a67c513edac94537b8dc0fedcbd46cd63ba40))
+- updated to new icon ([a370665](https://github.com/Sundsvallskommun/web-shared-components/commit/a3706654ef72bc43946267437f8ee43fc02beaa3))
+
 ## [3.1.7](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@3.1.6...@sk-web-gui/table@3.1.7) (2024-09-25)
 
 ### Bug Fixes

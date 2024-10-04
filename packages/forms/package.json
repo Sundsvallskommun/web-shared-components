@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/forms",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -38,11 +38,11 @@
   },
   "dependencies": {
     "@reach/auto-id": "^0.18.0",
-    "@sk-web-gui/icon": "2.0.1",
+    "@sk-web-gui/icon": "3.0.0",
     "@sk-web-gui/theme": "2.3.1",
     "@sk-web-gui/utils": "2.0.1",
-    "usehooks-ts": "^3.1.0",
-    "lucide-react": "^0.372.0"
+    "lucide-react": "^0.372.0",
+    "usehooks-ts": "^3.1.0"
   },
   "peerDependencies": {
     "react": ">=18.2.0"

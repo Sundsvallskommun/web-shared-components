@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.1.0...@sk-web-gui/forms@2.1.1) (2024-10-04)
+
+### Bug Fixes
+
+- updated to new icon ([d68397b](https://github.com/Sundsvallskommun/web-shared-components/commit/d68397b4cf6e25ad3824cab614439ec01057d927))
+
 # [2.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.0.4...@sk-web-gui/forms@2.1.0) (2024-09-25)
 
 ### Bug Fixes

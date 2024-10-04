@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.5](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/chip@1.1.4...@sk-web-gui/chip@1.1.5) (2024-10-04)
+
+### Bug Fixes
+
+- updated to new icon ([8131325](https://github.com/Sundsvallskommun/web-shared-components/commit/813132578cfd4a26f7a4db1ebca3e218b9b6d5f4))
+
 ## [1.1.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/chip@1.1.3...@sk-web-gui/chip@1.1.4) (2024-05-24)
 
 ### Bug Fixes

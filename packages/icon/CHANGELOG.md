@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/icon@2.0.1...@sk-web-gui/icon@3.0.0) (2024-10-04)
+
+### Features
+
+- LucideIcon as separate component ([71c5ac8](https://github.com/Sundsvallskommun/web-shared-components/commit/71c5ac8b0e9710a36c339629fbd60eec1551e1d1))
+
+### BREAKING CHANGES
+
+- Name no longer exists on Icon. Use LucideIcon for old behavior
+
 ## [2.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/icon@2.0.0...@sk-web-gui/icon@2.0.1) (2024-05-24)
 
 ### Bug Fixes

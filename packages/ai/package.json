@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/ai",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -38,27 +38,27 @@
   },
   "dependencies": {
     "@microsoft/fetch-event-source": "^2.0.1",
-    "@sk-web-gui/accordion": "1.4.4",
+    "@sk-web-gui/accordion": "2.0.0",
     "@sk-web-gui/avatar": "1.0.12",
-    "@sk-web-gui/button": "2.0.9",
+    "@sk-web-gui/button": "2.0.10",
     "@sk-web-gui/divider": "1.0.11",
-    "@sk-web-gui/forms": "2.1.0",
-    "@sk-web-gui/icon": "2.0.1",
-    "@sk-web-gui/link": "1.1.3",
-    "@sk-web-gui/menubar": "1.0.15",
+    "@sk-web-gui/forms": "2.1.1",
+    "@sk-web-gui/icon": "3.0.0",
+    "@sk-web-gui/link": "1.1.4",
+    "@sk-web-gui/menubar": "1.0.16",
     "@sk-web-gui/theme": "2.3.1",
     "@sk-web-gui/tooltip": "1.0.4",
     "@sk-web-gui/utils": "2.0.1",
     "@types/sanitize-html": "^2.11.0",
     "date-fns": "^3.6.0",
+    "lucide-react": "^0.372.0",
     "microsoft-cognitiveservices-speech-sdk": "^1.36.0",
     "react-markdown": "^9.0.1",
     "regenerator-runtime": "^0.14.1",
     "sanitize-html": "^2.13.0",
     "universal-cookie": "^6.1.1",
     "usehooks-ts": "^3.1.0",
-    "zustand": "^4.5.2",
-    "lucide-react": "^0.372.0"
+    "zustand": "^4.5.2"
   },
   "peerDependencies": {
     "react": ">=18.2.0"

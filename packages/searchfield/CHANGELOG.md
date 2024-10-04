@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.10](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/searchfield@2.1.9...@sk-web-gui/searchfield@2.1.10) (2024-10-04)
+
+### Bug Fixes
+
+- updated to new icon ([a370665](https://github.com/Sundsvallskommun/web-shared-components/commit/a3706654ef72bc43946267437f8ee43fc02beaa3))
+
 ## [2.1.9](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/searchfield@2.1.8...@sk-web-gui/searchfield@2.1.9) (2024-09-25)
 
 **Note:** Version bump only for package @sk-web-gui/searchfield

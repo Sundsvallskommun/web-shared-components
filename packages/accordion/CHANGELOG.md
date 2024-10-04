@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@1.4.4...@sk-web-gui/accordion@2.0.0) (2024-10-04)
+
+### Bug Fixes
+
+- Updated to new Icon ([1630206](https://github.com/Sundsvallskommun/web-shared-components/commit/16302065d3f8898c4339fb62648d3cc6e66a46b0))
+
+### BREAKING CHANGES
+
+- Leading icon now has to be an element. Use of lucide names does not work anymore
+
 ## [1.4.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@1.4.3...@sk-web-gui/accordion@1.4.4) (2024-09-25)
 
 **Note:** Version bump only for package @sk-web-gui/accordion

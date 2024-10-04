@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/snackbar@1.0.18...@sk-web-gui/snackbar@2.0.0) (2024-10-04)
+
+### Bug Fixes
+
+- updated to new icon ([008ee55](https://github.com/Sundsvallskommun/web-shared-components/commit/008ee55fdaaf2188b840c1d39884b2c2cbbda5ab))
+
+### BREAKING CHANGES
+
+- Status icon now needs to be an element. Using Lucide names no longer works.
+
 ## [1.0.18](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/snackbar@1.0.17...@sk-web-gui/snackbar@1.0.18) (2024-09-25)
 
 **Note:** Version bump only for package @sk-web-gui/snackbar

@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.9.0...@sk-web-gui/ai@0.10.0) (2024-10-04)
+
+### Bug Fixes
+
+- updated to new Icon ([848fe8d](https://github.com/Sundsvallskommun/web-shared-components/commit/848fe8d6dcea6b2f1802da8e264d99760d7781a7))
+
+### Features
+
+- **bubble:** added variant, icon and shadow properties. ([fbbc7e5](https://github.com/Sundsvallskommun/web-shared-components/commit/fbbc7e580ac0a825c96fbe0050273274ad4b8970))
+- secondary variant for service module ([39fcff8](https://github.com/Sundsvallskommun/web-shared-components/commit/39fcff83876f4cf4dcd3a78d34e84b21d53c74d1))
+
+### BREAKING CHANGES
+
+- Icons in corner module header menu item now need to be an element. Using Lucide names no longer works.
+
 # [0.9.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.8.0...@sk-web-gui/ai@0.9.0) (2024-09-25)
 
 ### Bug Fixes
