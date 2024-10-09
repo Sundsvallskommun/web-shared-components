@@ -1,12 +1,13 @@
 import { Meta } from '@storybook/react';
 import React from 'react';
 import { Table, TableProps } from '../src';
-import Icon from '@sk-web-gui/icon';
+import { Icon } from '@sk-web-gui/icon';
 import { Button } from '@sk-web-gui/button';
 import { SortMode } from '../src/auto-table';
 import { Input, Select } from '@sk-web-gui/forms';
 import { Pagination } from '@sk-web-gui/pagination';
 import { TableSortButton } from '../src/table-sort-button';
+import { Ellipsis } from 'lucide-react';
 
 export default {
   title: 'Komponenter/Table/Table',
@@ -138,7 +139,7 @@ export const DataTable = (args: TableProps) => {
               size="sm"
               iconButton
             >
-              <Icon name="ellipsis" />
+              <Icon icon={<Ellipsis />} />
             </Button>
           </Table.Column>
         </Table.Row>

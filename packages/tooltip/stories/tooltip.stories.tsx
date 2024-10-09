@@ -1,8 +1,9 @@
 import { Tooltip, TooltipProps } from '../src';
 import { Meta } from '@storybook/react';
 import { Button } from '@sk-web-gui/button';
-import Icon from '@sk-web-gui/icon';
+import { Icon } from '@sk-web-gui/icon';
 import React from 'react';
+import { File, Lightbulb } from 'lucide-react';
 
 export default {
   title: 'Komponenter/Tooltip',
@@ -36,7 +37,7 @@ export const Example = () => {
         onMouseLeave={() => setHover(initialHover)}
       >
         <Button iconButton rounded color="juniskar">
-          <Icon name="lightbulb" />
+          <Icon icon={<Lightbulb />} />
         </Button>
         <Tooltip position="right" className={`${hover[0] ? '' : 'hidden'}`}>
           Hjälp
@@ -48,7 +49,7 @@ export const Example = () => {
         onMouseLeave={() => setHover(initialHover)}
       >
         <Button iconButton rounded color="bjornstigen">
-          <Icon name="file" />
+          <Icon icon={<File />} />
         </Button>
         <Tooltip position="right" className={`${hover[1] ? '' : 'hidden'}`}>
           Skapa ny

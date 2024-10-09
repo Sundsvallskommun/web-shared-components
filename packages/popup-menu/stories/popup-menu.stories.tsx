@@ -1,12 +1,13 @@
 import { Button } from '@sk-web-gui/button';
 import { Checkbox, DatePicker, FormControl, FormLabel } from '@sk-web-gui/forms';
-import Icon from '@sk-web-gui/icon';
+import { Icon } from '@sk-web-gui/icon';
 import { Link } from '@sk-web-gui/link';
 import { SearchField } from '@sk-web-gui/searchfield';
 import { Meta } from '@storybook/react';
 import React from 'react';
 import { PopupMenu, PopupMenuProps } from '../src';
 import { useForm } from 'react-hook-form';
+import { ArrowDown, Wallet, Settings2, Settings, ChevronRight, ChevronDown, LogOut } from 'lucide-react';
 
 export default {
   title: 'Komponenter/PopupMenu',
@@ -27,13 +28,13 @@ export const Template = (args: PopupMenuProps) => {
             iconButton
             rounded
           >
-            <Icon name="arrow-down" />
+            <Icon icon={<ArrowDown />} />
           </PopupMenu.Button>
           <PopupMenu.Panel>
             <PopupMenu.Items>
               <PopupMenu.Group>
                 <PopupMenu.Item>
-                  <Button leftIcon={<Icon name="wallet" />} onClick={() => console.log('Account')}>
+                  <Button leftIcon={<Icon icon={<Wallet />} />} onClick={() => console.log('Account')}>
                     Konto
                   </Button>
                 </PopupMenu.Item>
@@ -43,13 +44,16 @@ export const Template = (args: PopupMenuProps) => {
                       console.log('Edit');
                     }}
                   >
-                    <Icon name="settings-2" /> Inställningar
+                    <Icon icon={<Settings2 />} /> Inställningar
                   </Link>
                 </PopupMenu.Item>
 
                 <PopupMenu.Item>
                   <PopupMenu>
-                    <PopupMenu.Button leftIcon={<Icon name="settings" />} rightIcon={<Icon name="chevron-right" />}>
+                    <PopupMenu.Button
+                      leftIcon={<Icon icon={<Settings />} />}
+                      rightIcon={<Icon icon={<ChevronRight />} />}
+                    >
                       Inställningar
                     </PopupMenu.Button>
                     <PopupMenu.Panel>
@@ -57,7 +61,7 @@ export const Template = (args: PopupMenuProps) => {
                         <PopupMenu.Item>
                           <Button
                             role="menuitemcheckbox"
-                            leftIcon={<Icon name="wallet" />}
+                            leftIcon={<Icon icon={<Wallet />} />}
                             onClick={() => {
                               console.log('Account');
                             }}
@@ -73,7 +77,7 @@ export const Template = (args: PopupMenuProps) => {
               <PopupMenu.Group>
                 <PopupMenu.Item>
                   <Button
-                    leftIcon={<Icon name="log-out" />}
+                    leftIcon={<Icon icon={<LogOut />} />}
                     onClick={() => {
                       console.log('Logout');
                     }}
@@ -106,7 +110,7 @@ export const CheckboxesAndFilter = () => {
   return (
     <div className="h-[30rem]">
       <PopupMenu>
-        <PopupMenu.Button rightIcon={<Icon name="chevron-down" />}>Filter</PopupMenu.Button>
+        <PopupMenu.Button rightIcon={<Icon icon={<ChevronDown />} />}>Filter</PopupMenu.Button>
         <PopupMenu.Panel>
           <PopupMenu.Group>
             <SearchField
@@ -140,7 +144,7 @@ export const PopupMenuAsDialog = () => {
   return (
     <div className="h-[30rem]">
       <PopupMenu type="dialog">
-        <PopupMenu.Button rightIcon={<Icon name="chevron-down" />}>Datumfilter</PopupMenu.Button>
+        <PopupMenu.Button rightIcon={<Icon icon={<ChevronDown />} />}>Datumfilter</PopupMenu.Button>
         <PopupMenu.Panel>
           <PopupMenu.Group>
             <FormControl>
