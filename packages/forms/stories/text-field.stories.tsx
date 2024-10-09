@@ -2,7 +2,8 @@ import { Meta } from '@storybook/react';
 import React from 'react';
 import { Input } from '../src';
 import { TextField, TextFieldProps } from '../src/text-field/text-field';
-import Icon from '@sk-web-gui/icon';
+import { Icon } from '@sk-web-gui/icon';
+import { Eye, EyeOff, User } from 'lucide-react';
 
 export default {
   title: 'Komponenter/TextField',
@@ -83,7 +84,7 @@ export const Addin = () => {
       <div className="flex flex-wrap items-center w-full gap-16">
         <Input.Group size="md">
           <Input.LeftAddin icon>
-            <Icon name="user" />
+            <Icon icon={<User />} />
           </Input.LeftAddin>
           <TextField placeholder="Användarnamn" />
         </Input.Group>
@@ -93,7 +94,7 @@ export const Addin = () => {
           <TextField placeholder="Lösenord" type={showPass ? 'text' : 'password'} />
           <Input.RightAddin icon>
             <span role="button" onClick={() => setShowPass(!showPass)}>
-              {showPass ? <Icon name="eye-off" /> : <Icon name="eye" />}
+              {showPass ? <Icon icon={<EyeOff />} /> : <Icon icon={<Eye />} />}
             </span>
           </Input.RightAddin>
         </Input.Group>

@@ -1,8 +1,9 @@
-import Icon from '@sk-web-gui/icon';
+import { Icon } from '@sk-web-gui/icon';
 import { Link } from '@sk-web-gui/link';
 import { Logo } from '@sk-web-gui/logo';
 import { Meta } from '@storybook/react';
 import { Footer, FooterProps } from '../src';
+import { Star } from 'lucide-react';
 
 export default {
   title: 'Layout/Footer',
@@ -93,25 +94,25 @@ export const Template = ({ ...args }: FooterProps) => {
               <label>Följ oss</label>
             </Footer.ListItem>
             <Footer.ListItem>
-              <Icon name="facebook" />
+              <Icon icon={<Star />} />
               <Link variant="tertiary" href="#">
                 Facebook
               </Link>
             </Footer.ListItem>
             <Footer.ListItem>
-              <Icon name="instagram" />
+              <Icon icon={<Star />} />
               <Link variant="tertiary" href="#">
                 Instagram
               </Link>
             </Footer.ListItem>
             <Footer.ListItem>
-              <Icon name="linkedin" />
+              <Icon icon={<Star />} />
               <Link variant="tertiary" href="#">
                 Linkedin
               </Link>
             </Footer.ListItem>
             <Footer.ListItem>
-              <Icon name="youtube" />
+              <Icon icon={<Star />} />
               <Link variant="tertiary" href="#">
                 Youtube
               </Link>

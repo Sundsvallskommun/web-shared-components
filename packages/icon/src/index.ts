@@ -27,4 +27,3 @@ export const LucideIcon = {
 } as LucideIconProps;
 
 export type { IconProps, LucideIconProps };
-export default LucideIcon;

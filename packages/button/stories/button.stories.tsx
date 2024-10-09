@@ -1,6 +1,7 @@
 import { Meta } from '@storybook/react';
 import { Button, ButtonProps } from '../src';
-import Icon from '@sk-web-gui/icon';
+import { Icon } from '@sk-web-gui/icon';
+import { CandyCane } from 'lucide-react';
 
 export default {
   title: 'Komponenter/Button',
@@ -120,8 +121,8 @@ export default {
 
 export const Template = ({ children, ...args }: React.ComponentPropsWithRef<ButtonProps>) => (
   <div className="flex flex-col items-start space-y-2">
-    <Button {...args}>{args.iconButton ? <Icon name="candy-cane" /> : children}</Button>
-    <Button {...args} leftIcon={<Icon name="candy-cane" />}>
+    <Button {...args}>{args.iconButton ? <Icon icon={<CandyCane />} /> : children}</Button>
+    <Button {...args} leftIcon={<Icon icon={<CandyCane />} />}>
       {args.iconButton ? '' : children}
     </Button>
   </div>
