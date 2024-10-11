@@ -12,6 +12,10 @@ export default {
   title: 'Komponenter/PopupMenu',
   component: PopupMenu,
   tags: ['autodocs'],
+  args: {
+    position: 'over',
+    autoPosition: false,
+  },
 } as Meta<typeof PopupMenu>;
 
 export const Template = (args: PopupMenuProps) => {
