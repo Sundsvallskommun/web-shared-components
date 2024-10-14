@@ -5,3 +5,4 @@ const toaster = new Toaster();
 export { default as Position } from './Positions';
 
 export { toaster };
+export default toaster;

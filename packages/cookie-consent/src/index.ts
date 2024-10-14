@@ -20,4 +20,4 @@ const CookieConsentUtils = {
 
 export { CookieConsent, CookieConsentUtils };
 export type { CookieConsentProps };
-export default { CookieConsent };
+export default CookieConsent;
