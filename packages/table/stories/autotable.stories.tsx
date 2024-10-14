@@ -1,7 +1,8 @@
 import { Button } from '@sk-web-gui/button';
-import Icon from '@sk-web-gui/icon';
+import { Icon } from '@sk-web-gui/icon';
 import { Meta } from '@storybook/react';
 import { AutoTable, AutoTableHeader, AutoTableProps } from '../src/auto-table';
+import { Ellipsis } from 'lucide-react';
 
 export default {
   title: 'Komponenter/Table/AutoTable',
@@ -91,7 +92,7 @@ const headers: Array<AutoTableHeader | string> = [
           size="sm"
           iconButton
         >
-          <Icon name="ellipsis" />
+          <Icon icon={<Ellipsis />} />
         </Button>
       </div>
     ),

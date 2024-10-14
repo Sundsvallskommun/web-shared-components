@@ -1,7 +1,7 @@
-import React from 'react';
 import { Meta } from '@storybook/react';
 import { Button, ButtonProps } from '../src';
-import Icon from '@sk-web-gui/icon';
+import { Icon } from '@sk-web-gui/icon';
+import { AlignStartVertical, AlignCenterVertical, AlignEndVertical, CircleArrowDown } from 'lucide-react';
 
 export default {
   title: 'Komponenter/Button/Button.Group',
@@ -23,19 +23,19 @@ export const Template = ({ ...args }: ButtonProps) => (
     <div>
       <Button.Group {...args}>
         <Button iconButton>
-          <Icon name="align-start-vertical" />
+          <Icon icon={<AlignStartVertical />} />
         </Button>
 
         <Button iconButton>
-          <Icon name="align-center-vertical" />
+          <Icon icon={<AlignCenterVertical />} />
         </Button>
 
         <Button iconButton>
-          <Icon name="align-end-vertical" />
+          <Icon icon={<AlignEndVertical />} />
         </Button>
 
         <Button iconButton>
-          <Icon name="circle-arrow-down" />
+          <Icon icon={<CircleArrowDown />} />
         </Button>
       </Button.Group>
     </div>

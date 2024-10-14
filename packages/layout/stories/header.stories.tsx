@@ -1,12 +1,13 @@
 import React from 'react';
 import { Button } from '@sk-web-gui/button';
 import { MenuBar } from '@sk-web-gui/menubar';
-import Icon from '@sk-web-gui/icon';
+import { Icon } from '@sk-web-gui/icon';
 import { PopupMenu } from '@sk-web-gui/popup-menu';
 import { UserMenu, MenuItemGroup } from '@sk-web-gui/user-menu';
 import { Meta, StoryObj } from '@storybook/react';
 import { Link } from '@sk-web-gui/link';
 import { Header, HeaderProps } from '../src';
+import { User, Wallet, Settings2, LogOut, Menu, ChevronDown } from 'lucide-react';
 
 export default {
   title: 'Layout/Header',
@@ -26,7 +27,7 @@ const menuGroups: MenuItemGroup[] = [
         label: 'Min profil',
         element: () => (
           <Link href="/pagaende">
-            <Icon name="user" />
+            <Icon icon={<User />} />
             Profil
           </Link>
         ),
@@ -35,7 +36,7 @@ const menuGroups: MenuItemGroup[] = [
         label: 'Konto',
         element: () => (
           <Link href="/beslutade">
-            <Icon name="wallet" />
+            <Icon icon={<Wallet />} />
             Konto
           </Link>
         ),
@@ -44,7 +45,7 @@ const menuGroups: MenuItemGroup[] = [
         label: 'Inställningar',
         element: () => (
           <Link href="/handlingsplan">
-            <Icon name="settings-2" />
+            <Icon icon={<Settings2 />} />
             Inställningar
           </Link>
         ),
@@ -58,7 +59,7 @@ const menuGroups: MenuItemGroup[] = [
         label: 'Logga ut',
         element: () => (
           <Link href="/logout">
-            <Icon name="log-out" />
+            <Icon icon={<LogOut />} />
             Logga ut
           </Link>
         ),
@@ -77,7 +78,7 @@ export const Template: StoryObj<typeof Header> = (args: React.ComponentPropsWith
         userMenu={<UserMenu menuGroups={menuGroups} />}
         mobileMenu={
           <Button iconButton>
-            <Icon name="menu" />
+            <Icon icon={<Menu />} />
           </Button>
         }
         mainMenu={
@@ -90,7 +91,7 @@ export const Template: StoryObj<typeof Header> = (args: React.ComponentPropsWith
             </MenuBar.Item>
             <MenuBar.Item>
               <PopupMenu>
-                <PopupMenu.Button rightIcon={<Icon name="chevron-down" />}>Hjälp</PopupMenu.Button>
+                <PopupMenu.Button rightIcon={<Icon icon={<ChevronDown />} />}>Hjälp</PopupMenu.Button>
                 <PopupMenu.Panel>
                   <PopupMenu.Items>
                     <PopupMenu.Item>
