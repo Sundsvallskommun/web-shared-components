@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Combobox, ComboboxProps, FormControl, FormErrorMessage, FormHelperText, FormLabel } from '../src';
+import { Button } from '@sk-web-gui/button';
 export default {
   title: 'Komponenter/Combobox',
   component: Combobox.Input,
@@ -317,6 +318,66 @@ export const MultipleChoicesWithForm = (args: ComboboxProps) => {
         </Combobox>
         {errors.fruits && <FormErrorMessage>Välj minst en frukt</FormErrorMessage>}
       </FormControl>
+    </div>
+  );
+};
+export const MultipleChoicesWithFormAndAddFunction = (args: ComboboxProps) => {
+  const {
+    register,
+    setError,
+    clearErrors,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useForm<{ fruits: string[]; options: string[] }>({ defaultValues: { fruits: [], options: fruits } });
+  const [searchValue, setSearchValue] = React.useState<string>('');
+
+  const myfruits = watch('fruits');
+  const options = watch('options');
+  React.useEffect(() => {
+    console.log('myfruits', myfruits);
+    if (myfruits && myfruits.length < 1) {
+      setError('fruits', { message: 'Välj minst en frukt' });
+    } else {
+      clearErrors('fruits');
+    }
+  }, [myfruits]);
+
+  React.useEffect(() => {
+    console.log('🚀 ~ React.useEffect ~ searchValue:', searchValue);
+  }, [searchValue]);
+
+  const addOption = () => {
+    console.log('🚀 ~ addOption ~ searchValue:', searchValue);
+
+    setValue('options', [...options, searchValue]);
+    setSearchValue('');
+  };
+
+  return (
+    <div className="h-[40rem] flex gap-32">
+      <FormControl required invalid={!!errors.fruits}>
+        <FormLabel>Favoritfrukt</FormLabel>
+        <Combobox
+          multiple
+          {...args}
+          {...register('fruits')}
+          placeholder="Välj en frukt"
+          searchValue={searchValue}
+          onChangeSearch={(e) => setSearchValue(e.target.value)}
+        >
+          <Combobox.Input />
+          <Combobox.List>
+            {options.map((fruit) => (
+              <Combobox.Option key={`multifruit-${fruit}`} value={fruit}>
+                {fruit}
+              </Combobox.Option>
+            ))}
+          </Combobox.List>
+        </Combobox>
+        {errors.fruits && <FormErrorMessage>Välj minst en frukt</FormErrorMessage>}
+      </FormControl>
+      <Button onClick={() => addOption()}>Lägg till ny</Button>
     </div>
   );
 };
