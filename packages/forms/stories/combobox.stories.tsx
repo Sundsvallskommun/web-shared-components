@@ -323,7 +323,6 @@ export const MultipleChoicesWithForm = (args: ComboboxProps) => {
 };
 export const MultipleChoicesWithFormAndAddFunction = (args: ComboboxProps) => {
   const {
-    register,
     setError,
     clearErrors,
     watch,
@@ -349,35 +348,39 @@ export const MultipleChoicesWithFormAndAddFunction = (args: ComboboxProps) => {
 
   const addOption = () => {
     console.log('🚀 ~ addOption ~ searchValue:', searchValue);
-
+    console.log('🚀 ~ addOption ~ myfruits:', myfruits);
+    setValue('fruits', [...myfruits, searchValue]);
     setValue('options', [...options, searchValue]);
     setSearchValue('');
   };
 
   return (
-    <div className="h-[40rem] flex gap-32">
+    <div className="h-[40rem]">
       <FormControl required invalid={!!errors.fruits}>
         <FormLabel>Favoritfrukt</FormLabel>
-        <Combobox
-          multiple
-          {...args}
-          {...register('fruits')}
-          placeholder="Välj en frukt"
-          searchValue={searchValue}
-          onChangeSearch={(e) => setSearchValue(e.target.value)}
-        >
-          <Combobox.Input />
-          <Combobox.List>
-            {options.map((fruit) => (
-              <Combobox.Option key={`multifruit-${fruit}`} value={fruit}>
-                {fruit}
-              </Combobox.Option>
-            ))}
-          </Combobox.List>
-        </Combobox>
+        <div className="flex gap-32 items-center">
+          <Combobox
+            multiple
+            {...args}
+            value={myfruits}
+            onChange={(e) => setValue('fruits', e.target.value as string[])}
+            placeholder="Välj en frukt"
+            searchValue={searchValue}
+            onChangeSearch={(e) => setSearchValue(e.target.value)}
+          >
+            <Combobox.Input />
+            <Combobox.List>
+              {options.map((fruit) => (
+                <Combobox.Option key={`multifruit-${fruit}`} value={fruit}>
+                  {fruit}
+                </Combobox.Option>
+              ))}
+            </Combobox.List>
+          </Combobox>
+          <Button onClick={() => addOption()}>Lägg till ny</Button>
+        </div>
         {errors.fruits && <FormErrorMessage>Välj minst en frukt</FormErrorMessage>}
       </FormControl>
-      <Button onClick={() => addOption()}>Lägg till ny</Button>
     </div>
   );
 };

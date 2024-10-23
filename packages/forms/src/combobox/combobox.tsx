@@ -150,6 +150,17 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
     setActive(-1);
   };
 
+  React.useEffect(() => {
+    if (value?.toString() !== internalValue.toString()) {
+      if (typeof value === 'string') {
+        setInternalValue([value]);
+      }
+      if (Array.isArray(value)) {
+        setInternalValue(value);
+      }
+    }
+  }, [value]);
+
   const context = {
     multiple,
     size,
