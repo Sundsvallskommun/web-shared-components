@@ -53,7 +53,7 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
   const classes = useComboboxStyles({ size, variant });
 
   React.useEffect(() => {
-    if (_searchValue) {
+    if (typeof _searchValue === 'string') {
       setSearchValue(_searchValue);
     }
   }, [_searchValue]);

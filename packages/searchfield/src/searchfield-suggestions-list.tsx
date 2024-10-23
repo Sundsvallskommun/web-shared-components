@@ -1,13 +1,14 @@
 import { Combobox, ComboboxProps } from '@sk-web-gui/forms';
 import { __DEV__ } from '@sk-web-gui/utils';
 import React from 'react';
+import SearchFieldSuggestionsOption from './searchfield-suggestions-option';
 
 export const SearchFieldSuggestionsList = React.forwardRef<
   HTMLFieldSetElement,
   React.ComponentPropsWithRef<ComboboxProps['List']>
 >((props, ref) => {
   return (
-    <Combobox.List ref={ref} {...props}>
+    <Combobox.List ref={ref} optionType={typeof SearchFieldSuggestionsOption} {...props}>
       {props.children}
     </Combobox.List>
   );
