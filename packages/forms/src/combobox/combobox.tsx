@@ -53,7 +53,7 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
   const classes = useComboboxStyles({ size, variant });
 
   React.useEffect(() => {
-    if (_searchValue) {
+    if (typeof _searchValue === 'string') {
       setSearchValue(_searchValue);
     }
   }, [_searchValue]);
@@ -149,6 +149,17 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
     inputRef.current && inputRef.current.focus();
     setActive(-1);
   };
+
+  React.useEffect(() => {
+    if (value?.toString() !== internalValue.toString()) {
+      if (typeof value === 'string') {
+        setInternalValue([value]);
+      }
+      if (Array.isArray(value)) {
+        setInternalValue(value);
+      }
+    }
+  }, [value]);
 
   const context = {
     multiple,

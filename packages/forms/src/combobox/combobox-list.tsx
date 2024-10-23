@@ -1,5 +1,5 @@
 import { DefaultProps, cx, getValidChildren, useForkRef, useOnElementOutside } from '@sk-web-gui/utils';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useCombobox } from './combobox-context';
 import { ComboboxOptgroup } from './combobox-optgroup';
 import { ComboboxOption } from './combobox-option';
@@ -8,13 +8,17 @@ export interface ComboboxListProps extends DefaultProps, React.ComponentPropsWit
   multiple?: boolean;
   size?: 'sm' | 'md' | 'lg';
   value?: string | string[];
+  /**
+   * typeof Element used as Option element
+   */
+  optionType?: string | React.JSXElementConstructor<any>;
 }
 
 export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListProps>((props, ref) => {
   const [position, setPosition] = useState<'under' | 'over'>('over');
 
   const internalRef = React.useRef<HTMLFieldSetElement>(null);
-  const { className, multiple: _multiple, size: _size, value: _value, children, ...rest } = props;
+  const { className, multiple: _multiple, size: _size, value: _value, children, optionType, ...rest } = props;
 
   const { total, setTotal, open, autofilter, sortSelectedFirst, setIds, ...context } = useCombobox();
 
@@ -56,7 +60,7 @@ export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListPr
 
   const getFilteredChildren = (children: React.ReactNode, groupIndex?: number) =>
     getValidChildren(children)
-      .filter((child) => child.type === ComboboxOption)
+      .filter((child) => child.type === ComboboxOption || typeof child.type === optionType)
       .sort(sortSelected)
       .filter((child) =>
         autofilter
