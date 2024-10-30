@@ -60,6 +60,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
 
   const minPage = 1;
   const [currentPage, setCurrentPage] = useState(1);
+
   const internalHandleChange = (page: number) => {
     if (page > minPage - 1 && page < pages + 1) {
       setCurrentPage(page);
@@ -81,7 +82,6 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
 
   const handleClick = (pageNumber: number) => {
     changePage(pageNumber);
-    internalHandleChange(pageNumber);
   };
 
   const shouldShowLabel: (idx: number, cP: number, pBaA: number) => boolean = (idx) =>
@@ -100,7 +100,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
         type="button"
         role="menuitem"
         aria-current={active}
-        aria-label={active ? `sida ${pageNumber}, Nuvarande sida` : `Sida ${pageNumber} av ${pages}.`}
+        aria-label={`Sida ${pageNumber} av ${pages}.`}
         className={cx(`sk-pagination-pageLabel`)}
         onClick={() => handleClick(pageNumber)}
         key={`page${pageNumber}`}
