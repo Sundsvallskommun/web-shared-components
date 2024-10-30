@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.11](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/searchfield@2.1.10...@sk-web-gui/searchfield@2.1.11) (2024-10-30)
+
+### Bug Fixes
+
+- Searchfield suggestion options filtering ([b3cdc6b](https://github.com/Sundsvallskommun/web-shared-components/commit/b3cdc6bcd2d39eb838bb74aec924f3d1638db44a))
+- support for default exports were broken in dev ([a3df431](https://github.com/Sundsvallskommun/web-shared-components/commit/a3df431658d2e7650bd14b94ca18af797065bea3))
+
 ## [2.1.10](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/searchfield@2.1.9...@sk-web-gui/searchfield@2.1.10) (2024-10-04)
 
 ### Bug Fixes

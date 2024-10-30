@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/spinner",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",

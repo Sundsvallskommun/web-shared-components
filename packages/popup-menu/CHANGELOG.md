@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.11](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/popup-menu@3.0.10...@sk-web-gui/popup-menu@3.0.11) (2024-10-30)
+
+### Bug Fixes
+
+- support for default exports were broken in dev ([a3df431](https://github.com/Sundsvallskommun/web-shared-components/commit/a3df431658d2e7650bd14b94ca18af797065bea3))
+
 ## [3.0.10](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/popup-menu@3.0.9...@sk-web-gui/popup-menu@3.0.10) (2024-10-04)
 
 **Note:** Version bump only for package @sk-web-gui/popup-menu

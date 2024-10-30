@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/progress-bar",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",

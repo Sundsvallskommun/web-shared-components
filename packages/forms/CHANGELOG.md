@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.1.1...@sk-web-gui/forms@2.1.2) (2024-10-30)
+
+### Bug Fixes
+
+- Searchfield suggestion options filtering ([b3cdc6b](https://github.com/Sundsvallskommun/web-shared-components/commit/b3cdc6bcd2d39eb838bb74aec924f3d1638db44a))
+- update incoming value ([7274e0a](https://github.com/Sundsvallskommun/web-shared-components/commit/7274e0ab6ce52b1776c282cf4bd2f19df8aa8eca))
+
 ## [2.1.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.1.0...@sk-web-gui/forms@2.1.1) (2024-10-04)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.5](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/link@1.1.4...@sk-web-gui/link@1.1.5) (2024-10-30)
+
+### Bug Fixes
+
+- support for default exports were broken in dev ([a3df431](https://github.com/Sundsvallskommun/web-shared-components/commit/a3df431658d2e7650bd14b94ca18af797065bea3))
+
 ## [1.1.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/link@1.1.3...@sk-web-gui/link@1.1.4) (2024-10-04)
 
 ### Bug Fixes

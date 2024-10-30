@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/icon@3.0.0...@sk-web-gui/icon@3.0.1) (2024-10-30)
+
+### Bug Fixes
+
+- bad export ([57e8382](https://github.com/Sundsvallskommun/web-shared-components/commit/57e8382082c98eac7b56f4dc89e8e663523bbbb8))
+- moved lucide icon ([457cd07](https://github.com/Sundsvallskommun/web-shared-components/commit/457cd07d07ef0aaccb0c88dbf412406c2c732743))
+- support for default exports were broken in dev ([a3df431](https://github.com/Sundsvallskommun/web-shared-components/commit/a3df431658d2e7650bd14b94ca18af797065bea3))
+
 # [3.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/icon@2.0.1...@sk-web-gui/icon@3.0.0) (2024-10-04)
 
 ### Features

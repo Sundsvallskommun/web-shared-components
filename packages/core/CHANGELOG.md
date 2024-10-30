@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.8.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.7.1...@sk-web-gui/core@3.8.0) (2024-10-30)
+
+### Bug Fixes
+
+- support for default exports were broken in dev ([a3df431](https://github.com/Sundsvallskommun/web-shared-components/commit/a3df431658d2e7650bd14b94ca18af797065bea3))
+
+### Features
+
+- new component Callout ([6bf536f](https://github.com/Sundsvallskommun/web-shared-components/commit/6bf536f6b657a4172ed55ae7547a205531819d76))
+
 ## [3.7.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.7.0...@sk-web-gui/core@3.7.1) (2024-10-04)
 
 ### Bug Fixes
