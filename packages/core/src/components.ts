@@ -7,6 +7,7 @@ import { Badge } from './components/badge';
 import { Breadcrumb } from './components/breadcrumb';
 import { Button } from './components/button';
 import { ButtonGroup } from './components/button-group';
+import { Callout } from './components/callout';
 import { Card } from './components/card';
 import { Checkbox } from './components/checkbox';
 import { Chip } from './components/chip';
@@ -69,6 +70,7 @@ export const components: ComponentWithDeps[] = [
   { comp: Breadcrumb, deps: [Link] },
   { comp: Button, deps: [Link, Spinner, ButtonGroup] },
   { comp: ButtonGroup },
+  { comp: Callout },
   { comp: Card, deps: [Button, Link] },
   { comp: Checkbox },
   { comp: Chip, deps: [Icon] },
