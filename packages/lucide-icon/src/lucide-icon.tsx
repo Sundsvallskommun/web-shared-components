@@ -2,11 +2,11 @@ import { __DEV__, cx } from '@sk-web-gui/utils';
 import { icons } from 'lucide-react';
 import dynamicIconImports from 'lucide-react/dynamicIconImports';
 import React from 'react';
-import Icon, { type IconProps } from './icon';
+import { Icon, type IconProps } from '@sk-web-gui/icon';
 
 type IconNames = keyof typeof dynamicIconImports;
 
-export interface LucideIconProps extends IconProps {
+export interface LucideIconProps extends React.ComponentProps<IconProps['Component']> {
   name?: IconNames;
 }
 
