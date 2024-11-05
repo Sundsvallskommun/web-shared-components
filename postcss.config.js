@@ -1,6 +1,6 @@
 // If you want to use other PostCSS plugins, see the following:
 // https://tailwindcss.com/docs/using-with-preprocessors
-const config = {
+module.exports = {
   plugins: {
     'postcss-import': {},
     'tailwindcss/nesting': {},
@@ -8,4 +8,3 @@ const config = {
     autoprefixer: {},
   },
 };
-export default config;
