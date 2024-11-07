@@ -1,5 +1,8 @@
 export const Accordion = () => ({
   '.sk-disclosure': {
+    '&-icon': {
+      '@apply flex self-center': {},
+    },
     '&-header': {
       '@apply mt-6 mb-8': {},
       '@apply flex flex-col text-left': {},
