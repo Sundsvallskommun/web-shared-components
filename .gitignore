@@ -25,3 +25,7 @@ yarn-error.log
 .npmrc
 
 .nx
+
+# env
+.env*
+!.env*-example
