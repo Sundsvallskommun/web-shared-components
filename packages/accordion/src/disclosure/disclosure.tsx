@@ -1,13 +1,13 @@
 import { useId } from '@reach/auto-id';
+import { Button } from '@sk-web-gui/button';
+import { Divider } from '@sk-web-gui/divider';
+import { Icon } from '@sk-web-gui/icon';
+import { Label } from '@sk-web-gui/label';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
+import { Minus, Plus } from 'lucide-react';
 import React from 'react';
 import { useAccordion } from '../accordion/accordion';
-import { Button } from '@sk-web-gui/button';
-import { Label } from '@sk-web-gui/label';
-import { Divider } from '@sk-web-gui/divider';
 import { useDisclosureClass } from './styles';
-import { Icon, IconProps } from '@sk-web-gui/icon';
-import { Minus, Plus } from 'lucide-react';
 
 export interface DisclosureProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   /**
@@ -150,7 +150,7 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
         onClick={onClick}
       >
         <div className="sk-disclosure-toggle">
-          {icon}
+          <div className="flex self-center">{icon}</div>
           <div className="sk-disclosure-title-wrapper">
             <Comp className="sk-disclosure-title" id={`${id}-label`}>
               {header}
