@@ -209,8 +209,9 @@ export const useChat = (options?: useChatOptions) => {
         console.error('There was an error from server', err);
         addHistoryEntry('system', 'Ett fel inträffade, kunde inte kommunicera med assistent.', '0', true);
         setDone(currentSession, true);
+        throw err;
       },
-    });
+    }).catch(() => setDone(currentSession, true));
   };
 
   const sendQuery = (query: string) => {
