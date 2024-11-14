@@ -3,6 +3,8 @@ export const AIServiceModule = (colors: string[]) => ({
     '@apply flex gap-0': {},
     '@apply rounded-groups': {},
     '@apply bg-background-content': {},
+    '@apply relative': {},
+    '@apply z-10': {},
 
     '&[data-inverted="true"]': {
       '@apply text-inverted-dark-primary': {},
@@ -130,6 +132,7 @@ export const AIServiceModule = (colors: string[]) => ({
 
     '&-assistant': {
       '&-expanded': {
+        '@apply z-20': {},
         '@apply h-[35em] max-h-[35em]': {},
         '@apply rounded-button': {},
         '@apply overflow-hidden': {},
