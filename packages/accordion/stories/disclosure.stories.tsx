@@ -1,4 +1,4 @@
-import React from 'react';
+import { LucideIcon } from '@sk-web-gui/lucide-icon';
 import { Meta } from '@storybook/react';
 import { Disclosure, DisclosureProps } from '../src';
 
@@ -29,7 +29,7 @@ Template.storyName = 'Disclosure';
 export const AlternativeVariant = () => {
   return (
     <>
-      <Disclosure variant="alt" header="Sök skolskjuts innan den 30 april" icon="bus">
+      <Disclosure variant="alt" header="Sök skolskjuts innan den 30 april" icon={<LucideIcon name="bus" />}>
         <p>
           Har du barn som är i behov av skolskjuts måste du ansöka innan den 30 april inför hösten 2021. Detta gäller
           elever som går i förskoleklass, grundskola och gymnasiesärskola.
