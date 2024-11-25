@@ -12,7 +12,7 @@ const config: StorybookConfig = {
   stories: [
     './stories/intro/intro.mdx' /** child 0: Start/Index */,
     './stories/**/*.@(tsx|mdx)',
-    '../packages/*/stories/*.stories.@(tsx)',
+    '../packages/*/stories/**/*.stories.@(tsx)',
   ],
   addons: ['@storybook/addon-essentials', '@storybook/addon-a11y', 'storybook-dark-mode'],
   typescript: {
