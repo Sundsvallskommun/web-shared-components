@@ -46,24 +46,24 @@ export const FileUpload = () => ({
         },
 
         '&-icon': {
-          '@apply flex justify-center shrink-0 rounded-utility': {},
+          '@apply flex justify-center shrink-0 rounded-utility overflow-hidden': {},
           '@apply bg-vattjom-surface-accent': {},
 
-          '@apply w-32 h-32 p-[.64rem]': {},
+          '@apply w-32 h-32': {},
           '.sk-icon': {
-            '@apply max-h-[1.92rem]': {},
+            '@apply w-full h-full p-[.64rem]': {},
           },
 
           '&[data-size="sm"]': {
-            '@apply w-32 h-32 p-[.64rem]': {},
+            '@apply w-32 h-32': {},
             '.sk-icon': {
-              '@apply max-h-[1.92rem]': {},
+              '@apply p-[.64rem]': {},
             },
           },
           '&[data-size="md"]': {
-            '@apply medium-device:w-44 medium-device:h-44 medium-device:p-[.88rem]': {},
+            '@apply medium-device:w-44 medium-device:h-44': {},
             '.sk-icon': {
-              '@apply medium-device:max-h-[2.64rem]': {},
+              '@apply medium-device:p-[.88rem]': {},
             },
           },
         },
