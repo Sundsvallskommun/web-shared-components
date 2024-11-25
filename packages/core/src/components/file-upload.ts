@@ -203,7 +203,16 @@ export const FileUpload = () => ({
         },
       },
     },
+    '&-field &-area': {
+      '@apply w-full h-full': {},
+
+      '&-children': {
+        '@apply w-full h-full': {},
+      },
+    },
     '&-field': {
+      '@apply w-fit': {},
+
       '&[data-variant="horizontal"] &-button': {
         '@apply flex flex-row p-24 justify-center items-center gap-16': {},
       },
@@ -233,7 +242,7 @@ export const FileUpload = () => ({
       },
 
       '&-button': {
-        '@apply grow shrink-0 basis-0 self-stretch': {},
+        '@apply w-full h-full grow shrink-0 basis-0 self-stretch': {},
         '@apply rounded-groups border-vattjom-surface-primary border-dashed border-1 bg-vattjom-background-100': {},
 
         '&-icon': {
@@ -242,13 +251,13 @@ export const FileUpload = () => ({
           },
         },
         '&-content': {
-          '@apply flex flex-col items-start gap-y-4 max-w-[25rem]': {},
+          '@apply flex flex-col items-start gap-y-4': {},
           '&-restrictions': {
             '@apply flex flex-col items-start': {},
             '@apply text-small text-dark-secondary': {},
 
             '&-mimetypes': {
-              '@apply text-start line-clamp-1': {},
+              '@apply text-start line-clamp-1 max-w-[25rem]': {},
             },
           },
         },
