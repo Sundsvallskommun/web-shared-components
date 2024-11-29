@@ -295,7 +295,7 @@ const lightmode = {
     text: {
       DEFAULT: primitives.red[800],
       primary: primitives.red[800],
-      secondary: primitives.red[100],
+      secondary: primitives.gray.lightest,
     },
   },
   warning: {
@@ -318,7 +318,7 @@ const lightmode = {
     text: {
       DEFAULT: primitives.orange[800],
       primary: primitives.orange[800],
-      secondary: primitives.orange[100],
+      secondary: primitives.gray.lightest,
     },
   },
   info: {
@@ -537,8 +537,8 @@ const darkmode = {
       },
     },
     text: {
-      DEFAULT: primitives.red[100],
-      primary: primitives.red[100],
+      DEFAULT: primitives.gray.lightest,
+      primary: primitives.gray.lightest,
       secondary: primitives.red[800],
     },
   },
@@ -560,8 +560,8 @@ const darkmode = {
       },
     },
     text: {
-      DEFAULT: primitives.orange[100],
-      primary: primitives.orange[100],
+      DEFAULT: primitives.gray.lightest,
+      primary: primitives.gray.lightest,
       secondary: primitives.orange[800],
     },
   },
