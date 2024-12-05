@@ -94,42 +94,46 @@ export const Template = (args: React.ComponentProps<FileUploadProps['Component']
       <Switch value={isEdit.toString()} checked={isEdit} onChange={() => setIsEdit((value) => !value)}>
         Redigera
       </Switch>
-      <FileUpload.Button
-        {...args}
-        onChange={onChange}
-        modalListProps={{
-          categoryProps: {
-            categories: defaultCategories,
-          },
-          actionsProps: { showRemove: true, onRemove: handleRemoveFile },
-        }}
-      />
-      <FileUpload.List isEdit={isEdit}>
-        {files?.map((file, i) => (
-          <FileUpload.ListItem
-            key={file.file.name}
-            file={file}
-            index={i}
-            nameProps={{
-              inputProps: {
-                onChange: handleOnChangeName(file),
+      <FileUpload.Area onChange={onChange}>
+        <div className="flex flex-col gap-lg">
+          <FileUpload.Button
+            {...args}
+            onChange={onChange}
+            modalListProps={{
+              categoryProps: {
+                categories: defaultCategories,
               },
-            }}
-            categoryProps={{
-              categories: defaultCategories,
-              selectProps: {
-                onChange: handleOnChangeCategory(file),
-              },
-            }}
-            actionsProps={{
-              showRemove: true,
-              showMore: true,
-              morePopupMenuPanel: MorePanel,
-              onRemove: handleRemoveFile,
+              actionsProps: { showRemove: true, onRemove: handleRemoveFile },
             }}
           />
-        ))}
-      </FileUpload.List>
+          <FileUpload.List isEdit={isEdit}>
+            {files?.map((file, i) => (
+              <FileUpload.ListItem
+                key={file.file.name}
+                file={file}
+                index={i}
+                nameProps={{
+                  inputProps: {
+                    onChange: handleOnChangeName(file),
+                  },
+                }}
+                categoryProps={{
+                  categories: defaultCategories,
+                  selectProps: {
+                    onChange: handleOnChangeCategory(file),
+                  },
+                }}
+                actionsProps={{
+                  showRemove: true,
+                  showMore: true,
+                  morePopupMenuPanel: MorePanel,
+                  onRemove: handleRemoveFile,
+                }}
+              />
+            ))}
+          </FileUpload.List>
+        </div>
+      </FileUpload.Area>
     </div>
   );
 };
