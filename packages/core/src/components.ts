@@ -16,6 +16,7 @@ import { CookieConsent } from './components/cookie-consent';
 import { Dialog } from './components/dialog';
 import { Divider } from './components/divider';
 import { Dot } from './components/dot';
+import { FileUpload } from './components/file-upload';
 import { Filter } from './components/filter';
 import { Footer } from './components/footer';
 import { Forms } from './components/forms';
@@ -79,6 +80,7 @@ export const components: ComponentWithDeps[] = [
   { comp: Dialog, deps: [Modal] },
   { comp: Divider },
   { comp: Dot },
+  { comp: FileUpload, deps: [Icon, Forms, Button, PopupMenu, Modal, Divider, Link] },
   { comp: Filter, deps: [Badge, Forms] },
   { comp: Footer, deps: [Divider, Link, Logo] },
   { comp: Forms, deps: [Icon, Checkbox, ComboBox, Select, Input, Radio, Switch, PopupMenu] },
