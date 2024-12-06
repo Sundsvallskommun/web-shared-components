@@ -22,7 +22,7 @@ export const FileUpload = () => ({
 
         '&-innerwrapper': {
           '@apply w-full': {},
-          '@apply self-stretch list-none flex flex-row gap-y-24 gap-x-12': {},
+          '@apply self-stretch items-center list-none flex flex-row gap-y-24 gap-x-12': {},
         },
 
         '&[data-isedit="true"]': {
