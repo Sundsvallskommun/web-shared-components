@@ -39,7 +39,7 @@ export const FileUploadButton = React.forwardRef<HTMLSpanElement, FileUploadButt
     accept = defaults.acceptedMimeTypes,
     appendFiles: _appendFiles,
     fileNameValidationFunctions = defaults.fileNameValidationFunctions,
-    // modalListProps
+    // Props for modal-list
     modalListProps,
     ...rest
   } = props;
