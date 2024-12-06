@@ -19,6 +19,7 @@ export interface FileUploadListItemContentCategoryProps
   categories?: { [key: string]: string };
   category?: string;
   defaultValue?: string;
+  placeholder?: string;
   /** @default isMinMediumDevice ? false : true */
   showLabel?: boolean;
   children?: JSX.Element | JSX.Element[] | string;
@@ -41,6 +42,7 @@ export const FileUploadListItemContentCategory = React.forwardRef<
     categories: _categories,
     category: _category,
     defaultValue: _defaultValue,
+    placeholder,
     showLabel: _showLabel,
     'aria-label': ariaLabel = 'Kategori',
     // Controlled
@@ -77,7 +79,7 @@ export const FileUploadListItemContentCategory = React.forwardRef<
 
   const selectProps = { ..._selectProps, value: _selectProps?.value ?? file?.meta?.category };
 
-  if (category === undefined || categories === undefined) return null;
+  if (categories === undefined) return null;
 
   if (!children) {
     return (
@@ -105,8 +107,10 @@ export const FileUploadListItemContentCategory = React.forwardRef<
           </FormControl>
         ) : (
           <>
-            {category && categories && (
-              <div className="sk-form-file-upload-list-item-content-category-heading">{categories[category]}</div>
+            {(categories[category] || placeholder) && (
+              <div className="sk-form-file-upload-list-item-content-category-heading">
+                {category ? categories[category] : placeholder}
+              </div>
             )}
           </>
         )}
