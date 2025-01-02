@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.35](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@1.2.34...@sk-web-gui/react@1.2.35) (2025-01-02)
+
+### Bug Fixes
+
+- added missing callout dependency ([bf70f05](https://github.com/Sundsvallskommun/web-shared-components/commit/bf70f058a85e9a67be3dd74b23a0d8fec890a8c9))
+
 ## [1.2.34](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@1.2.33...@sk-web-gui/react@1.2.34) (2025-01-02)
 
 ### Bug Fixes
