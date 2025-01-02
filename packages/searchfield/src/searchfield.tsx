@@ -113,7 +113,7 @@ export const SearchFieldBase = React.forwardRef<HTMLInputElement, SearchFieldBas
               aria-label={resetAriaLabel}
               size="sm"
               iconButton
-              variant={size === 'lg' ? 'primary' : 'ghost'}
+              variant={size === 'lg' ? 'tertiary' : 'ghost'}
               onClick={handleOnReset}
             >
               {resetIcon}
