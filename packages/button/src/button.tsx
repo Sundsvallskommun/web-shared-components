@@ -53,10 +53,11 @@ export interface ButtonContentProps {
   rightIcon?: ButtonProps['rightIcon'];
   children?: ButtonProps['children'];
   size?: ButtonProps['size'];
+  iconButton?: ButtonProps['iconButton'];
 }
 
 export const ButtonContent: React.FC<ButtonContentProps> = (props: ButtonContentProps): JSX.Element => {
-  const { size = 'md', loading, loadingText, leftIcon, rightIcon, children } = props;
+  const { size = 'md', loading, children, loadingText, leftIcon, rightIcon, iconButton } = props;
   return (
     <>
       {leftIcon && !loading ? <span className="sk-btn-has-icon-left">{leftIcon}</span> : null}
@@ -64,10 +65,14 @@ export const ButtonContent: React.FC<ButtonContentProps> = (props: ButtonContent
         <Spinner
           size={size === 'sm' ? 1.6 : size === 'md' ? 1.8 : 2}
           className="sk-btn-loading-spinner"
-          data-hastext={!!loadingText}
+          data-hastext={!iconButton}
         />
       )}
-      {loading ? loadingText || <span className="sk-btn-loading-text">{children}</span> : children}
+      {loading && iconButton
+        ? null
+        : loading && !iconButton
+          ? loadingText || <span className="sk-btn-loading-text">{children}</span>
+          : children}
       {rightIcon && !loading ? <span className="sk-btn-has-icon-right">{rightIcon}</span> : null}
     </>
   );
@@ -89,17 +94,16 @@ export const Button = React.forwardRef(
       size = 'md',
       rounded = false,
       iconButton,
+      children,
       loadingText,
       leftIcon,
       rightIcon,
-      children,
       inverted,
       showBackground = true,
       ...rest
     } = props;
     const Component: React.ElementType = as || 'button';
-
-    const disabled = _disabled || loading;
+    const disabled = _disabled;
     const classes = useButtonClass({
       variant,
       size,
@@ -124,6 +128,7 @@ export const Button = React.forwardRef(
           loadingText={loadingText}
           leftIcon={leftIcon}
           rightIcon={rightIcon}
+          iconButton={iconButton}
         >
           {children}
         </ButtonContent>
@@ -149,6 +154,7 @@ export const Button = React.forwardRef(
           loadingText={loadingText}
           leftIcon={leftIcon}
           rightIcon={rightIcon}
+          iconButton={iconButton}
         >
           {children}
         </ButtonContent>

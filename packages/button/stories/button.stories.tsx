@@ -122,9 +122,11 @@ export default {
 export const Template = ({ children, ...args }: React.ComponentPropsWithRef<ButtonProps>) => (
   <div className="flex flex-col items-start space-y-2">
     <Button {...args}>{args.iconButton ? <Icon icon={<CandyCane />} /> : children}</Button>
-    <Button {...args} leftIcon={<Icon icon={<CandyCane />} />}>
-      {args.iconButton ? '' : children}
-    </Button>
+    {
+      <Button {...args} leftIcon={<Icon icon={<CandyCane />} />}>
+        {args.iconButton ? '' : children}
+      </Button>
+    }
   </div>
 );
 

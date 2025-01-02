@@ -9,6 +9,9 @@ function buttonPrimary(colors: string[]) {
         (styles, color) => ({
           ...styles,
           [`&[data-color="${color}"]`]: {
+            path: {
+              [`@apply stroke-${color}-text-secondary`]: {},
+            },
             [`@apply bg-${color}-surface-primary  text-${color}-text-secondary`]: {},
             // hover
             [`@apply hover:bg-${color}-surface-primary-hover hover:text-light-primary`]: {},
@@ -19,15 +22,35 @@ function buttonPrimary(colors: string[]) {
             [`@apply active:bg-${color}-surface-primary-hover`]: {},
 
             '&[data-inverted="true"]': {
+              path: {
+                [`@apply stroke-${color}-text-primary`]: {},
+              },
               '@apply text-inverted-light-primary': {},
               [`@apply bg-inverted-${color}-surface-primary text-inverted-${color}-text-secondary`]: {},
               // hover
               [`@apply hover:bg-inverted-${color}-surface-primary-hover hover:text-inverted-light-primary`]: {},
+              '&:hover': {
+                '.sk-icon': {
+                  path:{
+                    [`@apply stroke-inverted-light-primary`]: {},
+                  },
+                },
+                '.sk-spinner': {
+                  path:{
+                    [`@apply stroke-inverted-light-primary`]: {},
+                  },
+                },
+              },
               // keyboard active
               '&.active': {
                 [`@apply bg-inverted-${color}-surface-primary-hover`]: {},
               },
               [`@apply active:bg-inverted-${color}-surface-primary-hover`]: {},
+            },
+            '&.sk-btn-disabled, &[aria-disabled="true"]': {
+              path: {
+                [`@apply stroke-dark-disabled`]: {},
+              },
             },
           },
         }),
@@ -35,6 +58,9 @@ function buttonPrimary(colors: string[]) {
       ),
 
       "&[data-color='primary']": {
+        path: {
+          [`@apply stroke-light-primary`]: {},
+        },
         '@apply bg-primary-surface': {},
         '@apply hover:bg-primary-surface-hover': {},
         '&.active': {
@@ -43,6 +69,9 @@ function buttonPrimary(colors: string[]) {
         [`@apply active:bg-primary-surface-hover`]: {},
 
         '&[data-inverted="true"]': {
+          path: {
+            [`@apply stroke-inverted-light-primary`]: {},
+          },
           '@apply text-inverted-light-primary': {},
           '@apply bg-inverted-primary-surface': {},
           '@apply hover:bg-inverted-primary-surface-hover': {},
@@ -50,6 +79,11 @@ function buttonPrimary(colors: string[]) {
             '@apply bg-inverted-primary-surface-hover': {},
           },
           [`@apply active:bg-inverted-primary-surface-hover`]: {},
+        },
+        '&.sk-btn-disabled, &[aria-disabled="true"]': {
+          path: {
+            [`@apply stroke-dark-disabled`]: {},
+          },
         },
       },
     },
@@ -69,11 +103,17 @@ function buttonSecondary() {
 
       // State
       '&.sk-btn-disabled, &[aria-disabled="true"]': {
+        path: {
+          [`@apply stroke-dark-disabled`]: {},
+        },
         '@apply disabled:bg-secondary-surface-disabled bg-secondary-surface-disabled disabled:border-transparent border-transparent !important':
           {},
       },
 
       '&[data-inverted="true"]': {
+        path: {
+          [`@apply stroke-inverted-dark-secondary`]: {},
+        },
         '@apply border-inverted-secondary-outline': {},
         '@apply text-inverted-dark-secondary': {},
         '@apply bg-inverted-secondary-surface': {},
@@ -85,6 +125,9 @@ function buttonSecondary() {
 
         // State
         '&.sk-btn-disabled, &[aria-disabled="true"]': {
+          path: {
+            [`@apply stroke-dark-disabled`]: {},
+          },
           '@apply disabled:bg-inverted-secondary-surface-disabled bg-inverted-secondary-surface-disabled disabled:border-transparent border-transparent !important':
             {},
         },
@@ -103,16 +146,25 @@ function buttonTertiary() {
 
       // State
       '&.sk-btn-disabled, &[aria-disabled="true"]': {
+        path: {
+          [`@apply stroke-dark-disabled`]: {},
+        },
         '@apply disabled:bg-tertiary-surface-disabled bg-tertiary-surface-disabled disabled:border-transparent border-transparent !important':
           {},
       },
 
       '&[data-inverted="true"]': {
+        path: {
+          [`@apply stroke-inverted-dark-secondary`]: {},
+        },
         '@apply text-inverted-dark-secondary': {},
         '@apply bg-inverted-tertiary-surface': {},
         /* hover */
         '@apply hover:bg-inverted-tertiary-surface-hover': {},
         '&.sk-btn-disabled, &[aria-disabled="true"]': {
+          path: {
+            [`@apply stroke-dark-disabled`]: {},
+          },
           '@apply disabled:bg-inverted-tertiary-surface-disabled bg-inverted-tertiary-surface-disabled disabled:border-transparent border-transparent !important':
             {},
         },
@@ -231,9 +283,6 @@ export const Button = (colors: string[]) => ({
         '&[data-hastext="true"]': {
           '@apply relative mr-2': {},
         },
-      },
-      '&-text': {
-        '@apply opacity-0': {},
       },
     },
     // variants
