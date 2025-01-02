@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/icon@3.0.1...@sk-web-gui/icon@3.0.2) (2025-01-02)
+
+### Bug Fixes
+
+- broken public build, removed dupe, adjust import ([499be3b](https://github.com/Sundsvallskommun/web-shared-components/commit/499be3b779a307e61b6a81edeafd83909383d5a2))
+
 ## [3.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/icon@3.0.0...@sk-web-gui/icon@3.0.1) (2024-10-30)
 
 ### Bug Fixes

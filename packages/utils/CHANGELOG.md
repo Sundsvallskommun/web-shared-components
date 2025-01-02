@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/utils@2.0.1...@sk-web-gui/utils@2.1.0) (2025-01-02)
+
+### Features
+
+- **forms:** created FileUpload ([5936e03](https://github.com/Sundsvallskommun/web-shared-components/commit/5936e031a3cca0449501e2febb1578e115e35e11))
+
 ## [2.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/utils@2.0.0...@sk-web-gui/utils@2.0.1) (2024-05-24)
 
 ### Bug Fixes

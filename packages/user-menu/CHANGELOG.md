@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.24](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/user-menu@1.0.23...@sk-web-gui/user-menu@1.0.24) (2025-01-02)
+
+### Bug Fixes
+
+- broken public build, removed dupe, adjust import ([499be3b](https://github.com/Sundsvallskommun/web-shared-components/commit/499be3b779a307e61b6a81edeafd83909383d5a2))
+
 ## [1.0.23](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/user-menu@1.0.22...@sk-web-gui/user-menu@1.0.23) (2024-10-30)
 
 ### Bug Fixes

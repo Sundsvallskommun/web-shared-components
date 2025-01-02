@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@2.0.1...@sk-web-gui/accordion@2.0.2) (2025-01-02)
+
+### Bug Fixes
+
+- correction of icon ([711b960](https://github.com/Sundsvallskommun/web-shared-components/commit/711b960cacb8a09ffad51db482328a231678a0b3))
+- removed tailwind from the component ([08e5ef6](https://github.com/Sundsvallskommun/web-shared-components/commit/08e5ef6564a66e298a7a3a5c96df01a0ae695057))
+
 ## [2.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@2.0.0...@sk-web-gui/accordion@2.0.1) (2024-10-30)
 
 ### Bug Fixes

@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/popup-menu",
-  "version": "3.0.11",
+  "version": "3.0.12",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -37,10 +37,10 @@
     "react": "^18.2.0"
   },
   "dependencies": {
-    "@sk-web-gui/button": "2.0.11",
-    "@sk-web-gui/link": "1.1.5",
-    "@sk-web-gui/theme": "2.3.1",
-    "@sk-web-gui/utils": "2.0.1",
+    "@sk-web-gui/button": "2.0.12",
+    "@sk-web-gui/link": "1.1.6",
+    "@sk-web-gui/theme": "2.3.2",
+    "@sk-web-gui/utils": "2.1.0",
     "usehooks-ts": "^3.1.0"
   },
   "peerDependencies": {

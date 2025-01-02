@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.9.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.8.0...@sk-web-gui/core@3.9.0) (2025-01-02)
+
+### Bug Fixes
+
+- **ai:** move chat on top ([97c7fc0](https://github.com/Sundsvallskommun/web-shared-components/commit/97c7fc02c16e2e19fa138781980a91d59a7f2af2))
+- icon to center vertically ([ec4ec32](https://github.com/Sundsvallskommun/web-shared-components/commit/ec4ec32fda8464106e45ab0dbfcb1862a2e5df12))
+- moved max-w to mimetypes, enabled width set from className ([020ec19](https://github.com/Sundsvallskommun/web-shared-components/commit/020ec19093cf814bc6f83a07f82ca2c17638eda6))
+- removed tailwind from the component ([08e5ef6](https://github.com/Sundsvallskommun/web-shared-components/commit/08e5ef6564a66e298a7a3a5c96df01a0ae695057))
+
+### Features
+
+- added support for image preview ([0288903](https://github.com/Sundsvallskommun/web-shared-components/commit/02889036aa3085db87b2fa92d4cf4e35171077ec))
+- **forms:** created FileUpload ([5936e03](https://github.com/Sundsvallskommun/web-shared-components/commit/5936e031a3cca0449501e2febb1578e115e35e11))
+
 # [3.8.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.7.1...@sk-web-gui/core@3.8.0) (2024-10-30)
 
 ### Bug Fixes

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.10.1...@sk-web-gui/ai@0.10.2) (2025-01-02)
+
+### Bug Fixes
+
+- stop stream on error ([23e73dd](https://github.com/Sundsvallskommun/web-shared-components/commit/23e73ddbfdeb134ddb19953bfa9a0f9f323bcbae))
+
 ## [0.10.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.10.0...@sk-web-gui/ai@0.10.1) (2024-10-30)
 
 ### Bug Fixes

@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.1.2...@sk-web-gui/forms@2.2.0) (2025-01-02)
+
+### Bug Fixes
+
+- added drop area to main example ([229809e](https://github.com/Sundsvallskommun/web-shared-components/commit/229809e3b4546efb0fcde710848a6ea4e5383384))
+- allowing placeholder ([96335f1](https://github.com/Sundsvallskommun/web-shared-components/commit/96335f118e8e8ad3aa9910a645d9b11e34dcb09b))
+- clarification to comment ([a232e11](https://github.com/Sundsvallskommun/web-shared-components/commit/a232e11b24a45dbc3b107f96ea07debf7a90d79e))
+- updated default mimetypes ([9a1b396](https://github.com/Sundsvallskommun/web-shared-components/commit/9a1b396ff3823ffb8987499948c4958c6108ae3d))
+
+### Features
+
+- added support for image preview ([0288903](https://github.com/Sundsvallskommun/web-shared-components/commit/02889036aa3085db87b2fa92d4cf4e35171077ec))
+- **forms:** created FileUpload ([5936e03](https://github.com/Sundsvallskommun/web-shared-components/commit/5936e031a3cca0449501e2febb1578e115e35e11))
+
 ## [2.1.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.1.1...@sk-web-gui/forms@2.1.2) (2024-10-30)
 
 ### Bug Fixes
