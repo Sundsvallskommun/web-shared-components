@@ -24,3 +24,5 @@ export * from './combobox';
 export type * from './combobox';
 export * from './radio';
 export type * from './radio';
+export * from './file-upload';
+export type * from './file-upload';
