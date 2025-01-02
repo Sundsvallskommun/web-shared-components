@@ -8,6 +8,8 @@ export * from '@sk-web-gui/breadcrumb';
 export type * from '@sk-web-gui/breadcrumb';
 export * from '@sk-web-gui/button';
 export type * from '@sk-web-gui/button';
+export * from '@sk-web-gui/callout';
+export type * from '@sk-web-gui/callout';
 export * from '@sk-web-gui/card';
 export type * from '@sk-web-gui/card';
 export * from '@sk-web-gui/chip';
