@@ -53,9 +53,11 @@ export interface AutoTableProps extends DefaultProps, TableComponentProps {
   /** @default 5 */
   pageSize?: number;
   /** @default select */
-  pageSizeVariant?: 'select' | 'input' | false;
+  pageSizeEdit?: 'select' | 'input' | boolean;
   /** @default [5,10,25,50,75,100] */
   pageSizeOptions?: Array<number>;
+  /** @default select */
+  rowHeightEdit?: 'select' | boolean;
   page?: number;
   captionTitle?: string;
   captionBody?: string;
@@ -71,8 +73,9 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
     autoheaders,
     autodata,
     pageSize: _propsPageSize = 5,
-    pageSizeVariant = 'select',
+    pageSizeEdit = 'select',
     pageSizeOptions = [5, 10, 25, 50, 75, 100],
+    rowHeightEdit = 'select',
     page = 1,
     changePage,
     captionTitle,
@@ -422,7 +425,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
           </TableBody>
           {footer ? (
             <TableFooter>
-              {pageSizeVariant === 'select' ? (
+              {pageSizeEdit === 'select' || pageSizeEdit === true ? (
                 <div className="sk-table-bottom-section">
                   <label className="sk-table-bottom-section-label" htmlFor="paginationSelect">
                     Rader per sida:
@@ -441,7 +444,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
                     ))}
                   </Select>
                 </div>
-              ) : pageSizeVariant === 'input' ? (
+              ) : pageSizeEdit === 'input' ? (
                 <div className="sk-table-bottom-section">
                   <label className="sk-table-bottom-section-label" htmlFor="pagiPageSize">
                     Rader per sida:
@@ -474,21 +477,25 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
                 />
               </div>
 
-              <div className="sk-table-bottom-section">
-                <label className="sk-table-bottom-section-label" htmlFor="pagiRowHeight">
-                  Radhöjd:
-                </label>
-                <Select
-                  variant="tertiary"
-                  id="pagiRowHeight"
-                  size="sm"
-                  value={rowHeight}
-                  onSelectValue={(value: string) => setRowHeight(value)}
-                >
-                  <Select.Option value={'normal'}>Normal</Select.Option>
-                  <Select.Option value={'dense'}>Tät</Select.Option>
-                </Select>
-              </div>
+              {rowHeightEdit === 'select' || rowHeightEdit === true ? (
+                <div className="sk-table-bottom-section">
+                  <label className="sk-table-bottom-section-label" htmlFor="pagiRowHeight">
+                    Radhöjd:
+                  </label>
+                  <Select
+                    variant="tertiary"
+                    id="pagiRowHeight"
+                    size="sm"
+                    value={rowHeight}
+                    onSelectValue={(value: string) => setRowHeight(value)}
+                  >
+                    <Select.Option value={'normal'}>Normal</Select.Option>
+                    <Select.Option value={'dense'}>Tät</Select.Option>
+                  </Select>
+                </div>
+              ) : (
+                <div className="sk-table-bottom-section spacer"></div>
+              )}
             </TableFooter>
           ) : (
             <></>
