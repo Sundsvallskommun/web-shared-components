@@ -33,6 +33,17 @@ function inputStandards() {
       '@apply dark:hover:border-primitives-overlay-lighten-3': {},
       '@apply text-dark-disabled': {},
     },
+
+    //readOnly
+    '&[readonly], &[readonly="true"]': {
+      '@apply border-primitives-overlay-darken-5': {},
+      '@apply text-dark-secondary': {},
+      '@apply placeholder:text-dark-secondary': {},
+      '&:hover': {
+        '@apply border-primitives-overlay-darken-8': {},
+        '@apply placeholder:text-dark-placeholder': {},
+      },
+    },
   };
 }
 
