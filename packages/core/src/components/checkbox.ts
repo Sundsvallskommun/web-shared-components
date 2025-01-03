@@ -88,6 +88,23 @@ export const Checkbox = () => ({
       },
     },
 
+    //readonly
+    '&[readonly], &[readonly="true"]': {
+      '@apply border-primitives-overlay-darken-5': {},
+      '@apply bg-primitives-gray-50': {},
+
+      '&:hover:checked': {
+        '& + .sk-icon': {
+          '@apply bg-dark-primary border-dark-primary': {},
+        },
+      },
+      '&:checked': {
+        '& + .sk-icon': {
+          '@apply bg-dark-secondary border-dark-secondary': {},
+        },
+      },
+    },
+
     // label
     '&-label-left &-label': {
       '@apply mr-8': {},

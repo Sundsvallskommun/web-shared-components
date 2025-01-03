@@ -86,6 +86,17 @@ export const Radio = () => ({
       },
     },
 
+    //ReadOnly
+    '&[readonly], &[readonly="true"]': {
+      '@apply cursor-not-allowed': {},
+      '@apply bg-background-100': {},
+      '@apply border-primitives-overlay-darken-5': {},
+      '@apply hover:border-primitives-overlay-darken-5': {},
+      '&:not(:checked):not([checked="true"]):after': {
+        '@apply hidden': {},
+      },
+    },
+
     '&-label': {
       '@apply inline-flex align-top items-center': {},
       '@apply font-normal': {},

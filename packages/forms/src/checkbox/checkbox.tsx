@@ -103,8 +103,18 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxItemProps>((p
   }, [indeterminate, _ref]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (readOnly) {
+      event.preventDefault();
+      return;
+    }
     groupContext.handleChange?.(event);
     onChange?.(event);
+  };
+
+  const handleClick = (event: React.MouseEvent<HTMLInputElement>) => {
+    if (readOnly) {
+      event.preventDefault();
+    }
   };
   return (
     <label
@@ -124,9 +134,10 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxItemProps>((p
         ref={_ref}
         name={name}
         value={value}
-        onChange={readOnly ? undefined : handleChange}
-        defaultChecked={readOnly ? undefined : defaultChecked}
-        checked={readOnly ? Boolean(checked) : defaultChecked ? undefined : checked}
+        onChange={handleChange}
+        onClick={handleClick}
+        defaultChecked={defaultChecked}
+        checked={checked}
         disabled={disabled}
         aria-disabled={disabled}
         readOnly={readOnly}
