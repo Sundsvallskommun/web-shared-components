@@ -89,14 +89,14 @@ export const Pagination = () => ({
       '@apply w-full max-w-full': {},
       '.sk-pagination-list': {
         '@apply w-full flex justify-center': {},
-        '@apply gap-24': {},
+        '@apply gap-0 md:gap-24': {},
         '&-item': {
           '@apply px-0 grow-0 text-center': {},
           '&.ellipsis': {
             '@apply flex-shrink grow-0': {},
           },
           '&.prev-next': {
-            '@apply flex-shrink grow': {},
+            '@apply flex-shrink': {},
             '&.prev': {
               '@apply text-left': {},
             },

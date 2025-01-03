@@ -229,9 +229,9 @@ export const Table = () => ({
       },
     },
     '&-paginationwrapper': {
-      '@apply max-w-[37.5em]': {},
-      '@apply shrink grow': {},
-      '@apply hidden @screen-md/footer:flex': {},
+      '@apply max-w-full -order-1 w-full mb-10 @screen-md/footer:order-none @screen-md/footer:w-fit @screen-md/footer:max-w-[33em] @screen-md/footer:px-20 @screen-md/footer:mb-0':
+        {},
+      '@apply shrink grow flex justify-center': {},
     },
 
     '&-bottom': {
@@ -250,16 +250,13 @@ export const Table = () => ({
         '@apply justify-start items-center': {},
         '@apply @screen-sm/footer:flex-row': {},
         '@apply gap-8': {},
-        '&.sk-table-pagination-mobile': {
-          '@apply @screen-md/footer:hidden': {},
-        },
         '&-label': {
           '@apply font-normal': {},
           '@apply text-small': {},
           '@apply shrink-0': {},
         },
-        '&-pagesize': {
-          '@apply max-w-60': {},
+        '&.spacer': {
+          '@apply w-[18rem]': {},
         },
       },
       '&-pagination': {
