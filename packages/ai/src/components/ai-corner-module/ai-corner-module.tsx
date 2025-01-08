@@ -252,7 +252,7 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
   const handleNewSession = () => {
     setShowAssistantSelector(false);
     if (onNewSession) {
-      onNewSession;
+      onNewSession();
     } else {
       setSessionId('');
     }
