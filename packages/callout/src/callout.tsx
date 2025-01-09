@@ -3,7 +3,7 @@ import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 
 interface ICalloutProps extends DefaultProps {
   /** @default tertiary */
-  color?: 'tertiary' | 'warning' | 'error' | 'vattjom' | 'gronsta';
+  color?: 'tertiary' | 'warning' | 'error' | 'vattjom' | 'gronsta' | string;
   /** @default false */
   inverted?: boolean;
 }
