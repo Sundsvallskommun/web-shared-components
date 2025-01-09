@@ -50,7 +50,14 @@ export interface AutoTableProps extends DefaultProps, TableComponentProps {
   handleSort?: (colIndex: number, asc: boolean) => void;
   tableSortable?: boolean;
   sortedOrder?: SortMode;
+  /** @default 5 */
   pageSize?: number;
+  /** @default select */
+  pageSizeEdit?: 'select' | 'input' | boolean;
+  /** @default [5,10,25,50,75,100] */
+  pageSizeOptions?: Array<number>;
+  /** @default select */
+  rowHeightEdit?: 'select' | boolean;
   page?: number;
   captionTitle?: string;
   captionBody?: string;
@@ -66,6 +73,9 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
     autoheaders,
     autodata,
     pageSize: _propsPageSize = 5,
+    pageSizeEdit = 'select',
+    pageSizeOptions = [5, 10, 25, 50, 75, 100],
+    rowHeightEdit = 'select',
     page = 1,
     changePage,
     captionTitle,
@@ -338,6 +348,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
           ref={ref}
           dense={rowHeight === 'dense' || _dense}
           summary={summary ? summary : undefined}
+          wrappingBorder={wrappingBorder}
         >
           {captionTitle && (
             <caption className="sk-table-caption-sr">
@@ -414,38 +425,44 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
           </TableBody>
           {footer ? (
             <TableFooter>
-              <div className="sk-table-bottom-section sk-table-pagination-mobile">
-                <label className="sk-table-bottom-section-label" htmlFor="paginationSelect">
-                  Sida:
-                </label>
-                <Select
-                  id="paginationSelect"
-                  size="sm"
-                  value={currentPage.toString()}
-                  onSelectValue={(value) => setCurrentPage(parseInt(value, 10))}
-                >
-                  {[...Array(pages).keys()].map((page) => (
-                    <Select.Option key={`pagipage-${page}`} value={(page + 1).toString()}>
-                      {page + 1}
-                    </Select.Option>
-                  ))}
-                </Select>
-              </div>
-              <div className="sk-table-bottom-section">
-                <label className="sk-table-bottom-section-label" htmlFor="pagiPageSize">
-                  Rader per sida:
-                </label>
-                <Input
-                  size="sm"
-                  id="pagePageSize"
-                  type="number"
-                  min={1}
-                  max={100}
-                  className="sk-table-bottom-section-pagesize"
-                  value={`${_pageSize}`}
-                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => setPageSize(parseInt(event.target.value))}
-                />
-              </div>
+              {pageSizeEdit === 'select' || pageSizeEdit === true ? (
+                <div className="sk-table-bottom-section">
+                  <label className="sk-table-bottom-section-label" htmlFor="paginationSelect">
+                    Rader per sida:
+                  </label>
+                  <Select
+                    variant="tertiary"
+                    id="paginationSelect"
+                    size="sm"
+                    value={`${_pageSize}`}
+                    onSelectValue={(value) => setPageSize(parseInt(value))}
+                  >
+                    {pageSizeOptions.map((page) => (
+                      <Select.Option key={`pagipage-${page}`} value={page.toString()}>
+                        {page}
+                      </Select.Option>
+                    ))}
+                  </Select>
+                </div>
+              ) : pageSizeEdit === 'input' ? (
+                <div className="sk-table-bottom-section">
+                  <label className="sk-table-bottom-section-label" htmlFor="pagiPageSize">
+                    Rader per sida:
+                  </label>
+                  <Input
+                    size="sm"
+                    id="pagePageSize"
+                    type="number"
+                    min={1}
+                    max={100}
+                    className="sk-table-bottom-section-pagesize"
+                    value={`${_pageSize}`}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => setPageSize(parseInt(event.target.value))}
+                  />
+                </div>
+              ) : (
+                <div className="sk-table-bottom-section spacer"></div>
+              )}
 
               <div className="sk-table-paginationwrapper">
                 <Pagination
@@ -453,27 +470,32 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
                   pages={pages}
                   activePage={currentPage}
                   showConstantPages
-                  pagesAfter={1}
-                  pagesBefore={1}
+                  pagesAfter={0}
+                  pagesBefore={0}
                   changePage={(page: number) => setCurrentPage(page)}
                   fitContainer
                 />
               </div>
 
-              <div className="sk-table-bottom-section">
-                <label className="sk-table-bottom-section-label" htmlFor="pagiRowHeight">
-                  Radhöjd:
-                </label>
-                <Select
-                  id="pagiRowHeight"
-                  size="sm"
-                  value={rowHeight}
-                  onSelectValue={(value: string) => setRowHeight(value)}
-                >
-                  <Select.Option value={'normal'}>Normal</Select.Option>
-                  <Select.Option value={'dense'}>Tät</Select.Option>
-                </Select>
-              </div>
+              {rowHeightEdit === 'select' || rowHeightEdit === true ? (
+                <div className="sk-table-bottom-section">
+                  <label className="sk-table-bottom-section-label" htmlFor="pagiRowHeight">
+                    Radhöjd:
+                  </label>
+                  <Select
+                    variant="tertiary"
+                    id="pagiRowHeight"
+                    size="sm"
+                    value={rowHeight}
+                    onSelectValue={(value: string) => setRowHeight(value)}
+                  >
+                    <Select.Option value={'normal'}>Normal</Select.Option>
+                    <Select.Option value={'dense'}>Tät</Select.Option>
+                  </Select>
+                </div>
+              ) : (
+                <div className="sk-table-bottom-section spacer"></div>
+              )}
             </TableFooter>
           ) : (
             <></>

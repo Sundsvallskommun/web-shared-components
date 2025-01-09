@@ -101,7 +101,17 @@ const headers: Array<AutoTableHeader | string> = [
 ];
 
 export const Template = (args: AutoTableProps) => (
-  <AutoTable {...args} autodata={ongoingCases.data} autoheaders={headers} />
+  <AutoTable
+    {...args}
+    autodata={[
+      ...ongoingCases.data,
+      ...ongoingCases.data,
+      ...ongoingCases.data,
+      ...ongoingCases.data,
+      ...ongoingCases.data,
+    ]}
+    autoheaders={headers}
+  />
 );
 
 Template.story = { name: 'Table' };
