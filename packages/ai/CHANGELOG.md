@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.10.2...@sk-web-gui/ai@0.10.3) (2025-01-09)
+
+### Bug Fixes
+
+- **corner-module:** onNewSession not triggering ([9f0d80d](https://github.com/Sundsvallskommun/web-shared-components/commit/9f0d80d7c116d687a81ba403505bb8b8bdfce316))
+
 ## [0.10.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.10.1...@sk-web-gui/ai@0.10.2) (2025-01-02)
 
 ### Bug Fixes

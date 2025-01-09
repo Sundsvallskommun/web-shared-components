@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.9.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.9.0...@sk-web-gui/core@3.9.1) (2025-01-09)
+
+### Bug Fixes
+
+- allow for pageSizeVariant, synced to new design ([6dad37e](https://github.com/Sundsvallskommun/web-shared-components/commit/6dad37e1a23bacbbb863d7dff1c443688bcf5f70))
+
 # [3.9.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.8.0...@sk-web-gui/core@3.9.0) (2025-01-02)
 
 ### Bug Fixes

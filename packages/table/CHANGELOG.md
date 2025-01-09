@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.11](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@3.1.10...@sk-web-gui/table@3.1.11) (2025-01-09)
+
+### Bug Fixes
+
+- added rowHeightEdit and refactored naming ([8841ad7](https://github.com/Sundsvallskommun/web-shared-components/commit/8841ad7f1bc3852b2ebec8221664a87d5428258c))
+- allow for pageSizeVariant, synced to new design ([6dad37e](https://github.com/Sundsvallskommun/web-shared-components/commit/6dad37e1a23bacbbb863d7dff1c443688bcf5f70))
+
 ## [3.1.10](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@3.1.9...@sk-web-gui/table@3.1.10) (2025-01-02)
 
 **Note:** Version bump only for package @sk-web-gui/table
