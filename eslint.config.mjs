@@ -29,7 +29,7 @@ export default [
     ignores: ['**/dist/**', 'packages/*/eslint.config.mjs', '**/*.d.ts'],
   },
   {
-    files: ['packages/*/stories/**/*.tsx'],
+    files: ['packages/*/stories/**/*.tsx', '.storybook/**/*.tsx'],
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-implicit-any': 'off',
