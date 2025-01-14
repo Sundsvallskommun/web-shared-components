@@ -2,7 +2,7 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "useDefineForClassFields": true,
-    "target": "es5",
+    "target": "es6",
     "module": "esnext",
     "lib": ["dom", "esnext"],
     "declaration": true,
@@ -23,12 +23,21 @@
     "baseUrl": ".",
     "paths": {
       "@public/*": [".storybook/public/*"],
-      "@sk-web-gui/*": ["packages/*"],
+      "@sk-web-gui/*": ["packages/*/src"],
       "@stories/*": [".storybook/stories/*"]
     }
   },
-  "include": ["types.d.ts", "packages/*/src", "packages/*/stories"],
-  "exclude": ["node_modules"],
+  "include": [
+    "types.d.ts",
+    "*.mjs",
+    ".storybook/**/*.ts",
+    ".storybook/**/*.tsx",
+    "packages/*/*.mjs",
+    "packages/*/src",
+    "packages/*/index.ts",
+    "packages/*/stories"
+  ],
+  "exclude": ["node_modules", "**/dist/**"],
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS",

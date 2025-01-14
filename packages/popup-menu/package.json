@@ -30,11 +30,10 @@
     "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist/cjs --source-maps",
     "build:types": "tsc -p ./tsconfig.production.json --emitDeclarationOnly --declaration --declarationDir dist/types",
     "test:cov": "yarn test --coverage",
-    "lint:src": "eslint src --ext .ts,.tsx --config ../../.eslintrc",
-    "lint:types": "tsc --noEmit"
+    "lint:src": "eslint src"
   },
   "devDependencies": {
-    "react": "^18.2.0"
+    "react": "^18.3.1"
   },
   "dependencies": {
     "@sk-web-gui/button": "2.0.12",
@@ -44,6 +43,6 @@
     "usehooks-ts": "^3.1.0"
   },
   "peerDependencies": {
-    "react": ">=18.2.0"
+    "react": ">=18.3.1"
   }
 }
