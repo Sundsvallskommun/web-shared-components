@@ -1,4 +1,6 @@
 {
   "tailwindCSS.experimental.classRegex": ["'@apply (.*)'"],
-  "eslint.experimental.useFlatConfig": true
+  "eslint.validate": ["html", "javascript", "typescript", "javascriptreact", "typescriptreact"],
+  "eslint.enable": true,
+  "eslint.alwaysShowStatus": true
 }
