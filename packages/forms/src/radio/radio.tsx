@@ -1,10 +1,10 @@
-import { useFormControl } from '../form-control';
 import { cx, __DEV__, omit } from '@sk-web-gui/utils';
 import { DefaultProps } from '@sk-web-gui/utils';
 import React from 'react';
 
 import { useRadioButtonClass, useRadioButtonLabelClass } from './styles';
-import { useRadioButtonGroup } from './radio-group';
+import { useFormControl } from '../form-control';
+import { useRadioButtonGroup } from './use-radio-button-group';
 
 export interface RadioButtonProps<T = HTMLInputElement>
   extends DefaultProps,

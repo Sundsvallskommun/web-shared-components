@@ -8,7 +8,7 @@ export const useInputClass = createMemoClass((props) => {
     lg: 'sk-form-input-lg',
   };
 
-  const classes = cx('sk-form-input', sizes[props.size], props.disabled && 'sk-form-input-disabled');
+  const classes = cx('sk-form-input', sizes[props?.size ?? 'md'], props.disabled && 'sk-form-input-disabled');
 
   return classes;
 });

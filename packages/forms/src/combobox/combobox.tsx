@@ -1,4 +1,4 @@
-import { __DEV__, CustomOnChangeEvent, cx, useForkRef } from '@sk-web-gui/utils';
+import { __DEV__, CustomOnChangeEvent, cx, omit, useForkRef } from '@sk-web-gui/utils';
 import React from 'react';
 import { useOnClickOutside } from 'usehooks-ts';
 import { useFormControl } from '../form-control';
@@ -23,7 +23,6 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
     onSelect: _onSelect,
     onChangeSearch,
     value,
-    defaultValue,
     placeholder,
     searchPlaceholder,
     name: _name,
@@ -59,7 +58,7 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
   }, [_searchValue]);
 
   React.useEffect(() => {
-    onChangeSearch && onChangeSearch({ target: { value: searchValue, name } } as CustomOnChangeEvent<string>);
+    onChangeSearch?.({ target: { value: searchValue, name } } as CustomOnChangeEvent<string>);
   }, [searchValue]);
 
   React.useEffect(() => {
@@ -70,9 +69,9 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
       },
     } as CustomOnChangeEvent;
 
-    onChange && onChange(event);
+    onChange?.(event);
     if (multiple || (internalValue.length && internalValue[0])) {
-      _onSelect && _onSelect(event);
+      _onSelect?.(event);
     }
   }, [internalValue]);
 
@@ -101,7 +100,7 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
     setSearchValue('');
     setOpen(false);
     setActive(-1);
-    inputRef.current && inputRef.current.focus();
+    inputRef.current?.focus();
   };
 
   const onSelect = (value: string) => {
@@ -146,7 +145,7 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
   };
 
   const focusInput = () => {
-    inputRef.current && inputRef.current.focus();
+    inputRef.current?.focus();
     setActive(-1);
   };
 
@@ -207,7 +206,7 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
         ref={useForkRef(internalRef, ref)}
         aria-expanded={open && total > 0}
         data-showvalue={currentInputData !== searchValue ? true : undefined}
-        {...rest}
+        {...omit(rest, ['defaultValue'])}
       >
         {children}
       </div>

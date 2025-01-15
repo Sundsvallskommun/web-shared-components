@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { CheckboxItemProps, Checkbox as InternalCheckbox } from './checkbox';
 import { CheckboxGroup } from './checkbox-group';
 

@@ -8,7 +8,7 @@ export const useInputGroupClass = createMemoClass((props) => {
     lg: 'sk-form-input-group-lg',
   };
 
-  const classes = cx('sk-form-input-group', sizes[props.size]);
+  const classes = cx('sk-form-input-group', sizes[props?.size ?? 'md']);
 
   return classes;
 });

@@ -1,7 +1,6 @@
 import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import React from 'react';
-
 import { useFormControl } from '../form-control';
 
 interface IFormLabelProps extends DefaultProps {

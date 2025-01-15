@@ -13,7 +13,7 @@ export const useComboboxStyles = createMemoClass((props) => {
     tertiary: 'sk-form-combobox-tertiary',
   };
 
-  const classes = cx('sk-form-combobox', sizes[props.size], variant[props.variant]);
+  const classes = cx('sk-form-combobox', sizes[props?.size ?? 'md'], variant[props?.variant ?? 'primary']);
 
   return classes;
 });

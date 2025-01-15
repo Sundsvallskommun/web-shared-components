@@ -1,31 +1,12 @@
 import { DefaultProps, cx } from '@sk-web-gui/utils';
 import React from 'react';
-import { FileUploadListContext } from './file-upload-list';
 import { FileUploadListItemActions } from './file-upload-list-item-actions';
 import { FileUploadListItemContent } from './file-upload-list-item-content';
 import { FileUploadListItemContentCategory } from './file-upload-list-item-content-category';
 import { FileUploadListItemContentName } from './file-upload-list-item-content-name';
 import { FileUploadListItemIcon } from './file-upload-list-item-icon';
-import { UploadFile } from './types';
 import { useFormContext } from 'react-hook-form';
-
-interface FileUploadListItemContextProps {
-  index: number;
-  /** @default false */
-  isEdit?: boolean;
-  name?: string;
-  file?: UploadFile;
-  uploadProgress?: number;
-  /** @default false */
-  showLabels?: boolean;
-  /** @default true */
-  showIcon?: boolean;
-  iconProps?: React.ComponentProps<typeof FileUploadListItemIcon>;
-  nameProps?: React.ComponentProps<typeof FileUploadListItemContentName>;
-  actionsProps?: React.ComponentProps<typeof FileUploadListItemActions>;
-  categoryProps?: React.ComponentProps<typeof FileUploadListItemContentCategory>;
-}
-export const FileUploadListItemContext = React.createContext<FileUploadListItemContextProps>({ index: 0 });
+import { FileUploadListContext, FileUploadListItemContext, FileUploadListItemContextProps } from './context';
 
 export interface FileUploadListItemProps
   extends DefaultProps,
@@ -58,6 +39,7 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
     categoryProps: _categoryProps,
     ...rest
   } = props;
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const formContext = useFormContext ? useFormContext() : null;
   const listContext = React.useContext(FileUploadListContext);
   const name = _name ?? listContext?.name;

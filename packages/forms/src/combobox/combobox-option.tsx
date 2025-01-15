@@ -1,5 +1,5 @@
 import { Icon } from '@sk-web-gui/icon';
-import { DefaultProps, cx, useForkRef } from '@sk-web-gui/utils';
+import { DefaultProps, cx, omit, useForkRef } from '@sk-web-gui/utils';
 import React from 'react';
 import { useCombobox } from './combobox-context';
 import { Check } from 'lucide-react';
@@ -14,18 +14,7 @@ export interface ComboboxOptionProps extends DefaultProps, Omit<React.ComponentP
 }
 
 export const ComboboxOption = React.forwardRef<HTMLInputElement, ComboboxOptionProps>((props, ref) => {
-  const {
-    className,
-    value,
-    checked: _checked,
-    children,
-    multiple: _multiple,
-    onChange,
-    disabled,
-    index,
-    id,
-    ...rest
-  } = props;
+  const { className, value, checked: _checked, children, multiple: _multiple, onChange, disabled, id, ...rest } = props;
 
   const inputRef = React.useRef<HTMLInputElement>(null);
   const context = useCombobox();
@@ -38,16 +27,16 @@ export const ComboboxOption = React.forwardRef<HTMLInputElement, ComboboxOptionP
 
   React.useEffect(() => {
     if (children && value) {
-      context.addLabel && context.addLabel(children, value);
+      context.addLabel?.(children, value);
     }
   }, [children, value]);
 
   React.useEffect(() => {
     if (_checked !== undefined) {
       if (checked) {
-        context.select && context.select(value);
+        context.select?.(value);
       } else {
-        context.remove && context.remove(value);
+        context.remove?.(value);
       }
     }
   }, [_checked]);
@@ -59,35 +48,35 @@ export const ComboboxOption = React.forwardRef<HTMLInputElement, ComboboxOptionP
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (_checked === undefined) {
       if (multiple && context.value.includes(value)) {
-        context.remove && context.remove(value);
+        context.remove?.(value);
       } else {
-        context.select && context.select(value);
+        context.select?.(value);
       }
     }
-    onChange && onChange(event);
+    onChange?.(event);
   };
 
   const handleKeyboard = (event: React.KeyboardEvent<HTMLLabelElement>) => {
     if (event.key === 'Enter') {
       event.preventDefault();
-      inputRef.current && inputRef.current.click();
-      context.close && context.close();
+      inputRef.current?.click();
+      context.close?.();
     } else if (event.key === ' ') {
       event.preventDefault();
       event.stopPropagation();
-      inputRef.current && inputRef.current.click();
+      inputRef.current?.click();
     } else if (event.key === 'Tab') {
-      context.setOpen && context.setOpen(false);
+      context.setOpen?.(false);
     } else if (event.key === 'Escape') {
-      context.focusInput && context.focusInput();
+      context.focusInput?.();
     } else if (event.key === 'ArrowDown') {
       event.preventDefault();
-      context.next && context.next();
+      context.next?.();
     } else if (event.key === 'ArrowUp') {
       event.preventDefault();
-      context.prev && context.prev();
+      context.prev?.();
     } else if (event.key.length === 1 || event.key === 'Backspace') {
-      context.focusInput && context.focusInput();
+      context.focusInput?.();
     }
   };
 
@@ -117,7 +106,7 @@ export const ComboboxOption = React.forwardRef<HTMLInputElement, ComboboxOptionP
         aria-selected={checked}
         onChange={handleChange}
         id={id}
-        {...rest}
+        {...omit(rest, ['index'])}
       />
     </label>
   );

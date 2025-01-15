@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { InternalRadioButton, RadioButtonProps as InternalRadioButtonProps } from './radio';
 import { RadioButtonGroup } from './radio-group';
 

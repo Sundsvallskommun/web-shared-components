@@ -1,9 +1,9 @@
-import { useId } from '@reach/auto-id';
 import { DefaultProps, __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
 import React, { useImperativeHandle, useRef, useState } from 'react';
 
 import { RadioButtonProps } from './radio';
 import { useRadioButtonGroupClass } from './styles';
+import { RadioButtonGroupContext } from './context';
 
 export interface RadioButtonGroupProps extends DefaultProps {
   /**
@@ -48,18 +48,6 @@ type RadioButtonGroupElement =
     }
   | undefined;
 
-interface UseRadioButtonGroupData {
-  handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  size?: RadioButtonProps['size'];
-  color?: RadioButtonProps['color'];
-  name?: RadioButtonProps['name'];
-  value?: RadioButtonProps['value'] | null;
-}
-
-const RadioButtonGroupContext = React.createContext<UseRadioButtonGroupData>({});
-
-export const useRadioButtonGroup = () => React.useContext(RadioButtonGroupContext);
-
 export const RadioButtonGroup = React.forwardRef<RadioButtonGroupElement, RadioButtonGroupProps>((props, ref) => {
   const {
     onChange,
@@ -76,6 +64,7 @@ export const RadioButtonGroup = React.forwardRef<RadioButtonGroupElement, RadioB
   const { current: isControlled } = useRef(valueProp != null);
   const [value, setValue] = useState(defaultValue || null);
   const _value = isControlled ? valueProp : value;
+  const autoId = React.useId();
 
   const rootRef = useRef<HTMLUListElement>(null);
 
@@ -90,7 +79,7 @@ export const RadioButtonGroup = React.forwardRef<RadioButtonGroupElement, RadioB
   };
 
   // If no name is passed, we'll generate a random, unique name
-  const fallbackName = `radio-${useId()}`;
+  const fallbackName = `radio-${autoId}`;
   const _name = name || fallbackName;
 
   const context = {

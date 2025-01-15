@@ -2,35 +2,9 @@ import { Divider } from '@sk-web-gui/divider';
 import { DefaultProps, cx } from '@sk-web-gui/utils';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
+import { FileUploadListContext, FileUploadListContextProps } from './context';
 import { FileUploadListItem } from './file-upload-list-item';
-import { FileUploadListItemActions } from './file-upload-list-item-actions';
-import { FileUploadListItemContentCategory } from './file-upload-list-item-content-category';
-import { FileUploadListItemContentName } from './file-upload-list-item-content-name';
-import { FileUploadListItemIcon } from './file-upload-list-item-icon';
 import { UploadFile } from './types';
-
-interface FileUploadListContextProps {
-  /** @default false */
-  showBorder?: boolean;
-  size?: 'sm' | 'md';
-  name?: string;
-  isEdit?: boolean;
-  /** @default false */
-  showLabels?: boolean;
-  /** @default true */
-  showIcon?: boolean;
-  iconProps?: React.ComponentProps<typeof FileUploadListItemIcon>;
-  nameProps?: React.ComponentProps<typeof FileUploadListItemContentName>;
-  actionsProps?: React.ComponentProps<typeof FileUploadListItemActions>;
-  categoryProps?: React.ComponentProps<typeof FileUploadListItemContentCategory>;
-  files?: UploadFile[];
-}
-export const FileUploadListContext = React.createContext<FileUploadListContextProps>({
-  name: 'files',
-  size: 'md',
-  isEdit: false,
-  showBorder: false,
-});
 
 export interface FileUploadListProps
   extends DefaultProps,
@@ -61,6 +35,7 @@ export const FileUploadList = React.forwardRef<HTMLUListElement, FileUploadListP
     ...rest
   } = props;
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const context = useFormContext ? useFormContext() : null;
   const listItems: FileUploadListProps['files'] = files ? files : context && name ? context.watch(name) : null;
 

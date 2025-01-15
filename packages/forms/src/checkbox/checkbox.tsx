@@ -6,7 +6,7 @@ import { Icon } from '@sk-web-gui/icon';
 import { Minus, Check } from 'lucide-react';
 
 import { useCheckboxClass, useCheckboxLabelClass } from './styles';
-import { useCheckboxGroup } from './checkbox-group';
+import { useCheckboxGroup } from './use-checkbox-group';
 
 export interface CheckboxItemProps<T = HTMLInputElement>
   extends DefaultProps,
@@ -103,8 +103,8 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxItemProps>((p
   }, [indeterminate, _ref]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    groupContext.handleChange && groupContext.handleChange(event);
-    onChange && onChange(event);
+    groupContext.handleChange?.(event);
+    onChange?.(event);
   };
   return (
     <label

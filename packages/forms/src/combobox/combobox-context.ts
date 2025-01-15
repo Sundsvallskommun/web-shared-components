@@ -95,6 +95,7 @@ export const ComboboxContext = React.createContext<UseComboboxData>({
   labels: {},
   open: false,
   setOpen: () => ({}),
+  // eslint-disable-next-line no-empty-pattern
   setValue: ([]) => ({}),
   getValue: () => '',
   id: '',

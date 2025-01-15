@@ -11,7 +11,7 @@ export interface ComboboxListProps extends DefaultProps, React.ComponentPropsWit
   /**
    * typeof Element used as Option element
    */
-  optionType?: string | React.JSXElementConstructor<any>;
+  optionType?: string | React.JSXElementConstructor<unknown>;
 }
 
 export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListProps>((props, ref) => {
@@ -33,7 +33,7 @@ export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListPr
 
   React.useEffect(() => {
     if (_value !== undefined) {
-      context.setValue && context.setValue(typeof _value === 'string' ? [_value] : _value);
+      context.setValue?.(typeof _value === 'string' ? [_value] : _value);
     }
   }, [_value, context.setValue]);
 

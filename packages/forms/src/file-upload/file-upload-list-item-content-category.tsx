@@ -3,9 +3,8 @@ import { DefaultProps, cx } from '@sk-web-gui/utils';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import { FormControl, FormLabel, Select } from '../index';
-import { FileUploadListContext } from './file-upload-list';
-import { FileUploadListItemContext } from './file-upload-list-item';
 import { UploadFile } from './types';
+import { FileUploadListContext, FileUploadListItemContext } from './context';
 
 export interface FileUploadListItemContentCategoryProps
   extends DefaultProps,
@@ -51,6 +50,7 @@ export const FileUploadListItemContentCategory = React.forwardRef<
   } = props;
   const { isMinMediumDevice } = useThemeQueries();
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const formContext = useFormContext ? useFormContext() : null;
   const listContext = React.useContext(FileUploadListContext);
   const itemContext = React.useContext(FileUploadListItemContext);

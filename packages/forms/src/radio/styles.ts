@@ -8,7 +8,7 @@ export const useRadioButtonLabelClass = createMemoClass((props) => {
     lg: 'sk-form-radio-label-lg',
   };
 
-  const classes = cx('sk-form-radio-label', sizes[props.size]);
+  const classes = cx('sk-form-radio-label', sizes[props?.size ?? 'md']);
 
   return classes;
 });
@@ -20,7 +20,7 @@ export const useRadioButtonClass = createMemoClass((props) => {
     lg: 'sk-form-radio-lg',
   };
 
-  const classes = cx('sk-form-radio', sizes[props.size], props.disabled && 'sk-form-radio-disabled');
+  const classes = cx('sk-form-radio', sizes[props?.size ?? 'md'], props.disabled && 'sk-form-radio-disabled');
 
   return classes;
 });
@@ -31,7 +31,7 @@ export const useRadioButtonGroupClass = createMemoClass((props) => {
     lg: 'sk-form-radio-group-lg',
   };
 
-  const classes = cx('sk-form-radio-group', sizes[props.size]);
+  const classes = cx('sk-form-radio-group', sizes[props?.size ?? 'md']);
 
   return classes;
 });

@@ -4,18 +4,13 @@ import { useFormControl } from '../form-control';
 import { UseComboboxProps, useCombobox } from './combobox-context';
 import { useComboboxStyles } from './styles';
 import _ from 'lodash';
-
-interface InputCompProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  // Define any additional props specific to InputComp
-}
-
 export interface ComboboxInputProps
   extends Omit<UseComboboxProps, 'autofilter' | 'sortSelectedFirst'>,
     Omit<React.ComponentPropsWithRef<'input'>, 'size' | 'onChange' | 'onSelect' | 'value' | 'defaultValue'> {
   /* Makes input invalid */
   disabled?: boolean;
   invalid?: boolean;
-  InputComp?: React.ReactElement<InputCompProps>;
+  InputComp?: React.ReactElement<React.InputHTMLAttributes<HTMLInputElement>>;
 }
 
 export const ComboboxInput = React.forwardRef<HTMLInputElement, ComboboxInputProps>((props, ref) => {
@@ -124,13 +119,13 @@ export const ComboboxInput = React.forwardRef<HTMLInputElement, ComboboxInputPro
         },
       } as CustomOnChangeEvent;
 
-      onChange && onChange(event);
+      onChange?.(event);
       if (multiple || (_value.length && _value[0])) {
-        onSelect && onSelect(event);
+        onSelect?.(event);
       }
 
       if (value.length > 0 && value[0]) {
-        onChangeSearch && onChangeSearch({ target: { value: '', name: name ?? '' } } as CustomOnChangeEvent<string>);
+        onChangeSearch?.({ target: { value: '', name: name ?? '' } } as CustomOnChangeEvent<string>);
       }
     }
   }, [value]);

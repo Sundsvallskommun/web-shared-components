@@ -1,6 +1,6 @@
 import { CustomOnChangeEvent } from '@sk-web-gui/utils';
 
-export interface UploadFile<TExtraMeta extends object = {}> {
+export interface UploadFile<TExtraMeta extends object = object> {
   id: string;
   file: File;
   meta: {
