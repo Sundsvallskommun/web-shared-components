@@ -44,14 +44,14 @@ export const AICornerModuleAssistantLibrary = React.forwardRef<HTMLDivElement, A
 
     React.useEffect(() => {
       if (autofocus) {
-        focusRef.current && focusRef.current.focus();
+        focusRef.current?.focus();
       }
     }, [focusRef, autofocus]);
 
     const handleKeyboard = (event: React.KeyboardEvent<HTMLUListElement>) => {
       if (event.key === 'Escape') {
         event.preventDefault();
-        onClose && onClose();
+        onClose?.();
       }
     };
 

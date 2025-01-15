@@ -92,7 +92,7 @@ export const AIServiceModuleAssistant = React.forwardRef<HTMLDivElement, AIServi
         if (!query) {
           setError('Du har inte skrivit någon fråga.');
         } else {
-          onSendQuery && onSendQuery(query);
+          onSendQuery?.(query);
           setQuery('');
           setError('');
         }
@@ -100,7 +100,7 @@ export const AIServiceModuleAssistant = React.forwardRef<HTMLDivElement, AIServi
     };
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      onValueChange && onValueChange(event);
+      onValueChange?.(event);
       setQuery(event.target.value);
     };
 

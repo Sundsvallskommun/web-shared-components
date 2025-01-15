@@ -147,7 +147,7 @@ export const useChat = (options?: useChatOptions) => {
 
         try {
           parsedData = JSON.parse(event.data);
-        } catch (error) {
+        } catch {
           console.error('Error when parsing response as json. Returning.');
           return;
         }
@@ -155,34 +155,34 @@ export const useChat = (options?: useChatOptions) => {
           _id = parsedData.session_id;
         }
 
-        (references =
+        references =
           parsedData.references
             ?.filter((reference) => !!reference.metadata.url)
             .map((reference) => ({
               title: reference.metadata.title || reference.metadata.url || '',
               url: reference.metadata.url || '',
-            })) || []),
-          updateHistory(currentSession, (history: ChatHistory) => {
-            const newHistory = [...history];
-            const index = history.findIndex((chat) => chat.id === answerId);
-            if (index === -1) {
-              newHistory.push({
-                origin: 'assistant',
-                text: parsedData.answer,
-                id: answerId,
-                done: false,
-              });
-            } else {
-              newHistory[index] = {
-                origin: 'assistant',
-                text: history[index]?.text + parsedData.answer,
-                id: answerId,
-                done: false,
-              };
-            }
+            })) || [];
+        updateHistory(currentSession, (history: ChatHistory) => {
+          const newHistory = [...history];
+          const index = history.findIndex((chat) => chat.id === answerId);
+          if (index === -1) {
+            newHistory.push({
+              origin: 'assistant',
+              text: parsedData.answer,
+              id: answerId,
+              done: false,
+            });
+          } else {
+            newHistory[index] = {
+              origin: 'assistant',
+              text: history[index]?.text + parsedData.answer,
+              id: answerId,
+              done: false,
+            };
+          }
 
-            return newHistory;
-          });
+          return newHistory;
+        });
       },
       onclose() {
         if (currentSession !== _id && isNew) {

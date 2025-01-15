@@ -1,7 +1,7 @@
 import { Button, ButtonProps } from '@sk-web-gui/button';
 import { Icon, IconProps } from '@sk-web-gui/icon';
 import { Tooltip, TooltipProps } from '@sk-web-gui/tooltip';
-import { useOnElementOutside } from '@sk-web-gui/utils';
+import { cx, useOnElementOutside } from '@sk-web-gui/utils';
 import React from 'react';
 
 interface AICornerModuleHeaderMenuItemProps extends Omit<React.ComponentPropsWithoutRef<'li'>, 'onClick' | 'children'> {
@@ -61,7 +61,7 @@ export const AICornerModuleHeaderMenuItem = React.forwardRef<HTMLLIElement, AICo
     };
 
     return (
-      <li ref={ref} role="none" className="sk-ai-corner-module-header-menu-item" {...rest}>
+      <li ref={ref} role="none" className={cx('sk-ai-corner-module-header-menu-item', className)} {...rest}>
         <Button
           variant="tertiary"
           size="sm"

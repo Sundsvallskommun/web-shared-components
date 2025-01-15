@@ -113,26 +113,26 @@ export const AICornerModuleHeaderMenu = React.forwardRef<HTMLUListElement, AICor
 
     const handleToggleOpen = () => {
       if (docked) {
-        onOpen && onOpen();
+        onOpen?.();
       } else {
-        onCloseHistory && onCloseHistory();
-        onClose && onClose();
+        onCloseHistory?.();
+        onClose?.();
       }
     };
 
     const handleToggleFullscreen = () => {
       if (fullscreen) {
-        onCloseFullScreen && onCloseFullScreen();
+        onCloseFullScreen?.();
       } else {
-        onFullScreen && onFullScreen();
+        onFullScreen?.();
       }
     };
 
     const handleOpenHistory = () => {
       if (historyOpen) {
-        onCloseHistory && onCloseHistory();
+        onCloseHistory?.();
       } else {
-        onOpenHistory && onOpenHistory();
+        onOpenHistory?.();
       }
     };
 

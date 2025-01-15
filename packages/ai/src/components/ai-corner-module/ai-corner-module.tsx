@@ -55,7 +55,9 @@ export interface AICornerModuleDefaultProps {
 }
 
 type InfoLink = { url: string; description: string };
-export interface AICornerModuleProps extends AICornerModuleDefaultProps, React.ComponentPropsWithoutRef<'div'> {
+export interface AICornerModuleProps
+  extends AICornerModuleDefaultProps,
+    Omit<React.ComponentPropsWithoutRef<'div'>, 'children'> {
   sessionId?: string;
   /**
    * Current assistant
@@ -100,7 +102,6 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
     onChangeSession,
     onSendQuery,
     className,
-    children,
     questions,
     questionsTitle,
     showSessionHistory = true,
@@ -222,6 +223,7 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
     if (session?.id && session.id !== sessionId) {
       setSessionId(session.id);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session?.id]);
 
   React.useEffect(() => {
@@ -246,7 +248,7 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
 
   const handleOnOpen = () => {
     setDocked(false);
-    onOpen && onOpen();
+    onOpen?.();
   };
 
   const handleNewSession = () => {
@@ -261,9 +263,9 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
   const handleOnClose = () => {
     setDocked(true);
     setFullscreen(false);
-    onCloseFullScreen && onCloseFullScreen();
+    onCloseFullScreen?.();
     setShowAssistantSelector(false);
-    onClose && onClose();
+    onClose?.();
   };
 
   const handleOnFullscreen = () => {
@@ -272,12 +274,12 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
     }
     setFullscreen(true);
     setShowAssistantSelector(false);
-    onFullScreen && onFullScreen();
+    onFullScreen?.();
   };
 
   const handleOnCloseFullscreen = () => {
     setFullscreen(false);
-    onCloseFullScreen && onCloseFullScreen();
+    onCloseFullScreen?.();
   };
 
   return (

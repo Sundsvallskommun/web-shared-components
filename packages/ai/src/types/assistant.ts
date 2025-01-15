@@ -41,7 +41,7 @@ export interface GroupPublic {
   embedding_model: string;
 }
 
-export type AdditionalAssistantOptions = Record<string, any>;
+export type AdditionalAssistantOptions = Record<string, unknown>;
 
 export interface AssistantSettings {
   user?: string;
