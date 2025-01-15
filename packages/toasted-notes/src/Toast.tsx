@@ -1,6 +1,5 @@
-import ReactDOM from 'react-dom';
 import React from 'react';
-import ToastManager, { MessageOptionalOptions } from './ToastManager';
+import ToastManager, { CloseAllFn, CloseFn, MessageOptionalOptions, NotifyFn, ToastManagerProps } from './ToastManager';
 import { MessageProp, PositionsType } from './Message';
 import { createRoot } from 'react-dom/client';
 
@@ -8,9 +7,9 @@ const isBrowser = typeof window !== 'undefined' && typeof window.document !== 'u
 const PORTAL_ID = 'react-toast';
 
 export class Toaster {
-  createNotification?: Function;
-  removeAll?: Function;
-  closeToast?: Function;
+  createNotification?: NotifyFn;
+  removeAll?: CloseAllFn;
+  closeToast?: CloseFn;
 
   constructor() {
     if (!isBrowser) {
@@ -33,7 +32,7 @@ export class Toaster {
     }
 
     const root = createRoot(portalElement);
-    root.render(<ToastManager notify={this.bindNotify as any} />);
+    root.render(<ToastManager notify={this.bindNotify} />);
   }
 
   closeAll = () => {
@@ -42,7 +41,7 @@ export class Toaster {
     }
   };
 
-  bindNotify = (fn: Function, removeAll: Function, closeToast: Function) => {
+  bindNotify: ToastManagerProps['notify'] = (fn, removeAll, closeToast) => {
     this.createNotification = fn;
     this.removeAll = removeAll;
     this.closeToast = closeToast;
@@ -54,7 +53,7 @@ export class Toaster {
     }
   };
 
-  close = (id: number, position: PositionsType) => {
+  close = (id: string, position: PositionsType) => {
     if (this.closeToast) {
       this.closeToast(id, position);
     }
