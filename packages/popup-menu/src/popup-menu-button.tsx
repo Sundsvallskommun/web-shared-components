@@ -2,10 +2,9 @@ import { Button, ButtonProps } from '@sk-web-gui/button';
 import React from 'react';
 import { GoTo, usePopupMenu } from './popupmenu-context';
 
-export const PopupMenuButton = React.forwardRef<
-  HTMLButtonElement,
-  React.ComponentPropsWithoutRef<ButtonProps['Component']>
->((props, ref) => {
+export type PopupMenuButtonProps = Omit<React.ComponentPropsWithoutRef<ButtonProps['Component']>, 'ref'>;
+
+export const PopupMenuButton = React.forwardRef<HTMLButtonElement, PopupMenuButtonProps>((props, ref) => {
   const { disabled: _disabled, loading, children, className, onClick, onKeyDown, id: _id, ...rest } = props;
   const disabled = _disabled || loading;
 
@@ -14,22 +13,23 @@ export const PopupMenuButton = React.forwardRef<
   const id = _id || `${parentId}-button`;
 
   React.useEffect(() => {
-    setButtonId && setButtonId(id);
+    setButtonId?.(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (isOpen) {
-      close && close();
+      close?.();
     } else {
-      open && open();
+      open?.();
     }
-    onClick && onClick(event);
+    onClick?.(event);
   };
 
   const handleKeyboard = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     switch (event.key) {
       case 'Escape':
-        close && close();
+        close?.();
         break;
       case 'Enter':
         event.preventDefault();
@@ -46,32 +46,32 @@ export const PopupMenuButton = React.forwardRef<
         if (position === 'over' || position === 'under') {
           event.preventDefault();
           event.stopPropagation();
-          open && open(GoTo.First);
+          open?.(GoTo.First);
         }
         break;
       case 'ArrowUp':
         if (position === 'over' || position === 'under') {
           event.preventDefault();
           event.stopPropagation();
-          open && open(GoTo.Last);
+          open?.(GoTo.Last);
         }
         break;
       case 'ArrowRight':
         if (position === 'right') {
           event.preventDefault();
           event.stopPropagation();
-          open && open(GoTo.First);
+          open?.(GoTo.First);
         }
         break;
       case 'ArrowLeft':
         if (position === 'left') {
           event.preventDefault();
           event.stopPropagation();
-          open && open(GoTo.First);
+          open?.(GoTo.First);
         }
         break;
     }
-    onKeyDown && onKeyDown(event);
+    onKeyDown?.(event);
   };
   return (
     <Button

@@ -2,18 +2,7 @@ import { cx, getValidChildren, useForkRef } from '@sk-web-gui/utils';
 import React, { cloneElement } from 'react';
 import { PopupMenuItem } from './popup-menu-item';
 import { GoTo, usePopupMenu } from './popupmenu-context';
-
-interface PopupMenuItemsContextProps {
-  next?: () => void;
-  prev?: () => void;
-  active?: string;
-  activeMode?: 'soft' | 'hard';
-  navigate?: boolean;
-  setNavigate?: (navigate: boolean) => void;
-}
-
-const PopupMenuItemsContext = React.createContext<PopupMenuItemsContextProps>({});
-export const usePopupMenuItems = () => React.useContext(PopupMenuItemsContext);
+import { PopupMenuItemsContext } from './context';
 
 interface PopupMenuItemsProps extends React.ComponentPropsWithoutRef<'div'> {
   /**
@@ -107,7 +96,7 @@ export const PopupMenuItems = React.forwardRef<HTMLDivElement, PopupMenuItemsPro
         break;
     }
     setNavigate(true);
-    setGoTo && setGoTo(undefined);
+    setGoTo?.(undefined);
   };
 
   React.useEffect(() => {

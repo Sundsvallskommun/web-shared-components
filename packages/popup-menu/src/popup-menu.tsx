@@ -5,6 +5,46 @@ import { PopupMenuButton } from './popup-menu-button';
 import { PopupMenuPanel } from './popup-menu-panel';
 import { GoTo, PopupMenuContext } from './popupmenu-context';
 
+interface GetButtonProps {
+  children: React.ReactNode;
+  buttonRef: React.RefObject<HTMLButtonElement>;
+}
+const GetButton: React.FC<GetButtonProps> = ({ children, buttonRef }) => {
+  const button = React.Children.toArray(children).find(
+    (child) => React.isValidElement(child) && typeof child.type !== 'string' && child?.type === PopupMenuButton
+  ) as React.ReactElement;
+  const returnButtonRef = useForkRef(button.props.ref, buttonRef);
+
+  if (button) {
+    return React.cloneElement(button, {
+      ...button.props,
+      ref: button.props.ref ? returnButtonRef : buttonRef,
+    });
+  } else {
+    return null;
+  }
+};
+
+interface GetPanelProps {
+  children: React.ReactNode;
+  internalRef: React.RefObject<HTMLDivElement>;
+}
+const GetPanel: React.FC<GetPanelProps> = ({ children, internalRef }) => {
+  const panel = React.Children.toArray(children).find(
+    (child) => React.isValidElement(child) && typeof child.type !== 'string' && child?.type === PopupMenuPanel
+  ) as React.ReactElement;
+  const returnPanelRef = useForkRef(panel.props.ref, internalRef);
+
+  if (panel) {
+    return React.cloneElement(panel, {
+      ...panel.props,
+      ref: panel.props.ref ? returnPanelRef : internalRef,
+    });
+  } else {
+    throw new Error('No PopupMenu.Panel found');
+  }
+};
+
 export interface PopupMenuBaseProps {
   /**
    * Size of popup. Does not affect button size
@@ -81,14 +121,14 @@ export const PopupMenuComponent: React.FC<PopupMenuComponentProps> = (props) => 
   const id = _id || `sk-popup-menu-${autoId}`;
   const open = () => {
     setIsOpen(true);
-    onToggleOpen && onToggleOpen(true);
+    onToggleOpen?.(true);
   };
 
   const close = (focusButton?: boolean) => {
     setIsOpen(false);
-    onToggleOpen && onToggleOpen(false);
+    onToggleOpen?.(false);
     if (focusButton) {
-      buttonRef.current && buttonRef.current.focus();
+      buttonRef.current?.focus();
     }
   };
 
@@ -98,6 +138,7 @@ export const PopupMenuComponent: React.FC<PopupMenuComponentProps> = (props) => 
     } else {
       close();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [_open]);
 
   useOnClickOutside(internalRef, (event: MouseEvent | TouchEvent | FocusEvent) => {
@@ -132,38 +173,11 @@ export const PopupMenuComponent: React.FC<PopupMenuComponentProps> = (props) => 
     autoPosition,
   };
 
-  const getButton = React.useCallback(() => {
-    const button = React.Children.toArray(children).find(
-      (child) => React.isValidElement(child) && typeof child.type !== 'string' && child?.type === PopupMenuButton
-    ) as React.ReactElement;
-
-    if (button) {
-      return React.cloneElement(button, {
-        ...button.props,
-        ref: button.props.ref ? useForkRef(button.props.ref, buttonRef) : buttonRef,
-      });
-    }
-  }, [children]);
-
-  const getPanel = React.useCallback(() => {
-    const panel = React.Children.toArray(children).find(
-      (child) => React.isValidElement(child) && typeof child.type !== 'string' && child?.type === PopupMenuPanel
-    ) as React.ReactElement;
-    if (panel) {
-      return React.cloneElement(panel, {
-        ...panel.props,
-        ref: panel.props.ref ? useForkRef(panel.props.ref, internalRef) : internalRef,
-      });
-    } else {
-      throw new Error('No PopupMenu.Panel found');
-    }
-  }, [children]);
-
   return (
     <>
       <PopupMenuContext.Provider value={context}>
-        {getButton()}
-        {getPanel()}
+        <GetButton buttonRef={buttonRef}>{children}</GetButton>
+        <GetPanel internalRef={internalRef}>{children}</GetPanel>
       </PopupMenuContext.Provider>
     </>
   );
