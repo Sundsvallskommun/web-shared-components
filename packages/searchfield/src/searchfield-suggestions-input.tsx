@@ -17,7 +17,7 @@ export const SearchFieldSuggestionsInput = React.forwardRef<HTMLInputElement, Se
     const onResetHandler = () => {
       setSearchValue('');
       setValue([]);
-      props.onReset && props.onReset();
+      props.onReset?.();
     };
 
     const comboboxOnChangeHandler: React.ComponentProps<ComboboxProps['Input']>['onChange'] = (e) => {
@@ -29,7 +29,7 @@ export const SearchFieldSuggestionsInput = React.forwardRef<HTMLInputElement, Se
       setTimeout(() => {
         props.onChange(e as React.ChangeEvent<HTMLInputElement>);
       });
-      props.onSelect && props.onSelect(e);
+      props.onSelect?.(e);
     };
 
     const onChangeSearchHandler: React.ComponentProps<ComboboxProps['Input']>['onChangeSearch'] = (e) => {

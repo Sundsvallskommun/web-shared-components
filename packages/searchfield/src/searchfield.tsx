@@ -60,18 +60,18 @@ export const SearchFieldBase = React.forwardRef<HTMLInputElement, SearchFieldBas
 
   const setInputFocus = () => {
     setTimeout(() => {
-      internalRef.current && internalRef.current.focus();
+      internalRef.current?.focus();
     });
   };
 
   const handleOnSearch = () => {
-    onSearch && onSearch(query);
+    onSearch?.(query);
   };
 
   const handleOnReset = () => {
     setQuery('');
     setInputFocus();
-    onReset && onReset();
+    onReset?.();
   };
 
   // Search on enter
@@ -79,7 +79,7 @@ export const SearchFieldBase = React.forwardRef<HTMLInputElement, SearchFieldBas
     if (event.key === 'Enter') {
       handleOnSearch();
     }
-    onKeyDown && onKeyDown(event);
+    onKeyDown?.(event);
   };
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
