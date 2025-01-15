@@ -57,3 +57,9 @@ export interface GuiTheme {
 }
 
 export type GuiThemeOverride = DeepPartial<GuiTheme>;
+
+export enum ColorSchemeMode {
+  Dark = 'dark',
+  Light = 'light',
+  System = 'system',
+}

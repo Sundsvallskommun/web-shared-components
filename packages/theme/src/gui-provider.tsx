@@ -1,38 +1,10 @@
-import { Dict, WithCSSVar, deepmerge, omit } from '@sk-web-gui/utils';
+import { omit } from '@sk-web-gui/utils';
 import React from 'react';
 import { toCSSVar } from './create-theme-vars';
 import { defaultTheme } from './default-theme';
-import { GuiTheme, GuiThemeOverride, ThemeOption } from './types';
+import { ColorSchemeMode, GuiTheme, ThemeOption } from './types';
 import { useSafeEffect } from './use-safe-effect';
-import { isBrowser } from './utils';
-
-export enum ColorSchemeMode {
-  Dark = 'dark',
-  Light = 'light',
-  System = 'system',
-}
-
-export const GuiContext = React.createContext<
-  | {
-      theme: WithCSSVar<Dict>;
-      /**
-       * The chosen colorScheme
-       */
-      colorScheme: ColorSchemeMode;
-      /**
-       * Set the colorScheme
-       */
-      setColorScheme: (scheme: ColorSchemeMode) => void;
-      /**
-       * Scheme that is used when set to "system"
-       */
-      preferredColorScheme: Exclude<ColorSchemeMode, ColorSchemeMode.System>;
-      units: { base: number; htmlBase: number };
-    }
-  | undefined
->(undefined);
-
-GuiContext.displayName = 'GuiContext';
+import { GuiContext, isBrowser } from './utils';
 
 export interface GuiProviderProps {
   children: React.ReactNode;
@@ -173,17 +145,4 @@ function updateThemeVariables(vars: Record<string, string>) {
   Object.entries(vars).forEach(([key, val]) => {
     updateStyleHelper(key, val);
   });
-}
-
-export function useGui<T extends object = Dict>() {
-  const theme = React.useContext(GuiContext as unknown as React.Context<T | undefined>);
-  if (!theme) {
-    throw Error('useGui: `theme` is undefined. Seems you forgot to wrap your app in `<GuiProvider />`');
-  }
-
-  return theme as WithCSSVar<T>;
-}
-
-export function extendTheme(themeOverride: GuiThemeOverride): GuiTheme {
-  return deepmerge(defaultTheme, themeOverride, { clone: true }) as GuiTheme;
 }
