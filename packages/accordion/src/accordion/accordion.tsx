@@ -1,8 +1,8 @@
-import { useId } from '@reach/auto-id';
 import { DefaultProps, __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
 import { DisclosureProps } from '../disclosure/disclosure';
 import { AccordionItem } from './accordion-item';
+import { AccordionContext } from './context';
 
 export interface UseAccordionProps extends Pick<DisclosureProps, 'headerAs'> {
   /**
@@ -22,26 +22,11 @@ export interface UseAccordionProps extends Pick<DisclosureProps, 'headerAs'> {
   inverted?: boolean;
 }
 
-interface UseAccordionData extends UseAccordionProps {
-  open?: string[];
-  onClose?: (id: string) => void;
-  onOpen?: (id: string) => void;
-}
-
 export interface AccordionInternalProps extends DefaultProps, UseAccordionProps, React.ComponentPropsWithRef<'ul'> {}
-
-export const useAccordion = (): UseAccordionData => {
-  const context = useAccordionContext();
-
-  return { ...context };
-};
-
-const AccordionContext = React.createContext<UseAccordionProps>({ allowMultipleOpen: false });
-
-const useAccordionContext = () => React.useContext(AccordionContext);
 
 export const AccordionComponent = React.forwardRef<HTMLUListElement, AccordionInternalProps>((props, ref) => {
   const [open, setOpen] = React.useState<string[]>([]);
+  const autoId = React.useId();
 
   const onOpen = (id: string) => {
     if (allowMultipleOpen) {
@@ -56,7 +41,7 @@ export const AccordionComponent = React.forwardRef<HTMLUListElement, AccordionIn
   };
 
   const { className, children, allowMultipleOpen, id: _id, headerAs = 'label', size = 'md', inverted, ...rest } = props;
-  const id = _id || `sk-accordion-${useId()}`;
+  const id = _id || `sk-accordion-${autoId}`;
   const labelId = `${id}-label`;
 
   const context = {

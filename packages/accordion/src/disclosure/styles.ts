@@ -8,7 +8,7 @@ export const useDisclosureClass = createMemoClass((props) => {
     lg: props.variant === 'default' ? 'sk-disclosure-md' : 'sk-disclosure-lg',
   };
 
-  const classes = cx('sk-disclosure', sizes[props.size], props.disabled && 'sk-disclosure-disabled');
+  const classes = cx('sk-disclosure', sizes[props?.size ?? 'md'], props.disabled && 'sk-disclosure-disabled');
 
   return classes;
 });

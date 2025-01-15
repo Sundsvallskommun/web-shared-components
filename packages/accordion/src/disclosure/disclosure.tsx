@@ -1,4 +1,3 @@
-import { useId } from '@reach/auto-id';
 import { Button } from '@sk-web-gui/button';
 import { Divider } from '@sk-web-gui/divider';
 import { Icon } from '@sk-web-gui/icon';
@@ -6,8 +5,8 @@ import { Label } from '@sk-web-gui/label';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 import { Minus, Plus } from 'lucide-react';
 import React from 'react';
-import { useAccordion } from '../accordion/accordion';
 import { useDisclosureClass } from './styles';
+import { useAccordion } from '../accordion/use-accordion';
 
 export interface DisclosureProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   /**
@@ -93,7 +92,8 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
   const inverted = _inverted ?? context.inverted;
   const labelInverted = (_labelInverted ?? inverted) ? false : true;
   const [disclosureOpen, setDisclosureOpen] = React.useState(open || initalOpen);
-  const id = _id || `sk-disclosure-${useId()}`;
+  const autoId = React.useId();
+  const id = _id || `sk-disclosure-${autoId}`;
 
   React.useEffect(() => {
     if (onClose && onOpen) {
@@ -104,27 +104,29 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
         setDisclosureOpen(false);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [_open]);
 
   React.useEffect(() => {
     if (open !== undefined) {
       if (open) {
-        onClose && onClose(id);
+        onClose?.(id);
       } else {
-        onOpen && onOpen(id);
+        onOpen?.(id);
       }
       setDisclosureOpen(open);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
   const onClick = () => {
     if (!disabled) {
       if (disclosureOpen) {
-        onClose && onClose(id);
-        onToggleOpen && onToggleOpen(false);
+        onClose?.(id);
+        onToggleOpen?.(false);
       } else {
-        onOpen && onOpen(id);
-        onToggleOpen && onToggleOpen(true);
+        onOpen?.(id);
+        onToggleOpen?.(true);
       }
 
       setDisclosureOpen(!disclosureOpen);
