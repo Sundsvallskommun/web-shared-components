@@ -13,7 +13,7 @@ interface PresetOptions {
   plugin?: PluginOptions;
 }
 
-const preset = function (_options: PresetOptions) {
+const preset = function (_options?: PresetOptions) {
   const defaults: PresetOptions = {
     tailwindForms: true,
     tailwindContainers: true,
