@@ -6,7 +6,8 @@ import { TableBody } from './table-body';
 import { TableRow } from './table-row';
 import { TableRowColumn } from './table-row-column';
 import { TableSortButton } from './table-sort-button';
-import AutoTable, { AutoTableProps, SortMode, AutoTableHeader } from './auto-table';
+import AutoTable, { AutoTableProps, AutoTableHeader } from './auto-table';
+import { SortMode } from './types';
 
 interface TableProps extends TableComponentProps, React.ForwardRefExoticComponent<TableComponentProps> {
   Component: typeof TableComponent;

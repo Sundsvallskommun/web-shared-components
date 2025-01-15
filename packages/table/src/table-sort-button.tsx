@@ -1,8 +1,8 @@
 import { Icon } from '@sk-web-gui/icon';
 import { DefaultProps } from '@sk-web-gui/utils';
 import React from 'react';
-import { SortMode } from './auto-table';
 import { ChevronUp, ChevronDown } from 'lucide-react';
+import { SortMode } from './types';
 
 export interface ITableSortButtonProps extends DefaultProps, React.ComponentPropsWithoutRef<'button'> {
   isActive: boolean;

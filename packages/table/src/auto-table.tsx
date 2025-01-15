@@ -12,15 +12,12 @@ import { TableRowColumn } from './table-row-column';
 import { TableFooter } from './table-footer';
 import _ from 'lodash';
 import Table, { TableComponentProps } from './table';
+import { SortMode } from './types';
 
 //eslint-disable-next-line
 type TableValue = any;
 type TableItem = Record<string | number, TableValue>;
 
-export enum SortMode {
-  ASC = 'ascending',
-  DESC = 'descending',
-}
 export interface AutoTableHeader {
   property?: string;
   label?: string;
@@ -294,7 +291,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
   }, [page]);
 
   React.useEffect(() => {
-    changePage && changePage(currentPage);
+    changePage?.(currentPage);
   }, [currentPage]);
 
   React.useEffect(() => {
