@@ -38,7 +38,7 @@ export const TabsComponent = React.forwardRef<HTMLDivElement, TabsComponentProps
 
   const handleSetCurrent = (index: number) => {
     if (index !== current) {
-      onTabChange && onTabChange(index);
+      onTabChange?.(index);
       setCurrent(index);
     }
   };
