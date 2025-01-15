@@ -20,7 +20,7 @@ export interface UseImageProps {
   /**
    * A callback for when there was an error loading the image `src`
    */
-  onError?(error: string | React.SyntheticEvent<HTMLImageElement, Event>): void;
+  onError?: OnErrorEventHandler;
   /**
    * If `true`, opt out of the `fallbackSrc` logic and use as `img`
    */
@@ -29,7 +29,7 @@ export interface UseImageProps {
    * The key used to set the crossOrigin on the HTMLImageElement into which the image will be loaded.
    * This tells the browser to request cross-origin access when trying to download the image data.
    */
-  crossOrigin?: ImgHTMLAttributes<any>['crossOrigin'];
+  crossOrigin?: ImgHTMLAttributes<HTMLImageElement>['crossOrigin'];
 }
 
 type Status = 'loading' | 'failed' | 'pending' | 'loaded';
@@ -92,7 +92,7 @@ export function useImage(props: UseImageProps) {
     img.onerror = (error) => {
       flush();
       setStatus('failed');
-      onError?.(error as any);
+      onError?.(error);
     };
 
     imageRef.current = img;
