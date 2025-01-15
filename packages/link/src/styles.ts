@@ -14,7 +14,12 @@ export const useLinkClass = createMemoClass((props) => {
     xl: 'sk-link-xl',
   };
 
-  const classes = cx('sk-link', sizes[props.size], variantClasses[props.variant], props.disabled && 'sk-link-disabled');
+  const classes = cx(
+    'sk-link',
+    sizes[props?.size ?? 'md'],
+    variantClasses[props?.variant ?? 'primary'],
+    props.disabled && 'sk-link-disabled'
+  );
 
   return classes;
 });
