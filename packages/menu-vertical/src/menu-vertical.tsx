@@ -1,8 +1,9 @@
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 import React, { useState } from 'react';
-import { MenuItemTypes, useMenuVertical } from './menu-vertical-context';
 import { MenuVerticalItem, MenuVerticalItemProps } from './menu-vertical-item';
 import { MenuVerticalSubmenuButton, MenuVerticalSubmenuButtonProps } from './menu-vertical-submenu-button';
+import { useMenuVertical } from './use-menu-vertical';
+import { MenuItemTypes } from './types';
 
 type IMenuVerticalComponentProps = DefaultProps & {
   rootId?: string;

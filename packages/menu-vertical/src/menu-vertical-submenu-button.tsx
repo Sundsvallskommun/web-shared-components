@@ -1,9 +1,9 @@
 import { Icon } from '@sk-web-gui/icon';
 import { DefaultProps, __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
-import { useMenuVertical } from './menu-vertical-context';
 import { IMenuVerticalItemProps } from './menu-vertical-item';
 import { ChevronUp, ChevronDown } from 'lucide-react';
+import { useMenuVertical } from './use-menu-vertical';
 
 export interface MenuVerticalSubmenuButtonProps extends DefaultProps, Omit<IMenuVerticalItemProps, 'children'> {
   children: string | JSX.Element;
@@ -61,7 +61,8 @@ export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps>
   const [mounted, setMounted] = React.useState<boolean>(false);
   const menuRef = React.useRef<HTMLElement>(null);
   React.useImperativeHandle(ref, () => menuRef.current!, []);
-  const _menuIndex = menuIndex !== undefined ? menuIndex : React.useId();
+  const autoId = React.useId();
+  const _menuIndex = menuIndex !== undefined ? menuIndex : autoId;
   const isCurrentItem = current === _menuIndex || thisCurrent;
   const isActiveItem = active === _menuIndex;
   const isFocusedItem = focused === _menuIndex;
@@ -143,7 +144,7 @@ export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps>
   React.useEffect(() => {
     if (mounted && menuRef?.current) {
       if (isFocusedItem && isActiveItem) {
-        menuRef.current && menuRef.current.focus();
+        menuRef.current?.focus();
       }
     } else {
       setMounted(true);
