@@ -1,6 +1,6 @@
 import { Button } from '@sk-web-gui/button';
 import { Icon, IconProps } from '@sk-web-gui/icon';
-import { createToast, useToastOptions } from '@sk-web-gui/toast';
+import { useToastOptions } from '@sk-web-gui/toast';
 import { __DEV__, cx as clsx } from '@sk-web-gui/utils';
 import { Lightbulb, Check, AlertTriangle, AlertCircle } from 'lucide-react';
 import React from 'react';
@@ -68,10 +68,9 @@ export const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>((props, 
 
   const setInitialFocus = () => {
     setTimeout(() => {
-      closeRef.current &&
-        closeRef.current.focus({
-          preventScroll: true,
-        });
+      closeRef.current?.focus({
+        preventScroll: true,
+      });
     });
   };
 
@@ -80,8 +79,8 @@ export const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>((props, 
   }, []);
 
   const handleActionCallback = (e: React.MouseEvent<HTMLButtonElement>) => {
-    onClose && onClose();
-    actionCallback && actionCallback(e);
+    onClose?.();
+    actionCallback?.(e);
   };
 
   return (
@@ -119,6 +118,3 @@ export const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>((props, 
 if (__DEV__) {
   Snackbar.displayName = 'Snackbar';
 }
-
-export const useSnackbar = createToast(Snackbar);
-export default useSnackbar;
