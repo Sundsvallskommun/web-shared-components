@@ -26,7 +26,7 @@ export const Text = React.forwardRef<HTMLDivElement, TextProps>((props, ref) => 
   } = props;
 
   const handleClick = (e: MouseEvent, url: string) => {
-    onLinkClick && onLinkClick(e, url);
+    onLinkClick?.(e, url);
   };
 
   const getTextWithLinks = (text: string) => {
