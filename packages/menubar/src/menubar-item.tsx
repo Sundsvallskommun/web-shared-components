@@ -1,7 +1,7 @@
 import { DefaultProps, cx, getValidChildren, useForkRef } from '@sk-web-gui/utils';
 import { PopupMenu } from '@sk-web-gui/popup-menu';
 import React from 'react';
-import { useMenuBar } from './menubar';
+import { useMenuBar } from './use-menubar';
 
 export interface MenuBarItemProps
   extends DefaultProps,
@@ -27,7 +27,7 @@ export const MenuBarItem = React.forwardRef<HTMLLIElement, MenuBarItemProps>((pr
 
   React.useEffect(() => {
     if (thisCurrent && typeof menuIndex === 'number') {
-      setCurrent && setCurrent(menuIndex);
+      setCurrent?.(menuIndex);
     }
   }, [thisCurrent]);
 
@@ -83,12 +83,12 @@ export const MenuBarItem = React.forwardRef<HTMLLIElement, MenuBarItemProps>((pr
     if (event.key === 'ArrowLeft') {
       event.preventDefault();
       event.stopPropagation();
-      prev && prev();
+      prev?.();
     }
     if (event.key === 'ArrowRight') {
       event.preventDefault();
       event.stopPropagation();
-      next && next();
+      next?.();
     }
   };
 
