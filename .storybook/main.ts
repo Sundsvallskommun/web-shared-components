@@ -46,7 +46,6 @@ const config: StorybookConfig = {
         optimizeDeps: {
           exclude: ['@sk-web-gui/*', 'packages/*'],
         },
-        target: 'esnext',
       });
     }
     return config;

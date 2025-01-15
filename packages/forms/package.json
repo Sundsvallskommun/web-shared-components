@@ -10,6 +10,7 @@
   "exports": {
     ".": {
       "require": "./dist/cjs/index.js",
+      "types": "./dist/types/index.d.ts",
       "default": "./dist/esm/index.js"
     }
   },
@@ -44,10 +45,10 @@
     "@sk-web-gui/popup-menu": "3.0.12",
     "@sk-web-gui/theme": "2.3.2",
     "@sk-web-gui/utils": "2.1.0",
-    "lucide-react": "^0.469.0",
+    "lucide-react": "^0.471.1",
     "usehooks-ts": "^3.1.0",
-    "uuid": "11.0.4",
-    "react-hook-form": "^7.53.0"
+    "uuid": "11.0.5",
+    "react-hook-form": "^7.54.2"
   },
   "peerDependencies": {
     "react": ">=18.3.1"

@@ -10,6 +10,7 @@
   "exports": {
     ".": {
       "require": "./dist/cjs/index.js",
+      "types": "./dist/types/index.d.ts",
       "default": "./dist/esm/index.js"
     }
   },
@@ -38,7 +39,7 @@
   "dependencies": {
     "@sk-web-gui/icon": "3.0.2",
     "@sk-web-gui/utils": "2.1.0",
-    "lucide-react": "^0.469.0"
+    "lucide-react": "^0.471.1"
   },
   "peerDependencies": {
     "react": ">=18.3.1"

@@ -9,6 +9,7 @@
   "exports": {
     ".": {
       "require": "./dist/cjs/index.js",
+      "types": "./dist/types/index.d.ts",
       "default": "./dist/esm/index.js"
     }
   },
@@ -28,7 +29,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.20",
     "clean-css": "^5.3.3",
-    "postcss": "^8.4.49",
+    "postcss": "^8.5.1",
     "postcss-import": "^16.1.0"
   },
   "dependencies": {

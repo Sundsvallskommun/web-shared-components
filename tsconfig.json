@@ -7,7 +7,7 @@
     "lib": ["dom", "esnext"],
     "declaration": true,
     "sourceMap": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "skipLibCheck": true,
     "strict": true,
     "noFallthroughCasesInSwitch": true,
@@ -15,10 +15,10 @@
     "strictFunctionTypes": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
+    "allowSyntheticDefaultImports": true,
     "jsx": "react-jsx",
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
     "downlevelIteration": true,
     "baseUrl": ".",
     "paths": {
@@ -28,19 +28,23 @@
     }
   },
   "include": [
-    "types.d.ts",
+    "*.d.ts",
+    "*.config.ts",
     "*.mjs",
     ".storybook/**/*.ts",
     ".storybook/**/*.tsx",
     "packages/*/*.mjs",
-    "packages/*/src",
     "packages/*/index.ts",
-    "packages/*/stories"
+    "packages/*/src/**/*.ts",
+    "packages/*/src/**/*.tsx",
+    "packages/*/stories/**/*.ts",
+    "packages/*/stories/**/*.tsx"
   ],
   "exclude": ["node_modules", "**/dist/**"],
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS",
+      "moduleResolution": "bundler",
       "resolveJsonModule": true,
       "noImplicitAny": false
     }

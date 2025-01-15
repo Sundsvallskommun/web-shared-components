@@ -26,7 +26,7 @@ export default [
   ...tseslint.configs.recommended,
   ...storybook.configs['flat/recommended'],
   {
-    ignores: ['**/dist/**', 'packages/*/eslint.config.mjs', '**/*.d.ts'],
+    ignores: ['**/dist/**', 'packages/*/eslint.config.mjs', '**/*.d.ts', 'ecosystem.config.js'],
   },
   {
     files: ['packages/*/stories/**/*.tsx', '.storybook/**/*.tsx'],
