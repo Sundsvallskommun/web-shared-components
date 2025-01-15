@@ -1,55 +1,18 @@
-import { DefaultProps, cx, __DEV__ } from '@sk-web-gui/utils';
-import { Dialog as D, Transition } from '@headlessui/react';
+import { Description, Dialog, DialogBackdrop, DialogTitle, Transition } from '@headlessui/react';
 import { Button } from '@sk-web-gui/button';
 import { Checkbox } from '@sk-web-gui/forms';
-import Cookies, { CookieSetOptions } from 'universal-cookie';
+import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
-
-export const defaultCookieConsentName = 'SKCookieConsent';
-export const defaultCookieConsentPath = '/';
-
-export interface ConsentCookie {
-  optional: boolean;
-  displayName: string;
-  description: string;
-  cookieName: string;
-}
-
-export interface CheckableConsentCookie extends ConsentCookie {
-  isChecked: boolean;
-}
-
-export enum ConsentType {
-  Necessary = 'Necessary',
-  All = 'All',
-  Custom = 'Custom',
-}
-
-const userCookie = new Cookies();
-
-export function getConsent(): string[] {
-  const cookieValue = userCookie.get(defaultCookieConsentName);
-  if (!cookieValue) {
-    return [];
-  }
-  return cookieValue.split(',');
-}
-
-export function resetConsent(options: { path: string } = { path: defaultCookieConsentPath }) {
-  userCookie.remove(defaultCookieConsentName, options);
-}
-
-export function getCheckableCookies(cookies: ConsentCookie[]): CheckableConsentCookie[] {
-  const getAcceptedCookies = getConsent();
-
-  return (
-    cookies?.map((cookie) => ({
-      ...cookie,
-      // NOTE: Accepted cookies and non-optional cookies should be checked
-      isChecked: !cookie.optional || getAcceptedCookies.includes(cookie.cookieName),
-    })) ?? []
-  );
-}
+import { CookieSetOptions } from 'universal-cookie';
+import { ConsentCookie, ConsentType } from './types';
+import {
+  defaultCookieConsentName,
+  defaultCookieConsentPath,
+  getCheckableCookies,
+  getConsent,
+  resetConsent,
+  userCookie,
+} from './utils';
 
 export interface CookieConsentProps extends DefaultProps, Omit<React.ComponentPropsWithRef<'div'>, 'title'> {
   isOpen?: boolean;
@@ -91,13 +54,13 @@ export const CookieConsent: React.FC<CookieConsentProps> = ({
 
   const setSettingsFocus = () => {
     setTimeout(() => {
-      settingsFocus.current && settingsFocus.current.focus();
+      settingsFocus.current?.focus();
     });
   };
 
   const setApproveFocus = () => {
     setTimeout(() => {
-      approveFocus.current && approveFocus.current?.focus();
+      approveFocus.current?.focus();
     });
   };
 
@@ -152,7 +115,7 @@ export const CookieConsent: React.FC<CookieConsentProps> = ({
 
   return (
     <Transition show={isOpen}>
-      <D
+      <Dialog
         initialFocus={initialFocus}
         open={isOpen}
         onClose={() => false}
@@ -160,12 +123,12 @@ export const CookieConsent: React.FC<CookieConsentProps> = ({
         className={cx('sk-cookie-consent-wrapper', className)}
       >
         <div className="sk-cookie-consent">
-          <D.Overlay />
+          <DialogBackdrop />
           <div className="sk-cookie-consent-content-wrapper">
             <div className="sk-cookie-consent-body">
-              <D.Title className="sk-cookie-consent-title">{title}</D.Title>
+              <DialogTitle className="sk-cookie-consent-title">{title}</DialogTitle>
 
-              <D.Description as="div" className="sk-cookie-consent-description">
+              <Description as="div" className="sk-cookie-consent-description">
                 {!isHandlingOptions && <>{body}</>}
 
                 {isHandlingOptions && (
@@ -188,7 +151,7 @@ export const CookieConsent: React.FC<CookieConsentProps> = ({
                     </fieldset>
                   </>
                 )}
-              </D.Description>
+              </Description>
             </div>
 
             <div className="sk-cookie-consent-btn-wrapper">
@@ -240,7 +203,7 @@ export const CookieConsent: React.FC<CookieConsentProps> = ({
             </div>
           </div>
         </div>
-      </D>
+      </Dialog>
     </Transition>
   );
 };
