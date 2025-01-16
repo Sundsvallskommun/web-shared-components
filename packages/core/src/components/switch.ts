@@ -14,10 +14,10 @@ export const Switch = () => ({
   },
   '.sk-form-switch': {
     '@apply rounded-full cursor-pointer focus:outline-none': {},
-    '@apply bg-primitives-overlay-darken-3 dark:bg-primitives-overlay-lighten-3': {},
+    '@apply bg-switch-surface': {},
 
     // Hover
-    '@apply hover:bg-primitives-overlay-darken-5 hover:dark:bg-primitives-overlay-lighten-4': {},
+    '@apply hover:bg-switch-surface-hover': {},
 
     // Focus
     'input[type=checkbox]:focus-visible + &': {
@@ -42,17 +42,18 @@ export const Switch = () => ({
 
       '.sk-form-switch-box': {
         transform: 'translateX(var(--sk-spacing-24))',
+        '@apply bg-switch-control-on': {},
       },
 
-      '@apply bg-primitives-overlay-darken-4 dark:bg-primitives-overlay-lighten-5': {},
+      '@apply bg-switch-surface-on': {},
 
       // Disabled
       [`&[data-disabled="true"]`]: {
         '.sk-form-switch-box': {
-          '@apply bg-transparent': {},
+          '@apply bg-switch-control-disabled': {},
 
           '.sk-form-switch-icon': {
-            '@apply bg-primitives-overlay-darken-6 dark:bg-primitives-overlay-lighten-6': {},
+            '@apply opacity-0': {},
             '@apply text-light-primary': {},
           },
         },
@@ -62,10 +63,10 @@ export const Switch = () => ({
     // Disabled not checked
     [`&[data-disabled="true"]`]: {
       '@apply cursor-default': {},
-      '@apply bg-primitives-overlay-darken-2 dark:bg-primitives-overlay-lighten-2': {},
+      '@apply bg-switch-surface-disabled': {},
 
       '.sk-form-switch-box': {
-        '@apply bg-primitives-overlay-darken-6 dark:bg-primitives-overlay-lighten-6': {},
+        '@apply bg-switch-control-disabled': {},
       },
     },
 
@@ -75,7 +76,7 @@ export const Switch = () => ({
   // Knob
   '.sk-form-switch-box': {
     '@apply transition-transform ease-in-out duration-150 transform rounded-full shadow translate-x-0 m-6': {},
-    '@apply bg-primitives-overlay-darken-7 dark:bg-primitives-overlay-lighten-7': {},
+    '@apply bg-switch-control': {},
     '@apply h-20 w-20': {},
     '@apply flex justify-center items-center object-center': {},
 

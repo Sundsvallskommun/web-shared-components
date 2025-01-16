@@ -4,18 +4,15 @@ export const Radio = () => ({
 
     '@apply relative': {},
     '@apply box-border': {},
-    '@apply bg-primitives-overlay-lighten-10': {},
-    '@apply dark:bg-primitives-overlay-darken-6': {},
+    '@apply bg-input-field-surface': {},
     '@apply border-1': {},
-    '@apply border-primitives-overlay-darken-6': {},
-    '@apply dark:border-primitives-overlay-lighten-6': {},
+    '@apply border-input-field-outline': {},
     '@apply m-0': {},
     '@apply h-24 w-24': {},
 
     //Hover
     '@apply hover:after:content-[""]': {},
-    '@apply hover:border-primitives-overlay-darken-8': {},
-    '@apply hover:dark:border-primitives-overlay-lighten-4': {},
+    '@apply hover:border-input-field-outline-hover': {},
     '&::after': {
       '@apply absolute': {},
       '@apply rounded-full': {},
@@ -40,26 +37,20 @@ export const Radio = () => ({
 
     //Checked
     '&:checked, &[checked="true"]': {
-      '@apply bg-primitives-overlay-lighten-10': {},
-      '@apply dark:bg-primitives-overlay-darken-6': {},
-      '@apply hover:bg-primitives-overlay-lighten-10': {},
-      '@apply hover:dark:bg-primitives-overlay-darken-6': {},
-      '@apply focus:bg-primitives-overlay-lighten-10': {},
-      '@apply focus:dark:bg-primitives-overlay-darken-6': {},
-      '@apply text-primitives-overlay-lighten-10': {},
-      '@apply dark:text-primitives-overlay-darken-6': {},
-      '@apply hover:text-primitives-overlay-lighten-10': {},
-      '@apply hover:dark:text-primitives-overlay-darken-6': {},
-      '@apply focus:text-primitives-overlay-lighten-10': {},
-      '@apply focus:dark:text-primitives-overlay-darken-6': {},
-      '@apply border-primitives-overlay-darken-6': {},
-      '@apply focus:border-primitives-overlay-darken-6': {},
-      '@apply dark:border-primitives-overlay-lighten-6': {},
-      '@apply hover:border-primitives-overlay-darken-8': {},
-      '@apply hover:dark:border-primitives-overlay-lighten-4': {},
+      '@apply bg-input-field-surface': {},
+      '@apply hover:bg-input-field-surface': {},
+      '@apply focus:bg-input-field-surface': {},
+      '@apply text-input-field-surface': {},
+      '@apply border-input-field-outline': {},
+      '@apply hover:text-input-field-surface': {},
+      '@apply focus:text-input-field-surface': {},
+      '@apply focus:border-input-field-outline': {},
+      '@apply focus:hover:border-input-field-outline-hover': {},
+      '@apply hover:border-input-field-outline-hover': {},
       '@apply focus:outline-0': {},
       '@apply focus:ring-0 focus:ring-offset-0': {},
       '@apply focus-visible:ring': {},
+      '@apply focus-visible:hover:border-transparent': {},
       '@apply focus-visible:border-transparent': {},
       '@apply after:content-[""]': {},
       '&[aria-invalid="true"]': {
@@ -79,17 +70,16 @@ export const Radio = () => ({
 
     //Disabled
     '&:disabled, &[disabled="true"]': {
-      '@apply border-primitives-overlay-darken-3': {},
-      '@apply dark:border-primitives-overlay-lighten-3': {},
-      '@apply hover:border-primitives-overlay-darken-3': {},
-      '@apply hover:dark:border-primitives-overlay-lighten-3': {},
-      '@apply bg-background-200': {},
-      '@apply hover:bg-background-200': {},
+      '@apply border-input-field-outline-disabled': {},
+      '@apply hover:border-input-field-outline-disabled': {},
+      '@apply bg-input-field-surface-disabled': {},
+      '@apply hover:bg-input-field-surface-disabled': {},
       '@apply cursor-not-allowed': {},
       '&:not(:checked):not([checked="true"]):after': {
         '@apply hidden': {},
       },
       '&:checked, &[checked="true"]': {
+        '@apply border-input-field-outline-disabled': {},
         '&::after': {
           '@apply bg-dark-disabled': {},
         },

@@ -49,14 +49,10 @@ function primary() {
   return {
     '&-primary': {
       '@apply border-1': {},
-      '@apply border-primitives-overlay-darken-6': {},
-      '@apply dark:border-primitives-overlay-lighten-6': {},
-      '@apply hover:border-primitives-overlay-darken-8': {},
-      '@apply dark:hover:border-primitives-overlay-lighten-4': {},
-      '@apply bg-primitives-overlay-lighten-10': {},
-      '@apply dark:bg-primitives-overlay-darken-6': {},
-      '@apply hover:bg-primitives-overlay-lighten-10': {},
-      '@apply dark:hover:bg-primitives-overlay-darken-6': {},
+      '@apply border-input-field-outline': {},
+      '@apply hover:border-input-field-outline-hover': {},
+      '@apply bg-input-field-surface': {},
+      '@apply hover:bg-input-field-surface': {},
 
       '&.sk-form-select-sm': {
         //Padding - border width
@@ -110,13 +106,11 @@ function primary() {
         },
       },
       //Disabled
-      '&[aria-disabled="true"]': {
-        '@apply bg-primitives-overlay-darken-1': {},
-        '@apply dark:bg-primitives-overlay-lighten-1': {},
-        '@apply border-primitives-overlay-darken-3': {},
-        '@apply dark:border-primitives-overlay-lighten-3': {},
-        '@apply hover:border-primitives-overlay-darken-3': {},
-        '@apply dark:hover:border-primitives-overlay-lighten-3': {},
+      '&[aria-disabled="true"],&:disabled': {
+        '@apply bg-input-field-surface-disabled': {},
+        '@apply hover:bg-input-field-surface-disabled': {},
+        '@apply border-input-field-outline-disabled': {},
+        '@apply hover:border-input-field-outline-disabled': {},
       },
     },
   };
@@ -144,14 +138,6 @@ export const Select = () => ({
       backgroundImage: [`url("data:image/svg+xml;utf-8,${chevronDown('rgb(28,28,40)')}")`],
     },
 
-    ...tertiary(),
-    ...primary(),
-
-    //Droprown
-    '*': {
-      '@apply bg-background-content': {},
-    },
-
     //Invalid
     '&[aria-invalid="true"]': {
       '@apply border-2 border-error-surface-primary': {},
@@ -164,6 +150,14 @@ export const Select = () => ({
       '@apply placeholder:text-dark-disabled': {},
       '@apply bg-tertiary-surface-disabled': {},
       backgroundImage: [`url("data:image/svg+xml;utf-8,${chevronDown('rgba(28,28,40, 0.5)')}")`],
+    },
+
+    ...tertiary(),
+    ...primary(),
+
+    //Droprown
+    '*': {
+      '@apply bg-background-content': {},
     },
 
     '&-sm': {

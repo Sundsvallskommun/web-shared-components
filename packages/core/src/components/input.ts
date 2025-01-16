@@ -8,15 +8,12 @@ function clock() {
 function inputStandards() {
   return {
     '@apply border-1': {},
-    '@apply border-primitives-overlay-darken-6': {},
-    '@apply dark:border-primitives-overlay-lighten-6': {},
-    '@apply hover:border-primitives-overlay-darken-8': {},
-    '@apply dark:hover:border-primitives-overlay-lighten-4': {},
+    '@apply border-input-field-outline': {},
+    '@apply hover:border-input-field-outline-hover': {},
 
     '@apply placeholder:text-dark-placeholder': {},
 
-    '@apply bg-primitives-overlay-lighten-10': {},
-    '@apply dark:bg-primitives-overlay-darken-6': {},
+    '@apply bg-input-field-surface': {},
 
     //Invalid
     '&:invalid, &[aria-invalid="true"]': {
@@ -25,12 +22,9 @@ function inputStandards() {
 
     //Disabled
     '&:disabled, &[aria-disabled="true"]': {
-      '@apply bg-primitives-overlay-darken-1': {},
-      '@apply dark:bg-primitives-overlay-lighten-1': {},
-      '@apply border-primitives-overlay-darken-3': {},
-      '@apply dark:border-primitives-overlay-lighten-3': {},
-      '@apply hover:border-primitives-overlay-darken-3': {},
-      '@apply dark:hover:border-primitives-overlay-lighten-3': {},
+      '@apply bg-input-field-surface-disabled': {},
+      '@apply border-input-field-outline-disabled': {},
+      '@apply hover:border-input-field-outline-disabled': {},
       '@apply text-dark-disabled': {},
     },
   };
@@ -97,12 +91,10 @@ function inputGroup() {
       '@apply focus-within:ring-ring': {},
       '@apply text-dark-secondary': {},
       //Focus
-      '@apply focus-within:border-primitives-overlay-lighten-10': {},
-      '@apply dark:focus-within:border-primitives-overlay-darken-6': {},
+      '@apply focus-within:border-input-field-surface': {},
 
       '&:not(:invalid):not([aria-invalid="true"])': {
-        '@apply focus-within:hover:border-primitives-overlay-lighten-10': {},
-        '@apply dark:focus-within:hover:border-primitives-overlay-darken-6': {},
+        '@apply focus-within:border-input-field-surface': {},
       },
 
       '&&-lg': {
@@ -231,16 +223,13 @@ export const Input = () => ({
     '@apply focus:ring': {},
     '@apply focus:ring-ring': {},
     '@apply focus:ring-offset': {},
-    '@apply focus:border-primitives-overlay-lighten-10': {},
-    '@apply dark:focus:border-primitives-overlay-darken-6': {},
+    '@apply focus:border-input-field-surface': {},
     '@apply focus-within:ring': {},
     '@apply focus-within:ring-ring': {},
     '@apply focus-within:ring-offset': {},
-    '@apply focus-within:border-primitives-overlay-lighten-10': {},
-    '@apply dark:focus-within:border-primitives-overlay-darken-6': {},
+    '@apply focus-within:border-input-field-surface': {},
     '&:not(:invalid):not([aria-invalid="true"])': {
-      '@apply focus:hover:border-primitives-overlay-lighten-10': {},
-      '@apply dark:focus:hover:border-primitives-overlay-darken-6': {},
+      '@apply focus:hover:border-input-field-surface': {},
     },
     ...timeAndDatePicker(),
     ...inputStandards(),

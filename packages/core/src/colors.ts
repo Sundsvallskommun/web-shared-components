@@ -378,6 +378,41 @@ const colors = {
       secondary: `var(--sk-colors-success-text-secondary)`,
     },
   },
+  'input-field': {
+    outline: {
+      DEFAULT: `var(--sk-colors-input-field-outline-DEFAULT)`,
+      hover: `var(--sk-colors-input-field-outline-hover)`,
+      disabled: `var(--sk-colors-input-field-outline-disabled)`,
+    },
+    surface: {
+      DEFAULT: `var(--sk-colors-input-field-surface-DEFAULT)`,
+      disabled: `var(--sk-colors-input-field-surface-disabled)`,
+      focus: `var(--sk-colors-input-field-surface-focus)`,
+    },
+  },
+  switch: {
+    surface: {
+      DEFAULT: `var(--sk-colors-switch-surface-DEFAULT)`,
+      on: `var(--sk-colors-switch-surface-on)`,
+      disabled: `var(--sk-colors-switch-surface-disabled)`,
+      hover: `var(--sk-colors-switch-surface-hover)`,
+    },
+    control: {
+      DEFAULT: `var(--sk-colors-switch-control-DEFAULT)`,
+      disabled: `var(--sk-colors-switch-control-disabled)`,
+      on: `var(--sk-colors-switch-control-on)`,
+    },
+  },
+  'menu-item': {
+    surface: {
+      open: `var(--sk-colors-menu-item-surface-DEFAULT)`,
+      hover: `var(--sk-colors-menu-item-surface-hover)`,
+      active: `var(--sk-colors-menu-item-surface-active)`,
+    },
+    node: {
+      line: `var(--sk-colors-menu-item-node-line)`,
+    },
+  },
   inverted: {
     body: `var(--sk-colors-inverted-body)`,
     black: `var(--sk-colors-inverted-black)`,
@@ -639,6 +674,41 @@ const colors = {
         DEFAULT: `var(--sk-colors-inverted-success-text-DEFAULT)`,
         primary: `var(--sk-colors-inverted-success-text-primary)`,
         secondary: `var(--sk-colors-inverted-success-text-secondary)`,
+      },
+    },
+    'input-field': {
+      outline: {
+        DEFAULT: `var(--sk-colors-inverted-input-field-outline-DEFAULT)`,
+        hover: `var(--sk-colors-inverted-input-field-outline-hover)`,
+        disabled: `var(--sk-colors-inverted-input-field-outline-disabled)`,
+      },
+      surface: {
+        DEFAULT: `var(--sk-colors-inverted-input-field-surface-DEFAULT)`,
+        disabled: `var(--sk-colors-inverted-input-field-surface-disabled)`,
+        focus: `var(--sk-colors-inverted-input-field-surface-focus)`,
+      },
+    },
+    switch: {
+      surface: {
+        DEFAULT: `var(--sk-colors-inverted-switch-surface-DEFAULT)`,
+        on: `var(--sk-colors-inverted-switch-surface-on)`,
+        disabled: `var(--sk-colors-inverted-switch-surface-disabled)`,
+        hover: `var(--sk-colors-inverted-switch-surface-hover)`,
+      },
+      control: {
+        DEFAULT: `var(--sk-colors-inverted-switch-control-DEFAULT)`,
+        disabled: `var(--sk-colors-inverted-switch-control-disabled)`,
+        on: `var(--sk-colors-inverted-switch-control-on)`,
+      },
+    },
+    'menu-item': {
+      surface: {
+        open: `var(--sk-colors-inverted-menu-item-surface-DEFAULT)`,
+        hover: `var(--sk-colors-inverted-menu-item-surface-hover)`,
+        active: `var(--sk-colors-inverted-menu-item-surface-active)`,
+      },
+      node: {
+        line: `var(--sk-colors-inverted-menu-item-node-line)`,
       },
     },
   },
