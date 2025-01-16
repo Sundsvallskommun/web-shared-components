@@ -49,8 +49,7 @@ export const ComboBox = () => ({
       '@apply focus:border-transparent': {},
       '@apply focus:hover:border-transparent': {},
       '&.active': {
-        '@apply bg-primitives-overlay-lighten-10': {},
-        '@apply dark:bg-primitives-overlay-darken-6': {},
+        '@apply bg-input-field-surface hover:bg-input-field-surface': {},
         '@apply placeholder:text-dark-placeholder': {},
         '@apply text-dark-primary': {},
         '@apply border-transparent': {},

@@ -64,8 +64,7 @@ export const PopupMenu = () => ({
       '@apply w-full': {},
       '@apply h-40': {},
       '@apply min-h-40': {},
-      '@apply bg-transparent hover:bg-primitives-gray-200': {},
-      '@apply dark:hover:bg-primitives-overlay-lighten-1': {},
+      '@apply bg-transparent hover:bg-menu-item-surface-hover': {},
       '@apply cursor-pointer': {},
       '@apply flex flex-row shrink-0': {},
       '@apply pl-8 pr-8 py-4 gap-12': {},
@@ -77,8 +76,7 @@ export const PopupMenu = () => ({
         '@apply max-w-full': {},
       },
       '&:focus-visible, &:focus-within': {
-        '@apply bg-primitives-gray-200': {},
-        '@apply dark:bg-primitives-overlay-lighten-1': {},
+        '@apply bg-menu-item-surface-hover': {},
       },
       svg: {
         '@apply w-20 h-20': {},
@@ -118,8 +116,7 @@ export const PopupMenu = () => ({
       },
       '&:focus-within': {
         '.sk-popup-menu-item.active': {
-          '@apply bg-primitives-gray-200': {},
-          '@apply dark:bg-primitives-overlay-lighten-1': {},
+          '@apply bg-menu-item-surface-hover': {},
         },
       },
     },

@@ -19,8 +19,8 @@ export const Checkbox = () => ({
 
     '+ .sk-icon': {
       '@apply absolute inset-0 my-auto bg-transparent': {},
-      '@apply border-1 p-2 border-primitives-overlay-darken-6 dark:border-primitives-overlay-lighten-6': {},
-      '@apply bg-primitives-overlay-lighten-10 dark:bg-primitives-overlay-darken-6': {},
+      '@apply border-1 p-2 border-input-field-outline': {},
+      '@apply bg-input-field-surface': {},
 
       svg: {
         '@apply hidden': {},
@@ -45,8 +45,7 @@ export const Checkbox = () => ({
     '&&:hover:not(&&-disabled,&&:checked,&&[aria-invalid=true]),&&:hover:focus:not(&&-disabled,&&:checked,&&[aria-invalid=true])':
       {
         '& + .sk-icon, &:focus + .sk-icon': {
-          '@apply text-primitives-overlay-darken-6 dark:text-primitives-overlay-lighten-5 border-primitives-overlay-darken-8 dark:border-primitives-overlay-lighten-4':
-            {},
+          '@apply text-dark-placeholder border-input-field-outline-hover': {},
 
           svg: {
             '@apply block': {},
@@ -75,7 +74,7 @@ export const Checkbox = () => ({
       '@apply cursor-not-allowed': {},
 
       '& + .sk-icon': {
-        '@apply bg-background-200 border-primitives-overlay-darken-3': {},
+        '@apply bg-input-field-surface-disabled border-input-field-outline-disabled': {},
       },
 
       '&:checked': {

@@ -11,30 +11,30 @@ export const primitives = {
     100: `rgb(${toRGB('#F0F0F0')?.join(',')})`,
     200: `rgb(${toRGB('#E5E5E5')?.join(',')})`,
     300: `rgb(${toRGB('#B7B7BA')?.join(',')})`,
-    400: `rgb(${toRGB('#A2A2A8')?.join(',')})`,
+    400: `rgb(${toRGB('#A2A2A7')?.join(',')})`,
     500: `rgb(${toRGB('#68686D')?.join(',')})`,
     600: `rgb(${toRGB('#51515C')?.join(',')})`,
     700: `rgb(${toRGB('#444450')?.join(',')})`,
     800: `rgb(${toRGB('#2F2F3C')?.join(',')})`,
-    900: `rgb(${toRGB('#1C1C28')?.join(',')})`,
+    900: `rgb(${toRGB('#1F1F25')?.join(',')})`,
     darkest: `rgb(${toRGB('#1C1C28')?.join(',')})`,
   },
 
   overlay: {
     darken: {
       1: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.04)`,
-      2: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.08)`,
-      3: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.10)`,
+      2: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.12)`,
+      3: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.16)`,
       4: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.18)`,
       5: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.3)`,
       6: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.5)`,
       7: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.64)`,
-      8: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.8)`,
+      8: `rgba(${toRGB('#1E2126')?.join(',')}, 0.8)`,
       9: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.88)`,
       10: `rgba(${toRGB('#1C1C28')?.join(',')}, 0.95)`,
     },
     lighten: {
-      1: `rgba(${toRGB('#FFFFFF')?.join(',')}, 0.04)`,
+      1: `rgba(${toRGB('#FFFFFF')?.join(',')}, 0.05)`,
       2: `rgba(${toRGB('#FFFFFF')?.join(',')}, 0.08)`,
       3: `rgba(${toRGB('#FFFFFF')?.join(',')}, 0.10)`,
       4: `rgba(${toRGB('#FFFFFF')?.join(',')}, 0.2)`,
@@ -133,8 +133,8 @@ const lightmode = {
     DEFAULT: primitives.gray[900],
     active: primitives.gray[900],
     surface: {
-      DEFAULT: primitives.overlay.darken[9],
-      hover: primitives.overlay.darken[10],
+      DEFAULT: primitives.overlay.darken[10],
+      hover: primitives.overlay.darken[9],
       disabled: primitives.overlay.darken[3],
     },
     ...primitives.gray,
@@ -164,7 +164,7 @@ const lightmode = {
     DEFAULT: primitives.gray[900],
     primary: primitives.gray[900],
     secondary: primitives.gray[700],
-    disabled: primitives.overlay.darken[6],
+    disabled: primitives.overlay.darken[7],
     placeholder: primitives.overlay.darken[7],
     ghost: primitives.overlay.darken[4],
   },
@@ -377,7 +377,7 @@ const darkmode = {
   primary: {
     DEFAULT: primitives.gray.lightest,
     surface: {
-      DEFAULT: primitives.overlay.lighten[10],
+      DEFAULT: primitives.overlay.lighten[9],
       hover: primitives.gray.lightest,
       disabled: primitives.overlay.lighten[3],
     },
@@ -407,7 +407,7 @@ const darkmode = {
     DEFAULT: primitives.gray.lightest,
     primary: primitives.gray.lightest,
     secondary: primitives.gray[200],
-    disabled: primitives.overlay.lighten[7],
+    disabled: primitives.overlay.lighten[6],
     placeholder: primitives.overlay.lighten[6],
     ghost: primitives.overlay.lighten[4],
   },
@@ -528,8 +528,8 @@ const darkmode = {
     },
     surface: {
       primary: {
-        DEFAULT: primitives.red[300],
-        hover: primitives.red[200],
+        DEFAULT: primitives.red[500],
+        hover: primitives.red[400],
       },
       accent: {
         DEFAULT: primitives.red[700],
@@ -613,16 +613,96 @@ const darkmode = {
   },
 };
 
+const utility = {
+  lightmode: {
+    'input-field': {
+      outline: {
+        DEFAULT: primitives.overlay.darken[6],
+        hover: primitives.overlay.darken[8],
+        disabled: primitives.overlay.darken[5],
+      },
+      surface: {
+        DEFAULT: primitives.overlay.lighten[10],
+        disabled: primitives.gray[50],
+        focus: primitives.gray.lightest,
+      },
+    },
+    switch: {
+      surface: {
+        DEFAULT: primitives.overlay.darken[3],
+        on: primitives.overlay.darken[4],
+        disabled: primitives.overlay.darken[2],
+        hover: primitives.overlay.darken[5],
+      },
+      control: {
+        DEFAULT: primitives.overlay.darken[7],
+        disabled: primitives.overlay.darken[6],
+        on: lightmode.primary.surface.hover,
+      },
+    },
+    'menu-item': {
+      surface: {
+        open: lightmode.vattjom.surface.accent.DEFAULT,
+        hover: primitives.overlay.darken[3],
+        active: lightmode.primary.surface.DEFAULT,
+      },
+      node: {
+        line: primitives.gray[300],
+      },
+    },
+  },
+
+  darkmode: {
+    'input-field': {
+      outline: {
+        DEFAULT: primitives.overlay.lighten[6],
+        hover: primitives.overlay.lighten[4],
+        disabled: primitives.overlay.lighten[5],
+      },
+      surface: {
+        DEFAULT: primitives.overlay.darken[6],
+        disabled: primitives.overlay.lighten[1],
+        focus: primitives.gray.darkest,
+      },
+    },
+    switch: {
+      surface: {
+        DEFAULT: primitives.overlay.lighten[3],
+        on: primitives.overlay.lighten[5],
+        disabled: primitives.overlay.lighten[2],
+        hover: primitives.overlay.lighten[4],
+      },
+      control: {
+        DEFAULT: primitives.overlay.lighten[7],
+        disabled: primitives.overlay.lighten[6],
+        on: darkmode.primary.surface.hover,
+      },
+    },
+    'menu-item': {
+      surface: {
+        open: darkmode.vattjom.surface.accent.DEFAULT,
+        hover: primitives.overlay.lighten[5],
+        active: darkmode.primary.surface.DEFAULT,
+      },
+      node: {
+        line: primitives.gray[600],
+      },
+    },
+  },
+};
+
 // App setup
 export const colors = {
   lightmode: {
     primitives,
     ...lightmode,
-    inverted: darkmode,
+    ...utility.lightmode,
+    inverted: { ...darkmode, ...utility.darkmode },
   },
   darkmode: {
     primitives,
     ...darkmode,
-    inverted: lightmode,
+    ...utility.darkmode,
+    inverted: { ...lightmode, ...utility.lightmode },
   },
 };

@@ -1,7 +1,7 @@
 import { colors } from './colors';
-import { fontSizes, lineHeights, spacing, screens, radius } from './units';
-import { GuiTheme, ColorScheme } from './types';
 import { fonts } from './fonts';
+import { ColorScheme, GuiTheme } from './types';
+import { fontSizes, lineHeights, radius, screens, spacing } from './units';
 
 // light theme
 export const lightScheme: ColorScheme = {

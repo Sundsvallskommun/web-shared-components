@@ -18,14 +18,14 @@
   "Utility/Label/Gap": "$Primitives/Units/2-point-grid/Spacing-6",
   "Utility/Horizontal Menu Item/PaddingH": "$Primitives/Units/2-point-grid/Spacing-14",
   "Utility/Horizontal Menu Item/PaddingV": "$Primitives/Units/2-point-grid/Spacing-8",
-  "Utility/Horizontal Menu Item/Gap": "$Primitives/Units/2-point-grid/Spacing-2",
+  "Utility/Horizontal Menu Item/Gap": "$Primitives/Units/2-point-grid/Spacing-8",
   "Utility/Vertical Menu Item/PaddingH": "$Primitives/Units/2-point-grid/Spacing-14",
   "Utility/Vertical Menu Item/PaddingV": "$Primitives/Units/2-point-grid/Spacing-6",
   "Utility/Vertical Menu Item/Gap": "$Primitives/Units/2-point-grid/Spacing-8",
   "Utility/Popup Option Item/PaddingH": "$Primitives/Units/2-point-grid/Spacing-4",
   "Utility/Popup Option Item/PaddingV": "$Primitives/Units/2-point-grid/Spacing-0",
   "Utility/Popup Option Item/Gap": "$Primitives/Units/2-point-grid/Spacing-10",
-  "Utility/Select/PaddingH": "$Primitives/Units/2-point-grid/Spacing-14",
+  "Utility/Select/PaddingH": "$Primitives/Units/2-point-grid/Spacing-12",
   "Utility/Select/PaddingH+Icon": "$Primitives/Units/2-point-grid/Spacing-10",
   "Utility/Select/PaddingV": "$Primitives/Units/2-point-grid/Spacing-8",
   "Utility/Select/Gap": "$Primitives/Units/2-point-grid/Spacing-4",
@@ -41,5 +41,9 @@
   "Utility/Snackbar/PaddingH+Btn": "$Primitives/Units/2-point-grid/Spacing-8",
   "Utility/Tooltip/PaddingH": "$Primitives/Units/2-point-grid/Spacing-16",
   "Utility/Tooltip/PaddingV": "$Primitives/Units/2-point-grid/Spacing-8",
-  "Utility/Tooltip/Gap": "$Primitives/Units/2-point-grid/Spacing-6"
+  "Utility/Tooltip/Gap": "$Primitives/Units/2-point-grid/Spacing-6",
+  "Utility/Chip/PaddingH": "$Primitives/Units/2-point-grid/Spacing-10",
+  "Utility/Chip/PaddingH+Icon": "$Primitives/Units/2-point-grid/Spacing-10",
+  "Utility/Chip/PaddingV": "$Primitives/Units/2-point-grid/Spacing-8",
+  "Utility/Chip/Gap": "$Primitives/Units/2-point-grid/Spacing-4"
 }
