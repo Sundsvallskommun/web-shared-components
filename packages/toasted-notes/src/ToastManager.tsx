@@ -83,7 +83,9 @@ export class ToastManager extends React.Component<ToastManagerProps, State> {
     // a bit messy, but object.position returns a number because
     // it's a method argument.
     const position =
-      options.hasOwnProperty('position') && typeof options.position === 'string' ? options.position : 'top';
+      Object.prototype.hasOwnProperty.call(options, 'position') && typeof options.position === 'string'
+        ? options.position
+        : 'top';
 
     return {
       id,

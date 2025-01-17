@@ -158,7 +158,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
         label = getLabel(header);
         break;
 
-      default:
+      default: {
         const { isColumnSortable = true, isShown = true, screenReaderOnly = false, sticky } = header;
         label = getLabel(header);
         isSortable = isColumnSortable;
@@ -166,6 +166,7 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
         isScreenReaderOnly = screenReaderOnly;
         isSticky = sticky;
         break;
+      }
     }
 
     return {
@@ -187,11 +188,12 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
           case 'string':
             break;
 
-          default:
+          default: {
             const { isShown = true } = header;
             show = isShown;
             position = header?.columnPosition || 'left';
             break;
+          }
         }
 
         const value = getValue(item, header);

@@ -163,12 +163,13 @@ export const PopupMenuPanel = React.forwardRef<HTMLDivElement, PopupMenuPanelPro
         event.stopPropagation();
         close?.(true);
         break;
-      case 'Enter':
+      case 'Enter': {
         const target = event.target as Element;
         if (target.nodeName.toLowerCase() !== 'input') {
           close?.();
         }
         break;
+      }
       case 'ArrowDown':
         event.preventDefault();
         event.stopPropagation();

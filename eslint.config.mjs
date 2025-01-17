@@ -3,6 +3,7 @@ import reactRefresh from 'eslint-plugin-react-refresh';
 import storybook from 'eslint-plugin-storybook';
 import tseslint from 'typescript-eslint';
 import hooksPlugin from 'eslint-plugin-react-hooks';
+import js from '@eslint/js';
 
 export default [
   {
@@ -23,6 +24,7 @@ export default [
       ...reactRefresh.configs.recommended.rules,
     },
   },
+  js.configs.recommended,
   ...tseslint.configs.recommended,
   ...storybook.configs['flat/recommended'],
   {

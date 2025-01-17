@@ -45,7 +45,7 @@ export const MenuVerticalComponent = React.forwardRef<HTMLUListElement, MenuVert
     (object, child) => {
       if (React.isValidElement(child) && typeof child?.type !== 'string') {
         switch (child?.type as React.FC) {
-          case MenuVerticalSubmenuButton:
+          case MenuVerticalSubmenuButton: {
             const submenuItem = child;
             const submenuItemInnerText = encodeURIComponent(extractString(submenuItem));
             const _menuId = `${object._menuId}-${submenuItemInnerText}`;
@@ -57,7 +57,8 @@ export const MenuVerticalComponent = React.forwardRef<HTMLUListElement, MenuVert
             });
             object._menuId = _menuId;
             break;
-          case MenuVerticalItem:
+          }
+          case MenuVerticalItem: {
             const innerText = encodeURIComponent(extractString(child));
             object.menuItems = object.menuItems.concat([
               React.cloneElement(child as React.ReactElement<MenuVerticalItemProps>, {
@@ -71,6 +72,7 @@ export const MenuVerticalComponent = React.forwardRef<HTMLUListElement, MenuVert
               }),
             ]);
             break;
+          }
         }
       }
 
@@ -90,6 +92,7 @@ export const MenuVerticalComponent = React.forwardRef<HTMLUListElement, MenuVert
 
   React.useEffect(() => {
     setMenu(_menu);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
