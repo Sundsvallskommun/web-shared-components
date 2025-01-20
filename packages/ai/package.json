@@ -23,12 +23,12 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "start": "nodemon --watch src --exec yarn build -e ts,tsx",
-    "build": "concurrently yarn:build:*",
+    "build": "yarn build:types && yarn build:esm && yarn build:cjs",
     "test": "jest --env=jsdom --passWithNoTests",
     "lint": "concurrently yarn:lint:*",
     "version": "yarn build",
-    "build:esm": "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/esm --source-maps",
-    "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist/cjs --source-maps",
+    "build:esm": "swc src -d dist/esm --config-file ../../.swcrc.esm",
+    "build:cjs": "swc src -d dist/cjs --config-file ../../.swcrc",
     "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist/types",
     "test:cov": "yarn test --coverage",
     "lint:src": "eslint src"
