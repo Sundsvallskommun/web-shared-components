@@ -2,5 +2,6 @@
   "tailwindCSS.experimental.classRegex": ["'@apply (.*)'"],
   "eslint.validate": ["html", "javascript", "typescript", "javascriptreact", "typescriptreact"],
   "eslint.enable": true,
-  "eslint.alwaysShowStatus": true
+  "eslint.alwaysShowStatus": true,
+  "prettier.ignorePath": ".prettierignore"
 }
