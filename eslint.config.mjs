@@ -4,13 +4,11 @@ import storybook from 'eslint-plugin-storybook';
 import tseslint from 'typescript-eslint';
 import hooksPlugin from 'eslint-plugin-react-hooks';
 import js from '@eslint/js';
-import globals from 'globals';
 
 export default [
   {
     languageOptions: {
       globals: {
-        ...globals,
         node: true,
         browser: true,
       },
