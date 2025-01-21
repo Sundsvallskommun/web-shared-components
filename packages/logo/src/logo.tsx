@@ -42,7 +42,7 @@ export type LogoProps = LogoWithText | LogoWithoutText;
 
 export const Logo = React.forwardRef<HTMLDivElement, LogoProps>((props, ref) => {
   const { variant: _variant, title, subtitle, className, inverted = false, ...rest } = props;
-  const variant = _variant || (!!title ? 'service' : 'logo');
+  const variant = _variant || (title ? 'service' : 'logo');
 
   return (
     <div ref={ref} className={cx('sk-logo', className)} data-variant={variant} data-inverted={inverted} {...rest}>

@@ -2,7 +2,8 @@ import colorString from 'color-string';
 import type { Color } from 'color-string';
 
 export function hsl2rgb(h: number, s: number, l: number): [number, number, number] {
-  (s = s / 100), (l = l / 100);
+  s = s / 100;
+  l = l / 100;
   if (h >= 360) h %= 360;
 
   const c = (1 - Math.abs(2 * l - 1)) * s;

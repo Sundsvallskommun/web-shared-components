@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@sk-web-gui/button';
 import { Meta } from '@storybook/react';
 import { useConfirm } from '../src/confirm';
-import { ConfirmationDialogContextProvider } from '../src/confirm/confirm';
+import { ConfirmationDialogContextProvider } from '../src/confirm';
 
 export default {
   title: 'Komponenter/Modal/Confirm',
@@ -140,7 +140,9 @@ const ConfirmTypeComponent: React.FC<{
       props.dialogType,
       props.icon
     ).then((result) => {
-      result === true ? alert('Grejen händer!') : '';
+      if (result === true) {
+        alert('Grejen händer!');
+      }
     });
   };
 

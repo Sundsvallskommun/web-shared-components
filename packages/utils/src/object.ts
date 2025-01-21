@@ -24,12 +24,12 @@ export function pick<T extends Dict, K extends keyof T>(object: T, keys: K[]) {
   return result;
 }
 
-export function deepmerge<T1, T2>(
-  target: Partial<T1> & any,
-  source: Partial<T2> & any,
+export function deepmerge<T1 extends object, T2 extends object>(
+  target: Partial<T1>,
+  source: Partial<T2>,
   options: { clone: boolean } = { clone: false }
-) {
-  const output = options.clone ? { ...target } : target;
+): Partial<T1 & T2> {
+  const output: Partial<T1 & T2> = (options.clone ? { ...target } : target) as Partial<T1 & T2>;
 
   if (isObject(target) && isObject(source)) {
     Object.keys(source).forEach((key) => {
@@ -38,11 +38,20 @@ export function deepmerge<T1, T2>(
         return;
       }
 
-      if (isObject(source[key]) && key in target) {
-        // Since `output` is a clone of `target` and we have narrowed `target` in this block we can cast to the same type.
-        output[key] = deepmerge(target[key], source[key], options);
+      // Type-safe access to source and target
+      const sourceValue = source[key as keyof T2];
+      const targetValue = target[key as keyof T1];
+
+      if (isObject(sourceValue) && key in target) {
+        // Recursively merge objects
+        (output as Record<string, unknown>)[key] = deepmerge(
+          targetValue as object,
+          sourceValue as object,
+          options
+        ) as T1[keyof T1] & T2[keyof T2];
       } else {
-        output[key] = source[key];
+        // Assign value directly
+        (output as Record<string, unknown>)[key] = sourceValue;
       }
     });
   }

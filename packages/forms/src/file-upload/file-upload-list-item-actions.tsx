@@ -6,8 +6,8 @@ import { DefaultProps, cx } from '@sk-web-gui/utils';
 import { Ellipsis, Pen, Trash, X } from 'lucide-react';
 import React from 'react';
 import { FieldArrayPath, useFieldArray, useFormContext } from 'react-hook-form';
-import { FileUploadListItemContext } from './file-upload-list-item';
 import { OnCallWithUploadFile, UploadFile } from './types';
+import { FileUploadListItemContext } from './context';
 
 type FormValues<FieldName extends string> = {
   [K in FieldName]: UploadFile[];
@@ -73,9 +73,11 @@ export const FileUploadListItemActions = React.forwardRef<HTMLDivElement, FileUp
     const showMore = _showMore ?? itemContext?.actionsProps?.showMore ?? false;
     const morePopupMenuPanel = _morePopupMenuPanel ?? itemContext?.actionsProps?.morePopupMenuPanel ?? null;
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const context = useFormContext ? useFormContext() : null;
     const fieldArrayContext = context
-      ? useFieldArray<FormValues<string>>({
+      ? // eslint-disable-next-line react-hooks/rules-of-hooks
+        useFieldArray<FormValues<string>>({
           control: context?.control,
           name: name,
         })
@@ -114,8 +116,7 @@ export const FileUploadListItemActions = React.forwardRef<HTMLDivElement, FileUp
     const handleOnRemove = () => {
       if (file) {
         // Append files to the field array
-        fieldArrayContext?.remove &&
-          fieldArrayContext?.remove(itemContext?.index ?? fieldArrayContext?.fields.indexOf(file));
+        fieldArrayContext?.remove?.(itemContext?.index ?? fieldArrayContext?.fields.indexOf(file));
         if (onRemove) {
           (onRemove as OnCallWithUploadFile)(file);
         }

@@ -1,8 +1,8 @@
-import { useId } from '@reach/auto-id';
 import { DefaultProps, __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
 import React, { useRef, useState } from 'react';
 
 import { CheckboxItemProps } from './checkbox';
+import { CheckboxGroupContext } from './context';
 
 export interface CheckboxGroupProps extends DefaultProps {
   /**
@@ -40,21 +40,10 @@ export interface CheckboxGroupProps extends DefaultProps {
   color?: CheckboxItemProps['color'];
 }
 
-interface UseCheckboxGroupData {
-  handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  size?: CheckboxItemProps['size'];
-  color?: CheckboxItemProps['color'];
-  name?: CheckboxItemProps['name'];
-  value?: Array<CheckboxItemProps['value']>;
-}
-
-const CheckboxGroupContext = React.createContext<UseCheckboxGroupData>({});
-
-export const useCheckboxGroup = () => React.useContext(CheckboxGroupContext);
-
 export const CheckboxGroup = React.forwardRef<HTMLUListElement, CheckboxGroupProps>((props, ref) => {
   const { onChange, name, color, size, defaultValue, direction, value: valueProp, children, ...rest } = props;
   const [values, setValues] = useState(defaultValue || []);
+  const autoId = React.useId();
 
   const { current: isControlled } = useRef(valueProp != null);
   const _values = isControlled ? valueProp : values;
@@ -68,12 +57,14 @@ export const CheckboxGroup = React.forwardRef<HTMLUListElement, CheckboxGroupPro
       newValues = (_values || []).filter((val) => val !== value);
     }
 
-    !isControlled && setValues(newValues);
-    onChange && onChange(newValues);
+    if (!isControlled) {
+      setValues(newValues);
+    }
+    onChange?.(newValues);
   };
 
   // If no name is passed, we'll generate a random, unique name
-  const fallbackName = `checkbox-${useId()}`;
+  const fallbackName = `checkbox-${autoId}`;
   const _name = name || fallbackName;
 
   const context = {

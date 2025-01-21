@@ -1,8 +1,9 @@
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 import React, { useState } from 'react';
-import { MenuItemTypes, useMenuVertical } from './menu-vertical-context';
 import { MenuVerticalItem, MenuVerticalItemProps } from './menu-vertical-item';
 import { MenuVerticalSubmenuButton, MenuVerticalSubmenuButtonProps } from './menu-vertical-submenu-button';
+import { useMenuVertical } from './use-menu-vertical';
+import { MenuItemTypes } from './types';
 
 type IMenuVerticalComponentProps = DefaultProps & {
   rootId?: string;
@@ -44,7 +45,7 @@ export const MenuVerticalComponent = React.forwardRef<HTMLUListElement, MenuVert
     (object, child) => {
       if (React.isValidElement(child) && typeof child?.type !== 'string') {
         switch (child?.type as React.FC) {
-          case MenuVerticalSubmenuButton:
+          case MenuVerticalSubmenuButton: {
             const submenuItem = child;
             const submenuItemInnerText = encodeURIComponent(extractString(submenuItem));
             const _menuId = `${object._menuId}-${submenuItemInnerText}`;
@@ -56,7 +57,8 @@ export const MenuVerticalComponent = React.forwardRef<HTMLUListElement, MenuVert
             });
             object._menuId = _menuId;
             break;
-          case MenuVerticalItem:
+          }
+          case MenuVerticalItem: {
             const innerText = encodeURIComponent(extractString(child));
             object.menuItems = object.menuItems.concat([
               React.cloneElement(child as React.ReactElement<MenuVerticalItemProps>, {
@@ -70,6 +72,7 @@ export const MenuVerticalComponent = React.forwardRef<HTMLUListElement, MenuVert
               }),
             ]);
             break;
+          }
         }
       }
 
@@ -89,6 +92,7 @@ export const MenuVerticalComponent = React.forwardRef<HTMLUListElement, MenuVert
 
   React.useEffect(() => {
     setMenu(_menu);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

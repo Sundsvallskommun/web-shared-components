@@ -50,7 +50,6 @@ export interface AIServiceModuleProps
 
 export const AIServiceModule = React.forwardRef<HTMLDivElement, AIServiceModuleProps>((props, ref) => {
   const {
-    className,
     header,
     color = 'vattjom',
     inverted: _inverted,
@@ -69,7 +68,6 @@ export const AIServiceModule = React.forwardRef<HTMLDivElement, AIServiceModuleP
     onNewSession,
     originTitles,
     onGiveFeedback,
-    showReferences,
     showFeedback,
     showTitles,
     children,
@@ -96,11 +94,12 @@ export const AIServiceModule = React.forwardRef<HTMLDivElement, AIServiceModuleP
     if (session?.id && session.id !== sessionId) {
       setSessionId(session.id);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session]);
 
   const handleSelectQuestion = (question: string) => {
-    onSelectQuestion && onSelectQuestion(question);
-    sendQuery && sendQuery(question);
+    onSelectQuestion?.(question);
+    sendQuery?.(question);
   };
 
   const handleSendQuery = (query: string) => {
@@ -115,7 +114,7 @@ export const AIServiceModule = React.forwardRef<HTMLDivElement, AIServiceModuleP
     if (onNewSession) {
       onNewSession();
     } else {
-      newSession && newSession();
+      newSession?.();
     }
   };
 

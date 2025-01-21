@@ -1,6 +1,6 @@
 import React from 'react';
 import { AccordionComponent, AccordionInternalProps } from './accordion';
-import AccordionItem from './accordion-item';
+import { AccordionItem } from './accordion-item';
 
 interface AccordionProps extends React.ForwardRefExoticComponent<AccordionInternalProps> {
   Component: typeof AccordionComponent;

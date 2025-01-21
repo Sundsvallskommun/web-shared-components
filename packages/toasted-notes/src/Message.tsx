@@ -71,7 +71,7 @@ export const Message = ({ id, message, position, onRequestRemove, requestClose =
       marginTop: '14px',
     },
     onRest,
-  } as any;
+  };
 
   const transition = useTransition(localShow, animation);
   const style = React.useMemo(() => getStyle(position), [position]);
@@ -126,14 +126,12 @@ export const Message = ({ id, message, position, onRequestRemove, requestClose =
               onMouseLeave={onMouseLeave}
               style={{
                 opacity: props.opacity,
-                height: props.height,
                 marginTop: props.marginTop,
                 ...style,
               }}
             >
               <animated.div
                 style={{
-                  transform: props.transform,
                   pointerEvents: 'auto',
                   maxWidth: '100vw',
                 }}

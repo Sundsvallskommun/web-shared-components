@@ -1,4 +1,4 @@
-import { Dialog, Transition } from '@headlessui/react';
+import { Dialog, DialogBackdrop, DialogTitle, Transition, TransitionChild } from '@headlessui/react';
 import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
@@ -27,8 +27,8 @@ export interface ModalComponentProps
   labelAs?: React.ElementType;
   hideLabel?: boolean;
   'aria-label'?: string;
-  overlayTransitionProps?: React.ComponentPropsWithRef<typeof Transition.Child>;
-  contentTransitionProps?: React.ComponentPropsWithRef<typeof Transition.Child>;
+  overlayTransitionProps?: React.ComponentPropsWithRef<typeof TransitionChild>;
+  contentTransitionProps?: React.ComponentPropsWithRef<typeof TransitionChild>;
 }
 
 export const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentProps>((props, ref) => {
@@ -61,7 +61,7 @@ export const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentPro
   React.useEffect(() => {
     if (show && props['aria-label']) {
       setTimeout(() => {
-        modalRef.current && modalRef.current.removeAttribute('aria-labelledby');
+        modalRef.current?.removeAttribute('aria-labelledby');
       });
     }
   }, [show, props['aria-label']]);
@@ -71,7 +71,7 @@ export const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentPro
       <Transition appear show={show} as={React.Fragment}>
         <Dialog as="div" className="sk-modal-wrapper" onClose={onCloseHandler} {...rest} ref={modalRef}>
           <div className="sk-modal-wrapper-inner">
-            <Transition.Child
+            <TransitionChild
               as={React.Fragment}
               enter="ease-out duration-200"
               enterFrom="opacity-0"
@@ -81,17 +81,17 @@ export const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentPro
               leaveTo="opacity-0"
               {...(typeof overlayTransitionProps === 'object' ? overlayTransitionProps : {})}
             >
-              <Dialog.Overlay
+              <DialogBackdrop
                 className="sk-modal-overlay"
                 style={{ pointerEvents: disableCloseOutside ? 'none' : undefined }}
               />
-            </Transition.Child>
+            </TransitionChild>
 
             {/* This element is to trick the browser into centering the modal contents. */}
             <span className="sk-modal-trixter" aria-hidden="true">
               &#8203;
             </span>
-            <Transition.Child
+            <TransitionChild
               as={React.Fragment}
               enter="ease-out duration-200"
               enterFrom="opacity-0 scale-95"
@@ -105,9 +105,9 @@ export const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentPro
                 {(!hideLabel || !hideClosebutton) && (
                   <div className="sk-modal-dialog-header">
                     {!hideLabel ? (
-                      <Dialog.Title as={labelAs} className={'sk-modal-dialog-header-title'}>
+                      <DialogTitle as={labelAs} className={'sk-modal-dialog-header-title'}>
                         {label}
-                      </Dialog.Title>
+                      </DialogTitle>
                     ) : (
                       <div className="grow" />
                     )}
@@ -132,7 +132,7 @@ export const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentPro
                 )}
                 <>{children}</>
               </Content>
-            </Transition.Child>
+            </TransitionChild>
           </div>
         </Dialog>
       </Transition>

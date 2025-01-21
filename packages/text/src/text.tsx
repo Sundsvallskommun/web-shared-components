@@ -26,12 +26,12 @@ export const Text = React.forwardRef<HTMLDivElement, TextProps>((props, ref) => 
   } = props;
 
   const handleClick = (e: MouseEvent, url: string) => {
-    onLinkClick && onLinkClick(e, url);
+    onLinkClick?.(e, url);
   };
 
   const getTextWithLinks = (text: string) => {
     const httpRegex =
-      /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/;
+      /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/;
 
     const textArray = text.replace(/(,)/g, ' ,').replace(/(!)/g, ' !').split(' ');
 

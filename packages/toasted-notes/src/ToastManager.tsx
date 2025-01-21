@@ -1,10 +1,6 @@
 import React from 'react';
 import { Message, PositionsType, MessageType, MessageOptions, MessageProp } from './Message';
 
-interface Props {
-  notify: (fn: Function, closeAll: Function, close: Function) => void;
-}
-
 export interface MessageOptionalOptions {
   type?: MessageType;
   duration?: number | null;
@@ -33,12 +29,23 @@ const defaultState: State = {
   'bottom-right': [],
 };
 
-export class ToastManager extends React.Component<Props, State> {
+export type NotifyFn = (
+  message: MessageProp,
+  options: MessageOptionalOptions
+) => { id: number; position: PositionsType };
+export type CloseAllFn = () => void;
+export type CloseFn = (id: string, position: PositionsType) => void;
+
+export interface ToastManagerProps {
+  notify: (fn: NotifyFn, closeAll: CloseAllFn, close: CloseFn) => void;
+}
+
+export class ToastManager extends React.Component<ToastManagerProps, State> {
   static idCounter = 0;
 
   state: State = defaultState;
 
-  constructor(props: Props) {
+  constructor(props: ToastManagerProps) {
     super(props);
     props.notify(this.notify, this.closeAll, this.closeToast);
   }
@@ -64,7 +71,7 @@ export class ToastManager extends React.Component<Props, State> {
     Object.keys(this.state).forEach((pos) => {
       const p = pos as keyof State;
       const position = this.state[p];
-      position.forEach((toast: any) => {
+      position.forEach((toast: ToastArgs) => {
         this.closeToast(toast.id, p);
       });
     });
@@ -76,7 +83,9 @@ export class ToastManager extends React.Component<Props, State> {
     // a bit messy, but object.position returns a number because
     // it's a method argument.
     const position =
-      options.hasOwnProperty('position') && typeof options.position === 'string' ? options.position : 'top';
+      Object.prototype.hasOwnProperty.call(options, 'position') && typeof options.position === 'string'
+        ? options.position
+        : 'top';
 
     return {
       id,

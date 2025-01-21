@@ -1,4 +1,4 @@
-const svgToDataUri = require('mini-svg-data-uri');
+import svgToTinyDataUri from 'mini-svg-data-uri';
 
 const MenuVerticalNav = () => ({
   '.sk-menu-vertical-nav': {
@@ -90,7 +90,7 @@ const MenuVerticalSidebar = () => ({
           '&:before': {
             '@apply content-[""] absolute inline-flex w-20 h-44 -top-8 -left-16': {},
 
-            backgroundImage: `url("${svgToDataUri(
+            backgroundImage: `url("${svgToTinyDataUri(
               `<svg width="16" height="52" viewBox="0 0 16 52" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 17V17C1 24.1797 6.8203 30 14 30H15" stroke="#B7B7BA" stroke-linecap="round" />
             </svg>`
@@ -102,7 +102,7 @@ const MenuVerticalSidebar = () => ({
           '&:not(:last-child):after': {
             '@apply content-[""] absolute inline-flex w-20 -top-8 bottom-0 -left-16': {},
 
-            backgroundImage: `url("${svgToDataUri(
+            backgroundImage: `url("${svgToTinyDataUri(
               `<svg width="16" viewBox="0 0 16 52" xmlns="http://www.w3.org/2000/svg"> 
               <line x1="1" y1="0" x2="1" y2="52" stroke="#B7B7BA" stroke-linecap="round" /> 
             </svg> `
@@ -114,7 +114,7 @@ const MenuVerticalSidebar = () => ({
           '&:last-child:after': {
             '@apply content-[""] absolute inline-flex w-20 -top-8 bottom-0 -left-16': {},
 
-            backgroundImage: `url("${svgToDataUri(
+            backgroundImage: `url("${svgToTinyDataUri(
               `<svg width="16" height="17" viewBox="0 0 16 17" xmlns="http://www.w3.org/2000/svg"> 
               <line x1="1" y1="0" x2="1" y2="17" stroke="#B7B7BA" stroke-linecap="round" /> 
             </svg> `

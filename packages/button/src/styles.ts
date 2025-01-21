@@ -16,7 +16,12 @@ export const useButtonClass = createMemoClass((props) => {
     lg: 'sk-btn-lg',
   };
 
-  const classes = cx('sk-btn', sizes[props.size], variantClasses[props.variant], props.disabled && 'sk-btn-disabled');
+  const classes = cx(
+    'sk-btn',
+    sizes[props?.size ?? 'md'],
+    variantClasses[props?.variant ?? 'primary'],
+    props.disabled && 'sk-btn-disabled'
+  );
 
   return classes;
 });

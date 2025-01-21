@@ -1,12 +1,11 @@
 import { useThemeQueries } from '@sk-web-gui/theme';
 import { DefaultProps, cx } from '@sk-web-gui/utils';
 import React from 'react';
-import { useFormContext } from 'react-hook-form';
+import { ErrorOption, useFormContext } from 'react-hook-form';
 import { FormControl, FormErrorMessage, FormLabel, Input } from '../index';
-import { FileUploadListContext } from './file-upload-list';
-import { FileUploadListItemContext } from './file-upload-list-item';
 import { UploadFile } from './types';
 import { utils } from './utils';
+import { FileUploadListContext, FileUploadListItemContext } from './context';
 
 export interface FileUploadListItemContentNameProps
   extends DefaultProps,
@@ -26,7 +25,7 @@ export interface FileUploadListItemContentNameProps
   // Controlled
   inputProps?: Omit<React.ComponentPropsWithRef<(typeof Input)['Component']>, 'value'> & { value?: string | null };
   errorMessage?: string;
-  formErrors?: Record<string, any>;
+  formErrors?: Record<string, unknown>;
 }
 
 export const FileUploadListItemContentName = React.forwardRef<HTMLDivElement, FileUploadListItemContentNameProps>(
@@ -52,6 +51,7 @@ export const FileUploadListItemContentName = React.forwardRef<HTMLDivElement, Fi
     } = props;
     const { isMinMediumDevice } = useThemeQueries();
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const formContext = useFormContext ? useFormContext() : null;
     const listContext = React.useContext(FileUploadListContext);
     const itemContext = React.useContext(FileUploadListItemContext);
@@ -87,8 +87,9 @@ export const FileUploadListItemContentName = React.forwardRef<HTMLDivElement, Fi
 
     const formErrors = _formErrors ?? formContext?.formState?.errors;
     const errorMessage =
-      (_errorMessage ?? formErrors?.[name]?.[index]?.meta?.name?.message)
-        ? `${formErrors?.[name]?.[index]?.meta?.name?.message}`
+      (_errorMessage ??
+      ((formErrors?.[name] as Record<string, UploadFile>)?.[`${index}`]?.meta?.name as ErrorOption)?.message)
+        ? `${((formErrors?.[name] as Record<string, UploadFile>)?.[`${index}`]?.meta?.name as ErrorOption)?.message}`
         : undefined;
 
     if (!children) {
@@ -102,7 +103,7 @@ export const FileUploadListItemContentName = React.forwardRef<HTMLDivElement, Fi
           {isEdit ? (
             <FormControl
               id={`file-upload-list-item-content-name-${fullName}`}
-              invalid={inputProps?.invalid ?? errorMessage !== undefined ?? undefined}
+              invalid={inputProps?.invalid ?? (errorMessage !== undefined ? true : undefined)}
             >
               {showLabel ? <FormLabel>{ariaLabel}</FormLabel> : null}
               <div className="sk-form-file-upload-list-item-content-name-input-wrapper">

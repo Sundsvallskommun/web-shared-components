@@ -31,9 +31,11 @@ const useAddFiles = (props: UseAddFilesProps) => {
     appendToContext = true,
     allowMultiple = true,
   } = props;
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const context = useFormContext ? useFormContext() : null;
   const fieldArrayContext = context
-    ? useFieldArray({
+    ? // eslint-disable-next-line react-hooks/rules-of-hooks
+      useFieldArray({
         control: context?.control,
         name: name,
       })
@@ -43,12 +45,14 @@ const useAddFiles = (props: UseAddFilesProps) => {
     let newFiles: UploadFile[] = [];
     if (fieldArrayContext) {
       newFiles = [...files];
-      appendToContext && fieldArrayContext?.append && fieldArrayContext?.append(files);
+      if (appendToContext) {
+        fieldArrayContext?.append(files);
+      }
     } else {
       newFiles = [..._appendFiles, ...files];
     }
     const event = { target: { value: newFiles, name: name } } as unknown as CustomOnChangeEventUploadFile;
-    onChange && onChange(event);
+    onChange?.(event);
   };
 
   const addFiles = (
@@ -67,16 +71,16 @@ const useAddFiles = (props: UseAddFilesProps) => {
       const validFileType = accept.includes(file.type);
       if (!validFileType) {
         const message = `Filtypen stöds ej: ${file.name}. Accepterade filtyper är: ${accept.join(', ')}`;
-        context?.setError && context?.setError(name, { type: 'filetypeUnsupported', message: message });
-        onInvalid && onInvalid(message);
+        context?.setError?.(name, { type: 'filetypeUnsupported', message: message });
+        onInvalid?.(message);
         return [];
       }
 
       // Validate file size
       if (file.size > maxFileSize) {
         const message = `Filen är för stor: ${file.name}. Överstiger ${maxFileSizeMB} MB.`;
-        context?.setError && context?.setError(name, { type: 'filesize', message: message });
-        onInvalid && onInvalid(message);
+        context?.setError?.(name, { type: 'filesize', message: message });
+        onInvalid?.(message);
         return [];
       }
 
@@ -84,8 +88,8 @@ const useAddFiles = (props: UseAddFilesProps) => {
     }
 
     // Clear any previous errors
-    onValid && onValid();
-    context?.clearErrors && context?.clearErrors(name);
+    onValid?.();
+    context?.clearErrors?.(name);
 
     if (options.triggerChange) {
       triggerChange(allowMultiple ? newFiles : [newFiles[0]]);

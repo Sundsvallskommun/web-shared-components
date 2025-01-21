@@ -54,7 +54,7 @@ export const AIServiceModuleAssistantExpanded = React.forwardRef<HTMLDivElement,
     }, [history, showFeedback]);
 
     const handleGiveFeedBack = (feedback: -1 | 1) => {
-      onGiveFeedback && onGiveFeedback(feedback);
+      onGiveFeedback?.(feedback);
       handleAutoScroll();
     };
 

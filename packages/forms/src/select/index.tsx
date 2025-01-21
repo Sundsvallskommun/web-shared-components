@@ -36,11 +36,11 @@ const InternalSelect = React.forwardRef<HTMLSelectElement, InternalSelectProps>(
   const size = _size || formControl.size || 'md';
   const invalid = _invalid !== undefined ? _invalid : formControl.invalid;
 
-  const classes = useSelectClass({ size, disabled, variant });
+  const classes = useSelectClass({ size, variant });
 
   const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    onChange && onChange(event);
-    onSelectValue && onSelectValue(event?.target?.value);
+    onChange?.(event);
+    onSelectValue?.(event?.target?.value);
   };
 
   return (

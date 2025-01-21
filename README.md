@@ -2,7 +2,7 @@
 
 Detta projekt innehåller styling och komponenter som används för att bygga avancerade webbappar för Sundsvalls Kommun.
 
-## Installation
+## För implementation i app
 
 Det finns just nu komponenter endast för React och för att använda stylingen så måste du ha Tailwindcss i projektet.
 
@@ -23,62 +23,41 @@ Lägg till `sk-web-gui/core`, `tailwindcss/forms` och `tailwindcss/container-que
 ```TypeScript
 // tailwind.config.js
 module.exports = {
-  mode: "jit",
   content: [
-    // ...
-    './node_modules/@sk-web-gui/*/dist/**/*.js', // path to sk-web-gui
+    //...
+    './node_modules/@sk-web-gui/*/dist/**/*.js',
   ],
-  darkMode: "class", // or 'media' or 'class'
   theme: {
-    screens: {
-      sm: '640px',
-      // => @media (min-width: 640px) { ... }
-
-      md: '768px',
-      // => @media (min-width: 768px) { ... }
-
-      lg: '1024px',
-      // => @media (min-width: 1024px) { ... }
-
-      xl: '1140px',
-      // => @media (min-width: 1280px) { ... }
-    },
-    maxWidth: {
-      content: '150rem' //Set max width for content
-    }
+    // extend: {
+    // if you want to override max content width
+    // maxWidth: {
+    //   content: screens['desktop-max'], // default in core is based on screens
+    // },
   },
-  variants: {
-    extend: {},
-  },
-  plugins: [
-    require("@tailwindcss/forms"),
-    require("@sk-web-gui/core"),
-  ],
+  darkMode: 'selector', // or 'media' or 'selector'
+  plugins: [require('@tailwindcss/forms'), require('@sk-web-gui/core')],
 };
 ```
 
-eller använd som preset med valbara inställningar:
+eller använd som preset med valbara inställningar (default inkluderar exempelvis @tailwindcss/forms samt @tailwindcss/container-queries):
 
 ```Typescript
 // tailwind.config.js
 module.exports = {
-  ...
   content: [
-    // ...
-    './node_modules/@sk-web-gui/*/dist/**/*.js', // path to sk-web-gui
+    //...
+    './node_modules/@sk-web-gui/*/dist/**/*.js',
   ],
-  presets: [require('@sk-web-gui/core').preset(
-    /* defaults: */
-    {
-      tailwindForms: true,
-      tailwindContainers: true,
-      dataAttributes: true,
-      ariaAttributes: true,
-      plugin: { colors: [], cssBase: true },
-    }
-  )],
-  ...
-}
+  theme: {
+    // extend: {
+    // if you want to override max content width
+    // maxWidth: {
+    //   content: screens['desktop-max'], // default in core is based on screens
+    // },
+  },
+  darkMode: 'selector', // or 'media' or 'selector'
+  presets: [require('@sk-web-gui/core').preset()],
+};
 ```
 
 Wrappa din React-app med `GuiProvider` för att få stylingen.
@@ -96,14 +75,14 @@ function App() {
 }
 ```
 
-## Development
+## För utveckling
 
 **Prerequisites**: Node.js v20+, Yarn v1.22+
 
 Efter kloning, kör:
 
-1. `yarn boot` för att installera alla beroenden samt för att bygga paketen.
-2. `yarn dev` för att köra Storybook
+1. `yarn` för att installera alla beroenden
+2. `yarn dev` för att köra Storybook i utvecklingsläge
 
 ## För att skapa nya komponenter
 
@@ -113,9 +92,9 @@ Styling för komponenter finns/läggs till i `packages/core`. Skapa en ny kompon
 
 ### Komponenter
 
-Skapa ett nytt paket i `packages` där du gör din react-komponent. Exportera den sedan via `packages/react`. Kom igår att även lägga till de nya paketen i `packages/react/package.json`. Använd Storybook för att testa och dokumentera komponenten.
+Skapa ett nytt paket i `packages` där du gör din react-komponent. Exportera den sedan via `packages/react`. Kom ihåg att även lägga till de nya paketen i `packages/react/package.json`. Använd Storybook för att testa och dokumentera komponenten.
 
-## Release
+## Release av npm-paket
 
 Testa så den bygger riktigt samt kika över så komponentberoenden fungerar som tänkt:
 

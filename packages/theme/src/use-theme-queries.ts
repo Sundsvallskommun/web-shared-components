@@ -1,7 +1,7 @@
 import { useMediaQuery } from 'usehooks-ts';
 import { defaultTheme } from './default-theme';
-import { useGui } from './gui-provider';
 import { GuiTheme } from './types';
+import { useGui } from './use-gui';
 
 interface ThemeQueries {
   /**

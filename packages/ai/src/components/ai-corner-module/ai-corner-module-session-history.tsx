@@ -28,11 +28,11 @@ export const AICornerModuleSessionHistory = React.forwardRef<HTMLDivElement, AIC
       switch (event.key) {
         case 'ArrowDown':
           event.preventDefault();
-          onKeyNext && onKeyNext(id);
+          onKeyNext?.(id);
           break;
         case 'ArrowUp':
           event.preventDefault();
-          onKeyPrev && onKeyPrev(id);
+          onKeyPrev?.(id);
           break;
       }
     };
@@ -40,12 +40,7 @@ export const AICornerModuleSessionHistory = React.forwardRef<HTMLDivElement, AIC
     return (
       <div ref={ref} className={cx('sk-ai-corner-module-sessions-history', className)} {...rest}>
         <Divider.Section size="sm">{title}</Divider.Section>
-        <ul
-          role="group"
-          aria-orientation="vertical"
-          aria-label={title}
-          className="sk-ai-corner-module-sessions-history-list"
-        >
+        <ul role="group" aria-label={title} className="sk-ai-corner-module-sessions-history-list">
           {sessions.map((session) => (
             <li key={session.id} className="sk-ai-corner-module-sessions-history-list-entry" role="none">
               <Button

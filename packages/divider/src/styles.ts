@@ -8,7 +8,7 @@ export const useDividerClass = createMemoClass((props) => {
     lg: 'sk-divider-lg',
   };
 
-  const classes = cx('sk-divider', sizes[props.size]);
+  const classes = cx('sk-divider', sizes[props?.size ?? 'md']);
 
   return classes;
 });

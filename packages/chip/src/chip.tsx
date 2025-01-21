@@ -1,7 +1,7 @@
-import { cx } from '@sk-web-gui/utils';
 import { Icon } from '@sk-web-gui/icon';
-import React from 'react';
+import { cx } from '@sk-web-gui/utils';
 import { X } from 'lucide-react';
+import React from 'react';
 
 export interface ChipProps extends React.ComponentPropsWithRef<'button'> {
   strong?: boolean;

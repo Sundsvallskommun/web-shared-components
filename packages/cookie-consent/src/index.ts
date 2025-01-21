@@ -1,13 +1,12 @@
+import { CookieConsent, CookieConsentProps } from './cookie-consent';
+import { ConsentType } from './types';
 import {
-  ConsentType,
-  CookieConsent,
-  CookieConsentProps,
   defaultCookieConsentName,
   defaultCookieConsentPath,
   getCheckableCookies,
   getConsent,
   resetConsent,
-} from './cookie-consent';
+} from './utils';
 
 const CookieConsentUtils = {
   defaultCookieConsentName,

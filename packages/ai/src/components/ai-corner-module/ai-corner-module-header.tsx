@@ -1,14 +1,13 @@
-import { Avatar } from '@sk-web-gui/avatar';
 import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
 import { cx } from '@sk-web-gui/utils';
+import { MessageCircle, Plus } from 'lucide-react';
 import React from 'react';
 import { AIFeedAvatar, Assistant, AssistantInfo } from '../../types';
+import { AssistantAvatar } from '../assistant-avatar';
+import { AssistantSwitch, AssistantSwitchProps } from '../assistant-switch';
 import { AICornerModuleDefaultProps } from './ai-corner-module';
 import { AICornerModuleHeaderMenu } from './ai-corner-module-header-menu';
-import { AssistantSwitch, AssistantSwitchProps } from '../assistant-switch';
-import { AssistantAvatar } from '../assistant-avatar';
-import { Plus, MessageCircle } from 'lucide-react';
 
 export interface AICornerModuleHeaderProps extends AICornerModuleDefaultProps, React.ComponentPropsWithoutRef<'div'> {
   variant?: 'default' | 'alt';

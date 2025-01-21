@@ -1,10 +1,65 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { GoTo, usePopupMenu } from './popupmenu-context';
 import { cx, getValidChildren, useForkRef, useOnElementOutside } from '@sk-web-gui/utils';
 import { PopupMenuBaseProps } from './popup-menu';
 import { PopupMenuItem } from './popup-menu-item';
 import { PopupMenuItems } from './popup-menu-items';
 import { PopupMenuButton } from './popup-menu-button';
+
+interface GetItemProps {
+  child: React.ReactElement;
+  focusRef: React.RefObject<HTMLElement>;
+}
+const GetItem: React.FC<GetItemProps> = ({ child, focusRef }): React.ReactNode => {
+  const itemRef = useForkRef(child.props.ref, focusRef);
+  return React.cloneElement(child, {
+    ...child.props,
+    ref: child.props.ref ? itemRef : focusRef,
+  });
+};
+
+interface GetItems {
+  children: React.ReactNode;
+  focusRef: React.RefObject<HTMLElement>;
+}
+const GetItems: React.FC<GetItems> = ({ children, focusRef }) => {
+  const [foundAutofocus, setFoundAutofocus] = React.useState(false);
+
+  const mapItem = useCallback(
+    (child: React.ReactNode): React.ReactNode => {
+      if (React.isValidElement(child)) {
+        if (child.type === PopupMenuItem) {
+          return child;
+        }
+
+        if (child?.type !== PopupMenuItems) {
+          if (!foundAutofocus) {
+            if (child?.props?.autoFocus) {
+              setFoundAutofocus(true);
+              return <GetItem child={child} focusRef={focusRef} />;
+            } else if (child?.props?.children) {
+              const validKids = getValidChildren(child.props.children);
+              if (validKids.length > 0) {
+                const newKids = getValidChildren(child?.props?.children).map((child) => mapItem(child));
+                if (newKids) {
+                  return React.cloneElement(child, { ...child.props, children: newKids });
+                }
+              }
+            }
+          }
+        }
+      }
+      return getValidChildren(child);
+    },
+    [foundAutofocus, focusRef]
+  );
+
+  return getValidChildren(children)
+    .filter((child) => child?.type !== PopupMenuButton)
+    .map((child) => {
+      return mapItem(child);
+    });
+};
 
 interface PopupMenuPanelProps extends Omit<PopupMenuBaseProps, 'type'>, React.ComponentPropsWithoutRef<'div'> {}
 
@@ -106,84 +161,48 @@ export const PopupMenuPanel = React.forwardRef<HTMLDivElement, PopupMenuPanelPro
     switch (event.key) {
       case 'Escape':
         event.stopPropagation();
-        close && close(true);
+        close?.(true);
         break;
-      case 'Enter':
+      case 'Enter': {
         const target = event.target as Element;
         if (target.nodeName.toLowerCase() !== 'input') {
-          close && close();
+          close?.();
         }
         break;
+      }
       case 'ArrowDown':
         event.preventDefault();
         event.stopPropagation();
-        setGoTo && setGoTo(GoTo.First);
+        setGoTo?.(GoTo.First);
         break;
       case 'ArrowUp':
         event.preventDefault();
         event.stopPropagation();
-        setGoTo && setGoTo(GoTo.Last);
+        setGoTo?.(GoTo.Last);
         break;
       case 'ArrowRight':
         if (position === 'left') {
           event.preventDefault();
           event.stopPropagation();
-          close && close(true);
+          close?.(true);
         }
         break;
       case 'ArrowLeft':
         if (position === 'right') {
           event.preventDefault();
           event.stopPropagation();
-          close && close(true);
+          close?.(true);
         }
         break;
     }
   };
 
-  const getItems = React.useCallback(() => {
-    let foundAutofocus = false;
-    const mapItem = (child: React.ReactNode): React.ReactNode => {
-      if (React.isValidElement(child)) {
-        if (child.type === PopupMenuItem) {
-          return child;
-        }
-
-        if (child?.type !== PopupMenuItems) {
-          if (!foundAutofocus) {
-            if (child?.props?.autoFocus) {
-              foundAutofocus = true;
-              return React.cloneElement(child, {
-                ...child.props,
-                ref: child.props.ref ? useForkRef(child.props.ref, focusRef) : focusRef,
-              });
-            } else if (child?.props?.children) {
-              const validKids = getValidChildren(child.props.children);
-              if (validKids.length > 0) {
-                const newKids = getValidChildren(child?.props?.children).map((child) => mapItem(child));
-                if (newKids) {
-                  return React.cloneElement(child, { ...child.props, children: newKids });
-                }
-              }
-            }
-          }
-        }
-      }
-      return getValidChildren(child);
-    };
-
-    return getValidChildren(children)
-      .filter((child) => child?.type !== PopupMenuButton)
-      .map((child) => {
-        return mapItem(child);
-      });
-  }, [children]);
-
   React.useEffect(() => {
     if (isOpen && goTo && focusRef.current) {
-      setGoTo && setGoTo(undefined);
+      setGoTo?.(undefined);
       focusRef.current.focus();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
   return (
@@ -198,7 +217,7 @@ export const PopupMenuPanel = React.forwardRef<HTMLDivElement, PopupMenuPanelPro
       aria-labelledby={type ? buttonId : undefined}
       {...rest}
     >
-      {getItems()}
+      <GetItems focusRef={focusRef}>{children}</GetItems>
     </div>
   );
 });

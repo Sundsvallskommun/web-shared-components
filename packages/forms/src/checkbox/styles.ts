@@ -8,7 +8,7 @@ export const useCheckboxLabelClass = createMemoClass((props) => {
     lg: 'sk-form-checkbox-label-lg',
   };
 
-  const classes = cx('sk-form-checkbox-label', sizes[props.size]);
+  const classes = cx('sk-form-checkbox-label', sizes[props?.size ?? 'md']);
 
   return classes;
 });
@@ -20,7 +20,7 @@ export const useCheckboxClass = createMemoClass((props) => {
     lg: 'sk-form-checkbox-lg',
   };
 
-  const classes = cx('sk-form-checkbox', props.disabled && 'sk-form-checkbox-disabled', sizes[props.size]);
+  const classes = cx('sk-form-checkbox', props.disabled && 'sk-form-checkbox-disabled', sizes[props?.size ?? 'md']);
 
   return classes;
 });

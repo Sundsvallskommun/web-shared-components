@@ -29,11 +29,11 @@ export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, 
     setShowThanks(false);
     setFeedbackLoading(true);
     setFeedback(val);
-    onGiveFeedback && onGiveFeedback(val);
+    onGiveFeedback?.(val);
     await giveFeedback({ value: val, text: reason || null }, sessionId);
     setFeedbackLoading(false);
     setShowThanks(true);
-    onGiveFeedback && onGiveFeedback(val);
+    onGiveFeedback?.(val);
     updateSession(sessionId, (session) => ({ ...session, feedback: { value: val, text: reason || null } }));
   };
 

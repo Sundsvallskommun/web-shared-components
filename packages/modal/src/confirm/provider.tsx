@@ -1,49 +1,18 @@
-import { Button } from '@sk-web-gui/button';
-import { Icon } from '@sk-web-gui/icon';
-import { __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
-import { Dialog } from '../dialog';
+import { useDialogShow } from './use-dialog-show';
+import { DialogContextType } from './types';
 import { Lightbulb, CircleAlert, CircleHelp } from 'lucide-react';
+import { Icon } from '@sk-web-gui/icon';
+import { ConfirmationDialogContext } from './context';
+import { Dialog } from '../dialog';
+import { Button } from '@sk-web-gui/button';
+import { __DEV__ } from '@sk-web-gui/utils';
 
-type UseDialogShowReturnType = {
-  show: boolean;
-  setShow: (value: boolean) => void;
-  onHide: () => void;
-};
-
-const useDialogShow = (): UseDialogShowReturnType => {
-  const [show, setShow] = React.useState(false);
-
-  const handleOnHide = () => {
-    setShow(false);
-  };
-
-  return {
-    show,
-    setShow,
-    onHide: handleOnHide,
-  };
-};
-
-type DialogContextType = {
-  showConfirmation: (
-    title: string,
-    message: string | JSX.Element,
-    confirmLabel?: string,
-    dismissLabel?: string,
-    dialogType?: 'warning' | 'error' | 'info',
-    icon?: 'info' | 'error' | 'question',
-    labelAs?: React.ElementType
-  ) => Promise<boolean>;
-};
-
-type ConfirmationDialogContextProviderProps = {
+export type ConfirmationDialogContextProviderProps = {
   children: React.ReactNode;
 };
 
-const ConfirmationDialogContext = React.createContext<DialogContextType>({} as DialogContextType);
-
-interface ConfirmDialogProps {
+export interface ConfirmDialogProps {
   title: string;
   message: string | JSX.Element;
   confirmLabel?: string;
@@ -89,12 +58,12 @@ export const ConfirmationDialogContextProvider: React.FC<ConfirmationDialogConte
   };
 
   const handleConfirm = () => {
-    resolver.current && resolver.current(true);
+    resolver.current?.(true);
     onHide();
   };
 
   const handleDismiss = () => {
-    resolver.current && resolver.current(false);
+    resolver.current?.(false);
     onHide();
   };
 
@@ -158,11 +127,6 @@ export const ConfirmationDialogContextProvider: React.FC<ConfirmationDialogConte
     </ConfirmationDialogContext.Provider>
   );
 };
-
-const useConfirm = (): DialogContextType => React.useContext(ConfirmationDialogContext);
-
-export { useConfirm, useDialogShow };
-export default useConfirm;
 
 if (__DEV__) {
   Dialog.displayName = 'Confirm';

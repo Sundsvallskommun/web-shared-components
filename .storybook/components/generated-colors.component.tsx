@@ -6,7 +6,7 @@ function capitalize(text: string) {
   return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
-export function GeneratedColors({ src, ...props }) {
+export function GeneratedColors() {
   const { theme } = useGui();
   const colors = Object.entries(theme.__cssMap).reduce((colors, entry) => {
     const [key, value] = entry;

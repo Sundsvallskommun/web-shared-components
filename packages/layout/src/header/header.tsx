@@ -60,7 +60,7 @@ export const HeaderComponent = React.forwardRef<HTMLDivElement, HeaderComponentP
 
   const handleLogoLinkOnClick = (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
-    logoLinkOnClick && logoLinkOnClick();
+    logoLinkOnClick?.();
   };
 
   return (

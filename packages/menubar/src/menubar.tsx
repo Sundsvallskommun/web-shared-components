@@ -1,14 +1,9 @@
 import { DefaultProps, __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
+import { UseMenuBarProps } from './use-menubar';
+import { MenuBarContext } from './context';
 
-interface UseMenuBarProps {
-  color?: 'tertiary' | 'juniskar' | 'bjornstigen' | 'gronsta' | 'vattjom';
-
-  //** Index of current menuoption */
-  current?: number;
-}
-
-interface UseMenuBarData extends UseMenuBarProps {
+export interface UseMenuBarData extends UseMenuBarProps {
   next?: () => void;
   prev?: () => void;
   active?: number;
@@ -21,10 +16,6 @@ export interface MenuBarComponentProps
     Omit<React.ComponentPropsWithRef<'ul'>, 'color'> {
   showBackground?: boolean;
 }
-
-const MenuBarContext = React.createContext<UseMenuBarData>({});
-
-export const useMenuBar = () => React.useContext(MenuBarContext);
 
 export const MenuBarComponent = React.forwardRef<HTMLUListElement, MenuBarComponentProps>((props, ref) => {
   const {

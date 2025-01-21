@@ -33,7 +33,7 @@ function getFileHeading(file: UploadFile): string {
 }
 
 function getFileEnding(file: UploadFile): string {
-  const [_, ending] = splitByLastCharacter(file.file.name, '.');
+  const [, ending] = splitByLastCharacter(file.file.name, '.');
   return `${ending}`;
 }
 

@@ -2,8 +2,8 @@ import { cx, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
 import PopupMenu from '.';
 import { PopupMenuButton } from './popup-menu-button';
-import { usePopupMenuItems } from './popup-menu-items';
 import { usePopupMenu } from './popupmenu-context';
+import { usePopupMenuItems } from './use-popup-menu-items';
 
 export interface PopupMenuItemProps {
   children: JSX.Element;
@@ -34,16 +34,18 @@ export const PopupMenuItem: React.FC<PopupMenuItemProps> = (props) => {
       case 'ArrowDown':
         event.preventDefault();
         event.stopPropagation();
-        next && next();
+        next?.();
         break;
       case 'ArrowUp':
         event.preventDefault();
         event.stopPropagation();
-        prev && prev();
+        prev?.();
         break;
       case 'Enter':
         target?.dispatchEvent(clickEvent);
-        !preventClose && close && close();
+        if (!preventClose) {
+          close?.();
+        }
         break;
       case ' ':
         if (target?.nodeName !== 'INPUT') {
@@ -53,7 +55,7 @@ export const PopupMenuItem: React.FC<PopupMenuItemProps> = (props) => {
         }
         break;
     }
-    defaultFunc && defaultFunc(event);
+    defaultFunc?.(event);
   };
 
   const handleClick = (event: MouseEvent, preventClose: boolean, defaultFunc?: (event: MouseEvent) => void) => {
@@ -61,10 +63,10 @@ export const PopupMenuItem: React.FC<PopupMenuItemProps> = (props) => {
     if (!preventClose && target?.nodeName !== 'INPUT') {
       event.preventDefault();
       event.stopPropagation();
-      close && close();
+      close?.();
       event.target?.dispatchEvent(new MouseEvent('click'));
     }
-    defaultFunc && defaultFunc(event);
+    defaultFunc?.(event);
   };
 
   const menuItem = React.useMemo(() => {
@@ -110,7 +112,7 @@ export const PopupMenuItem: React.FC<PopupMenuItemProps> = (props) => {
   React.useEffect(() => {
     if (active === id && activeMode === 'hard' && navigate) {
       document.getElementById(id)?.focus();
-      setNavigate && setNavigate(false);
+      setNavigate?.(false);
     }
   }, [active, activeMode, navigate]);
 

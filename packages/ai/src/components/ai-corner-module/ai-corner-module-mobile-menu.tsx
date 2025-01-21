@@ -24,8 +24,8 @@ export const AICornerModuleMobileMenu = React.forwardRef<HTMLDivElement, AICorne
     const buttonRef = React.useRef<HTMLButtonElement>(null);
 
     const handleChangeSession = (id: string) => {
-      onChangeSession && onChangeSession(id);
-      onClose && onClose();
+      onChangeSession?.(id);
+      onClose?.();
     };
 
     const focusTheMenu = () => {
@@ -36,17 +36,19 @@ export const AICornerModuleMobileMenu = React.forwardRef<HTMLDivElement, AICorne
     };
 
     React.useEffect(() => {
-      show && buttonRef.current && buttonRef.current.focus();
+      if (show) {
+        buttonRef?.current?.focus();
+      }
     }, [show]);
 
     useOnClickOutside(internalRef, () => {
-      onClose && onClose();
+      onClose?.();
     });
 
     const handleKeyboardNavigation = (event: React.KeyboardEvent<HTMLElement>) => {
       switch (event.key) {
         case 'Escape': {
-          onClose && onClose();
+          onClose?.();
           break;
         }
         case 'Tab': {

@@ -3,9 +3,8 @@ import { DefaultProps, cx } from '@sk-web-gui/utils';
 import { File, Image } from 'lucide-react';
 import React from 'react';
 import { defaults } from './defaults';
-import { FileUploadListContext } from './file-upload-list';
-import { FileUploadListItemContext } from './file-upload-list-item';
 import { UploadFile } from './types';
+import { FileUploadListContext, FileUploadListItemContext } from './context';
 
 interface FileIconProps {
   file?: UploadFile;
@@ -21,6 +20,7 @@ const FileIcon = ({ file, showPreview }: FileIconProps) => {
       reader.onload = () => setPreview(reader.result as string);
       reader.readAsDataURL(file.file);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [file?.file]);
 
   if (file) {

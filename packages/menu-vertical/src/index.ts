@@ -9,6 +9,7 @@ import { MenuVerticalProvider } from './menu-vertical-context';
 import { MenuVerticalSidebar } from './menu-vertical-sidebar';
 import { MenuVerticalToolItem } from './menu-vertical-tool-item';
 import { MenuVerticalHeader } from './menu-vertical-header';
+import { MenuIndex } from './types';
 
 interface MenuVerticalProps
   extends MenuVerticalComponentProps,
@@ -40,5 +41,5 @@ if (__DEV__) {
   MenuVertical.displayName = 'MenuVertical';
 }
 
-export type { MenuVerticalProps };
+export type { MenuVerticalProps, MenuIndex };
 export default MenuVertical;

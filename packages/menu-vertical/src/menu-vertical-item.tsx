@@ -1,8 +1,9 @@
 import { DefaultProps, __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
 import { MenuVerticalComponent, MenuVerticalComponentProps } from './menu-vertical';
-import { MenuIndex, useMenuVertical } from './menu-vertical-context';
 import { Divider } from '@sk-web-gui/divider';
+import { MenuIndex } from './types';
+import { useMenuVertical } from './use-menu-vertical';
 
 export interface IMenuVerticalItemProps extends DefaultProps {
   /** Set true to set to current */
@@ -57,7 +58,8 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
       next,
     } = useMenuVertical();
     const menuRef = React.useRef<HTMLElement>();
-    const _menuIndex = menuIndex !== undefined ? menuIndex : React.useId();
+    const autoId = React.useId();
+    const _menuIndex = menuIndex !== undefined ? menuIndex : autoId;
     const isCurrentItem = current === _menuIndex || thisCurrent;
     const isActiveItem = active === _menuIndex;
     const isFocusedItem = focused === _menuIndex;
@@ -73,11 +75,11 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
       }
       if (event.key === 'ArrowUp') {
         event.preventDefault();
-        prev && prev();
+        prev?.();
       }
       if (event.key === 'ArrowDown') {
         event.preventDefault();
-        next && next();
+        next?.();
       }
       if (event.key === 'Enter') {
         event.target?.dispatchEvent(new MouseEvent('click'));
@@ -102,7 +104,7 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
 
     React.useEffect(() => {
       if (isFocusedItem && isActiveItem) {
-        menuRef.current && menuRef.current.focus();
+        menuRef.current?.focus();
       }
     }, [isFocusedItem, isActiveItem, activeMenuId, submenuOpen]);
 

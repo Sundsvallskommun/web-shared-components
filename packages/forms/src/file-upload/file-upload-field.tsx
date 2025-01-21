@@ -21,7 +21,6 @@ export interface FileUploadFieldProps
 export const FileUploadField = React.forwardRef<HTMLSpanElement, FileUploadFieldProps>((props, ref) => {
   const {
     className,
-    children,
     variant = 'horizontal',
     invalid = false,
     // useAddFilesProps
@@ -38,7 +37,7 @@ export const FileUploadField = React.forwardRef<HTMLSpanElement, FileUploadField
 
   const handleOnInvalid = (message: string) => {
     setIsInvalid(true);
-    onInvalid && onInvalid(message);
+    onInvalid?.(message);
   };
 
   const handleOnValid = () => {

@@ -3,16 +3,17 @@ import { __DEV__ } from '@sk-web-gui/utils';
 import React from 'react';
 import SearchFieldSuggestionsOption from './searchfield-suggestions-option';
 
-export const SearchFieldSuggestionsList = React.forwardRef<
-  HTMLFieldSetElement,
-  React.ComponentPropsWithRef<ComboboxProps['List']>
->((props, ref) => {
-  return (
-    <Combobox.List ref={ref} optionType={typeof SearchFieldSuggestionsOption} {...props}>
-      {props.children}
-    </Combobox.List>
-  );
-});
+export type SearchFieldSuggestionsListProps = Omit<React.ComponentPropsWithRef<ComboboxProps['List']>, 'ref'>;
+
+export const SearchFieldSuggestionsList = React.forwardRef<HTMLFieldSetElement, SearchFieldSuggestionsListProps>(
+  (props, ref) => {
+    return (
+      <Combobox.List ref={ref} optionType={typeof SearchFieldSuggestionsOption} {...props}>
+        {props.children}
+      </Combobox.List>
+    );
+  }
+);
 
 export default SearchFieldSuggestionsList;
 

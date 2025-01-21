@@ -44,12 +44,14 @@ export const AICornerModuleSessions = React.forwardRef<HTMLDivElement, AICornerM
 
   React.useEffect(() => {
     refreshSessions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current]);
 
   React.useEffect(() => {
     if (typeof _propssessions === 'undefined' && !_sessions) {
       refreshSessions();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const autoId = useId();
@@ -114,7 +116,7 @@ export const AICornerModuleSessions = React.forwardRef<HTMLDivElement, AICornerM
   };
 
   React.useEffect(() => {
-    let newIds: string[] = [];
+    const newIds: string[] = [];
     if (_itemsBefore) {
       const newItems: JSX.Element[] = [];
       _itemsBefore.forEach((item, index) => {
@@ -154,6 +156,7 @@ export const AICornerModuleSessions = React.forwardRef<HTMLDivElement, AICornerM
     }
 
     setIds(newIds);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sessions, _itemsBefore, _itemsAfter]);
 
   React.useEffect(() => {
@@ -167,6 +170,7 @@ export const AICornerModuleSessions = React.forwardRef<HTMLDivElement, AICornerM
         document.getElementById(ids[0])?.focus();
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [focus]);
 
   return (

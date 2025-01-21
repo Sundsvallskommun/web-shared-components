@@ -57,10 +57,11 @@ export const InputSection = React.forwardRef<HTMLFormElement, InputSectionProps>
     if (autoFocus && inputref.current) {
       inputref.current.focus();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autoFocus, inputref.current]);
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChangeValue && onChangeValue(event);
+    onChangeValue?.(event);
     setQuery(event.target.value);
   };
 

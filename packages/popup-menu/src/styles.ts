@@ -16,8 +16,8 @@ export const useButtonClass = createMemoClass((props) => {
 
   const classes = cx(
     'sk-btn sk-popup-menu-button',
-    sizes[props.size],
-    variantClasses[props.variant],
+    sizes[props?.size ?? 'md'],
+    variantClasses[props?.variant ?? 'primary'],
     props.disabled && 'sk-btn-disabled'
   );
 

@@ -1,5 +1,7 @@
+import preset from './packages/core/src/preset';
+
 export default {
-  presets: [require('./packages/core/src/preset')()],
+  presets: [preset()],
   content: [
     './packages/*/src/**/*.{ts,tsx}',
     './packages/*/stories/**/*.{tsx,mdx}',
@@ -7,5 +9,5 @@ export default {
     './.storybook/stories/**/*.{tsx,mdx}',
     './.storybook/components/**/*.{tsx,mdx}',
   ],
-  darkMode: 'class', // or 'media' or 'class'
+  darkMode: 'selector', // or 'media' or 'class'
 };
