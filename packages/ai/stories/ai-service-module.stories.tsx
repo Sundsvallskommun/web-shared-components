@@ -1,7 +1,8 @@
 import { Meta } from '@storybook/react';
 import { AIServiceModule, AIServiceModuleProps } from '../src/components';
 import { AssistantInfo, AssistantSession, ChatHistory } from '../src';
-import { Avatar, Icon } from '@sk-web-gui/react';
+import { Avatar } from '@sk-web-gui/avatar';
+import { Icon } from '@sk-web-gui/icon';
 import { Sparkles } from 'lucide-react';
 import avatarSrc from './images/qwerty-avatar.png';
 
