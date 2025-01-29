@@ -1,11 +1,7 @@
-import { defaultTheme } from '@sk-web-gui/theme';
 import type { Preview } from '@storybook/react';
-import { useContext } from 'react';
-import { ThemeContext } from './components/theme-context';
 import { WithGuiDecorator } from './components/theme-decorators';
-import { MemoizedDocsContainer, MemoizedGuiProvider } from './components/theme-helpers';
-import './styles.scss';
 import { ParametersContainer } from './components/theme-parameters';
+import './styles.scss';
 
 const parameters: Preview['parameters'] = {
   viewMode: 'docs',
@@ -19,9 +15,10 @@ const parameters: Preview['parameters'] = {
   docs: {
     source: {
       type: 'code',
-      transform: (code: any, storyContext: { name: any }) => {
+      transform: (code: any, storyContext) => {
+        const packageName = storyContext?.parameters?.fileName?.match(/\.\/packages\/([^/]+)\//)[1];
         return `
-        import { ${storyContext.name} } from '@sk-web-gui/react';
+        import { ${storyContext.name} } from '@sk-web-gui/${packageName}';
 
 ${code}`;
       },
