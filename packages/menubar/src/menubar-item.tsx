@@ -7,7 +7,7 @@ export interface MenuBarItemProps
   extends DefaultProps,
     Omit<React.ComponentPropsWithRef<'li'>, 'color' | 'children' | 'onClick'> {
   /** Color for menuoption. Is inherited from MenuBar */
-  color?: 'tertiary' | 'juniskar' | 'bjornstigen' | 'gronsta' | 'vattjom';
+  color?: 'tertiary' | 'juniskar' | 'bjornstigen' | 'gronsta' | 'vattjom' | string;
   /** Set true if this is the current menuoption. Can be handled by MenuBar */
   current?: boolean;
   /** Set automatic */
