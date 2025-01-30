@@ -15,6 +15,8 @@ export interface CheckboxItemProps<T = HTMLInputElement>
   invalid?: boolean;
   /* Makes checkbox readOnly */
   readOnly?: React.InputHTMLAttributes<T>['readOnly'];
+  /* Makes checkbox disabled */
+  disabled?: React.InputHTMLAttributes<T>['disabled'];
   /* Makes checkbox indeterminate */
   indeterminate?: boolean;
   /**

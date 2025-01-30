@@ -15,6 +15,8 @@ export interface RadioButtonProps<T = HTMLInputElement>
   required?: React.InputHTMLAttributes<T>['required'];
   /** Makes radio readOnly */
   readOnly?: React.InputHTMLAttributes<T>['readOnly'];
+  /** Makes radio disabled */
+  disabled?: React.InputHTMLAttributes<T>['disabled'];
   /**
    * If `true`, the radio will be initially checked.
    */
