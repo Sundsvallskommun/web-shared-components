@@ -1,19 +1,20 @@
-import { MenuBar } from '@sk-web-gui/menubar';
 import { __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
-import React, { useId } from 'react';
+import React from 'react';
+import { defaultTabsContext, TabsContext, TabsContextProps } from './context';
 import { TabsButton } from './tabs-button';
 import { TabsContent } from './tabs-content';
-import { TabsContext } from './tabs-context';
 import { TabsItem } from './tabs-item';
 
-export interface TabsComponentProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'color'> {
-  color?: React.ComponentProps<typeof MenuBar>['color'];
-  current?: React.ComponentProps<typeof MenuBar>['current'];
-  showBackground?: React.ComponentProps<typeof MenuBar>['showBackground'];
+export interface TabsComponentProps
+  extends Partial<Pick<TabsContextProps, 'color' | 'current'>>,
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'color'> {
   onTabChange?: (index: number) => void;
   tabslistClassName?: string;
   panelsClassName?: string;
+  /** @default md */
   size?: 'sm' | 'md' | 'lg';
+  /** @default false */
+  underline?: boolean;
 }
 
 export const TabsComponent = React.forwardRef<HTMLDivElement, TabsComponentProps>((props, ref) => {
@@ -21,48 +22,76 @@ export const TabsComponent = React.forwardRef<HTMLDivElement, TabsComponentProps
     className,
     tabslistClassName,
     panelsClassName,
-    color,
-    current: _current = 0,
-    showBackground,
+    color = defaultTabsContext.color,
+    current: _current = defaultTabsContext.current,
     children,
     id: _id,
     onTabChange,
-    size,
+    size = 'md',
+    underline = false,
     ...rest
   } = props;
   const [current, setCurrent] = React.useState<number>(_current);
+  const [active, setActive] = React.useState<number>(_current || 0);
+  const [mounted, setMounted] = React.useState<boolean>(false);
+  const autoId = React.useId();
+  const id = _id || `sk-tabs-${autoId}`;
+
+  const total = React.Children.count(children);
 
   React.useEffect(() => {
-    setCurrent(_current);
+    if (mounted) {
+      handleSetCurrent(_current);
+    } else {
+      setMounted(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [_current]);
 
   const handleSetCurrent = (index: number) => {
-    if (index !== current) {
-      onTabChange?.(index);
-      setCurrent(index);
-    }
-  };
-  const context = {
-    current,
-    setCurrent: handleSetCurrent,
+    setCurrent(index);
+    setActive(index || 0);
+    onTabChange?.(index);
   };
 
-  const autoId = useId();
-  const id = _id || `sk-tabs-${autoId}`;
+  const next = () => {
+    if (active === total - 1) {
+      setActive(0);
+    } else {
+      setActive(active + 1);
+    }
+  };
+
+  const prev = () => {
+    if (active === 0) {
+      setActive(total - 1);
+    } else {
+      setActive(active - 1);
+    }
+  };
+
+  const context = {
+    next,
+    prev,
+    current,
+    setCurrent: handleSetCurrent,
+    color,
+    active,
+  };
 
   const getButtons = (): React.ReactNode => {
     return getValidChildren(children).map((child, index) => {
       const contentComponent = getValidChildren(child.props.children).find((child) => child?.type === TabsContent);
       const buttonComponent = getValidChildren(child.props.children).find((child) => child?.type === TabsButton);
       if (buttonComponent) {
-        const newButton = React.cloneElement(buttonComponent, {
+        return React.cloneElement(buttonComponent, {
+          key: `button-${index}`,
           id: buttonComponent.props.id || `${id}-tab-${index}`,
           'aria-controls': contentComponent?.props?.id || `${id}-panel-${index}`,
           menuIndex: index,
           size: size,
           ...buttonComponent.props,
         });
-        return <MenuBar.Item key={`button-${index}`}>{newButton}</MenuBar.Item>;
       } else {
         throw Error('No <Tabs.Button> found! Each <Tabs.Item> needs a button.');
       }
@@ -95,16 +124,16 @@ export const TabsComponent = React.forwardRef<HTMLDivElement, TabsComponentProps
   return (
     <TabsContext.Provider value={context}>
       <div ref={ref} className={cx('sk-tabs', className)} {...rest}>
-        <MenuBar
-          className={tabslistClassName}
-          color={color}
-          current={current}
-          showBackground={showBackground}
+        <ul
+          className={cx('sk-tabs-list', tabslistClassName)}
+          data-size={size}
+          data-color={color}
+          data-underline={underline ? underline : underline}
           role="tablist"
           id={id}
         >
           {getButtons()}
-        </MenuBar>
+        </ul>
         <div ref={ref} className={cx('sk-tabs-panels', panelsClassName)} {...rest}>
           {getContent()}
         </div>

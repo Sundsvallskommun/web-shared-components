@@ -1,10 +1,14 @@
+import { Icon } from '@sk-web-gui/icon';
+import { Pagination } from '@sk-web-gui/pagination';
+import { Meta } from '@storybook/react';
+import { Home } from 'lucide-react';
 import React, { useState } from 'react';
 import { Tabs, TabsProps } from '../src';
-import { Meta } from '@storybook/react';
-import { Pagination } from '@sk-web-gui/pagination';
 import londonSrc from './images/london.jpg';
 import parisSrc from './images/paris.jpg';
 import tokyoSrc from './images/tokyo.jpg';
+import { Badge } from '@sk-web-gui/badge';
+import { Callout } from '@sk-web-gui/callout';
 
 export default {
   title: 'Komponenter/Tabs',
@@ -14,21 +18,35 @@ export default {
 
 export const Template = (args: TabsProps) => {
   return (
-    <Tabs {...args} onTabChange={(panel) => console.log('Showing panel', panel)}>
+    <Tabs {...args} onTabChange={(panel) => console.log('Showing panel', panel)} className="w-fit">
       <Tabs.Item>
-        <Tabs.Button>London</Tabs.Button>
+        <Tabs.Button>Item</Tabs.Button>
         <Tabs.Content>
           <p>London is the capital city of England.</p>
         </Tabs.Content>
       </Tabs.Item>
       <Tabs.Item>
-        <Tabs.Button>Paris</Tabs.Button>
+        <Tabs.Button aria-readonly="true" title="För tillfället oåtkomlig">
+          <span>Span-wrapped and disabled(readonly)</span>
+        </Tabs.Button>
         <Tabs.Content>
           <p>Paris is the capital of France.</p>
         </Tabs.Content>
       </Tabs.Item>
       <Tabs.Item>
-        <Tabs.Button>Tokyo</Tabs.Button>
+        <Tabs.Button leftIcon={<Icon icon={<Home />} />}>Icon</Tabs.Button>
+        <Tabs.Content>
+          <p>Oslo is the capital of Norway.</p>
+        </Tabs.Content>
+      </Tabs.Item>
+      <Tabs.Item>
+        <Tabs.Button rightIcon={<Badge counter={12} />}>Badge</Tabs.Button>
+        <Tabs.Content>
+          <p>Stockholm is the capital of Sweden.</p>
+        </Tabs.Content>
+      </Tabs.Item>
+      <Tabs.Item>
+        <Tabs.Button rightIcon={<Callout color="warning" />}>Callout</Tabs.Button>
         <Tabs.Content>
           <p>Tokyo is the capital of Japan.</p>
         </Tabs.Content>
@@ -43,7 +61,7 @@ export const StateControlled = () => {
   const [current, setCurrent] = React.useState<number>(0);
   return (
     <div>
-      <Tabs current={current} showBackground color="vattjom">
+      <Tabs current={current} color="vattjom">
         <Tabs.Item>
           <Tabs.Button onClick={() => setCurrent(0)}>Tab 1</Tabs.Button>
           <Tabs.Content>
@@ -76,7 +94,7 @@ export const ControlOthers = () => {
   return (
     <div className="flex gap-32">
       <div className="w-2/3">
-        <Tabs onTabChange={(panel) => setImageSrc(images[panel])} showBackground color="juniskar">
+        <Tabs onTabChange={(panel) => setImageSrc(images[panel])} color="juniskar">
           <Tabs.Item>
             <Tabs.Button>London</Tabs.Button>
             <Tabs.Content>
