@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/image@1.0.12...@sk-web-gui/image@1.1.0) (2025-01-30)
+
+### Bug Fixes
+
+- **eslint-errors:** image ([3cdb0ee](https://github.com/Sundsvallskommun/web-shared-components/commit/3cdb0eed4154835f3ea7fd31997b6291bede2c4b))
+- synced deps, refined config, exporting types ([25a8dc9](https://github.com/Sundsvallskommun/web-shared-components/commit/25a8dc9b32bf94ab65782cb26e230514f9224468))
+
+### Features
+
+- dependency updates and improved eslint ([ee56698](https://github.com/Sundsvallskommun/web-shared-components/commit/ee56698550bd45c1711eba643042cb6379ebd8f6))
+- updated from babel to swc ([d1fc017](https://github.com/Sundsvallskommun/web-shared-components/commit/d1fc01761ba14f93d93b272ff802267ff86efbdc))
+
 ## [1.0.12](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/image@1.0.11...@sk-web-gui/image@1.0.12) (2025-01-02)
 
 **Note:** Version bump only for package @sk-web-gui/image

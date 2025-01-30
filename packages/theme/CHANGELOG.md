@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@2.3.2...@sk-web-gui/theme@2.4.0) (2025-01-30)
+
+### Bug Fixes
+
+- **eslint-errors:** theme ([3fceb61](https://github.com/Sundsvallskommun/web-shared-components/commit/3fceb61bd211f7b89c15de473ef30ec901752583))
+- synced deps, refined config, exporting types ([25a8dc9](https://github.com/Sundsvallskommun/web-shared-components/commit/25a8dc9b32bf94ab65782cb26e230514f9224468))
+
+### Features
+
+- added utility colors ([47e56f3](https://github.com/Sundsvallskommun/web-shared-components/commit/47e56f30863e14da371ef955ca817903fc833eae))
+- dependency updates and improved eslint ([ee56698](https://github.com/Sundsvallskommun/web-shared-components/commit/ee56698550bd45c1711eba643042cb6379ebd8f6))
+- updated from babel to swc ([d1fc017](https://github.com/Sundsvallskommun/web-shared-components/commit/d1fc01761ba14f93d93b272ff802267ff86efbdc))
+
 ## [2.3.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@2.3.1...@sk-web-gui/theme@2.3.2) (2025-01-02)
 
 ### Bug Fixes

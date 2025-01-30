@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/tabs@1.2.10...@sk-web-gui/tabs@1.3.0) (2025-01-30)
+
+### Bug Fixes
+
+- **eslint-errors:** tabs ([ac79e26](https://github.com/Sundsvallskommun/web-shared-components/commit/ac79e26151539ac7560cf21c06f3404c5d55da6c))
+- synced deps, refined config, exporting types ([25a8dc9](https://github.com/Sundsvallskommun/web-shared-components/commit/25a8dc9b32bf94ab65782cb26e230514f9224468))
+- **tabs:** adjusted dependencies ([c959c17](https://github.com/Sundsvallskommun/web-shared-components/commit/c959c17ffc9de0aede247ee216bdb2532624fe1b))
+
+### Features
+
+- dependency updates and improved eslint ([ee56698](https://github.com/Sundsvallskommun/web-shared-components/commit/ee56698550bd45c1711eba643042cb6379ebd8f6))
+- **tabs:** new component styling applied with functional fixes ([ae7ccf5](https://github.com/Sundsvallskommun/web-shared-components/commit/ae7ccf57a997ca9c794b0310a09ecc27a1628d28))
+- updated from babel to swc ([d1fc017](https://github.com/Sundsvallskommun/web-shared-components/commit/d1fc01761ba14f93d93b272ff802267ff86efbdc))
+
 ## [1.2.10](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/tabs@1.2.9...@sk-web-gui/tabs@1.2.10) (2025-01-02)
 
 **Note:** Version bump only for package @sk-web-gui/tabs

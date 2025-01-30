@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.10.3...@sk-web-gui/ai@0.11.0) (2025-01-30)
+
+### Bug Fixes
+
+- **ai:** type-compilation created dependency-types ([0e0122e](https://github.com/Sundsvallskommun/web-shared-components/commit/0e0122ea1cd205a0850e4eba22b1ed548d308d55))
+- **eslint-errors:** ai ([fd2da89](https://github.com/Sundsvallskommun/web-shared-components/commit/fd2da893d902aa61ee139c6b118aec17f0c08bce))
+- missing specified tsconfig ([30d242a](https://github.com/Sundsvallskommun/web-shared-components/commit/30d242a4613078fba4827249c0b8f0ea6d0551e1))
+- synced deps, refined config, exporting types ([25a8dc9](https://github.com/Sundsvallskommun/web-shared-components/commit/25a8dc9b32bf94ab65782cb26e230514f9224468))
+
+### Features
+
+- dependency updates and improved eslint ([ee56698](https://github.com/Sundsvallskommun/web-shared-components/commit/ee56698550bd45c1711eba643042cb6379ebd8f6))
+- updated from babel to swc ([d1fc017](https://github.com/Sundsvallskommun/web-shared-components/commit/d1fc01761ba14f93d93b272ff802267ff86efbdc))
+
 ## [0.10.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.10.2...@sk-web-gui/ai@0.10.3) (2025-01-09)
 
 ### Bug Fixes

@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/card",
-  "version": "1.0.20",
+  "version": "1.1.0",
   "sideEffects": false,
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -37,9 +37,9 @@
     "react": "^18.3.1"
   },
   "dependencies": {
-    "@sk-web-gui/button": "2.0.12",
-    "@sk-web-gui/link": "1.1.6",
-    "@sk-web-gui/utils": "2.1.0",
+    "@sk-web-gui/button": "2.1.0",
+    "@sk-web-gui/link": "1.2.0",
+    "@sk-web-gui/utils": "2.2.0",
     "lucide-react": "^0.471.1"
   },
   "peerDependencies": {

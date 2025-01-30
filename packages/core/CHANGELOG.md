@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.10.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.9.1...@sk-web-gui/core@3.10.0) (2025-01-30)
+
+### Bug Fixes
+
+- **eslint-errors:** core ([c503c7a](https://github.com/Sundsvallskommun/web-shared-components/commit/c503c7ad183bad4683c38cfa3cd0a3731638b8cc))
+- removed unused core build script ([941ee90](https://github.com/Sundsvallskommun/web-shared-components/commit/941ee90e391928a89de2c36cb9f2708d7b736565))
+- synced deps, refined config, exporting types ([25a8dc9](https://github.com/Sundsvallskommun/web-shared-components/commit/25a8dc9b32bf94ab65782cb26e230514f9224468))
+
+### Features
+
+- added utility colors ([47e56f3](https://github.com/Sundsvallskommun/web-shared-components/commit/47e56f30863e14da371ef955ca817903fc833eae))
+- dependency updates and improved eslint ([ee56698](https://github.com/Sundsvallskommun/web-shared-components/commit/ee56698550bd45c1711eba643042cb6379ebd8f6))
+- **tabs:** new component styling applied with functional fixes ([ae7ccf5](https://github.com/Sundsvallskommun/web-shared-components/commit/ae7ccf57a997ca9c794b0310a09ecc27a1628d28))
+- updated from babel to swc ([d1fc017](https://github.com/Sundsvallskommun/web-shared-components/commit/d1fc01761ba14f93d93b272ff802267ff86efbdc))
+
 ## [3.9.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.9.0...@sk-web-gui/core@3.9.1) (2025-01-09)
 
 ### Bug Fixes
