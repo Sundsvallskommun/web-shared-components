@@ -8,6 +8,10 @@ import js from '@eslint/js';
 export default [
   {
     languageOptions: {
+      globals: {
+        node: true,
+        browser: true,
+      },
       parserOptions: {
         project: './tsconfig.json',
         tsconfigRootDir: import.meta.dirname,

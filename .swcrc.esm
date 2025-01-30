@@ -1,0 +1,30 @@
+{
+  "minify": true,
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "tsx": true,
+      "jsx": true,
+      "decorators": true,
+      "dynamicImport": true
+    },
+    "transform": {
+      "decoratorMetadata": true,
+      "react": {
+        "runtime": "automatic",
+        "refresh": true
+      }
+    }
+  },
+  "module": {
+    "type": "es6"
+  },
+  "sourceMaps": true,
+  "env": {
+    "target": "es6",
+    "lib": [
+      "dom",
+      "esnext"
+    ]
+  }
+}
