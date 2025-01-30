@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@sk-web-gui/button": "2.0.12",
-    "@sk-web-gui/menubar": "1.0.18",
+    "@sk-web-gui/divider": "1.0.13",
     "@sk-web-gui/utils": "2.1.0"
   },
   "peerDependencies": {
