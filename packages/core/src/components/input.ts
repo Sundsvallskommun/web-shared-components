@@ -30,13 +30,10 @@ function inputStandards() {
 
     //readOnly
     '&[readonly], &[readonly="true"]': {
-      '@apply border-primitives-overlay-darken-5': {},
+      '@apply bg-input-field-surface': {},
+      '@apply border-input-field-outline-disabled': {},
       '@apply text-dark-secondary': {},
       '@apply placeholder:text-dark-secondary': {},
-      '&:hover': {
-        '@apply border-primitives-overlay-darken-8': {},
-        '@apply placeholder:text-dark-placeholder': {},
-      },
     },
   };
 }

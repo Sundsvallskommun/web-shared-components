@@ -10,6 +10,8 @@ export interface IInputProps<T = HTMLInputElement> extends DefaultProps {
   invalid?: boolean;
   /* Makes input readOnly */
   readOnly?: React.InputHTMLAttributes<T>['readOnly'];
+  /* Makes input disabled */
+  disabled?: React.InputHTMLAttributes<T>['disabled'];
   /* Size of the input */
   size?: 'sm' | 'md' | 'lg';
   /**

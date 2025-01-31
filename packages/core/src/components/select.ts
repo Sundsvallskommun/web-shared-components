@@ -149,7 +149,7 @@ export const Select = () => ({
       '@apply text-dark-disabled': {},
       '@apply placeholder:text-dark-disabled': {},
       '@apply bg-tertiary-surface-disabled': {},
-      backgroundImage: [`url("data:image/svg+xml;utf-8,${chevronDown('rgba(28,28,40, 0.5)')}")`],
+      backgroundImage: [`url("data:image/svg+xml;utf-8,${chevronDown('rgba(28,28,40, 0.64)')}")`],
     },
 
     ...tertiary(),
@@ -159,9 +159,11 @@ export const Select = () => ({
     '*': {
       '@apply bg-background-content': {},
     },
+
     //readOnly
     '&[readonly], &[readonly="true"]': {
-      '@apply border-primitives-overlay-darken-5': {},
+      '@apply border-input-field-outline-disabled': {},
+      '@apply bg-input-field-surface-disabled': {},
       '@apply text-dark-secondary': {},
       '@apply pointer-events-none': {},
       backgroundImage: [`url("data:image/svg+xml;utf-8,${chevronDown('rgba(28,28,40, 0.64)')}")`],

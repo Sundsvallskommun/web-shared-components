@@ -88,10 +88,9 @@ export const Radio = () => ({
 
     //ReadOnly
     '&[readonly], &[readonly="true"]': {
-      '@apply cursor-not-allowed': {},
-      '@apply bg-background-100': {},
-      '@apply border-primitives-overlay-darken-5': {},
-      '@apply hover:border-primitives-overlay-darken-5': {},
+      '@apply bg-input-field-surface-disabled': {},
+      '@apply border-input-field-outline-disabled': {},
+      '@apply hover:border-input-field-outline-disabled': {},
       '&:not(:checked):not([checked="true"]):after': {
         '@apply hidden': {},
       },
