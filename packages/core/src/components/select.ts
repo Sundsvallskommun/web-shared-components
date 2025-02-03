@@ -169,13 +169,6 @@ export const Select = () => ({
       backgroundImage: [`url("data:image/svg+xml;utf-8,${chevronDown('rgba(28,28,40, 0.64)')}")`],
     },
 
-    //readOnly
-    '&[readonly], &[readonly="true"]': {
-      '@apply border-primitives-overlay-darken-5': {},
-      '@apply text-dark-secondary': {},
-      '@apply pointer-events-none': {},
-      backgroundImage: [`url("data:image/svg+xml;utf-8,${chevronDown('rgba(28,28,40, 0.64)')}")`],
-    },
 
     '&-sm': {
       '@apply h-32': {},

@@ -29,7 +29,7 @@ function inputStandards() {
     },
 
     //readOnly
-    '&[readonly], &[readonly="true"]': {
+    '&:read-only': {
       '@apply bg-input-field-surface': {},
       '@apply border-input-field-outline-disabled': {},
       '@apply text-dark-secondary': {},
