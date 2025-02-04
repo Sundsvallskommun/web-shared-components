@@ -1,7 +1,6 @@
 import { Meta } from '@storybook/react';
 import React from 'react';
-import { MenuVertical, MenuVerticalProps } from '../src';
-import { MenuIndex } from '../src/menu-vertical-context';
+import { MenuIndex, MenuVertical, MenuVerticalProps } from '../src';
 
 export default {
   title: 'Komponenter/Menu-vertical',

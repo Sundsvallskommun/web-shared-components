@@ -30,3 +30,14 @@ GuiContext.displayName = 'GuiContext';
 export function extendTheme(themeOverride: GuiThemeOverride): GuiTheme {
   return deepmerge(defaultTheme, themeOverride, { clone: true }) as GuiTheme;
 }
+
+export function getPreferredColorScheme() {
+  if (window.matchMedia) {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return ColorSchemeMode.Dark;
+    } else {
+      return ColorSchemeMode.Light;
+    }
+  }
+  return ColorSchemeMode.Light;
+}

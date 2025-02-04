@@ -17,7 +17,14 @@ const config: StorybookConfig = {
     './stories/**/*.@(tsx|mdx)',
     '../packages/*/stories/**/*.stories.tsx',
   ],
-  addons: ['@storybook/addon-essentials', '@storybook/addon-a11y', 'storybook-dark-mode'],
+  addons: [
+    getAbsolutePath('@storybook/addon-essentials'),
+    getAbsolutePath('@storybook/addon-a11y'),
+    getAbsolutePath('storybook-dark-mode'),
+  ],
+  features: {
+    developmentModeForBuild: true,
+  },
   typescript: {
     reactDocgen: 'react-docgen-typescript',
   },
@@ -90,15 +97,22 @@ const config: StorybookConfig = {
     }
     return config;
   },
-  core: { disableTelemetry: true },
-  framework: {
-    name: '@storybook/react-vite',
-    options: {},
+  core: {
+    disableTelemetry: true,
+    builder: {
+      name: '@storybook/builder-vite',
+      options: { fsCache: false },
+    },
   },
+  framework: getAbsolutePath('@storybook/react-vite'),
   staticDirs: ['./public'],
   docs: {
-    autodocs: 'tag',
-    defaultName: 'Dokumentation', // set to change the name of generated docs entries
+    // set to change the name of generated docs entries
+    defaultName: 'Dokumentation',
   },
 };
 export default config;
+
+function getAbsolutePath(value: string) {
+  return path.dirname(require.resolve(path.join(value, 'package.json')));
+}
