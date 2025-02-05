@@ -32,9 +32,8 @@ export function GuiProvider({
   htmlFontSize = 10,
   children,
 }: GuiProviderProps) {
-  const [preferredColorScheme, setPreferredColorScheme] = React.useState<
-    Exclude<ColorSchemeMode, ColorSchemeMode.System>
-  >(ColorSchemeMode.Light);
+  const [preferredColorScheme, setPreferredColorScheme] =
+    React.useState<Exclude<ColorSchemeMode, ColorSchemeMode.System>>(getPreferredColorScheme());
   const [pickedColorScheme, setPickedColorScheme] = React.useState<ColorSchemeMode>(ColorSchemeMode.System);
 
   React.useEffect(() => {
@@ -43,10 +42,7 @@ export function GuiProvider({
 
   useSafeEffect(() => {
     if (pickedColorScheme === ColorSchemeMode.System) {
-      const scheme = window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? ColorSchemeMode.Dark
-        : ColorSchemeMode.Light;
-      setPreferredColorScheme(scheme);
+      setPreferredColorScheme(getPreferredColorScheme());
     }
   }, [pickedColorScheme]);
 
