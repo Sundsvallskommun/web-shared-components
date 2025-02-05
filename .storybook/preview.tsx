@@ -32,6 +32,7 @@ export const decorators: Preview['decorators'] = [WithGuiDecorator];
 const preview: Preview = {
   parameters,
   decorators,
+  tags: ['autodocs'],
 };
 
 export default preview;
