@@ -2,6 +2,7 @@
   "name": "@sk-web-gui/core",
   "version": "3.10.0",
   "license": "MIT",
+  "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/types/index.d.ts",
@@ -23,7 +24,7 @@
   "scripts": {
     "version": "yarn build",
     "build": "yarn build:types && yarn build:esm && yarn build:cjs",
-    "build:esm": "swc src -d dist/esm --config-file ../../.swcrc.esm",
+    "build:esm": "swc src -d dist/esm --config-file ../../.swcrc.esm && node ../../fix-esm-extensions.mjs ./dist/esm",
     "build:cjs": "swc src -d dist/cjs --config-file ../../.swcrc",
     "build:types": "tsc -p ./tsconfig.production.json --emitDeclarationOnly --declaration --declarationDir dist/types"
   },
