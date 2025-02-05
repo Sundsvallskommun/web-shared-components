@@ -32,7 +32,7 @@ export function extendTheme(themeOverride: GuiThemeOverride): GuiTheme {
 }
 
 export function getPreferredColorScheme() {
-  if (window.matchMedia) {
+  if (typeof window !== 'undefined' && window.matchMedia) {
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       return ColorSchemeMode.Dark;
     } else {
