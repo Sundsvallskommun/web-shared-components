@@ -49,3 +49,19 @@ export const ExampleWithForm = () => {
     </div>
   );
 };
+
+export const Inaktiverad = () => {
+  const { register, watch} = useForm<{ toppings: string[] }>({ defaultValues: { toppings: [] } });
+  const allToppings = ['Skinka', 'Ost', 'Tomat'];
+  const pickToppings = watch('toppings');
+
+
+  return (
+      <div className="flex space-x-12">
+        <Checkbox disabled>First</Checkbox>
+        <Checkbox defaultChecked disabled>Second</Checkbox>
+        <Checkbox readOnly>First</Checkbox>
+        <Checkbox defaultChecked readOnly>Second</Checkbox>
+      </div>
+  );
+};

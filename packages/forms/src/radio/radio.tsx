@@ -15,6 +15,8 @@ export interface RadioButtonProps<T = HTMLInputElement>
   required?: React.InputHTMLAttributes<T>['required'];
   /** Makes radio readOnly */
   readOnly?: React.InputHTMLAttributes<T>['readOnly'];
+  /** Makes radio disabled */
+  disabled?: React.InputHTMLAttributes<T>['disabled'];
   /**
    * If `true`, the radio will be initially checked.
    */
@@ -53,6 +55,7 @@ export const InternalRadioButton = React.forwardRef<HTMLInputElement, RadioButto
     onChange,
     children,
     className,
+    readOnly,
     ...rest
   } = props;
 
@@ -73,6 +76,22 @@ export const InternalRadioButton = React.forwardRef<HTMLInputElement, RadioButto
 
   const radioLabelClasses = useRadioButtonLabelClass({ size });
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (readOnly) {
+      event.preventDefault();
+      return;
+    }
+    if (onChange) {
+      onChange(event);
+    }
+  };
+
+  const handleClick = (event: React.MouseEvent<HTMLInputElement>) => {
+    if (readOnly) {
+      event.preventDefault();
+    }
+  };
+
   return (
     <label className={cx(radioLabelClasses, className)} data-disabled={disabled}>
       <input
@@ -85,8 +104,10 @@ export const InternalRadioButton = React.forwardRef<HTMLInputElement, RadioButto
         name={name}
         value={value}
         aria-invalid={invalid}
+        readOnly={readOnly}
         defaultChecked={defaultChecked}
-        onChange={onChange}
+        onChange={handleChange}
+        onClick={handleClick}
         checked={checked}
         disabled={disabled}
         aria-disabled={disabled}

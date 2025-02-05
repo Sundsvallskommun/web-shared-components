@@ -33,11 +33,18 @@ export const Template = (args: SelectProps) => {
 Template.storyName = 'Select';
 
 export const Inaktiverad = () => (
+  <div className="flex space-x-12">
   <Select disabled>
     <Select.Option>Option 1</Select.Option>
     <Select.Option>Option 2</Select.Option>
     <Select.Option>Option 3</Select.Option>
   </Select>
+    <Select readOnly>
+    <Select.Option>Option 1</Select.Option>
+    <Select.Option>Option 2</Select.Option>
+    <Select.Option>Option 3</Select.Option>
+  </Select>
+  </div>
 );
 
 export const Invaliderad = () => (

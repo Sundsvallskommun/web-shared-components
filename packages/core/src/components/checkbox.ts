@@ -42,7 +42,7 @@ export const Checkbox = () => ({
     '&[type="checkbox"]:checked': {
       '@apply text-transparent': {},
     },
-    '&&:hover:not(&&-disabled,&&:checked,&&[aria-invalid=true]),&&:hover:focus:not(&&-disabled,&&:checked,&&[aria-invalid=true])':
+    '&&:hover:not(&&-disabled,&&[readonly],&&:checked,&&[aria-invalid=true]),&&:hover:focus:not(&&-disabled,&&[readonly],&&:checked,&&[aria-invalid=true])':
       {
         '& + .sk-icon, &:focus + .sk-icon': {
           '@apply text-dark-placeholder border-input-field-outline-hover': {},
@@ -71,20 +71,39 @@ export const Checkbox = () => ({
 
     // disabled
     '&&-disabled,&&-disabled:hover': {
-      '@apply cursor-not-allowed': {},
-
       '& + .sk-icon': {
         '@apply bg-input-field-surface-disabled border-input-field-outline-disabled': {},
       },
 
       '&:checked': {
         '& + .sk-icon': {
-          '@apply bg-dark-disabled text-light-primary border-0': {},
+          '@apply bg-dark-disabled text-light-primary border-transparent': {},
         },
       },
 
       '& ~ .sk-form-checkbox-label': {
         '@apply text-dark-disabled': {},
+      },
+    },
+
+    //readonly
+    '&[readonly], &[readonly="true"]': {
+      '@apply border-input-field-outline-disabled': {},
+      '@apply bg-input-field-surface-disabled': {},
+
+      '&:hover:checked': {
+        '& + .sk-icon': {
+          '@apply bg-dark-secondary border-dark-secondary text-light-primary': {},
+        },
+      },
+      '&:checked': {
+        '& + .sk-icon': {
+          '@apply bg-dark-secondary border-dark-secondary text-light-primary': {},
+        },
+      },
+
+      '& ~ .sk-form-checkbox-label': {
+        '@apply text-dark-secondary': {},
       },
     },
 

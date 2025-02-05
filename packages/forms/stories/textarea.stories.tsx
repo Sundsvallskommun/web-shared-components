@@ -14,6 +14,8 @@ Template.storyName = 'Textarea';
 
 export const Disabled = () => <Textarea disabled placeholder="Beskriv ditt ärende..." />;
 
+export const Readonly = () => <Textarea readOnly placeholder="Beskriv ditt ärende..." />;
+
 export const Invalid = () => <Textarea invalid placeholder="Beskriv ditt ärende..." />;
 
 export const Counter = () => (

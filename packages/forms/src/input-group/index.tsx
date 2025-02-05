@@ -14,10 +14,12 @@ export interface InputGroupProps extends DefaultProps, React.ComponentPropsWithR
   invalid?: boolean;
   /* Makes input disabled */
   disabled?: boolean;
+  /* Makes input readonly */
+  readOnly?: boolean;
 }
 
 export const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>((props, ref) => {
-  const { children, className, size = 'md', invalid, disabled, ...rest } = props;
+  const { children, className, size = 'md', invalid, disabled, readOnly, ...rest } = props;
   const classes = useInputGroupClass({ size });
 
   const validChildren = getValidChildren(children);
@@ -28,6 +30,7 @@ export const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>((pro
       role="group"
       aria-invalid={invalid}
       aria-disabled={disabled}
+      area-readonly={readOnly}
       className={cx(classes, className)}
       {...rest}
     >
@@ -36,10 +39,11 @@ export const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>((pro
           return React.cloneElement(child, {
             size,
             disabled,
+            readOnly,
             className: cx(child.props.className),
           });
         }
-        return React.cloneElement(child, { size });
+        return React.cloneElement(child, { size, readOnly, disabled });
       })}
     </div>
   );

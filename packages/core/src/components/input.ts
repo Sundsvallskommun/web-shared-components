@@ -27,6 +27,14 @@ function inputStandards() {
       '@apply hover:border-input-field-outline-disabled': {},
       '@apply text-dark-disabled': {},
     },
+
+    //readOnly
+    '&:read-only': {
+      '@apply bg-input-field-surface': {},
+      '@apply border-input-field-outline-disabled': {},
+      '@apply text-dark-secondary': {},
+      '@apply placeholder:text-dark-secondary': {},
+    },
   };
 }
 

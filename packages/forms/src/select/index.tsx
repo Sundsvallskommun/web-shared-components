@@ -26,6 +26,7 @@ export interface InternalSelectProps
     Omit<React.ComponentPropsWithRef<'select'>, 'size' | 'value'> {
   onSelectValue?: (value: string) => void;
   variant?: 'primary' | 'tertiary';
+  disabled?: boolean;
 }
 
 const InternalSelect = React.forwardRef<HTMLSelectElement, InternalSelectProps>((props, ref) => {

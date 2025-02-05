@@ -43,6 +43,22 @@ export const Disabled = () => (
 );
 Disabled.storyName = 'Inaktiverad';
 
+export const Readonly = () => (
+  <div>
+    <div className="flex gap-16">
+      <TextField placeholder="example@mail.com" type="email" readOnly />
+    </div>
+    <div className="flex mt-md gap-16">
+      <Input.Group readOnly>
+        <Input.LeftAddin children="https://" />
+        <TextField placeholder="mysite" type="url" />
+        <Input.RightAddin children=".com" />
+      </Input.Group>
+    </div>
+  </div>
+);
+Readonly.storyName = 'Readonly';
+
 export const Invalid = () => (
   <div>
     <div className="flex gap-16">
