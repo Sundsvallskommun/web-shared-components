@@ -4,7 +4,7 @@ import { toCSSVar } from './create-theme-vars';
 import { defaultTheme } from './default-theme';
 import { ColorSchemeMode, GuiTheme, ThemeOption } from './types';
 import { useSafeEffect } from './use-safe-effect';
-import { GuiContext, isBrowser } from './utils';
+import { getPreferredColorScheme, GuiContext, isBrowser } from './utils';
 
 export interface GuiProviderProps {
   children: React.ReactNode;
