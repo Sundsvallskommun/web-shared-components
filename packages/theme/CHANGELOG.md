@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@2.4.0...@sk-web-gui/theme@2.4.1) (2025-02-06)
+
+### Bug Fixes
+
+- added missing import ([db1a72a](https://github.com/Sundsvallskommun/web-shared-components/commit/db1a72a5c71ec7ec403f4d419c1e53e86302be2e))
+- dev environment and package export settings ([8b5db37](https://github.com/Sundsvallskommun/web-shared-components/commit/8b5db37a3d1cdefe5409c1750f04cae6f57e4bb1))
+- ESM build working, preferring esm ([a0a9c2a](https://github.com/Sundsvallskommun/web-shared-components/commit/a0a9c2a2f21c60df7f384bc2ac3479e101b1ab7d))
+- now using prefered-theme-function in gui-provider ([66582fe](https://github.com/Sundsvallskommun/web-shared-components/commit/66582fefc0b23a216715bb07356e807db169b6c3))
+- removed minify and fix of preferredscheme ([a27440a](https://github.com/Sundsvallskommun/web-shared-components/commit/a27440a79ee39c60abc65fff64b598e03d2cda79))
+
 # [2.4.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@2.3.2...@sk-web-gui/theme@2.4.0) (2025-01-30)
 
 ### Bug Fixes

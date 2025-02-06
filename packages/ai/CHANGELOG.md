@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.11.0...@sk-web-gui/ai@0.11.1) (2025-02-06)
+
+### Bug Fixes
+
+- dev environment and package export settings ([8b5db37](https://github.com/Sundsvallskommun/web-shared-components/commit/8b5db37a3d1cdefe5409c1750f04cae6f57e4bb1))
+- ESM build working, preferring esm ([a0a9c2a](https://github.com/Sundsvallskommun/web-shared-components/commit/a0a9c2a2f21c60df7f384bc2ac3479e101b1ab7d))
+- prevent opening animation if initial open ([d1353ac](https://github.com/Sundsvallskommun/web-shared-components/commit/d1353acbcd3a0dd4cd43b124c1bb68907ff42053))
+
 # [0.11.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@0.10.3...@sk-web-gui/ai@0.11.0) (2025-01-30)
 
 ### Bug Fixes

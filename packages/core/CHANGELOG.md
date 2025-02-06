@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.11.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.10.0...@sk-web-gui/core@3.11.0) (2025-02-06)
+
+### Bug Fixes
+
+- dev environment and package export settings ([8b5db37](https://github.com/Sundsvallskommun/web-shared-components/commit/8b5db37a3d1cdefe5409c1750f04cae6f57e4bb1))
+- ESM build working, preferring esm ([a0a9c2a](https://github.com/Sundsvallskommun/web-shared-components/commit/a0a9c2a2f21c60df7f384bc2ac3479e101b1ab7d))
+
+### Features
+
+- readonly states with correct colors ([48e5cf9](https://github.com/Sundsvallskommun/web-shared-components/commit/48e5cf94ef3aef72f14e600f407495bd3a535c2f))
+- styling to readonly elements ([eecd08b](https://github.com/Sundsvallskommun/web-shared-components/commit/eecd08bd0e8a08cb21567b3725a69000d68b40af))
+- styling to readonly elements ([59fbbb8](https://github.com/Sundsvallskommun/web-shared-components/commit/59fbbb8abfe76918886a74a4912804bed7a799a3))
+- used pseudo-class for input ([b801595](https://github.com/Sundsvallskommun/web-shared-components/commit/b8015952f90ce14561f48b2d67a0e6203390b500))
+
 # [3.10.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.9.1...@sk-web-gui/core@3.10.0) (2025-01-30)
 
 ### Bug Fixes

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/link@1.2.0...@sk-web-gui/link@1.2.1) (2025-02-06)
+
+### Bug Fixes
+
+- dev environment and package export settings ([8b5db37](https://github.com/Sundsvallskommun/web-shared-components/commit/8b5db37a3d1cdefe5409c1750f04cae6f57e4bb1))
+- ESM build working, preferring esm ([a0a9c2a](https://github.com/Sundsvallskommun/web-shared-components/commit/a0a9c2a2f21c60df7f384bc2ac3479e101b1ab7d))
+
 # [1.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/link@1.1.6...@sk-web-gui/link@1.2.0) (2025-01-30)
 
 ### Bug Fixes

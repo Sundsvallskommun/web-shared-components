@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.3.0...@sk-web-gui/forms@2.4.0) (2025-02-06)
+
+### Bug Fixes
+
+- dev environment and package export settings ([8b5db37](https://github.com/Sundsvallskommun/web-shared-components/commit/8b5db37a3d1cdefe5409c1750f04cae6f57e4bb1))
+- ESM build working, preferring esm ([a0a9c2a](https://github.com/Sundsvallskommun/web-shared-components/commit/a0a9c2a2f21c60df7f384bc2ac3479e101b1ab7d))
+
+### Features
+
+- added disabled types ([ff07e9c](https://github.com/Sundsvallskommun/web-shared-components/commit/ff07e9c4f3b89be5303f4187cd5732145a9c67a6))
+- readonly states with correct colors ([48e5cf9](https://github.com/Sundsvallskommun/web-shared-components/commit/48e5cf94ef3aef72f14e600f407495bd3a535c2f))
+- styling to readonly elements ([eecd08b](https://github.com/Sundsvallskommun/web-shared-components/commit/eecd08bd0e8a08cb21567b3725a69000d68b40af))
+
 # [2.3.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.2.0...@sk-web-gui/forms@2.3.0) (2025-01-30)
 
 ### Bug Fixes
