@@ -17,6 +17,9 @@ export default {
     title: 'E-tjänster',
     subtitle: 'Sundsvalls kommun',
   },
+  argTypes: {
+    logoType: { control: 'text' },
+  },
 } as Meta<typeof Header>;
 
 const menuGroups: MenuItemGroup[] = [
@@ -75,6 +78,7 @@ export const Template: StoryObj<typeof Header> = (args: React.ComponentPropsWith
         {...args}
         title={args.title}
         subtitle={args.subtitle}
+        logoType={args.logoType}
         userMenu={<UserMenu menuGroups={menuGroups} />}
         mobileMenu={
           <Button iconButton>
