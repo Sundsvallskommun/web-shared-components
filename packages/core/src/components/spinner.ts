@@ -5,7 +5,7 @@ export const Spinner = (colors: string[]) => ({
     '@apply overflow-hidden': {},
 
     '&-lottie': {
-      '@apply w-[200%] h-[200%] my-0 mr-0 ml-[-50%]': {},
+      '@apply w-[200%] h-[200%] my-0 mr-[-50%] ml-[-50%]': {},
     },
     path: {
       '@apply stroke-dark-secondary': {},

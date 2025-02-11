@@ -1,7 +1,7 @@
-import { Player } from '@lottiefiles/react-lottie-player';
-import { SpinnerAnimation } from './assets/spinner-square';
+import Lottie from 'lottie-react';
 import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 import React from 'react';
+import { SpinnerAnimation } from './assets/spinner-square';
 
 export interface SpinnerProps extends DefaultProps, Omit<React.ComponentPropsWithRef<'div'>, 'color'> {
   /** Set size of the spinner in rem
@@ -26,14 +26,13 @@ export const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>((props, re
       style={{ width: `${size}rem`, height: `${size}rem` }}
       {...rest}
     >
-      <Player
+      <Lottie
         autoplay
         loop
-        src={SpinnerAnimation}
+        animationData={SpinnerAnimation}
         renderer="svg"
-        style={{ margin: '0px', marginLeft: '-50%' }}
         className={cx('sk-spinner-lottie')}
-      ></Player>
+      ></Lottie>
     </div>
   );
 });
