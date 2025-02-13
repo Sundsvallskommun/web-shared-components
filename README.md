@@ -15,7 +15,7 @@ npm i @sk-web-gui/core @sk-web-gui/react && npm i --save-dev @tailwindcss/forms 
 **Yarn**
 
 ```
-yarn add @sk-web-gui/core @sk-web-gui/react && yarn add -D @tailwindcss/forms @tailwindcss/container-queries
+yarn add @sk-web-gui/core @sk-web-gui/react
 ```
 
 Lägg till `sk-web-gui/core`, `tailwindcss/forms` och `tailwindcss/container-queries` i din Tailwindcss-configfil.
