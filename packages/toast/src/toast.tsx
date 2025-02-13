@@ -1,7 +1,7 @@
-import { toaster, Position } from '@sk-web-gui/toasted-notes';
+import { Position, toaster } from '@sk-web-gui/toasted-notes';
 import { DefaultProps } from '@sk-web-gui/utils';
-import React, { useCallback } from 'react';
-
+import React from 'react';
+import { MessageOptions } from '@sk-web-gui/toasted-notes';
 interface IToast extends DefaultProps {
   /**
    * The title of the toast.
@@ -51,6 +51,7 @@ interface IToast extends DefaultProps {
    * Custom close icon
    */
   closeIcon?: React.ElementType;
+  messageRole?: MessageOptions['messageRole'];
 }
 
 interface RenderOption {
@@ -60,29 +61,33 @@ export type useToastOptions = IToast & RenderOption;
 
 export function createToast(Comp: React.ElementType) {
   return function () {
-    const notify = useCallback(({ position = 'bottom-left', duration = 5000, render, ...rest }: useToastOptions) => {
-      const options = {
-        position,
-        duration,
-      };
+    const notify = React.useCallback(
+      ({ position = 'bottom-left', duration = 5000, messageRole, render, ...rest }: useToastOptions) => {
+        const options = {
+          position,
+          duration,
+          messageRole,
+        };
 
-      if (render) {
-        return toaster.notify(({ onClose, id }) => render({ onClose, id, ...rest }), options);
-      }
+        if (render) {
+          return toaster.notify(({ onClose, id }) => render({ onClose, id, ...rest }), options);
+        }
 
-      toaster.notify(
-        ({ onClose, id }) => (
-          <Comp
-            {...{
-              onClose,
-              id,
-              ...rest,
-            }}
-          />
-        ),
-        options
-      );
-    }, []);
+        toaster.notify(
+          ({ onClose, id }) => (
+            <Comp
+              {...{
+                onClose,
+                id,
+                ...rest,
+              }}
+            />
+          ),
+          options
+        );
+      },
+      []
+    );
 
     return notify;
   };
