@@ -52,7 +52,7 @@ export const HeaderComponent = React.forwardRef<HTMLDivElement, HeaderComponentP
   } = props;
 
   const LinkWrapper = ({ wrapper, children }: LinkWrapper) => {
-    if (wrapper !== undefined) {
+    if (React.isValidElement<React.PropsWithChildren>(wrapper)) {
       return React.cloneElement(wrapper, { children });
     }
     return children;

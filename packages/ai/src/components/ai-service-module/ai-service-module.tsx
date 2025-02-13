@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useAssistantStore } from '../../assistant-store';
 import { useChat } from '../../hooks';
 import { AssistantInfo, AssistantSession, OriginTitleMap } from '../../types';
@@ -45,7 +45,7 @@ export interface AIServiceModuleProps
   /**
    * Header-icon shown in secondary variant
    */
-  headerIcon?: JSX.Element;
+  headerIcon?: React.JSX.Element;
 }
 
 export const AIServiceModule = React.forwardRef<HTMLDivElement, AIServiceModuleProps>((props, ref) => {
@@ -90,7 +90,7 @@ export const AIServiceModule = React.forwardRef<HTMLDivElement, AIServiceModuleP
     throw new Error('No assistant found');
   }
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (session?.id && session.id !== sessionId) {
       setSessionId(session.id);
     }

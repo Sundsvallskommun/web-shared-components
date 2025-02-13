@@ -7,8 +7,8 @@ import { FilterLabel } from './filter-label';
 export interface FilterRootProps extends DefaultProps, React.ComponentPropsWithRef<'fieldset'> {}
 
 interface FilterTypes {
-  filterCheckboxes: JSX.Element[];
-  filterLabel?: JSX.Element;
+  filterCheckboxes: React.JSX.Element[];
+  filterLabel?: React.JSX.Element;
 }
 
 export const FilterRoot = React.forwardRef<HTMLFieldSetElement, FilterRootProps>((props, ref) => {

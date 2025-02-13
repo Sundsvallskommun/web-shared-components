@@ -1,5 +1,5 @@
 import { DefaultProps, __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
-import React, { useRef, useState } from 'react';
+import React from 'react';
 
 import { CheckboxItemProps } from './checkbox';
 import { CheckboxGroupContext } from './context';
@@ -42,10 +42,10 @@ export interface CheckboxGroupProps extends DefaultProps {
 
 export const CheckboxGroup = React.forwardRef<HTMLUListElement, CheckboxGroupProps>((props, ref) => {
   const { onChange, name, color, size, defaultValue, direction, value: valueProp, children, ...rest } = props;
-  const [values, setValues] = useState(defaultValue || []);
+  const [values, setValues] = React.useState(defaultValue || []);
   const autoId = React.useId();
 
-  const { current: isControlled } = useRef(valueProp != null);
+  const { current: isControlled } = React.useRef(valueProp != null);
   const _values = isControlled ? valueProp : values;
 
   const _onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,11 +75,11 @@ export const CheckboxGroup = React.forwardRef<HTMLUListElement, CheckboxGroupPro
     value: _values,
   };
 
-  const validChildren = getValidChildren(children);
+  const validChildren = getValidChildren<CheckboxItemProps>(children);
 
   const clones = validChildren.map((child, index) => {
     return (
-      <li key={index} className={cx(child.props.className)}>
+      <li key={index} className={cx(child?.props?.className)}>
         {child}
       </li>
     );

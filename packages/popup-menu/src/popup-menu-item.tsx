@@ -1,4 +1,4 @@
-import { cx, getValidChildren } from '@sk-web-gui/utils';
+import { cx, Dict, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
 import PopupMenu from '.';
 import { PopupMenuButton } from './popup-menu-button';
@@ -6,7 +6,7 @@ import { usePopupMenu } from './popupmenu-context';
 import { usePopupMenuItems } from './use-popup-menu-items';
 
 export interface PopupMenuItemProps {
-  children: JSX.Element;
+  children: React.JSX.Element;
   disabled?: boolean;
   id?: string;
   /**
@@ -22,11 +22,11 @@ export const PopupMenuItem: React.FC<PopupMenuItemProps> = (props) => {
   const { active, navigate, setNavigate, activeMode, next, prev } = usePopupMenuItems();
   const { close, size } = usePopupMenu();
 
-  const handleKeyboard = (
-    event: KeyboardEvent,
+  function handleKeyboard(
+    event: React.KeyboardEvent,
     preventClose: boolean,
-    defaultFunc?: (event: KeyboardEvent) => void
-  ) => {
+    defaultFunc?: React.EventHandler<React.KeyboardEvent>
+  ) {
     const target = event.target as Element;
     const clickEvent = new MouseEvent('click', { bubbles: true });
 
@@ -56,9 +56,13 @@ export const PopupMenuItem: React.FC<PopupMenuItemProps> = (props) => {
         break;
     }
     defaultFunc?.(event);
-  };
+  }
 
-  const handleClick = (event: MouseEvent, preventClose: boolean, defaultFunc?: (event: MouseEvent) => void) => {
+  const handleClick = (
+    event: React.MouseEvent,
+    preventClose: boolean,
+    defaultFunc?: React.EventHandler<React.MouseEvent>
+  ) => {
     const target = event.target as Element;
     if (!preventClose && target?.nodeName !== 'INPUT') {
       event.preventDefault();
@@ -71,18 +75,18 @@ export const PopupMenuItem: React.FC<PopupMenuItemProps> = (props) => {
 
   const menuItem = React.useMemo(() => {
     const mapItem = (item: React.ReactElement, preventClose: boolean): React.ReactElement => {
-      const classes = cx('sk-popup-menu-item', item?.props?.className);
-
-      const props = {
-        disabled: disabled,
-        size,
-        ...item.props,
-        onKeyDown: (event: KeyboardEvent) => handleKeyboard(event, preventClose, item.props.onKeyDown),
-        onClick: (event: MouseEvent) => handleClick(event, preventClose, item.props.onClick),
-        id: id,
-        className: classes,
-        tabIndex: active && active !== id ? -1 : 0,
-      };
+      const props = React.isValidElement<Dict>(item)
+        ? {
+            disabled: disabled,
+            size,
+            ...item.props,
+            onKeyDown: (event: React.KeyboardEvent) => handleKeyboard(event, preventClose, item.props.onKeyDown),
+            onClick: (event: React.MouseEvent) => handleClick(event, preventClose, item.props.onClick),
+            id: id,
+            className: cx('sk-popup-menu-item', item.props.className),
+            tabIndex: active && active !== id ? -1 : 0,
+          }
+        : item.props || {};
 
       return React.cloneElement(item, { ...props });
     };
@@ -107,6 +111,7 @@ export const PopupMenuItem: React.FC<PopupMenuItemProps> = (props) => {
       return <div className="sk-popup-menu-item-submenu-wrapper">{popupmenu}</div>;
     }
     return mapItem(children, !closeOnClick);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [children, active]);
 
   React.useEffect(() => {
@@ -114,6 +119,7 @@ export const PopupMenuItem: React.FC<PopupMenuItemProps> = (props) => {
       document.getElementById(id)?.focus();
       setNavigate?.(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active, activeMode, navigate]);
 
   return <>{menuItem} </>;

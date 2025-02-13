@@ -1,6 +1,6 @@
 import { cx, getValidChildren, useForkRef } from '@sk-web-gui/utils';
-import React, { cloneElement } from 'react';
-import { PopupMenuItem } from './popup-menu-item';
+import React from 'react';
+import { PopupMenuItem, PopupMenuItemProps } from './popup-menu-item';
 import { GoTo, usePopupMenu } from './popupmenu-context';
 import { PopupMenuItemsContext } from './context';
 
@@ -39,21 +39,20 @@ export const PopupMenuItems = React.forwardRef<HTMLDivElement, PopupMenuItemsPro
 
         switch (child.type) {
           case PopupMenuItem:
-            if (!child.props.disabled) {
-              const itemIndex = total;
-              const childId = child?.props?.id || `${id}-${itemIndex}`;
-              setPanels((panels) => [...panels, childId]);
-              newChildren = [
-                ...newChildren,
-                cloneElement(child, { ...child.props, id: childId, itemIndex: itemIndex }),
-              ];
-              total++;
-            } else {
-              newChildren = [...newChildren, child];
+            if (React.isValidElement<PopupMenuItemProps>(child)) {
+              if (!child.props.disabled) {
+                const itemIndex = total;
+                const childId = child?.props?.id || `${id}-${itemIndex}`;
+                setPanels((panels) => [...panels, childId]);
+                newChildren = [...newChildren, React.cloneElement(child, { ...child.props, id: childId })];
+                total++;
+              } else {
+                newChildren = [...newChildren, child];
+              }
             }
             break;
           default:
-            if (child.props.children) {
+            if (React.isValidElement<{ children?: React.ReactNode }>(child) && child.props.children) {
               const newKids = mapKids(child.props.children);
               newChildren = [...newChildren, React.cloneElement(child, { ...child.props, children: newKids })];
               break;
@@ -69,12 +68,14 @@ export const PopupMenuItems = React.forwardRef<HTMLDivElement, PopupMenuItemsPro
     const newChildren = mapKids(children);
 
     return newChildren;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [children, active, activeMode]);
 
   React.useEffect(() => {
     if (internalRef.current) {
       walkItems(internalRef.current.children);
     }
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [internalRef]);
 
   const walkItems = (items: HTMLCollection) => {
@@ -110,6 +111,7 @@ export const PopupMenuItems = React.forwardRef<HTMLDivElement, PopupMenuItemsPro
     } else {
       setOpened(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
   React.useEffect(() => {
@@ -117,6 +119,7 @@ export const PopupMenuItems = React.forwardRef<HTMLDivElement, PopupMenuItemsPro
       setActiveMode('hard');
       handleGoTo();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [goTo]);
 
   const mapItem = (item: Element) => {

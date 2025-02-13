@@ -1,7 +1,7 @@
 import Button from '@sk-web-gui/button';
 import Divider from '@sk-web-gui/divider';
 import { DefaultProps, cx, useForkRef } from '@sk-web-gui/utils';
-import React, { KeyboardEventHandler } from 'react';
+import React from 'react';
 import { defaultTabsContext } from './context';
 import { useTabs } from './use-tabs';
 
@@ -33,7 +33,7 @@ export const TabsButton = React.forwardRef<HTMLLIElement, TabsButtonProps>((prop
   const { color: contextColor, current, setCurrent, next, prev, active } = useTabs();
   const [mounted, setMounted] = React.useState<boolean>(false);
   const color = propsColor || contextColor || defaultTabsContext.color;
-  const menuRef = React.useRef<HTMLElement>();
+  const menuRef = React.useRef<HTMLElement>(null);
   const isActive = active === menuIndex;
   const isCurrent = current === menuIndex;
 
@@ -93,7 +93,7 @@ export const TabsButton = React.forwardRef<HTMLLIElement, TabsButtonProps>((prop
     return focused;
   };
 
-  const handleKeyboard: KeyboardEventHandler = (event) => {
+  const handleKeyboard: React.KeyboardEventHandler = (event) => {
     if (event.key === 'ArrowLeft') {
       event.preventDefault();
       event.stopPropagation();

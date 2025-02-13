@@ -15,7 +15,7 @@ export interface FileUploadFieldProps
   variant: 'vertical' | 'horizontal';
   /** @default false */
   invalid: boolean;
-  children: JSX.Element | JSX.Element[] | string;
+  children: React.JSX.Element | React.JSX.Element[] | string;
 }
 
 export const FileUploadField = React.forwardRef<HTMLSpanElement, FileUploadFieldProps>((props, ref) => {

@@ -14,7 +14,7 @@ export type ConfirmationDialogContextProviderProps = {
 
 export interface ConfirmDialogProps {
   title: string;
-  message: string | JSX.Element;
+  message: string | React.JSX.Element;
   confirmLabel?: string;
   dismissLabel?: string;
   dialogType?: 'warning' | 'error' | 'info';
@@ -27,11 +27,11 @@ type Resolver = (value: boolean | PromiseLike<boolean>) => void;
 export const ConfirmationDialogContextProvider: React.FC<ConfirmationDialogContextProviderProps> = (props) => {
   const { setShow, show, onHide } = useDialogShow();
   const [content, setContent] = React.useState<ConfirmDialogProps | null>();
-  const resolver = React.useRef<Resolver | undefined>();
+  const resolver = React.useRef<Resolver | undefined>(undefined);
 
   const handleShow = (
     title: string,
-    message: string | JSX.Element,
+    message: string | React.JSX.Element,
     confirmLabel?: string,
     dismissLabel?: string,
     dialogType?: 'warning' | 'error' | 'info',
