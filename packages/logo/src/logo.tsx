@@ -1,7 +1,7 @@
 import { Divider } from '@sk-web-gui/divider';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
-import { Logo as LogoSvg, Symbol } from './assets';
+import { RenderLogo } from './logo-variant';
 
 interface ILogoProps extends DefaultProps, Omit<React.ComponentPropsWithoutRef<'div'>, 'children'> {
   /**
@@ -17,6 +17,14 @@ interface ILogoProps extends DefaultProps, Omit<React.ComponentPropsWithoutRef<'
    * Is required if variant is set to 'service'
    */
   title?: string;
+  /**
+   * Controls which logo to display
+   */
+  logo?: React.ReactNode;
+  /**
+   * Controls which symbol to display
+   */
+  symbol?: React.ReactNode;
   /**
    * Adds a subtitle below the title.
    * Will only be shown if variant is 'service'
@@ -41,13 +49,13 @@ interface LogoWithText extends ILogoProps {
 export type LogoProps = LogoWithText | LogoWithoutText;
 
 export const Logo = React.forwardRef<HTMLDivElement, LogoProps>((props, ref) => {
-  const { variant: _variant, title, subtitle, className, inverted = false, ...rest } = props;
+  const { variant: _variant, title, subtitle, className, inverted = false, logo, symbol, ...rest } = props;
   const variant = _variant || (title ? 'service' : 'logo');
 
   return (
     <div ref={ref} className={cx('sk-logo', className)} data-variant={variant} data-inverted={inverted} {...rest}>
       <figure role="img" className="sk-logo-figure">
-        {variant === 'logo' ? <LogoSvg /> : <Symbol />}
+        <RenderLogo variant={variant} logo={logo} symbol={symbol} />
       </figure>
       {variant === 'service' && (
         <>

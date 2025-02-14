@@ -16,6 +16,7 @@ export default {
   args: {
     title: 'E-tjänster',
     subtitle: 'Sundsvalls kommun',
+    variant: 'service',
   },
 } as Meta<typeof Header>;
 
@@ -75,6 +76,8 @@ export const Template: StoryObj<typeof Header> = (args: React.ComponentPropsWith
         {...args}
         title={args.title}
         subtitle={args.subtitle}
+        logo={args.logo}
+        symbol={args.symbol}
         userMenu={<UserMenu menuGroups={menuGroups} />}
         mobileMenu={
           <Button iconButton>
