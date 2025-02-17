@@ -112,3 +112,5 @@ export const Template = (args: React.ComponentPropsWithRef<CardProps['Component'
     </Card>
   </div>
 );
+
+Template.storyName = 'Card';

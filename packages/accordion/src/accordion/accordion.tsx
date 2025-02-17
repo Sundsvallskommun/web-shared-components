@@ -58,8 +58,11 @@ export const AccordionComponent = React.forwardRef<HTMLUListElement, AccordionIn
     return getValidChildren(children).map((child, index) => {
       switch (child?.type) {
         case AccordionItem: {
-          const props = { ...child?.props, id: child?.props?.id || `${id}-child-${index}` };
-          return React.cloneElement(child, props);
+          if (React.isValidElement<React.ComponentProps<typeof AccordionItem>>(child)) {
+            const props = { ...child?.props, id: child?.props?.id || `${id}-child-${index}` };
+            return React.cloneElement(child, props);
+          }
+          return child;
         }
         default:
           return child;

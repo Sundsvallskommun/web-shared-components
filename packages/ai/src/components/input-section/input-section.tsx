@@ -1,6 +1,6 @@
 import { Input } from '@sk-web-gui/forms';
 import { cx } from '@sk-web-gui/utils';
-import React, { FormEvent } from 'react';
+import React from 'react';
 import { useAssistantStore } from '../../assistant-store';
 import { useChat } from '../../hooks';
 import { InputSectionButton } from './input-section-button';
@@ -27,7 +27,7 @@ export interface InputSectionProps extends React.ComponentPropsWithoutRef<'form'
   placeholder?: InputSectionInputProps['placeholder'];
   onChangeValue?: InputSectionInputProps['onChange'];
   value?: string;
-  button?: JSX.Element;
+  button?: React.JSX.Element;
   autoFocus?: boolean;
 }
 
@@ -65,7 +65,7 @@ export const InputSection = React.forwardRef<HTMLFormElement, InputSectionProps>
     setQuery(event.target.value);
   };
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (onSendQuery) {
       onSendQuery(query);

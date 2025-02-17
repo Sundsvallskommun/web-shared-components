@@ -14,7 +14,7 @@ export interface FileUploadAreaProps
   dragDropEnabled?: boolean;
   /** @default viewport */
   relativity?: 'viewport' | 'component';
-  children: JSX.Element | JSX.Element[] | string;
+  children: React.JSX.Element | React.JSX.Element[] | string;
 }
 
 export const FileUploadArea = React.forwardRef<HTMLDivElement, FileUploadAreaProps>((props, ref) => {

@@ -26,17 +26,17 @@ export interface AutoTableHeader {
   screenReaderOnly?: boolean;
   columnPosition?: 'left' | 'center' | 'right';
   sticky?: boolean;
-  renderColumn?: (value: TableValue, item: TableItem) => JSX.Element;
+  renderColumn?: (value: TableValue, item: TableItem) => React.JSX.Element;
 }
 export interface TableHeader {
-  element: JSX.Element;
+  element: React.JSX.Element;
   isColumnSortable?: boolean;
   isShown?: boolean;
   screenReaderOnly?: boolean;
   sticky?: boolean;
 }
 export interface AutoTableColumn {
-  element: JSX.Element;
+  element: React.JSX.Element;
   isShown?: boolean;
 }
 

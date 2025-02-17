@@ -55,11 +55,36 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => 
   const inverted = invert.toString();
 
   const validChildren = getValidChildren(children);
+
   const clones = validChildren.map((child) => {
-    return cloneElement(child, {
-      color,
-      inverted,
-    });
+    if (React.isValidElement<CardImageProps>(child)) {
+      return cloneElement(child, {
+        color,
+        inverted,
+      });
+    }
+    if (React.isValidElement<CardBodyProps>(child)) {
+      return cloneElement(child, {
+        color,
+        inverted,
+      });
+    }
+    if (React.isValidElement<CardTextProps>(child)) {
+      return cloneElement(child, {
+        color,
+      });
+    }
+    if (React.isValidElement<CardHeaderProps>(child)) {
+      return cloneElement(child, {
+        color,
+      });
+    }
+    if (React.isValidElement<CardMetaProps>(child)) {
+      return cloneElement(child, {
+        color,
+      });
+    }
+    return child;
   });
 
   return (

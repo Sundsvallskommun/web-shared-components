@@ -55,7 +55,7 @@ export interface ButtonContentProps {
   size?: ButtonProps['size'];
 }
 
-export const ButtonContent: React.FC<ButtonContentProps> = (props: ButtonContentProps): JSX.Element => {
+export const ButtonContent: React.FC<ButtonContentProps> = (props: ButtonContentProps): React.JSX.Element => {
   const { size = 'md', loading, loadingText, leftIcon, rightIcon, children } = props;
   return (
     <>

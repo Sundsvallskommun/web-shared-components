@@ -8,7 +8,7 @@ import {
 import { MenuIndex } from './types';
 
 export interface MenuVerticalProviderProps {
-  children: JSX.Element | ((parameters: UseMenuVerticalProps) => JSX.Element);
+  children: React.JSX.Element | ((parameters: UseMenuVerticalProps) => React.JSX.Element);
   rootId?: UseMenuVerticalPropsStates['rootId'];
   rootMenuId?: UseMenuVerticalPropsStates['rootMenuId'];
   current?: UseMenuVerticalPropsStates['current'];

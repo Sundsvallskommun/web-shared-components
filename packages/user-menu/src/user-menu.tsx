@@ -4,7 +4,7 @@ import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
 export interface MenuItemGroup {
   label: string;
-  elements: { label: string; element: () => JSX.Element }[];
+  elements: { label: string; element: () => React.JSX.Element }[];
 }
 
 export interface UserMenuProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {

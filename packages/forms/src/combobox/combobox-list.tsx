@@ -1,8 +1,8 @@
-import { DefaultProps, cx, getValidChildren, useForkRef, useOnElementOutside } from '@sk-web-gui/utils';
-import React, { useState } from 'react';
+import { DefaultProps, Dict, cx, getValidChildren, useForkRef, useOnElementOutside } from '@sk-web-gui/utils';
+import React from 'react';
 import { useCombobox } from './combobox-context';
-import { ComboboxOptgroup } from './combobox-optgroup';
-import { ComboboxOption } from './combobox-option';
+import { ComboboxOptgroup, ComboboxOptgroupProps } from './combobox-optgroup';
+import { ComboboxOption, ComboboxOptionProps } from './combobox-option';
 
 export interface ComboboxListProps extends DefaultProps, React.ComponentPropsWithRef<'fieldset'> {
   multiple?: boolean;
@@ -15,7 +15,11 @@ export interface ComboboxListProps extends DefaultProps, React.ComponentPropsWit
 }
 
 export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListProps>((props, ref) => {
-  const [position, setPosition] = useState<'under' | 'over'>('over');
+  const [position, setPosition] = React.useState<'under' | 'over'>('over');
+
+  type OptionType =
+    | (typeof optionType & { value?: string; children?: string; checked?: boolean; id?: string })
+    | ComboboxOptionProps;
 
   const internalRef = React.useRef<HTMLFieldSetElement>(null);
   const { className, multiple: _multiple, size: _size, value: _value, children, optionType, ...rest } = props;
@@ -35,19 +39,20 @@ export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListPr
     if (_value !== undefined) {
       context.setValue?.(typeof _value === 'string' ? [_value] : _value);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [_value, context.setValue]);
 
   const size = _size || context.size || 'md';
   const multiple = _multiple !== undefined ? _multiple : context.multiple || false;
 
-  const sortSelected = (a: React.ReactElement, b: React.ReactElement) => {
+  const sortSelected = (a: React.ReactElement<Dict>, b: React.ReactElement<Dict>) => {
     if (!sortSelectedFirst) return 0;
 
     const achecked =
       a.props.checked !== undefined
         ? a.props.checked
         : context?.value?.length > 0
-          ? context?.value.includes(a.props.value)
+          ? context?.value.includes(a?.props?.value)
           : false;
     const bchecked =
       b.props.checked !== undefined
@@ -59,7 +64,7 @@ export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListPr
   };
 
   const getFilteredChildren = (children: React.ReactNode, groupIndex?: number) =>
-    getValidChildren(children)
+    getValidChildren<OptionType>(children)
       .filter((child) => child.type === ComboboxOption || typeof child.type === optionType)
       .sort(sortSelected)
       .filter((child) =>
@@ -70,14 +75,14 @@ export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListPr
       )
       .map((child, index) =>
         React.cloneElement(child, {
-          ...child.props,
+          ...(typeof child.props === 'object' ? child.props : {}),
           id: `${context.listId}-${groupIndex ? `${groupIndex}-` : ''}${index}`,
         })
       );
 
   const getOptionsAndGroups = () => {
     const options = getFilteredChildren(children);
-    const groups = getValidChildren(children)
+    const groups = getValidChildren<ComboboxOptgroupProps>(children)
       .filter((child) => child.type === ComboboxOptgroup)
       .map((group, index) => {
         return React.cloneElement(group, {
@@ -91,16 +96,20 @@ export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListPr
 
   const options = React.useMemo(() => {
     return getOptionsAndGroups();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [context.searchValue, open]);
 
   React.useEffect(() => {
     if (setTotal && setIds && options) {
-      const allFlat = options.map((opt) => (opt.type === ComboboxOptgroup ? opt.props.children : opt)).flat();
-      const ids = allFlat.map((child) => child.props.id);
+      const allFlat = options
+        .map((opt) => (opt.type === ComboboxOptgroup || opt.type === optionType ? opt.props.children : opt))
+        .flat();
+      const ids = allFlat.map((child) => (React.isValidElement<OptionType>(child) ? (child?.props?.id ?? '') : ''));
       const count = React.Children.count(allFlat);
       setIds(ids);
       setTotal(count);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options, setTotal, setIds]);
 
   return (

@@ -1,7 +1,7 @@
 export type DialogContextType = {
   showConfirmation: (
     title: string,
-    message: string | JSX.Element,
+    message: string | React.JSX.Element,
     confirmLabel?: string,
     dismissLabel?: string,
     dialogType?: 'warning' | 'error' | 'info',

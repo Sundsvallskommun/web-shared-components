@@ -41,7 +41,9 @@ export const AICornerModuleMobileMenu = React.forwardRef<HTMLDivElement, AICorne
       }
     }, [show]);
 
-    useOnClickOutside(internalRef, () => {
+    //NOTE: Cast to RefObject<HTMLDivElement> to avoid type error because of bug in usehooks-ts
+    //Remove this when the bug is fixed
+    useOnClickOutside<HTMLDivElement>(internalRef as React.RefObject<HTMLDivElement>, () => {
       onClose?.();
     });
 

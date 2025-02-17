@@ -50,7 +50,7 @@ export interface FileUploadListItemIconProps
   showIcon?: boolean;
   /** @default true */
   showPreview?: boolean;
-  children?: JSX.Element | JSX.Element[] | string;
+  children?: React.JSX.Element | React.JSX.Element[] | string;
 }
 
 export const FileUploadListItemIcon = React.forwardRef<HTMLDivElement, FileUploadListItemIconProps>((props, ref) => {

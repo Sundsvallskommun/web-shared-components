@@ -20,7 +20,7 @@ export interface FileUploadButtonProps
   /** @default false */
   withModal?: boolean;
   modalListProps?: React.ComponentProps<typeof FileUploadList>;
-  children?: JSX.Element | JSX.Element[] | string;
+  children?: React.JSX.Element | React.JSX.Element[] | string;
   fileNameValidationFunctions?: Record<string, (value: string) => boolean | string>;
 }
 

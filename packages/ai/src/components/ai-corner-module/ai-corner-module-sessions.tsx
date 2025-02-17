@@ -1,6 +1,6 @@
 import { addDays, format } from 'date-fns';
 import AICornerModuleSessionHistory, { AICornerModuleSessionHistoryProps } from './ai-corner-module-session-history';
-import React, { useId } from 'react';
+import React from 'react';
 import { cx } from '@sk-web-gui/utils';
 import { AssistantSession, SessionHistory } from '../../types';
 import { SessionStoreSession, useSessions } from '../../session-store';
@@ -8,16 +8,16 @@ import { SessionStoreSession, useSessions } from '../../session-store';
 export interface AICornerModuleSessionsProps
   extends Omit<AICornerModuleSessionHistoryProps, 'title' | 'onKeyNext' | 'onKeyPrev' | 'sessions'> {
   sessions?: SessionHistory;
-  itemsBefore?: JSX.Element[];
-  itemsAfter?: JSX.Element[];
+  itemsBefore?: React.JSX.Element[];
+  itemsAfter?: React.JSX.Element[];
   focus?: boolean;
 }
 
 export const AICornerModuleSessions = React.forwardRef<HTMLDivElement, AICornerModuleSessionsProps>((props, ref) => {
   const [sessions, setSessions] = React.useState<Array<AssistantSession | SessionStoreSession>>([]);
   const [_sessions, refreshSessions] = useSessions((state) => [state.sessions, state.refreshSessions]);
-  const [itemsBefore, setItemsBefore] = React.useState<JSX.Element[] | undefined>(undefined);
-  const [itemsAfter, setItemsAfter] = React.useState<JSX.Element[] | undefined>(undefined);
+  const [itemsBefore, setItemsBefore] = React.useState<React.JSX.Element[] | undefined>(undefined);
+  const [itemsAfter, setItemsAfter] = React.useState<React.JSX.Element[] | undefined>(undefined);
   const [ids, setIds] = React.useState<string[]>([]);
   const {
     sessions: _propssessions,
@@ -54,7 +54,7 @@ export const AICornerModuleSessions = React.forwardRef<HTMLDivElement, AICornerM
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const autoId = useId();
+  const autoId = React.useId();
   const idPrefix = 'sk-ai-session-item-';
 
   const today = format(new Date(), 'yyyyMMdd');
@@ -118,7 +118,7 @@ export const AICornerModuleSessions = React.forwardRef<HTMLDivElement, AICornerM
   React.useEffect(() => {
     const newIds: string[] = [];
     if (_itemsBefore) {
-      const newItems: JSX.Element[] = [];
+      const newItems: React.JSX.Element[] = [];
       _itemsBefore.forEach((item, index) => {
         const newId = item.props.id || `${idPrefix}before-${autoId}-${index}`;
         newItems.push(
@@ -140,7 +140,7 @@ export const AICornerModuleSessions = React.forwardRef<HTMLDivElement, AICornerM
     }
 
     if (_itemsAfter) {
-      const newItems: JSX.Element[] = [];
+      const newItems: React.JSX.Element[] = [];
       _itemsAfter.forEach((item, index) => {
         const newId = item.props.id || `${idPrefix}after-${autoId}-${index}`;
         newItems.push(

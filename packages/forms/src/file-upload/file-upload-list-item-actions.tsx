@@ -36,8 +36,8 @@ export interface FileUploadListItemActionsProps
   showEditCancel?: boolean;
   onEditCancel?: OnCallWithUploadFile | (() => void);
   onProgressCancel?: OnCallWithUploadFile | (() => void);
-  extraActions?: JSX.Element | JSX.Element[] | string;
-  children?: JSX.Element | JSX.Element[] | string;
+  extraActions?: React.JSX.Element | React.JSX.Element[] | string;
+  children?: React.JSX.Element | React.JSX.Element[] | string;
 }
 
 export const FileUploadListItemActions = React.forwardRef<HTMLDivElement, FileUploadListItemActionsProps>(

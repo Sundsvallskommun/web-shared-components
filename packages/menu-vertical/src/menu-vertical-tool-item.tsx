@@ -2,7 +2,7 @@ import { DefaultProps, cx } from '@sk-web-gui/utils';
 import React from 'react';
 
 interface IMenuVerticalToolItemProps extends DefaultProps {
-  children: JSX.Element | JSX.Element[] | string;
+  children: React.JSX.Element | React.JSX.Element[] | string;
 }
 
 export interface MenuVerticalToolItemProps

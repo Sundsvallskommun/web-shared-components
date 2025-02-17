@@ -9,7 +9,7 @@ interface AIServiceModuleHeaderProps
    * Icon before title
    * Only used in secondary variant
    */
-  icon?: JSX.Element;
+  icon?: React.JSX.Element;
 }
 
 export const AIServiceModuleHeader = React.forwardRef<HTMLDivElement, AIServiceModuleHeaderProps>((props, ref) => {

@@ -1,5 +1,5 @@
 import { CustomOnChangeEvent, __DEV__, cx, useForkRef } from '@sk-web-gui/utils';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useFormControl } from '../form-control';
 import { UseComboboxProps, useCombobox } from './combobox-context';
 import { useComboboxStyles } from './styles';
@@ -60,14 +60,16 @@ export const ComboboxInput = React.forwardRef<HTMLInputElement, ComboboxInputPro
   const value = contextValue || _incomingValue || '';
   const searchValue = contextSearchValue || _searchValue || '';
 
-  useEffect(() => {
+  React.useEffect(() => {
     const initialValue = defaultValue || [];
     setValue(typeof initialValue === 'string' ? [initialValue] : initialValue);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [defaultValue]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const value = _searchValue || '';
     setSearchValue(value);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [_searchValue]);
 
   const {
@@ -103,11 +105,12 @@ export const ComboboxInput = React.forwardRef<HTMLInputElement, ComboboxInputPro
         setValue(_incomingValue);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [_incomingValue]);
 
   const [valueMemo, setValueMemo] = React.useState<typeof value | null>(value);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const _value = value.map((opt) => labels[opt]);
 
     if (_.isEqual(_value, valueMemo) === false) {
@@ -128,6 +131,7 @@ export const ComboboxInput = React.forwardRef<HTMLInputElement, ComboboxInputPro
         onChangeSearch?.({ target: { value: '', name: name ?? '' } } as CustomOnChangeEvent<string>);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {

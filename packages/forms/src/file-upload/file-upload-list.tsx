@@ -13,7 +13,7 @@ export interface FileUploadListProps
   files?: UploadFile[];
   placeholder?: React.ReactNode;
 
-  children?: JSX.Element | JSX.Element[] | string;
+  children?: React.JSX.Element | React.JSX.Element[] | string;
 }
 
 export const FileUploadList = React.forwardRef<HTMLUListElement, FileUploadListProps>((props, ref) => {

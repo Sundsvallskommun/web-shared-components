@@ -1,5 +1,5 @@
 import { DefaultProps, __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
-import React, { useImperativeHandle, useRef, useState } from 'react';
+import React from 'react';
 
 import { RadioButtonProps } from './radio';
 import { useRadioButtonGroupClass } from './styles';
@@ -61,12 +61,12 @@ export const RadioButtonGroup = React.forwardRef<RadioButtonGroupElement, RadioB
     className,
     ...rest
   } = props;
-  const { current: isControlled } = useRef(valueProp != null);
-  const [value, setValue] = useState(defaultValue || null);
+  const { current: isControlled } = React.useRef(valueProp != null);
+  const [value, setValue] = React.useState(defaultValue || null);
   const _value = isControlled ? valueProp : value;
   const autoId = React.useId();
 
-  const rootRef = useRef<HTMLUListElement>(null);
+  const rootRef = React.useRef<HTMLUListElement>(null);
 
   const _onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!isControlled) {
@@ -90,7 +90,7 @@ export const RadioButtonGroup = React.forwardRef<RadioButtonGroupElement, RadioB
     value: _value,
   };
 
-  const validChildren = getValidChildren(children);
+  const validChildren = getValidChildren<RadioButtonProps>(children);
 
   const clones = validChildren.map((child, index) => {
     return (
@@ -101,7 +101,7 @@ export const RadioButtonGroup = React.forwardRef<RadioButtonGroupElement, RadioB
   });
 
   // Calling focus() on the radiogroup should focus on the selected option or first enabled option
-  useImperativeHandle(
+  React.useImperativeHandle(
     ref,
     () => ({
       focus: () => {

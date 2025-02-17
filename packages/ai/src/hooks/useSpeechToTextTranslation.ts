@@ -1,6 +1,6 @@
 import * as speechsdk from 'microsoft-cognitiveservices-speech-sdk';
 import { ResultReason, TranslationRecognizer } from 'microsoft-cognitiveservices-speech-sdk';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import 'regenerator-runtime/runtime';
 import { getAzureToken } from '../services/azure-service';
 import { AzureToken } from '../types/azure';
@@ -35,13 +35,13 @@ export const useSpeechToTextTranslation: UseSpeechToText = (
   continuous = false,
   token
 ) => {
-  const [delayedStart, setDelayedstart] = useState<boolean>(false);
-  const [error, setError] = useState<SpeechToTextError | undefined>(undefined);
-  const [transcripts, setTranscripts] = useState<string[]>(['']);
-  const [translations, setTranslations] = useState<string[]>(['']);
-  const recognizer = React.useRef<TranslationRecognizer | undefined>();
-  const [done, setDone] = useState<boolean>(false);
-  const [listening, setListening] = useState(false);
+  const [delayedStart, setDelayedstart] = React.useState<boolean>(false);
+  const [error, setError] = React.useState<SpeechToTextError | undefined>(undefined);
+  const [transcripts, setTranscripts] = React.useState<string[]>(['']);
+  const [translations, setTranslations] = React.useState<string[]>(['']);
+  const recognizer = React.useRef<TranslationRecognizer | undefined>(undefined);
+  const [done, setDone] = React.useState<boolean>(false);
+  const [listening, setListening] = React.useState(false);
 
   const transcript = transcripts.join(' ');
   const translation = translations.join(' ');
@@ -115,8 +115,9 @@ export const useSpeechToTextTranslation: UseSpeechToText = (
     recognizer.current = myRecognizer;
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     startStt();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [targetLanguage, sourceLanguage]);
 
   const start = async () => {
@@ -147,10 +148,11 @@ export const useSpeechToTextTranslation: UseSpeechToText = (
     }
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (recognizer.current && delayedStart) {
       start();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [recognizer.current, delayedStart]);
 
   const toggleListening = () => {

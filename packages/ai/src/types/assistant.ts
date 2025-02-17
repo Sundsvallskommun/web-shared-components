@@ -59,7 +59,7 @@ export interface AssistantInfo {
   /**
    * Image element, or url to image
    */
-  avatar?: JSX.Element | string;
+  avatar?: React.JSX.Element | string;
   name: string;
   shortName?: string;
   title?: string;

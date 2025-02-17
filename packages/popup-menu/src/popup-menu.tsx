@@ -1,21 +1,24 @@
 import { __DEV__, useForkRef } from '@sk-web-gui/utils';
 import React from 'react';
 import { useOnClickOutside } from 'usehooks-ts';
-import { PopupMenuButton } from './popup-menu-button';
-import { PopupMenuPanel } from './popup-menu-panel';
+import { PopupMenuButton, PopupMenuButtonProps } from './popup-menu-button';
+import { PopupMenuPanel, PopupMenuPanelProps } from './popup-menu-panel';
 import { GoTo, PopupMenuContext } from './popupmenu-context';
 
 interface GetButtonProps {
   children: React.ReactNode;
-  buttonRef: React.RefObject<HTMLButtonElement>;
+  buttonRef: React.RefObject<HTMLButtonElement | null>;
 }
 const GetButton: React.FC<GetButtonProps> = ({ children, buttonRef }) => {
   const button = React.Children.toArray(children).find(
-    (child) => React.isValidElement(child) && typeof child.type !== 'string' && child?.type === PopupMenuButton
-  ) as React.ReactElement;
-  const returnButtonRef = useForkRef(button.props.ref, buttonRef);
+    (child) => React.isValidElement<PopupMenuButtonProps>(child) && child?.type === PopupMenuButton
+  );
+  const returnButtonRef = useForkRef<PopupMenuButtonProps>(
+    React.isValidElement<PopupMenuButtonProps>(button) ? button?.props?.ref : null,
+    buttonRef
+  );
 
-  if (button) {
+  if (button && React.isValidElement<PopupMenuButtonProps>(button)) {
     return React.cloneElement(button, {
       ...button.props,
       ref: button.props.ref ? returnButtonRef : buttonRef,
@@ -27,15 +30,21 @@ const GetButton: React.FC<GetButtonProps> = ({ children, buttonRef }) => {
 
 interface GetPanelProps {
   children: React.ReactNode;
-  internalRef: React.RefObject<HTMLDivElement>;
+  internalRef: React.RefObject<HTMLDivElement | null>;
 }
 const GetPanel: React.FC<GetPanelProps> = ({ children, internalRef }) => {
   const panel = React.Children.toArray(children).find(
-    (child) => React.isValidElement(child) && typeof child.type !== 'string' && child?.type === PopupMenuPanel
+    (child) =>
+      React.isValidElement<typeof PopupMenuPanel>(child) &&
+      typeof child.type !== 'string' &&
+      child?.type === PopupMenuPanel
   ) as React.ReactElement;
-  const returnPanelRef = useForkRef(panel.props.ref, internalRef);
+  const returnPanelRef = useForkRef(
+    React.isValidElement<PopupMenuPanelProps>(panel) ? panel?.props?.ref : null,
+    internalRef
+  );
 
-  if (panel) {
+  if (panel && React.isValidElement<PopupMenuPanelProps>(panel)) {
     return React.cloneElement(panel, {
       ...panel.props,
       ref: panel.props.ref ? returnPanelRef : internalRef,
@@ -141,7 +150,9 @@ export const PopupMenuComponent: React.FC<PopupMenuComponentProps> = (props) => 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [_open]);
 
-  useOnClickOutside(internalRef, (event: MouseEvent | TouchEvent | FocusEvent) => {
+  //NOTE: Cast to RefObject<HTMLDivElement> to avoid type error because of bug in usehooks-ts
+  //Remove this when the bug is fixed
+  useOnClickOutside(internalRef as React.RefObject<HTMLElement>, (event: MouseEvent | TouchEvent | FocusEvent) => {
     const target = event.target as Node;
     const isOutsideButton = buttonRef.current && !buttonRef.current.contains(target);
     if (isOutsideButton) {

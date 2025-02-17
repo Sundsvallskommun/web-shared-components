@@ -136,7 +136,7 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
     throw new Error('No assistant found');
   }
 
-  const getUserAvatar = (): JSX.Element => {
+  const getUserAvatar = (): React.JSX.Element => {
     if (avatars?.user) {
       if (avatars.user.type === Avatar) {
         return React.cloneElement(avatars.user, {
@@ -151,7 +151,7 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
     }
   };
 
-  const getSystemAvatar = (): JSX.Element => {
+  const getSystemAvatar = (): React.JSX.Element => {
     if (avatars?.system) {
       if (avatars.system.type === Avatar) {
         return React.cloneElement(avatars.system, {

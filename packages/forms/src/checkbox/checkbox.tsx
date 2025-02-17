@@ -91,7 +91,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxItemProps>((p
 
   const checkboxLabelClasses = useCheckboxLabelClass({ size });
 
-  const ownRef = useRef();
+  const ownRef = useRef<HTMLInputElement>(null);
   const _ref = useForkRef(ownRef, ref);
 
   useEffect(() => {

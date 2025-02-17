@@ -58,7 +58,7 @@ export const AIServiceModuleAssistantExpanded = React.forwardRef<HTMLDivElement,
       handleAutoScroll();
     };
 
-    const getUserAvatar = (): JSX.Element => {
+    const getUserAvatar = (): React.JSX.Element => {
       if (avatars?.user) {
         if (avatars.user.type === Avatar) {
           return React.cloneElement(avatars.user, {
@@ -73,7 +73,7 @@ export const AIServiceModuleAssistantExpanded = React.forwardRef<HTMLDivElement,
       }
     };
 
-    const getSystemAvatar = (): JSX.Element => {
+    const getSystemAvatar = (): React.JSX.Element => {
       if (avatars?.system) {
         if (avatars.system.type === Avatar) {
           return React.cloneElement(avatars.system, {

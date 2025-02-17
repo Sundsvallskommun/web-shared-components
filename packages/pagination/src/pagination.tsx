@@ -1,5 +1,5 @@
 import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
-import React, { KeyboardEvent, useEffect, useState } from 'react';
+import React from 'react';
 import { usePaginationClass } from './styles';
 import { Select } from '@sk-web-gui/forms';
 import { Icon } from '@sk-web-gui/icon';
@@ -59,13 +59,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
   });
 
   const minPage = 1;
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const internalHandleChange = (page: number) => {
-    if (page > minPage - 1 && page < pages + 1) {
-      setCurrentPage(page);
-    }
-  };
+  const [currentPage, setCurrentPage] = React.useState(1);
 
   const extraEnd = showLast ? 1 : 0;
   const shownBefore = showConstantPages
@@ -87,9 +81,17 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
   const shouldShowLabel: (idx: number, cP: number, pBaA: number) => boolean = (idx) =>
     idx !== 0 && idx !== pages - 1 && idx > currentPage - shownBefore - 2 && idx < currentPage + shownAfter;
 
-  useEffect(() => {
+  React.useEffect(() => {
+    const internalHandleChange = (page: number) => {
+      if (page > minPage - 1 && page < pages + 1) {
+        setCurrentPage(page);
+      }
+    };
+
     internalHandleChange(activePage);
-  }, [activePage, internalHandleChange]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activePage]);
 
   const pageLabel = (pageNumber: number) => {
     const active = currentPage === pageNumber;
@@ -113,13 +115,13 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
   const prevNextButton: (props: {
     next: boolean;
     label: string;
-    icon: JSX.Element;
+    icon: React.JSX.Element;
     triggerNumber: number;
     step: number;
     reverse?: boolean;
     tabIndex?: number;
     index: number;
-  }) => JSX.Element = ({ next, label, icon, triggerNumber = 1, step = 1, tabIndex }) => {
+  }) => React.JSX.Element = ({ next, label, icon, triggerNumber = 1, step = 1, tabIndex }) => {
     const isDisabled = currentPage === triggerNumber;
     return (
       <Button
@@ -201,7 +203,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>((pro
     }
   };
 
-  const keyboardHandler = (event: KeyboardEvent<HTMLButtonElement>) => {
+  const keyboardHandler = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     const allItems = Array.from(event.currentTarget?.parentElement?.parentElement?.children as HTMLCollection);
     const total = allItems?.length;
     const index = event.currentTarget?.parentElement ? allItems.indexOf(event.currentTarget?.parentElement) : -1;

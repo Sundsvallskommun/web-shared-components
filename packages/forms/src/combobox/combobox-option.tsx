@@ -23,12 +23,14 @@ export const ComboboxOption = React.forwardRef<HTMLInputElement, ComboboxOptionP
     if (context.activeId === id && inputRef.current) {
       inputRef.current.focus();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [context.activeId]);
 
   React.useEffect(() => {
     if (children && value) {
       context.addLabel?.(children, value);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [children, value]);
 
   React.useEffect(() => {
@@ -39,6 +41,7 @@ export const ComboboxOption = React.forwardRef<HTMLInputElement, ComboboxOptionP
         context.remove?.(value);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [_checked]);
 
   const checked =

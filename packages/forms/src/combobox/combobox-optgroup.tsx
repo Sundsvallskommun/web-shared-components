@@ -1,7 +1,7 @@
 import { cx } from '@sk-web-gui/utils';
 import React from 'react';
 
-interface ComboboxOptgroupProps extends React.ComponentPropsWithoutRef<'div'> {
+export interface ComboboxOptgroupProps extends React.ComponentPropsWithoutRef<'div'> {
   label?: string;
 }
 
