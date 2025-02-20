@@ -28,10 +28,6 @@ export interface HeaderComponentProps extends DefaultProps, React.ComponentProps
   mobileMenu?: React.ReactNode;
   /*alternative logo*/
   logo?: React.ReactNode;
-  /*alternative symbol*/
-  symbol?: React.ReactNode;
-  /*variant for logo*/
-  variant?: 'logo' | 'symbol' | 'service';
 }
 
 interface LinkWrapper {
@@ -55,8 +51,6 @@ export const HeaderComponent = React.forwardRef<HTMLDivElement, HeaderComponentP
     mainMenu,
     mobileMenu,
     logo,
-    symbol,
-    variant,
     ...rest
   } = props;
 
@@ -84,7 +78,7 @@ export const HeaderComponent = React.forwardRef<HTMLDivElement, HeaderComponentP
                 className="no-underline"
                 aria-label={ariaLabel || `${subtitle ? `${title} ${subtitle}` : `${title}`}. Gå till startsidan.`}
               >
-                <Logo variant={variant} title={title} subtitle={subtitle} logo={logo} symbol={symbol} />
+                {logo ? logo : <Logo variant="service" title={title} subtitle={subtitle} />}
               </Link>
             </LinkWrapper>
           )}

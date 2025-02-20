@@ -14,9 +14,8 @@ export default {
   component: Header,
   tags: ['autodocs'],
   args: {
-    title: 'E-tjänster',
-    subtitle: 'Sundsvalls kommun',
-    variant: 'service',
+     title: 'E-tjänster',
+     subtitle: 'Sundsvalls kommun',
   },
 } as Meta<typeof Header>;
 
@@ -77,7 +76,6 @@ export const Template: StoryObj<typeof Header> = (args: React.ComponentPropsWith
         title={args.title}
         subtitle={args.subtitle}
         logo={args.logo}
-        symbol={args.symbol}
         userMenu={<UserMenu menuGroups={menuGroups} />}
         mobileMenu={
           <Button iconButton>
