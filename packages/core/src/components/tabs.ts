@@ -18,6 +18,13 @@ export const Tabs = (colors: string[]) => ({
           },
         },
 
+        '&:hover': {
+          // hover
+          '.sk-tabs-list-item-divider': {
+            '@apply opacity-90': {},
+          },
+        },
+
         '&-button': {
           '@apply h-auto border-0 py-0 px-2': {},
           // ring
@@ -27,8 +34,8 @@ export const Tabs = (colors: string[]) => ({
             '@apply text-dark-disabled cursor-default': {},
           },
 
-          '&[aria-readonly="false"]:hover,&:focus-visible': {
-            // hover
+          '&:focus-visible': {
+            // focus
             '@apply ring-[.3rem]': {},
             '@apply ring-ring': {},
             '@apply ring-offset-background-content': {},
