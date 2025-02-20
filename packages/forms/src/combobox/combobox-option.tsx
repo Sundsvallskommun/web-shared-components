@@ -6,7 +6,6 @@ import { Check } from 'lucide-react';
 
 export interface ComboboxOptionProps extends DefaultProps, Omit<React.ComponentPropsWithRef<'input'>, 'onClick'> {
   value: string;
-  checked?: boolean;
   children: string;
   multiple?: boolean;
   disabled?: boolean;
@@ -14,7 +13,7 @@ export interface ComboboxOptionProps extends DefaultProps, Omit<React.ComponentP
 }
 
 export const ComboboxOption = React.forwardRef<HTMLInputElement, ComboboxOptionProps>((props, ref) => {
-  const { className, value, checked: _checked, children, multiple: _multiple, onChange, disabled, id, ...rest } = props;
+  const { className, value, children, multiple: _multiple, onChange, disabled, id, ...rest } = props;
 
   const inputRef = React.useRef<HTMLInputElement>(null);
   const context = useCombobox();
@@ -31,27 +30,14 @@ export const ComboboxOption = React.forwardRef<HTMLInputElement, ComboboxOptionP
     }
   }, [children, value]);
 
-  React.useEffect(() => {
-    if (_checked !== undefined) {
-      if (checked) {
-        context.select?.(value);
-      } else {
-        context.remove?.(value);
-      }
-    }
-  }, [_checked]);
-
-  const checked =
-    _checked !== undefined ? _checked : context?.value?.length > 0 ? context?.value.includes(value) : false;
+  const checked = context?.value?.length > 0 ? context?.value.includes(value) : false;
   const multiple = _multiple !== undefined ? _multiple : context.multiple || false;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (_checked === undefined) {
-      if (multiple && context.value.includes(value)) {
-        context.remove?.(value);
-      } else {
-        context.select?.(value);
-      }
+    if (multiple && context.value.includes(value)) {
+      context.remove?.(value);
+    } else {
+      context.select?.(value);
     }
     onChange?.(event);
   };
