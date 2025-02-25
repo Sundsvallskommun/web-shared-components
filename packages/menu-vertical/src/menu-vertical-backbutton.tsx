@@ -5,7 +5,7 @@ import React from 'react';
 import { ArrowLeft } from 'lucide-react';
 
 interface IMenuVerticalBackButtonProps extends DefaultProps {
-  children: JSX.Element | string;
+  children: React.JSX.Element | string;
 }
 
 export interface MenuVerticalBackButtonProps

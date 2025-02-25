@@ -21,12 +21,18 @@ export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>((p
 
   const validChildren = getValidChildren(children);
   const clones = validChildren.map((child, i) => {
-    return React.cloneElement(child, {
-      size: size || child.props.size,
-      variant: child.props.variant || variant,
-      disabled: child.props.disabled || disabled,
-      key: `sk-btn-group-button-${i}`,
-    });
+    if (React.isValidElement<ButtonProps>(child)) {
+      return React.cloneElement(child, {
+        size: size || child.props.size,
+        variant: child.props.variant || variant,
+        disabled: child.props.disabled || disabled,
+        key: `sk-btn-group-button-${i}`,
+      });
+    } else {
+      return React.cloneElement(child, {
+        key: `sk-btn-group-button-${i}`,
+      });
+    }
   });
 
   return (

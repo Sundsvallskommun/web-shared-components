@@ -40,7 +40,7 @@ type Callback = (callbackProperties: {
 }) => void;
 
 export const useOnElementOutside = (
-  ref: React.RefObject<HTMLElement>,
+  ref: React.RefObject<HTMLElement | null>,
   callback: Callback,
   dependencies: React.DependencyList,
   options?: UseOnElementOutsideOptions
@@ -76,7 +76,8 @@ export const useOnElementOutside = (
 
   React.useEffect(() => {
     handlePosition();
-  }, dependencies);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [...(dependencies || [])]);
 
   React.useEffect(() => {
     const handleScrollUpdate = () => {
@@ -91,6 +92,8 @@ export const useOnElementOutside = (
     return () => {
       window.removeEventListener('scroll', handleScrollUpdate);
     };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [defaultOptions.updateOnScroll]);
 
   React.useEffect(() => {
@@ -105,21 +108,25 @@ export const useOnElementOutside = (
     return () => {
       window.removeEventListener('resize', handleResize);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [defaultOptions.updateOnResize]);
 
   React.useEffect(() => {
     if (defaultOptions.updateOnScroll) {
       handlePosition();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scrollX, scrollY, defaultOptions?.updateOnScroll]);
 
   React.useEffect(() => {
     if (defaultOptions.updateOnResize) {
       handlePosition();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [winHeight, winWidth, defaultOptions?.updateOnResize]);
 
   React.useEffect(() => {
     callback({ isOutside, isOutsideTop, isOutsideBottom, isOutsideLeft, isOutsideRight });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOutside, isOutsideTop, isOutsideBottom, isOutsideLeft, isOutsideRight]);
 };

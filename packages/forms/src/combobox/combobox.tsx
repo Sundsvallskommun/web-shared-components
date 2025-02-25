@@ -59,6 +59,7 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
 
   React.useEffect(() => {
     onChangeSearch?.({ target: { value: searchValue, name } } as CustomOnChangeEvent<string>);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue]);
 
   React.useEffect(() => {
@@ -73,9 +74,12 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
     if (multiple || (internalValue.length && internalValue[0])) {
       _onSelect?.(event);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [internalValue]);
 
-  useOnClickOutside(internalRef, () => {
+  //NOTE: Cast to RefObject<HTMLDivElement> to avoid type error because of bug in usehooks-ts
+  //Remove this when the bug is fixed
+  useOnClickOutside(internalRef as React.RefObject<HTMLDivElement>, () => {
     setOpen(false);
   });
 
@@ -158,6 +162,7 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
         setInternalValue(value);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   const context = {

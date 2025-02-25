@@ -14,7 +14,7 @@ export default {
   component: PopupMenu,
   tags: ['autodocs'],
   args: {
-    position: 'over',
+    position: 'under',
     autoPosition: false,
   },
 } as Meta<typeof PopupMenu>;

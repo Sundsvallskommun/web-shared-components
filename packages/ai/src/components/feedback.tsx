@@ -1,6 +1,6 @@
 import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { giveFeedback } from '../services';
 import { useSessions } from '../session-store';
 import { X, ThumbsUp, ThumbsDown } from 'lucide-react';
@@ -14,13 +14,13 @@ export interface FeedbackProps extends React.ComponentPropsWithoutRef<'div'> {
 export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, ref) => {
   const { sessionId, reasons: _reasons, onGiveFeedback, inverted, ...rest } = props;
   const [session, updateSession] = useSessions((state) => [state.sessions[sessionId], state.updateSession]);
-  const [showFeedbackReason, setShowFeedbackReason] = useState(false);
-  const [showThanks, setShowThanks] = useState(false);
-  const [feedbackLoading, setFeedbackLoading] = useState(false);
-  const [feedback, setFeedback] = useState<-1 | 1 | undefined>(session?.feedback?.value);
-  const feedbackRef = useRef<HTMLButtonElement>(null);
-  const thumbDownButtonRef = useRef<HTMLButtonElement>(null);
-  const thumbUpButtonRef = useRef<HTMLButtonElement>(null);
+  const [showFeedbackReason, setShowFeedbackReason] = React.useState(false);
+  const [showThanks, setShowThanks] = React.useState(false);
+  const [feedbackLoading, setFeedbackLoading] = React.useState(false);
+  const [feedback, setFeedback] = React.useState<-1 | 1 | undefined>(session?.feedback?.value);
+  const feedbackRef = React.useRef<HTMLButtonElement>(null);
+  const thumbDownButtonRef = React.useRef<HTMLButtonElement>(null);
+  const thumbUpButtonRef = React.useRef<HTMLButtonElement>(null);
 
   const reasons = _reasons || ['Innehåller faktafel', 'Inte nöjd med svaret'];
 

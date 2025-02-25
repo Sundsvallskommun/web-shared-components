@@ -67,12 +67,14 @@ export const Breadcrumb = React.forwardRef<HTMLDivElement, BreadcrumbProps>((pro
   const { children, addSeparator = true, separator = '/', color = 'primary', className, ...rest } = props;
   const validChildren = getValidChildren(children);
   const clones = validChildren.map((child, index) => {
-    return cloneElement(child, {
-      addSeparator,
-      separator,
-      color,
-      lastChild: validChildren.length === index + 1,
-    });
+    if (React.isValidElement<BreadcrumbItemProps>(child)) {
+      return cloneElement<BreadcrumbItemProps>(child, {
+        addSeparator,
+        separator,
+        color,
+        lastChild: validChildren.length === index + 1,
+      });
+    } else return child;
   });
 
   return (
@@ -101,12 +103,12 @@ export const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProp
   const { currentPage, separator = '/', addSeparator = true, lastChild, children, color, className, ...rest } = props;
   const validChildren = getValidChildren(children);
   const clones = validChildren.map((child) => {
-    if (child.type === BreadcrumbLink) {
-      return cloneElement(child, { currentPage });
+    if (child.type === BreadcrumbLink && React.isValidElement<BreadcrumbLinkProps>(child)) {
+      return cloneElement<BreadcrumbLinkProps>(child, { currentPage });
     }
 
-    if (child.type === BreadcrumbSeparator) {
-      return cloneElement(child, {
+    if (child.type === BreadcrumbSeparator && React.isValidElement<BreadcrumbSeparatorProps>(child)) {
+      return cloneElement<BreadcrumbSeparatorProps>(child, {
         children: child.props.children || separator,
       });
     }

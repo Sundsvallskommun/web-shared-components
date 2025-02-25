@@ -43,11 +43,16 @@ export const FormControl = React.forwardRef<HTMLElement, FormControlProps>((prop
     let hasType = false;
     const validChildren = getValidChildren(children);
     for (let index = 0; index < validChildren.length; index++) {
-      if (validChildren[index].type === type) {
+      const child = validChildren[index];
+      if (child.type === type) {
         hasType = true;
         break;
       }
-      if (validChildren[index].props.children && crawlForType(validChildren[index].props.children, type)) {
+      if (
+        React.isValidElement<React.PropsWithChildren>(child) &&
+        child.props?.children &&
+        crawlForType(child.props.children, type)
+      ) {
         hasType = true;
         break;
       }

@@ -1,9 +1,9 @@
 import { __DEV__, cx, DefaultProps } from '@sk-web-gui/utils';
-import React, { cloneElement } from 'react';
+import React from 'react';
 
 interface IAvatarProps extends DefaultProps {
   imageAlt?: string;
-  imageElement?: React.ReactElement;
+  imageElement?: React.JSX.Element;
   placeholderImage?: string;
   imageUrl?: string;
   initials?: string;
@@ -43,7 +43,7 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>((props, ref)
       {...rest}
     >
       {imageElement ? (
-        cloneElement(imageElement, { className: `${imageElement.props.className} sk-avatar-img` })
+        React.cloneElement<HTMLElement>(imageElement, { className: `${imageElement.props.className} sk-avatar-img` })
       ) : profile ? (
         <img aria-label={imageAlt} src={profile} className="sk-avatar-img" alt={imageAlt || ''} />
       ) : (

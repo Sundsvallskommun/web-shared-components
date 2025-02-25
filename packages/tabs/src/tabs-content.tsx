@@ -1,7 +1,7 @@
 import { __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
 
-interface TabsContentProps extends React.ComponentPropsWithRef<'div'> {
+export interface TabsContentProps extends React.ComponentPropsWithRef<'div'> {
   selected?: boolean;
 }
 

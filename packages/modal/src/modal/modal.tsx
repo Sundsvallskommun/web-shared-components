@@ -9,7 +9,7 @@ export interface ModalComponentProps
   extends DefaultProps,
     Omit<React.ComponentPropsWithRef<typeof Dialog>, 'displayName' | 'onClose' | 'unmount'> {
   show: boolean;
-  label?: string | JSX.Element;
+  label?: string | React.JSX.Element;
   closeLabel?: string;
   className?: string;
   onClose?: () => void;

@@ -1,31 +1,33 @@
-import React, { useCallback } from 'react';
-import { GoTo, usePopupMenu } from './popupmenu-context';
-import { cx, getValidChildren, useForkRef, useOnElementOutside } from '@sk-web-gui/utils';
+import { cx, Dict, getValidChildren, useForkRef, useOnElementOutside } from '@sk-web-gui/utils';
+import React from 'react';
 import { PopupMenuBaseProps } from './popup-menu';
+import { PopupMenuButton } from './popup-menu-button';
 import { PopupMenuItem } from './popup-menu-item';
 import { PopupMenuItems } from './popup-menu-items';
-import { PopupMenuButton } from './popup-menu-button';
+import { GoTo, usePopupMenu } from './popupmenu-context';
 
 interface GetItemProps {
-  child: React.ReactElement;
-  focusRef: React.RefObject<HTMLElement>;
+  child: React.ReactElement<{ ref?: React.Ref<HTMLElement> }>;
+  focusRef: React.RefObject<HTMLElement | null>;
 }
-const GetItem: React.FC<GetItemProps> = ({ child, focusRef }): React.ReactNode => {
-  const itemRef = useForkRef(child.props.ref, focusRef);
+
+function GetItem({ child, focusRef }: GetItemProps): React.ReactNode {
+  const itemRef = useForkRef<HTMLElement>(child?.props?.ref, focusRef);
+
   return React.cloneElement(child, {
     ...child.props,
-    ref: child.props.ref ? itemRef : focusRef,
+    ref: child.props.ref ? itemRef || undefined : focusRef,
   });
-};
+}
 
 interface GetItems {
   children: React.ReactNode;
-  focusRef: React.RefObject<HTMLElement>;
+  focusRef: React.RefObject<HTMLElement | null>;
 }
 const GetItems: React.FC<GetItems> = ({ children, focusRef }) => {
   const [foundAutofocus, setFoundAutofocus] = React.useState(false);
 
-  const mapItem = useCallback(
+  const mapItem = React.useCallback(
     (child: React.ReactNode): React.ReactNode => {
       if (React.isValidElement(child)) {
         if (child.type === PopupMenuItem) {
@@ -34,10 +36,10 @@ const GetItems: React.FC<GetItems> = ({ children, focusRef }) => {
 
         if (child?.type !== PopupMenuItems) {
           if (!foundAutofocus) {
-            if (child?.props?.autoFocus) {
+            if (React.isValidElement<Dict>(child) && 'autoFocus' in child.props) {
               setFoundAutofocus(true);
               return <GetItem child={child} focusRef={focusRef} />;
-            } else if (child?.props?.children) {
+            } else if (React.isValidElement<React.PropsWithChildren>(child) && child?.props?.children) {
               const validKids = getValidChildren(child.props.children);
               if (validKids.length > 0) {
                 const newKids = getValidChildren(child?.props?.children).map((child) => mapItem(child));
@@ -61,7 +63,7 @@ const GetItems: React.FC<GetItems> = ({ children, focusRef }) => {
     });
 };
 
-interface PopupMenuPanelProps extends Omit<PopupMenuBaseProps, 'type'>, React.ComponentPropsWithoutRef<'div'> {}
+export interface PopupMenuPanelProps extends Omit<PopupMenuBaseProps, 'type'>, React.ComponentPropsWithRef<'div'> {}
 
 export const PopupMenuPanel = React.forwardRef<HTMLDivElement, PopupMenuPanelProps>((props, ref) => {
   const {

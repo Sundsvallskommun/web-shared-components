@@ -14,7 +14,7 @@ export interface FileUploadListItemProps
     FileUploadListItemContextProps {
   /** @default false */
   showBorder?: boolean;
-  children?: JSX.Element | JSX.Element[] | string;
+  children?: React.JSX.Element | React.JSX.Element[] | string;
 }
 
 export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadListItemProps>((props, ref) => {

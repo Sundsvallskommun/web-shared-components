@@ -1,5 +1,5 @@
-import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
-import React, { useState } from 'react';
+import { DefaultProps, Dict, __DEV__, cx } from '@sk-web-gui/utils';
+import React from 'react';
 import { MenuVerticalItem, MenuVerticalItemProps } from './menu-vertical-item';
 import { MenuVerticalSubmenuButton, MenuVerticalSubmenuButtonProps } from './menu-vertical-submenu-button';
 import { useMenuVertical } from './use-menu-vertical';
@@ -18,7 +18,7 @@ export interface MenuVerticalComponentProps
 function extractString(obj: React.ReactNode): string {
   if (!obj) return '';
   if (typeof obj === 'string') return obj;
-  else if (React.isValidElement(obj)) {
+  else if (React.isValidElement<{ children: React.ReactNode }>(obj)) {
     return extractString(obj.props.children);
   } else if (Array.isArray(obj)) {
     const submenuItem = obj.find((obj) => {
@@ -34,7 +34,7 @@ function extractString(obj: React.ReactNode): string {
 export const MenuVerticalComponent = React.forwardRef<HTMLUListElement, MenuVerticalComponentProps>((props, ref) => {
   const { className, children, menuId, parentLiMenuIndex = null, ...rest } = props;
   const { rootMenuId, menu, setMenu } = useMenuVertical();
-  const [submenuOpen, setSubmenuOpen] = useState<boolean>(
+  const [submenuOpen, setSubmenuOpen] = React.useState<boolean>(
     parentLiMenuIndex && parentLiMenuIndex !== rootMenuId ? false : true
   );
   const _menu = menu;
@@ -46,31 +46,39 @@ export const MenuVerticalComponent = React.forwardRef<HTMLUListElement, MenuVert
       if (React.isValidElement(child) && typeof child?.type !== 'string') {
         switch (child?.type as React.FC) {
           case MenuVerticalSubmenuButton: {
-            const submenuItem = child;
-            const submenuItemInnerText = encodeURIComponent(extractString(submenuItem));
-            const _menuId = `${object._menuId}-${submenuItemInnerText}`;
-            object.submenuItem = React.cloneElement(child as React.ReactElement<MenuVerticalSubmenuButtonProps>, {
-              menuIndex: parentLiMenuIndex ? parentLiMenuIndex : `${object._menuId}`,
-              menuId: _menuId,
-              parentMenuId: menuId ? menuId : rootMenuId,
-              ...child.props,
-            });
-            object._menuId = _menuId;
+            if (React.isValidElement<MenuVerticalSubmenuButtonProps>(child)) {
+              const submenuItem = child;
+              const submenuItemInnerText = encodeURIComponent(extractString(submenuItem));
+              const _menuId = `${object._menuId}-${submenuItemInnerText}`;
+              object.submenuItem = React.cloneElement(child, {
+                menuIndex: parentLiMenuIndex ? parentLiMenuIndex : `${object._menuId}`,
+                menuId: _menuId,
+                parentMenuId: menuId ? menuId : rootMenuId,
+                ...child.props,
+              });
+              object._menuId = _menuId;
+            }
             break;
           }
           case MenuVerticalItem: {
-            const innerText = encodeURIComponent(extractString(child));
-            object.menuItems = object.menuItems.concat([
-              React.cloneElement(child as React.ReactElement<MenuVerticalItemProps>, {
-                menuIndex: child.props.menuIndex ? child.props.menuIndex : `${object._menuId}-${innerText}`,
-                menuId: object._menuId,
-                parentMenuId: child.props.parentMenuId ? child.props.parentMenuId : menuId ? menuId : rootMenuId,
-                'data-menuindex': child.props.menuIndex ? child.props.menuIndex : `${object._menuId}-${innerText}`,
-                'data-menuid': object._menuId,
-                'data-parentmenuid': child.props.parentMenuId ? child.props.parentMenuId : menuId ? menuId : rootMenuId,
-                ...child.props,
-              }),
-            ]);
+            if (React.isValidElement<MenuVerticalItemProps>(child)) {
+              const innerText = encodeURIComponent(extractString(child));
+              object.menuItems = object.menuItems.concat([
+                React.cloneElement<MenuVerticalItemProps & Dict>(child as React.ReactElement<MenuVerticalItemProps>, {
+                  menuIndex: child.props.menuIndex ? child.props.menuIndex : `${object._menuId}-${innerText}`,
+                  menuId: object._menuId,
+                  parentMenuId: child.props.parentMenuId ? child.props.parentMenuId : menuId ? menuId : rootMenuId,
+                  'data-menuindex': child.props.menuIndex ? child.props.menuIndex : `${object._menuId}-${innerText}`,
+                  'data-menuid': object._menuId,
+                  'data-parentmenuid': child.props.parentMenuId
+                    ? child.props.parentMenuId
+                    : menuId
+                      ? menuId
+                      : rootMenuId,
+                  ...child.props,
+                }),
+              ]);
+            }
             break;
           }
         }

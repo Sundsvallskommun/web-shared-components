@@ -2,6 +2,7 @@ import { DefaultProps, __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
 import { UseMenuBarProps } from './use-menubar';
 import { MenuBarContext } from './context';
+import { MenuBarItemProps } from './menubar-item';
 
 export interface UseMenuBarData extends UseMenuBarProps {
   next?: () => void;
@@ -41,6 +42,7 @@ export const MenuBarComponent = React.forwardRef<HTMLUListElement, MenuBarCompon
     } else {
       setMounted(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [_current]);
 
   const handleSetCurrent = (index: number | undefined) => {
@@ -73,7 +75,7 @@ export const MenuBarComponent = React.forwardRef<HTMLUListElement, MenuBarCompon
     active,
   };
 
-  const validChildren = getValidChildren(children);
+  const validChildren = getValidChildren<MenuBarItemProps>(children);
   const menuItems = validChildren.map((child, index) => {
     const props = { ...child.props, menuIndex: index };
 

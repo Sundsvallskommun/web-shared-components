@@ -21,7 +21,7 @@ export interface FileUploadListItemContentCategoryProps
   placeholder?: string;
   /** @default isMinMediumDevice ? false : true */
   showLabel?: boolean;
-  children?: JSX.Element | JSX.Element[] | string;
+  children?: React.JSX.Element | React.JSX.Element[] | string;
   // Controlled
   selectProps?: React.ComponentPropsWithRef<(typeof Select)['Component']>;
 }

@@ -1,7 +1,6 @@
-import React from 'react';
-import ToastManager, { CloseAllFn, CloseFn, MessageOptionalOptions, NotifyFn, ToastManagerProps } from './ToastManager';
-import { MessageProp, PositionsType } from './Message';
 import { createRoot } from 'react-dom/client';
+import { MessageProp, PositionsType } from './Message';
+import ToastManager, { CloseAllFn, CloseFn, MessageOptionalOptions, NotifyFn, ToastManagerProps } from './ToastManager';
 
 const isBrowser = typeof window !== 'undefined' && typeof window.document !== 'undefined';
 const PORTAL_ID = 'react-toast';
@@ -32,6 +31,7 @@ export class Toaster {
     }
 
     const root = createRoot(portalElement);
+
     root.render(<ToastManager notify={this.bindNotify} />);
   }
 

@@ -108,7 +108,7 @@ export const Text = React.forwardRef<HTMLDivElement, TextProps>((props, ref) => 
         return formatText(child);
       }
       if (React.isValidElement(child)) {
-        if (child?.props?.children) {
+        if (React.isValidElement<{ children: React.ReactNode }>(child) && child?.props?.children) {
           const props = child.props;
           const children = child.props.children;
           return React.cloneElement(child, { ...props, children: getContent(children) });

@@ -36,14 +36,14 @@
     "lint:src": "eslint src"
   },
   "devDependencies": {
-    "react": "^18.3.1"
+    "react": "^19.0.0"
   },
   "dependencies": {
     "@sk-web-gui/button": "2.1.1",
     "@sk-web-gui/link": "1.2.1",
     "@sk-web-gui/theme": "2.4.1",
     "@sk-web-gui/utils": "2.2.1",
-    "usehooks-ts": "^3.1.0"
+    "usehooks-ts": "^3.1.1"
   },
   "peerDependencies": {
     "react": ">=18.3.1"

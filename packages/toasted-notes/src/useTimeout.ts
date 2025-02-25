@@ -3,7 +3,7 @@ import React from 'react';
 type Callback = () => void;
 
 export function useTimeout(callback: Callback, delay: number | null) {
-  const savedCallback = React.useRef<Callback | null>();
+  const savedCallback = React.useRef<Callback | null>(null);
 
   // Remember the latest callback.
   React.useEffect(() => {
