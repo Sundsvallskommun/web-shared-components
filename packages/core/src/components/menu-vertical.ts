@@ -15,13 +15,13 @@ const MenuVerticalNav = () => ({
 
           '&-medium': {
             'button, a': {
-              '@apply py-6 px-14': {},
+              '@apply py-6 pl-14': {},
             },
           },
           '&-large': {
             'button, a': {
               '@apply text-large': {},
-              '@apply py-10 px-14': {},
+              '@apply py-10 pl-14': {},
             },
           },
         },
@@ -78,7 +78,7 @@ const MenuVerticalSidebar = () => ({
             '@apply text-small leading-18': {},
 
             '.sk-menu-vertical-item-submenu-button, .sk-menu-vertical-item-submenu-button-expand': {
-              '@apply py-6 px-14': {},
+              '@apply py-6 pr-14': {},
             },
           },
         },
@@ -186,7 +186,7 @@ export const MenuVertical = () => ({
         },
 
         '> *': {
-          '@apply flex w-full py-6 px-14': {},
+          '@apply flex w-full py-6 pl-14': {},
           '@apply rounded-button cursor-pointer': {},
         },
 
@@ -227,25 +227,24 @@ export const MenuVertical = () => ({
 
         '&-medium': {
           'button, a': {
-            '@apply py-6 px-14': {},
+            '@apply py-6 pl-14': {},
           },
         },
         '&-large': {
           'button, a': {
-            '@apply py-10 px-14': {},
+            '@apply py-10 pl-14': {},
           },
         },
 
-        '&-button, &-button-expand': {
-          '@apply items-center': {},
-          '@apply py-10 px-14': {},
-        },
-
         '&-button-expand': {
+          '@apply items-center': {},
           '@apply rounded-r-button rounded-l-0': {},
+          '@apply py-10 pr-14 !pl-8': {},
         },
 
         '&-button': {
+          '@apply items-center': {},
+          '@apply py-10 pl-14': {},
           '@apply text-left grow rounded-l-button rounded-r-0': {},
 
           '&[aria-current="page"]:not(:hover), &[aria-current="page"]:not(:hover) ~ button:not(:hover)': {
