@@ -1,8 +1,8 @@
 import { __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
 import { defaultTabsContext, TabsContext, TabsContextProps } from './context';
-import { TabsButton } from './tabs-button';
-import { TabsContent } from './tabs-content';
+import { TabsButton, TabsButtonProps } from './tabs-button';
+import { TabsContent, TabsContentProps } from './tabs-content';
 import { TabsItem } from './tabs-item';
 
 export interface TabsComponentProps
@@ -80,9 +80,13 @@ export const TabsComponent = React.forwardRef<HTMLDivElement, TabsComponentProps
   };
 
   const getButtons = (): React.ReactNode => {
-    return getValidChildren(children).map((child, index) => {
-      const contentComponent = getValidChildren(child.props.children).find((child) => child?.type === TabsContent);
-      const buttonComponent = getValidChildren(child.props.children).find((child) => child?.type === TabsButton);
+    return getValidChildren<React.PropsWithChildren>(children).map((child, index) => {
+      const contentComponent = getValidChildren<TabsContentProps>(child.props.children).find(
+        (child) => child?.type === TabsContent
+      );
+      const buttonComponent = getValidChildren<TabsButtonProps>(child.props.children).find(
+        (child) => child?.type === TabsButton
+      );
       if (buttonComponent) {
         return React.cloneElement(buttonComponent, {
           key: `button-${index}`,
@@ -103,9 +107,13 @@ export const TabsComponent = React.forwardRef<HTMLDivElement, TabsComponentProps
       throw Error('No <Tabs.Item> found! You need at least one tab item.');
     }
 
-    return getValidChildren(children).map((child, index) => {
-      const contentComponent = getValidChildren(child.props.children).find((child) => child?.type === TabsContent);
-      const buttonComponent = getValidChildren(child.props.children).find((child) => child?.type === TabsButton);
+    return getValidChildren<React.PropsWithChildren>(children).map((child, index) => {
+      const contentComponent = getValidChildren<TabsContentProps>(child.props.children).find(
+        (child) => child?.type === TabsContent
+      );
+      const buttonComponent = getValidChildren<TabsButtonProps>(child.props.children).find(
+        (child) => child?.type === TabsButton
+      );
       if (contentComponent) {
         const newContent = React.cloneElement(contentComponent, {
           ...contentComponent?.props,

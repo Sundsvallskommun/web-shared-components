@@ -6,9 +6,9 @@ import { ChevronUp, ChevronDown } from 'lucide-react';
 import { useMenuVertical } from './use-menu-vertical';
 
 export interface MenuVerticalSubmenuButtonProps extends DefaultProps, Omit<IMenuVerticalItemProps, 'children'> {
-  children: string | JSX.Element;
+  children: string | React.JSX.Element;
   /** For e.g. Next Links to work, they need to be wrapped this way */
-  wrapper?: JSX.Element;
+  wrapper?: React.JSX.Element;
   /**
    * @default large
    */
@@ -151,7 +151,7 @@ export const MenuVerticalSubmenuButton: React.FC<MenuVerticalSubmenuButtonProps>
     }
   }, [isFocusedItem, isActiveItem, activeMenuId]);
 
-  const getClonedChild = (child: JSX.Element | string): React.ReactNode => {
+  const getClonedChild = (child: React.JSX.Element | string): React.ReactNode => {
     const props = {
       ...rest,
       className: 'sk-menu-vertical-item-submenu-button',

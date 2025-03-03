@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { useTransition, animated, easings } from 'react-spring';
-import { Alert as ReachAlert } from '@reach/alert';
 import Alert from './Alert';
 import { useTimeout } from './useTimeout';
 import POSITIONS from './Positions';
@@ -11,7 +10,7 @@ interface MessageCallback {
 }
 
 export type MessageType = 'default' | 'success' | 'error';
-
+export type MessageRole = 'status' | 'alert';
 export type PositionsType = keyof typeof POSITIONS;
 
 const getStyle = (position: PositionsType) => {
@@ -36,6 +35,13 @@ export interface MessageOptions {
   id: string;
   duration: number | null;
   type: MessageType;
+  /**
+   * The message role will change screen reader behavior.
+   * Status is polite, with no "warning" message.
+   * Alert should be read immediately and often with some type of "warning" message.
+   * @default status
+   */
+  messageRole?: MessageRole;
   onRequestRemove: () => void;
   onRequestClose: () => void;
   showing: boolean;
@@ -49,12 +55,21 @@ interface Props extends MessageOptions {
   position: PositionsType;
 }
 
-export const Message = ({ id, message, position, onRequestRemove, requestClose = false, duration = 30000 }: Props) => {
+export const Message = ({
+  id,
+  message,
+  position,
+  onRequestRemove,
+  requestClose = false,
+  duration = 30000,
+  messageRole = 'status',
+}: Props) => {
   const container = React.useRef<HTMLDivElement | null>(null);
-  const [timeout, setTimeout] = React.useState(duration);
+  const [timer, setTimer] = React.useState(duration);
   const [localShow, setLocalShow] = React.useState(true);
+  const [entered, setEntered] = React.useState(false);
 
-  useTimeout(close, timeout);
+  useTimeout(close, timer);
 
   const animation = {
     config: { duration: 200, easings: easings.easeInBack },
@@ -73,15 +88,27 @@ export const Message = ({ id, message, position, onRequestRemove, requestClose =
     onRest,
   };
 
+  React.useEffect(() => {
+    /**
+     * Polite aria-live (and role status) will only read added texts, and not initial texts.
+     * This delay makes shure the text is added after the wrapper.
+     */
+    if (!entered) {
+      setTimeout(() => {
+        setEntered(true);
+      }, 200);
+    }
+  }, [entered]);
+
   const transition = useTransition(localShow, animation);
   const style = React.useMemo(() => getStyle(position), [position]);
 
   function onMouseEnter() {
-    setTimeout(null);
+    setTimer(null);
   }
 
   function onMouseLeave() {
-    setTimeout(duration);
+    setTimer(duration);
   }
 
   function onRest() {
@@ -100,7 +127,7 @@ export const Message = ({ id, message, position, onRequestRemove, requestClose =
     }
   }, [requestClose]);
 
-  function renderMessage() {
+  function RenderMessage() {
     if (typeof message === 'string' || React.isValidElement(message)) {
       return <Alert id={id} title={message} onClose={close} />;
     }
@@ -115,32 +142,64 @@ export const Message = ({ id, message, position, onRequestRemove, requestClose =
     return null;
   }
 
+  function MessageWithoutButton({ elements }: { elements?: React.ReactNode }): React.ReactNode | null {
+    const allElements = elements ?? RenderMessage();
+
+    return allElements
+      ? React.Children.map(allElements, (child) => {
+          if (React.isValidElement<React.ComponentPropsWithoutRef<'button'>>(child) && child.type === 'button') {
+            return;
+          }
+          if (typeof child === 'string') {
+            return child;
+          }
+          if (React.isValidElement<{ message: string }>(child)) {
+            return child.props.message;
+          }
+          if (React.isValidElement<PropsWithChildren>(child) && child.props.children) {
+            return MessageWithoutButton({ elements: child.props.children });
+          }
+        })
+      : undefined;
+  }
+
+  const Component: React.FC<React.ComponentPropsWithRef<'div'>> = (props) => <div {...props} />;
+
+  const AnimatedComponent = animated<typeof Component>(Component);
+
   return (
     <React.Fragment>
       {transition(
         (props, item) =>
           item && (
-            <animated.div
-              className="Toaster__message"
-              onMouseEnter={onMouseEnter}
-              onMouseLeave={onMouseLeave}
-              style={{
-                opacity: props.opacity,
-                marginTop: props.marginTop,
-                ...style,
-              }}
-            >
-              <animated.div
+            <React.Fragment>
+              <div className="sr-only" role={messageRole}>
+                {(entered || messageRole === 'alert') && <MessageWithoutButton />}
+              </div>
+              <AnimatedComponent
+                className="Toaster__message"
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
                 style={{
-                  pointerEvents: 'auto',
-                  maxWidth: '100vw',
+                  opacity: props.opacity,
+                  marginTop: props.marginTop,
+                  ...style,
                 }}
-                ref={container}
-                className="Toaster__message-wrapper"
               >
-                <ReachAlert>{renderMessage()}</ReachAlert>
-              </animated.div>
-            </animated.div>
+                <AnimatedComponent
+                  style={{
+                    pointerEvents: 'auto',
+                    maxWidth: '100vw',
+                  }}
+                  ref={container}
+                  className="Toaster__message-wrapper"
+                >
+                  <div>
+                    <RenderMessage />
+                  </div>
+                </AnimatedComponent>
+              </AnimatedComponent>
+            </React.Fragment>
           )
       )}
     </React.Fragment>

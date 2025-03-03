@@ -11,9 +11,9 @@ export interface IMenuVerticalItemProps extends DefaultProps {
   /** Set to override menuIndex */
   menuIndex?: MenuIndex;
   /** Use <a> or <button>. For dropdown, use Another <MenuVertical> with a <MenuVertical.SubmenuButton> instead of first item */
-  children?: JSX.Element;
+  children?: React.JSX.Element;
   /** For e.g. Next Links to work, they need to be wrapped this way */
-  wrapper?: JSX.Element;
+  wrapper?: React.JSX.Element;
   menuId?: string;
   parentMenuId?: string;
   /**
@@ -57,7 +57,7 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
       prev,
       next,
     } = useMenuVertical();
-    const menuRef = React.useRef<HTMLElement>();
+    const menuRef = React.useRef<HTMLElement>(null);
     const autoId = React.useId();
     const _menuIndex = menuIndex !== undefined ? menuIndex : autoId;
     const isCurrentItem = current === _menuIndex || thisCurrent;
@@ -108,7 +108,7 @@ export const MenuVerticalItem: React.FC<MenuVerticalItemProps> = React.forwardRe
       }
     }, [isFocusedItem, isActiveItem, activeMenuId, submenuOpen]);
 
-    const getClonedChild = (child: JSX.Element): React.ReactNode => {
+    const getClonedChild = (child: React.JSX.Element): React.ReactNode => {
       if (child.type === React.Fragment) {
         const grandchild = getValidChildren(child.props.children)[0];
         if (grandchild) {

@@ -18,6 +18,7 @@ export const Template = (args: SnackbarProps) => {
     message({
       message: 'Toast message goes here.',
       status: status,
+      messageRole: args.messageRole,
       ...{ ...args },
     });
   };

@@ -2,7 +2,7 @@ import { DefaultProps, __DEV__, cx, getValidChildren, useForkRef } from '@sk-web
 import React from 'react';
 import { useResizeObserver } from 'usehooks-ts';
 import { TableFooter } from './table-footer';
-import { TableHeader } from './table-header';
+import { TableHeader, TableHeaderProps } from './table-header';
 export interface TableComponentProps extends DefaultProps, React.ComponentPropsWithRef<'table'> {
   background?: boolean;
   wrappingBorder?: boolean;
@@ -21,12 +21,16 @@ export const TableComponent = React.forwardRef<HTMLTableElement, TableComponentP
     ...rest
   } = props;
   const sizeRef = React.useRef<HTMLDivElement>(null);
-  const { width: tableWidth } = useResizeObserver({
-    ref: sizeRef,
+  const { width: tableWidth } = useResizeObserver<HTMLDivElement>({
+    //NOTE: Cast to RefObject<HTMLDivElement> to avoid type error because of bug in usehooks-ts
+    //Remove this when the bug is fixed
+    ref: sizeRef as React.RefObject<HTMLDivElement>,
   });
   const wrapperRef = React.useRef<HTMLDivElement>(null);
-  const { width: wrapperWidth } = useResizeObserver({
-    ref: wrapperRef,
+  const { width: wrapperWidth } = useResizeObserver<HTMLDivElement>({
+    //NOTE: Cast to RefObject<HTMLDivElement> to avoid type error because of bug in usehooks-ts
+    //Remove this when the bug is fixed
+    ref: wrapperRef as React.RefObject<HTMLDivElement>,
   });
   const [hasScroll, setHasScroll] = React.useState<boolean>(false);
 
@@ -40,14 +44,11 @@ export const TableComponent = React.forwardRef<HTMLTableElement, TableComponentP
   const tableItems = validChildren
     .filter((child) => child.type !== TableFooter)
     .map((child) => {
-      let props;
-      if (child.type === TableHeader) {
-        props = { ...child.props, background: background };
+      if (child.type === TableHeader && React.isValidElement<TableHeaderProps>(child)) {
+        return React.cloneElement(child, { ...child.props, background: background });
       } else {
-        props = { ...child.props };
+        return child;
       }
-
-      return React.cloneElement(child, props);
     });
 
   const footerItem = validChildren.filter((child) => child.type === TableFooter);

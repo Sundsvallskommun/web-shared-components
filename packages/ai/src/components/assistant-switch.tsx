@@ -23,7 +23,7 @@ export interface AssistantSwitchProps extends React.ComponentPropsWithoutRef<'bu
    * Icon to be displayed when pressed
    * @default ArrowDownUp
    */
-  pressedIcon?: JSX.Element;
+  pressedIcon?: React.JSX.Element;
 
   inverted?: boolean;
 }

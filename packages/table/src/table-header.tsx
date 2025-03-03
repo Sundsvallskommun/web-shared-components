@@ -9,7 +9,7 @@ export interface TableHeaderProps extends React.ComponentPropsWithoutRef<'tr'> {
 export const TableHeader = React.forwardRef<HTMLTableRowElement, TableHeaderProps>((props, ref) => {
   const { className, children, background, sticky, ...rest } = props;
 
-  const validChildren = getValidChildren(children);
+  const validChildren = getValidChildren<Record<string, unknown>>(children);
   const headerItems = validChildren.map((child) => {
     const props = { ...child.props };
 

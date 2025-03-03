@@ -16,7 +16,7 @@ export interface FileUploadListItemContentNameProps
   heading?: string;
   description?: string;
   isEdit?: boolean;
-  children?: JSX.Element | JSX.Element[] | string;
+  children?: React.JSX.Element | React.JSX.Element[] | string;
   name?: string;
   index?: number;
   ending?: string;

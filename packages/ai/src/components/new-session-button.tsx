@@ -8,7 +8,7 @@ export interface NewSessionButtonProps extends React.ComponentPropsWithoutRef<ty
   helperText?: string;
   wrapperClassName?: string;
   helperTextClassName?: string;
-  icon?: JSX.Element;
+  icon?: React.JSX.Element;
 }
 
 export const NewSessionButton = React.forwardRef<HTMLButtonElement, NewSessionButtonProps>((props, ref) => {

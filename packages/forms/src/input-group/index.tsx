@@ -4,6 +4,7 @@ import React from 'react';
 
 import { Input, InputProps } from '../input/input';
 import { useInputGroupClass } from './styles';
+import { InputAddinProps, InputLeftAddin, InputRightAddin } from '../input-addin';
 
 export interface InputGroupProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   /* Size of all wrapped input */
@@ -35,7 +36,7 @@ export const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>((pro
       {...rest}
     >
       {validChildren.map((child) => {
-        if (child.type === Input) {
+        if (React.isValidElement<InputProps>(child) && child.type === Input) {
           return React.cloneElement(child, {
             size,
             disabled,
@@ -43,7 +44,16 @@ export const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>((pro
             className: cx(child.props.className),
           });
         }
-        return React.cloneElement(child, { size, readOnly, disabled });
+        if (
+          React.isValidElement<InputAddinProps>(child) &&
+          (child.type === InputLeftAddin || child.type === InputRightAddin)
+        ) {
+          return React.cloneElement(child, {
+            size,
+            className: cx(child.props.className),
+          });
+        }
+        return child;
       })}
     </div>
   );

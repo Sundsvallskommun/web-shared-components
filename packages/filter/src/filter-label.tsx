@@ -4,7 +4,7 @@ import React from 'react';
 export interface FilterLabelProps
   extends DefaultProps,
     Omit<React.ComponentPropsWithRef<'legend'>, 'color' | 'children' | 'onClick'> {
-  children: JSX.Element | string;
+  children: React.JSX.Element | string;
 }
 
 export const FilterLabel = React.forwardRef<HTMLLegendElement, FilterLabelProps>((props, ref) => {

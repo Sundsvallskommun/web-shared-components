@@ -22,12 +22,14 @@ export const ComboboxOption = React.forwardRef<HTMLInputElement, ComboboxOptionP
     if (context.activeId === id && inputRef.current) {
       inputRef.current.focus();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [context.activeId]);
 
   React.useEffect(() => {
     if (children && value) {
       context.addLabel?.(children, value);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [children, value]);
 
   const checked = context?.value?.length > 0 ? context?.value.includes(value) : false;

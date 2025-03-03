@@ -13,9 +13,9 @@ export interface MenuBarItemProps
   /** Set automatic */
   menuIndex?: number;
   /** Use <a> or <button>. For dropdown, use <PopupMenu> */
-  children: JSX.Element;
+  children: React.JSX.Element;
   /** For e.g. Next Links to work, they need to wrapped this way */
-  wrapper?: JSX.Element;
+  wrapper?: React.JSX.Element;
 }
 
 export const MenuBarItem = React.forwardRef<HTMLLIElement, MenuBarItemProps>((props, ref) => {
@@ -23,12 +23,13 @@ export const MenuBarItem = React.forwardRef<HTMLLIElement, MenuBarItemProps>((pr
   const { color: contextColor, current, setCurrent, next, prev, active } = useMenuBar();
   const [mounted, setMounted] = React.useState<boolean>(false);
   const color = propsColor || contextColor;
-  const menuRef = React.useRef<HTMLElement>();
+  const menuRef = React.useRef<HTMLElement>(null);
 
   React.useEffect(() => {
     if (thisCurrent && typeof menuIndex === 'number') {
       setCurrent?.(menuIndex);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [thisCurrent]);
 
   React.useEffect(() => {
@@ -41,6 +42,7 @@ export const MenuBarItem = React.forwardRef<HTMLLIElement, MenuBarItemProps>((pr
     } else {
       setMounted(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active]);
 
   React.useEffect(() => {
@@ -92,7 +94,7 @@ export const MenuBarItem = React.forwardRef<HTMLLIElement, MenuBarItemProps>((pr
     }
   };
 
-  const getClonedChild = (child: JSX.Element): React.ReactNode => {
+  const getClonedChild = (child: React.JSX.Element): React.ReactNode => {
     if (child.type === React.Fragment) {
       const grandchildren = getValidChildren(child.props.children).map((child, index) => {
         return index === 0 ? getClonedChild(child) : child;

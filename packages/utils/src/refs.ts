@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from 'react';
 
-type ReactRef<T> = React.Ref<T> | React.RefObject<T> | React.MutableRefObject<T>;
+type ReactRef<T> = React.Ref<T> | React.RefObject<T>;
 
 export function setRef<T = any>(ref: ReactRef<T> | undefined, value: T) {
   if (typeof ref === 'function') {
@@ -13,7 +13,7 @@ export function setRef<T = any>(ref: ReactRef<T> | undefined, value: T) {
   }
 }
 
-export function useForkRef<T = any>(refA: ReactRef<T> | undefined, refB: ReactRef<T> | undefined) {
+export function useForkRef<T = any>(refA: ReactRef<T> | undefined | null, refB: ReactRef<T> | undefined | null) {
   return React.useMemo(() => {
     if (refA == null && refB == null) {
       return null;
