@@ -206,6 +206,7 @@ export const FileUploadListItemActions = React.forwardRef<HTMLDivElement, FileUp
                   size="sm"
                   iconButton
                 >
+                  <span className="sr-only">Ta bort</span>
                   <Icon icon={<Trash />} />
                 </Button>
               )}

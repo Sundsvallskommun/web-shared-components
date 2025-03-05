@@ -18,7 +18,7 @@ export const Template = (args: MenuBarProps) => {
     <div className="h-[50rem]">
       <MenuBar {...args} current={current}>
         <MenuBar.Item>
-          <button onClick={() => setCurrent(0)}>Ett menyval</button>
+          <Button onClick={() => setCurrent(0)}>Ett menyval</Button>
         </MenuBar.Item>
         <MenuBar.Item>
           <Button onClick={() => setCurrent(1)}>Menyval 2</Button>

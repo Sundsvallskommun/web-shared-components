@@ -65,7 +65,7 @@ export const FileUploadList = React.forwardRef<HTMLUListElement, FileUploadListP
       data-isempty={isEmpty === true || undefined}
       {...rest}
     >
-      {isEmpty ? placeholder : null}
+      {isEmpty ? <li>{placeholder}</li> : null}
       {!children ? (
         <FileUploadListContext.Provider value={itemProps}>
           {!showBorder && Array.isArray(listItems) ? (

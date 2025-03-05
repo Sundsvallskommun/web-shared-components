@@ -17,7 +17,7 @@ export const MenuVerticalBackButton = React.forwardRef<HTMLDivElement, IMenuVert
 
   return (
     <div ref={ref} className={cx('sk-menu-vertical-backbutton', className)} {...rest}>
-      <Button size="lg" variant="tertiary" rounded iconButton>
+      <Button size="lg" aria-label="back" variant="tertiary" rounded iconButton>
         <Icon icon={<ArrowLeft />} />
       </Button>
       <span>{children}</span>

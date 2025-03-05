@@ -26,8 +26,8 @@ export const Template = (args: TabsProps) => {
         </Tabs.Content>
       </Tabs.Item>
       <Tabs.Item>
-        <Tabs.Button aria-readonly="true" title="För tillfället oåtkomlig">
-          <span>Span-wrapped and disabled(readonly)</span>
+        <Tabs.Button aria-disabled="true" title="För tillfället oåtkomlig">
+          <span>Span-wrapped and disabled</span>
         </Tabs.Button>
         <Tabs.Content>
           <p>Paris is the capital of France.</p>

@@ -94,7 +94,7 @@ export const RadioButtonGroup = React.forwardRef<RadioButtonGroupElement, RadioB
 
   const clones = validChildren.map((child, index) => {
     return (
-      <li key={index} className={cx(child.props.className)}>
+      <li role="none" key={index} className={cx(child.props.className)}>
         {child}
       </li>
     );

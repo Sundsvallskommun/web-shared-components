@@ -7,7 +7,7 @@ export interface DatePickerProps extends Omit<InputProps, 'type' | 'as'> {
 
 export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>((props, ref) => {
   const { type = 'date', ...rest } = props;
-  return <Input type={type} ref={ref} {...rest} />;
+  return <Input type={type} ref={ref} aria-label="datepicker" {...rest} />;
 });
 
 export default DatePicker;

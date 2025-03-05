@@ -79,7 +79,7 @@ export const CheckboxGroup = React.forwardRef<HTMLUListElement, CheckboxGroupPro
 
   const clones = validChildren.map((child, index) => {
     return (
-      <li key={index} className={cx(child?.props?.className)}>
+      <li key={index} role="none" className={cx(child?.props?.className)}>
         {child}
       </li>
     );

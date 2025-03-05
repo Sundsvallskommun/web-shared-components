@@ -1,9 +1,10 @@
 import { Button } from '@sk-web-gui/button';
 import { PopupMenu } from '@sk-web-gui/popup-menu';
 import { Meta } from '@storybook/react';
-import { Trash } from 'lucide-react';
+import { FileIcon, Trash } from 'lucide-react';
 import React from 'react';
 import { FileUpload, FileUploadProps, Switch } from '../../src';
+import Icon from '@sk-web-gui/icon';
 
 export default {
   title: 'Komponenter/FileUpload/ListItem',
@@ -52,25 +53,27 @@ export const Template = (args: React.ComponentProps<FileUploadProps['ListItem']>
       <Switch value={showEdit.toString()} checked={showEdit} onChange={() => setShowEdit((value) => !value)}>
         Visa redigeringspenna
       </Switch>
-      <FileUpload.ListItem {...args} isEdit={args.isEdit === true ? args.isEdit : isEdit}>
-        <FileUpload.ListItemIcon />
-        <FileUpload.ListItemContent>
-          <FileUpload.ListItemContentName heading="Heading" description="Description" />
-          <FileUpload.ListItemContentCategory
-            category="category1"
-            categories={{
-              category1: 'Category 1',
-              category2: 'Category 2',
-            }}
+      <FileUpload.List>
+        <FileUpload.ListItem {...args} isEdit={args.isEdit === true ? args.isEdit : isEdit}>
+          <FileUpload.ListItemIcon />
+          <FileUpload.ListItemContent>
+            <FileUpload.ListItemContentName heading="Heading" description="Description" />
+            <FileUpload.ListItemContentCategory
+              category="category1"
+              categories={{
+                category1: 'Category 1',
+                category2: 'Category 2',
+              }}
+            />
+          </FileUpload.ListItemContent>
+          <FileUpload.ListItemActions
+            showEdit={showEdit}
+            onEdit={() => setIsEdit(true)}
+            onEditSave={() => setIsEdit(false)}
+            onEditCancel={() => setIsEdit(false)}
           />
-        </FileUpload.ListItemContent>
-        <FileUpload.ListItemActions
-          showEdit={showEdit}
-          onEdit={() => setIsEdit(true)}
-          onEditSave={() => setIsEdit(false)}
-          onEditCancel={() => setIsEdit(false)}
-        />
-      </FileUpload.ListItem>
+        </FileUpload.ListItem>
+      </FileUpload.List>
     </div>
   );
 };
@@ -80,23 +83,25 @@ Template.storyName = 'FileUpload.ListItem';
 export const FileUploadListItemWithMorePanel = (args: React.ComponentProps<FileUploadProps['ListItem']>) => {
   return (
     <div className="min-h-[15rem]">
-      <FileUpload.ListItem
-        {...args}
-        actionsProps={{
-          ...args.actionsProps,
-          showMore: true,
-        }}
-        nameProps={{
-          heading: 'Heading',
-          description: 'Description',
-        }}
-      />
+      <FileUpload.List>
+        <FileUpload.ListItem
+          {...args}
+          actionsProps={{
+            ...args.actionsProps,
+            showMore: true,
+          }}
+          nameProps={{
+            heading: 'Heading',
+            description: 'Description',
+          }}
+        />
+      </FileUpload.List>
     </div>
   );
 };
 
 export const FileUploadListItemIcon = () => {
-  return <FileUpload.ListItemIcon icon={<Trash />} />;
+  return <FileUpload.ListItemIcon icon={<Icon icon={<Trash />}/>} />;
 };
 
 export const FileUploadListItemContent = (args: React.ComponentProps<FileUploadProps['ListItem']>) => {
