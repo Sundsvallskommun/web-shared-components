@@ -22,19 +22,19 @@ export const Template = ({ ...args }: ButtonProps) => (
 
     <div>
       <Button.Group {...args}>
-        <Button iconButton>
+        <Button aria-label="Text" iconButton>
           <Icon icon={<AlignStartVertical />} />
         </Button>
 
-        <Button iconButton>
+        <Button aria-label="Text" iconButton>
           <Icon icon={<AlignCenterVertical />} />
         </Button>
 
-        <Button iconButton>
+        <Button aria-label="Text" iconButton>
           <Icon icon={<AlignEndVertical />} />
         </Button>
 
-        <Button iconButton>
+        <Button aria-label="Text" iconButton>
           <Icon icon={<CircleArrowDown />} />
         </Button>
       </Button.Group>

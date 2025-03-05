@@ -45,9 +45,9 @@ export const Storlekar = () => (
 export const Datum = () => (
   <div className="flex flex-col gap-16">
     <div className="flex gap-16">
-      <Input size="sm" type="date" />
-      <Input size="md" type="date" />
-      <Input size="lg" type="date" />
+      <Input size="sm" type="date" aria-label="datepicker" />
+      <Input size="md" type="date" aria-label="datepicker" />
+      <Input size="lg" type="date" aria-label="datepicker" />
     </div>
   </div>
 );
@@ -55,9 +55,9 @@ export const Datum = () => (
 export const Tid = () => (
   <div className="flex flex-col gap-16">
     <div className="flex gap-16">
-      <Input size="sm" type="time" />
-      <Input size="md" type="time" />
-      <Input size="lg" type="time" />
+      <Input size="sm" type="time" aria-label="datepicker" />
+      <Input size="md" type="time" aria-label="datepicker" />
+      <Input size="lg" type="time" aria-label="datepicker" />
     </div>
   </div>
 );
@@ -65,9 +65,9 @@ export const Tid = () => (
 export const DatumTid = () => (
   <div className="flex flex-col gap-16">
     <div className="flex gap-16">
-      <Input size="sm" type="datetime-local" />
-      <Input size="md" type="datetime-local" />
-      <Input size="lg" type="datetime-local" />
+      <Input size="sm" type="datetime-local" aria-label="datepicker" />
+      <Input size="md" type="datetime-local" aria-label="datepicker" />
+      <Input size="lg" type="datetime-local" aria-label="datepicker" />
     </div>
   </div>
 );

@@ -42,7 +42,6 @@ export const AccordionComponent = React.forwardRef<HTMLUListElement, AccordionIn
 
   const { className, children, allowMultipleOpen, id: _id, headerAs = 'label', size = 'md', inverted, ...rest } = props;
   const id = _id || `sk-accordion-${autoId}`;
-  const labelId = `${id}-label`;
 
   const context = {
     allowMultipleOpen,
@@ -73,7 +72,7 @@ export const AccordionComponent = React.forwardRef<HTMLUListElement, AccordionIn
   return (
     <AccordionContext.Provider value={context}>
       <div className={cx('sk-accordion', className)} data-inverted={inverted}>
-        <ul ref={ref} id={id} aria-labelledby={labelId} {...rest}>
+        <ul ref={ref} id={id} {...rest}>
           {getChildren()}
         </ul>
       </div>

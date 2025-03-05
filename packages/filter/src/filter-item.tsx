@@ -8,7 +8,7 @@ export const FilterItem = React.forwardRef<HTMLInputElement, Omit<FilterItemProp
   const { className, children, ...rest } = props;
 
   return (
-    <Checkbox ref={ref} className={cx('sk-filter-item', className)} role="none" {...rest}>
+    <Checkbox ref={ref} className={cx('sk-filter-item', className)} {...rest}>
       {children}
     </Checkbox>
   );
