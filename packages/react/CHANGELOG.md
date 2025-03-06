@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@1.3.1...@sk-web-gui/react@1.4.0) (2025-03-06)
+
+### Features
+
+- React 19 ([c0f3b4e](https://github.com/Sundsvallskommun/web-shared-components/commit/c0f3b4e52936096f46219a2e896239c40c551aa0))
+
 ## [1.3.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@1.3.0...@sk-web-gui/react@1.3.1) (2025-02-06)
 
 ### Bug Fixes

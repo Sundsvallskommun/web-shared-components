@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/utils",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",

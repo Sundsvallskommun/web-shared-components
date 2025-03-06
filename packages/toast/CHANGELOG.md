@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/toast@1.1.1...@sk-web-gui/toast@1.2.0) (2025-03-06)
+
+### Bug Fixes
+
+- React 19 compatibility ([4c86b72](https://github.com/Sundsvallskommun/web-shared-components/commit/4c86b721f0e6e7110cf79adcda457367d66eb980))
+
+### Features
+
+- **toasted-notes:** role can now be set for the message ([000e7f4](https://github.com/Sundsvallskommun/web-shared-components/commit/000e7f494a459705b3d32e159f6ac64b1b0faad7))
+
 ## [1.1.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/toast@1.1.0...@sk-web-gui/toast@1.1.1) (2025-02-06)
 
 ### Bug Fixes

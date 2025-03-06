@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/toast",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -39,8 +39,8 @@
     "react": "^19.0.0"
   },
   "dependencies": {
-    "@sk-web-gui/theme": "2.4.1",
-    "@sk-web-gui/toasted-notes": "1.1.1"
+    "@sk-web-gui/theme": "2.4.2",
+    "@sk-web-gui/toasted-notes": "1.2.0"
   },
   "peerDependencies": {
     "react": ">=18.3.1"

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/progress-stepper@1.2.1...@sk-web-gui/progress-stepper@1.2.2) (2025-03-06)
+
+### Bug Fixes
+
+- React 19 compatibility ([4c86b72](https://github.com/Sundsvallskommun/web-shared-components/commit/4c86b721f0e6e7110cf79adcda457367d66eb980))
+
 ## [1.2.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/progress-stepper@1.2.0...@sk-web-gui/progress-stepper@1.2.1) (2025-02-06)
 
 ### Bug Fixes

@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/theme",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -40,7 +40,7 @@
     "react": "^19.0.0"
   },
   "dependencies": {
-    "@sk-web-gui/utils": "2.2.1",
+    "@sk-web-gui/utils": "2.2.2",
     "lodash.set": "^4.3.2",
     "usehooks-ts": "^3.1.1"
   },

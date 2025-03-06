@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/layout@1.2.1...@sk-web-gui/layout@1.3.0) (2025-03-06)
+
+### Bug Fixes
+
+- React 19 compatibility ([4c86b72](https://github.com/Sundsvallskommun/web-shared-components/commit/4c86b721f0e6e7110cf79adcda457367d66eb980))
+
+### Features
+
+- ability to change logo and symbol for header ([411aa5c](https://github.com/Sundsvallskommun/web-shared-components/commit/411aa5cee98103905d834f5ce6e2ec5576d82f02))
+- added prop for logoType ([1d28ea1](https://github.com/Sundsvallskommun/web-shared-components/commit/1d28ea1a0ab1be07a08c46fd0823283bc22c8d77))
+- removed props ([8257a70](https://github.com/Sundsvallskommun/web-shared-components/commit/8257a708ad89ad3e42a584183bae3ffce08ca3c1))
+
 ## [1.2.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/layout@1.2.0...@sk-web-gui/layout@1.2.1) (2025-02-06)
 
 ### Bug Fixes

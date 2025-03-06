@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.11.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.11.0...@sk-web-gui/core@3.11.1) (2025-03-06)
+
+### Bug Fixes
+
+- **tabs:** hover effect ([6a40f56](https://github.com/Sundsvallskommun/web-shared-components/commit/6a40f56f77308a9d92a12f6f4389fac5385a5dcd))
+
 # [3.11.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.10.0...@sk-web-gui/core@3.11.0) (2025-02-06)
 
 ### Bug Fixes
