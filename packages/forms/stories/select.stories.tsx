@@ -22,7 +22,7 @@ export const Template = (args: SelectProps) => {
   return (
     <Select aria-label="select" {...args}>
       {people.map((person) => (
-        <Select.Option key={person.id} value={person.id} aria-label={person.name}>
+        <Select.Option key={person.id} value={person.id}>
           {person.name}
         </Select.Option>
       ))}

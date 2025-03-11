@@ -93,11 +93,11 @@ export const RadioButtonGroup = React.forwardRef<RadioButtonGroupElement, RadioB
   const validChildren = getValidChildren<RadioButtonProps>(children);
 
   const clones = validChildren.map((child, index) => {
-    return (
-      <li role="none" key={index} className={cx(child.props.className)}>
-        {child}
-      </li>
-    );
+    return React.cloneElement(child, {
+      key: index,
+      role: 'radio',
+      className: cx(child.props.className),
+    });
   });
 
   // Calling focus() on the radiogroup should focus on the selected option or first enabled option

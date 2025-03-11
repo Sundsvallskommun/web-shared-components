@@ -47,7 +47,7 @@ export const Template = (args: MenuVerticalProps) => {
                 <button onClick={() => setCurrentActiveFocus(1002)}>Set nested current item</button>
               </MenuVertical.Item>
               <MenuVertical.Item>
-                <MenuVertical role="none" {...args}>
+                <MenuVertical role="menubar" {...args}>
                   <MenuVertical.SubmenuButton>
                     <a href="#">
                       <Icon icon={<CircleArrowRight />} />
@@ -75,7 +75,7 @@ export const Template = (args: MenuVerticalProps) => {
                 </MenuVertical>
               </MenuVertical.Item>
               <MenuVertical.Item>
-                <MenuVertical role="none" {...args}>
+                <MenuVertical role="menubar" {...args}>
                   <MenuVertical.SubmenuButton>
                     <button>
                       <Icon icon={<CircleArrowRight />} />
@@ -89,7 +89,7 @@ export const Template = (args: MenuVerticalProps) => {
                     <a href="#">Lanternans förskola</a>
                   </MenuVertical.Item>
                   <MenuVertical.Item>
-                    <MenuVertical role="none" {...args}>
+                    <MenuVertical role="menubar" {...args}>
                       <MenuVertical.SubmenuButton>N2 - Subitem</MenuVertical.SubmenuButton>
                       <MenuVertical.Item>
                         <a href="#">test</a>
@@ -98,7 +98,7 @@ export const Template = (args: MenuVerticalProps) => {
                         <a href="#">test1</a>
                       </MenuVertical.Item>
                       <MenuVertical.Item>
-                        <MenuVertical role="none" {...args}>
+                        <MenuVertical role="menubar" {...args}>
                           <MenuVertical.SubmenuButton>N3 - Subitem</MenuVertical.SubmenuButton>
                           <MenuVertical.Item menuIndex={1002}>
                             <a href="#">test</a>
@@ -107,7 +107,7 @@ export const Template = (args: MenuVerticalProps) => {
                             <a href="#">test1</a>
                           </MenuVertical.Item>
                           <MenuVertical.Item>
-                            <MenuVertical role="none" {...args}>
+                            <MenuVertical role="menubar" {...args}>
                               <MenuVertical.SubmenuButton>N4 - Subitem</MenuVertical.SubmenuButton>
                               <MenuVertical.Item>
                                 <a href="#">test</a>
@@ -116,7 +116,7 @@ export const Template = (args: MenuVerticalProps) => {
                                 <a href="#">test1</a>
                               </MenuVertical.Item>
                               <MenuVertical.Item>
-                                <MenuVertical role="none" {...args}>
+                                <MenuVertical role="menubar" {...args}>
                                   <MenuVertical.SubmenuButton disabled>
                                     N5 - Subitem (disabled)
                                   </MenuVertical.SubmenuButton>
@@ -138,7 +138,7 @@ export const Template = (args: MenuVerticalProps) => {
                     </MenuVertical>
                   </MenuVertical.Item>
                   <MenuVertical.Item>
-                    <MenuVertical role="none" {...args}>
+                    <MenuVertical role="menubar" {...args}>
                       <MenuVertical.SubmenuButton>N2 - Subitem - Sibling 1</MenuVertical.SubmenuButton>
                       <MenuVertical.Item>
                         <a href="#">test</a>
@@ -152,7 +152,7 @@ export const Template = (args: MenuVerticalProps) => {
                     </MenuVertical>
                   </MenuVertical.Item>
                   <MenuVertical.Item>
-                    <MenuVertical role="none" {...args}>
+                    <MenuVertical role="menubar" {...args}>
                       <MenuVertical.SubmenuButton disabled>N2 - Subitem - Sibling 2</MenuVertical.SubmenuButton>
                       <MenuVertical.Item>
                         <a href="#">test</a>
@@ -168,7 +168,7 @@ export const Template = (args: MenuVerticalProps) => {
                 </MenuVertical>
               </MenuVertical.Item>
               <MenuVertical.Item>
-                <MenuVertical role="none" {...args}>
+                <MenuVertical role="menubar" {...args}>
                   <MenuVertical.SubmenuButton disabled>
                     <a href="#">
                       <Icon icon={<CircleArrowRight />} />

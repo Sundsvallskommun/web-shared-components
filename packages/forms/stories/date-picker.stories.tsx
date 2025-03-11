@@ -11,14 +11,14 @@ export default {
 } as Meta<typeof DatePicker>;
 
 export const Template = (args: DatePickerProps) => {
-  return <DatePicker {...args} />;
+  return <DatePicker aria-label="datepicker" {...args} />;
 };
 
 Template.storyName = 'DatePicker';
 
 export const Disabled = () => (
   <div>
-    <DatePicker disabled />
+    <DatePicker disabled aria-label="datepicker" />
   </div>
 );
 Disabled.storyName = 'Inaktiverad';
@@ -26,7 +26,7 @@ Disabled.storyName = 'Inaktiverad';
 export const Invalid = () => (
   <div>
     <div className="flex gap-16">
-      <DatePicker invalid />
+      <DatePicker invalid aria-label="datepicker" />
     </div>
   </div>
 );
@@ -35,9 +35,9 @@ Invalid.storyName = 'Invaliderad';
 export const Storlekar = () => (
   <div className="flex flex-col gap-16">
     <div className="flex gap-16">
-      <DatePicker size="sm" />
-      <DatePicker size="md" />
-      <DatePicker size="lg" />
+      <DatePicker size="sm" aria-label="datepicker" />
+      <DatePicker size="md" aria-label="datepicker" />
+      <DatePicker size="lg" aria-label="datepicker" />
     </div>
   </div>
 );
@@ -81,5 +81,5 @@ export const WithForms = () => {
     console.log(date);
   }, [date]);
 
-  return <DatePicker {...register('date')} />;
+  return <DatePicker aria-label="datepicker" {...register('date')} />;
 };
