@@ -34,7 +34,7 @@ export function GuiProvider({
 }: GuiProviderProps) {
   const [preferredColorScheme, setPreferredColorScheme] =
     React.useState<Exclude<ColorSchemeMode, ColorSchemeMode.System>>(getPreferredColorScheme());
-  const [pickedColorScheme, setPickedColorScheme] = React.useState<ColorSchemeMode>(ColorSchemeMode.System);
+  const [pickedColorScheme, setPickedColorScheme] = React.useState<ColorSchemeMode>(_colorScheme || ColorSchemeMode.System);
 
   React.useEffect(() => {
     setPickedColorScheme(_colorScheme || ColorSchemeMode.System);
