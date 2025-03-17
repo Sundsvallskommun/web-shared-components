@@ -6,6 +6,7 @@ import { ArrowLeft } from 'lucide-react';
 
 interface IMenuVerticalBackButtonProps extends DefaultProps {
   children: React.JSX.Element | string;
+  ariaLabel?: string;
 }
 
 export interface MenuVerticalBackButtonProps
@@ -13,11 +14,11 @@ export interface MenuVerticalBackButtonProps
     IMenuVerticalBackButtonProps {}
 
 export const MenuVerticalBackButton = React.forwardRef<HTMLDivElement, IMenuVerticalBackButtonProps>((props, ref) => {
-  const { className, children, ...rest } = props;
+  const { className, children, ariaLabel = "Gå tillbaka", ...rest } = props;
 
   return (
     <div ref={ref} className={cx('sk-menu-vertical-backbutton', className)} {...rest}>
-      <Button size="lg" aria-label="back" variant="tertiary" rounded iconButton>
+      <Button size="lg" aria-label={ariaLabel} variant="tertiary" rounded iconButton>
         <Icon icon={<ArrowLeft />} />
       </Button>
       <span>{children}</span>

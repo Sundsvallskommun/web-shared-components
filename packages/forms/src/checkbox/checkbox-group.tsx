@@ -79,7 +79,7 @@ export const CheckboxGroup = React.forwardRef<HTMLUListElement, CheckboxGroupPro
 
   const clones = validChildren.map((child, index) => {
     return (
-      <li key={index} role="listitem" className={cx(child?.props?.className)}>
+      <li key={index} className={cx(child?.props?.className)}>
         {child}
       </li>
     );
@@ -87,7 +87,7 @@ export const CheckboxGroup = React.forwardRef<HTMLUListElement, CheckboxGroupPro
 
   return (
     <CheckboxGroupContext.Provider value={context}>
-      <ul className="sk-form-checkbox-group" role="list" data-direction={direction} ref={ref} {...rest}>
+      <ul className="sk-form-checkbox-group" data-direction={direction} ref={ref} {...rest}>
         {clones}
       </ul>
     </CheckboxGroupContext.Provider>
