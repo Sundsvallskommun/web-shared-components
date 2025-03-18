@@ -80,7 +80,11 @@ export const AICornerModuleHeader = React.forwardRef<HTMLDivElement, AICornerMod
         <AssistantSwitch {...assistantSwitchProps} assistant={assistant} avatar={avatar} inverted />
       ) : (
         <div className="sk-ai-corner-module-header-title">
-          <AssistantAvatar assistant={assistant} avatar={avatar} size="sm" />
+          <AssistantAvatar
+            assistant={assistant}
+            avatar={avatar}
+            size={variant === 'alt' ? 'lg' : docked ? 'md' : 'sm'}
+          />
           <div className="sk-ai-corner-module-header-heading">
             <span className="sk-ai-corner-module-header-heading-name">{title || assistant.name}</span>
             {(subtitle || assistant.title) && (docked || variant === 'alt') && (

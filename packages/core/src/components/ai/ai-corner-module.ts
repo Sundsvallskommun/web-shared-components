@@ -172,9 +172,13 @@ export const AICornerModule = (colors: string[]) => ({
 
       '&[data-variant="alt"]': {
         '@apply pt-0 px-24': {},
+        '@apply h-auto': {},
         '@apply bg-transparent': {},
-        '.sk-avatar': {
+        '.sk-ai-assistant-avatar': {
           '@apply w-40 h-40 lg:w-56 lg:h-56': {},
+        },
+        '.sk-ai-corner-module-header-heading': {
+          '@apply pb-4': {},
         },
         '.sk-ai-corner-module-header-heading-name': {
           '@apply text-label-large text-dark-primary': {},
