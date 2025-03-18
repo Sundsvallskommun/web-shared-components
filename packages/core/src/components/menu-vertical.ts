@@ -13,16 +13,12 @@ const MenuVerticalNav = () => ({
         '.sk-menu-vertical-item-submenu': {
           '@apply font-bold': {},
 
-          '&-medium': {
-            'button, a': {
-              '@apply py-6 pl-14': {},
-            },
+          '&-medium &-button': {
+            '@apply py-6 pl-14': {},
           },
-          '&-large': {
-            'button, a': {
-              '@apply text-large': {},
-              '@apply py-10 pl-14': {},
-            },
+          '&-large &-button': {
+            '@apply text-large': {},
+            '@apply py-10 pl-14': {},
           },
         },
       },
@@ -225,21 +221,17 @@ export const MenuVertical = () => ({
           },
         },
 
-        '&-medium': {
-          'button, a': {
-            '@apply py-6 pl-14': {},
-          },
+        '&-medium &-button': {
+          '@apply py-6 pl-14': {},
         },
-        '&-large': {
-          'button, a': {
-            '@apply py-10 pl-14': {},
-          },
+        '&-large &-button': {
+          '@apply py-10 pl-14': {},
         },
 
         '&-button-expand': {
           '@apply items-center': {},
           '@apply rounded-r-button rounded-l-0': {},
-          '@apply py-10 pr-14 !pl-8': {},
+          '@apply py-10 pr-14 pl-8': {},
         },
 
         '&-button': {
