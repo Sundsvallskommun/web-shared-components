@@ -10,6 +10,7 @@ export interface UseMenuVerticalPropsStates {
   activeMenuId: string;
   current: MenuIndex;
   currentMenuId: string;
+  menuAriaLabel?: string;
 }
 
 export interface UseMenuVerticalPropsFunctions {

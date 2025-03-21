@@ -27,7 +27,7 @@ export const TabsButton = React.forwardRef<HTMLLIElement, TabsButtonProps>((prop
     'aria-controls': ariaControls,
     onClick,
     id,
-    'aria-readonly': readOnly = false,
+    'aria-disabled': disabled = false,
     ...rest
   } = props;
   const { color: contextColor, current, setCurrent, next, prev, active } = useTabs();
@@ -119,11 +119,11 @@ export const TabsButton = React.forwardRef<HTMLLIElement, TabsButtonProps>((prop
     >
       <Button
         className="sk-tabs-list-item-button"
-        aria-readonly={readOnly}
+        aria-disabled={disabled}
         onKeyDown={handleKeyboard}
-        onClick={!readOnly ? (onClick ? onClick : () => setCurrent?.(menuIndex as number)) : undefined}
+        onClick={!disabled ? (onClick ? onClick : () => setCurrent?.(menuIndex as number)) : undefined}
         role="tab"
-        aria-selected={!!current}
+        aria-selected={isCurrent}
         tabIndex={isCurrent ? 0 : -1}
         aria-controls={ariaControls}
         size={size}
@@ -131,8 +131,10 @@ export const TabsButton = React.forwardRef<HTMLLIElement, TabsButtonProps>((prop
         variant="ghost"
       >
         <span>{children}</span>
+        
       </Button>
-      <Divider className="sk-tabs-list-item-divider" />
+      <div className="sk-tabs-list-item-divider" />
     </li>
+    
   );
 });

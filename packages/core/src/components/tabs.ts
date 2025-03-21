@@ -30,7 +30,7 @@ export const Tabs = (colors: string[]) => ({
           // ring
           '@apply rounded-4': {},
 
-          '&[aria-readonly="true"]': {
+          '&[aria-disabled="true"]': {
             '@apply text-dark-disabled cursor-default': {},
           },
 
