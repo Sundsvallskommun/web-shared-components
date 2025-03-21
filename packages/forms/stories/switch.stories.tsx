@@ -15,7 +15,7 @@ export default {
 
 export const Template = (args: SwitchProps) => (
   <div>
-    <Switch aria-label="switch" {...args}></Switch>
+    <Switch aria-label="Aktivera" {...args}></Switch>
   </div>
 );
 

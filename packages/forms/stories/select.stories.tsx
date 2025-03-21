@@ -20,7 +20,7 @@ const people = [
 
 export const Template = (args: SelectProps) => {
   return (
-    <Select aria-label="select" {...args}>
+    <Select aria-label="Välj en person" {...args}>
       {people.map((person) => (
         <Select.Option key={person.id} value={person.id}>
           {person.name}
@@ -34,12 +34,12 @@ Template.storyName = 'Select';
 
 export const Inaktiverad = () => (
   <div className="flex space-x-12">
-  <Select aria-label="select" disabled>
+  <Select aria-label="Välj ett alternativ" disabled>
     <Select.Option>Option 1</Select.Option>
     <Select.Option>Option 2</Select.Option>
     <Select.Option>Option 3</Select.Option>
   </Select>
-    <Select aria-label="select" readOnly>
+    <Select aria-label="Välj ett alternativ" readOnly>
     <Select.Option>Option 1</Select.Option>
     <Select.Option>Option 2</Select.Option>
     <Select.Option>Option 3</Select.Option>
@@ -49,12 +49,12 @@ export const Inaktiverad = () => (
 
 export const Invaliderad = () => (
   <div className="flex flex-col gap-8">
-    <Select aria-label="select" invalid>
+    <Select aria-label="Välj ett alternativ" invalid>
       <Select.Option>Option 1</Select.Option>
       <Select.Option>Option 2</Select.Option>
       <Select.Option>Option 3</Select.Option>
     </Select>
-    <Select aria-label="select">
+    <Select aria-label="Välj ett alternativ">
       <Select.Option>Option 1</Select.Option>
       <Select.Option>Option 2</Select.Option>
       <Select.Option>Option 3</Select.Option>
@@ -64,19 +64,19 @@ export const Invaliderad = () => (
 
 export const Storlekar = () => (
   <div className="flex gap-16">
-    <Select aria-label="select" size="sm">
+    <Select aria-label="Välj ett alternativ" size="sm">
       <Select.Option>Option 1</Select.Option>
       <Select.Option>Option 2</Select.Option>
       <Select.Option>Option 3</Select.Option>
     </Select>
 
-    <Select aria-label="select" size="md">
+    <Select aria-label="Välj ett alternativ" size="md">
       <Select.Option>Option 1</Select.Option>
       <Select.Option>Option 2</Select.Option>
       <Select.Option>Option 3</Select.Option>
     </Select>
 
-    <Select aria-label="select" size="lg">
+    <Select aria-label="Välj ett alternativ" size="lg">
       <Select.Option>Option 1</Select.Option>
       <Select.Option>Option 2</Select.Option>
       <Select.Option>Option 3</Select.Option>
@@ -86,7 +86,7 @@ export const Storlekar = () => (
 
 export const Grupp = () => (
   <div className="flex gap-16">
-    <Select aria-label="select">
+    <Select aria-label="Välj ett alternativ">
       <Select.Optgroup label="Grupp 1"></Select.Optgroup>
       <Select.Option>Option 1</Select.Option>
       <Select.Option>Option 2</Select.Option>

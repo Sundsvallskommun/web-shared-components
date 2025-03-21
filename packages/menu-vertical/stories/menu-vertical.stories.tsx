@@ -18,7 +18,7 @@ export const Template = (args: MenuVerticalProps) => {
 
   return (
     <div className="w-[30.2rem]">
-      <MenuVertical.Provider current={current} setCurrent={handleSetCurrent}>
+      <MenuVertical.Provider current={current} menuAriaLabel="Områden" setCurrent={handleSetCurrent}>
         {({ setCurrentActiveFocus }) => (
           <MenuVertical.Nav>
             <MenuVertical.BackButton>Kommunala förskolor</MenuVertical.BackButton>
@@ -33,7 +33,7 @@ export const Template = (args: MenuVerticalProps) => {
               </MenuVertical.Item>
               <MenuVertical.Item role="separator" />
               <MenuVertical.Item>
-                <MenuVertical role="none" {...args}>
+                <MenuVertical {...args}>
                   <MenuVertical.SubmenuButton>
                     <a href="#">N1 - Subitem (a-tag)</a>
                   </MenuVertical.SubmenuButton>
@@ -58,7 +58,7 @@ export const Template = (args: MenuVerticalProps) => {
                 </MenuVertical>
               </MenuVertical.Item>
               <MenuVertical.Item>
-                <MenuVertical role="none" {...args}>
+                <MenuVertical {...args}>
                   <MenuVertical.SubmenuButton>N1 - Subitem</MenuVertical.SubmenuButton>
                   <MenuVertical.Item>
                     <a href="#">Fyrens förskola</a>
@@ -67,7 +67,7 @@ export const Template = (args: MenuVerticalProps) => {
                     <a href="#">Lanternans förskola</a>
                   </MenuVertical.Item>
                   <MenuVertical.Item>
-                    <MenuVertical role="none" {...args}>
+                    <MenuVertical {...args}>
                       <MenuVertical.SubmenuButton>N2 - Subitem</MenuVertical.SubmenuButton>
                       <MenuVertical.Item>
                         <a href="#">test</a>
@@ -76,7 +76,7 @@ export const Template = (args: MenuVerticalProps) => {
                         <a href="#">test1</a>
                       </MenuVertical.Item>
                       <MenuVertical.Item>
-                        <MenuVertical role="none" {...args}>
+                        <MenuVertical {...args}>
                           <MenuVertical.SubmenuButton>N3 - Subitem</MenuVertical.SubmenuButton>
                           <MenuVertical.Item menuIndex={1002}>
                             <a href="#">test</a>
@@ -85,7 +85,7 @@ export const Template = (args: MenuVerticalProps) => {
                             <a href="#">test1</a>
                           </MenuVertical.Item>
                           <MenuVertical.Item>
-                            <MenuVertical role="none" {...args}>
+                            <MenuVertical {...args}>
                               <MenuVertical.SubmenuButton>N4 - Subitem</MenuVertical.SubmenuButton>
                               <MenuVertical.Item>
                                 <a href="#">test</a>
@@ -94,7 +94,7 @@ export const Template = (args: MenuVerticalProps) => {
                                 <a href="#">test1</a>
                               </MenuVertical.Item>
                               <MenuVertical.Item>
-                                <MenuVertical role="none" {...args}>
+                                <MenuVertical {...args}>
                                   <MenuVertical.SubmenuButton disabled>
                                     N5 - Subitem (disabled)
                                   </MenuVertical.SubmenuButton>

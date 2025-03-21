@@ -208,7 +208,7 @@ export const DataTable = (args: TableProps) => {
               Rader per sida:
             </label>
             <Input
-              aria-label="input antal rader"
+              aria-label="Ange antal rader"
               hideExtra={false}
               size="sm"
               id="pagePageSize"

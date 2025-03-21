@@ -4,7 +4,7 @@ import { useCombobox } from './combobox-context';
 import { ComboboxOptgroup, ComboboxOptgroupProps } from './combobox-optgroup';
 import { ComboboxOption, ComboboxOptionProps } from './combobox-option';
 
-export interface ComboboxListProps extends DefaultProps, React.ComponentPropsWithRef<'fieldset'> {
+export interface ComboboxListProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   multiple?: boolean;
   size?: 'sm' | 'md' | 'lg';
   value?: string | string[];
@@ -14,14 +14,14 @@ export interface ComboboxListProps extends DefaultProps, React.ComponentPropsWit
   optionType?: string | React.JSXElementConstructor<unknown>;
 }
 
-export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListProps>((props, ref) => {
+export const ComboboxList = React.forwardRef<HTMLDivElement, ComboboxListProps>((props, ref) => {
   const [position, setPosition] = React.useState<'under' | 'over'>('over');
 
   type OptionType =
     | (typeof optionType & { value?: string; children?: string; checked?: boolean; id?: string })
     | ComboboxOptionProps;
 
-  const internalRef = React.useRef<HTMLFieldSetElement>(null);
+  const internalRef = React.useRef<HTMLDivElement>(null);
   const { className, multiple: _multiple, size: _size, value: _value, children, optionType, ...rest } = props;
 
   const { total, setTotal, open, autofilter, sortSelectedFirst, setIds, ...context } = useCombobox();
@@ -113,12 +113,12 @@ export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListPr
   }, [options, setTotal, setIds]);
 
   return (
-    <fieldset
+    <div
       id={context.listId}
       ref={useForkRef(ref, internalRef)}
       className={cx(className, 'sk-popup-menu', `sk-popup-menu-${size}`, 'sk-form-combobox-list')}
       data-open={open && total && total > 0}
-      role="group"
+      role="listbox"
       data-position={position}
       tabIndex={-1}
       aria-multiselectable={multiple}
@@ -126,6 +126,6 @@ export const ComboboxList = React.forwardRef<HTMLFieldSetElement, ComboboxListPr
       {...rest}
     >
       {options}
-    </fieldset>
+    </div>
   );
 });
