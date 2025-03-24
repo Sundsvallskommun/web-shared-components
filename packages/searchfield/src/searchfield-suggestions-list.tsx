@@ -5,7 +5,7 @@ import SearchFieldSuggestionsOption from './searchfield-suggestions-option';
 
 export type SearchFieldSuggestionsListProps = Omit<React.ComponentPropsWithRef<ComboboxProps['List']>, 'ref'>;
 
-export const SearchFieldSuggestionsList = React.forwardRef<HTMLFieldSetElement, SearchFieldSuggestionsListProps>(
+export const SearchFieldSuggestionsList = React.forwardRef<HTMLDivElement, SearchFieldSuggestionsListProps>(
   (props, ref) => {
     return (
       <Combobox.List ref={ref} optionType={typeof SearchFieldSuggestionsOption} {...props}>
