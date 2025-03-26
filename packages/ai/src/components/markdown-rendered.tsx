@@ -58,6 +58,10 @@ const CodeComponent = (props: React.ComponentPropsWithoutRef<'code'>) => {
   return <code className="sk-ai-markdown-code">{props.children}</code>;
 };
 
+const PreComponent = (props: React.ComponentPropsWithoutRef<'pre'>) => {
+  return <pre className="sk-ai-markdown-pre">{props.children}</pre>;
+};
+
 export const MarkdownRendered: React.FC<MarkdownRenderedProps> = (props) => {
   const { text, components, className, messageId, hideElements, tabbable = true, ...rest } = props;
 
@@ -72,6 +76,7 @@ export const MarkdownRendered: React.FC<MarkdownRenderedProps> = (props) => {
         ul: UlComponent,
         li: LiComponent,
         code: CodeComponent,
+        pre: PreComponent,
         ...components,
       }}
       {...rest}

@@ -19,5 +19,11 @@ export const MarkdownRendered = () => ({
     '&-code': {
       '@apply bg-background-100 p-4': {},
     },
+    '&-pre': {
+      '@apply bg-background-100 text-dark-primary border-1 border-divider p-24 rounded-cards overflow-auto': {},
+      '.sk-ai-markdown-code': {
+        '@apply bg-transparent p-0': {},
+      },
+    },
   },
 });
