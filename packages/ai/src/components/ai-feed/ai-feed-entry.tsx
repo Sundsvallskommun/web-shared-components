@@ -3,7 +3,6 @@ import { Link } from '@sk-web-gui/link';
 import { cx } from '@sk-web-gui/utils';
 import React from 'react';
 import { useAssistantStore } from '../../assistant-store';
-import { sanitized } from '../../services';
 import { ChatHistoryEntry } from '../../types';
 import { Feedback } from '../feedback';
 import { MarkdownRendered } from '../markdown-rendered';
@@ -81,7 +80,7 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
                   {title}
                 </span>
                 <MarkdownRendered
-                  text={sanitized(entry.text)}
+                  text={entry.text}
                   messageId={entry.id}
                   hideElements={!entry.done}
                   tabbable={tabbable}

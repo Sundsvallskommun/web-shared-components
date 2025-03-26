@@ -16,5 +16,8 @@ export const MarkdownRendered = () => ({
     '&-li': {
       '@apply my-16': {},
     },
+    '&-code': {
+      '@apply bg-background-100 p-4': {},
+    },
   },
 });

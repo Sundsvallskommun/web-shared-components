@@ -23,6 +23,7 @@ const config = {
     'div',
     'sup',
     'sub',
+    'code',
   ],
   allowedAttributes: {
     a: ['href', 'name', 'target'],
