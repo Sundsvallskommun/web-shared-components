@@ -17,7 +17,7 @@ const history: ChatHistory = [
   },
   {
     origin: 'assistant',
-    text: 'Jag är Qwerty, en AI-assistent här för att hjälpa medarbetare på Sundsvalls Kommun med information och kommunikation. Jag pratar enkelt och vänligt, och kan hjälpa till med frågor om HR och vårt intranät. \r\rMitt mål är att göra ditt jobb lite lättare och roligare. Hur kan jag hjälpa dig idag?',
+    text: '## Jag är Qwerty.\r\r **En AI-assistent** här för att hjälpa medarbetare på Sundsvalls Kommun med information och kommunikation. Jag pratar enkelt och vänligt, och kan hjälpa till med frågor om HR och vårt intranät. \r\rMitt mål är att göra ditt jobb lite lättare och roligare. Hur kan jag hjälpa dig idag? \r\r## Jag kan skapa listor\r- En punkt\r- Två punkter\r\rDetta är `<p>inline code</p>`\n```\nDetta är ett \r<p>code block</p>\n```',
     id: '2',
     references: [
       {

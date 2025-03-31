@@ -1,8 +1,7 @@
 import { Link } from '@sk-web-gui/link';
+import { cx } from '@sk-web-gui/utils';
 import React from 'react';
 import Markdown, { Options } from 'react-markdown';
-import sanitized from '../services/sanitizer-service';
-import { cx } from '@sk-web-gui/utils';
 
 interface MarkdownRenderedProps extends Options {
   text: string;
@@ -55,6 +54,14 @@ const LiComponent = (props: React.ComponentPropsWithoutRef<'li'>) => {
   return <li className="sk-ai-markdown-li">{props.children}</li>;
 };
 
+const CodeComponent = (props: React.ComponentPropsWithoutRef<'code'>) => {
+  return <code className="sk-ai-markdown-code">{props.children}</code>;
+};
+
+const PreComponent = (props: React.ComponentPropsWithoutRef<'pre'>) => {
+  return <pre className="sk-ai-markdown-pre">{props.children}</pre>;
+};
+
 export const MarkdownRendered: React.FC<MarkdownRenderedProps> = (props) => {
   const { text, components, className, messageId, hideElements, tabbable = true, ...rest } = props;
 
@@ -68,11 +75,13 @@ export const MarkdownRendered: React.FC<MarkdownRenderedProps> = (props) => {
         ol: OlComponent,
         ul: UlComponent,
         li: LiComponent,
+        code: CodeComponent,
+        pre: PreComponent,
         ...components,
       }}
       {...rest}
     >
-      {sanitized(text)}
+      {text}
     </Markdown>
   );
 };
