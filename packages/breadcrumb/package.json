@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/breadcrumb",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -39,8 +39,8 @@
     "react": "^19.0.0"
   },
   "dependencies": {
-    "@sk-web-gui/link": "1.2.2",
-    "@sk-web-gui/theme": "2.4.2",
+    "@sk-web-gui/link": "1.2.3",
+    "@sk-web-gui/theme": "2.4.3",
     "@sk-web-gui/utils": "2.2.2"
   },
   "peerDependencies": {

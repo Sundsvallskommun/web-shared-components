@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/filter",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@sk-web-gui/badge": "1.1.2",
-    "@sk-web-gui/forms": "2.4.1",
+    "@sk-web-gui/forms": "2.4.2",
     "@sk-web-gui/utils": "2.2.2"
   },
   "peerDependencies": {

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.11.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.11.1...@sk-web-gui/core@3.11.2) (2025-03-31)
+
+### Bug Fixes
+
+- **ai:** added code to markdown render ([657a9a9](https://github.com/Sundsvallskommun/web-shared-components/commit/657a9a92a62f7e91c4d16e7e09f54e28231030e5))
+- **ai:** added pre code styling ([59d0bd9](https://github.com/Sundsvallskommun/web-shared-components/commit/59d0bd9b2f2c14b64e8ba762fdb38ae5d1f5643e))
+- **ai:** wrong size on corner module header ([9fb8e32](https://github.com/Sundsvallskommun/web-shared-components/commit/9fb8e3249048eebc29ef3f934486546fd7ca4469))
+
 ## [3.11.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.11.0...@sk-web-gui/core@3.11.1) (2025-03-06)
 
 ### Bug Fixes
