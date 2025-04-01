@@ -8,7 +8,7 @@ import {
   SessionMessage,
   SessionsResponse,
 } from '../types';
-import { AssistantFeedback, AssistantSettings, SkHeaders } from '../types/assistant';
+import { AssistantFeedback, AssistantSettings, ModelId, SkHeaders } from '../types/assistant';
 
 export const getSkHeaders = (options: AssistantSettings | undefined, settings: AssistantSettings): SkHeaders => {
   const assistantId = options?.assistantId || settings.assistantId || '';
@@ -114,7 +114,7 @@ export const getAssistantSessionById = async (sessionId: string, options?: Assis
     });
 };
 
-export const batchQuery = async (query: string, sessionId?: string, options?: AssistantSettings) => {
+export const batchQuery = async (query: string, sessionId?: string, options?: AssistantSettings, files?: ModelId[]) => {
   const { apiBaseUrl, settings } = useAssistantStore.getState();
   const skHeaders = getSkHeaders(options, settings);
   if (!apiBaseUrl) {
@@ -124,7 +124,7 @@ export const batchQuery = async (query: string, sessionId?: string, options?: As
   const url = `${apiBaseUrl}/assistants/${skHeaders._skassistant}/sessions/${sessionId || ''}?stream=false`;
   return fetch(url, {
     method: 'POST',
-    body: JSON.stringify({ body: query }),
+    body: JSON.stringify({ body: query, files }),
     headers: {
       Accept: 'application/json',
       ...skHeaders,

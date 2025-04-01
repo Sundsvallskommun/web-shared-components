@@ -2,7 +2,7 @@ import { EventSourceMessage, fetchEventSource } from '@microsoft/fetch-event-sou
 import React from 'react';
 import { useAssistantStore } from '../assistant-store';
 import { batchQuery } from '../services/assistant-service';
-import { AssistantSettings, SkHeaders } from '../types/assistant';
+import { AssistantSettings, ModelId, SkHeaders } from '../types/assistant';
 import { ChatEntryReference, ChatHistory, ChatHistoryEntry, Origin } from '../types/history';
 import { ResponseData } from '../types/response';
 import { useSessions } from '../session-store';
@@ -96,7 +96,14 @@ export const useChat = (options?: useChatOptions) => {
     updateHistory(currentSession, (history) => [...(history || []), historyEntry]);
   };
 
-  const streamQuery = (query: string, assistantId: string, session_id: string, user: string, hash: string) => {
+  const streamQuery = (
+    query: string,
+    assistantId: string,
+    session_id: string,
+    user: string,
+    hash: string,
+    files?: ModelId[]
+  ) => {
     const answerId = crypto.randomUUID();
 
     if (!session.name) {
@@ -118,7 +125,7 @@ export const useChat = (options?: useChatOptions) => {
 
     fetchEventSource(url, {
       method: 'POST',
-      body: JSON.stringify({ body: query }),
+      body: JSON.stringify({ body: query, files }),
       headers: {
         Accept: 'text/event-stream',
         ...skHeaders,
@@ -214,7 +221,7 @@ export const useChat = (options?: useChatOptions) => {
     }).catch(() => setDone(currentSession, true));
   };
 
-  const sendQuery = (query: string) => {
+  const sendQuery = (query: string, files?: ModelId[]) => {
     if (!assistantId || !hash) {
       addHistoryEntry('system', 'Ett fel inträffade, assistenten gav inget svar.', '0', true);
       setDone(currentSession, true);
@@ -224,7 +231,7 @@ export const useChat = (options?: useChatOptions) => {
     addHistoryEntry('user', query, questionId, true);
 
     if (stream) {
-      streamQuery(query, assistantId, isNew ? '' : currentSession, user, hash);
+      streamQuery(query, assistantId, isNew ? '' : currentSession, user, hash, files);
     } else {
       setDone(currentSession, false);
       const answerId = crypto.randomUUID();
@@ -232,7 +239,7 @@ export const useChat = (options?: useChatOptions) => {
         setSessionName(query);
       }
       addHistoryEntry('assistant', '', answerId, false);
-      return batchQuery(query, isNew ? '' : currentSession, settings)
+      return batchQuery(query, isNew ? '' : currentSession, settings, files)
         .then((res: ResponseData) => {
           updateHistory(currentSession, (history) => {
             const newHistory = [...history];
