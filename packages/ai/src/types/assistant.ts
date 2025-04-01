@@ -92,3 +92,12 @@ export interface Assistant {
   info: AssistantInfo;
   settings: AssistantSettings;
 }
+
+/** ModelId */
+export interface ModelId {
+  /**
+   * Id
+   * @format uuid
+   */
+  id: string;
+}
