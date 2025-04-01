@@ -36,7 +36,7 @@ export const Example = () => {
         onMouseEnter={() => handleHover(0)}
         onMouseLeave={() => setHover(initialHover)}
       >
-        <Button iconButton rounded color="juniskar">
+        <Button aria-label="Hjälp" iconButton rounded color="juniskar">
           <Icon icon={<Lightbulb />} />
         </Button>
         <Tooltip position="right" className={`${hover[0] ? '' : 'hidden'}`}>
@@ -48,7 +48,7 @@ export const Example = () => {
         onMouseEnter={() => handleHover(1)}
         onMouseLeave={() => setHover(initialHover)}
       >
-        <Button iconButton rounded color="bjornstigen">
+        <Button aria-label="Skapa ny" iconButton rounded color="bjornstigen">
           <Icon icon={<File />} />
         </Button>
         <Tooltip position="right" className={`${hover[1] ? '' : 'hidden'}`}>

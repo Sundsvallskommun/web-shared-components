@@ -54,9 +54,9 @@ export const Logo = React.forwardRef<HTMLDivElement, LogoProps>((props, ref) => 
 
   return (
     <div ref={ref} className={cx('sk-logo', className)} data-variant={variant} data-inverted={inverted} {...rest}>
-      <figure role="img" className="sk-logo-figure">
+      <div className="sk-logo-figure">
         <RenderLogo variant={variant} logo={logo} symbol={symbol} />
-      </figure>
+      </div>
       {variant === 'service' && (
         <>
           <Divider orientation="vertical" strong className="sk-logo-divider" />

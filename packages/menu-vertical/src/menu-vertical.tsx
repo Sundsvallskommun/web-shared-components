@@ -9,6 +9,7 @@ type IMenuVerticalComponentProps = DefaultProps & {
   rootId?: string;
   menuId?: string;
   parentLiMenuIndex?: number | string | null;
+  menuAriaLabel?: string;
 };
 
 export interface MenuVerticalComponentProps
@@ -33,11 +34,13 @@ function extractString(obj: React.ReactNode): string {
 
 export const MenuVerticalComponent = React.forwardRef<HTMLUListElement, MenuVerticalComponentProps>((props, ref) => {
   const { className, children, menuId, parentLiMenuIndex = null, ...rest } = props;
-  const { rootMenuId, menu, setMenu } = useMenuVertical();
+  const { rootMenuId, menu, setMenu, menuAriaLabel } = useMenuVertical();
   const [submenuOpen, setSubmenuOpen] = React.useState<boolean>(
     parentLiMenuIndex && parentLiMenuIndex !== rootMenuId ? false : true
   );
   const _menu = menu;
+
+  const isTopParent = !menuId;
 
   const { menuItems, submenuItem, _menuId } = React.Children.toArray(children).reduce<
     MenuItemTypes & { _menuId: string }
@@ -109,7 +112,8 @@ export const MenuVerticalComponent = React.forwardRef<HTMLUListElement, MenuVert
       {menuItems?.length > 0 ? (
         <ul
           id={_menuId}
-          role="menubar"
+          role={isTopParent ? "menubar" : "menu"}
+          aria-label={isTopParent ? menuAriaLabel : undefined}
           ref={ref}
           className={cx('sk-menu-vertical', className, !menu[_menuId].submenuOpen && 'hide')}
           {...rest}

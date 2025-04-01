@@ -16,6 +16,7 @@ export interface MenuVerticalProviderProps {
   active?: UseMenuVerticalPropsStates['active'];
   activeMenuId?: UseMenuVerticalPropsStates['activeMenuId'];
   currentMenuId?: UseMenuVerticalPropsStates['currentMenuId'];
+  menuAriaLabel?: UseMenuVerticalPropsStates['menuAriaLabel'];
 
   setCurrent?: UseMenuVerticalPropsFunctions['setCurrent'];
   setFocused?: UseMenuVerticalPropsFunctions['setFocused'];
@@ -24,7 +25,7 @@ export interface MenuVerticalProviderProps {
 
 export function MenuVerticalProvider({
   children,
-
+  menuAriaLabel,
   rootId: _rootId = 'sk-menu-vertical',
   rootMenuId: _rootMenuId = `${_rootId}-root`,
   activeMenuId: _activeMenuId = _rootMenuId,
@@ -131,6 +132,7 @@ export function MenuVerticalProvider({
   const contextProps = {
     rootId,
     rootMenuId,
+    menuAriaLabel,
 
     menu,
     setMenu,

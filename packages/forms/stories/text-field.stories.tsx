@@ -109,7 +109,7 @@ export const Addin = () => {
         <Input.Group size="md">
           <TextField placeholder="Lösenord" type={showPass ? 'text' : 'password'} />
           <Input.RightAddin icon>
-            <span role="button" onClick={() => setShowPass(!showPass)}>
+            <span aria-label={showPass ? 'Dölj lösenord' : 'Visa lösenord'} role="button" onClick={() => setShowPass(!showPass)}>
               {showPass ? <Icon icon={<EyeOff />} /> : <Icon icon={<Eye />} />}
             </span>
           </Input.RightAddin>
