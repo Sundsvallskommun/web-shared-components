@@ -147,14 +147,17 @@ export const FileUploadWithUseFormProvider = (args: React.ComponentProps<FileUpl
     mode: 'onChange',
   });
   const files = context?.watch('attachments');
+  const required = true;
 
   const handleOnSubmit = (values: FieldValues) => {
     console.log('handleOnSubmit', values);
   };
 
   React.useEffect(() => {
-    console.log('FileUploadWithUseFormProvider files', files);
+    console.log('FileUploadWithUseFormProvider attachments', files);
   }, [files]);
+
+  console.log('context.formState.errors', context.formState.errors);
 
   return (
     <div className="flex flex-col gap-lg">
@@ -165,7 +168,14 @@ export const FileUploadWithUseFormProvider = (args: React.ComponentProps<FileUpl
       <FormProvider {...context}>
         <form className="flex flex-col gap-lg" onSubmit={context.handleSubmit(handleOnSubmit)}>
           <FileUpload.Button
-            name="attachments"
+            // use simply with name
+            // name="attachments"
+            // or with register where e.g. validation is necessary on component
+            {...context.register('attachments', {
+              validate: {
+                required: (value) => (required ? value.length > 0 : true),
+              },
+            })}
             withModal
             modalListProps={{
               categoryProps: {
@@ -198,29 +208,32 @@ export const FileUploadWithUseFormProvider = (args: React.ComponentProps<FileUpl
 
 export const FileUploadWithUseForm = (args: React.ComponentProps<FileUploadProps['Component']>) => {
   const [isEdit, setIsEdit] = React.useState<boolean>(true);
-  const { register, watch, setValue, getValues, formState } = useForm<{ attachments: UploadFile[] }>({
+  const context = useForm<{ attachments: UploadFile[] }>({
     defaultValues: { attachments: [] },
     mode: 'onChange',
   });
-  const attachments = watch('attachments');
+
+  const attachments = context.watch('attachments');
 
   const handleRemoveFile = (file: UploadFile) => {
-    setValue(
+    context.setValue(
       'attachments',
-      watch('attachments').filter((x) => x !== file)
+      context.watch('attachments').filter((x) => x !== file)
     );
   };
 
   React.useEffect(() => {
-    console.log('FileUploadWithListUseForm attachments', attachments);
+    console.log('FileUploadWithUseFormProvider attachments', attachments);
   }, [attachments]);
 
-  React.useEffect(() => {
-    console.log('formState.errors', formState.errors);
-  }, [formState.errors]);
+  console.log('context.formState.errors', context.formState.errors);
+
+  const onSubmit = (values: FieldValues) => {
+    console.log('onSubmit values', values);
+  };
 
   return (
-    <div className="flex flex-col gap-lg">
+    <form className="flex flex-col gap-lg" onSubmit={context.handleSubmit(onSubmit)}>
       <Switch value={isEdit.toString()} checked={isEdit} onChange={() => setIsEdit((value) => !value)}>
         Redigera
       </Switch>
@@ -233,7 +246,7 @@ export const FileUploadWithUseForm = (args: React.ComponentProps<FileUploadProps
           },
           actionsProps: { showRemove: true, onRemove: handleRemoveFile },
         }}
-        {...register('attachments')}
+        {...context.register('attachments', { required: true })}
       />
       <FileUpload.List isEdit={isEdit} name="attachments">
         {attachments?.map((attachment, i) => (
@@ -242,12 +255,12 @@ export const FileUploadWithUseForm = (args: React.ComponentProps<FileUploadProps
             file={attachment}
             index={i}
             nameProps={{
-              inputProps: register(`attachments.${i}.meta.name`),
-              formErrors: formState.errors,
+              inputProps: context.register(`attachments.${i}.meta.name`),
+              formErrors: context.formState.errors,
             }}
             categoryProps={{
               categories: defaultCategories,
-              selectProps: register(`attachments.${i}.meta.category`),
+              selectProps: context.register(`attachments.${i}.meta.category`),
             }}
             actionsProps={{
               showRemove: true,
@@ -258,7 +271,7 @@ export const FileUploadWithUseForm = (args: React.ComponentProps<FileUploadProps
           />
         ))}
       </FileUpload.List>
-      <Button onClick={() => console.log('getValues', getValues())}>Skicka</Button>
-    </div>
+      <Button type="submit">Skicka</Button>
+    </form>
   );
 };

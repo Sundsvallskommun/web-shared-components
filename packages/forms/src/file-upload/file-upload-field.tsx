@@ -30,7 +30,8 @@ export const FileUploadField = React.forwardRef<HTMLSpanElement, FileUploadField
     onInvalid,
     maxFileSizeMB = 10,
     accept = defaults.acceptedMimeTypes,
-    appendFiles: _appendFiles,
+    appendFiles,
+    appendToContext = true,
     ...rest
   } = props;
   const [isInvalid, setIsInvalid] = React.useState(invalid);
@@ -46,13 +47,14 @@ export const FileUploadField = React.forwardRef<HTMLSpanElement, FileUploadField
 
   const useAddFilesProps = {
     name,
-    allowMultiple,
     onChange,
     onInvalid: handleOnInvalid,
     onValid: handleOnValid,
+    allowMultiple,
     maxFileSizeMB,
     accept,
-    appendFiles: _appendFiles,
+    appendFiles,
+    appendToContext,
   };
 
   React.useEffect(() => {

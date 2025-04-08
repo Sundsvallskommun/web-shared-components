@@ -1,15 +1,13 @@
+import { Icon } from '@sk-web-gui/icon';
 import { cx, DefaultProps } from '@sk-web-gui/utils';
 import { Upload } from 'lucide-react';
 import React from 'react';
 import { hooks, UseAddFilesProps } from './hooks';
-import { CustomOnChangeEventUploadFile } from './types';
-import { Icon } from '@sk-web-gui/icon';
 
 export interface FileUploadAreaProps
   extends DefaultProps,
     Omit<React.HTMLAttributes<HTMLDivElement>, 'color' | 'children' | 'onChange' | 'onInvalid'>,
-    Omit<UseAddFilesProps, 'onChange'> {
-  onChange?: (event: CustomOnChangeEventUploadFile) => void;
+    UseAddFilesProps {
   /** @default true */
   dragDropEnabled?: boolean;
   /** @default viewport */
@@ -38,10 +36,10 @@ export const FileUploadArea = React.forwardRef<HTMLDivElement, FileUploadAreaPro
   const [isDragging, setIsDragging] = React.useState(false);
 
   const { addFiles } = hooks.useAddFiles({
+    name,
     onChange,
     onInvalid,
     onValid,
-    name,
     allowMultiple,
     maxFileSizeMB,
     accept,
