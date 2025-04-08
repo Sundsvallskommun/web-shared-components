@@ -87,7 +87,7 @@ export const CheckboxGroup = React.forwardRef<HTMLUListElement, CheckboxGroupPro
 
   return (
     <CheckboxGroupContext.Provider value={context}>
-      <ul className="sk-form-checkbox-group" role="group" data-direction={direction} ref={ref} {...rest}>
+      <ul className="sk-form-checkbox-group" data-direction={direction} ref={ref} {...rest}>
         {clones}
       </ul>
     </CheckboxGroupContext.Provider>

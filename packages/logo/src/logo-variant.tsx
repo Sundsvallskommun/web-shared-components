@@ -8,9 +8,9 @@ import { Logo as LogoSvg, Symbol } from './assets';
 
   export const RenderLogo = (props: RenderLogoProps) => {
     const variantMap = {
-      logo: props.logo || <LogoSvg />,
-      symbol: props.symbol || <Symbol />,
-      service: props.symbol || <Symbol />,
+      logo: props.logo || <LogoSvg aria-label="Sundsvalls kommun logotyp"/>,
+      symbol: props.symbol || <Symbol aria-label="Sundsvalls kommun symbol"/>,
+      service: props.symbol || <Symbol aria-label="Sundsvalls kommun symbol"/>,
     };
 
     return variantMap[props.variant] || null;

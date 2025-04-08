@@ -36,7 +36,7 @@ const FileIcon = ({ file, showPreview }: FileIconProps) => {
       }
     }
   }
-  return <File />;
+  return <Icon icon={<File />} />;
 };
 
 export interface FileUploadListItemIconProps

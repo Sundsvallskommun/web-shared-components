@@ -81,9 +81,9 @@ export const Storlekar = () => (
 export const Datum = () => (
   <div className="flex flex-col gap-16">
     <div className="flex gap-16">
-      <Input size="sm" type="date" />
-      <Input size="md" type="date" />
-      <Input size="lg" type="date" />
+      <Input size="sm" type="date" aria-label="Välj datum"/>
+      <Input size="md" type="date" aria-label="Välj datum"/>
+      <Input size="lg" type="date" aria-label="Välj datum"/>
     </div>
   </div>
 );
@@ -91,9 +91,9 @@ export const Datum = () => (
 export const Tid = () => (
   <div className="flex flex-col gap-16">
     <div className="flex gap-16">
-      <Input size="sm" type="time" />
-      <Input size="md" type="time" />
-      <Input size="lg" type="time" />
+      <Input size="sm" type="time" aria-label="Välj tid"/>
+      <Input size="md" type="time" aria-label="Välj tid"/>
+      <Input size="lg" type="time" aria-label="Välj tid"/>
     </div>
   </div>
 );
@@ -101,9 +101,9 @@ export const Tid = () => (
 export const DatumTid = () => (
   <div className="flex flex-col gap-16">
     <div className="flex gap-16">
-      <Input size="sm" type="datetime-local" />
-      <Input size="md" type="datetime-local" />
-      <Input size="lg" type="datetime-local" />
+      <Input size="sm" type="datetime-local" aria-label="Välj datum och tid"/>
+      <Input size="md" type="datetime-local" aria-label="Välj datum och tid"/>
+      <Input size="lg" type="datetime-local" aria-label="Välj datum och tid"/>
     </div>
   </div>
 );
@@ -136,7 +136,7 @@ export const Addin = () => {
         <Input.Group size="sm">
           <Input placeholder="Lösenord" type={showPass ? 'text' : 'password'} />
           <Input.RightAddin icon>
-            <span role="button" onClick={() => setShowPass(!showPass)}>
+            <span role="button" aria-label="Visa lösenord" onClick={() => setShowPass(!showPass)}>
               {showPass ? <Icon icon={<EyeOff />} /> : <Icon icon={<Eye />} />}
             </span>
           </Input.RightAddin>
@@ -145,7 +145,7 @@ export const Addin = () => {
         <Input.Group size="md">
           <Input placeholder="Lösenord" type={showPass ? 'text' : 'password'} />
           <Input.RightAddin icon>
-            <span role="button" onClick={() => setShowPass(!showPass)}>
+            <span role="button" aria-label="Visa lösenord" onClick={() => setShowPass(!showPass)}>
               {showPass ? <Icon icon={<EyeOff />} /> : <Icon icon={<Eye />} />}
             </span>
           </Input.RightAddin>
@@ -154,7 +154,7 @@ export const Addin = () => {
         <Input.Group size="lg">
           <Input placeholder="Lösenord" type={showPass ? 'text' : 'password'} />
           <Input.RightAddin icon>
-            <span role="button" onClick={() => setShowPass(!showPass)}>
+            <span role="button" aria-label="Visa lösenord" onClick={() => setShowPass(!showPass)}>
               {showPass ? <Icon icon={<EyeOff />} /> : <Icon icon={<Eye />} />}
             </span>
           </Input.RightAddin>

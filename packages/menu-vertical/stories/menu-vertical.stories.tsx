@@ -18,7 +18,7 @@ export const Template = (args: MenuVerticalProps) => {
 
   return (
     <div className="w-[30.2rem]">
-      <MenuVertical.Provider current={current} setCurrent={handleSetCurrent}>
+      <MenuVertical.Provider current={current} menuAriaLabel="Områden" setCurrent={handleSetCurrent}>
         {({ setCurrentActiveFocus }) => (
           <MenuVertical.Nav>
             <MenuVertical.BackButton>Kommunala förskolor</MenuVertical.BackButton>

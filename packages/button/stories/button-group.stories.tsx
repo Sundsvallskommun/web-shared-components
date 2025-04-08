@@ -22,19 +22,19 @@ export const Template = ({ ...args }: ButtonProps) => (
 
     <div>
       <Button.Group {...args}>
-        <Button iconButton>
+        <Button aria-label="Justera till vänster" iconButton>
           <Icon icon={<AlignStartVertical />} />
         </Button>
 
-        <Button iconButton>
+        <Button aria-label="Justera till mitten" iconButton>
           <Icon icon={<AlignCenterVertical />} />
         </Button>
 
-        <Button iconButton>
+        <Button aria-label="Justera till höger" iconButton>
           <Icon icon={<AlignEndVertical />} />
         </Button>
 
-        <Button iconButton>
+        <Button aria-label="Gå nedåt" iconButton>
           <Icon icon={<CircleArrowDown />} />
         </Button>
       </Button.Group>

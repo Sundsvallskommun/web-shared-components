@@ -1,7 +1,6 @@
 import { Meta } from '@storybook/react';
 import React from 'react';
-import { MenuVertical, MenuVerticalProps } from '../src';
-import { MenuIndex } from '../src/menu-vertical-context';
+import { MenuVertical, MenuVerticalProps, MenuIndex } from '../src';
 import { Icon } from '@sk-web-gui/icon';
 import { Avatar } from '@sk-web-gui/avatar';
 import { Logo } from '@sk-web-gui/logo';
