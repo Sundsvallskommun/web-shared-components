@@ -37,24 +37,27 @@ export const FileUploadButton = React.forwardRef<HTMLSpanElement, FileUploadButt
     onValid,
     maxFileSizeMB = 10,
     accept = defaults.acceptedMimeTypes,
-    appendFiles: _appendFiles,
+    appendFiles,
+    appendToContext = true,
     fileNameValidationFunctions = defaults.fileNameValidationFunctions,
     // Props for modal-list
     modalListProps,
     ...rest
   } = props;
   const inputRef = React.useRef<HTMLInputElement>(null);
+
   const [showModal, setShowModal] = React.useState<boolean>(false);
 
   const useAddFilesProps = {
     name,
-    allowMultiple,
     onChange,
     onInvalid,
     onValid,
+    allowMultiple,
     maxFileSizeMB,
     accept,
-    appendFiles: _appendFiles,
+    appendFiles,
+    appendToContext,
   };
 
   const context = useForm<{ modalAttachments: UploadFile[] }>({
