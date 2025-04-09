@@ -154,6 +154,7 @@ export const fontSizes = {
     large: '1.8rem',
     medium: '1.6rem',
     small: '1.4rem',
+    'extra-small': '1.2rem'
   },
   input: {
     large: '1.8rem',
@@ -220,6 +221,7 @@ export const lineHeights = {
     large: '3.2rem',
     medium: '2.4rem',
     small: '1.6rem',
+    'extra-small': '1.8rem',
   },
   input: {
     large: '2.4rem',

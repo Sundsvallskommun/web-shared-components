@@ -7,7 +7,7 @@ interface IAvatarProps extends DefaultProps {
   placeholderImage?: string;
   imageUrl?: string;
   initials?: string;
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'xs'| 'sm' | 'md' | 'lg';
   color?: 'juniskar' | 'bjornstigen' | 'gronsta' | 'vattjom' | string;
   accent?: boolean;
   rounded?: boolean;
