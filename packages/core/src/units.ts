@@ -132,6 +132,11 @@ const _units = {
       'var(--sk-fontSize-label-small)',
       { lineHeight: 'var(--sk-lineHeight-label-small)', fontWeight: 700 },
     ],
+    'label-extra-small': [
+      'var(--sk-fontSize-label-extra-small)',
+      { lineHeight: 'var(--sk-lineHeight-label-extra-small)', fontWeight: 700 },
+    ],
+    
 
     'input-large': [
       'var(--sk-fontSize-input-large)',
@@ -189,6 +194,7 @@ const _units = {
     'label-large': 'var(--sk-lineHeight-label-large)',
     'label-medium': 'var(--sk-lineHeight-label-medium)',
     'label-small': 'var(--sk-lineHeight-label-small)',
+    'label-extra-small': 'var(--sk-lineHeight-label-extra-small)',
 
     'input-large': 'var(--sk-lineHeight-input-large)',
     'input-medium': 'var(--sk-lineHeight-input-medium)',
