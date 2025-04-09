@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/progress-stepper",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -39,9 +39,9 @@
     "react": "^19.0.0"
   },
   "dependencies": {
-    "@sk-web-gui/divider": "1.1.3",
+    "@sk-web-gui/divider": "1.1.4",
     "@sk-web-gui/icon": "3.1.2",
-    "@sk-web-gui/theme": "2.4.3",
+    "@sk-web-gui/theme": "2.5.0",
     "@sk-web-gui/utils": "2.2.2",
     "lucide-react": "^0.471.1"
   },

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.4.2...@sk-web-gui/forms@2.4.3) (2025-04-09)
+
+### Bug Fixes
+
+- better docs for validation and minor refactor ([#402](https://github.com/Sundsvallskommun/web-shared-components/issues/402)) ([1a5193b](https://github.com/Sundsvallskommun/web-shared-components/commit/1a5193bd6a30fb2baa1cea3bfafd23f4138c5912))
+
 ## [2.4.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.4.1...@sk-web-gui/forms@2.4.2) (2025-03-31)
 
 **Note:** Version bump only for package @sk-web-gui/forms

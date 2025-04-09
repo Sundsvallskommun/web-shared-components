@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@1.0.2...@sk-web-gui/ai@1.1.0) (2025-04-09)
+
+### Features
+
+- Added attached files to useChat-hook ([b21928e](https://github.com/Sundsvallskommun/web-shared-components/commit/b21928e6af37a04fd4f8cf750c2d543d1d304a8b))
+
 ## [1.0.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@1.0.1...@sk-web-gui/ai@1.0.2) (2025-03-31)
 
 ### Bug Fixes

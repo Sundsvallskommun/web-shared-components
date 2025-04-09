@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@2.4.3...@sk-web-gui/theme@2.5.0) (2025-04-09)
+
+### Features
+
+- added size xs for avatar ([19e89b6](https://github.com/Sundsvallskommun/web-shared-components/commit/19e89b64d1881cf46df29fe6e0174f1255839212))
+
 ## [2.4.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@2.4.2...@sk-web-gui/theme@2.4.3) (2025-03-31)
 
 **Note:** Version bump only for package @sk-web-gui/theme
