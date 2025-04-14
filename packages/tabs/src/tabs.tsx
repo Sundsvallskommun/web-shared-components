@@ -123,9 +123,7 @@ export const TabsComponent = React.forwardRef<HTMLDivElement, TabsComponentProps
           'aria-labelledby': buttonComponent?.props?.id || `${id}-tab-${index}`,
         });
         return newContent;
-      } else {
-        throw Error('No <Tabs.Content> found! Each <Tabs.Item> needs content.');
-      }
+      } 
     });
   };
 
