@@ -1,19 +1,34 @@
 export const MenuBar = (colors: string[]) => ({
   '.sk-menubar': {
     '@apply flex flex-row': {},
-    '@apply p-8 gap-16': {},
     '@apply rounded-cards': {},
 
     '&[data-background="true"]': {
       '@apply bg-background-color-mixin-1': {},
     },
 
+    // sizes
+    '&[data-size="md"]': {
+      '@apply p-6 gap-8 rounded-groups': {},
+    },
+    '&[data-size="lg"]': {
+      '@apply p-8 gap-16 rounded-cards': {},
+    },
+
     '&-item': {
       '@apply inline-block': {},
       '@apply relative': {},
-      '@apply h-40': {},
-      'a, button': {
-        color: 'unset',
+
+      // sizes
+      '&[data-size="md"]': {
+        '@apply h-34': {},
+
+        '> *': {
+          '@apply text-small leading-[1.8rem]': {},
+        },
+      },
+      '&[data-size="lg"]': {
+        '@apply h-40': {},
       },
 
       '> *:first-child': {

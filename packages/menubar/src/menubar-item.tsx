@@ -16,14 +16,25 @@ export interface MenuBarItemProps
   children: React.JSX.Element;
   /** For e.g. Next Links to work, they need to wrapped this way */
   wrapper?: React.JSX.Element;
+  size?: 'md' | 'lg';
 }
 
 export const MenuBarItem = React.forwardRef<HTMLLIElement, MenuBarItemProps>((props, ref) => {
-  const { color: propsColor, className, current: thisCurrent, children, menuIndex, wrapper, ...rest } = props;
-  const { color: contextColor, current, setCurrent, next, prev, active } = useMenuBar();
+  const {
+    color: propsColor,
+    className,
+    current: thisCurrent,
+    children,
+    menuIndex,
+    wrapper,
+    size: _size,
+    ...rest
+  } = props;
+  const { color: contextColor, current, setCurrent, next, prev, active, size: contextSize } = useMenuBar();
   const [mounted, setMounted] = React.useState<boolean>(false);
   const color = propsColor || contextColor;
   const menuRef = React.useRef<HTMLElement>(null);
+  const size = _size || contextSize || 'lg';
 
   React.useEffect(() => {
     if (thisCurrent && typeof menuIndex === 'number') {
@@ -132,6 +143,7 @@ export const MenuBarItem = React.forwardRef<HTMLLIElement, MenuBarItemProps>((pr
   return (
     <li
       data-color={color}
+      data-size={size}
       ref={useForkRef(ref, menuRef)}
       className={cx('sk-menubar-item', className)}
       role="none"
