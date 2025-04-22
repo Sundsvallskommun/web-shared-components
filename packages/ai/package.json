@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/ai",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -47,7 +47,7 @@
     "@sk-web-gui/forms": "2.4.3",
     "@sk-web-gui/icon": "3.1.2",
     "@sk-web-gui/link": "1.2.4",
-    "@sk-web-gui/menubar": "1.1.4",
+    "@sk-web-gui/menubar": "1.2.0",
     "@sk-web-gui/theme": "2.5.0",
     "@sk-web-gui/tooltip": "1.1.2",
     "@sk-web-gui/utils": "2.2.2",

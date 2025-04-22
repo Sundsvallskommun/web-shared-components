@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/menubar@1.1.4...@sk-web-gui/menubar@1.2.0) (2025-04-22)
+
+### Features
+
+- added md and lg sizes to menubar ([#405](https://github.com/Sundsvallskommun/web-shared-components/issues/405)) ([3e0c9b0](https://github.com/Sundsvallskommun/web-shared-components/commit/3e0c9b02ec35e36f75a16f3c4debcc8c26a50837))
+
 ## [1.1.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/menubar@1.1.3...@sk-web-gui/menubar@1.1.4) (2025-04-09)
 
 **Note:** Version bump only for package @sk-web-gui/menubar

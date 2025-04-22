@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/tabs@1.3.4...@sk-web-gui/tabs@1.4.0) (2025-04-22)
+
+### Features
+
+- removed requirement for content inside tab items. ([#404](https://github.com/Sundsvallskommun/web-shared-components/issues/404)) ([31ab978](https://github.com/Sundsvallskommun/web-shared-components/commit/31ab97825214a55414c924e82cf5256c82fa67bf))
+
 ## [1.3.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/tabs@1.3.3...@sk-web-gui/tabs@1.3.4) (2025-04-09)
 
 **Note:** Version bump only for package @sk-web-gui/tabs
