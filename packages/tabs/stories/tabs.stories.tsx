@@ -123,4 +123,36 @@ export const ControlOthers = () => {
 };
 
 ControlOthers.storyName = 'Control external elements';
-Template.storyName = 'Tabs';
+
+export const SeparatedButtonsAndContent = () => {
+  const [current, setCurrent] = React.useState<number>(0);
+
+  return (
+    <div className="flex gap-32">
+      <div className="w-2/3">
+        <Tabs onTabChange={setCurrent} current={current} color="juniskar">
+          <Tabs.Item>
+            <Tabs.Button aria-controls="tabs-content-0">London</Tabs.Button>
+          </Tabs.Item>
+          <Tabs.Item>
+            <Tabs.Button aria-controls="tabs-content-1">Paris</Tabs.Button>
+          </Tabs.Item>
+          <Tabs.Item>
+            <Tabs.Button aria-controls="tabs-content-2">Tokyo</Tabs.Button>
+          </Tabs.Item>
+        </Tabs>
+      </div>
+      <div>
+        <Tabs.Content selected={current === 0} id="tabs-content-0">
+          <p>London is the capital city of England.</p>
+        </Tabs.Content>
+        <Tabs.Content selected={current === 1} id="tabs-content-1">
+          <p>Paris is the capital of France.</p>
+        </Tabs.Content>
+        <Tabs.Content selected={current === 2} id="tabs-content-2">
+          <p>Tokyo is the capital of Japan.</p>
+        </Tabs.Content>
+      </div>
+    </div>
+  );
+};
