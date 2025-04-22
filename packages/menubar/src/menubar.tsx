@@ -16,6 +16,7 @@ export interface MenuBarComponentProps
     UseMenuBarProps,
     Omit<React.ComponentPropsWithRef<'ul'>, 'color'> {
   showBackground?: boolean;
+  size?: 'md' | 'lg';
 }
 
 export const MenuBarComponent = React.forwardRef<HTMLUListElement, MenuBarComponentProps>((props, ref) => {
@@ -26,6 +27,7 @@ export const MenuBarComponent = React.forwardRef<HTMLUListElement, MenuBarCompon
     children,
     current: _current,
     id: _id,
+    size = 'lg',
     ...rest
   } = props;
   const [current, setCurrent] = React.useState<number | undefined>(_current);
@@ -73,6 +75,7 @@ export const MenuBarComponent = React.forwardRef<HTMLUListElement, MenuBarCompon
     setCurrent: handleSetCurrent,
     color,
     active,
+    size,
   };
 
   const validChildren = getValidChildren<MenuBarItemProps>(children);
@@ -91,6 +94,7 @@ export const MenuBarComponent = React.forwardRef<HTMLUListElement, MenuBarCompon
         className={cx('sk-menubar', className)}
         data-color={color}
         data-background={showBackground}
+        data-size={size}
         {...rest}
       >
         {menuItems}

@@ -6,6 +6,7 @@ export interface UseMenuBarProps {
 
   //** Index of current menuoption */
   current?: number;
+  size?: 'md' | 'lg';
 }
 
 export const useMenuBar = () => React.useContext(MenuBarContext);
