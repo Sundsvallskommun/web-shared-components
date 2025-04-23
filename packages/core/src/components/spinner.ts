@@ -4,10 +4,7 @@ export const Spinner = (colors: string[]) => ({
     '@apply flex justify-center items-center object-center': {},
     '@apply overflow-hidden': {},
 
-    '&-lottie': {
-      '@apply w-[200%] h-[200%] my-0 mr-0 ml-[-50%]': {},
-    },
-    path: {
+    svg: {
       '@apply stroke-dark-secondary': {},
     },
 
@@ -15,7 +12,7 @@ export const Spinner = (colors: string[]) => ({
       (styles, color) => ({
         ...styles,
         [`&[data-color="${color}"]`]: {
-          path: {
+          svg: {
             [`@apply stroke-${color}-surface-primary`]: {},
           },
         },
