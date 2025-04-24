@@ -39,6 +39,7 @@
     "react": "^19.0.0"
   },
   "dependencies": {
+    "@lottiefiles/dotlottie-react": "^0.13.4",
     "@sk-web-gui/theme": "2.5.0",
     "@sk-web-gui/utils": "2.2.2"
   },

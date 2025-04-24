@@ -1,4 +1,6 @@
-import { __DEV__, cx, DefaultProps } from '@sk-web-gui/utils';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import SpinnerAnimation from './assets/spinner-square.json';
+import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 import React from 'react';
 
 export interface SpinnerProps extends DefaultProps, Omit<React.ComponentPropsWithRef<'div'>, 'color'> {
@@ -24,37 +26,7 @@ export const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>((props, re
       style={{ width: `${size}rem`, height: `${size}rem` }}
       {...rest}
     >
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <g>
-          <circle cx="12" cy="12" r="9.5" fill="none" strokeWidth="3" strokeLinecap="round">
-            <animate
-              attributeName="stroke-dasharray"
-              dur="1.5s"
-              calcMode="spline"
-              values="0 150;42 150;42 150;42 150"
-              keyTimes="0;0.475;0.95;1"
-              keySplines="0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1"
-              repeatCount="indefinite"
-            />
-            <animate
-              attributeName="stroke-dashoffset"
-              dur="1.5s"
-              calcMode="spline"
-              values="0;-16;-59;-59"
-              keyTimes="0;0.475;0.95;1"
-              keySplines="0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1"
-              repeatCount="indefinite"
-            />
-          </circle>
-          <animateTransform
-            attributeName="transform"
-            type="rotate"
-            dur="1.5s"
-            values="0 12 12;360 12 12"
-            repeatCount="indefinite"
-          />
-        </g>
-      </svg>
+      <DotLottieReact autoplay loop data={SpinnerAnimation} className="sk-spinner-lottie" />
     </div>
   );
 });
