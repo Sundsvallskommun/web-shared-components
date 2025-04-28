@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.13.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.13.0...@sk-web-gui/core@3.13.1) (2025-04-28)
+
+**Note:** Version bump only for package @sk-web-gui/core
+
 # [3.13.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.12.0...@sk-web-gui/core@3.13.0) (2025-04-22)
 
 ### Features

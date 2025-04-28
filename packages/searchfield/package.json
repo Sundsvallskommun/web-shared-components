@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/searchfield",
-  "version": "2.3.4",
+  "version": "2.3.5",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -36,8 +36,8 @@
     "lint:src": "eslint src"
   },
   "dependencies": {
-    "@sk-web-gui/button": "2.1.4",
-    "@sk-web-gui/forms": "2.4.3",
+    "@sk-web-gui/button": "2.1.5",
+    "@sk-web-gui/forms": "2.4.4",
     "@sk-web-gui/icon": "3.1.2",
     "@sk-web-gui/utils": "2.2.2",
     "lucide-react": "^0.471.1"

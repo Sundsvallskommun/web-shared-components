@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.5](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/spinner@1.1.4...@sk-web-gui/spinner@1.1.5) (2025-04-28)
+
+**Note:** Version bump only for package @sk-web-gui/spinner
+
 ## [1.1.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/spinner@1.1.3...@sk-web-gui/spinner@1.1.4) (2025-04-09)
 
 **Note:** Version bump only for package @sk-web-gui/spinner
