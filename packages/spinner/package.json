@@ -39,7 +39,6 @@
     "react": "^19.0.0"
   },
   "dependencies": {
-    "@lottiefiles/react-lottie-player": "3.6.0",
     "@sk-web-gui/theme": "2.5.0",
     "@sk-web-gui/utils": "2.2.2"
   },
