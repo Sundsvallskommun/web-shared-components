@@ -1,8 +1,11 @@
+import Tooltip from '@sk-web-gui/tooltip';
 import { cx, DefaultProps } from '@sk-web-gui/utils';
 import Quill, { Delta, Range } from 'quill';
 import 'quill/dist/quill.snow.css';
 import { forwardRef, useEffect, useLayoutEffect, useRef } from 'react';
+import { createRoot } from 'react-dom/client';
 import { toolbarOptions } from './toolbar';
+import { TooltipText } from './tooltip-text';
 
 export interface TextEditorProps extends DefaultProps {
   readOnly?: boolean;
@@ -87,7 +90,21 @@ export const TextEditor = forwardRef<Quill, TextEditorProps>(
       if (toolbar) {
         const buttons = toolbar.querySelectorAll('button, select');
 
-        if (disableToolbar) {
+        buttons.forEach((button, key) => {
+          const tooltipText = TooltipText[key] || 'Button';
+
+          button.classList.add('relative');
+
+          const tooltipElement = document.createElement('div');
+          tooltipElement.className = 'tooltip-container';
+
+          const root = createRoot(tooltipElement);
+          root.render(<Tooltip position="below">{tooltipText}</Tooltip>);
+
+          button.appendChild(tooltipElement);
+        });
+
+        if (readOnly || disableToolbar) {
           toolbar.classList.add('ql-disabled');
           buttons.forEach((button) => {
             (button as HTMLButtonElement | HTMLSelectElement).disabled = true;
