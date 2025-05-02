@@ -40,5 +40,20 @@ export const TextEditor = () => ({
         '@apply bg-input-field-surface-disabled border-input-field-outline-disabled': {},
       },
     },
+    '.ql-snow .ql-tooltip.ql-editing a.ql-action::after': {
+      content: '"Spara"',
+    },
+    '.ql-snow .ql-tooltip[data-mode=link]::before ': {
+      content: '"Ange länk:"',
+    },
+    '.ql-snow .ql-tooltip::before': {
+      content: '"Besök URL:"',
+    },
+    '.ql-snow .ql-tooltip a.ql-action::after':{
+      content: '"Ändra"',
+    },
+    '.ql-snow .ql-tooltip a.ql-remove::before': {
+      content: '"Ta bort"',
+    }
   },
 });

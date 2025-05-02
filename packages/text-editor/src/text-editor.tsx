@@ -45,6 +45,10 @@ export const TextEditor = forwardRef<Quill, TextEditorProps>(
         theme: 'snow',
       });
 
+      const input = document.querySelector('input[data-link]') as HTMLInputElement;
+      input.dataset.link = 'https://www.sundsvall.se';
+      input.placeholder = 'https://www.sundsvall.se';
+
       if (ref && typeof ref === 'object') {
         ref.current = quill;
       }
@@ -133,19 +137,22 @@ export const TextEditor = forwardRef<Quill, TextEditorProps>(
           const toolbar = container.querySelector('.ql-toolbar');
           const editorContainer = container.querySelector('.ql-editor');
 
-          if (document.activeElement === toolbar) {
+          if (document.activeElement === editorContainer || editorContainer?.contains(document.activeElement)) {
+            event.preventDefault();
+            (editorContainer as HTMLElement)?.blur();
+          } else if (document.activeElement === toolbar) {
             const firstButton = toolbar?.querySelector('button, select') as HTMLElement;
             firstButton?.focus();
-          } else if (document.activeElement === editorContainer) {
-            (document.activeElement as HTMLElement)?.blur();
+          } else {
+            return;
           }
         }
       };
 
-      container.addEventListener('keydown', handleKeyDown);
+      container.addEventListener('keydown', handleKeyDown, true);
 
       return () => {
-        container.removeEventListener('keydown', handleKeyDown);
+        container.removeEventListener('keydown', handleKeyDown, true);
       };
     }, []);
 
