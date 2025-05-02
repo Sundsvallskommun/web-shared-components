@@ -124,6 +124,31 @@ export const TextEditor = forwardRef<Quill, TextEditorProps>(
       }
     }, [readOnly, disableToolbar, ref]);
 
+    useEffect(() => {
+      const container = containerRef.current;
+      if (!container) return;
+
+      const handleKeyDown = (event: KeyboardEvent) => {
+        if (event.key === 'Tab') {
+          const toolbar = container.querySelector('.ql-toolbar');
+          const editorContainer = container.querySelector('.ql-editor');
+
+          if (document.activeElement === toolbar) {
+            const firstButton = toolbar?.querySelector('button, select') as HTMLElement;
+            firstButton?.focus();
+          } else if (document.activeElement === editorContainer) {
+            (document.activeElement as HTMLElement)?.blur();
+          }
+        }
+      };
+
+      container.addEventListener('keydown', handleKeyDown);
+
+      return () => {
+        container.removeEventListener('keydown', handleKeyDown);
+      };
+    }, []);
+
     return <div className={cx(className, 'sk-texteditor')} ref={containerRef} />;
   }
 );
