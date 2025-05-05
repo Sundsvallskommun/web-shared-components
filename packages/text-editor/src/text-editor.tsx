@@ -35,7 +35,7 @@ export const TextEditor = forwardRef<Quill, TextEditorProps>(
       const editorContainer = container.appendChild(container.ownerDocument.createElement('div'));
 
       if (disableToolbar) {
-        editorContainer.classList.add('rounded-t-xl');
+        editorContainer.classList.add('disable-toolbar');
       }
 
       const quill = new Quill(editorContainer, {
@@ -71,7 +71,7 @@ export const TextEditor = forwardRef<Quill, TextEditorProps>(
 
       const toolbar = container.querySelector('.ql-toolbar');
       if (toolbar) {
-        const dividerPositions = [2, 4];
+        const dividerPositions = [1, 3];
 
         dividerPositions.forEach((position) => {
           const divider = document.createElement('span');
