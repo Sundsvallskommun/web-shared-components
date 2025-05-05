@@ -48,8 +48,10 @@ export const TextEditor = forwardRef<Quill, TextEditorProps>(
       delete quill.keyboard.bindings['Tab'];
 
       const input = document.querySelector('input[data-link]') as HTMLInputElement;
-      input.dataset.link = 'https://www.sundsvall.se';
-      input.placeholder = 'https://www.sundsvall.se';
+      if (input) {
+        input.dataset.link = 'https://www.sundsvall.se';
+        input.placeholder = 'https://www.sundsvall.se';
+      }
 
       if (ref && typeof ref === 'object') {
         ref.current = quill;
