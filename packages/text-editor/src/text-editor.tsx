@@ -45,6 +45,8 @@ export const TextEditor = forwardRef<Quill, TextEditorProps>(
         theme: 'snow',
       });
 
+      delete quill.keyboard.bindings['Tab'];
+
       const input = document.querySelector('input[data-link]') as HTMLInputElement;
       input.dataset.link = 'https://www.sundsvall.se';
       input.placeholder = 'https://www.sundsvall.se';
@@ -127,34 +129,6 @@ export const TextEditor = forwardRef<Quill, TextEditorProps>(
         }
       }
     }, [readOnly, disableToolbar, ref]);
-
-    useEffect(() => {
-      const container = containerRef.current;
-      if (!container) return;
-
-      const handleKeyDown = (event: KeyboardEvent) => {
-        if (event.key === 'Tab') {
-          const toolbar = container.querySelector('.ql-toolbar');
-          const editorContainer = container.querySelector('.ql-editor');
-
-          if (document.activeElement === editorContainer || editorContainer?.contains(document.activeElement)) {
-            event.preventDefault();
-            (editorContainer as HTMLElement)?.blur();
-          } else if (document.activeElement === toolbar) {
-            const firstButton = toolbar?.querySelector('button, select') as HTMLElement;
-            firstButton?.focus();
-          } else {
-            return;
-          }
-        }
-      };
-
-      container.addEventListener('keydown', handleKeyDown, true);
-
-      return () => {
-        container.removeEventListener('keydown', handleKeyDown, true);
-      };
-    }, []);
 
     return <div className={cx(className, 'sk-texteditor')} ref={containerRef} />;
   }
