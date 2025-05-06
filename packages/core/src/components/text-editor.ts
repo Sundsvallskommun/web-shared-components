@@ -1,19 +1,22 @@
 export const TextEditor = () => ({
   '.sk-texteditor': {
     '.ql-toolbar.ql-snow': {
-      '@apply flex items-center bg-background-200 rounded-t-xl border-input-field-outline h-[4rem]': {},
+      '@apply flex items-center bg-background-200 rounded-t-xl border-input-field-outline h-[4rem] pl-4': {},
       '.ql-stroke': {
         '@apply stroke-dark-primary': {},
       },
+      '.ql-fill': {
+        '@apply fill-dark-primary': {},
+      },
       '.ql-divider': {
-        '@apply w-[0.1rem] h-[3.2rem] bg-divider mr-[1.5rem]': {},
+        '@apply w-[0.1rem] h-[3.2rem] bg-divider mr-[1.2rem]': {},
       },
       '.tooltip-container': {
         '@apply absolute z-10 top-full mt-0 left-1/2 -translate-x-1/2 invisible opacity-0 transition-opacity duration-200 ease-in-out whitespace-nowrap':
           {},
       },
       '.ql-formats': {
-        '@apply flex gap-4': {},
+        '@apply flex gap-4 mr-[1.2rem]': {},
       },
 
       svg: {
@@ -22,11 +25,11 @@ export const TextEditor = () => ({
 
       button: {
         '@apply h-[3.2rem] w-[3.2rem] rounded-10 text-dark-primary': {},
-        '&:hover, &:focus-visible': {
+        '&:hover, &:hover:focus-visible': {
           '@apply bg-tertiary-surface-hover': {},
         },
         '&:focus-visible': {
-          '@apply ring-[.2rem] ring-ring ring-offset-0 outline-0': {},
+          '@apply ring-[.2rem] ring-ring ring-offset-0 outline-0 bg-background-content': {},
         },
 
         '&.ql-active': {
