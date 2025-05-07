@@ -103,6 +103,8 @@ export const TextEditor = forwardRef<Quill, TextEditorProps>(
 
           button.classList.add('relative');
 
+          button.setAttribute('aria-label', tooltipText);
+
           const tooltipElement = document.createElement('div');
           tooltipElement.className = 'tooltip-container';
 
