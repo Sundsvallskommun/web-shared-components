@@ -42,6 +42,7 @@ import { Spinner } from './components/spinner';
 import { Switch } from './components/switch';
 import { Table } from './components/table';
 import { Tabs } from './components/tabs';
+import { TextEditor } from './components/text-editor';
 import { Tooltip } from './components/tooltip';
 import { UserMenu } from './components/user-menu';
 //AI COMPONENTS
@@ -102,6 +103,7 @@ export const components: ComponentWithDeps[] = [
   { comp: Select },
   { comp: Snackbar, deps: [Button, Icon] },
   { comp: Spinner },
+  { comp: TextEditor },
   { comp: Radio },
   { comp: Switch, deps: [Icon] },
   { comp: Table, deps: [Forms, Icon, Pagination] },
