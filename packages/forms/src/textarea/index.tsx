@@ -10,8 +10,6 @@ export interface TextareaProps
     React.ComponentPropsWithRef<'textarea'> {
   showCount?: boolean;
   maxLength?: number;
-  value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   maxLengthWarningText?: string;
 }
 
@@ -19,8 +17,8 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>((pr
   const {
     maxLength,
     showCount,
-    value = '',
     onChange,
+    value,
     maxLengthWarningText,
     size = 'md',
     color = 'primary',
@@ -34,10 +32,8 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>((pr
   const classes = useInputClass({ size, disabled });
   const [maxLengthWarning, setMaxCountWarning] = React.useState<boolean>(false);
   const [charCount, setCharCount] = React.useState<number>(0);
-  const [text, setText] = React.useState<string>(value);
 
   const handleOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setText(e.target.value);
     if (maxLength && maxLength > 0) {
       if (e.target.value.length >= maxLength) {
         setMaxCountWarning(true);
@@ -46,14 +42,21 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>((pr
       }
       setCharCount(e.target.value.length);
     }
-    if (onChange) {
-      onChange(e);
-    }
+    onChange?.(e);
   };
 
   React.useEffect(() => {
-    setText(value);
-    setCharCount(value.length);
+    if (maxLength) {
+      if (charCount >= maxLength) {
+        setMaxCountWarning(true);
+      } else {
+        setMaxCountWarning(false);
+      }
+    }
+  }, [charCount, maxLength]);
+
+  React.useEffect(() => {
+    setCharCount(value?.toString()?.length ?? 0);
   }, [value]);
 
   return (
@@ -61,15 +64,13 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>((pr
       <Comp
         onChange={handleOnChange}
         maxLength={maxLength}
-        value={text}
+        value={value}
         ref={ref}
         readOnly={readOnly}
         aria-readonly={readOnly}
         disabled={disabled}
-        aria-disabled={disabled}
         aria-invalid={invalid}
         required={required}
-        aria-required={required}
         aria-describedby={
           (hasErrorText && errorId) || (hasHelpText && helpTextId)
             ? `${hasErrorText ? errorId : ''} ${hasHelpText ? helpTextId : ''}`
