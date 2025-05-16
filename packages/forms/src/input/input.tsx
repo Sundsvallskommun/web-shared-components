@@ -24,7 +24,7 @@ export interface IInputProps<T = HTMLInputElement> extends DefaultProps {
    */
   type?: React.InputHTMLAttributes<T>['type'];
   placeholder?: React.InputHTMLAttributes<T>['placeholder'];
-  value?: string;
+  value?: React.InputHTMLAttributes<T>['value'];
   autoFocus?: boolean;
 }
 
