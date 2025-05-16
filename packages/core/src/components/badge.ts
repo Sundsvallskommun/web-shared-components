@@ -7,7 +7,8 @@ export const Badge = (colors: string[]) => ({
     '@apply overflow-hidden': {},
 
     // size
-    '@apply h-24 w-24': {},
+    '@apply min-w-24': {},
+    '@apply p-4': {},
     '@apply text-label-small': {},
 
     '&[data-rounded="true"]': {
