@@ -251,6 +251,18 @@ export const Card = (colors: string[]) => ({
     '@apply flex bg-vattjom-surface-accent': {},
     '@apply p-14 rounded-groups': {},
 
+    '&.sk-meta-card-use-hover-effect:hover': {
+      '@apply shadow-md cursor-pointer': {},
+    },
+
+    '&.sk-meta-card-use-hover-effect[data-color="vattjom"]:hover': {
+      '@apply bg-vattjom-background-300 !important': {},
+    },
+
+    '&.sk-meta-card-use-hover-effect[data-color="mono"]:hover': {
+      '@apply bg-primitives-overlay-darken-2 dark:bg-primitives-overlay-lighten-2 !important': {},
+    },
+
     '&[data-color="mono"]': {
       '@apply bg-primitives-overlay-darken-1 dark:bg-primitives-overlay-lighten-1': {},
     },
@@ -272,22 +284,51 @@ export const Card = (colors: string[]) => ({
     '&-body': {
       '&-header': {
         'h1, h2, h3, h4, h5, h6, h7, a, p': {
-          '@apply mt-6 text-base line-clamp-1': {},
+          '@apply mt-6 line-clamp-1': {},
           '@apply text-dark-primary': {},
         },
       },
-
       '&-content': {
         'p, a': {
-          '@apply text-primitives-gray-700 dark:text-primitives-gray-200 text-small': {},
+          '@apply text-primitives-gray-700 dark:text-primitives-gray-200': {},
           '@apply text-dark-secondary line-clamp-1': {},
         },
       },
     },
 
     '&-external-link-icon': {
-      '@apply ml-auto h-32 w-32': {},
-      '@apply p-6 text-dark': {},
+      '@apply ml-auto h-32 w-32 p-6 text-dark': {},
     },
+
+    '&.sk-meta-card-use-hover-effect:hover': {
+      '@apply shadow-md cursor-pointer': {},
+    },
+  },
+
+  '.sk-meta-card[data-size="sm"]': {
+    '@apply h-[8.6rem]': {},
+  },
+  '.sk-meta-card[data-size="md"]': {
+    '@apply h-[9.4rem]': {},
+  },
+  '.sk-meta-card[data-size="sm"] .sk-meta-card-body-header': {
+    'h1, h2, h3, h4, h5, h6, h7, a, p': {
+      fontSize: '1.6rem ',
+      lineHeight: '2.4rem ',
+      fontWeight: 'bold ',
+    },
+  },
+  '.sk-meta-card[data-size="sm"] .sk-meta-card-body-content': {
+    '@apply text-[1.4rem]': {},
+  },
+  '.sk-meta-card[data-size="md"] .sk-meta-card-body-header': {
+    'h1, h2, h3, h4, h5, h6, h7, a, p': {
+      fontSize: '1.8rem',
+      lineHeight: '2.6rem',
+      fontWeight: 'bold',
+    },
+  },
+  '.sk-meta-card[data-size="md"] .sk-meta-card-body-content': {
+    '@apply text-[1.6rem]': {},
   },
 });
