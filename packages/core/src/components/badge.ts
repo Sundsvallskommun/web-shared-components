@@ -6,9 +6,14 @@ export const Badge = (colors: string[]) => ({
     '@apply rounded-utility': {},
     '@apply overflow-hidden': {},
 
-    // size
-    '@apply h-24 w-24': {},
-    '@apply text-label-small': {},
+    '&[data-size="sm"]': {
+      '@apply h-22 w-22': {},
+      '@apply text-label-extra-small': {},
+    },
+    '&[data-size="md"]': {
+      '@apply h-24 w-24': {},
+      '@apply text-label-small': {},
+    },
 
     '&[data-rounded="true"]': {
       '@apply rounded-circular': {},
