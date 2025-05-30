@@ -528,8 +528,8 @@ const darkmode = {
     },
     surface: {
       primary: {
-        DEFAULT: primitives.red[500],
-        hover: primitives.red[400],
+        DEFAULT: primitives.red[300],
+        hover: primitives.red[200],
       },
       accent: {
         DEFAULT: primitives.red[700],
