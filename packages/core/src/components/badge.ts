@@ -6,10 +6,16 @@ export const Badge = (colors: string[]) => ({
     '@apply rounded-utility': {},
     '@apply overflow-hidden': {},
 
-    // size
-    '@apply min-w-24': {},
-    '@apply p-4': {},
-    '@apply text-label-small': {},
+    '&[data-size="sm"]': {
+      '@apply h-22 min-w-22': {},
+      '@apply p-4': {},
+      '@apply text-label-extra-small': {},
+    },
+    '&[data-size="md"]': {
+      '@apply h-24 min-w-24': {},
+      '@apply p-4': {},
+      '@apply text-label-small': {},
+    },
 
     '&[data-rounded="true"]': {
       '@apply rounded-circular': {},
