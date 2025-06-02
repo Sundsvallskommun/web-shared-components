@@ -48,7 +48,7 @@ export const Tabs = (colors: string[]) => ({
         },
 
         '.sk-tabs-list-item-divider': {
-          '@apply m-0 min-h-2 h-2 rounded-t-24 opacity-0': {},
+          '@apply m-0 min-h-2 h-2 opacity-0': {},
         },
 
         '&[data-current="true"]': {
