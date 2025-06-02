@@ -14,26 +14,31 @@ interface IMetaCardProps extends DefaultProps {
    */
   color?: 'mono' | 'vattjom';
   /** If the card should be clickable, will apply hover style
-   * @default false;
+   * @default false
    */
   useHoverEffect?: boolean;
   /** Make the card linkable
    */
   href?: string;
+  /** Size of the card
+   *  @default sm
+   */
+  size?: 'sm' | 'md';
 }
 
 export interface MetaCardProps extends Omit<React.ComponentPropsWithRef<'div'>, 'color'>, IMetaCardProps {}
 
 export const MetaCard = React.forwardRef<HTMLDivElement, MetaCardProps>((props, ref) => {
-  const { children, className, color = 'vattjom', useHoverEffect = false, href = '', ...rest } = props;
+  const { children, className, color = 'vattjom', useHoverEffect = false, href = '', size = 'sm', ...rest } = props;
 
   return (
     <div>
       {useHoverEffect ? (
         <Link
           href={href ? href : undefined}
-          className={cx('sk-meta-card', className)}
+          className={cx('sk-meta-card', { 'sk-meta-card-use-hover-effect': useHoverEffect }, className)}
           data-color={color ? color : undefined}
+          data-size={size ? size : undefined}
           {...rest}
           ref={ref}
         >
@@ -42,7 +47,13 @@ export const MetaCard = React.forwardRef<HTMLDivElement, MetaCardProps>((props, 
           <Icon className={cx('sk-meta-card-external-link-icon', className)} size={32} icon={<ExternalLink />}></Icon>
         </Link>
       ) : (
-        <div className={cx('sk-meta-card', className)} data-color={color ? color : undefined} {...rest} ref={ref}>
+        <div
+          className={cx('sk-meta-card', className)}
+          data-color={color ? color : undefined}
+          data-size={size ? size : undefined}
+          {...rest}
+          ref={ref}
+        >
           <Icon className={cx('sk-meta-card-text-icon', className)} size={36} icon={<Text />}></Icon>
           <div className={cx('sk-meta-card-body', className)}>{children}</div>
           <div className={cx('sk-meta-card-external-link-icon', className)}></div>
