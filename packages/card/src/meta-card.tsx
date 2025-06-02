@@ -14,13 +14,14 @@ interface IMetaCardProps extends DefaultProps {
    */
   color?: 'mono' | 'vattjom';
   /** If the card should be clickable, will apply hover style
-   * @default false;
+   * @default false
    */
   useHoverEffect?: boolean;
   /** Make the card linkable
    */
   href?: string;
   /** Size of the card
+   *  @default sm
    */
   size?: 'sm' | 'md';
 }

@@ -252,15 +252,15 @@ export const Card = (colors: string[]) => ({
     '@apply p-14 rounded-groups': {},
 
     '&.sk-meta-card-use-hover-effect:hover': {
-      '@apply shadow-md cursor-pointer': {},
+      '@apply cursor-pointer': {},
     },
 
     '&.sk-meta-card-use-hover-effect[data-color="vattjom"]:hover': {
-      '@apply bg-vattjom-background-300 !important': {},
+      '@apply bg-vattjom-background-300': {},
     },
 
     '&.sk-meta-card-use-hover-effect[data-color="mono"]:hover': {
-      '@apply bg-primitives-overlay-darken-2 dark:bg-primitives-overlay-lighten-2 !important': {},
+      '@apply bg-primitives-overlay-darken-2 dark:bg-primitives-overlay-lighten-2': {},
     },
 
     '&[data-color="mono"]': {
@@ -297,11 +297,7 @@ export const Card = (colors: string[]) => ({
     },
 
     '&-external-link-icon': {
-      '@apply ml-auto h-32 w-32 p-6 text-dark': {},
-    },
-
-    '&.sk-meta-card-use-hover-effect:hover': {
-      '@apply shadow-md cursor-pointer': {},
+      '@apply ml-auto h-32 w-32 p-6 text-dark shrink-0': {},
     },
   },
 
