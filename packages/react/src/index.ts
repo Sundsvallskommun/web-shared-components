@@ -70,3 +70,5 @@ export * from '@sk-web-gui/logo';
 export type * from '@sk-web-gui/logo';
 export * from '@sk-web-gui/list';
 export type * from '@sk-web-gui/list';
+export * from '@sk-web-gui/text-editor';
+export type * from '@sk-web-gui/text-editor';
