@@ -6,6 +6,9 @@ interface IBadgeProps extends DefaultProps {
   counter?: string | number;
   inverted?: boolean;
   rounded?: boolean;
+  /**
+   * @default md
+   */
   size?: 'sm' | 'md';
 }
 

@@ -8,6 +8,7 @@ export const Badge = (colors: string[]) => ({
 
     '&[data-size="sm"]': {
       '@apply h-22 min-w-22': {},
+      '@apply p-4': {},
       '@apply text-label-extra-small': {},
     },
     '&[data-size="md"]': {
