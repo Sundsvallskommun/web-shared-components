@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.5](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.4.4...@sk-web-gui/forms@2.4.5) (2025-06-03)
+
+### Bug Fixes
+
+- get value type from element ([1507c2e](https://github.com/Sundsvallskommun/web-shared-components/commit/1507c2eac58a3af96ac8e1c7404f0732be2485c2))
+- **textarea:** value updates with useForm ([7c5be1b](https://github.com/Sundsvallskommun/web-shared-components/commit/7c5be1b0979de7a15c1ab644eb4b5cde970aa7a4))
+
 ## [2.4.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.4.3...@sk-web-gui/forms@2.4.4) (2025-04-28)
 
 **Note:** Version bump only for package @sk-web-gui/forms

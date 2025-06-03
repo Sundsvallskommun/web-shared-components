@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/card@1.1.5...@sk-web-gui/card@1.2.0) (2025-06-03)
+
+### Features
+
+- added sm and md size and added hover logic ([ab89d3e](https://github.com/Sundsvallskommun/web-shared-components/commit/ab89d3e3c80bd6962f205e63f6b3fbd20e3f9c8f))
+
 ## [1.1.5](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/card@1.1.4...@sk-web-gui/card@1.1.5) (2025-04-28)
 
 **Note:** Version bump only for package @sk-web-gui/card

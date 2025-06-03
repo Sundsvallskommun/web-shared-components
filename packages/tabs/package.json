@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/tabs",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -39,8 +39,8 @@
     "react": "^19.0.0"
   },
   "dependencies": {
-    "@sk-web-gui/button": "2.1.5",
-    "@sk-web-gui/divider": "1.1.4",
+    "@sk-web-gui/button": "2.1.6",
+    "@sk-web-gui/divider": "1.1.5",
     "@sk-web-gui/utils": "2.2.2"
   },
   "peerDependencies": {

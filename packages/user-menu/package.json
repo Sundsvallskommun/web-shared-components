@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/user-menu",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -39,9 +39,9 @@
     "react": "^19.0.0"
   },
   "dependencies": {
-    "@sk-web-gui/avatar": "1.2.0",
-    "@sk-web-gui/logo": "1.2.2",
-    "@sk-web-gui/popup-menu": "3.1.5",
+    "@sk-web-gui/avatar": "1.2.1",
+    "@sk-web-gui/logo": "1.2.3",
+    "@sk-web-gui/popup-menu": "3.1.6",
     "@sk-web-gui/utils": "2.2.2"
   },
   "peerDependencies": {

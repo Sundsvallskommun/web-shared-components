@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/badge@1.1.2...@sk-web-gui/badge@1.2.0) (2025-06-03)
+
+### Features
+
+- added support for sm and md sizes in badge ([0aaeb4c](https://github.com/Sundsvallskommun/web-shared-components/commit/0aaeb4cfc140da95fa3fbfdf99089576a5d5def3))
+
 ## [1.1.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/badge@1.1.1...@sk-web-gui/badge@1.1.2) (2025-03-06)
 
 ### Bug Fixes

@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@1.4.4...@sk-web-gui/react@1.5.0) (2025-06-03)
+
+### Bug Fixes
+
+- import text-editor in react ([9a575e7](https://github.com/Sundsvallskommun/web-shared-components/commit/9a575e78b73958a65ffe25b5e1fe982d4ef76f48))
+
+### Features
+
+- Text editor ([6ce4eb2](https://github.com/Sundsvallskommun/web-shared-components/commit/6ce4eb277de87f5f7b49eb332b4c5ef34b3c49bc))
+
 ## [1.4.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@1.4.3...@sk-web-gui/react@1.4.4) (2025-04-28)
 
 **Note:** Version bump only for package @sk-web-gui/react

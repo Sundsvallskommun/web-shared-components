@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.14.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.13.1...@sk-web-gui/core@3.14.0) (2025-06-03)
+
+### Bug Fixes
+
+- **badge:** flexible width ([f1c27a0](https://github.com/Sundsvallskommun/web-shared-components/commit/f1c27a0e50e8e489942dbdc66aa447a620052ba9))
+- styling ([5a82c94](https://github.com/Sundsvallskommun/web-shared-components/commit/5a82c94dd55959950f153792463c029a7b6b7060))
+- styling for toolbar ([61ef075](https://github.com/Sundsvallskommun/web-shared-components/commit/61ef075cd040f5713e3ee8a802175e3242b3f858))
+
+### Features
+
+- **badge:** add support for sm and md sizes ([712cc1f](https://github.com/Sundsvallskommun/web-shared-components/commit/712cc1f288aa75f6005925fb411a8eccb498b98c))
+- changed placeholder for link, swedish words, fix for tab to exit editor ([0bd6d70](https://github.com/Sundsvallskommun/web-shared-components/commit/0bd6d705c527d54308ae7d239892ce07340eaad4))
+- **metacard:** added size sm and md ([7132218](https://github.com/Sundsvallskommun/web-shared-components/commit/713221884e0519a3f396c56cc02a9f7937c794da))
+- **tabs:** removed rounding on devider ([39db8eb](https://github.com/Sundsvallskommun/web-shared-components/commit/39db8eba014e435c6948d0c57bd5b071c70a87de))
+- Texteditor ([bed241b](https://github.com/Sundsvallskommun/web-shared-components/commit/bed241ba86a6536870c0150ee45ad5a66d2f7a1d))
+- tooltip for toolbar ([ba26f60](https://github.com/Sundsvallskommun/web-shared-components/commit/ba26f60dc464a343d85397c5656de6aa28f964b4))
+
 ## [3.13.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.13.0...@sk-web-gui/core@3.13.1) (2025-04-28)
 
 **Note:** Version bump only for package @sk-web-gui/core
