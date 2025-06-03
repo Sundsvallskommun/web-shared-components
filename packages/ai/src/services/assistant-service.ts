@@ -10,11 +10,17 @@ import {
 } from '../types';
 import { AssistantFeedback, AssistantSettings, ModelId, SkHeaders } from '../types/assistant';
 
-export const getSkHeaders = (options: AssistantSettings | undefined, settings: AssistantSettings): SkHeaders => {
-  const assistantId = options?.assistantId || settings.assistantId || '';
-  const user = options?.user || settings.user || '';
-  const hash = options?.hash || settings.hash || '';
-  const app = options?.app || settings.app || '';
+export const getSkHeaders = (options?: AssistantSettings, settings?: AssistantSettings): SkHeaders => {
+  const assistantId = options?.assistantId || settings?.assistantId || '';
+  const user = options?.user || settings?.user || '';
+  const hash = options?.hash || settings?.hash || '';
+  const app = options?.app || settings?.app || '';
+  const apikey = useAssistantStore?.getState?.()?.apikey;
+
+  if (apikey && apikey !== 'undefined') {
+    return { _apikey: apikey };
+  }
+
   if (!assistantId) {
     throw new Error('No assistant Id. Either provide one in options, or add one to AssistantContext / Settings');
   }

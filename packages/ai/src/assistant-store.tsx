@@ -15,6 +15,8 @@ export interface AssistantStoreInterface {
   setOptions: (options: AdditionalAssistantOptions) => void;
   apiBaseUrl?: string;
   setApiBaseUrl: (apiBaseUrl: string) => void;
+  apikey?: string;
+  setApikey: (apikey: string) => void;
 }
 
 export const useAssistantStore = createWithEqualityFn(
@@ -34,6 +36,8 @@ export const useAssistantStore = createWithEqualityFn(
         setOptions: (options) => set(() => ({ options })),
         apiBaseUrl: undefined,
         setApiBaseUrl: (apiBaseUrl) => set(() => ({ apiBaseUrl })),
+        apikey: undefined,
+        setApikey: (apikey) => set(() => ({ apikey })),
       };
     },
     { name: `sk-ai-assistant`, storage: createJSONStorage(() => sessionStorage) }
