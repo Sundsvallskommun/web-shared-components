@@ -102,7 +102,8 @@ export const useChat = (options?: useChatOptions) => {
     session_id: string,
     user: string,
     hash: string,
-    files?: ModelId[]
+    files?: ModelId[],
+    addToHistory: boolean = true
   ) => {
     const answerId = crypto.randomUUID();
 
@@ -110,7 +111,11 @@ export const useChat = (options?: useChatOptions) => {
       setSessionName(query);
     }
     setDone(currentSession, false);
-    addHistoryEntry('assistant', '', answerId, false);
+
+    if (addToHistory) {
+      addHistoryEntry('assistant', '', answerId, false);
+    }
+
     const url = `${apiBaseUrl}/assistants/${assistantId}/sessions/${session_id || ''}?stream=true`;
 
     let _id = '';
@@ -132,84 +137,89 @@ export const useChat = (options?: useChatOptions) => {
       },
       onopen(res: Response) {
         if (res.status >= 400 && res.status < 500 && res.status !== 429) {
-          updateHistory(currentSession, (history: ChatHistory) => {
-            const newHistory = [...history];
-            const index = history.findIndex((chat) => chat.id === answerId);
-            if (index > -1) {
-              newHistory[index] = {
-                origin: 'system',
-                text: 'Ett fel inträffade, assistenten gav inget svar.',
-                id: answerId,
-                done: true,
-              };
-            }
-            return newHistory;
-          });
+          if (addToHistory) {
+            updateHistory(currentSession, (history: ChatHistory) => {
+              const newHistory = [...history];
+              const index = history.findIndex((chat) => chat.id === answerId);
+              if (index > -1) {
+                newHistory[index] = {
+                  origin: 'system',
+                  text: 'Ett fel inträffade, assistenten gav inget svar.',
+                  id: answerId,
+                  done: true,
+                };
+              }
+              return newHistory;
+            });
+          }
           console.error('Client-side error ', res);
         }
         return Promise.resolve();
       },
       onmessage(event: EventSourceMessage) {
         let parsedData: ResponseData;
-
-        try {
-          parsedData = JSON.parse(event.data);
-        } catch {
-          console.error('Error when parsing response as json. Returning.');
-          return;
-        }
-        if (currentSession !== parsedData.session_id && isNew) {
-          _id = parsedData.session_id;
-        }
-
-        references =
-          parsedData.references
-            ?.filter((reference) => !!reference.metadata.url)
-            .map((reference) => ({
-              title: reference.metadata.title || reference.metadata.url || '',
-              url: reference.metadata.url || '',
-            })) || [];
-        updateHistory(currentSession, (history: ChatHistory) => {
-          const newHistory = [...history];
-          const index = history.findIndex((chat) => chat.id === answerId);
-          if (index === -1) {
-            newHistory.push({
-              origin: 'assistant',
-              text: parsedData.answer,
-              id: answerId,
-              done: false,
-            });
-          } else {
-            newHistory[index] = {
-              origin: 'assistant',
-              text: history[index]?.text + parsedData.answer,
-              id: answerId,
-              done: false,
-            };
+        if (addToHistory) {
+          try {
+            parsedData = JSON.parse(event.data);
+          } catch {
+            console.error('Error when parsing response as json. Returning.');
+            return;
+          }
+          if (currentSession !== parsedData.session_id && isNew) {
+            _id = parsedData.session_id;
           }
 
-          return newHistory;
-        });
+          references =
+            parsedData.references
+              ?.filter((reference) => !!reference.metadata.url)
+              .map((reference) => ({
+                title: reference.metadata.title || reference.metadata.url || '',
+                url: reference.metadata.url || '',
+              })) || [];
+          updateHistory(currentSession, (history: ChatHistory) => {
+            const newHistory = [...history];
+            const index = history.findIndex((chat) => chat.id === answerId);
+            if (index === -1) {
+              newHistory.push({
+                origin: 'assistant',
+                text: parsedData.answer,
+                id: answerId,
+                done: false,
+              });
+            } else {
+              newHistory[index] = {
+                origin: 'assistant',
+                text: history[index]?.text + parsedData.answer,
+                id: answerId,
+                done: false,
+              };
+            }
+
+            return newHistory;
+          });
+        }
       },
       onclose() {
         if (currentSession !== _id && isNew) {
           updateSessionId(_id);
         }
-        let answer = '';
-        updateHistory(currentSession, (history: ChatHistory) => {
-          const newHistory = [...history];
-          const index = newHistory.findIndex((chat) => chat.id === answerId);
-          answer = history[index].text;
+        if (addToHistory) {
+          let answer = '';
+          updateHistory(currentSession, (history: ChatHistory) => {
+            const newHistory = [...history];
+            const index = newHistory.findIndex((chat) => chat.id === answerId);
+            answer = history[index].text;
 
-          newHistory[index] = {
-            origin: history[index].origin,
-            text: answer,
-            id: answerId,
-            done: true,
-            references: references.slice(0, MAX_REFERENCE_COUNT),
-          };
-          return newHistory;
-        });
+            newHistory[index] = {
+              origin: history[index].origin,
+              text: answer,
+              id: answerId,
+              done: true,
+              references: references.slice(0, MAX_REFERENCE_COUNT),
+            };
+            return newHistory;
+          });
+        }
         setDone(currentSession, true);
       },
       onerror(err: unknown) {
@@ -221,41 +231,54 @@ export const useChat = (options?: useChatOptions) => {
     }).catch(() => setDone(currentSession, true));
   };
 
-  const sendQuery = (query: string, files?: ModelId[]) => {
+  const sendQuery = (
+    query: string,
+    files?: ModelId[],
+    addToHistory?: { question: boolean; answer: boolean } | boolean
+  ) => {
+    const addQuestionToHistory = typeof addToHistory === 'boolean' ? addToHistory : (addToHistory?.question ?? true);
+    const addAnswerToHistory = typeof addToHistory === 'boolean' ? addToHistory : (addToHistory?.answer ?? true);
+
     if (!assistantId || !hash) {
       addHistoryEntry('system', 'Ett fel inträffade, assistenten gav inget svar.', '0', true);
       setDone(currentSession, true);
       return;
     }
     const questionId = crypto.randomUUID();
-    addHistoryEntry('user', query, questionId, true);
+    if (addQuestionToHistory) {
+      addHistoryEntry('user', query, questionId, true);
+    }
 
     if (stream) {
-      streamQuery(query, assistantId, isNew ? '' : currentSession, user, hash, files);
+      streamQuery(query, assistantId, isNew ? '' : currentSession, user, hash, files, addAnswerToHistory);
     } else {
       setDone(currentSession, false);
       const answerId = crypto.randomUUID();
       if (!session.name) {
         setSessionName(query);
       }
-      addHistoryEntry('assistant', '', answerId, false);
+      if (addAnswerToHistory) {
+        addHistoryEntry('assistant', '', answerId, false);
+      }
       return batchQuery(query, isNew ? '' : currentSession, settings, files)
         .then((res: ResponseData) => {
-          updateHistory(currentSession, (history) => {
-            const newHistory = [...history];
-            const index = history.findIndex((entry) => entry.id === answerId);
-            newHistory[index].text = res.answer;
-            newHistory[index].done = true;
+          if (addAnswerToHistory) {
+            updateHistory(currentSession, (history) => {
+              const newHistory = [...history];
+              const index = history.findIndex((entry) => entry.id === answerId);
+              newHistory[index].text = res.answer;
+              newHistory[index].done = true;
 
-            const refenrences =
-              res.references?.slice(0, MAX_REFERENCE_COUNT).map((reference) => ({
-                title: reference.metadata.title || '',
-                url: reference.metadata.url || '',
-              })) || [];
-            newHistory[index].references = refenrences;
+              const refenrences =
+                res.references?.slice(0, MAX_REFERENCE_COUNT).map((reference) => ({
+                  title: reference.metadata.title || '',
+                  url: reference.metadata.url || '',
+                })) || [];
+              newHistory[index].references = refenrences;
 
-            return newHistory;
-          });
+              return newHistory;
+            });
+          }
           setDone(currentSession, true);
           if (session.id !== res.session_id && isNew) {
             updateSessionId(res.session_id);
@@ -264,14 +287,16 @@ export const useChat = (options?: useChatOptions) => {
         })
         .catch((e) => {
           console.error('Error occured:', e);
-          updateHistory(currentSession, (history) => {
-            const newHistory = [...history];
-            const index = history.findIndex((entry) => entry.id === answerId);
-            newHistory[index].origin = 'system';
-            newHistory[index].text = 'Ett fel inträffade, assistenten gav inget svar';
-            newHistory[index].done = true;
-            return newHistory;
-          });
+          if (addAnswerToHistory) {
+            updateHistory(currentSession, (history) => {
+              const newHistory = [...history];
+              const index = history.findIndex((entry) => entry.id === answerId);
+              newHistory[index].origin = 'system';
+              newHistory[index].text = 'Ett fel inträffade, assistenten gav inget svar';
+              newHistory[index].done = true;
+              return newHistory;
+            });
+          }
           setDone(currentSession, true);
         });
     }
