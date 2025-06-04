@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@1.1.3...@sk-web-gui/ai@1.2.0) (2025-06-04)
+
+### Features
+
+- **services:** added option to use apikey ([7cbe5a7](https://github.com/Sundsvallskommun/web-shared-components/commit/7cbe5a7d5fbe454707e275b22879ab49b9e9ba22))
+- **useChat:** optional add to history on sendQuery ([f08b716](https://github.com/Sundsvallskommun/web-shared-components/commit/f08b7160775f344a77ca36004770161c49340797))
+
 ## [1.1.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@1.1.2...@sk-web-gui/ai@1.1.3) (2025-06-03)
 
 **Note:** Version bump only for package @sk-web-gui/ai
