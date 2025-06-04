@@ -21,10 +21,11 @@ export const useChat = (options?: useChatOptions) => {
   const _incomingSettings = React.useMemo(() => options?.settings, [options?.settings]);
 
   const [currentSession, setCurrentSession] = React.useState<string>(sessionId || '');
-  const [_settings, _stream, _apiBaseUrl] = useAssistantStore((state) => [
+  const [_settings, _stream, _apiBaseUrl, apikey] = useAssistantStore((state) => [
     state.settings,
     state.stream,
     state.apiBaseUrl,
+    state.apikey,
   ]);
   const settings = _incomingSettings || _settings;
   const { assistantId, user: _user, hash, app } = settings;
@@ -126,6 +127,7 @@ export const useChat = (options?: useChatOptions) => {
       _skassistant: assistantId,
       _skhash: hash,
       _skapp: app || '',
+      _apikey: apikey,
     };
 
     fetchEventSource(url, {
@@ -239,7 +241,7 @@ export const useChat = (options?: useChatOptions) => {
     const addQuestionToHistory = typeof addToHistory === 'boolean' ? addToHistory : (addToHistory?.question ?? true);
     const addAnswerToHistory = typeof addToHistory === 'boolean' ? addToHistory : (addToHistory?.answer ?? true);
 
-    if (!assistantId || !hash) {
+    if (!assistantId || (!apikey && !hash && !app) || (app && !hash) || (hash && !app)) {
       addHistoryEntry('system', 'Ett fel inträffade, assistenten gav inget svar.', '0', true);
       setDone(currentSession, true);
       return;
@@ -250,7 +252,7 @@ export const useChat = (options?: useChatOptions) => {
     }
 
     if (stream) {
-      streamQuery(query, assistantId, isNew ? '' : currentSession, user, hash, files, addAnswerToHistory);
+      streamQuery(query, assistantId, isNew ? '' : currentSession, user, hash ?? '', files, addAnswerToHistory);
     } else {
       setDone(currentSession, false);
       const answerId = crypto.randomUUID();

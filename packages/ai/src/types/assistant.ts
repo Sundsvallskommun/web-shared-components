@@ -77,10 +77,11 @@ export interface AssistantSession {
 }
 
 export interface SkHeaders {
-  _skuser: string;
-  _skassistant: string;
-  _skhash: string;
-  _skapp: string;
+  _apikey?: string;
+  _skuser?: string;
+  _skassistant?: string;
+  _skhash?: string;
+  _skapp?: string;
 }
 
 export interface AssistantFeedback {
