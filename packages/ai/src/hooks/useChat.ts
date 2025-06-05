@@ -202,12 +202,14 @@ export const useChat = (options?: useChatOptions) => {
         }
       },
       onclose() {
+        let id = currentSession;
         if (currentSession !== _id && isNew) {
           updateSessionId(_id);
+          id = _id;
         }
         if (addToHistory) {
           let answer = '';
-          updateHistory(currentSession, (history: ChatHistory) => {
+          updateHistory(id, (history: ChatHistory) => {
             const newHistory = [...history];
             const index = newHistory.findIndex((chat) => chat.id === answerId);
             answer = history[index].text;
