@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@1.2.0...@sk-web-gui/ai@1.2.1) (2025-06-05)
+
+### Bug Fixes
+
+- **useChat:** using id from old state after setting new ([fd41f2b](https://github.com/Sundsvallskommun/web-shared-components/commit/fd41f2b4c0316778ec3378fb72dfd4835d18abf5))
+
 # [1.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@1.1.3...@sk-web-gui/ai@1.2.0) (2025-06-04)
 
 ### Features
