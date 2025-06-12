@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@1.5.0...@sk-web-gui/react@2.0.0) (2025-06-12)
+
+### Features
+
+- removed text-editor from react export ([3484d13](https://github.com/Sundsvallskommun/web-shared-components/commit/3484d1336d944e1fa9cd3eca944d5162768245a2))
+
+### BREAKING CHANGES
+
+- text-editor is no longer available from react package
+
 # [1.5.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@1.4.4...@sk-web-gui/react@1.5.0) (2025-06-03)
 
 ### Bug Fixes
