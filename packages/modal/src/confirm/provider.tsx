@@ -8,16 +8,14 @@ import { Dialog } from '../dialog';
 import { Button } from '@sk-web-gui/button';
 import { __DEV__ } from '@sk-web-gui/utils';
 
-export type ConfirmationDialogContextProviderProps = {
-  children: React.ReactNode;
-};
+export type ConfirmationDialogContextProviderProps = { children: React.ReactNode };
 
 export interface ConfirmDialogProps {
   title: string;
   message: string | React.JSX.Element;
   confirmLabel?: string;
   dismissLabel?: string;
-  dialogType?: 'warning' | 'error' | 'info';
+  dialogType?: 'warning' | 'error' | 'info' | 'primary';
   icon?: 'info' | 'error' | 'question';
   labelAs?: React.ElementType;
 }
@@ -34,7 +32,7 @@ export const ConfirmationDialogContextProvider: React.FC<ConfirmationDialogConte
     message: string | React.JSX.Element,
     confirmLabel?: string,
     dismissLabel?: string,
-    dialogType?: 'warning' | 'error' | 'info',
+    dialogType?: 'warning' | 'error' | 'info' | 'primary',
     icon?: 'info' | 'error' | 'question',
     labelAs?: React.ElementType
   ): Promise<boolean> => {
@@ -53,9 +51,7 @@ export const ConfirmationDialogContextProvider: React.FC<ConfirmationDialogConte
     });
   };
 
-  const dialogContext: DialogContextType = {
-    showConfirmation: handleShow,
-  };
+  const dialogContext: DialogContextType = { showConfirmation: handleShow };
 
   const handleConfirm = () => {
     resolver.current?.(true);
