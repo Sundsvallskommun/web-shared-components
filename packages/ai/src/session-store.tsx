@@ -1,7 +1,7 @@
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { createWithEqualityFn } from 'zustand/traditional';
 import { getAssistantSessionById, getAssistantSessions, mapSessionMessagesToChatHistory } from './services';
-import { AssistantSession, ChatHistory, SessionResponse, SessionsResponse } from './types';
+import { AssistantSession, ChatHistory, CursorPaginatedResponseSessionMetadataPublic, SessionPublic } from './types';
 
 export interface SessionStoreSession extends AssistantSession {
   /**
@@ -13,7 +13,7 @@ export interface SessionStoreSession extends AssistantSession {
    */
   loaded: boolean;
   /**
-   * If the session is new and not saved yer
+   * If the session is new and not saved yet
    */
   isNew?: boolean;
 }
@@ -29,14 +29,16 @@ const newSession = (): SessionStoreSession => ({
   isNew: true,
 });
 
-export const mapSessionsResponseToStoreData = (sessions: SessionsResponse): Record<string, SessionStoreSession> => {
+export const mapSessionsResponseToStoreData = (
+  sessions: CursorPaginatedResponseSessionMetadataPublic
+): Record<string, SessionStoreSession> => {
   return sessions.items.reduce(
     (sessions, session) => ({
       ...sessions,
       [session.id]: {
         id: session.id,
-        created_at: new Date(session.created_at),
-        updated_at: new Date(session.updated_at),
+        created_at: session.created_at ? new Date(session.created_at) : null,
+        updated_at: session.updated_at ? new Date(session.updated_at) : null,
         history: [],
         name: session.name,
         done: true,
@@ -47,14 +49,14 @@ export const mapSessionsResponseToStoreData = (sessions: SessionsResponse): Reco
   );
 };
 
-export const mapSessionResponseToStoreData = (session: SessionResponse): SessionStoreSession => {
+export const mapSessionResponseToStoreData = (session: SessionPublic): SessionStoreSession => {
   return {
     id: session.id,
     name: session.name,
-    created_at: new Date(session.created_at),
-    updated_at: new Date(session.updated_at),
+    created_at: new Date(session.created_at || ''),
+    updated_at: new Date(session.updated_at || ''),
     history: mapSessionMessagesToChatHistory(session.messages),
-    feedback: session.feedback,
+    feedback: session.feedback || undefined,
     done: true,
     loaded: true,
   };

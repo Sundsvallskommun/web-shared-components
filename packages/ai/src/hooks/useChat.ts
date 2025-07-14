@@ -2,10 +2,10 @@ import { EventSourceMessage, fetchEventSource } from '@microsoft/fetch-event-sou
 import React from 'react';
 import { useAssistantStore } from '../assistant-store';
 import { batchQuery } from '../services/assistant-service';
-import { AssistantSettings, ModelId, SkHeaders } from '../types/assistant';
+import { AssistantSettings, SkHeaders } from '../types/assistant';
 import { ChatEntryReference, ChatHistory, ChatHistoryEntry, Origin } from '../types/history';
-import { ResponseData } from '../types/response';
 import { useSessions } from '../session-store';
+import { AskResponse, ConversationRequestDto, ModelId } from '../types/intric-backend';
 
 const MAX_REFERENCE_COUNT = 3;
 
@@ -52,6 +52,7 @@ export const useChat = (options?: useChatOptions) => {
   const createNewSession = React.useCallback(() => {
     const id = newSession();
     setCurrentSession(id);
+    // eslint-disable-next-line
   }, [sessionId]);
 
   const updateSessionId = (id: string) => {
@@ -78,6 +79,7 @@ export const useChat = (options?: useChatOptions) => {
     } else {
       createNewSession();
     }
+    // eslint-disable-next-line
   }, [sessionId]);
 
   const addHistoryEntry = (
@@ -159,7 +161,7 @@ export const useChat = (options?: useChatOptions) => {
         return Promise.resolve();
       },
       onmessage(event: EventSourceMessage) {
-        let parsedData: ResponseData;
+        let parsedData: AskResponse;
         if (addToHistory) {
           try {
             parsedData = JSON.parse(event.data);
@@ -265,7 +267,7 @@ export const useChat = (options?: useChatOptions) => {
         addHistoryEntry('assistant', '', answerId, false);
       }
       return batchQuery(query, isNew ? '' : currentSession, settings, files)
-        .then((res: ResponseData) => {
+        .then((res: AskResponse) => {
           if (addAnswerToHistory) {
             updateHistory(currentSession, (history) => {
               const newHistory = [...history];

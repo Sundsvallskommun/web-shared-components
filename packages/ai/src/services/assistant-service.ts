@@ -1,14 +1,15 @@
 import { useAssistantStore } from '../assistant-store';
+import { ChatEntryReference, ChatHistory, ChatHistoryEntry } from '../types';
+import { AssistantSettings, SkHeaders } from '../types/assistant';
 import {
-  ChatEntryReference,
-  ChatHistory,
-  ChatHistoryEntry,
+  ConversationRequestDto,
+  CursorPaginatedResponseSessionMetadataPublic,
+  InfoBlobPublicNoText,
+  Message,
+  ModelId,
   PaginatedResponseAssistantPublic,
-  Reference,
-  SessionMessage,
-  SessionsResponse,
-} from '../types';
-import { AssistantFeedback, AssistantSettings, ModelId, SkHeaders } from '../types/assistant';
+  SessionFeedback,
+} from '../types/intric-backend';
 
 export const getSkHeaders = (options?: AssistantSettings, settings?: AssistantSettings): SkHeaders => {
   const assistantId = options?.assistantId || settings?.assistantId || '';
@@ -77,9 +78,17 @@ export const getAssistantById = async (options?: AssistantSettings) => {
     });
 };
 
-export const getAssistantSessions = async (options?: AssistantSettings): Promise<SessionsResponse> => {
+export const getAssistantSessions = async (
+  options?: AssistantSettings
+): Promise<CursorPaginatedResponseSessionMetadataPublic> => {
   const { settings, apiBaseUrl } = useAssistantStore.getState();
   const skHeaders = getSkHeaders(options, settings);
+  const assistant_id = options?.assistantId || settings?.assistantId;
+
+  if (!assistant_id) {
+    throw new Error('No assistant id provided.');
+  }
+
   if (!apiBaseUrl) {
     throw new Error('No api url provided');
   }
@@ -143,7 +152,7 @@ export const batchQuery = async (query: string, sessionId?: string, options?: As
   });
 };
 
-export const giveFeedback = async (feedback: AssistantFeedback, sessionId: string, options?: AssistantSettings) => {
+export const giveFeedback = async (feedback: SessionFeedback, sessionId: string, options?: AssistantSettings) => {
   const { settings, apiBaseUrl } = useAssistantStore.getState();
   const skHeaders = getSkHeaders(options, settings);
   if (!apiBaseUrl) {
@@ -167,10 +176,10 @@ export const giveFeedback = async (feedback: AssistantFeedback, sessionId: strin
   });
 };
 
-export const mapReferencesToChatEntryReferences = (references: Reference[]): ChatEntryReference[] => {
+export const mapReferencesToChatEntryReferences = (references: InfoBlobPublicNoText[]): ChatEntryReference[] => {
   return references?.map((reference) => ({ title: reference.metadata.title || '', url: reference.metadata.url || '' }));
 };
-export const mapSessionMessagesToChatHistory = (messages: SessionMessage[]): ChatHistory => {
+export const mapSessionMessagesToChatHistory = (messages: Message[]): ChatHistory => {
   return messages?.reduce((history: ChatHistory, message) => {
     const question: ChatHistoryEntry = {
       id: `${message.id}-1`,

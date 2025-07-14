@@ -1,6 +1,6 @@
 import { useForkRef } from '@sk-web-gui/utils';
 import React from 'react';
-import { ChatHistory, ChatHistoryEntry } from '../../types';
+import { ChatHistory, ChatHistoryEntry, SessionFeedbackValueEnum } from '../../types';
 import { AIFeedAvatarMap } from '../../types/avatar';
 import { AIFeedEntry } from './ai-feed-entry';
 import { AIFeedWrapper } from './ai-feed-wrapper';
@@ -13,7 +13,7 @@ export interface AIFeedProps extends React.ComponentPropsWithoutRef<'ul'> {
   avatars?: AIFeedAvatarMap;
   showFeedback?: boolean;
   showTitles?: boolean;
-  onGiveFeedback?: (value: -1 | 1) => void;
+  onGiveFeedback?: (value: SessionFeedbackValueEnum) => void;
   size?: 'sm' | 'lg';
   inverted?: boolean;
   titles?: OriginTitleMap;
@@ -47,6 +47,7 @@ export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, re
     if (latest?.done && latest.id !== lastMessage?.id) {
       setLastMessage(latest);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [assistantHistory]);
 
   React.useEffect(() => {
@@ -55,6 +56,7 @@ export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, re
     if (latest?.done && latest.id !== lastOwnMessage?.id) {
       setLastOwnMessage(latest);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userHistory]);
 
   React.useEffect(() => {

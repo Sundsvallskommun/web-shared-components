@@ -1,5 +1,6 @@
-export * from './assistant';
-export * from './history';
-export * from './response';
-export * from './avatar';
-export * from './titles';
+export type * from './assistant';
+export type * from './history';
+export type * from './intric-backend';
+export type * from './avatar';
+export type * from './titles';
+export * from './intric-backend-enums';
