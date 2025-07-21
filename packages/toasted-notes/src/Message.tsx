@@ -163,7 +163,9 @@ export const Message = ({
       : undefined;
   }
 
-  const Component: React.FC<React.ComponentPropsWithRef<'div'>> = (props) => <div {...props} />;
+  const Component = React.forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<'div'>>((props, ref) => (
+    <div {...props} ref={ref} />
+  ));
 
   const AnimatedComponent = animated<typeof Component>(Component);
 
