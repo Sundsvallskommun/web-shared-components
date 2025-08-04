@@ -1,7 +1,7 @@
 import { cx } from '@sk-web-gui/utils';
 import React from 'react';
 import { AIFeed } from '../ai-feed';
-import { AssistantInfo, ChatHistory } from '../../types';
+import { AssistantInfo, ChatHistory, SessionFeedbackValueEnum } from '../../types';
 import { AIFeedProps } from '../ai-feed/ai-feed';
 import { InputSection } from '../input-section';
 import { Button } from '@sk-web-gui/button';
@@ -53,7 +53,7 @@ export const AIServiceModuleAssistantExpanded = React.forwardRef<HTMLDivElement,
       handleAutoScroll();
     }, [history, showFeedback]);
 
-    const handleGiveFeedBack = (feedback: -1 | 1) => {
+    const handleGiveFeedBack = (feedback: SessionFeedbackValueEnum) => {
       onGiveFeedback?.(feedback);
       handleAutoScroll();
     };

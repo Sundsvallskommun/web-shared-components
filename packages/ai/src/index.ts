@@ -22,4 +22,4 @@ export {
 export { useChat, useSpeechToText, useSpeechToTextTranslation, useTextToSpeech } from './hooks';
 export * from './services';
 export { useAssistantStore, setAssistantStoreName, useSessions, createSessionStore };
-export type * from './types';
+export * from './types';

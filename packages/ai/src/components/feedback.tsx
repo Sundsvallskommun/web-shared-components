@@ -4,11 +4,12 @@ import React from 'react';
 import { giveFeedback } from '../services';
 import { useSessions } from '../session-store';
 import { X, ThumbsUp, ThumbsDown } from 'lucide-react';
+import { SessionFeedbackValueEnum } from '../types';
 
 export interface FeedbackProps extends React.ComponentPropsWithoutRef<'div'> {
   sessionId: string;
   reasons?: string[];
-  onGiveFeedback?: (value: -1 | 1) => void;
+  onGiveFeedback?: (value: SessionFeedbackValueEnum) => void;
   inverted?: boolean;
 }
 export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, ref) => {
@@ -17,14 +18,14 @@ export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, 
   const [showFeedbackReason, setShowFeedbackReason] = React.useState(false);
   const [showThanks, setShowThanks] = React.useState(false);
   const [feedbackLoading, setFeedbackLoading] = React.useState(false);
-  const [feedback, setFeedback] = React.useState<-1 | 1 | undefined>(session?.feedback?.value);
+  const [feedback, setFeedback] = React.useState<SessionFeedbackValueEnum | undefined>(session?.feedback?.value);
   const feedbackRef = React.useRef<HTMLButtonElement>(null);
   const thumbDownButtonRef = React.useRef<HTMLButtonElement>(null);
   const thumbUpButtonRef = React.useRef<HTMLButtonElement>(null);
 
   const reasons = _reasons || ['Innehåller faktafel', 'Inte nöjd med svaret'];
 
-  const sendFeedback = async (val: -1 | 1, reason?: string) => {
+  const sendFeedback = async (val: SessionFeedbackValueEnum, reason?: string) => {
     setShowFeedbackReason(false);
     setShowThanks(false);
     setFeedbackLoading(true);
@@ -37,9 +38,9 @@ export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, 
     updateSession(sessionId, (session) => ({ ...session, feedback: { value: val, text: reason || null } }));
   };
 
-  const handleFeedback = (val: -1 | 1) => {
-    if (val === -1) {
-      sendFeedback(-1);
+  const handleFeedback = (val: SessionFeedbackValueEnum) => {
+    if (val === SessionFeedbackValueEnum.Negative) {
+      sendFeedback(val);
       setShowFeedbackReason(true);
       setTimeout(() => {
         feedbackRef.current?.focus();
@@ -85,10 +86,10 @@ export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, 
           variant="tertiary"
           size="sm"
           inverted={inverted}
-          showBackground={feedback === 1}
-          data-current={feedback === 1}
+          showBackground={feedback === SessionFeedbackValueEnum.Positive}
+          data-current={feedback === SessionFeedbackValueEnum.Positive}
           className="sk-ai-feedback-button"
-          onClick={() => handleFeedback(1)}
+          onClick={() => handleFeedback(SessionFeedbackValueEnum.Positive)}
         >
           <Icon icon={<ThumbsUp />} />
         </Button>
@@ -101,11 +102,11 @@ export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, 
           aria-expanded={showFeedbackReason}
           aria-controls="sk-ai-feedback-reason"
           variant="tertiary"
-          showBackground={feedback === -1}
+          showBackground={feedback === SessionFeedbackValueEnum.Negative}
           size="sm"
-          data-current={feedback === -1}
+          data-current={feedback === SessionFeedbackValueEnum.Negative}
           className="sk-ai-feedback-button"
-          onClick={() => handleFeedback(-1)}
+          onClick={() => handleFeedback(SessionFeedbackValueEnum.Negative)}
         >
           <Icon icon={<ThumbsDown />} />
         </Button>
@@ -129,7 +130,7 @@ export const Feedback = React.forwardRef<HTMLDivElement, FeedbackProps>((props, 
                     inverted={inverted}
                     variant="secondary"
                     size="sm"
-                    onClick={() => sendFeedback(-1, reason)}
+                    onClick={() => sendFeedback(SessionFeedbackValueEnum.Negative, reason)}
                   >
                     {reason}
                   </Button>

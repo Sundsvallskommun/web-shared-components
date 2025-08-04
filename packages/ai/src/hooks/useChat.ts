@@ -2,10 +2,10 @@ import { EventSourceMessage, fetchEventSource } from '@microsoft/fetch-event-sou
 import React from 'react';
 import { useAssistantStore } from '../assistant-store';
 import { batchQuery } from '../services/assistant-service';
-import { AssistantSettings, ModelId, SkHeaders } from '../types/assistant';
+import { AssistantSettings, SkHeaders } from '../types/assistant';
 import { ChatEntryReference, ChatHistory, ChatHistoryEntry, Origin } from '../types/history';
-import { ResponseData } from '../types/response';
 import { useSessions } from '../session-store';
+import { AskResponse, ConversationRequestDto, ModelId } from '../types/intric-backend';
 
 const MAX_REFERENCE_COUNT = 3;
 
@@ -32,6 +32,7 @@ export const useChat = (options?: useChatOptions) => {
   const user = _user || '';
   const stream = (options?.stream || _stream) ?? true;
   const apiBaseUrl = options?.apiBaseUrl || _apiBaseUrl;
+  const isGroupChat = options?.settings?.is_group_chat ?? _settings.is_group_chat ?? false;
 
   const [session, getSession, newSession, updateHistory, updateSession, setDone, changeSessionId] = useSessions(
     (state) => [
@@ -52,6 +53,7 @@ export const useChat = (options?: useChatOptions) => {
   const createNewSession = React.useCallback(() => {
     const id = newSession();
     setCurrentSession(id);
+    // eslint-disable-next-line
   }, [sessionId]);
 
   const updateSessionId = (id: string) => {
@@ -78,6 +80,7 @@ export const useChat = (options?: useChatOptions) => {
     } else {
       createNewSession();
     }
+    // eslint-disable-next-line
   }, [sessionId]);
 
   const addHistoryEntry = (
@@ -117,7 +120,7 @@ export const useChat = (options?: useChatOptions) => {
       addHistoryEntry('assistant', '', answerId, false);
     }
 
-    const url = `${apiBaseUrl}/assistants/${assistantId}/sessions/${session_id || ''}?stream=true`;
+    const url = `${apiBaseUrl}/conversations`;
 
     let _id = '';
     let references: ChatEntryReference[];
@@ -130,9 +133,18 @@ export const useChat = (options?: useChatOptions) => {
       _apikey: apikey,
     };
 
+    const body: ConversationRequestDto = {
+      question: query,
+      session_id: isNew ? undefined : session_id || undefined,
+      assistant_id: isGroupChat ? undefined : assistantId,
+      group_chat_id: isGroupChat ? assistantId : undefined,
+      stream: true,
+      files: files || undefined,
+    };
+
     fetchEventSource(url, {
       method: 'POST',
-      body: JSON.stringify({ body: query, files }),
+      body: JSON.stringify(body),
       headers: {
         Accept: 'text/event-stream',
         ...skHeaders,
@@ -159,7 +171,7 @@ export const useChat = (options?: useChatOptions) => {
         return Promise.resolve();
       },
       onmessage(event: EventSourceMessage) {
-        let parsedData: ResponseData;
+        let parsedData: AskResponse;
         if (addToHistory) {
           try {
             parsedData = JSON.parse(event.data);
@@ -265,7 +277,7 @@ export const useChat = (options?: useChatOptions) => {
         addHistoryEntry('assistant', '', answerId, false);
       }
       return batchQuery(query, isNew ? '' : currentSession, settings, files)
-        .then((res: ResponseData) => {
+        .then((res: AskResponse) => {
           if (addAnswerToHistory) {
             updateHistory(currentSession, (history) => {
               const newHistory = [...history];

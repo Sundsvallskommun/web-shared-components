@@ -1,45 +1,5 @@
 import { ChatHistory } from './history';
-
-export interface AssistantPublic {
-  /**
-   * Id
-   * @format uuid
-   */
-  id: string;
-  /** Name */
-  name: string;
-  /** Prompt */
-  prompt: string;
-  /** Completion Model */
-  completion_model: string;
-  /**
-   * Completion Model Kwargs
-   * @default {}
-   */
-  completion_model_kwargs?: object | null;
-  /** Groups */
-  groups: GroupPublic[];
-  /** Logging Enabled */
-  logging_enabled: boolean;
-}
-
-export interface GroupPublic {
-  /** Created At */
-  created_at?: string | null;
-  /** Updated At */
-  updated_at?: string | null;
-  /**
-   * Id
-   * @format uuid
-   */
-  id: string;
-  /** Name */
-  name: string;
-  /** Is Public */
-  is_public: boolean;
-  /** Embedding Model */
-  embedding_model: string;
-}
+import { SessionFeedback } from './intric-backend';
 
 export type AdditionalAssistantOptions = Record<string, unknown>;
 
@@ -48,6 +8,7 @@ export interface AssistantSettings {
   assistantId: string;
   hash?: string;
   app?: string;
+  is_group_chat?: boolean;
 }
 
 type LanguageCode = string | 'default';
@@ -71,7 +32,7 @@ export interface AssistantSession {
   name?: string;
   id: string;
   history: ChatHistory;
-  feedback?: AssistantFeedback;
+  feedback?: SessionFeedback;
   updated_at: Date;
   created_at: Date;
 }
@@ -84,21 +45,9 @@ export interface SkHeaders {
   _skapp?: string;
 }
 
-export interface AssistantFeedback {
-  value: -1 | 1;
-  text: string | null;
-}
-
 export interface Assistant {
   info: AssistantInfo;
   settings: AssistantSettings;
 }
 
 /** ModelId */
-export interface ModelId {
-  /**
-   * Id
-   * @format uuid
-   */
-  id: string;
-}

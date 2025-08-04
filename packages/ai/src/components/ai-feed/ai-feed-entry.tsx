@@ -3,7 +3,7 @@ import { Link } from '@sk-web-gui/link';
 import { cx } from '@sk-web-gui/utils';
 import React from 'react';
 import { useAssistantStore } from '../../assistant-store';
-import { ChatHistoryEntry } from '../../types';
+import { ChatHistoryEntry, SessionFeedbackValueEnum } from '../../types';
 import { Feedback } from '../feedback';
 import { MarkdownRendered } from '../markdown-rendered';
 import { TypingBubble } from '../typing-bubble';
@@ -23,7 +23,7 @@ interface AIFeedEntryProps extends React.ComponentPropsWithoutRef<'li'> {
    * @default true
    */
   tabbable?: boolean;
-  onGiveFeedback?: (value: -1 | 1) => void;
+  onGiveFeedback?: (value: SessionFeedbackValueEnum) => void;
   size?: 'sm' | 'lg';
   inverted?: boolean;
 }

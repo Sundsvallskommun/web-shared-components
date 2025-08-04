@@ -1,6 +1,7 @@
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { createWithEqualityFn } from 'zustand/traditional';
-import { AdditionalAssistantOptions, AssistantInfo, AssistantPublic, AssistantSettings } from './types/assistant';
+import { AdditionalAssistantOptions, AssistantInfo, AssistantSettings } from './types/assistant';
+import { AssistantPublic } from './types';
 
 export interface AssistantStoreInterface {
   settings: AssistantSettings;
