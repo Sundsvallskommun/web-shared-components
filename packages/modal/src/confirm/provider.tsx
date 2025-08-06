@@ -51,7 +51,9 @@ export const ConfirmationDialogContextProvider: React.FC<ConfirmationDialogConte
     });
   };
 
-  const dialogContext: DialogContextType = { showConfirmation: handleShow };
+  const dialogContext: DialogContextType = {
+    showConfirmation: handleShow,
+  };
 
   const handleConfirm = () => {
     resolver.current?.(true);
