@@ -4,7 +4,7 @@ export type DialogContextType = {
     message: string | React.JSX.Element,
     confirmLabel?: string,
     dismissLabel?: string,
-    dialogType?: 'warning' | 'error' | 'info',
+    dialogType?: 'warning' | 'error' | 'info' | 'primary',
     icon?: 'info' | 'error' | 'question',
     labelAs?: React.ElementType
   ) => Promise<boolean>;

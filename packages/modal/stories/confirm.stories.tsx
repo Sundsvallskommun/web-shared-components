@@ -8,71 +8,45 @@ export default {
   title: 'Komponenter/Modal/Confirm',
   component: ConfirmationDialogContextProvider,
   tags: ['autodocs'],
-  args: {
-    title: 'Dialog label',
-    message: 'Is this a confirmation dialog?',
-  },
+  args: { title: 'Dialog label', message: 'Is this a confirmation dialog?' },
   argTypes: {
     title: {
-      type: {
-        name: 'string',
-        required: false,
-      },
+      type: { name: 'string', required: false },
       description: 'Confirmation title',
       defaultValue: 'Dialog label',
     },
 
     message: {
-      type: {
-        name: 'string',
-        required: false,
-      },
+      type: { name: 'string', required: false },
       description: 'Confirmation message',
       defaultValue: 'Is this a confirmation dialog?',
     },
 
     confirmLabel: {
-      type: {
-        name: 'string',
-        required: false,
-      },
-      table: {
-        defaultValue: { summary: 'Ja' },
-      },
+      type: { name: 'string', required: false },
+      table: { defaultValue: { summary: 'Ja' } },
       default: 'Ja',
       description: 'Text on confirm button',
       defaultValue: 'Yes',
     },
     dismissLabel: {
-      type: {
-        name: 'string',
-        required: false,
-      },
-      table: {
-        defaultValue: { summary: 'Nej' },
-      },
+      type: { name: 'string', required: false },
+      table: { defaultValue: { summary: 'Nej' } },
       description: 'Text on dismiss button',
       defaultValue: 'No',
     },
     dialogType: {
-      type: {
-        name: 'string',
-        required: false,
-      },
+      type: { name: 'string', required: false },
       description: 'Set type',
-      table: {
-        defaultValue: { summary: null },
-      },
-      options: ['warning', 'error', 'info', null],
+      table: { defaultValue: { summary: null } },
+      options: ['warning', 'error', 'info', 'primary', null],
       control: 'select',
       defaultValue: null,
     },
     icon: {
       type: { name: 'string', required: false },
       description: 'Set icon',
-      table: {
-        defaultValue: { summary: null },
-      },
+      table: { defaultValue: { summary: null } },
       options: ['info', 'error', 'question', null],
       control: 'select',
       defaultValue: null,
