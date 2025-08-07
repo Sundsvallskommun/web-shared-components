@@ -61,7 +61,7 @@ export const Accordion = () => ({
       '.sk-disclosure-toggle': {
         '@apply gap-12': {},
         '.sk-icon': {
-          '@apply w-20 h-20': {},
+          '@apply w-20 min-h-20': {},
         },
       },
       '.sk-disclosure-support': {
@@ -70,7 +70,7 @@ export const Accordion = () => ({
       '&[data-variant="default"]': {
         '.sk-disclosure-toggle': {
           '@apply py-4': {},
-          '@apply h-40': {},
+          '@apply min-h-40': {},
         },
         '.sk-disclosure-header-icon': {
           '@apply w-32 h-32': {},
@@ -88,7 +88,7 @@ export const Accordion = () => ({
       '.sk-disclosure-toggle': {
         '@apply gap-12': {},
         '.sk-icon': {
-          '@apply w-24 h-24': {},
+          '@apply w-24 min-h-24': {},
         },
       },
       '.sk-disclosure-support': {
@@ -97,7 +97,7 @@ export const Accordion = () => ({
       '&[data-variant="default"]': {
         '.sk-disclosure-toggle': {
           '@apply py-8': {},
-          '@apply h-56': {},
+          '@apply min-h-56': {},
         },
         '.sk-disclosure-header-icon': {
           '@apply w-40 h-40': {},
@@ -119,23 +119,31 @@ export const Accordion = () => ({
     },
 
     '&-body': {
+      '&[data-size="sm"]': {
+        '@apply px-12': {},
+      },
+      '&[data-size="md"]': {
+        '@apply px-12': {},
+      },
+      '&[data-size="lg"]': {
+        '@apply px-16': {},
+      },
       '@apply text-base': {},
       '@apply flex flex-col': {},
       '@apply mb-32': {},
       '@apply mr-32': {},
       '@apply gap-8': {},
       '@apply py-0': {},
-      '@apply h-0 overflow-hidden': {},
-      transitionProperty: 'visibility, height, padding, margin',
-      transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      transitionProperty: 'visibility, height, opacity, padding, margin',
+
       transitionDuration: '180ms',
 
       '&[aria-hidden="true"], &[data-hidden="true"]': {
-        '@apply my-0 invisible h-0': {},
+        '@apply my-0 invisible max-h-0 opacity-0': {},
       },
 
       '&[aria-hidden="false"], &[data-hidden="false"]': {
-        '@apply block h-max visible': {},
+        '@apply block max-h-screen opacity-100 visible': {},
       },
 
       '&[data-variant="alt"]': {
@@ -160,12 +168,6 @@ export const Accordion = () => ({
             '@apply ml-48': {},
           },
         },
-      },
-    },
-
-    '&-is-open': {
-      '.sk-disclosure-body': {
-        '@apply overflow-visible animate-reset-overflow': {},
       },
     },
   },
