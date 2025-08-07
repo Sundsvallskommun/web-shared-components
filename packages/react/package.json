@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/react",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -67,7 +67,7 @@
     "@sk-web-gui/progress-bar": "1.1.2",
     "@sk-web-gui/progress-stepper": "1.2.5",
     "@sk-web-gui/searchfield": "2.3.6",
-    "@sk-web-gui/snackbar": "2.2.4",
+    "@sk-web-gui/snackbar": "2.2.5",
     "@sk-web-gui/spinner": "1.1.6",
     "@sk-web-gui/table": "3.2.6",
     "@sk-web-gui/tabs": "1.4.2",

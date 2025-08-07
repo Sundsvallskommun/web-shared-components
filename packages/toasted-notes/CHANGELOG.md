@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/toasted-notes@1.2.0...@sk-web-gui/toasted-notes@1.2.1) (2025-08-07)
+
+### Bug Fixes
+
+- prevent ref to pass to fragment ([b93454c](https://github.com/Sundsvallskommun/web-shared-components/commit/b93454ca17b8347d45b90ff0e7c20dfb60ccd884))
+
 # [1.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/toasted-notes@1.1.1...@sk-web-gui/toasted-notes@1.2.0) (2025-03-06)
 
 ### Bug Fixes

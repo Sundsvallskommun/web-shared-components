@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@1.2.1...@sk-web-gui/ai@2.0.0) (2025-08-07)
+
+### Bug Fixes
+
+- updated contract types for intric backend ([d6fda1a](https://github.com/Sundsvallskommun/web-shared-components/commit/d6fda1a039b94e327a19843b261432332200b4c0))
+
+### Features
+
+- Chat service and hooks now supports group chats ([bbaa965](https://github.com/Sundsvallskommun/web-shared-components/commit/bbaa965aa388ccd8b59b84cab1c76dd1b219f1c2))
+
+### BREAKING CHANGES
+
+- Only works with intric backend proxy v.1 and up
+
 ## [1.2.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@1.2.0...@sk-web-gui/ai@1.2.1) (2025-06-05)
 
 ### Bug Fixes
