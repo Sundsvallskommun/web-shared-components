@@ -39,7 +39,7 @@
     "react": "^19.0.0"
   },
   "dependencies": {
-    "@headlessui/react": "^2.2.0",
+    "@headlessui/react": "^2.2.7",
     "@sk-web-gui/button": "2.1.6",
     "@sk-web-gui/forms": "2.4.5",
     "@sk-web-gui/utils": "2.2.2",

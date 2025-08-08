@@ -3,7 +3,7 @@ import { cx } from '@sk-web-gui/utils';
 import React from 'react';
 import Markdown, { Options } from 'react-markdown';
 
-interface MarkdownRenderedProps extends Options {
+interface MarkdownRenderedProps extends Options, Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   text: string;
   messageId: string;
   hideElements: boolean;
@@ -66,22 +66,23 @@ export const MarkdownRendered: React.FC<MarkdownRenderedProps> = (props) => {
   const { text, components, className, messageId, hideElements, tabbable = true, ...rest } = props;
 
   return (
-    <Markdown
-      className={cx('sk-ai-markdown', className)}
-      disallowedElements={['script', 'iframe']}
-      components={{
-        p: ParagraphComponent,
-        a: LinkComponent({ hidden: hideElements, id: messageId, tabbable }),
-        ol: OlComponent,
-        ul: UlComponent,
-        li: LiComponent,
-        code: CodeComponent,
-        pre: PreComponent,
-        ...components,
-      }}
-      {...rest}
-    >
-      {text}
-    </Markdown>
+    <div className={cx('sk-ai-markdown', className)}>
+      <Markdown
+        disallowedElements={['script', 'iframe']}
+        components={{
+          p: ParagraphComponent,
+          a: LinkComponent({ hidden: hideElements, id: messageId, tabbable }),
+          ol: OlComponent,
+          ul: UlComponent,
+          li: LiComponent,
+          code: CodeComponent,
+          pre: PreComponent,
+          ...components,
+        }}
+        {...rest}
+      >
+        {text}
+      </Markdown>
+    </div>
   );
 };

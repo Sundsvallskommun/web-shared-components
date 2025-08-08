@@ -40,7 +40,7 @@
     "react-dom": "^19.0.0"
   },
   "dependencies": {
-    "react-spring": "^9.7.5"
+    "react-spring": "^10.0.1"
   },
   "peerDependencies": {
     "react": ">=18.2.0",
