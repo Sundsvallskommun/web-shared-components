@@ -43,7 +43,7 @@
     "@sk-web-gui/divider": "1.1.5",
     "@sk-web-gui/icon": "3.1.2",
     "@sk-web-gui/utils": "2.2.2",
-    "lucide-react": "^0.471.1"
+    "lucide-react": "^0.537.0"
   },
   "peerDependencies": {
     "react": ">=18.3.1"
