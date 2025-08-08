@@ -32,7 +32,7 @@
     "build:storybook": "storybook build -o ./storybook-static",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "yarn storybook",
-    "storybook": "storybook dev -p 6006 -s public",
+    "storybook": "storybook dev -p 6006",
     "storybook:prod": "http-server storybook-static",
     "dev-storybook": "cross-env NODE_ENV=development storybook dev -p 6006 --no-open",
     "release": "changeset publish",
