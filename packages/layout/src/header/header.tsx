@@ -10,9 +10,10 @@ export interface HeaderComponentProps extends DefaultProps, React.ComponentProps
   subtitle?: string;
   /* React node */
   children?: React.ReactNode;
-  /* Wrapper for Logo-link, for example Next-Link */
-  LogoLinkWrapperComponent?: React.ReactElement;
-  /* onClick for Logo-link */
+  /**
+   * onClick for Logo-link
+   * Not in use if alternative logo is used.
+   */
   logoLinkOnClick?: () => void;
   /* NotificationsAlert component */
   notificationsAlert?: React.ReactNode;
@@ -26,13 +27,11 @@ export interface HeaderComponentProps extends DefaultProps, React.ComponentProps
   mainMenu?: React.ReactNode;
   /* Mobile menu component */
   mobileMenu?: React.ReactNode;
-  /*alternative logo*/
+  /**
+   *  Alternative logo
+   *  If you want a linked logo, wrap it in a link component.
+   */
   logo?: React.ReactNode;
-}
-
-interface LinkWrapper {
-  children: React.ReactElement | string;
-  wrapper?: React.ReactElement;
 }
 
 export const HeaderComponent = React.forwardRef<HTMLDivElement, HeaderComponentProps>((props, ref) => {
@@ -41,7 +40,6 @@ export const HeaderComponent = React.forwardRef<HTMLDivElement, HeaderComponentP
     subtitle,
     className,
     children,
-    LogoLinkWrapperComponent,
     logoLinkOnClick,
     notificationsAlert,
     userMenu,
@@ -54,13 +52,6 @@ export const HeaderComponent = React.forwardRef<HTMLDivElement, HeaderComponentP
     ...rest
   } = props;
 
-  const LinkWrapper = ({ wrapper, children }: LinkWrapper) => {
-    if (React.isValidElement<React.PropsWithChildren>(wrapper)) {
-      return React.cloneElement(wrapper, { children });
-    }
-    return children;
-  };
-
   const handleLogoLinkOnClick = (e: React.BaseSyntheticEvent) => {
     e.preventDefault();
     logoLinkOnClick?.();
@@ -70,18 +61,18 @@ export const HeaderComponent = React.forwardRef<HTMLDivElement, HeaderComponentP
     <nav ref={ref} {...rest} className={cx('sk-header', wrapperClasses)}>
       <div className={cx('sk-header-container')}>
         <div className={cx('sk-header-top-content', className)}>
-          {title && (
-            <LinkWrapper wrapper={LogoLinkWrapperComponent}>
-              <Link
-                href="/"
-                onClick={logoLinkOnClick ? handleLogoLinkOnClick : undefined}
-                className="no-underline"
-                aria-label={ariaLabel || `${subtitle ? `${title} ${subtitle}` : `${title}`}. Gå till startsidan.`}
-              >
-                {logo ? logo : <Logo variant="service" title={title} subtitle={subtitle} />}
-              </Link>
-            </LinkWrapper>
-          )}
+          {logo
+            ? logo
+            : title && (
+                <Link
+                  href="/"
+                  onClick={logoLinkOnClick ? handleLogoLinkOnClick : undefined}
+                  className="no-underline"
+                  aria-label={ariaLabel || `${subtitle ? `${title} ${subtitle}` : `${title}`}. Gå till startsidan.`}
+                >
+                  {<Logo variant="service" title={title} subtitle={subtitle} />}
+                </Link>
+              )}
 
           {children}
 
