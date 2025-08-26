@@ -90,9 +90,9 @@ function addin() {
   };
 }
 
-function inputGroup() {
+function addon() {
   return {
-    '&-group': {
+    '&-addon': {
       '@apply flex relative': {},
       '@apply items-center': {},
       '@apply focus-within:ring': {},
@@ -108,14 +108,114 @@ function inputGroup() {
       '&&-lg': {
         '@apply text-input-large': {},
         '@apply rounded-button-lg': {},
+        '@apply h-48': {},
       },
       '&&-md': {
         '@apply text-input-medium': {},
         '@apply rounded-button-md': {},
+        '@apply h-40': {},
       },
       '&&-sm': {
         '@apply text-input-small': {},
         '@apply rounded-button-sm': {},
+        '@apply h-32': {},
+      },
+      '&&-left': {
+        '@apply rounded-r-0': {},
+        '@apply border-r-0': {},
+      },
+      '&&-right': {
+        '@apply rounded-l-0': {},
+        '@apply border-l-0': {},
+      },
+      ...inputStandards(),
+      '.sk-form-input': {
+        '@apply rounded-0': {},
+        '@apply border-0': {},
+        '@apply focus:ring-0': {},
+        '@apply focus:ring-offset-0': {},
+        '@apply bg-transparent': {},
+        '@apply dark:bg-transparent': {},
+        '@apply grow': {},
+      },
+      '.sk-form-select': {
+        '@apply rounded-0': {},
+        '@apply border-0 hover:border-0': {},
+        '@apply focus:ring-0 focus:z-10': {},
+        '@apply focus:ring-offset-0': {},
+        '@apply bg-transparent hover:bg-transparent': {},
+        '@apply dark:bg-transparent hover:dark:bg-transparent': {},
+        '@apply grow': {},
+      },
+      '&&-left .sk-form-select': {
+        '@apply border-r-1 border-r-divider': {},
+        '@apply focus:border-r-transparent': {},
+      },
+      '&&-right .sk-form-select': {
+        '@apply border-l-1 border-l-divider': {},
+        '@apply focus:border-l-transparent': {},
+      },
+      '.sk-form-combobox': {
+        '@apply rounded-0': {},
+        '@apply border-0': {},
+        '@apply focus-within:ring-0': {},
+        '@apply focus-within:ring-offset-0': {},
+        '@apply bg-transparent': {},
+        '@apply dark:bg-transparent': {},
+      },
+      '&&-left .sk-form-combobox': {
+        '@apply border-r-1 border-r-divider': {},
+        '@apply focus:border-r-transparent': {},
+      },
+      '&&-right .sk-form-combobox': {
+        '@apply border-l-1 border-l-divider': {},
+        '@apply focus:border-l-transparent': {},
+      },
+    },
+  };
+}
+function inputGroup() {
+  return {
+    '&-group': {
+      '&-wrapper': {
+        '@apply flex gap-0': {},
+      },
+      '@apply flex relative': {},
+      '@apply items-center': {},
+      '@apply focus-within:ring': {},
+      '@apply focus-within:ring-ring': {},
+      '@apply text-dark-secondary': {},
+      //Focus
+      '@apply focus-within:border-input-field-surface': {},
+
+      '&:not(:invalid):not([aria-invalid="true"])': {
+        '@apply focus-within:border-input-field-surface': {},
+      },
+
+      '&&-lg': {
+        '@apply text-input-large': {},
+        '@apply rounded-button-lg': {},
+        '@apply h-48': {},
+      },
+      '&&-md': {
+        '@apply text-input-medium': {},
+        '@apply rounded-button-md': {},
+        '@apply h-40': {},
+      },
+      '&&-sm': {
+        '@apply text-input-small': {},
+        '@apply rounded-button-sm': {},
+        '@apply h-32': {},
+      },
+      '&[data-hasleftaddon="true"]': {
+        '@apply pl-0': {},
+        '@apply rounded-l-0': {},
+        '@apply border-l-0': {},
+      },
+      '&[data-hasrightaddon="true"]': {
+        '@apply pr-0': {},
+        '@apply rounded-r-0': {},
+        '@apply border-r-0': {},
       },
       ...inputStandards(),
       '.sk-form-input': {
@@ -243,5 +343,6 @@ export const Input = () => ({
     ...inputStandards(),
     ...inputGroup(),
     ...addin(),
+    ...addon(),
   },
 });
