@@ -54,6 +54,7 @@ export const TextEditor = forwardRef<Quill, TextEditorProps>(
           : defaultToolbarTokens;
 
       const quill = new Quill(editorContainer, {
+        readOnly,
         modules: { toolbar: toolbarConfig },
         theme: 'snow',
       });
