@@ -17,24 +17,24 @@ export interface TextEditorProps extends DefaultProps {
   onSelectionChange?: (range: Range, oldRange: Range, source: string) => void;
 }
 
-export const TextEditor = forwardRef<Quill, TextEditorProps>(
+export const TextEditor = forwardRef<Quill | null, TextEditorProps>(
   ({ readOnly, defaultValue, disableToolbar, className, customToolbar, onTextChange, onSelectionChange }, ref) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
+    const quillRef = useRef<Quill | null>(null);
     const onTextChangeRef = useRef<TextEditorProps['onTextChange']>(onTextChange);
     const onSelectionChangeRef = useRef<TextEditorProps['onSelectionChange']>(onSelectionChange);
+    const tooltipRootsRef = useRef<Set<ReturnType<typeof createRoot>>>(new Set());
 
     useLayoutEffect(() => {
       onTextChangeRef.current = onTextChange;
       onSelectionChangeRef.current = onSelectionChange;
     });
 
-    const tooltipRootsRef = useRef<Set<ReturnType<typeof createRoot>>>(new Set());
-
     useEffect(() => {
-      if (ref && typeof ref === 'object' && ref.current && defaultValue !== undefined) {
-        ref.current.clipboard.dangerouslyPasteHTML(defaultValue);
+      if (quillRef.current && defaultValue !== undefined) {
+        quillRef.current.clipboard.dangerouslyPasteHTML(defaultValue);
       }
-    }, [defaultValue, ref]);
+    }, [defaultValue]);
 
     useEffect(() => {
       const container = containerRef.current;
@@ -54,10 +54,14 @@ export const TextEditor = forwardRef<Quill, TextEditorProps>(
           : defaultToolbarTokens;
 
       const quill = new Quill(editorContainer, {
-        readOnly,
         modules: { toolbar: toolbarConfig },
         theme: 'snow',
       });
+
+      quillRef.current = quill;
+      if (ref && typeof ref === 'object') {
+        ref.current = quill;
+      }
 
       delete quill.keyboard.bindings['Tab'];
 
@@ -65,10 +69,6 @@ export const TextEditor = forwardRef<Quill, TextEditorProps>(
       if (input) {
         input.dataset.link = 'https://www.sundsvall.se';
         input.placeholder = 'https://www.sundsvall.se';
-      }
-
-      if (ref && typeof ref === 'object') {
-        ref.current = quill;
       }
 
       quill.on(Quill.events.TEXT_CHANGE, (...args) => {
@@ -109,15 +109,6 @@ export const TextEditor = forwardRef<Quill, TextEditorProps>(
 
           el.appendChild(tooltipElement);
         });
-
-        const buttons = controls;
-        if (readOnly || disableToolbar) {
-          toolbar.classList.add('ql-disabled');
-          buttons.forEach((b) => ((b as HTMLButtonElement | HTMLSelectElement).disabled = true));
-        } else {
-          toolbar.classList.remove('ql-disabled');
-          buttons.forEach((b) => ((b as HTMLButtonElement | HTMLSelectElement).disabled = false));
-        }
       }
 
       return () => {
@@ -127,9 +118,32 @@ export const TextEditor = forwardRef<Quill, TextEditorProps>(
         if (ref && typeof ref === 'object') {
           ref.current = null;
         }
+        quillRef.current = null;
         container.innerHTML = '';
       };
-    }, [ref, disableToolbar, customToolbar, readOnly]);
+    }, [ref, disableToolbar, customToolbar]);
+
+    useEffect(() => {
+      const quill = quillRef.current;
+      const container = containerRef.current;
+      const toolbar = container?.querySelector('.ql-toolbar');
+      const shouldDisableToolbar = !!disableToolbar || !!readOnly;
+
+      if (quill) {
+        quill.enable(!readOnly);
+      }
+
+      if (toolbar) {
+        const controls = toolbar.querySelectorAll('button, select');
+        if (shouldDisableToolbar) {
+          toolbar.classList.add('ql-disabled');
+          controls.forEach((b) => ((b as HTMLButtonElement | HTMLSelectElement).disabled = true));
+        } else {
+          toolbar.classList.remove('ql-disabled');
+          controls.forEach((b) => ((b as HTMLButtonElement | HTMLSelectElement).disabled = false));
+        }
+      }
+    }, [readOnly, disableToolbar]);
 
     return <div className={cx(className, 'sk-texteditor')} ref={containerRef} />;
   }
