@@ -12,6 +12,7 @@ import { Card } from './components/card';
 import { Checkbox } from './components/checkbox';
 import { Chip } from './components/chip';
 import { ComboBox } from './components/combobox';
+import { CountryCode } from './components/countrycode';
 import { CookieConsent } from './components/cookie-consent';
 import { Dialog } from './components/dialog';
 import { Divider } from './components/divider';
@@ -77,6 +78,7 @@ export const components: ComponentWithDeps[] = [
   { comp: Checkbox },
   { comp: Chip, deps: [Icon] },
   { comp: ComboBox },
+  { comp: CountryCode, deps: [Forms, ComboBox] },
   { comp: CookieConsent, deps: [Button, Forms] },
   { comp: Dialog, deps: [Modal] },
   { comp: Divider },
