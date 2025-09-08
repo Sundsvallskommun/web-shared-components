@@ -1,8 +1,8 @@
-import { Link } from '@sk-web-gui/link';
 import { Icon } from '@sk-web-gui/icon';
+import { Link } from '@sk-web-gui/link';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
+import { ExternalLink, Text } from 'lucide-react';
 import React from 'react';
-import { Text, ExternalLink } from 'lucide-react';
 
 // NOTE: Meta Card component
 
@@ -24,13 +24,25 @@ interface IMetaCardProps extends DefaultProps {
    *  @default sm
    */
   size?: 'sm' | 'md';
+  /** Set icon
+   * @default <Text/>
+   */
+  icon?: React.JSX.Element;
 }
 
 export interface MetaCardProps extends Omit<React.ComponentPropsWithRef<'div'>, 'color'>, IMetaCardProps {}
 
 export const MetaCard = React.forwardRef<HTMLDivElement, MetaCardProps>((props, ref) => {
-  const { children, className, color = 'vattjom', useHoverEffect = false, href = '', size = 'sm', ...rest } = props;
-
+  const {
+    children,
+    className,
+    color = 'vattjom',
+    useHoverEffect = false,
+    href = '',
+    size = 'sm',
+    icon = <Text />,
+    ...rest
+  } = props;
   return (
     <div>
       {useHoverEffect ? (
@@ -42,7 +54,7 @@ export const MetaCard = React.forwardRef<HTMLDivElement, MetaCardProps>((props, 
           {...rest}
           ref={ref}
         >
-          <Icon className={cx('sk-meta-card-text-icon', className)} size={36} icon={<Text />}></Icon>
+          <Icon className={cx('sk-meta-card-text-icon', className)} size={36} icon={icon}></Icon>
           <div className={cx('sk-meta-card-body', className)}>{children}</div>
           <Icon className={cx('sk-meta-card-external-link-icon', className)} size={32} icon={<ExternalLink />}></Icon>
         </Link>
@@ -54,7 +66,7 @@ export const MetaCard = React.forwardRef<HTMLDivElement, MetaCardProps>((props, 
           {...rest}
           ref={ref}
         >
-          <Icon className={cx('sk-meta-card-text-icon', className)} size={36} icon={<Text />}></Icon>
+          <Icon className={cx('sk-meta-card-text-icon', className)} size={36} icon={icon}></Icon>
           <div className={cx('sk-meta-card-body', className)}>{children}</div>
           <div className={cx('sk-meta-card-external-link-icon', className)}></div>
         </div>
