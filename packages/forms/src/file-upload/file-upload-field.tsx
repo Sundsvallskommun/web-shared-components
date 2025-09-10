@@ -12,10 +12,10 @@ export interface FileUploadFieldProps
     Omit<React.HTMLAttributes<HTMLSpanElement>, 'color' | 'children' | 'onChange' | 'onInvalid'>,
     FileUploadButtonProps {
   /** @default horizontal */
-  variant: 'vertical' | 'horizontal';
+  variant?: 'vertical' | 'horizontal';
   /** @default false */
-  invalid: boolean;
-  children: React.JSX.Element | React.JSX.Element[] | string;
+  invalid?: boolean;
+  children?: React.JSX.Element | React.JSX.Element[] | string;
 }
 
 export const FileUploadField = React.forwardRef<HTMLSpanElement, FileUploadFieldProps>((props, ref) => {
