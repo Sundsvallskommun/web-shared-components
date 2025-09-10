@@ -71,7 +71,7 @@ export const FileUploadField = React.forwardRef<HTMLSpanElement, FileUploadField
     >
       <FileUploadArea {...useAddFilesProps} relativity="component">
         <FileUploadButton {...useAddFilesProps}>
-          <button className="sk-form-file-upload-field-button">
+          <button className="sk-form-file-upload-field-button" type="button">
             <div className="sk-form-file-upload-field-button-icon">
               <Icon icon={<Upload />} />
             </div>
