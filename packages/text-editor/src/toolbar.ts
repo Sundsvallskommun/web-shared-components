@@ -1,6 +1,49 @@
-export type ToolbarToken = string | Record<string, string | number>;
+export type HeaderLevel = 1 | 2 | 3 | 4 | 5 | 6 | false;
+export type ListType = 'ordered' | 'bullet' | 'check';
+export type ScriptType = 'sub' | 'super';
+export type IndentAmount = '-1' | '+1';
+export type Direction = 'rtl';
+export type SizeOption = 'small' | false | 'large' | 'huge';
+export type AlignOption = '' | 'center' | 'right' | 'justify';
 
-export const defaultToolbarTokens: ToolbarToken[][] = [
+export type ToolbarTokenSimple =
+  | 'bold'
+  | 'italic'
+  | 'underline'
+  | 'strike'
+  | 'blockquote'
+  | 'code-block'
+  | 'link'
+  | 'image'
+  | 'video'
+  | 'formula'
+  | 'clean';
+
+type ToolbarRecordSingle =
+  | { header: HeaderLevel }
+  | { list: ListType }
+  | { script: ScriptType }
+  | { indent: IndentAmount }
+  | { direction: Direction }
+  | { size: SizeOption }
+  | { align: AlignOption }
+  | { font: string }
+  | { color: string }
+  | { background: string };
+
+type ToolbarRecordDropdown =
+  | { size: ['small', false, 'large', 'huge'] | [] }
+  | { header: [1, 2, 3, 4, 5, 6, false] }
+  | { color: [] | string[] }
+  | { background: [] | string[] }
+  | { font: [] | string[] }
+  | { align: [] | AlignOption[] };
+
+export type ToolbarTokenRecord = ToolbarRecordSingle | ToolbarRecordDropdown;
+export type ToolbarTokenNested = Array<ToolbarTokenSimple | ToolbarTokenRecord>;
+export type ToolbarConfig = Array<ToolbarTokenSimple | ToolbarTokenNested>;
+
+export const defaultToolbarTokens: ToolbarConfig = [
   [{ header: 1 }, { header: 2 }, 'bold', 'italic', 'underline'],
   [{ list: 'bullet' }, { list: 'ordered' }],
   ['link'],
