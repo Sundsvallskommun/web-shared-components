@@ -19,7 +19,7 @@ export const Logo = () => ({
       '@apply h-60': {},
       '@apply pb-4': {},
       '.sk-logo-figure': {
-        '@apply w-33 h-56': {},
+        '@apply w-34 h-56': {},
       },
     },
     'a:focus-within &': {
