@@ -32,12 +32,12 @@ type ToolbarRecordSingle =
   | { background: string };
 
 type ToolbarRecordDropdown =
-  | { size: ['small', false, 'large', 'huge'] | [] }
-  | { header: [1, 2, 3, 4, 5, 6, false] }
-  | { color: [] | string[] }
-  | { background: [] | string[] }
-  | { font: [] | string[] }
-  | { align: [] | AlignOption[] };
+  | { size: SizeOption[] }
+  | { header: HeaderLevel[] }
+  | { color: string[] }
+  | { background: string[] }
+  | { font: string[] }
+  | { align: AlignOption[] };
 
 export type ToolbarTokenRecord = ToolbarRecordSingle | ToolbarRecordDropdown;
 export type ToolbarTokenNested = Array<ToolbarTokenSimple | ToolbarTokenRecord>;
