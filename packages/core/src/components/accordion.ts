@@ -120,13 +120,13 @@ export const Accordion = () => ({
 
     '&-body': {
       '&[data-size="sm"]': {
-        '@apply px-12': {},
+        '@apply pr-12': {},
       },
       '&[data-size="md"]': {
-        '@apply px-12': {},
+        '@apply pr-12': {},
       },
       '&[data-size="lg"]': {
-        '@apply px-16': {},
+        '@apply pr-16': {},
       },
       '@apply text-base': {},
       '@apply flex flex-col': {},
