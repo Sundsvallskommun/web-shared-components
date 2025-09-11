@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/link",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",

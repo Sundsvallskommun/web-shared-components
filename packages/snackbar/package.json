@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/snackbar",
-  "version": "2.2.5",
+  "version": "2.2.6",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -39,9 +39,9 @@
     "react": "^19.0.0"
   },
   "dependencies": {
-    "@sk-web-gui/button": "2.1.6",
+    "@sk-web-gui/button": "2.1.7",
     "@sk-web-gui/icon": "3.1.2",
-    "@sk-web-gui/toast": "1.2.4",
+    "@sk-web-gui/toast": "1.2.5",
     "@sk-web-gui/utils": "2.2.2",
     "lucide-react": "^0.537.0"
   },

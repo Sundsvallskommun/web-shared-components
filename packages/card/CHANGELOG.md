@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/card@1.2.0...@sk-web-gui/card@1.3.0) (2025-09-11)
+
+### Features
+
+- **metacard:** new prop for icon on metacard ([974a4d1](https://github.com/Sundsvallskommun/web-shared-components/commit/974a4d19b29f7119eb643d0e297a205268ea4025))
+
 # [1.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/card@1.1.5...@sk-web-gui/card@1.2.0) (2025-06-03)
 
 ### Features

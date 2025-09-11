@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/modal@2.2.6...@sk-web-gui/modal@2.3.0) (2025-09-11)
+
+### Bug Fixes
+
+- fixing format on code ([e849b6b](https://github.com/Sundsvallskommun/web-shared-components/commit/e849b6b6a9311e68b3f668d2243698668bcf8439))
+
+### Features
+
+- add dialogType with black color - primary ([6b26182](https://github.com/Sundsvallskommun/web-shared-components/commit/6b26182f13966e03cadfa16a3086b213014dc741))
+
 ## [2.2.6](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/modal@2.2.5...@sk-web-gui/modal@2.2.6) (2025-06-03)
 
 **Note:** Version bump only for package @sk-web-gui/modal

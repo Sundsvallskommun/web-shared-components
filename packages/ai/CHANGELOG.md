@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@2.0.0...@sk-web-gui/ai@2.0.1) (2025-09-11)
+
+### Bug Fixes
+
+- **markdown-rendered:** wrapper styles issue ([4175d21](https://github.com/Sundsvallskommun/web-shared-components/commit/4175d21b1356b14fd9ddf4c45228117e9cc72420))
+
 # [2.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@1.2.1...@sk-web-gui/ai@2.0.0) (2025-08-07)
 
 ### Bug Fixes

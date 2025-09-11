@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/layout@1.3.3...@sk-web-gui/layout@2.0.0) (2025-09-11)
+
+### Bug Fixes
+
+- **header:** removed Logo link wrapper ([89d4efc](https://github.com/Sundsvallskommun/web-shared-components/commit/89d4efc6d6513adb6f02cccda7096759ecd7a1a0))
+
+### BREAKING CHANGES
+
+- **header:** Removed LogoLinkWrapperComponent.
+  If you want to use NextLink or similar, provide a linked logo via the `logo` prop
+
 ## [1.3.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/layout@1.3.2...@sk-web-gui/layout@1.3.3) (2025-06-03)
 
 **Note:** Version bump only for package @sk-web-gui/layout

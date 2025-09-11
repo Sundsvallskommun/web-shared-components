@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.7](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@2.1.6...@sk-web-gui/accordion@2.1.7) (2025-09-11)
+
+### Bug Fixes
+
+- Render icon in disclosure only when icon is supplied as prop ([895a84e](https://github.com/Sundsvallskommun/web-shared-components/commit/895a84e47743c3600057fa1bb44900fba574bdf8))
+
 ## [2.1.6](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@2.1.5...@sk-web-gui/accordion@2.1.6) (2025-06-03)
 
 **Note:** Version bump only for package @sk-web-gui/accordion
