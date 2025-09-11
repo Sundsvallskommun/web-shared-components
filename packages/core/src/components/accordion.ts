@@ -119,15 +119,6 @@ export const Accordion = () => ({
     },
 
     '&-body': {
-      '&[data-size="sm"]': {
-        '@apply px-12': {},
-      },
-      '&[data-size="md"]': {
-        '@apply px-12': {},
-      },
-      '&[data-size="lg"]': {
-        '@apply px-16': {},
-      },
       '@apply text-base': {},
       '@apply flex flex-col': {},
       '@apply mb-32': {},
