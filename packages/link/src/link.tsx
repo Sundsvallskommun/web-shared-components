@@ -52,6 +52,9 @@ export const Link = React.forwardRef(
       variant,
     });
 
+    const autoId = React.useId();
+    const iconId = props?.id ? `${props.id}-icon` : autoId;
+
     return (
       <Comp
         ref={ref}
@@ -65,7 +68,7 @@ export const Link = React.forwardRef(
       >
         {children}
         {!hideExternalIcon && external && (
-          <Icon className="sk-link-external-icon" icon={<ExternalLink />} size="fit" variant="ghost" />
+          <Icon className="sk-link-external-icon" icon={<ExternalLink aria-hidden id={iconId}/>} size="fit" variant="ghost" />
         )}
       </Comp>
     );
