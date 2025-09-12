@@ -1,5 +1,5 @@
 import { colors } from './colors';
-import { fonts } from './fonts';
+import { flagFonts, fonts } from './fonts';
 import { ColorScheme, GuiTheme } from './types';
 import { fontSizes, lineHeights, radius, screens, spacing } from './units';
 
@@ -48,7 +48,7 @@ export const defaultTheme: GuiTheme = {
   fontSize: {
     ...fontSizes,
   },
-  fontFamily: { ...fonts },
+  fontFamily: { ...fonts, ...flagFonts },
   lineHeight: {
     ...lineHeights,
   },
