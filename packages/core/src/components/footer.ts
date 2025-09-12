@@ -7,7 +7,7 @@ export const Footer = () => ({
     '@apply text-dark-secondary': {},
 
     '&-logo-wrapper': {
-      '@apply mr-80 mb-40 w-fit': {},
+      '@apply mr-80 mb-40 self-start flex-none w-max': {},
 
       '.sk-logo': {
         '@apply max-h-56 h-56 lg:max-h-72 lg:h-72': {},
