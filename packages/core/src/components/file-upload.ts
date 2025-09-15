@@ -114,6 +114,12 @@ export const FileUpload = () => ({
               '@apply relative': {},
             },
           },
+          '&-remove-tooltip': {
+            '@apply absolute bottom-full mb-6 hidden z-20 left-1/2 -translate-x-1/2 whitespace-nowrap': {},
+            '.group:hover &': {
+              '@apply block': {},
+            },
+          },
         },
 
         '.sk-form-error-message': {
