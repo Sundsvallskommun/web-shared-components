@@ -1,13 +1,13 @@
 import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
 import { PopupMenu } from '@sk-web-gui/popup-menu';
-import { useThemeQueries } from '@sk-web-gui/theme';
 import { DefaultProps, cx } from '@sk-web-gui/utils';
-import { Ellipsis, Pen, Trash, X } from 'lucide-react';
+import { Ellipsis, Pen, X } from 'lucide-react';
 import React from 'react';
 import { FieldArrayPath, useFieldArray, useFormContext } from 'react-hook-form';
-import { OnCallWithUploadFile, UploadFile } from './types';
 import { FileUploadListItemContext } from './context';
+import { RemoveActionButton } from './file-upload-list-item-remove-button';
+import { OnCallWithUploadFile, UploadFile } from './types';
 
 type FormValues<FieldName extends string> = {
   [K in FieldName]: UploadFile[];
@@ -62,7 +62,6 @@ export const FileUploadListItemActions = React.forwardRef<HTMLDivElement, FileUp
       extraActions = null,
       ...rest
     } = props;
-    const { isMinMediumDevice } = useThemeQueries();
 
     const itemContext = React.useContext(FileUploadListItemContext);
     const file = _file ?? itemContext?.file;
@@ -157,30 +156,7 @@ export const FileUploadListItemActions = React.forwardRef<HTMLDivElement, FileUp
                   Avbryt
                 </Button>
               ) : null}
-              {showRemove ? (
-                isMinMediumDevice ? (
-                  <Button
-                    className="sk-form-file-upload-list-item-actions-remove"
-                    onClick={handleOnRemove}
-                    variant="tertiary"
-                    showBackground={false}
-                    size="sm"
-                    iconButton
-                  >
-                    <Icon icon={<Trash />} />
-                  </Button>
-                ) : (
-                  <Button
-                    className="sk-form-file-upload-list-item-actions-remove"
-                    onClick={handleOnRemove}
-                    variant="tertiary"
-                    showBackground
-                    leftIcon={<Icon icon={<Trash />} />}
-                  >
-                    Ta bort
-                  </Button>
-                )
-              ) : null}
+              {showRemove ? <RemoveActionButton onClick={handleOnRemove} /> : null}
             </>
           ) : (
             <>
@@ -188,6 +164,7 @@ export const FileUploadListItemActions = React.forwardRef<HTMLDivElement, FileUp
               {showEdit && (
                 <Button
                   className="sk-form-file-upload-list-item-actions-remove"
+                  aria-label="Redigera"
                   onClick={handleOnEdit}
                   variant="tertiary"
                   showBackground={false}
@@ -197,19 +174,7 @@ export const FileUploadListItemActions = React.forwardRef<HTMLDivElement, FileUp
                   <Icon icon={<Pen />} />
                 </Button>
               )}
-              {showRemove && (
-                <Button
-                  className="sk-form-file-upload-list-item-actions-remove"
-                  onClick={handleOnRemove}
-                  variant="tertiary"
-                  showBackground={false}
-                  size="sm"
-                  iconButton
-                >
-                  <span className="sr-only">Ta bort</span>
-                  <Icon icon={<Trash />} />
-                </Button>
-              )}
+              {showRemove && <RemoveActionButton onClick={handleOnRemove} />}
               {showMore && morePopupMenuPanel && (
                 <div className="sk-form-file-upload-list-item-actions-more-wrapper">
                   <PopupMenu align="end">
