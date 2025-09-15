@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.16.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.16.0...@sk-web-gui/core@3.16.1) (2025-09-15)
+
+### Bug Fixes
+
+- Footer logo width for ios ([f5dede7](https://github.com/Sundsvallskommun/web-shared-components/commit/f5dede783a9434c04f786ae800323f0610348ec0))
+
 # [3.16.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.15.0...@sk-web-gui/core@3.16.0) (2025-09-15)
 
 ### Bug Fixes
