@@ -7,10 +7,10 @@ export const Footer = () => ({
     '@apply text-dark-secondary': {},
 
     '&-logo-wrapper': {
-      '@apply mr-80 mb-40 self-start flex-none w-max': {},
+      '@apply mr-80 mb-40 justify-start': {},
 
       '.sk-logo': {
-        '@apply max-h-56 h-56 lg:max-h-72 lg:h-72': {},
+        '@apply w-[12.3rem] max-w-[12.3rem] max-h-56 h-56 lg:max-w-[15.3rem] lg:w-[15.3rem] lg:max-h-72 lg:h-72': {},
       },
     },
     '&-content': {
