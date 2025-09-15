@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@2.5.1...@sk-web-gui/theme@2.6.0) (2025-09-15)
+
+### Features
+
+- **theme:** FlagEmoji font ([8760df1](https://github.com/Sundsvallskommun/web-shared-components/commit/8760df1ceb94ba0e06b3c0c7654843877ee252eb))
+
 ## [2.5.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@2.5.0...@sk-web-gui/theme@2.5.1) (2025-06-03)
 
 ### Bug Fixes

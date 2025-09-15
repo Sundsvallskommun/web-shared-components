@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/tabs@1.4.3...@sk-web-gui/tabs@1.4.4) (2025-09-15)
+
+**Note:** Version bump only for package @sk-web-gui/tabs
+
 ## [1.4.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/tabs@1.4.2...@sk-web-gui/tabs@1.4.3) (2025-09-11)
 
 **Note:** Version bump only for package @sk-web-gui/tabs

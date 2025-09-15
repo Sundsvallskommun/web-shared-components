@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.7](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/link@1.2.6...@sk-web-gui/link@1.2.7) (2025-09-15)
+
+### Bug Fixes
+
+- Hydration error for link icon ([ce91f23](https://github.com/Sundsvallskommun/web-shared-components/commit/ce91f23c054c3c979c114adcf00a4e98f9039803))
+
 ## [1.2.6](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/link@1.2.5...@sk-web-gui/link@1.2.6) (2025-09-11)
 
 **Note:** Version bump only for package @sk-web-gui/link

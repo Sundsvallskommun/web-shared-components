@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.8](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/cookie-consent@2.1.7...@sk-web-gui/cookie-consent@2.1.8) (2025-09-15)
+
+### Bug Fixes
+
+- Changed from disabled to readonly state for checkboxes when cookie is required ([2f08787](https://github.com/Sundsvallskommun/web-shared-components/commit/2f08787e75d6e8c613786529fafa4008245e9053))
+
 ## [2.1.7](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/cookie-consent@2.1.6...@sk-web-gui/cookie-consent@2.1.7) (2025-09-11)
 
 **Note:** Version bump only for package @sk-web-gui/cookie-consent

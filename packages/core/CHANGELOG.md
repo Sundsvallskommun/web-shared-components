@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.16.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.15.0...@sk-web-gui/core@3.16.0) (2025-09-15)
+
+### Bug Fixes
+
+- footer width issue ios ([b57a3f9](https://github.com/Sundsvallskommun/web-shared-components/commit/b57a3f9bd58586e484b17f6583856e9a22573820))
+
+### Features
+
+- aria-label support and new tooltip ([664213a](https://github.com/Sundsvallskommun/web-shared-components/commit/664213ad170a67efa56fee2421b7f6c7bc5efaba))
+- Country code select ([84bff43](https://github.com/Sundsvallskommun/web-shared-components/commit/84bff43154ca087413046c2a807241e1dbce6e19))
+- **theme:** FlagEmoji font ([8760df1](https://github.com/Sundsvallskommun/web-shared-components/commit/8760df1ceb94ba0e06b3c0c7654843877ee252eb))
+
 # [3.15.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.14.0...@sk-web-gui/core@3.15.0) (2025-09-11)
 
 ### Bug Fixes
