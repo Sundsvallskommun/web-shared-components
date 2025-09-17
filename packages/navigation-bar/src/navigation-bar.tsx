@@ -1,25 +1,25 @@
 import { DefaultProps, __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
-import { UseMenuBarProps } from './use-menubar';
-import { MenuBarContext } from './context';
-import { MenuBarItemProps } from './menubar-item';
+import { UseNavigationBarProps } from './use-navigation-bar';
+import { NavigationBarContext } from './context';
+import { NavigationBarItemProps } from './navigation-bar-item';
 
-export interface UseMenuBarData extends UseMenuBarProps {
+export interface UseNavigationBarData extends UseNavigationBarProps {
   next?: () => void;
   prev?: () => void;
   active?: number;
   setCurrent?: (index: number) => void;
 }
 
-export interface MenuBarComponentProps
+export interface NavigationBarComponentProps
   extends DefaultProps,
-    UseMenuBarProps,
+    UseNavigationBarProps,
     Omit<React.ComponentPropsWithRef<'ul'>, 'color'> {
   showBackground?: boolean;
   size?: 'md' | 'lg';
 }
 
-export const MenuBarComponent = React.forwardRef<HTMLUListElement, MenuBarComponentProps>((props, ref) => {
+export const NavigationBarComponent = React.forwardRef<HTMLUListElement, NavigationBarComponentProps>((props, ref) => {
   const {
     color = 'tertiary',
     showBackground = false,
@@ -34,7 +34,7 @@ export const MenuBarComponent = React.forwardRef<HTMLUListElement, MenuBarCompon
   const [active, setActive] = React.useState<number>(_current || 0);
   const [mounted, setMounted] = React.useState<boolean>(false);
   const autoId = React.useId();
-  const id = _id || `sk-menubar-${autoId}`;
+  const id = _id || `sk-navigationbar-${autoId}`;
 
   const total = React.Children.count(children);
 
@@ -78,7 +78,7 @@ export const MenuBarComponent = React.forwardRef<HTMLUListElement, MenuBarCompon
     size,
   };
 
-  const validChildren = getValidChildren<MenuBarItemProps>(children);
+  const validChildren = getValidChildren<NavigationBarItemProps>(children);
   const menuItems = validChildren.map((child, index) => {
     const props = { ...child.props, menuIndex: index };
 
@@ -86,12 +86,12 @@ export const MenuBarComponent = React.forwardRef<HTMLUListElement, MenuBarCompon
   });
 
   return (
-    <MenuBarContext.Provider value={context}>
+    <NavigationBarContext.Provider value={context}>
       <ul
         id={id}
-        role="menubar"
+        role="navigationbar"
         ref={ref}
-        className={cx('sk-menubar', className)}
+        className={cx('sk-navigationbar', className)}
         data-color={color}
         data-background={showBackground}
         data-size={size}
@@ -99,12 +99,12 @@ export const MenuBarComponent = React.forwardRef<HTMLUListElement, MenuBarCompon
       >
         {menuItems}
       </ul>
-    </MenuBarContext.Provider>
+    </NavigationBarContext.Provider>
   );
 });
 
 if (__DEV__) {
-  MenuBarComponent.displayName = 'MenuBar';
+  NavigationBarComponent.displayName = 'NavigationBar';
 }
 
-export default MenuBarComponent;
+export default NavigationBarComponent;

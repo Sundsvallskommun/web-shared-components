@@ -1,5 +1,5 @@
 {
-  "name": "@sk-web-gui/menubar",
+  "name": "@sk-web-gui/navigationbar",
   "version": "1.2.4",
   "sideEffects": false,
   "license": "MIT",

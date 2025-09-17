@@ -1,6 +1,6 @@
 import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
-import { MenuBar } from '@sk-web-gui/menubar';
+import { NavigationBar } from '@sk-web-gui/navigation-bar';
 import { Tooltip } from '@sk-web-gui/tooltip';
 import { cx } from '@sk-web-gui/utils';
 import { X } from 'lucide-react';
@@ -57,13 +57,13 @@ export const AICornerModuleAssistantLibrary = React.forwardRef<HTMLDivElement, A
 
     return (
       <div ref={ref} className={cx('sk-ai-corner-module-assistant-library', className)} {...rest}>
-        <MenuBar
+        <NavigationBar
           className="sk-ai-corner-module-assistant-library-menu"
           onKeyDown={handleKeyboard}
           current={assistants.findIndex((ass) => ass.settings.assistantId === current)}
         >
           {assistants.map((assistant, index) => (
-            <MenuBar.Item
+            <NavigationBar.Item
               key={`sk-ai-asslib-${assistant.settings.assistantId}`}
               className="sk-ai-corner-module-assistant-library-menu-item"
             >
@@ -87,9 +87,9 @@ export const AICornerModuleAssistantLibrary = React.forwardRef<HTMLDivElement, A
                   </Tooltip>
                 )}
               </>
-            </MenuBar.Item>
+            </NavigationBar.Item>
           ))}
-        </MenuBar>
+        </NavigationBar>
         <Button variant="tertiary" iconButton size="md" showBackground={false} onClick={onClose} aria-label={closeText}>
           <Icon icon={<X />} />
         </Button>
