@@ -1,9 +1,9 @@
 import { DefaultProps, cx, getValidChildren, useForkRef } from '@sk-web-gui/utils';
 import { PopupMenu } from '@sk-web-gui/popup-menu';
 import React from 'react';
-import { useMenuBar } from './use-menubar';
+import { useNavigationBar } from './use-navigation-bar';
 
-export interface MenuBarItemProps
+export interface NavigationBarItemProps
   extends DefaultProps,
     Omit<React.ComponentPropsWithRef<'li'>, 'color' | 'children' | 'onClick'> {
   /** Color for menuoption. Is inherited from MenuBar */
@@ -19,7 +19,7 @@ export interface MenuBarItemProps
   size?: 'md' | 'lg';
 }
 
-export const MenuBarItem = React.forwardRef<HTMLLIElement, MenuBarItemProps>((props, ref) => {
+export const NavigationBarItem = React.forwardRef<HTMLLIElement, NavigationBarItemProps>((props, ref) => {
   const {
     color: propsColor,
     className,
@@ -30,7 +30,7 @@ export const MenuBarItem = React.forwardRef<HTMLLIElement, MenuBarItemProps>((pr
     size: _size,
     ...rest
   } = props;
-  const { color: contextColor, current, setCurrent, next, prev, active, size: contextSize } = useMenuBar();
+  const { color: contextColor, current, setCurrent, next, prev, active, size: contextSize } = useNavigationBar();
   const [mounted, setMounted] = React.useState<boolean>(false);
   const color = propsColor || contextColor;
   const menuRef = React.useRef<HTMLElement>(null);
@@ -64,7 +64,7 @@ export const MenuBarItem = React.forwardRef<HTMLLIElement, MenuBarItemProps>((pr
 
   const setFocus = (element: Element): boolean => {
     if (element) {
-      if (element.getAttribute('role') === 'menuitem') {
+      if (element.getAttribute('role') === 'navigationitem') {
         (element as HTMLElement).focus();
         return true;
       }
@@ -124,7 +124,7 @@ export const MenuBarItem = React.forwardRef<HTMLLIElement, MenuBarItemProps>((pr
     } else {
       return React.cloneElement(child, {
         onKeyDown: handleKeyboard,
-        role: 'menuitem',
+        role: 'navigationitem',
         'aria-current': current === menuIndex ? 'page' : undefined,
         tabIndex: active === menuIndex ? 0 : -1,
         ...child.props,
@@ -145,7 +145,7 @@ export const MenuBarItem = React.forwardRef<HTMLLIElement, MenuBarItemProps>((pr
       data-color={color}
       data-size={size}
       ref={useForkRef(ref, menuRef)}
-      className={cx('sk-menubar-item', className)}
+      className={cx('sk-navigationbar-item', className)}
       role="none"
       {...rest}
     >

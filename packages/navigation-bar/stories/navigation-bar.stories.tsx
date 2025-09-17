@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { MenuBar, MenuBarProps } from '../src';
+import { NavigationBar, NavigationBarProps } from '../src';
 import { Button } from '@sk-web-gui/button';
 import { PopupMenu } from '@sk-web-gui/popup-menu';
 import { Icon } from '@sk-web-gui/icon';
@@ -8,25 +8,25 @@ import { ChevronDown } from 'lucide-react';
 
 export default {
   title: 'Komponenter/Menu-horizontal',
-  component: MenuBar,
+  component: NavigationBar,
   tags: ['autodocs'],
-} as Meta<typeof MenuBar>;
+} as Meta<typeof NavigationBar>;
 
-export const Template = (args: MenuBarProps) => {
+export const Template = (args: NavigationBarProps) => {
   const [current, setCurrent] = React.useState<number | undefined>(0);
   return (
     <div className="h-[50rem]">
-      <MenuBar {...args} current={current}>
-        <MenuBar.Item>
+      <NavigationBar {...args} current={current}>
+        <NavigationBar.Item>
           <button onClick={() => setCurrent(0)}>Ett menyval</button>
-        </MenuBar.Item>
-        <MenuBar.Item>
+        </NavigationBar.Item>
+        <NavigationBar.Item>
           <Button onClick={() => setCurrent(1)}>Menyval 2</Button>
-        </MenuBar.Item>
-        <MenuBar.Item>
+        </NavigationBar.Item>
+        <NavigationBar.Item>
           <a href="#">Menyval 3</a>
-        </MenuBar.Item>
-        <MenuBar.Item>
+        </NavigationBar.Item>
+        <NavigationBar.Item>
           <PopupMenu>
             <PopupMenu.Button rightIcon={<Icon icon={<ChevronDown />} />}>Flervals</PopupMenu.Button>
             <PopupMenu.Panel>
@@ -40,10 +40,10 @@ export const Template = (args: MenuBarProps) => {
               </PopupMenu.Items>
             </PopupMenu.Panel>
           </PopupMenu>
-        </MenuBar.Item>
-      </MenuBar>
+        </NavigationBar.Item>
+      </NavigationBar>
     </div>
   );
 };
 
-Template.storyName = 'MenuBar';
+Template.storyName = 'NavigationBar';
