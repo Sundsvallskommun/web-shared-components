@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.6.0...@sk-web-gui/forms@2.6.1) (2025-09-19)
+
+### Bug Fixes
+
+- input group will now grow as intended ([970c850](https://github.com/Sundsvallskommun/web-shared-components/commit/970c850f90238e2c75c1dfcd815f1d980979da20))
+
 # [2.6.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.5.0...@sk-web-gui/forms@2.6.0) (2025-09-15)
 
 ### Bug Fixes

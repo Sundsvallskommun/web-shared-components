@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/pagination",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@sk-web-gui/button": "2.1.8",
-    "@sk-web-gui/forms": "2.6.0",
+    "@sk-web-gui/forms": "2.6.1",
     "@sk-web-gui/icon": "3.1.2",
     "@sk-web-gui/theme": "2.6.0",
     "@sk-web-gui/utils": "2.2.2",
