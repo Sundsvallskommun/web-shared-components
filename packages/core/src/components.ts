@@ -29,7 +29,7 @@ import { Link } from './components/link';
 import { List } from './components/list';
 import { Logo } from './components/logo';
 import { MenuVertical } from './components/menu-vertical';
-import { MenuBar } from './components/menubar';
+import { NavigationBar } from './components/navigation-bar';
 import { Modal } from './components/modal';
 import { Pagination } from './components/pagination';
 import { PopupMenu } from './components/popup-menu';
@@ -93,7 +93,7 @@ export const components: ComponentWithDeps[] = [
   { comp: Link, deps: [Icon] },
   { comp: List, deps: [Link] },
   { comp: Logo, deps: [Divider] },
-  { comp: MenuBar, deps: [PopupMenu] },
+  { comp: NavigationBar, deps: [PopupMenu] },
   { comp: Icon },
   { comp: MenuVertical, deps: [Button, Divider, Icon, Logo] },
   { comp: Modal, deps: [Button, Icon] },
@@ -109,7 +109,7 @@ export const components: ComponentWithDeps[] = [
   { comp: Radio },
   { comp: Switch, deps: [Icon] },
   { comp: Table, deps: [Forms, Icon, Pagination] },
-  { comp: Tabs, deps: [Button, MenuBar] },
+  { comp: Tabs, deps: [Button, NavigationBar] },
   { comp: Tooltip },
   { comp: UserMenu, deps: [Avatar, Logo, PopupMenu] },
 
@@ -118,7 +118,19 @@ export const components: ComponentWithDeps[] = [
   { comp: AIFeed, deps: [Accordion, Button, Avatar, TypingBubble, Feedback, MarkdownRendered] },
   {
     comp: AICornerModule,
-    deps: [AIFeed, AssistantPresentation, InputSection, Avatar, Bubble, Link, Button, Divider, Icon, Tooltip, MenuBar],
+    deps: [
+      AIFeed,
+      AssistantPresentation,
+      InputSection,
+      Avatar,
+      Bubble,
+      Link,
+      Button,
+      Divider,
+      Icon,
+      Tooltip,
+      NavigationBar,
+    ],
   },
   { comp: AIServiceModule, deps: [AIFeed, Bubble, InputSection, Forms, Link, Button, Icon] },
   { comp: AssistantPresentation, deps: [Avatar] },

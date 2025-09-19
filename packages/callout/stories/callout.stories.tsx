@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import { Callout, CalloutProps } from '../src';
-import MenuBar from '@sk-web-gui/menubar';
+import NavigationBar from '@sk-web-gui/navigation-bar';
 import Button from '@sk-web-gui/button';
 
 export default {
@@ -17,23 +17,23 @@ Template.storyName = 'Callout';
 export const OnButtonItem = (args: CalloutProps) => {
   return (
     <div>
-      <MenuBar showBackground>
-        <MenuBar.Item>
+      <NavigationBar showBackground>
+        <NavigationBar.Item>
           <button>Ett menyval</button>
-        </MenuBar.Item>
-        <MenuBar.Item>
+        </NavigationBar.Item>
+        <NavigationBar.Item>
           <Button>
             Ett menyval2
             <Callout className="absolute top-2 right-2" {...args} color="error" />
           </Button>
-        </MenuBar.Item>
-        <MenuBar.Item>
+        </NavigationBar.Item>
+        <NavigationBar.Item>
           <button>
             Ett menyval3
             <Callout className="absolute top-2 right-2" {...args} />
           </button>
-        </MenuBar.Item>
-      </MenuBar>
+        </NavigationBar.Item>
+      </NavigationBar>
     </div>
   );
 };
