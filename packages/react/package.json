@@ -60,7 +60,7 @@
     "@sk-web-gui/list": "1.2.7",
     "@sk-web-gui/logo": "1.2.4",
     "@sk-web-gui/menu-vertical": "2.2.8",
-    "@sk-web-gui/menubar": "1.2.4",
+    "@sk-web-gui/navigationbar": "2.0.0",
     "@sk-web-gui/modal": "2.3.1",
     "@sk-web-gui/pagination": "1.1.8",
     "@sk-web-gui/popup-menu": "3.1.8",

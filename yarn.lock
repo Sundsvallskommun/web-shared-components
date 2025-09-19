@@ -2441,14 +2441,6 @@
     "@sk-web-gui/utils" "2.2.2"
     lucide-react "^0.471.1"
 
-"@sk-web-gui/menubar@1.2.4":
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/@sk-web-gui/menubar/-/menubar-1.2.4.tgz#9ee61e0180774fde3373d6d470dad42b629091a7"
-  integrity sha512-1BnuG3ZvZKB8WLsnab29p9bf3JL/e+iof61uY6mO5ff32QDsXjK5tR1gzKNQONc/XfBRtReSeY28ZqeexcEzUw==
-  dependencies:
-    "@sk-web-gui/popup-menu" "3.1.8"
-    "@sk-web-gui/utils" "2.2.2"
-
 "@sk-web-gui/modal@2.2.6":
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/@sk-web-gui/modal/-/modal-2.2.6.tgz#c3ef558ad5b464883175918f590d346c9a89cd7c"
