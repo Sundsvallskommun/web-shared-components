@@ -1,11 +1,10 @@
-import { DefaultProps } from '@sk-web-gui/utils';
-import { cx, getValidChildren, __DEV__ } from '@sk-web-gui/utils';
+import { __DEV__, cx, DefaultProps, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
 
-import { Input, InputProps } from '../input/input';
-import { useInputGroupClass } from './styles';
 import { InputAddinProps, InputLeftAddin, InputRightAddin } from '../input-addin';
 import { InputAddonProps, InputLeftAddon, InputRightAddon } from '../input-addon';
+import { Input, InputProps } from '../input/input';
+import { useInputGroupClass } from './styles';
 
 export interface InputGroupProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   /* Size of all wrapped input */
