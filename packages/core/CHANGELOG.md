@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.16.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.16.0...@sk-web-gui/core@3.16.1) (2025-09-15)
+
+### Bug Fixes
+
+- Footer logo width for ios ([f5dede7](https://github.com/Sundsvallskommun/web-shared-components/commit/f5dede783a9434c04f786ae800323f0610348ec0))
+
+# [3.16.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.15.0...@sk-web-gui/core@3.16.0) (2025-09-15)
+
+### Bug Fixes
+
+- footer width issue ios ([b57a3f9](https://github.com/Sundsvallskommun/web-shared-components/commit/b57a3f9bd58586e484b17f6583856e9a22573820))
+
+### Features
+
+- aria-label support and new tooltip ([664213a](https://github.com/Sundsvallskommun/web-shared-components/commit/664213ad170a67efa56fee2421b7f6c7bc5efaba))
+- Country code select ([84bff43](https://github.com/Sundsvallskommun/web-shared-components/commit/84bff43154ca087413046c2a807241e1dbce6e19))
+- **theme:** FlagEmoji font ([8760df1](https://github.com/Sundsvallskommun/web-shared-components/commit/8760df1ceb94ba0e06b3c0c7654843877ee252eb))
+
+# [3.15.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.14.0...@sk-web-gui/core@3.15.0) (2025-09-11)
+
+### Bug Fixes
+
+- Disclosure padding ([3f891ac](https://github.com/Sundsvallskommun/web-shared-components/commit/3f891ac59fc856852ec3a92eb17860e1030c4d51))
+- formatting multiline ([c7b7176](https://github.com/Sundsvallskommun/web-shared-components/commit/c7b7176808acbc930dbdcd8c7adc389706cd61da))
+- **logo:** fixed width scaling ([1864961](https://github.com/Sundsvallskommun/web-shared-components/commit/18649614b81aec981c4ab7d1964afb3998cfad63))
+- smooth animation and aligncontent, responsive heading on small screens ([9ec52dc](https://github.com/Sundsvallskommun/web-shared-components/commit/9ec52dc3953cbbf187137dbb31409b0eeacc6e32))
+- Updated width spacing for logo ([e76cd38](https://github.com/Sundsvallskommun/web-shared-components/commit/e76cd38bcae5aa7a4a92716e8ccd4bedbae9bba5))
+
+### Features
+
+- input addon ([fdd1f8b](https://github.com/Sundsvallskommun/web-shared-components/commit/fdd1f8ba1926817e86d4d026e423bdae561168d2))
+
 # [3.14.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.13.1...@sk-web-gui/core@3.14.0) (2025-06-03)
 
 ### Bug Fixes

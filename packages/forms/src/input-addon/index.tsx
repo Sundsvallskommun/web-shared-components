@@ -1,10 +1,7 @@
 import { __DEV__, cx, DefaultProps } from '@sk-web-gui/utils';
 import React from 'react';
 
-import Combobox from '../combobox';
 import { InputProps } from '../input/input';
-import Select, { type InternalSelectProps } from '../select';
-import { ComboboxBaseProps } from '../combobox/combobox';
 
 type Placement = 'left' | 'right';
 
@@ -39,18 +36,13 @@ const InputAddon: React.FC<InputAddonProps> = ({
   const classes = cx('sk-form-input-addon', sizes[size], _placement[placement], className);
 
   const validChildren = React.Children.map(children, (child) => {
-    if (React.isValidElement<InternalSelectProps>(child) && child.type === Select) {
+    if (React.isValidElement<{ size?: string }>(child)) {
       return React.cloneElement(child, {
         ...child?.props,
         size: child?.props?.size ?? size,
       });
     }
-    if (React.isValidElement<ComboboxBaseProps>(child) && child.type === Combobox) {
-      return React.cloneElement(child, {
-        ...child?.props,
-        size: child?.props?.size ?? size,
-      });
-    }
+
     return child;
   });
 

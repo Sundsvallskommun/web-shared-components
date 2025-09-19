@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/forms",
-  "version": "2.4.5",
+  "version": "2.6.0",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -39,13 +39,13 @@
     "react": "^19.0.0"
   },
   "dependencies": {
-    "@sk-web-gui/button": "2.1.6",
-    "@sk-web-gui/divider": "1.1.5",
+    "@sk-web-gui/button": "2.1.8",
+    "@sk-web-gui/divider": "1.1.6",
     "@sk-web-gui/icon": "3.1.2",
-    "@sk-web-gui/link": "1.2.5",
-    "@sk-web-gui/modal": "2.2.6",
-    "@sk-web-gui/popup-menu": "3.1.6",
-    "@sk-web-gui/theme": "2.5.1",
+    "@sk-web-gui/link": "1.2.7",
+    "@sk-web-gui/modal": "2.3.1",
+    "@sk-web-gui/popup-menu": "3.1.8",
+    "@sk-web-gui/theme": "2.6.0",
     "@sk-web-gui/utils": "2.2.2",
     "lucide-react": "^0.537.0",
     "react-hook-form": "^7.62.0",

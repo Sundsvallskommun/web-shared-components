@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/menubar@1.2.3...@sk-web-gui/menubar@1.2.4) (2025-09-15)
+
+**Note:** Version bump only for package @sk-web-gui/menubar
+
+## [1.2.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/menubar@1.2.2...@sk-web-gui/menubar@1.2.3) (2025-09-11)
+
+**Note:** Version bump only for package @sk-web-gui/menubar
+
 ## [1.2.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/menubar@1.2.1...@sk-web-gui/menubar@1.2.2) (2025-06-03)
 
 **Note:** Version bump only for package @sk-web-gui/menubar

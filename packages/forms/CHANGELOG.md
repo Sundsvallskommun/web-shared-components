@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.5.0...@sk-web-gui/forms@2.6.0) (2025-09-15)
+
+### Bug Fixes
+
+- **input-addon:** pass size when present ([af8ea69](https://github.com/Sundsvallskommun/web-shared-components/commit/af8ea691a243b1c0f5e9bb07d124147ceb479ef7))
+
+### Features
+
+- aria-label support and new tooltip ([664213a](https://github.com/Sundsvallskommun/web-shared-components/commit/664213ad170a67efa56fee2421b7f6c7bc5efaba))
+
+# [2.5.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.4.5...@sk-web-gui/forms@2.5.0) (2025-09-11)
+
+### Bug Fixes
+
+- **file-upload:** field submitting on click ([0952bac](https://github.com/Sundsvallskommun/web-shared-components/commit/0952bac833f39fca85fdca8bb59ef2672720e888))
+- **file-upload:** required fields with default values ([32ed623](https://github.com/Sundsvallskommun/web-shared-components/commit/32ed623c602fa3975c2e2788ac1cde13e6886b51))
+
+### Features
+
+- input addon ([fdd1f8b](https://github.com/Sundsvallskommun/web-shared-components/commit/fdd1f8ba1926817e86d4d026e423bdae561168d2))
+
 ## [2.4.5](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.4.4...@sk-web-gui/forms@2.4.5) (2025-06-03)
 
 ### Bug Fixes

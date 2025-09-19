@@ -1,6 +1,6 @@
 {
-  "name": "@sk-web-gui/menubar",
-  "version": "1.2.2",
+  "name": "@sk-web-gui/countrycode-select",
+  "version": "1.1.0",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -39,8 +39,9 @@
     "react": "^19.0.0"
   },
   "dependencies": {
-    "@sk-web-gui/popup-menu": "3.1.6",
-    "@sk-web-gui/utils": "2.2.2"
+    "@sk-web-gui/forms": "2.4.5",
+    "@sk-web-gui/utils": "2.2.2",
+    "country-flag-emoji-polyfill": "^0.1.8"
   },
   "peerDependencies": {
     "react": ">=18.3.1"

@@ -142,7 +142,7 @@ export const CookieConsent: React.FC<CookieConsentProps> = ({
                           <Checkbox
                             checked={cookie.isChecked || !cookie.optional}
                             onChange={() => handleOnCheck(index)}
-                            disabled={!cookie.optional}
+                            readOnly={!cookie.optional}
                           >
                             <strong>{cookie.displayName}</strong> – {cookie.description}
                           </Checkbox>
