@@ -30,6 +30,7 @@ export const NavigationBarItem = React.forwardRef<HTMLLIElement, NavigationBarIt
     size: _size,
     ...rest
   } = props;
+
   const { color: contextColor, current, setCurrent, next, prev, active, size: contextSize } = useNavigationBar();
   const [mounted, setMounted] = React.useState<boolean>(false);
   const color = propsColor || contextColor;
