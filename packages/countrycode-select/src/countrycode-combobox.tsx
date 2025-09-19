@@ -12,12 +12,12 @@ export interface CountryCodeComboboxProps extends Omit<React.ComponentProps<type
    *
    * @param value Country code select value mapped to actual country code (e.g 46);
    */
-  onChangeCountryCode: (value: number | undefined) => void;
+  onChangeCountryCode?: (value: number | undefined) => void;
   /**
    * The event value holds the selected country's 2 digit ISO code (e.g SE) followed by a + and the country code
    * Resulting in a string like "SE+46"
    */
-  onChange: (event: CustomOnChangeEvent<string, HTMLInputElement>) => void;
+  onChange?: (event: CustomOnChangeEvent<string, HTMLInputElement>) => void;
   /**
    * The selected country's 2 digit ISO code (e.g SE)
    */
