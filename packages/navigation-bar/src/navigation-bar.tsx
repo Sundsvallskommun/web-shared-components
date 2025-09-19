@@ -30,6 +30,7 @@ export const NavigationBarComponent = React.forwardRef<HTMLUListElement, Navigat
     size = 'lg',
     ...rest
   } = props;
+
   const [current, setCurrent] = React.useState<number | undefined>(_current);
   const [active, setActive] = React.useState<number>(_current || 0);
   const [mounted, setMounted] = React.useState<boolean>(false);
