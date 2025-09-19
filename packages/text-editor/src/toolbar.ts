@@ -39,9 +39,9 @@ type ToolbarRecordDropdown =
   | { font: string[] }
   | { align: AlignOption[] };
 
-export type ToolbarTokenRecord = ToolbarRecordSingle | ToolbarRecordDropdown;
-export type ToolbarTokenNested = Array<ToolbarTokenSimple | ToolbarTokenRecord>;
-export type ToolbarConfig = Array<ToolbarTokenSimple | ToolbarTokenNested>;
+export type ToolbarTokenRecord = ToolbarRecordSingle | ToolbarTokenSimple | ToolbarRecordDropdown;
+export type ToolbarTokenNested = Array<ToolbarTokenRecord>;
+export type ToolbarConfig = Array<ToolbarTokenRecord | ToolbarTokenNested>;
 
 export const defaultToolbarTokens: ToolbarConfig = [
   [{ header: 1 }, { header: 2 }, 'bold', 'italic', 'underline'],
