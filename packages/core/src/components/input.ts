@@ -93,7 +93,7 @@ function addin() {
 function addon() {
   return {
     '&-addon': {
-      '@apply flex relative': {},
+      '@apply flex flex-none relative': {},
       '@apply items-center': {},
       '@apply focus-within:ring': {},
       '@apply focus-within:ring-ring': {},
@@ -178,9 +178,9 @@ function inputGroup() {
   return {
     '&-group': {
       '&-wrapper': {
-        '@apply flex gap-0': {},
+        '@apply flex gap-0 max-w-full': {},
       },
-      '@apply flex relative': {},
+      '@apply flex relative grow': {},
       '@apply items-center': {},
       '@apply focus-within:ring': {},
       '@apply focus-within:ring-ring': {},

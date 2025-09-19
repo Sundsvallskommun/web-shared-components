@@ -1,6 +1,11 @@
 {
+<<<<<<<< HEAD:packages/countrycode-select/package.json
   "name": "@sk-web-gui/countrycode-select",
   "version": "1.1.0",
+========
+  "name": "@sk-web-gui/menubar",
+  "version": "1.2.4",
+>>>>>>>> 08514a21a7d07860f5b5ea08c3a1b27c82ac4c3e:packages/menubar/package.json
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -39,9 +44,14 @@
     "react": "^19.0.0"
   },
   "dependencies": {
+<<<<<<<< HEAD:packages/countrycode-select/package.json
     "@sk-web-gui/forms": "2.4.5",
     "@sk-web-gui/utils": "2.2.2",
     "country-flag-emoji-polyfill": "^0.1.8"
+========
+    "@sk-web-gui/popup-menu": "3.1.8",
+    "@sk-web-gui/utils": "2.2.2"
+>>>>>>>> 08514a21a7d07860f5b5ea08c3a1b27c82ac4c3e:packages/menubar/package.json
   },
   "peerDependencies": {
     "react": ">=18.3.1"
