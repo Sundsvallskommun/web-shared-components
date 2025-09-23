@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@sk-web-gui/button';
-import { NavigationBar } from '@sk-web-gui/navigation-bar';
+import { NavigationBar } from '@sk-web-gui/navigationbar';
 import { Icon } from '@sk-web-gui/icon';
 import { PopupMenu } from '@sk-web-gui/popup-menu';
 import { UserMenu, MenuItemGroup } from '@sk-web-gui/user-menu';
