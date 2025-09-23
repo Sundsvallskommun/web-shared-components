@@ -1,5 +1,5 @@
-export const MenuBar = (colors: string[]) => ({
-  '.sk-menubar': {
+export const NavigationBar = (colors: string[]) => ({
+  '.sk-navigationbar': {
     '@apply flex flex-row': {},
     '@apply rounded-cards': {},
 

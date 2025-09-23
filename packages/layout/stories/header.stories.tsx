@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@sk-web-gui/button';
-import { MenuBar } from '@sk-web-gui/menubar';
+import { NavigationBar } from '@sk-web-gui/navigation-bar';
 import { Icon } from '@sk-web-gui/icon';
 import { PopupMenu } from '@sk-web-gui/popup-menu';
 import { UserMenu, MenuItemGroup } from '@sk-web-gui/user-menu';
@@ -14,8 +14,8 @@ export default {
   component: Header,
   tags: ['autodocs'],
   args: {
-     title: 'E-tjänster',
-     subtitle: 'Sundsvalls kommun',
+    title: 'E-tjänster',
+    subtitle: 'Sundsvalls kommun',
   },
 } as Meta<typeof Header>;
 
@@ -83,14 +83,14 @@ export const Template: StoryObj<typeof Header> = (args: React.ComponentPropsWith
           </Button>
         }
         mainMenu={
-          <MenuBar color="vattjom">
-            <MenuBar.Item>
+          <NavigationBar color="vattjom">
+            <NavigationBar.Item>
               <button>E-tjänster</button>
-            </MenuBar.Item>
-            <MenuBar.Item current>
+            </NavigationBar.Item>
+            <NavigationBar.Item current>
               <Button>Mina sidor</Button>
-            </MenuBar.Item>
-            <MenuBar.Item>
+            </NavigationBar.Item>
+            <NavigationBar.Item>
               <PopupMenu>
                 <PopupMenu.Button rightIcon={<Icon icon={<ChevronDown />} />}>Hjälp</PopupMenu.Button>
                 <PopupMenu.Panel>
@@ -104,8 +104,8 @@ export const Template: StoryObj<typeof Header> = (args: React.ComponentPropsWith
                   </PopupMenu.Items>
                 </PopupMenu.Panel>
               </PopupMenu>
-            </MenuBar.Item>
-          </MenuBar>
+            </NavigationBar.Item>
+          </NavigationBar>
         }
       />
     </div>
