@@ -1,6 +1,6 @@
 import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
-import { NavigationBar } from '@sk-web-gui/navigation-bar';
+import { NavigationBar } from '@sk-web-gui/navigationbar';
 import { Tooltip } from '@sk-web-gui/tooltip';
 import { cx } from '@sk-web-gui/utils';
 import { X } from 'lucide-react';
