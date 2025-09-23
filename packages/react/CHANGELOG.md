@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@2.0.4...@sk-web-gui/react@3.0.0) (2025-09-23)
+
+### Bug Fixes
+
+- bad navigation bar import ([3b2b191](https://github.com/Sundsvallskommun/web-shared-components/commit/3b2b191dbd27bf354e8e90da0636d3f886f14dee))
+- update menubar to navigationbar as package in react package.json ([53c1afc](https://github.com/Sundsvallskommun/web-shared-components/commit/53c1afc59ead701fc23f9d530d580d45bf445cc7))
+
+### chore
+
+- changing menu bar to navigation bar ([cd64a72](https://github.com/Sundsvallskommun/web-shared-components/commit/cd64a72ad99b7107315539aafc14e33ad919409b))
+
+### BREAKING CHANGES
+
+- MenuBar is now called NavigationBar
+
 ## [2.0.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@2.0.3...@sk-web-gui/react@2.0.4) (2025-09-19)
 
 **Note:** Version bump only for package @sk-web-gui/react
