@@ -130,7 +130,8 @@ export const TextEditor = forwardRef<Quill | null, TextEditorProps>(
         setControls([]);
         container.innerHTML = '';
       };
-    }, [ref, disableToolbar, toolbar]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [ref, disableToolbar, JSON.stringify(toolbar)]);
 
     useEffect(() => {
       const quill = quillRef.current;

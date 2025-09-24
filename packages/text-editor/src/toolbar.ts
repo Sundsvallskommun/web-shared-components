@@ -41,7 +41,7 @@ type ToolbarRecordDropdown =
 
 export type ToolbarTokenRecord = ToolbarRecordSingle | ToolbarTokenSimple | ToolbarRecordDropdown;
 export type ToolbarTokenNested = Array<ToolbarTokenRecord>;
-export type ToolbarConfig = Array<ToolbarTokenRecord | ToolbarTokenNested>;
+export type ToolbarConfig = Array<ToolbarTokenRecord> | Array<ToolbarTokenNested>;
 
 export const defaultToolbarTokens: ToolbarConfig = [
   [{ header: 1 }, { header: 2 }, 'bold', 'italic', 'underline'],
