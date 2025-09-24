@@ -1,6 +1,5 @@
-import React from 'react';
-import { SnackbarProps, useSnackbar, Snackbar } from '../src';
 import { Meta } from '@storybook/react';
+import { Snackbar, SnackbarProps, useSnackbar } from '../src';
 
 export default {
   title: 'Komponenter/Snackbar',
