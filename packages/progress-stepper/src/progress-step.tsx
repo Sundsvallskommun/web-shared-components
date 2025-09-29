@@ -34,14 +34,15 @@ export const ProgressStep: React.FC<ProgressStepProps> = (props) => {
     labelPosition = 'right',
   } = props;
 
+  const defaultClass = 'sk-progress-stepper-step';
   const showEllipsis = ellipsisLength > 0 && label.length >= ellipsisLength;
   const renderedLabel = showEllipsis ? `${label.slice(0, ellipsisLength).trim()}...` : label;
 
   const labelPositionMap: Record<StepLabelPosition, string> = {
-    top: 'flex-col-reverse',
-    right: 'flex-row',
-    bottom: 'flex-col',
-    left: 'flex-row-reverse',
+    top: `${defaultClass}-wrapper-top`,
+    right: `${defaultClass}-wrapper-right`,
+    bottom: `${defaultClass}-wrapper-bottom`,
+    left: `${defaultClass}-wrapper-left`,
   };
 
   const getLabelPositionValue = (pos?: StepLabelPosition): string => labelPositionMap[pos ?? 'right'];
@@ -49,31 +50,21 @@ export const ProgressStep: React.FC<ProgressStepProps> = (props) => {
   return (
     <div
       className={cx(
-        'sk-progress-stepper-step',
-        vertical ? 'flex-col' : 'flex-row gap-16',
-        numberOfSteps !== number ? 'grow' : 'grow-0'
+        defaultClass,
+        vertical ? `${defaultClass}-vertical` : `${defaultClass}-horizontal`,
+        numberOfSteps !== number ? `${defaultClass}-grow` : `${defaultClass}-grow-0`
       )}
       data-progress={done ? 'done' : current ? 'current' : undefined}
       data-white-space={noWrap ? 'no-wrap' : 'normal'}
     >
-      <div className={cx('sk-progress-stepper-step-wrapper', getLabelPositionValue(labelPosition))}>
-        <div
-          className={cx('sk-progress-stepper-step-box', `sk-progress-stepper-step-box-${size}`)}
-          data-rounded={rounded}
-        >
-          {done ? (
-            <Icon
-              className={cx('sk-progress-stepper-step-box-icon', `sk-progress-stepper-step-box-icon-${size}`)}
-              icon={<Check />}
-            />
-          ) : (
-            number
-          )}
+      <div className={cx(`${defaultClass}-wrapper`, getLabelPositionValue(labelPosition))}>
+        <div className={cx(`${defaultClass}-box`, size)} data-rounded={rounded}>
+          {done ? <Icon className={cx(`${defaultClass}-box-icon`, `${size}`)} icon={<Check />} /> : number}
         </div>
         <p>{renderedLabel}</p>
       </div>
       {numberOfSteps !== number && (
-        <div className={vertical ? 'w-auto' : 'w-full min-w-12'}>
+        <div className={cx(`${defaultClass}-divider`, vertical ? 'vertical' : 'horizontal')}>
           <Divider orientation={vertical ? 'vertical' : 'horizontal'} />
         </div>
       )}

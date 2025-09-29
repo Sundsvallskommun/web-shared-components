@@ -35,11 +35,7 @@ export const ProgressStepper = React.forwardRef<HTMLDivElement, ProgressStepperP
     ...rest
   } = props;
   return (
-    <div
-      ref={ref}
-      className={cx('sk-progress-stepper', vertical ? 'flex-col gap-4' : 'flex-row gap-16', className)}
-      {...rest}
-    >
+    <div ref={ref} className={cx('sk-progress-stepper', vertical ? 'vertical' : 'horizontal', className)} {...rest}>
       {steps.map((step, index) => (
         <React.Fragment key={`sk-step-${index}`}>
           <ProgressStep
