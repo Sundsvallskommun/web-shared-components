@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { TextEditor, TextEditorProps } from '../src';
-import { useRef, useState } from 'react';
 import Quill, { Delta } from 'quill';
+import { useRef } from 'react';
+import { TextEditor, TextEditorProps } from '../src';
 
 export default {
   title: 'Komponenter/TextEditor',
@@ -10,11 +10,9 @@ export default {
 } as Meta<typeof TextEditor>;
 
 export const Template: StoryObj<typeof TextEditor> = (args: TextEditorProps) => {
-  const [lastChange, setLastChange] = useState<Delta | undefined>(undefined);
   const editorRef = useRef<Quill | null>(null);
 
-  const handleTextChange = (delta: Delta, oldDelta: Delta, source: string) => {
-    setLastChange(delta);
+  const handleTextChange = (delta: Delta) => {
     console.log('Text changed:', delta);
 
     if (editorRef.current) {
