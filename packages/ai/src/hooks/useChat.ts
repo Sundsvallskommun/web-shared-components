@@ -71,7 +71,6 @@ export const useChat = (options?: useChatOptions) => {
       if (sessionId !== currentSession)
         getSession(sessionId).then((session) => {
           if (!session) {
-            console.log('Session not available. Creating new');
             createNewSession();
           } else {
             setCurrentSession(sessionId);
@@ -104,8 +103,8 @@ export const useChat = (options?: useChatOptions) => {
     query: string,
     assistantId: string,
     session_id: string,
-    user: string,
-    hash: string,
+    user?: string,
+    hash?: string,
     files?: ModelId[],
     addToHistory: boolean = true
   ) => {
@@ -255,8 +254,8 @@ export const useChat = (options?: useChatOptions) => {
     const addQuestionToHistory = typeof addToHistory === 'boolean' ? addToHistory : (addToHistory?.question ?? true);
     const addAnswerToHistory = typeof addToHistory === 'boolean' ? addToHistory : (addToHistory?.answer ?? true);
 
-    if (!assistantId || (!apikey && !hash && !app) || (app && !hash) || (hash && !app)) {
-      addHistoryEntry('system', 'Ett fel inträffade, assistenten gav inget svar.', '0', true);
+    if (!assistantId) {
+      addHistoryEntry('system', 'Ett fel inträffade, ingen assistent att kommunicera med.', '0', true);
       setDone(currentSession, true);
       return;
     }
