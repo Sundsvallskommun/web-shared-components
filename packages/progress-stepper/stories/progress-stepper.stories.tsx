@@ -7,8 +7,12 @@ export default {
   component: ProgressStepper,
   tags: ['autodocs'],
   args: {
-    steps: ['Steg 1', 'Andra steget', 'Sista steget'],
+    steps: ['Första steget', 'Andra steget', 'Sista steget'],
     current: 1,
+    vertical: false,
+    ellipsisLength: 0,
+    noWrap: true,
+    labelPosition: 'right',
   },
 } as Meta<typeof ProgressStepper>;
 
