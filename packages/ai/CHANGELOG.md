@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@3.0.0...@sk-web-gui/ai@3.0.1) (2025-09-30)
+
+### Bug Fixes
+
+- dont require auth props in frontend ([680c59a](https://github.com/Sundsvallskommun/web-shared-components/commit/680c59a082961e3c69d875bfa5b857786b213698))
+
 # [3.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@2.0.3...@sk-web-gui/ai@3.0.0) (2025-09-23)
 
 ### Bug Fixes

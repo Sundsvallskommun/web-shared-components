@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.0.0...@sk-web-gui/core@4.1.0) (2025-09-30)
+
+### Bug Fixes
+
+- **accordion:** Overflow issue ([495efc5](https://github.com/Sundsvallskommun/web-shared-components/commit/495efc5766f9ff119b3d4f298bde63d1bf5d58f4))
+
+### Features
+
+- **progress-stepper:** adds class defined style ([d54dd17](https://github.com/Sundsvallskommun/web-shared-components/commit/d54dd178bfb553b751452ca570544503544c6f69))
+- **progress-stepper:** restyles and adds new props ([22bcfb1](https://github.com/Sundsvallskommun/web-shared-components/commit/22bcfb124ce86ff91ae99c5b03e005de892b8a09))
+
 # [4.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@3.16.2...@sk-web-gui/core@4.0.0) (2025-09-23)
 
 ### chore

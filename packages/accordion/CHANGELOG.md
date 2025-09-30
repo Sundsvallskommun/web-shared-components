@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.9](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@2.1.8...@sk-web-gui/accordion@2.1.9) (2025-09-30)
+
+### Bug Fixes
+
+- **accordion:** Overflow issue ([495efc5](https://github.com/Sundsvallskommun/web-shared-components/commit/495efc5766f9ff119b3d4f298bde63d1bf5d58f4))
+
 ## [2.1.8](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@2.1.7...@sk-web-gui/accordion@2.1.8) (2025-09-15)
 
 **Note:** Version bump only for package @sk-web-gui/accordion

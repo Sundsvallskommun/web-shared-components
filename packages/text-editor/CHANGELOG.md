@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/text-editor@1.1.0...@sk-web-gui/text-editor@1.2.0) (2025-09-30)
+
+### Bug Fixes
+
+- readonly fix for texteditor ([720d0fa](https://github.com/Sundsvallskommun/web-shared-components/commit/720d0fae6ae73ee5599dc4ab2bbf7706ddecab26))
+- readonly for texteditor ([efc4b0c](https://github.com/Sundsvallskommun/web-shared-components/commit/efc4b0cae4e438e468f195d777eb872ea79969f7))
+- review changes ([363349a](https://github.com/Sundsvallskommun/web-shared-components/commit/363349a6d055c34407b6af80279bdc7541110b5f))
+- toolbar types changes ([0ad7a8b](https://github.com/Sundsvallskommun/web-shared-components/commit/0ad7a8b93063b0c17133a15d42b786947b2a6184))
+- type changes for toolbarconfig ([bad6bba](https://github.com/Sundsvallskommun/web-shared-components/commit/bad6bbab56e5eb653d6ff8e99d896b8e1131fe6e))
+- type issues ([2158880](https://github.com/Sundsvallskommun/web-shared-components/commit/21588807c3321fdad17afb279145acb9679dd75b))
+
+### Features
+
+- added custom toolbar option for texteditor ([0990ad7](https://github.com/Sundsvallskommun/web-shared-components/commit/0990ad7ac891e48dd30630c7dc4d58b6e02a5c9e))
+
 # 1.1.0 (2025-06-03)
 
 ### Bug Fixes

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/progress-stepper@1.2.7...@sk-web-gui/progress-stepper@1.3.0) (2025-09-30)
+
+### Features
+
+- **progress-stepper:** adds class defined style ([d54dd17](https://github.com/Sundsvallskommun/web-shared-components/commit/d54dd178bfb553b751452ca570544503544c6f69))
+- **progress-stepper:** restyles and adds new props ([22bcfb1](https://github.com/Sundsvallskommun/web-shared-components/commit/22bcfb124ce86ff91ae99c5b03e005de892b8a09))
+
 ## [1.2.7](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/progress-stepper@1.2.6...@sk-web-gui/progress-stepper@1.2.7) (2025-09-15)
 
 **Note:** Version bump only for package @sk-web-gui/progress-stepper
