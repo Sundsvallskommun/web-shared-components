@@ -182,7 +182,7 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
         </div>
       </div>
       <div
-        className={`sk-disclosure-body ${disclosureOpen && 'overflow-visible'}`}
+        className={`sk-disclosure-body`}
         data-has-icon={!!icon}
         data-variant={variant}
         data-size={size === 'lg' && variant === 'default' ? 'md' : size}

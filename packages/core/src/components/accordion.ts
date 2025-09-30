@@ -143,7 +143,7 @@ export const Accordion = () => ({
       },
 
       '&[aria-hidden="false"], &[data-hidden="false"]': {
-        '@apply block max-h-screen opacity-100 visible': {},
+        '@apply block opacity-100 visible': {},
       },
 
       '&[data-variant="alt"]': {
