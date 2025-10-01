@@ -1,5 +1,5 @@
-import { TextEditor, TextEditorProps } from './text-editor';
+import { TextEditor, TextEditorProps, TextEditorValue } from './text-editor';
 
 export { TextEditor };
-export type { TextEditorProps };
+export type { TextEditorProps, TextEditorValue };
 export default TextEditor;
