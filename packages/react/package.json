@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/react",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -72,7 +72,7 @@
     "@sk-web-gui/table": "3.2.9",
     "@sk-web-gui/tabs": "1.4.4",
     "@sk-web-gui/text": "1.1.7",
-    "@sk-web-gui/text-editor": "1.2.0",
+    "@sk-web-gui/text-editor": "2.0.0",
     "@sk-web-gui/theme": "2.6.0",
     "@sk-web-gui/tooltip": "1.1.2",
     "@sk-web-gui/user-menu": "1.1.8",

@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/text-editor@1.2.0...@sk-web-gui/text-editor@2.0.0) (2025-10-01)
+
+### Bug Fixes
+
+- Improved prop handling ([15e1b93](https://github.com/Sundsvallskommun/web-shared-components/commit/15e1b9383034c224ff876c2b3f47064884014684))
+
+### Features
+
+- onChange event for plaintext and markup ([7027c3d](https://github.com/Sundsvallskommun/web-shared-components/commit/7027c3da19933e6d62f1440804b001301e86b2f6))
+
+### BREAKING CHANGES
+
+- DefaultValue prop is removed
+
 # [1.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/text-editor@1.1.0...@sk-web-gui/text-editor@1.2.0) (2025-09-30)
 
 ### Bug Fixes
