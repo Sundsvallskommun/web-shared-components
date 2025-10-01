@@ -55,135 +55,142 @@ function TooltipManager({ controls }: { controls: Element[] }) {
   );
 }
 
-export const TextEditor = forwardRef<Quill | null, TextEditorProps>(
-  (
-    { name = '', readOnly, value, disableToolbar, className, toolbar, onTextChange, onSelectionChange, onChange },
-    ref
-  ) => {
-    const containerRef = useRef<HTMLDivElement | null>(null);
-    const quillRef = useRef<Quill | null>(null);
-    const onTextChangeRef = useRef<TextEditorProps['onTextChange']>(onTextChange);
-    const onSelectionChangeRef = useRef<TextEditorProps['onSelectionChange']>(onSelectionChange);
-    const onChangeRef = useRef<TextEditorProps['onChange']>(onChange);
-    const [controls, setControls] = useState<Element[]>([]);
+export const TextEditor = forwardRef<Quill | null, TextEditorProps>((props, ref) => {
+  const {
+    name = '',
+    readOnly,
+    value,
+    disableToolbar,
+    className,
+    toolbar,
+    onTextChange,
+    onSelectionChange,
+    onChange,
+  } = props;
 
-    useLayoutEffect(() => {
-      onTextChangeRef.current = onTextChange;
-      onSelectionChangeRef.current = onSelectionChange;
-      onChangeRef.current = onChange;
-    });
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const quillRef = useRef<Quill | null>(null);
+  const onTextChangeRef = useRef<TextEditorProps['onTextChange']>(onTextChange);
+  const onSelectionChangeRef = useRef<TextEditorProps['onSelectionChange']>(onSelectionChange);
+  const onChangeRef = useRef<TextEditorProps['onChange']>(onChange);
+  const [controls, setControls] = useState<Element[]>([]);
 
-    useEffect(() => {
-      const quill = quillRef?.current;
-      if (!quill) return;
+  useLayoutEffect(() => {
+    onTextChangeRef.current = onTextChange;
+    onSelectionChangeRef.current = onSelectionChange;
+    onChangeRef.current = onChange;
+  });
 
-      const quillMarkup = quill.root.innerHTML;
-      const quillplainText = quill.getText();
+  useEffect(() => {
+    const quill = quillRef?.current;
+    if (!quill) return;
 
-      if (value?.markup !== undefined && value?.markup !== quillMarkup) {
-        const delta = quill.clipboard.convert({ html: value.markup });
-        quillRef.current?.setContents(delta);
-      }
-      if (value?.markup === undefined && value?.plainText !== undefined && value.plainText !== quillplainText) {
-        quill.setText(value.plainText);
-      }
-    }, [value?.markup, value?.plainText]);
+    const quillMarkup = quill.root.innerHTML;
+    const quillplainText = quill.getText();
 
-    useEffect(() => {
-      const container = containerRef.current;
-      if (!container) return;
+    if (value?.markup !== undefined && value?.markup !== quillMarkup) {
+      const delta = quill.clipboard.convert({ html: value.markup });
+      quillRef.current?.setContents(delta);
+    }
+    if (value?.markup === undefined && value?.plainText !== undefined && value.plainText !== quillplainText) {
+      quill.setText(value.plainText);
+    }
+  }, [value?.markup, value?.plainText]);
 
-      const doc = container.ownerDocument;
-      const editorContainer = container.appendChild(doc.createElement('div'));
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
 
-      if (disableToolbar) {
-        editorContainer.classList.add('disable-toolbar');
-      }
+    const doc = container.ownerDocument;
+    const editorContainer = container.appendChild(doc.createElement('div'));
 
-      const toolbarConfig = disableToolbar ? false : toolbar && toolbar.length > 0 ? toolbar : defaultToolbarTokens;
+    if (disableToolbar) {
+      editorContainer.classList.add('disable-toolbar');
+    }
 
-      if (!quillRef.current) {
-        const quill = new Quill(editorContainer, {
-          modules: { toolbar: toolbarConfig },
-          theme: 'snow',
-        });
+    const toolbarConfig = disableToolbar ? false : toolbar && toolbar.length > 0 ? toolbar : defaultToolbarTokens;
 
-        quillRef.current = quill;
-        if (ref && typeof ref === 'object') {
-          ref.current = quill;
-        }
+    if (!quillRef.current) {
+      const quill = new Quill(editorContainer, {
+        modules: { toolbar: toolbarConfig },
+        theme: 'snow',
+      });
 
-        delete quill.keyboard.bindings['Tab'];
-
-        const input = doc.querySelector('input[data-link]') as HTMLInputElement | null;
-        if (input) {
-          input.dataset.link = 'https://www.sundsvall.se';
-          input.placeholder = 'https://www.sundsvall.se';
-        }
-
-        quill.on(Quill.events.TEXT_CHANGE, (...args) => {
-          const plainText = quillRef.current?.getText();
-          const markup = quillRef.current?.root.innerHTML;
-
-          const event = {
-            target: { name: name, value: { plainText, markup } },
-          } as CustomOnChangeEvent<TextEditorValue>;
-          onChangeRef.current?.(event);
-          onTextChangeRef.current?.(...args);
-        });
-
-        quill.on(Quill.events.SELECTION_CHANGE, (...args) => {
-          onSelectionChangeRef.current?.(...args);
-        });
+      quillRef.current = quill;
+      if (ref && typeof ref === 'object') {
+        ref.current = quill;
       }
 
-      const usedToolbar = container.querySelector('.ql-toolbar');
-      if (usedToolbar) {
-        const groups = usedToolbar.querySelectorAll('.ql-formats');
-        groups.forEach((group, index) => {
-          if (index === 0) return;
-          const divider = doc.createElement('span');
-          divider.className = 'ql-divider';
-          usedToolbar.insertBefore(divider, group);
-        });
+      delete quill.keyboard.bindings['Tab'];
 
-        const foundControls = Array.from(usedToolbar.querySelectorAll('button, select'));
-        setControls(foundControls);
+      const input = doc.querySelector('input[data-link]') as HTMLInputElement | null;
+      if (input) {
+        input.dataset.link = 'https://www.sundsvall.se';
+        input.placeholder = 'https://www.sundsvall.se';
+      }
+
+      quill.on(Quill.events.TEXT_CHANGE, (...args) => {
+        const plainText = quillRef.current?.getText();
+        const markup = quillRef.current?.root.innerHTML;
+
+        const event = {
+          target: { name: name, value: { plainText, markup } },
+        } as CustomOnChangeEvent<TextEditorValue>;
+        onChangeRef.current?.(event);
+        onTextChangeRef.current?.(...args);
+      });
+
+      quill.on(Quill.events.SELECTION_CHANGE, (...args) => {
+        onSelectionChangeRef.current?.(...args);
+      });
+    }
+
+    const usedToolbar = container.querySelector('.ql-toolbar');
+    if (usedToolbar) {
+      const groups = usedToolbar.querySelectorAll('.ql-formats');
+      groups.forEach((group, index) => {
+        if (index === 0) return;
+        const divider = doc.createElement('span');
+        divider.className = 'ql-divider';
+        usedToolbar.insertBefore(divider, group);
+      });
+
+      const foundControls = Array.from(usedToolbar.querySelectorAll('button, select'));
+      setControls(foundControls);
+    } else {
+      setControls([]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ref, disableToolbar, JSON.stringify(toolbar)]);
+
+  useEffect(() => {
+    const quill = quillRef.current;
+    const container = containerRef.current;
+    const usedToolbar = container?.querySelector('.ql-toolbar');
+    const shouldDisableToolbar = !!disableToolbar || !!readOnly;
+
+    if (quill) {
+      quill.enable(!readOnly);
+    }
+
+    if (usedToolbar) {
+      const ctrls = usedToolbar.querySelectorAll('button, select');
+      if (shouldDisableToolbar) {
+        usedToolbar.classList.add('ql-disabled');
+        ctrls.forEach((b) => ((b as HTMLButtonElement | HTMLSelectElement).disabled = true));
       } else {
-        setControls([]);
+        usedToolbar.classList.remove('ql-disabled');
+        ctrls.forEach((b) => ((b as HTMLButtonElement | HTMLSelectElement).disabled = false));
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [ref, disableToolbar, JSON.stringify(toolbar)]);
+    }
+  }, [readOnly, disableToolbar]);
 
-    useEffect(() => {
-      const quill = quillRef.current;
-      const container = containerRef.current;
-      const usedToolbar = container?.querySelector('.ql-toolbar');
-      const shouldDisableToolbar = !!disableToolbar || !!readOnly;
-
-      if (quill) {
-        quill.enable(!readOnly);
-      }
-
-      if (usedToolbar) {
-        const ctrls = usedToolbar.querySelectorAll('button, select');
-        if (shouldDisableToolbar) {
-          usedToolbar.classList.add('ql-disabled');
-          ctrls.forEach((b) => ((b as HTMLButtonElement | HTMLSelectElement).disabled = true));
-        } else {
-          usedToolbar.classList.remove('ql-disabled');
-          ctrls.forEach((b) => ((b as HTMLButtonElement | HTMLSelectElement).disabled = false));
-        }
-      }
-    }, [readOnly, disableToolbar]);
-
-    return (
-      <div className={cx(className, 'sk-texteditor')} ref={containerRef}>
-        {controls.length > 0 && <TooltipManager controls={controls} />}
-      </div>
-    );
-  }
-);
+  return (
+    <div className={cx(className, 'sk-texteditor')} ref={containerRef}>
+      {controls.length > 0 && <TooltipManager controls={controls} />}
+    </div>
+  );
+});
 
 TextEditor.displayName = 'TextEditor';
 
