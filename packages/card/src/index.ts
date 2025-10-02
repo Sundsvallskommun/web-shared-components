@@ -17,6 +17,7 @@ import {
   MetaCardHeader,
   MetaCardText,
 } from './meta-card';
+import { CardWrapper } from './card-wrapper';
 
 interface CardProps extends React.ForwardRefExoticComponent<InternalCardProps> {
   Component: typeof InternalCard;
@@ -25,6 +26,7 @@ interface CardProps extends React.ForwardRefExoticComponent<InternalCardProps> {
   Header: typeof CardHeader;
   Text: typeof CardText;
   Meta: typeof CardMeta;
+  Wrapper: typeof CardWrapper;
 }
 
 interface MetaCardProps extends React.ForwardRefExoticComponent<InternalMetaCardProps> {
@@ -42,6 +44,7 @@ export const Card = {
   Header: CardHeader,
   Meta: CardMeta,
   Text: CardText,
+  Wrapper: CardWrapper,
 } as CardProps;
 
 export const MetaCard = {
