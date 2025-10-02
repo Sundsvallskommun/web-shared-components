@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@3.0.2...@sk-web-gui/react@3.0.3) (2025-10-02)
+
+### Bug Fixes
+
+- Removed texteditor from react dependecies ([f0b7fc9](https://github.com/Sundsvallskommun/web-shared-components/commit/f0b7fc91f5edcf50cc52dbf7d94cac1c18962a85))
+
 ## [3.0.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@3.0.1...@sk-web-gui/react@3.0.2) (2025-10-01)
 
 **Note:** Version bump only for package @sk-web-gui/react

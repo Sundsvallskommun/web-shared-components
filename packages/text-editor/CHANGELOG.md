@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/text-editor@2.0.0...@sk-web-gui/text-editor@2.0.1) (2025-10-02)
+
+### Bug Fixes
+
+- Double rendering of divider in nextjs developer mode ([f6183b3](https://github.com/Sundsvallskommun/web-shared-components/commit/f6183b33f928984f4a50673808a6a8dbac3b3d27))
+
 # [2.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/text-editor@1.2.0...@sk-web-gui/text-editor@2.0.0) (2025-10-01)
 
 ### Bug Fixes

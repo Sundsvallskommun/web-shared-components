@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/card@1.3.1...@sk-web-gui/card@2.0.0) (2025-10-02)
+
+### Bug Fixes
+
+- Wrapper getting styles, while inner component getting ref ([2b0fba4](https://github.com/Sundsvallskommun/web-shared-components/commit/2b0fba465e396ccc874b0bb6bbfa7fda89c4e968))
+
+### BREAKING CHANGES
+
+- The card component no longer has a wrapper. Styling may differ because of that. For old look and behavior, wrap the card component in the new card wrapper component.
+
 ## [1.3.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/card@1.3.0...@sk-web-gui/card@1.3.1) (2025-09-15)
 
 **Note:** Version bump only for package @sk-web-gui/card
