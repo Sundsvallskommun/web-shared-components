@@ -43,34 +43,30 @@ export const MetaCard = React.forwardRef<HTMLDivElement, MetaCardProps>((props, 
     icon = <Text />,
     ...rest
   } = props;
-  return (
-    <div>
-      {useHoverEffect ? (
-        <Link
-          href={href ? href : undefined}
-          className={cx('sk-meta-card', { 'sk-meta-card-use-hover-effect': useHoverEffect }, className)}
-          data-color={color ? color : undefined}
-          data-size={size ? size : undefined}
-          {...rest}
-          ref={ref}
-        >
-          <Icon className={cx('sk-meta-card-text-icon', className)} size={36} icon={icon}></Icon>
-          <div className={cx('sk-meta-card-body', className)}>{children}</div>
-          <Icon className={cx('sk-meta-card-external-link-icon', className)} size={32} icon={<ExternalLink />}></Icon>
-        </Link>
-      ) : (
-        <div
-          className={cx('sk-meta-card', className)}
-          data-color={color ? color : undefined}
-          data-size={size ? size : undefined}
-          {...rest}
-          ref={ref}
-        >
-          <Icon className={cx('sk-meta-card-text-icon', className)} size={36} icon={icon}></Icon>
-          <div className={cx('sk-meta-card-body', className)}>{children}</div>
-          <div className={cx('sk-meta-card-external-link-icon', className)}></div>
-        </div>
-      )}
+  return useHoverEffect ? (
+    <Link
+      href={href ? href : undefined}
+      className={cx('sk-meta-card', { 'sk-meta-card-use-hover-effect': useHoverEffect }, className)}
+      data-color={color ? color : undefined}
+      data-size={size ? size : undefined}
+      {...rest}
+      ref={ref}
+    >
+      <Icon className={cx('sk-meta-card-text-icon', className)} size={36} icon={icon}></Icon>
+      <div className={cx('sk-meta-card-body', className)}>{children}</div>
+      <Icon className={cx('sk-meta-card-external-link-icon', className)} size={32} icon={<ExternalLink />}></Icon>
+    </Link>
+  ) : (
+    <div
+      className={cx('sk-meta-card', className)}
+      data-color={color ? color : undefined}
+      data-size={size ? size : undefined}
+      {...rest}
+      ref={ref}
+    >
+      <Icon className={cx('sk-meta-card-text-icon', className)} size={36} icon={icon}></Icon>
+      <div className={cx('sk-meta-card-body', className)}>{children}</div>
+      <div className={cx('sk-meta-card-external-link-icon', className)}></div>
     </div>
   );
 });
