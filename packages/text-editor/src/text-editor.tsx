@@ -143,22 +143,22 @@ export const TextEditor = forwardRef<Quill | null, TextEditorProps>((props, ref)
       quill.on(Quill.events.SELECTION_CHANGE, (...args) => {
         onSelectionChangeRef.current?.(...args);
       });
-    }
 
-    const usedToolbar = container.querySelector('.ql-toolbar');
-    if (usedToolbar) {
-      const groups = usedToolbar.querySelectorAll('.ql-formats');
-      groups.forEach((group, index) => {
-        if (index === 0) return;
-        const divider = doc.createElement('span');
-        divider.className = 'ql-divider';
-        usedToolbar.insertBefore(divider, group);
-      });
+      const usedToolbar = container.querySelector('.ql-toolbar');
+      if (usedToolbar) {
+        const groups = usedToolbar.querySelectorAll('.ql-formats');
+        groups.forEach((group, index) => {
+          if (index === 0) return;
+          const divider = doc.createElement('span');
+          divider.className = 'ql-divider';
+          usedToolbar.insertBefore(divider, group);
+        });
 
-      const foundControls = Array.from(usedToolbar.querySelectorAll('button, select'));
-      setControls(foundControls);
-    } else {
-      setControls([]);
+        const foundControls = Array.from(usedToolbar.querySelectorAll('button, select'));
+        setControls(foundControls);
+      } else {
+        setControls([]);
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ref, disableToolbar, JSON.stringify(toolbar)]);
