@@ -78,7 +78,6 @@ export const TextEditor = forwardRef<Quill | null, TextEditorProps>((props, ref)
   useLayoutEffect(() => {
     onTextChangeRef.current = onTextChange;
     onSelectionChangeRef.current = onSelectionChange;
-    onChangeRef.current = onChange;
   });
 
   useEffect(() => {
@@ -90,12 +89,13 @@ export const TextEditor = forwardRef<Quill | null, TextEditorProps>((props, ref)
 
     if (value?.markup !== undefined && value?.markup !== quillMarkup) {
       const delta = quill.clipboard.convert({ html: value.markup });
-      quillRef.current?.setContents(delta);
+      quill.setContents(delta);
     }
     if (value?.markup === undefined && value?.plainText !== undefined && value.plainText !== quillplainText) {
       quill.setText(value.plainText);
     }
-  }, [value?.markup, value?.plainText]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value?.markup, value?.plainText, quillRef?.current]);
 
   useEffect(() => {
     const container = containerRef.current;
