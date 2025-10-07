@@ -25,9 +25,7 @@ export const getSkHeaders = (options?: AssistantSettings, settings?: AssistantSe
   if (!assistantId) {
     throw new Error('No assistant Id. Either provide one in options, or add one to AssistantContext / Settings');
   }
-  if (!hash) {
-    throw new Error('No hash. Either provide one in options, or add one to AssistantContext / Settings');
-  }
+
   return {
     _skuser: user,
     _skassistant: assistantId,
