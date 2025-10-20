@@ -1,13 +1,19 @@
 import React from 'react';
 
 import { InputLeftAddin, InputRightAddin } from '../input-addin';
-import { InputGroup } from '../input-group';
+import { InputGroupInner } from '../input-group/inner-group';
 import { Input as InternalInput, InputProps as InternalInputProps } from './input';
 import { InputLeftAddon, InputRightAddon } from '../input-addon';
+import { InputGroupOuter } from '../input-group';
 
 interface InputProps extends React.ForwardRefExoticComponent<InternalInputProps> {
   Component: typeof InternalInput;
-  Group: typeof InputGroup;
+  /** Group is replaced by innergroup
+   * @deprecated
+   */
+  Group: typeof InputGroupInner;
+  InnerGroup: typeof InputGroupInner;
+  OuterGroup: typeof InputGroupOuter;
   LeftAddin: typeof InputLeftAddin;
   RightAddin: typeof InputRightAddin;
   LeftAddon: typeof InputLeftAddon;
@@ -17,7 +23,9 @@ interface InputProps extends React.ForwardRefExoticComponent<InternalInputProps>
 export const Input = {
   ...InternalInput,
   Component: InternalInput,
-  Group: InputGroup,
+  Group: InputGroupInner,
+  InnerGroup: InputGroupInner,
+  OuterGroup: InputGroupOuter,
   LeftAddin: InputLeftAddin,
   RightAddin: InputRightAddin,
   LeftAddon: InputLeftAddon,
