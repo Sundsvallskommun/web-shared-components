@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.6.1...@sk-web-gui/forms@2.7.0) (2025-10-23)
+
+### Features
+
+- added OuterGroup to input. ([eb93e6b](https://github.com/Sundsvallskommun/web-shared-components/commit/eb93e6bb77a1861614f0d84b54e58ce00caa50b0))
+
 ## [2.6.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.6.0...@sk-web-gui/forms@2.6.1) (2025-09-19)
 
 ### Bug Fixes

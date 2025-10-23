@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.1.0...@sk-web-gui/core@4.1.1) (2025-10-23)
+
+### Bug Fixes
+
+- **forms:** added styling for input outer group ([a931849](https://github.com/Sundsvallskommun/web-shared-components/commit/a931849ba5cb21edc7c72eb7003d2a29c7c32c9f))
+
 # [4.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.0.0...@sk-web-gui/core@4.1.0) (2025-09-30)
 
 ### Bug Fixes

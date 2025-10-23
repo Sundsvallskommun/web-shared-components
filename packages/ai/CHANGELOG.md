@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@3.0.1...@sk-web-gui/ai@3.0.2) (2025-10-23)
+
+### Bug Fixes
+
+- **assistant-service:** hash should not be required ([3d0c367](https://github.com/Sundsvallskommun/web-shared-components/commit/3d0c367ce3350c6cd934e22b8c67e8622173fd02))
+- **input-section:** updated input group ([fda139e](https://github.com/Sundsvallskommun/web-shared-components/commit/fda139e8515a15d529a0389e95574ad74b1fe459))
+
 ## [3.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@3.0.0...@sk-web-gui/ai@3.0.1) (2025-09-30)
 
 ### Bug Fixes
