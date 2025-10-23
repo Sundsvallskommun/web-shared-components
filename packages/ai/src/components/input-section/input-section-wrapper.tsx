@@ -12,7 +12,11 @@ export const InputSectionWrapper = React.forwardRef<HTMLDivElement, InputSection
 
   return (
     <div ref={ref} data-shadow={shadow} className={cx('sk-ai-inputsection-wrapper', className)} {...rest}>
-      {variant === 'inset' ? <Input.Group className="sk-ai-inputsection-group">{children}</Input.Group> : children}
+      {variant === 'inset' ? (
+        <Input.InnerGroup className="sk-ai-inputsection-group">{children}</Input.InnerGroup>
+      ) : (
+        children
+      )}
     </div>
   );
 });
