@@ -24,4 +24,8 @@ export const Forms = () => ({
     '@apply font-normal': {},
     '@apply text-small': {},
   },
+  '.sk-form-error-message' : {
+    '@apply text-error': {},
+    '@apply flex gap-8 items-center': {}
+  }
 });

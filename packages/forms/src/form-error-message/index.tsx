@@ -2,6 +2,8 @@ import { DefaultProps } from '@sk-web-gui/utils';
 import { cx, __DEV__ } from '@sk-web-gui/utils';
 import React from 'react';
 import { FormControlProps, useFormControl } from '../form-control';
+import { InfoIcon } from 'lucide-react';
+import Icon from '@sk-web-gui/icon';
 
 export interface FormErrorMessageProps
   extends DefaultProps,
@@ -15,7 +17,11 @@ export const FormErrorMessage = React.forwardRef<HTMLParagraphElement, FormError
   const classes = cx('sk-form-error-message', `sk-form-error-message-${size}`, className);
   const formControl = useFormControl({});
 
-  return <div ref={ref} className={classes} id={id || formControl.errorId} {...rest} />;
+  return (
+    <div className={classes}>
+      <Icon icon={<InfoIcon />} size={16} /> <div ref={ref} id={id || formControl.errorId} {...rest} />
+    </div>
+  );
 });
 
 if (__DEV__) {
