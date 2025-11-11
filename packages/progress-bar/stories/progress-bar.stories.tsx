@@ -18,7 +18,6 @@ export default {
       },
       options: [undefined, 'tertiary', 'gronsta', 'vattjom', 'juniskar', 'bjornstigen'],
       control: 'select',
-      defaultValue: 'primary',
     },
     accent: {
       type: { name: 'string', required: false },
@@ -27,7 +26,15 @@ export default {
         defaultValue: { summary: 'false' },
       },
       control: 'boolean',
-      defaultValue: false,
+    },
+    size: {
+      type: { name: 'string', required: false },
+      description: 'Sets size',
+      control: 'radio',
+      options: ['sm', 'md'],
+      table: {
+        defaultValue: { summary: 'sm' },
+      },
     },
   },
 } as Meta<typeof ProgressBar>;
