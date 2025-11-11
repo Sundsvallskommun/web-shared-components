@@ -27,5 +27,11 @@ export const ProgressBar = (colors: string[]) => ({
         [`@apply bg-primary-surface`]: {},
       },
     },
+    '&-sm': {
+      '@apply h-[4px]': {},
+    },
+    '&-md': {
+      '@apply h-[8px]': {},
+    },
   },
 });
