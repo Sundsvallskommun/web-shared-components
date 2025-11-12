@@ -1,20 +1,16 @@
 import { DefaultProps, __DEV__, cx, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
-import { DisclosureProps } from '../disclosure/disclosure';
-import { AccordionItem } from './accordion-item';
+import { AccordionItemComponent } from './accordion-item';
 import { AccordionContext } from './context';
+import { DisclosureDefualtProps } from '../disclosure/disclosure';
 
-export interface UseAccordionProps extends Pick<DisclosureProps, 'headerAs'> {
+export interface UseAccordionProps extends Pick<DisclosureDefualtProps, 'size' | 'variant'> {
   /**
    * Will close any item open when another is opened
    * @deafult false
    */
   allowMultipleOpen?: boolean;
-  /**
-   * Size of the accordion
-   * @default md
-   */
-  size?: 'sm' | 'md';
+
   /**
    * Inverted colors (light mode as dark mode colors and vice versa)
    * @default false
@@ -40,7 +36,8 @@ export const AccordionComponent = React.forwardRef<HTMLUListElement, AccordionIn
     setOpen((open) => open.filter((openId) => openId !== id));
   };
 
-  const { className, children, allowMultipleOpen, id: _id, headerAs = 'label', size = 'md', inverted, ...rest } = props;
+  const { className, children, allowMultipleOpen, id: _id, variant, size: _size = 'md', inverted, ...rest } = props;
+  const size = variant === 'default' && _size === 'lg' ? 'md' : _size;
   const id = _id || `sk-accordion-${autoId}`;
 
   const context = {
@@ -48,16 +45,16 @@ export const AccordionComponent = React.forwardRef<HTMLUListElement, AccordionIn
     open,
     onOpen,
     onClose,
-    headerAs,
     size,
     inverted,
+    variant,
   };
 
   const getChildren = (): React.ReactNode => {
     return getValidChildren(children).map((child, index) => {
       switch (child?.type) {
-        case AccordionItem: {
-          if (React.isValidElement<React.ComponentProps<typeof AccordionItem>>(child)) {
+        case AccordionItemComponent: {
+          if (React.isValidElement<React.ComponentProps<typeof AccordionItemComponent>>(child)) {
             const props = { ...child?.props, id: child?.props?.id || `${id}-child-${index}` };
             return React.cloneElement(child, props);
           }

@@ -1,25 +1,28 @@
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
-import Disclosure, { DisclosureProps } from '../disclosure/disclosure';
+import Disclosure, { DisclosureInternalProps } from '../disclosure/disclosure';
 import { UseAccordionProps } from '../accordion/accordion';
 import React from 'react';
+import { useAccordion } from './use-accordion';
 
-export interface AccordionItemProps
+export interface AccordionItemInternalProps
   extends DefaultProps,
     UseAccordionProps,
     React.ComponentPropsWithRef<'div'>,
-    Omit<DisclosureProps, 'size' | 'variant'> {}
+    DisclosureInternalProps {}
 
-export const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps>((props, ref) => {
+export const AccordionItemComponent = React.forwardRef<HTMLDivElement, AccordionItemInternalProps>((props, ref) => {
   const { className, ...rest } = props;
+  const { variant, size } = useAccordion();
+
   return (
     <li className={cx('sk-accordion-item', className)}>
-      <Disclosure ref={ref} variant="default" {...rest} />
+      <Disclosure ref={ref} variant={variant} size={size} {...rest} />
     </li>
   );
 });
 
 if (__DEV__) {
-  AccordionItem.displayName = 'AccordionItem';
+  AccordionItemComponent.displayName = 'AccordionItem';
 }
 
-export default AccordionItem;
+export default AccordionItemComponent;
