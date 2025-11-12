@@ -9,11 +9,18 @@ export default {
 
 export const Template = (args: FormControlProps) => {
   return (
-    <FormControl {...args} id="firstname">
-      <FormLabel>Förnamn</FormLabel>
-      <Input placeholder="Leif" />
-      <FormHelperText>Ost</FormHelperText>
-    </FormControl>
+    <div className="flex flex-col gap-16">
+      <p>
+        Använd FormControl för att skapa och hantera ett FormContext. FormHelperText kan användas tillsammans med
+        respektive fält för att till exempel beskriva vad användaren förväntas ange för information och i vilket format.
+      </p>
+
+      <FormControl {...args} id="firstname">
+        <FormLabel>Personnummer</FormLabel>
+        <Input placeholder="190101011234" />
+        <FormHelperText>Ange personnumret i formatet ååååmmddxxxx.</FormHelperText>
+      </FormControl>
+    </div>
   );
 };
 
@@ -40,15 +47,12 @@ export const Storlekar = () => (
 
 export const Invaliderad = () => (
   <div className="flex flex-col gap-16">
-    <FormControl invalid aria-invalid id="first-name" required>
+    <p>Formulärfält kan användas tillsammans med FormErrorMessage för att beskriva valideringsfel.</p>
+
+    <FormControl invalid aria-invalid id="first-name">
       <FormLabel>Förnamn</FormLabel>
-      <Input placeholder="Förnamn *" aria-describedby="first-name-error" />
-      <FormErrorMessage>Förnamn måste vara ifylld!</FormErrorMessage>
-    </FormControl>
-    <FormControl invalid aria-invalid id="first-name" required>
-      <FormLabel>Förnamn</FormLabel>
-      <Input placeholder="Förnamn *" aria-describedby="first-name-error" />
-      <FormErrorMessage>Förnamn måste vara ifylld!</FormErrorMessage>
+      <Input placeholder="Förnamn" aria-describedby="first-name-error" />
+      <FormErrorMessage>Förnamn måste vara ifyllt!</FormErrorMessage>
     </FormControl>
   </div>
 );
