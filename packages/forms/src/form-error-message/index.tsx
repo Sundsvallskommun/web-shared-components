@@ -13,13 +13,13 @@ export interface FormErrorMessageProps
 }
 
 export const FormErrorMessage = React.forwardRef<HTMLParagraphElement, FormErrorMessageProps>((props, ref) => {
-  const { className, id, size = 'md', ...rest } = props;
+  const { className, id, size = 'md', children, ...rest } = props;
   const classes = cx('sk-form-error-message', `sk-form-error-message-${size}`, className);
   const formControl = useFormControl({});
 
   return (
-    <div className={classes}>
-      <Icon icon={<InfoIcon />} size={16} /> <div ref={ref} id={id || formControl.errorId} {...rest} />
+    <div ref={ref} id={id || formControl.errorId} {...rest} className={classes}>
+      <Icon icon={<InfoIcon />} size={16} className="sk-form-error-message-icon" /> {children}
     </div>
   );
 });
