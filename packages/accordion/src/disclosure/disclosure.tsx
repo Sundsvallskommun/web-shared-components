@@ -1,39 +1,16 @@
-import { Button } from '@sk-web-gui/button';
-import { Divider } from '@sk-web-gui/divider';
-import { Icon } from '@sk-web-gui/icon';
-import { Label } from '@sk-web-gui/label';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
-import { Minus, Plus } from 'lucide-react';
 import React from 'react';
-import { useDisclosureClass } from './styles';
 import { useAccordion } from '../accordion/use-accordion';
+import { DisclosureContext } from './disclosure-context';
+import { useDisclosureClass } from './styles';
+import { UseDisclosureProps } from './use-disclosure';
 
-export interface DisclosureProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
-  /**
-   * Open disclosure from start
-   * @default false
-   */
-  initalOpen?: boolean;
+export interface DisclosureDefualtProps extends Pick<React.ComponentPropsWithRef<'div'>, 'id'> {
   /**
    * Control open state externally
    * @default undefined
    */
   open?: boolean;
-  /** Header. */
-  header: React.ReactNode;
-  /** Makes disclosure disabled */
-  disabled?: boolean;
-  /**
-   * Element to wrap header in.
-   * @default label
-   */
-  headerAs?: React.ElementType;
-  /* React node */
-  children?: React.ReactNode;
-  /* Id of the panel */
-  id?: string;
-  /* Returns true if opened, false if closed */
-  onToggleOpen?: (open: boolean) => void;
   /**
    * Size of the disclosure
    * @default md
@@ -43,85 +20,68 @@ export interface DisclosureProps extends DefaultProps, React.ComponentPropsWithR
    * Style variant,
    */
   variant?: 'default' | 'alt';
-  /** Leading icon. Will be displayed before the header */
-  icon?: React.ReactNode;
-  /** Support text. Will be displayed after the header. */
-  supportText?: string;
-  /** Label. Will be displayed after the header. */
-  label?: string;
-  /** Color of the label
-   * @default gronsta
-   */
-  labelColor?: React.ComponentProps<typeof Label>['color'];
-  /** Inverts the colors of the label
-   * @default true - if inverted is false.
-   */
-  labelInverted?: React.ComponentProps<typeof Label>['inverted'];
+  /** Makes disclosure disabled */
+  disabled?: boolean;
   /**
    * Inverted colors (light mode as dark mode colors and vice versa)
    * @default false
    */
   inverted?: boolean;
 }
+export interface DisclosureInternalProps
+  extends DefaultProps,
+    DisclosureDefualtProps,
+    React.ComponentPropsWithRef<'div'> {
+  /**
+   * Open disclosure from start
+   * @default false
+   */
+  initalOpen?: boolean;
 
-export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((props, ref) => {
+  /* Returns true if opened, false if closed */
+  onToggleOpen?: (open: boolean) => void;
+}
+
+export const DisclosureComponent = React.forwardRef<HTMLDivElement, DisclosureInternalProps>((props, ref) => {
   const {
     disabled,
     initalOpen = false,
-    open = undefined,
-    header,
+    open: propsOpen = undefined,
     children,
     className,
-    headerAs,
+    inverted,
     id: _id,
     onToggleOpen,
     size: _size,
     variant = 'default',
-    icon,
-    supportText,
-    label,
-    inverted: _inverted,
-    labelColor = 'gronsta',
-    labelInverted: _labelInverted,
     ...rest
   } = props;
-  const { onClose, onOpen, ...context } = useAccordion();
-  const size = _size || context.size || 'md';
-  const _open = context.open;
-  const Comp = headerAs || context.headerAs || 'label';
-  const inverted = _inverted ?? context.inverted;
-  const labelInverted = (_labelInverted ?? inverted) ? false : true;
-  const [disclosureOpen, setDisclosureOpen] = React.useState(open || initalOpen);
+  const { onClose, onOpen, ...accordionContext } = useAccordion();
+  const size = _size || accordionContext.size || 'md';
+  const _open = accordionContext.open;
+  const [disclosureOpen, setDisclosureOpen] = React.useState(initalOpen ?? propsOpen ?? false);
   const autoId = React.useId();
   const id = _id || `sk-disclosure-${autoId}`;
+  const open = propsOpen ?? disclosureOpen;
+  const [hasLeadingIcon, setHasLeadingIcon] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     if (onClose && onOpen) {
       if (_open?.includes(id)) {
         setDisclosureOpen(true);
+        onToggleOpen?.(true);
       }
       if (!_open?.includes(id)) {
         setDisclosureOpen(false);
+        onToggleOpen?.(false);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [_open]);
 
-  React.useEffect(() => {
-    if (open !== undefined) {
-      if (open) {
-        onClose?.(id);
-      } else {
-        onOpen?.(id);
-      }
-      setDisclosureOpen(open);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open]);
-
   const onClick = () => {
     if (!disabled) {
-      if (disclosureOpen) {
+      if (open) {
         onClose?.(id);
         onToggleOpen?.(false);
       } else {
@@ -133,71 +93,38 @@ export const Disclosure = React.forwardRef<HTMLDivElement, DisclosureProps>((pro
     }
   };
 
+  const context: UseDisclosureProps = {
+    open,
+    toggleOpen: onClick,
+    size,
+    variant,
+    id,
+    hasLeadingIcon,
+    setHasLeadingIcon,
+    inverted,
+    disabled,
+  };
+
   const classes = useDisclosureClass({ size, disabled, variant });
   return (
-    <div
-      ref={ref}
-      className={cx(classes, disclosureOpen ? 'sk-disclosure-is-open' : undefined, className)}
-      id={id}
-      data-open={disclosureOpen}
-      data-variant={variant}
-      data-inverted={inverted}
-      {...rest}
-    >
+    <DisclosureContext.Provider value={context}>
       <div
-        className="sk-disclosure-header"
-        aria-disabled={disabled ? disabled : undefined}
-        data-disabled={disabled ? disabled : undefined}
-        id={`${id}-header`}
-        onClick={onClick}
-      >
-        <div className="sk-disclosure-toggle">
-
-          {icon && <div className="sk-disclosure-icon">{icon}</div>}
-          <div className="sk-disclosure-title-wrapper">
-            <Comp className="sk-disclosure-title" id={`${id}-label`}>
-              {header}
-            </Comp>
-            {variant === 'alt' && <Divider></Divider>}
-          </div>
-          {supportText && <span className="sk-disclosure-support">{supportText}</span>}
-          {label && (
-            <Label className="sk-disclosure-label" color={labelColor} inverted={labelInverted} rounded>
-              {label}
-            </Label>
-          )}
-          <Button
-            disabled={disabled}
-            variant={variant === 'default' ? 'ghost' : 'tertiary'}
-            iconButton
-            inverted={inverted}
-            size={variant === 'default' ? size : 'sm'}
-            className="sk-disclosure-header-icon"
-            aria-controls={`${id}-content`}
-            aria-expanded={disclosureOpen}
-            aria-labelledby={`${id}-label`}
-          >
-            {<Icon icon={disclosureOpen ? <Minus /> : <Plus />} />}
-          </Button>
-        </div>
-      </div>
-      <div
-        className={`sk-disclosure-body`}
-        data-has-icon={!!icon}
+        ref={ref}
+        className={cx(classes, disclosureOpen ? 'sk-disclosure-is-open' : undefined, className)}
+        id={id}
+        data-open={disclosureOpen}
         data-variant={variant}
-        data-size={size === 'lg' && variant === 'default' ? 'md' : size}
-        aria-hidden={!disclosureOpen}
+        data-inverted={inverted}
+        {...rest}
       >
-        <div role="region" aria-labelledby={`${id}-header`} id={`${id}-content`}>
-          {children}
-        </div>
+        {children}
       </div>
-    </div>
+    </DisclosureContext.Provider>
   );
 });
 
 if (__DEV__) {
-  Disclosure.displayName = 'Disclosure';
+  DisclosureComponent.displayName = 'Disclosure';
 }
 
-export default Disclosure;
+export default DisclosureComponent;
