@@ -31,5 +31,6 @@ export const Forms = () => ({
   },
   '.sk-form-error-message-icon': {
     '@apply shrink-0': {},
+    '@apply pt-1': {},
   },
 });
