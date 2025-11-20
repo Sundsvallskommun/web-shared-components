@@ -24,4 +24,13 @@ export const Forms = () => ({
     '@apply font-normal': {},
     '@apply text-small': {},
   },
+  '.sk-form-error-message': {
+    '@apply text-error': {},
+    '@apply flex items-start gap-8': {},
+    '@apply self-stretch': {},
+  },
+  '.sk-form-error-message-icon': {
+    '@apply shrink-0': {},
+    '@apply pt-1': {},
+  },
 });
