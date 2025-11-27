@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/progress-bar@1.1.2...@sk-web-gui/progress-bar@1.2.0) (2025-11-27)
+
+### Features
+
+- added size options ([d9d9503](https://github.com/Sundsvallskommun/web-shared-components/commit/d9d95038674b8869ded64530e89772fac63a8384))
+
 ## [1.1.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/progress-bar@1.1.1...@sk-web-gui/progress-bar@1.1.2) (2025-03-06)
 
 ### Bug Fixes

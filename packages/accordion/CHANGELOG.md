@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@2.1.9...@sk-web-gui/accordion@3.0.0) (2025-11-27)
+
+### Features
+
+- control every part of disclosure ([6ee4b25](https://github.com/Sundsvallskommun/web-shared-components/commit/6ee4b25ef556ef7e6994f82e51d2b1c833ab9164))
+
+### BREAKING CHANGES
+
+- Each part of the disclosure and accordion is now its own component. Corresponding props are removed.
+
 ## [2.1.9](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@2.1.8...@sk-web-gui/accordion@2.1.9) (2025-09-30)
 
 ### Bug Fixes

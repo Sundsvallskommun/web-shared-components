@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.1.1...@sk-web-gui/core@4.1.2) (2025-11-27)
+
+### Bug Fixes
+
+- **accordion:** styling for new accordion and disclosure. ([b324ba0](https://github.com/Sundsvallskommun/web-shared-components/commit/b324ba039b7a2bb9f1113f236133f3169c1068e2))
+- form error message icon and style ([335020c](https://github.com/Sundsvallskommun/web-shared-components/commit/335020c71b1ced70dfc9ca1bee55ded23216ae6b))
+- **forms:** form error message styling ([4972506](https://github.com/Sundsvallskommun/web-shared-components/commit/497250690c37f7e5f04737e93e56faf5e6eaccd8))
+- **forms:** form error message styling ([12a6cbf](https://github.com/Sundsvallskommun/web-shared-components/commit/12a6cbf6e185880ed6a8fdc4ec5d5b5d5fc629b6))
+- **progress-bar:** size options styling ([f0ce70a](https://github.com/Sundsvallskommun/web-shared-components/commit/f0ce70aca5bad32da0a3c0dcd116975d8df09f62))
+
 ## [4.1.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.1.0...@sk-web-gui/core@4.1.1) (2025-10-23)
 
 ### Bug Fixes

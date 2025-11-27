@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@3.0.2...@sk-web-gui/ai@3.0.3) (2025-11-27)
+
+### Bug Fixes
+
+- **ai-feed:** update for new disclosure ([0d77cbd](https://github.com/Sundsvallskommun/web-shared-components/commit/0d77cbd09342ddf831216109586e2655cf27186c))
+
 ## [3.0.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@3.0.1...@sk-web-gui/ai@3.0.2) (2025-10-23)
 
 ### Bug Fixes

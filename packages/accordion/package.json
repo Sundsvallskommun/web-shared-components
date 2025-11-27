@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/accordion",
-  "version": "2.1.9",
+  "version": "3.0.0",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",

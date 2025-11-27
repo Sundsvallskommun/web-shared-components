@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.7.0...@sk-web-gui/forms@2.7.1) (2025-11-27)
+
+### Bug Fixes
+
+- error message and helper text stories update ([6d84c30](https://github.com/Sundsvallskommun/web-shared-components/commit/6d84c3003f1026b9fbfbac3df316ac3d7132e0f1))
+- form error message icon and style ([295f761](https://github.com/Sundsvallskommun/web-shared-components/commit/295f761a7d122b3f768f8473778c5d4023eb7146))
+- form error message icon and style ([335020c](https://github.com/Sundsvallskommun/web-shared-components/commit/335020c71b1ced70dfc9ca1bee55ded23216ae6b))
+
 # [2.7.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.6.1...@sk-web-gui/forms@2.7.0) (2025-10-23)
 
 ### Features
