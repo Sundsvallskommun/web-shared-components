@@ -17,6 +17,10 @@ export interface AIFeedProps extends React.ComponentPropsWithoutRef<'ul'> {
   size?: 'sm' | 'lg';
   inverted?: boolean;
   titles?: OriginTitleMap;
+  /**
+   * Get assistant info from history, if existing.
+   */
+  getAssistantInfoFromHistory?: boolean;
 }
 
 export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, ref) => {
@@ -35,6 +39,7 @@ export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, re
     size,
     inverted,
     titles,
+    getAssistantInfoFromHistory,
     ...rest
   } = props;
 
@@ -68,21 +73,28 @@ export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, re
   return (
     <>
       <AIFeedWrapper ref={useForkRef(ref, internalRef)} className={className} {...rest}>
-        {history?.map((entry, index) => (
-          <AIFeedEntry
-            key={`${index}-${entry.id}`}
-            showReferences={showReferences}
-            entry={entry}
-            avatar={avatars ? avatars[entry.origin] : undefined}
-            showFeedback={showFeedback && entry.done && entry.id === lastMessage?.id}
-            showTitle={titles?.[entry.origin]?.show ?? showTitles}
-            title={titles?.[entry.origin]?.title}
-            onGiveFeedback={onGiveFeedback}
-            size={size}
-            sessionId={sessionId}
-            inverted={inverted}
-          ></AIFeedEntry>
-        ))}
+        {history?.map((entry, index) => {
+          const avatar =
+            entry.origin === 'assistant' && getAssistantInfoFromHistory
+              ? (entry.assistantInfo?.avatar ?? avatars?.[entry.origin])
+              : avatars?.[entry.origin];
+          return (
+            <AIFeedEntry
+              key={`${index}-${entry.id}`}
+              showReferences={showReferences}
+              entry={entry}
+              avatar={avatar}
+              showFeedback={showFeedback && entry.done && entry.id === lastMessage?.id}
+              showTitle={titles?.[entry.origin]?.show ?? showTitles}
+              title={titles?.[entry.origin]?.title}
+              getNameFromHistory={entry?.origin === 'assistant' && getAssistantInfoFromHistory}
+              onGiveFeedback={onGiveFeedback}
+              size={size}
+              sessionId={sessionId}
+              inverted={inverted}
+            ></AIFeedEntry>
+          );
+        })}
       </AIFeedWrapper>
       <div className="sk-ai-feed-live-wrapper" aria-live="polite" aria-atomic={false}>
         {lastMessage && (
@@ -91,6 +103,7 @@ export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, re
             entry={lastMessage}
             showFeedback={false}
             showTitle={true}
+            getNameFromHistory={getAssistantInfoFromHistory}
             title={titles?.[lastMessage.origin]?.title}
             tabbable={false}
           />

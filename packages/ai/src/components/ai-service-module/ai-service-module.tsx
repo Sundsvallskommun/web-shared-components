@@ -28,7 +28,10 @@ export interface AIServiceModuleProps
   extends AIServiceModuleWrapperProps,
     AIServiceModuleQuestionsEssentialProps,
     AIServiceModuleDefaultProps,
-    Pick<AIFeedProps, 'avatars' | 'onGiveFeedback' | 'showReferences' | 'showFeedback' | 'showTitles'>,
+    Pick<
+      AIFeedProps,
+      'avatars' | 'onGiveFeedback' | 'showReferences' | 'showFeedback' | 'showTitles' | 'getAssistantInfoFromHistory'
+    >,
     AIServiceModuleAssistantEssentialProps {
   /**
    * Heading / Title.
@@ -73,6 +76,7 @@ export const AIServiceModule = React.forwardRef<HTMLDivElement, AIServiceModuleP
     children,
     variant = 'primary',
     headerIcon,
+    getAssistantInfoFromHistory: _getAssistantInfoFromHistory,
     ...rest
   } = props;
 
@@ -83,8 +87,12 @@ export const AIServiceModule = React.forwardRef<HTMLDivElement, AIServiceModuleP
 
   const history = session?.history;
 
+  const settings = useAssistantStore((state) => state.settings);
   const _assistant = useAssistantStore((state) => state.info);
   const assistant = _propsAssistant || _assistant;
+
+  const getAssistantInfoFromHistory =
+    _getAssistantInfoFromHistory ?? (settings?.is_group_chat && settings?.group_chat_assistants);
 
   if (!assistant) {
     throw new Error('No assistant found');
@@ -142,6 +150,7 @@ export const AIServiceModule = React.forwardRef<HTMLDivElement, AIServiceModuleP
             showFeedback={showFeedback}
             showTitles={showTitles}
             titles={originTitles}
+            getAssistantInfoFromHistory={getAssistantInfoFromHistory}
           />
         </AIServiceModuleContent>
       </AIServiceModuleRow>

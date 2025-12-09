@@ -13,6 +13,10 @@ interface AIFeedEntryProps extends React.ComponentPropsWithoutRef<'li'> {
   title?: string;
   showTitle?: boolean;
   showReferences?: boolean;
+  /**
+   * Get name from history, if existing.
+   */
+  getNameFromHistory?: boolean;
   referenceTitle?: string;
   entry: ChatHistoryEntry;
   loadingMessage?: string;
@@ -43,6 +47,7 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
     tabbable,
     onGiveFeedback,
     size,
+    getNameFromHistory,
     inverted,
     loadingComponent = <TypingBubble inverted={inverted} />,
     ...rest
@@ -50,7 +55,8 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
   const info = useAssistantStore((state) => state.info);
   const { done } = entry;
   const [loading, setLoading] = React.useState<boolean>(false);
-  const title = _title ?? (entry.origin === 'user' ? 'Du' : info?.name || '');
+  const title = _title ?? (entry.origin === 'user' ? 'Du' : (info?.name ?? ''));
+  const entryName = getNameFromHistory ? (entry?.assistantInfo?.name ?? title) : title;
   const timeout = React.useRef(setTimeout(() => {}));
 
   React.useEffect(() => {
@@ -77,7 +83,7 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
             ) : (
               <>
                 <span className={cx('sk-ai-feed-entry-heading')} data-showtitle={showTitle}>
-                  {title}
+                  {entryName}
                 </span>
                 <MarkdownRendered
                   text={entry.text}

@@ -1,4 +1,4 @@
-import { AssistantSession } from './assistant';
+import { AssistantInfo, AssistantSession } from './assistant';
 
 export type Origin = 'user' | 'assistant' | 'system';
 
@@ -12,6 +12,11 @@ export interface ChatHistoryEntry {
   references?: ChatEntryReference[];
   id: string;
   done?: boolean;
+  /**
+   * Optional assistant information.
+   * For group chat assistants.
+   */
+  assistantInfo?: Pick<AssistantInfo, 'id' | 'name' | 'avatar'>;
 }
 
 export type ChatHistory = ChatHistoryEntry[];
