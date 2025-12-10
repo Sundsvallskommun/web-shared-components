@@ -218,11 +218,10 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
   const [managedRows, setManagedRows] = React.useState(tableRows);
   const [pages, setPages] = React.useState<number>(Math.ceil(_pages || tableRows.length / pageSize));
 
-  const normalizeValue = (value: unknown): string | number => {
+  const normalizeValue = (value: unknown) => {
     if (value == null) return '';
     if (typeof value === 'string') return value.toLowerCase();
-    if (typeof value === 'number') return value;
-    return String(value).toLowerCase();
+    return value;
   };
 
   const handleSort = React.useCallback(
