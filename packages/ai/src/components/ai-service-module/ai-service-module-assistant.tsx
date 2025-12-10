@@ -44,7 +44,16 @@ export interface AIServiceModuleAssistantEssentialProps {
 export interface AIServiceModuleAssistantProps
   extends Omit<React.ComponentPropsWithoutRef<'div'>, 'onSubmit'>,
     Pick<AIServiceModuleDefaultProps, 'inverted'>,
-    Pick<AIFeedProps, 'avatars' | 'titles' | 'onGiveFeedback' | 'showReferences' | 'showFeedback' | 'showTitles'>,
+    Pick<
+      AIFeedProps,
+      | 'getAssistantInfoFromHistory'
+      | 'avatars'
+      | 'titles'
+      | 'onGiveFeedback'
+      | 'showReferences'
+      | 'showFeedback'
+      | 'showTitles'
+    >,
     AIServiceModuleAssistantEssentialProps {
   history?: ChatHistory;
   value?: string;
@@ -77,6 +86,7 @@ export const AIServiceModuleAssistant = React.forwardRef<HTMLDivElement, AIServi
       onNewSession,
       titles,
       assistant,
+      getAssistantInfoFromHistory,
       ...rest
     } = props;
 
@@ -126,6 +136,7 @@ export const AIServiceModuleAssistant = React.forwardRef<HTMLDivElement, AIServi
                 showFeedback={showFeedback}
                 showTitles={showTitles}
                 assistant={assistant}
+                getAssistantInfoFromHistory={getAssistantInfoFromHistory}
               />
             </div>
           ) : (

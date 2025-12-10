@@ -14,7 +14,14 @@ export interface AIServiceModuleAssistantExpandedProps
   extends React.ComponentPropsWithoutRef<'div'>,
     Pick<
       AIFeedProps,
-      'avatars' | 'showFeedback' | 'showTitles' | 'showReferences' | 'onGiveFeedback' | 'inverted' | 'titles'
+      | 'getAssistantInfoFromHistory'
+      | 'avatars'
+      | 'showFeedback'
+      | 'showTitles'
+      | 'showReferences'
+      | 'onGiveFeedback'
+      | 'inverted'
+      | 'titles'
     > {
   history: ChatHistory;
   sessionId?: string;
@@ -37,6 +44,7 @@ export const AIServiceModuleAssistantExpanded = React.forwardRef<HTMLDivElement,
       inverted,
       titles,
       assistant,
+      getAssistantInfoFromHistory,
       ...rest
     } = props;
 
@@ -106,6 +114,7 @@ export const AIServiceModuleAssistantExpanded = React.forwardRef<HTMLDivElement,
             }}
             showFeedback={showFeedback}
             showTitles={showTitles}
+            getAssistantInfoFromHistory={getAssistantInfoFromHistory}
             onGiveFeedback={handleGiveFeedBack}
             inverted={inverted}
             titles={titles}

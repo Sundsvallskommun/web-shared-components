@@ -192,11 +192,19 @@ export const useChat = (options?: useChatOptions) => {
           updateHistory(currentSession, (history: ChatHistory) => {
             const newHistory = [...history];
             const index = history.findIndex((chat) => chat.id === answerId);
+            const newAssistantInfo = parsedData?.tools?.assistants?.[0]
+              ? {
+                  id: parsedData.tools.assistants[0].id,
+                  name: parsedData.tools.assistants[0].handle,
+                }
+              : undefined;
+
             if (index === -1) {
               newHistory.push({
                 origin: 'assistant',
                 text: parsedData.answer,
                 id: answerId,
+                assistantInfo: newAssistantInfo,
                 done: false,
               });
             } else {
@@ -205,6 +213,7 @@ export const useChat = (options?: useChatOptions) => {
                 text: history[index]?.text + parsedData.answer,
                 id: answerId,
                 done: false,
+                assistantInfo: newAssistantInfo ?? history[index]?.assistantInfo,
               };
             }
 
@@ -230,6 +239,7 @@ export const useChat = (options?: useChatOptions) => {
               text: answer,
               id: answerId,
               done: true,
+              assistantInfo: history[index]?.assistantInfo,
               references: references.slice(0, MAX_REFERENCE_COUNT),
             };
             return newHistory;
@@ -282,6 +292,9 @@ export const useChat = (options?: useChatOptions) => {
               const newHistory = [...history];
               const index = history.findIndex((entry) => entry.id === answerId);
               newHistory[index].text = res.answer;
+              newHistory[index].assistantInfo = res?.tools?.assistants?.[0]
+                ? { name: res?.tools?.assistants?.[0]?.handle, id: res?.tools?.assistants?.[0]?.id }
+                : undefined;
               newHistory[index].done = true;
 
               const refenrences =

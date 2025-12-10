@@ -11,7 +11,7 @@ import {
   OriginTitleMap,
   SessionHistory,
 } from '../../types';
-import { AIFeed } from '../ai-feed/ai-feed';
+import { AIFeed, AIFeedProps } from '../ai-feed/ai-feed';
 import { AssistantPresentation } from '../assistant-presentation';
 import { Bubble } from '../bubble';
 import { InputSection } from '../input-section';
@@ -57,6 +57,7 @@ export interface AICornerModuleDefaultProps {
 type InfoLink = { url: string; description: string };
 export interface AICornerModuleProps
   extends AICornerModuleDefaultProps,
+    Pick<AIFeedProps, 'getAssistantInfoFromHistory'>,
     Omit<React.ComponentPropsWithoutRef<'div'>, 'children'> {
   sessionId?: string;
   /**
@@ -114,6 +115,7 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
     avatars,
     originTitles,
     onChangeAssistant,
+    getAssistantInfoFromHistory: _getAssistantInfoFromHistory,
     ...rest
   } = props;
 
@@ -131,7 +133,8 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
   const [showAssistantSelector, setShowAssistantSelector] = React.useState<boolean>(false);
   const isFullscreen = fullscreen && !isMobile;
   const scrollRef = React.useRef<HTMLDivElement>(null);
-
+  const getAssistantInfoFromHistory =
+    _getAssistantInfoFromHistory ?? (settings?.is_group_chat && settings?.group_chat_assistants);
   if (!assistant) {
     throw new Error('No assistant found');
   }
@@ -391,6 +394,7 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
                     showFeedback={showFeedback}
                     onGiveFeedback={handleAutoScroll}
                     size={isFullscreen ? 'lg' : 'sm'}
+                    getAssistantInfoFromHistory={getAssistantInfoFromHistory}
                     avatars={{
                       user: getUserAvatar(),
                       assistant: (

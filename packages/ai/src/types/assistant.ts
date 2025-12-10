@@ -9,6 +9,11 @@ export interface AssistantSettings {
   hash?: string;
   app?: string;
   is_group_chat?: boolean;
+  /**
+   * Show info about each assistant in group chat
+   * @default false
+   */
+  group_chat_assistants?: boolean;
 }
 
 type LanguageCode = string | 'default';
