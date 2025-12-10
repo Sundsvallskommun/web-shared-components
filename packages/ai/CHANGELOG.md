@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@3.0.3...@sk-web-gui/ai@3.1.0) (2025-12-10)
+
+### Features
+
+- show groupchat assistants in feed ([a239272](https://github.com/Sundsvallskommun/web-shared-components/commit/a2392729f72656bd787881b921fd11f146fc00c7))
+
 ## [3.0.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@3.0.2...@sk-web-gui/ai@3.0.3) (2025-11-27)
 
 ### Bug Fixes
