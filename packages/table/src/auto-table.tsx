@@ -119,15 +119,15 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
     const value = headerparts.reduce((value, headerpart) => {
       if (value !== null) {
         if (value) {
-          return value[headerpart] ? value[headerpart] : undefined;
+          return value[headerpart] ?? '';
         }
-        return undefined;
+        return '';
       }
 
       return item[headerpart];
     }, null);
 
-    return value || '';
+    return value;
   };
 
   const getLabel = (header: AutoTableHeader | string) => {
