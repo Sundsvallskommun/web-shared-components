@@ -119,15 +119,15 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
     const value = headerparts.reduce((value, headerpart) => {
       if (value !== null) {
         if (value) {
-          return value[headerpart] ? value[headerpart] : undefined;
+          return value[headerpart] ?? '';
         }
-        return undefined;
+        return '';
       }
 
       return item[headerpart];
     }, null);
 
-    return value || '';
+    return value;
   };
 
   const getLabel = (header: AutoTableHeader | string) => {
@@ -218,38 +218,28 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
   const [managedRows, setManagedRows] = React.useState(tableRows);
   const [pages, setPages] = React.useState<number>(Math.ceil(_pages || tableRows.length / pageSize));
 
+  const normalizeValue = (value: unknown) => {
+    if (value == null) return '';
+    if (typeof value === 'string') return value.toLowerCase();
+    return value;
+  };
+
   const handleSort = React.useCallback(
     (colIndex: number, asc: boolean) => {
-      if (autoData.length < 1) return;
-      const mode = asc ? 1 : -1;
-      const value = getValue(tableData[0], autoHeaders[colIndex]);
-      let sortedData = [...autoData];
-      switch (typeof value) {
-        case 'number':
-          sortedData = sortedData.sort(
-            (a, b) => getValue(asc ? a : b, autoHeaders[colIndex]) - getValue(asc ? b : a, autoHeaders[colIndex])
-          );
+      if (!autoData.length) return;
 
-          break;
-        case 'string':
-          sortedData = sortedData.sort((a, b) =>
-            getValue(a, autoHeaders[colIndex]).toLowerCase() > getValue(b, autoHeaders[colIndex]).toLowerCase()
-              ? 1 * mode
-              : getValue(a, autoHeaders[colIndex]).toLowerCase() < getValue(b, autoHeaders[colIndex]).toLowerCase()
-                ? -1 * mode
-                : 0
-          );
-          break;
-        default:
-          sortedData = sortedData.sort((a, b) =>
-            getValue(a, autoHeaders[colIndex]) > getValue(b, autoHeaders[colIndex])
-              ? 1 * mode
-              : getValue(a, autoHeaders[colIndex]) < getValue(b, autoHeaders[colIndex])
-                ? -1 * mode
-                : 0
-          );
-          break;
-      }
+      const direction = asc ? 1 : -1;
+      const header = autoHeaders[colIndex];
+
+      const sortedData = [...autoData].sort((a, b) => {
+        const firstValue = normalizeValue(getValue(a, header));
+        const secondValue = normalizeValue(getValue(b, header));
+
+        if (firstValue < secondValue) return -1 * direction;
+        if (firstValue > secondValue) return 1 * direction;
+        return 0;
+      });
+
       setTableData(sortedData);
     },
     [autoData, sortIndex, sortModeOrder, autodata]
