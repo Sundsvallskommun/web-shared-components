@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.12](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@3.2.11...@sk-web-gui/table@3.2.12) (2025-12-15)
+
+### Bug Fixes
+
+- do not stringify all values on normalization ([a08ee4b](https://github.com/Sundsvallskommun/web-shared-components/commit/a08ee4b0b9c0aa001ab6f483231fd44bcfbcd9ee))
+- normalize values on sorting to avoid calling toLowerCase for numbers ([a112af2](https://github.com/Sundsvallskommun/web-shared-components/commit/a112af2ecd507ef429c9969f6b9de1b159a5ca06))
+- return zeros and empty strings instead of undefined and nulls ([2dd4069](https://github.com/Sundsvallskommun/web-shared-components/commit/2dd40697092331bc378a20dce5757d0ffc871b34))
+
 ## [3.2.11](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@3.2.10...@sk-web-gui/table@3.2.11) (2025-11-27)
 
 **Note:** Version bump only for package @sk-web-gui/table
