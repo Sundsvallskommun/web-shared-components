@@ -59,7 +59,7 @@ export const DisclosureComponent = React.forwardRef<HTMLDivElement, DisclosureIn
   const { onClose, onOpen, ...accordionContext } = useAccordion();
   const size = _size || accordionContext.size || 'md';
   const _open = accordionContext.open;
-  const [disclosureOpen, setDisclosureOpen] = React.useState(initalOpen ?? propsOpen ?? false);
+  const [disclosureOpen, setDisclosureOpen] = React.useState(initalOpen ?? false);
   const autoId = React.useId();
   const id = _id || `sk-disclosure-${autoId}`;
   const open = propsOpen ?? disclosureOpen;
@@ -110,9 +110,9 @@ export const DisclosureComponent = React.forwardRef<HTMLDivElement, DisclosureIn
     <DisclosureContext.Provider value={context}>
       <div
         ref={ref}
-        className={cx(classes, disclosureOpen ? 'sk-disclosure-is-open' : undefined, className)}
+        className={cx(classes, open ? 'sk-disclosure-is-open' : undefined, className)}
         id={id}
-        data-open={disclosureOpen}
+        data-open={open}
         data-variant={variant}
         data-inverted={inverted}
         {...rest}

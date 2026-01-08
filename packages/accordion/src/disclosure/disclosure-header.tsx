@@ -36,7 +36,9 @@ export const DisclosureHeader = React.forwardRef<HTMLDivElement, DisclosureHeade
   const inverted = propsInverted ?? contextInverted;
   const classes = useDisclosureHeaderClass({ size, disabled, variant });
 
-  setHasLeadingIcon?.(getValidChildren(props.children)[0].type === DisclosureHeaderIcon);
+  React.useEffect(() => {
+    setHasLeadingIcon?.(getValidChildren(props.children)?.[0]?.type === DisclosureHeaderIcon);
+  }, [setHasLeadingIcon, props.children]);
 
   const context = {
     id,
