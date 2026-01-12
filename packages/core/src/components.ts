@@ -2,6 +2,7 @@ import { CSSRuleObject, PluginAPI } from 'tailwindcss/types/config';
 
 // components
 import { Accordion } from './components/accordion';
+import { Alert } from './components/alert';
 import { Avatar } from './components/avatar';
 import { Badge } from './components/badge';
 import { Breadcrumb } from './components/breadcrumb';
@@ -68,6 +69,7 @@ interface ComponentWithDeps {
 
 export const components: ComponentWithDeps[] = [
   { comp: Accordion, deps: [Button, Divider, Icon, Label] },
+  { comp: Alert, deps: [Button, Icon] },
   { comp: Avatar },
   { comp: Badge },
   { comp: Breadcrumb, deps: [Link] },
