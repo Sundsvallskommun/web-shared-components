@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import { FormControl, FormLabel, Textarea, TextareaProps } from '../src';
 import { useForm } from 'react-hook-form';
 import Button from '@sk-web-gui/button';
+import Icon from '@sk-web-gui/icon';
+import { Send } from 'lucide-react';
 
 export default {
   title: 'Komponenter/Textarea',
@@ -82,3 +84,35 @@ export const WithUseForm = () => {
     </FormControl>
   );
 };
+
+export const TextareaGroup = () => (
+  <div className="w-full flex flex-col gap-24">
+    <p>
+      Du kan lägga din textarea i en grupp, och på så vis lägga knappar och annan informationen visuellt innanför
+      textrutan
+    </p>
+    <FormControl>
+      <FormLabel>Text i grupp med counter</FormLabel>
+      <Textarea.Group>
+        <Textarea showCount maxLength={200} placeholder="Beskriv ditt ärende..." />
+      </Textarea.Group>
+    </FormControl>
+    <FormControl>
+      <FormLabel>Text i grupp</FormLabel>
+      <Textarea.Group>
+        <Textarea placeholder="Beskriv ditt ärende..." />
+      </Textarea.Group>
+    </FormControl>
+    <FormControl>
+      <FormLabel>Text i grupp med knapp</FormLabel>
+      <Textarea.Group>
+        <Textarea placeholder="Beskriv ditt ärende..." />
+        <div className="w-full flex justify-end py-7 px-11">
+          <Button iconButton size="sm">
+            <Icon icon={<Send />} />
+          </Button>
+        </div>
+      </Textarea.Group>
+    </FormControl>
+  </div>
+);
