@@ -287,6 +287,47 @@ function timeAndDatePicker() {
   };
 }
 
+function textareaGroup() {
+  return {
+    '&-textarea': {
+      ...inputGroup(),
+      '&-group-inner': {
+        '@apply h-auto': {},
+        '@apply flex-wrap': {},
+        '.sk-form-input-textarea': {
+          '@apply -mb-6': {},
+          '@apply w-full': {},
+        },
+        '.sk-form-textarea-counter': {
+          '@apply w-full': {},
+          '@apply border-t-divider border-t-1': {},
+        },
+        '&&-lg': {
+          '@apply min-h-48 h-auto': {},
+          '.sk-form-textarea-counter': {
+            '@apply px-20': {},
+            '@apply py-11': {},
+          },
+        },
+        '&&-md': {
+          '@apply min-h-40 h-auto': {},
+          '.sk-form-textarea-counter': {
+            '@apply px-16': {},
+            '@apply py-7': {},
+          },
+        },
+        '&&-sm': {
+          '@apply min-h-32 h-auto': {},
+          '.sk-form-textarea-counter': {
+            '@apply px-12': {},
+            '@apply py-5': {},
+          },
+        },
+      },
+    },
+  };
+}
+
 export const Input = () => ({
   '.sk-form-input': {
     '@apply grow-0': {},
@@ -349,5 +390,6 @@ export const Input = () => ({
     ...inputGroup(),
     ...addin(),
     ...addon(),
+    ...textareaGroup(),
   },
 });
