@@ -1,7 +1,8 @@
-import { Meta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import { Button, ButtonProps } from '../src';
 import { Icon } from '@sk-web-gui/icon';
 import { CandyCane } from 'lucide-react';
+import { expect, fn, userEvent, within } from '@storybook/test';
 
 export default {
   title: 'Komponenter/Button',
@@ -130,123 +131,78 @@ export const Template = ({ children, ...args }: React.ComponentPropsWithRef<Butt
 
 Template.storyName = 'Button';
 
-// export const Grupp = () => (
-//   <div className="space-y-4">
-//     <div>
-//       <Button.Group variant="solid" color="primary" className="space-x-2">
-//         <Button>Button</Button>
-//         <Button>Button</Button>
-//         <Button>Button</Button>
-//         <Button>Button</Button>
-//       </Button.Group>
-//     </div>
+type Story = StoryObj<typeof Button>;
 
-//     <div>
-//       <Button.Group variant="solid" color="orange" className="space-x-2">
-//         <Button>Button</Button>
-//         <Button>Button</Button>
-//         <Button>Button</Button>
-//         <Button>Button</Button>
-//       </Button.Group>
-//     </div>
+export const ClickTest: Story = {
+  name: 'Test: Click',
+  tags: ['dev-only', '!autodocs'],
+  args: {
+    children: 'Click me',
+    onClick: fn(),
+  },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole('button', { name: 'Click me' });
 
-//     <div>
-//       <Button.Group variant="solid" color="primary" className="space-x-2">
-//         <Button iconButton>
-//           <Announcement size={16} />
-//         </Button>
+    await userEvent.click(button);
+    await expect(args.onClick).toHaveBeenCalledTimes(1);
+  },
+};
 
-//         <Button iconButton>
-//           <Announcement size={16} />
-//         </Button>
+export const DisabledTest: Story = {
+  name: 'Test: Disabled',
+  tags: ['dev-only', '!autodocs'],
+  args: {
+    children: 'Disabled button',
+    disabled: true,
+    onClick: fn(),
+  },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole('button', { name: 'Disabled button' });
 
-//         <Button iconButton>
-//           <Announcement size={16} />
-//         </Button>
+    await expect(button).toBeDisabled();
+    await userEvent.click(button);
+    await expect(args.onClick).not.toHaveBeenCalled();
+  },
+};
 
-//         <Button iconButton>
-//           <Announcement size={16} />
-//         </Button>
-//       </Button.Group>
-//     </div>
-//   </div>
-// );
+export const LoadingTest: Story = {
+  name: 'Test: Loading',
+  tags: ['dev-only', '!autodocs'],
+  args: {
+    children: 'Loading',
+    loading: true,
+    loadingText: 'Loading...',
+    onClick: fn(),
+  },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole('button');
 
-// export const Fastsittandes = () => (
-//   <div className="space-y-4">
-//     <div>
-//       <Button.Group variant="primary" attached>
-//         <Button>Button</Button>
-//         <Button>Button</Button>
-//         <Button>Button</Button>
-//         <Button>Button</Button>
-//       </Button.Group>
-//     </div>
+    await expect(button).toBeDisabled();
+    await userEvent.click(button);
+    await expect(args.onClick).not.toHaveBeenCalled();
+  },
+};
 
-//     <div>
-//       <Button.Group variant="primary" size="lg" attached>
-//         <Button>Button</Button>
-//         <Button>Button</Button>
-//         <Button>Button</Button>
-//         <Button>Button</Button>
-//       </Button.Group>
-//     </div>
+export const VariantsTest: Story = {
+  name: 'Test: Variants',
+  tags: ['dev-only', '!autodocs'],
+  render: () => (
+    <div className="flex gap-2">
+      <Button variant="primary">Primary</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="tertiary">Tertiary</Button>
+      <Button variant="link">Link</Button>
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
 
-//     <div>
-//       <Button.Group variant="primary" color="primary" attached>
-//         <Button>Button</Button>
-//         <Button>Button</Button>
-//         <Button>Button</Button>
-//         <Button>Button</Button>
-//       </Button.Group>
-//     </div>
-
-//     <div>
-//       <Button.Group variant="primary" attached>
-//         <Button>Button</Button>
-//         <Button color="primary">Button</Button>
-//         <Button>Button</Button>
-//       </Button.Group>
-//     </div>
-
-//     <div>
-//       <Button.Group variant="primary" attached>
-//         <Button iconButton>
-//           <Announcement size={16} />
-//         </Button>
-
-//         <Button iconButton>
-//           <Announcement size={16} />
-//         </Button>
-
-//         <Button iconButton>
-//           <Announcement size={16} />
-//         </Button>
-
-//         <Button iconButton>
-//           <Announcement size={16} />
-//         </Button>
-//       </Button.Group>
-//     </div>
-
-//     <div>
-//       <Button.Group variant="primary" attached>
-//         <Button iconButton>
-//           <Announcement size={32} />
-//         </Button>
-
-//         <Button iconButton>
-//           <Announcement size={32} />
-//         </Button>
-
-//         <Button iconButton>
-//           <Announcement size={32} />
-//         </Button>
-
-//         <Button iconButton>
-//           <Announcement size={32} />
-//         </Button>
-//       </Button.Group>
-//     </div>
-//   </div>
-// );
+    await expect(canvas.getByRole('button', { name: 'Primary' })).toBeInTheDocument();
+    await expect(canvas.getByRole('button', { name: 'Secondary' })).toBeInTheDocument();
+    await expect(canvas.getByRole('button', { name: 'Tertiary' })).toBeInTheDocument();
+    await expect(canvas.getByRole('button', { name: 'Link' })).toBeInTheDocument();
+  },
+};

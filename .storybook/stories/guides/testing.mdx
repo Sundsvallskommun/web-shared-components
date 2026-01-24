@@ -1,0 +1,153 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Guider/Testning" />
+
+# Testning
+
+Projektet använder [Vitest](https://vitest.dev/) för testning med två typer av tester:
+
+## Köra tester
+
+```bash
+# Kör alla tester
+yarn test
+
+# Kör endast unit-tester (snabbt, jsdom)
+yarn test:unit
+
+# Kör endast Storybook play functions (browser via Playwright)
+yarn test:storybook
+
+# Kör tester i watch-läge
+yarn test:watch
+```
+
+---
+
+## Unit-tester
+
+Unit-tester finns i `packages/*/src/*.test.tsx` och körs i jsdom. De testar implementation och interna detaljer.
+
+### Exempel
+
+```tsx
+import { describe, it, expect, vi } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { Button } from './button';
+
+describe('Button', () => {
+  it('renderar med children', () => {
+    render(<Button>Klicka</Button>);
+    expect(screen.getByRole('button', { name: 'Klicka' })).toBeInTheDocument();
+  });
+
+  it('applicerar storlek-klasser', () => {
+    render(<Button size="sm">Liten</Button>);
+    expect(screen.getByRole('button')).toHaveClass('sk-btn-sm');
+  });
+
+  it('vidarebefordrar ref till button-elementet', () => {
+    const ref = vi.fn();
+    render(<Button ref={ref}>Med Ref</Button>);
+    expect(ref).toHaveBeenCalled();
+  });
+});
+```
+
+### Bra för att testa
+
+- CSS-klasser och data-attribut
+
+---
+
+## Play functions (Storybook)
+
+Play functions finns i story-filer och körs i en riktig browser via Playwright. De testar användarinteraktion.
+
+### Exempel
+
+```tsx
+import { Meta, StoryObj } from '@storybook/react';
+import { expect, fn, userEvent, within } from '@storybook/test';
+import { Button } from '../src';
+
+export default {
+  title: 'Komponenter/Button',
+  component: Button,
+} as Meta<typeof Button>;
+
+type Story = StoryObj<typeof Button>;
+
+export const ClickTest: Story = {
+  name: 'Test: Click',
+  tags: ['dev-only', '!autodocs'],
+  args: {
+    children: 'Klicka',
+    onClick: fn(),
+  },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole('button', { name: 'Klicka' });
+
+    await userEvent.click(button);
+    await expect(args.onClick).toHaveBeenCalledTimes(1);
+  },
+};
+```
+
+### Viktiga detaljer
+
+- **`tags: ['dev-only', '!autodocs']`** - Döljer testet från produktion och autodocs
+- **`fn()`** - Skapar en mock-funktion för att spåra anrop
+- **`within(canvasElement)`** - Begränsar queries till story-containern
+- **`step()`** - Organiserar testet i steg (valfritt)
+
+### Bra för att testa
+
+- Användarinteraktioner (klick, tangentbord, fokus)
+- Modal/dialog-beteenden
+- Tillgänglighet i riktig browser
+
+---
+
+## Lägga till nya tester
+
+### Unit-test
+
+1. Skapa `packages/{komponent}/src/{komponent}.test.tsx`
+2. Kör `yarn test:unit` för att verifiera
+
+### Play function
+
+1. Lägg till i befintlig story-fil `packages/{komponent}/stories/*.stories.tsx`
+2. Lägg till `tags: ['dev-only', '!autodocs']` för att dölja i prod
+3. Kör `yarn test:storybook` för att verifiera
+
+---
+
+## Felsökning
+
+### Tester hittar inte element
+
+Använd `screen.debug()` eller `canvas.debug()` för att se DOM:en.
+
+### Play function timeout
+
+Modal och dialog kan behöva `waitFor()`:
+
+```tsx
+import { waitFor } from '@storybook/test';
+
+await waitFor(() => {
+  expect(document.querySelector('[role="dialog"]')).toBeInTheDocument();
+});
+```
+
+### TypeScript-fel i testfiler
+
+Se till att `vitest.setup.ts` importerar `@testing-library/jest-dom`:
+
+```tsx
+import '@testing-library/jest-dom';
+```
