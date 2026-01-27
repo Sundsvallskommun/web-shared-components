@@ -11,3 +11,4 @@ export * from './new-session-button';
 export * from './ai-service-module';
 export * from './assistant-avatar';
 export * from './assistant-switch';
+export * from './chat-input';
