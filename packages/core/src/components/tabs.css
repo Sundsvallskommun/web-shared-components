@@ -1,0 +1,111 @@
+/**
+ * Tabs Component - Pure CSS with CSS Variables
+ * Converted from @apply directives
+ */
+
+@layer components {
+  .sk-tabs {
+    width: 100%;
+  }
+
+  .sk-tabs-list {
+    display: flex;
+    align-items: center;
+    gap: var(--sk-spacing-20);
+    border-bottom-width: var(--sk-spacing-1);
+    border-bottom-style: solid;
+    border-bottom-color: transparent;
+  }
+
+  .sk-tabs-list[data-underline="true"] {
+    border-bottom-color: var(--sk-colors-divider);
+  }
+
+  .sk-tabs-list-item {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--sk-spacing-10);
+  }
+
+  .sk-tabs-list-item[data-size="sm"] > button {
+    font-size: var(--sk-fontSize-small);
+    line-height: var(--sk-lineHeight-small);
+  }
+
+  .sk-tabs-list-item:hover .sk-tabs-list-item-divider {
+    opacity: 0.9;
+  }
+
+  .sk-tabs-list-item-button {
+    height: auto;
+    border-width: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: var(--sk-spacing-2);
+    padding-right: var(--sk-spacing-2);
+    border-radius: var(--sk-spacing-4);
+  }
+
+  .sk-tabs-list-item-button[aria-disabled="true"] {
+    color: var(--sk-colors-dark-disabled);
+    cursor: default;
+  }
+
+  .sk-tabs-list-item-button:focus-visible {
+    box-shadow: 0 0 0 0.3rem var(--sk-colors-ring);
+    outline: none;
+  }
+
+  .sk-tabs-list-item-button .sk-callout {
+    position: absolute;
+    align-self: flex-end;
+  }
+
+  .sk-tabs-list-item .sk-tabs-list-item-divider {
+    margin: 0;
+    min-height: var(--sk-spacing-2);
+    height: var(--sk-spacing-2);
+    opacity: 0;
+  }
+
+  .sk-tabs-list-item[data-current="true"] .sk-tabs-list-item-divider {
+    opacity: 1;
+  }
+
+  /* Color variants */
+  .sk-tabs-list-item[data-color="warning"] .sk-tabs-list-item-divider {
+    background-color: var(--sk-colors-warning-surface-primary-DEFAULT);
+  }
+  .sk-tabs-list-item[data-color="error"] .sk-tabs-list-item-divider {
+    background-color: var(--sk-colors-error-surface-primary-DEFAULT);
+  }
+  .sk-tabs-list-item[data-color="success"] .sk-tabs-list-item-divider {
+    background-color: var(--sk-colors-success-surface-primary-DEFAULT);
+  }
+  .sk-tabs-list-item[data-color="info"] .sk-tabs-list-item-divider {
+    background-color: var(--sk-colors-info-surface-primary-DEFAULT);
+  }
+  .sk-tabs-list-item[data-color="vattjom"] .sk-tabs-list-item-divider {
+    background-color: var(--sk-colors-vattjom-surface-primary-DEFAULT);
+  }
+  .sk-tabs-list-item[data-color="juniskar"] .sk-tabs-list-item-divider {
+    background-color: var(--sk-colors-juniskar-surface-primary-DEFAULT);
+  }
+  .sk-tabs-list-item[data-color="bjornstigen"] .sk-tabs-list-item-divider {
+    background-color: var(--sk-colors-bjornstigen-surface-primary-DEFAULT);
+  }
+  .sk-tabs-list-item[data-color="gronsta"] .sk-tabs-list-item-divider {
+    background-color: var(--sk-colors-gronsta-surface-primary-DEFAULT);
+  }
+  .sk-tabs-list-item[data-color="tertiary"] .sk-tabs-list-item-divider {
+    background-color: var(--sk-colors-primary-surface-DEFAULT);
+  }
+
+  .sk-tabs-panels {
+    margin-top: var(--sk-spacing-20);
+  }
+
+  .sk-tabs-content:not([data-selected="true"]) {
+    display: none;
+  }
+}

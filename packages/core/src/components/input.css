@@ -1,0 +1,571 @@
+/**
+ * Input Component - Tailwind CSS 4
+ * Migrerad från input.ts
+ */
+
+@layer components {
+  .sk-form-input {
+    flex-grow: 0;
+    color: var(--sk-colors-dark-primary);
+
+    /* Standard input styles */
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--sk-colors-input-field-outline-DEFAULT);
+    background-color: var(--sk-colors-input-field-surface-DEFAULT);
+  }
+
+  .sk-form-input::placeholder {
+    color: var(--sk-colors-dark-placeholder);
+  }
+
+  .sk-form-input:hover {
+    border-color: var(--sk-colors-input-field-outline-hover);
+  }
+
+  /* Focus */
+  .sk-form-input:focus {
+    border-color: var(--sk-colors-input-field-surface-DEFAULT);
+    outline: none;
+    box-shadow: 0 0 0 var(--sk-spacing-2) var(--sk-colors-background-content),
+                0 0 0 calc(var(--sk-spacing-2) + var(--sk-spacing-3)) var(--sk-colors-ring);
+  }
+
+  .sk-form-input:focus-within {
+    border-color: var(--sk-colors-input-field-surface-DEFAULT);
+    outline: none;
+    box-shadow: 0 0 0 var(--sk-spacing-2) var(--sk-colors-background-content),
+                0 0 0 calc(var(--sk-spacing-2) + var(--sk-spacing-3)) var(--sk-colors-ring);
+  }
+
+  .sk-form-input:not(:invalid):not([aria-invalid="true"]):focus:hover {
+    border-color: var(--sk-colors-input-field-surface-DEFAULT);
+  }
+
+  .sk-form-input[data-hideextra="true"] {
+    -moz-appearance: textfield;
+  }
+
+  .sk-form-input[data-hideextra="true"]::-webkit-outer-spin-button,
+  .sk-form-input[data-hideextra="true"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+    margin: 0px;
+  }
+
+  /* Invalid */
+  .sk-form-input:invalid,
+  .sk-form-input[aria-invalid="true"] {
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--sk-colors-error-surface-primary-DEFAULT);
+  }
+
+  /* Disabled */
+  .sk-form-input:disabled,
+  .sk-form-input[aria-disabled="true"] {
+    background-color: var(--sk-colors-input-field-surface-disabled);
+    border-color: var(--sk-colors-input-field-outline-disabled);
+    color: var(--sk-colors-dark-disabled);
+  }
+
+  .sk-form-input:disabled:hover,
+  .sk-form-input[aria-disabled="true"]:hover {
+    border-color: var(--sk-colors-input-field-outline-disabled);
+  }
+
+  /* Read only */
+  .sk-form-input:read-only {
+    background-color: var(--sk-colors-input-field-surface-DEFAULT);
+    border-color: var(--sk-colors-input-field-outline-disabled);
+    color: var(--sk-colors-dark-secondary);
+  }
+
+  .sk-form-input:read-only::placeholder {
+    color: var(--sk-colors-dark-secondary);
+  }
+
+  /* Size: lg */
+  .sk-form-input.sk-form-input-lg {
+    border-radius: var(--sk-radius-button-lg);
+    padding-left: var(--sk-spacing-20);
+    padding-right: var(--sk-spacing-20);
+    padding-top: var(--sk-spacing-11);
+    padding-bottom: var(--sk-spacing-11);
+    gap: var(--sk-spacing-8);
+    font-size: var(--sk-fontSize-input-large);
+    line-height: var(--sk-lineHeight-input-large);
+    font-weight: 400;
+    height: var(--sk-spacing-48);
+  }
+
+  /* Size: md */
+  .sk-form-input.sk-form-input-md {
+    border-radius: var(--sk-radius-button-md);
+    padding-left: var(--sk-spacing-16);
+    padding-right: var(--sk-spacing-16);
+    padding-top: var(--sk-spacing-7);
+    padding-bottom: var(--sk-spacing-7);
+    gap: var(--sk-spacing-8);
+    font-size: var(--sk-fontSize-input-medium);
+    line-height: var(--sk-lineHeight-input-medium);
+    font-weight: 400;
+    height: var(--sk-spacing-40);
+  }
+  .sk-form-input.sk-form-input-md:focus-visible {
+    border-radius: var(--sk-radius-button-md);
+    padding-left: var(--sk-spacing-16);
+    padding-right: var(--sk-spacing-16);
+    padding-top: var(--sk-spacing-7);
+    padding-bottom: var(--sk-spacing-7);
+    gap: var(--sk-spacing-8);
+    font-size: var(--sk-fontSize-input-medium);
+    line-height: var(--sk-lineHeight-input-medium);
+    font-weight: 400;
+    height: var(--sk-spacing-40);
+  }
+
+  /* Size: sm */
+  .sk-form-input.sk-form-input-sm {
+    border-radius: var(--sk-radius-button-sm);
+    padding-left: var(--sk-spacing-12);
+    padding-right: var(--sk-spacing-12);
+    padding-top: var(--sk-spacing-5);
+    padding-bottom: var(--sk-spacing-5);
+    gap: var(--sk-spacing-6);
+    font-size: var(--sk-fontSize-input-small);
+    line-height: var(--sk-lineHeight-input-small);
+    font-weight: 400;
+    height: var(--sk-spacing-32);
+  }
+
+  /* Textarea */
+  .sk-form-input.sk-form-input-textarea {
+    height: auto;
+  }
+
+  .sk-form-input-textarea-warning {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* Date/time picker icons - Base styles */
+  .sk-form-input::-webkit-inner-spin-button,
+  .sk-form-input::-webkit-calendar-picker-indicator {
+    display: block;
+    padding: 0;
+    padding-left: var(--sk-spacing-6);
+    margin: 0;
+    background: none;
+    background-color: var(--sk-colors-dark-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .sk-form-input::-webkit-inner-spin-button,
+    .sk-form-input::-webkit-calendar-picker-indicator {
+      padding-left: var(--sk-spacing-8);
+    }
+  }
+
+  /* Date picker - Calendar icon mask */
+  .sk-form-input[type="date"]::-webkit-inner-spin-button,
+  .sk-form-input[type="date"]::-webkit-calendar-picker-indicator {
+    mask: url("data:image/svg+xml;utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect width='18' height='18' x='3' y='4' rx='2' ry='2' /><line x1='16' x2='16' y1='2' y2='6' /><line x1='8' x2='8' y1='2' y2='6' /><line x1='3' x2='21' y1='10' y2='10' /></svg>") no-repeat 100% 100%;
+    -webkit-mask: url("data:image/svg+xml;utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect width='18' height='18' x='3' y='4' rx='2' ry='2' /><line x1='16' x2='16' y1='2' y2='6' /><line x1='8' x2='8' y1='2' y2='6' /><line x1='3' x2='21' y1='10' y2='10' /></svg>") no-repeat 100% 100%;
+    mask-size: contain;
+    -webkit-mask-size: contain;
+  }
+
+  /* Datetime-local picker - Calendar icon mask */
+  .sk-form-input[type="datetime-local"]::-webkit-inner-spin-button,
+  .sk-form-input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    mask: url("data:image/svg+xml;utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect width='18' height='18' x='3' y='4' rx='2' ry='2' /><line x1='16' x2='16' y1='2' y2='6' /><line x1='8' x2='8' y1='2' y2='6' /><line x1='3' x2='21' y1='10' y2='10' /></svg>") no-repeat 100% 100%;
+    -webkit-mask: url("data:image/svg+xml;utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect width='18' height='18' x='3' y='4' rx='2' ry='2' /><line x1='16' x2='16' y1='2' y2='6' /><line x1='8' x2='8' y1='2' y2='6' /><line x1='3' x2='21' y1='10' y2='10' /></svg>") no-repeat 100% 100%;
+    mask-size: contain;
+    -webkit-mask-size: contain;
+  }
+
+  /* Time picker - Clock icon mask */
+  .sk-form-input[type="time"]::-webkit-inner-spin-button,
+  .sk-form-input[type="time"]::-webkit-calendar-picker-indicator {
+    mask: url("data:image/svg+xml;utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10' /><polyline points='12 6 12 12 16 14' /></svg>") no-repeat 100% 100%;
+    -webkit-mask: url("data:image/svg+xml;utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10' /><polyline points='12 6 12 12 16 14' /></svg>") no-repeat 100% 100%;
+    mask-size: contain;
+    -webkit-mask-size: contain;
+  }
+
+  .sk-form-input.sk-form-input-sm::-webkit-inner-spin-button,
+  .sk-form-input.sk-form-input-sm::-webkit-calendar-picker-indicator {
+    width: var(--sk-spacing-16);
+    height: var(--sk-spacing-16);
+    margin-right: calc(var(--sk-spacing-2) * -1);
+  }
+
+  .sk-form-input.sk-form-input-md::-webkit-inner-spin-button,
+  .sk-form-input.sk-form-input-md::-webkit-calendar-picker-indicator {
+    margin-right: calc(var(--sk-spacing-4) * -1);
+    width: var(--sk-spacing-18);
+    height: var(--sk-spacing-18);
+  }
+
+  .sk-form-input.sk-form-input-lg::-webkit-inner-spin-button,
+  .sk-form-input.sk-form-input-lg::-webkit-calendar-picker-indicator {
+    margin-right: calc(var(--sk-spacing-6) * -1);
+    width: var(--sk-spacing-20);
+    height: var(--sk-spacing-20);
+  }
+
+  .sk-form-input:disabled::-webkit-inner-spin-button,
+  .sk-form-input:disabled::-webkit-calendar-picker-indicator,
+  .sk-form-input[aria-disabled="true"]::-webkit-inner-spin-button,
+  .sk-form-input[aria-disabled="true"]::-webkit-calendar-picker-indicator {
+    background-color: var(--sk-colors-dark-disabled);
+  }
+
+  /* Addin */
+  .sk-form-input-addin {
+    background-color: transparent;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .sk-form-input-addin-sm {
+    padding-left: var(--sk-spacing-6);
+    padding-right: var(--sk-spacing-6);
+    gap: var(--sk-spacing-6);
+  }
+
+  .sk-form-input-addin-sm.sk-form-input-addin-left {
+    margin-right: calc(var(--sk-spacing-12) * -1);
+    padding-left: var(--sk-spacing-10);
+  }
+
+  .sk-form-input-addin-sm.sk-form-input-addin-right {
+    margin-left: calc(var(--sk-spacing-12) * -1);
+    padding-right: var(--sk-spacing-10);
+  }
+
+  .sk-form-input-addin-sm svg {
+    width: var(--sk-spacing-16);
+    height: var(--sk-spacing-16);
+  }
+
+  .sk-form-input-addin-md {
+    padding-left: var(--sk-spacing-8);
+    padding-right: var(--sk-spacing-8);
+    gap: var(--sk-spacing-8);
+  }
+
+  @media (min-width: 768px) {
+    .sk-form-input-addin-md {
+      padding-left: var(--sk-spacing-8);
+      padding-right: var(--sk-spacing-8);
+      gap: var(--sk-spacing-8);
+    }
+  }
+
+  .sk-form-input-addin-md.sk-form-input-addin-left {
+    margin-right: calc(var(--sk-spacing-16) * -1);
+    padding-left: var(--sk-spacing-12);
+  }
+
+  .sk-form-input-addin-md.sk-form-input-addin-right {
+    margin-left: calc(var(--sk-spacing-16) * -1);
+    padding-right: var(--sk-spacing-12);
+  }
+
+  .sk-form-input-addin-md svg {
+    width: var(--sk-spacing-20);
+    height: var(--sk-spacing-20);
+  }
+
+  .sk-form-input-addin-lg {
+    padding-left: var(--sk-spacing-8);
+    padding-right: var(--sk-spacing-8);
+    gap: var(--sk-spacing-8);
+  }
+
+  @media (min-width: 768px) {
+    .sk-form-input-addin-lg {
+      padding-left: var(--sk-spacing-8);
+      padding-right: var(--sk-spacing-8);
+      gap: var(--sk-spacing-8);
+    }
+  }
+
+  .sk-form-input-addin-lg.sk-form-input-addin-left {
+    margin-right: calc(var(--sk-spacing-20) * -1);
+    padding-left: var(--sk-spacing-16);
+  }
+
+  .sk-form-input-addin-lg.sk-form-input-addin-right {
+    margin-left: calc(var(--sk-spacing-20) * -1);
+    padding-right: var(--sk-spacing-16);
+  }
+
+  .sk-form-input-addin-lg svg {
+    width: var(--sk-spacing-22);
+    height: var(--sk-spacing-22);
+  }
+
+  /* Addon */
+  .sk-form-input-addon {
+    display: flex;
+    flex-shrink: 0;
+    position: relative;
+    align-items: center;
+    color: var(--sk-colors-dark-secondary);
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--sk-colors-input-field-outline-DEFAULT);
+    background-color: var(--sk-colors-input-field-surface-DEFAULT);
+  }
+
+  .sk-form-input-addon::placeholder {
+    color: var(--sk-colors-dark-placeholder);
+  }
+
+  .sk-form-input-addon:hover {
+    border-color: var(--sk-colors-input-field-outline-hover);
+  }
+
+  .sk-form-input-addon:focus-within {
+    border-color: var(--sk-colors-input-field-surface-DEFAULT);
+    outline: none;
+    box-shadow: 0 0 0 var(--sk-spacing-2) var(--sk-colors-background-content),
+                0 0 0 calc(var(--sk-spacing-2) + var(--sk-spacing-3)) var(--sk-colors-ring);
+  }
+
+  .sk-form-input-addon:not(:invalid):not([aria-invalid="true"]):focus-within {
+    border-color: var(--sk-colors-input-field-surface-DEFAULT);
+  }
+
+  .sk-form-input-addon.sk-form-input-addon-lg {
+    font-size: var(--sk-fontSize-input-large);
+    line-height: var(--sk-lineHeight-input-large);
+    font-weight: 400;
+    border-radius: var(--sk-radius-button-lg);
+    height: var(--sk-spacing-48);
+  }
+
+  .sk-form-input-addon.sk-form-input-addon-md {
+    font-size: var(--sk-fontSize-input-medium);
+    line-height: var(--sk-lineHeight-input-medium);
+    font-weight: 400;
+    border-radius: var(--sk-radius-button-md);
+    height: var(--sk-spacing-40);
+  }
+
+  .sk-form-input-addon.sk-form-input-addon-sm {
+    font-size: var(--sk-fontSize-input-small);
+    line-height: var(--sk-lineHeight-input-small);
+    font-weight: 400;
+    border-radius: var(--sk-radius-button-sm);
+    height: var(--sk-spacing-32);
+  }
+
+  .sk-form-input-addon.sk-form-input-addon-left {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right-width: 0;
+  }
+
+  .sk-form-input-addon.sk-form-input-addon-right {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left-width: 0;
+  }
+
+  .sk-form-input-addon .sk-form-input {
+    border-radius: 0;
+    border-width: 0;
+    background-color: transparent;
+    flex-grow: 1;
+  }
+
+  .sk-form-input-addon .sk-form-input:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  :is(.dark, .dark *) .sk-form-input-addon .sk-form-input {
+    background-color: transparent;
+  }
+
+  .sk-form-input-addon .sk-form-select {
+    border-radius: 0;
+    border-width: 0;
+    background-color: transparent;
+    flex-grow: 1;
+  }
+
+  .sk-form-input-addon .sk-form-select:hover {
+    border-width: 0;
+    background-color: transparent;
+  }
+
+  .sk-form-input-addon .sk-form-select:focus {
+    outline: none;
+    box-shadow: none;
+    z-index: 10;
+  }
+
+  :is(.dark, .dark *) .sk-form-input-addon .sk-form-select {
+    background-color: transparent;
+  }
+
+  :is(.dark, .dark *) .sk-form-input-addon .sk-form-select:hover {
+    background-color: transparent;
+  }
+
+  .sk-form-input-addon.sk-form-input-addon-left .sk-form-select {
+    border-right-width: 1px;
+    border-right-color: var(--sk-colors-divider);
+  }
+
+  .sk-form-input-addon.sk-form-input-addon-left .sk-form-select:focus {
+    border-right-color: transparent;
+  }
+
+  .sk-form-input-addon.sk-form-input-addon-right .sk-form-select {
+    border-left-width: 1px;
+    border-left-color: var(--sk-colors-divider);
+  }
+
+  .sk-form-input-addon.sk-form-input-addon-right .sk-form-select:focus {
+    border-left-color: transparent;
+  }
+
+  .sk-form-input-addon .sk-form-combobox {
+    border-radius: 0;
+    border-width: 0;
+    background-color: transparent;
+  }
+
+  .sk-form-input-addon .sk-form-combobox:focus-within {
+    outline: none;
+    box-shadow: none;
+  }
+
+  :is(.dark, .dark *) .sk-form-input-addon .sk-form-combobox {
+    background-color: transparent;
+  }
+
+  .sk-form-input-addon.sk-form-input-addon-left .sk-form-combobox {
+    border-right-width: 1px;
+    border-right-color: var(--sk-colors-divider);
+  }
+
+  .sk-form-input-addon.sk-form-input-addon-left .sk-form-combobox:focus {
+    border-right-color: transparent;
+  }
+
+  .sk-form-input-addon.sk-form-input-addon-right .sk-form-combobox {
+    border-left-width: 1px;
+    border-left-color: var(--sk-colors-divider);
+  }
+
+  .sk-form-input-addon.sk-form-input-addon-right .sk-form-combobox:focus {
+    border-left-color: transparent;
+  }
+
+  /* Input Group */
+  .sk-form-input-group-outer {
+    display: flex;
+    gap: 0;
+    max-width: 100%;
+  }
+
+  .sk-form-input-group-outer[data-hasleftaddon="true"] .sk-form-input,
+  .sk-form-input-group-outer[data-hasleftaddon="true"] .sk-form-input-group-inner {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left-width: 0;
+  }
+
+  .sk-form-input-group-outer[data-hasrightaddon="true"] .sk-form-input,
+  .sk-form-input-group-outer[data-hasrightaddon="true"] .sk-form-input-group-inner {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right-width: 0;
+  }
+
+  .sk-form-input-group-inner {
+    display: flex;
+    position: relative;
+    flex-grow: 1;
+    align-items: center;
+    color: var(--sk-colors-dark-secondary);
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--sk-colors-input-field-outline-DEFAULT);
+    background-color: var(--sk-colors-input-field-surface-DEFAULT);
+  }
+
+  .sk-form-input-group-inner::placeholder {
+    color: var(--sk-colors-dark-placeholder);
+  }
+
+  .sk-form-input-group-inner:hover {
+    border-color: var(--sk-colors-input-field-outline-hover);
+  }
+
+  .sk-form-input-group-inner:focus-within {
+    border-color: var(--sk-colors-input-field-surface-DEFAULT);
+    outline: none;
+    box-shadow: 0 0 0 var(--sk-spacing-2) var(--sk-colors-background-content),
+                0 0 0 calc(var(--sk-spacing-2) + var(--sk-spacing-3)) var(--sk-colors-ring);
+  }
+
+  .sk-form-input-group-inner:not(:invalid):not([aria-invalid="true"]):focus-within {
+    border-color: var(--sk-colors-input-field-surface-DEFAULT);
+  }
+
+  .sk-form-input-group-inner.sk-form-input-group-inner-lg {
+    font-size: var(--sk-fontSize-input-large);
+    line-height: var(--sk-lineHeight-input-large);
+    font-weight: 400;
+    border-radius: var(--sk-radius-button-lg);
+    height: var(--sk-spacing-48);
+  }
+
+  .sk-form-input-group-inner.sk-form-input-group-inner-md {
+    font-size: var(--sk-fontSize-input-medium);
+    line-height: var(--sk-lineHeight-input-medium);
+    font-weight: 400;
+    border-radius: var(--sk-radius-button-md);
+    height: var(--sk-spacing-40);
+  }
+
+  .sk-form-input-group-inner.sk-form-input-group-inner-sm {
+    font-size: var(--sk-fontSize-input-small);
+    line-height: var(--sk-lineHeight-input-small);
+    font-weight: 400;
+    border-radius: var(--sk-radius-button-sm);
+    height: var(--sk-spacing-32);
+  }
+
+  .sk-form-input-group-inner .sk-form-input {
+    border-radius: 0;
+    border-width: 0;
+    background-color: transparent;
+    flex-grow: 1;
+  }
+
+  .sk-form-input-group-inner .sk-form-input:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  :is(.dark, .dark *) .sk-form-input-group-inner .sk-form-input {
+    background-color: transparent;
+  }
+}

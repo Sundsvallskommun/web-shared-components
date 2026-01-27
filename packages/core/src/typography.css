@@ -1,0 +1,227 @@
+/**
+ * Typography Utilities - Tailwind CSS 4
+ * Custom text utilities with font-size, line-height, and font-weight combined
+ * Using @utility directive for @apply compatibility
+ */
+
+/* Display 1 */
+@utility text-display-1 {
+  font-size: var(--sk-fontSize-display-1-DEFAULT);
+  line-height: var(--sk-lineHeight-display-1-DEFAULT);
+  font-weight: 800;
+}
+@utility text-display-1-lg {
+  font-size: var(--sk-fontSize-display-1-lg);
+  line-height: var(--sk-lineHeight-display-1-lg);
+  font-weight: 800;
+}
+@utility text-display-1-md {
+  font-size: var(--sk-fontSize-display-1-md);
+  line-height: var(--sk-lineHeight-display-1-md);
+  font-weight: 800;
+}
+@utility text-display-1-sm {
+  font-size: var(--sk-fontSize-display-1-sm);
+  line-height: var(--sk-lineHeight-display-1-sm);
+  font-weight: 800;
+}
+
+/* Display 2 */
+@utility text-display-2 {
+  font-size: var(--sk-fontSize-display-2-DEFAULT);
+  line-height: var(--sk-lineHeight-display-2-DEFAULT);
+  font-weight: 800;
+}
+@utility text-display-2-lg {
+  font-size: var(--sk-fontSize-display-2-lg);
+  line-height: var(--sk-lineHeight-display-2-lg);
+  font-weight: 800;
+}
+@utility text-display-2-md {
+  font-size: var(--sk-fontSize-display-2-md);
+  line-height: var(--sk-lineHeight-display-2-md);
+  font-weight: 800;
+}
+@utility text-display-2-sm {
+  font-size: var(--sk-fontSize-display-2-sm);
+  line-height: var(--sk-lineHeight-display-2-sm);
+  font-weight: 800;
+}
+
+/* Display 3 */
+@utility text-display-3 {
+  font-size: var(--sk-fontSize-display-3-DEFAULT);
+  line-height: var(--sk-lineHeight-display-3-DEFAULT);
+  font-weight: 800;
+}
+@utility text-display-3-lg {
+  font-size: var(--sk-fontSize-display-3-lg);
+  line-height: var(--sk-lineHeight-display-3-lg);
+  font-weight: 800;
+}
+@utility text-display-3-md {
+  font-size: var(--sk-fontSize-display-3-md);
+  line-height: var(--sk-lineHeight-display-3-md);
+  font-weight: 800;
+}
+@utility text-display-3-sm {
+  font-size: var(--sk-fontSize-display-3-sm);
+  line-height: var(--sk-lineHeight-display-3-sm);
+  font-weight: 800;
+}
+
+/* H1 */
+@utility text-h1 {
+  font-size: var(--sk-fontSize-h-1-DEFAULT);
+  line-height: var(--sk-lineHeight-h-1-DEFAULT);
+  font-weight: 700;
+}
+@utility text-h1-lg {
+  font-size: var(--sk-fontSize-h-1-lg);
+  line-height: var(--sk-lineHeight-h-1-lg);
+  font-weight: 700;
+}
+@utility text-h1-md {
+  font-size: var(--sk-fontSize-h-1-md);
+  line-height: var(--sk-lineHeight-h-1-md);
+  font-weight: 700;
+}
+@utility text-h1-sm {
+  font-size: var(--sk-fontSize-h-1-sm);
+  line-height: var(--sk-lineHeight-h-1-sm);
+  font-weight: 700;
+}
+
+/* H2 */
+@utility text-h2 {
+  font-size: var(--sk-fontSize-h-2-DEFAULT);
+  line-height: var(--sk-lineHeight-h-2-DEFAULT);
+  font-weight: 700;
+}
+@utility text-h2-lg {
+  font-size: var(--sk-fontSize-h-2-lg);
+  line-height: var(--sk-lineHeight-h-2-lg);
+  font-weight: 700;
+}
+@utility text-h2-md {
+  font-size: var(--sk-fontSize-h-2-md);
+  line-height: var(--sk-lineHeight-h-2-md);
+  font-weight: 700;
+}
+@utility text-h2-sm {
+  font-size: var(--sk-fontSize-h-2-sm);
+  line-height: var(--sk-lineHeight-h-2-sm);
+  font-weight: 700;
+}
+
+/* H3 */
+@utility text-h3 {
+  font-size: var(--sk-fontSize-h-3-DEFAULT);
+  line-height: var(--sk-lineHeight-h-3-DEFAULT);
+  font-weight: 700;
+}
+@utility text-h3-lg {
+  font-size: var(--sk-fontSize-h-3-lg);
+  line-height: var(--sk-lineHeight-h-3-lg);
+  font-weight: 700;
+}
+@utility text-h3-md {
+  font-size: var(--sk-fontSize-h-3-md);
+  line-height: var(--sk-lineHeight-h-3-md);
+  font-weight: 700;
+}
+@utility text-h3-sm {
+  font-size: var(--sk-fontSize-h-3-sm);
+  line-height: var(--sk-lineHeight-h-3-sm);
+  font-weight: 700;
+}
+
+/* H4 */
+@utility text-h4 {
+  font-size: var(--sk-fontSize-h-4-DEFAULT);
+  line-height: var(--sk-lineHeight-h-4-DEFAULT);
+  font-weight: 700;
+}
+@utility text-h4-lg {
+  font-size: var(--sk-fontSize-h-4-lg);
+  line-height: var(--sk-lineHeight-h-4-lg);
+  font-weight: 700;
+}
+@utility text-h4-md {
+  font-size: var(--sk-fontSize-h-4-md);
+  line-height: var(--sk-lineHeight-h-4-md);
+  font-weight: 700;
+}
+@utility text-h4-sm {
+  font-size: var(--sk-fontSize-h-4-sm);
+  line-height: var(--sk-lineHeight-h-4-sm);
+  font-weight: 700;
+}
+
+/* Label */
+@utility text-label-large {
+  font-size: var(--sk-fontSize-label-large);
+  line-height: var(--sk-lineHeight-label-large);
+  font-weight: 700;
+}
+@utility text-label-medium {
+  font-size: var(--sk-fontSize-label-medium);
+  line-height: var(--sk-lineHeight-label-medium);
+  font-weight: 700;
+}
+@utility text-label-small {
+  font-size: var(--sk-fontSize-label-small);
+  line-height: var(--sk-lineHeight-label-small);
+  font-weight: 700;
+}
+@utility text-label-extra-small {
+  font-size: var(--sk-fontSize-label-extra-small);
+  line-height: var(--sk-lineHeight-label-extra-small);
+  font-weight: 700;
+}
+
+/* Input */
+@utility text-input-large {
+  font-size: var(--sk-fontSize-input-large);
+  line-height: var(--sk-lineHeight-input-large);
+  font-weight: 400;
+}
+@utility text-input-medium {
+  font-size: var(--sk-fontSize-input-medium);
+  line-height: var(--sk-lineHeight-input-medium);
+  font-weight: 400;
+}
+@utility text-input-small {
+  font-size: var(--sk-fontSize-input-small);
+  line-height: var(--sk-lineHeight-input-small);
+  font-weight: 400;
+}
+
+/* Logo */
+@utility text-logo-header {
+  font-size: var(--sk-fontSize-logo-header);
+  line-height: var(--sk-lineHeight-logo-header);
+  font-weight: 700;
+}
+
+/* Body text */
+@utility text-lead {
+  font-size: var(--sk-fontSize-lead);
+  line-height: var(--sk-lineHeight-lead);
+}
+@utility text-large {
+  font-size: var(--sk-fontSize-large);
+  line-height: var(--sk-lineHeight-large);
+}
+@utility text-base {
+  font-size: var(--sk-fontSize-base);
+  line-height: var(--sk-lineHeight-base);
+}
+@utility text-small {
+  font-size: var(--sk-fontSize-small);
+  line-height: var(--sk-lineHeight-small);
+}
+@utility text-body {
+  font-size: var(--sk-fontSize-base);
+  line-height: var(--sk-lineHeight-base);
+}

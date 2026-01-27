@@ -1,0 +1,193 @@
+/**
+ * Pagination Component - Pure CSS with CSS Variables
+ * Converted from @apply directives to pure CSS properties
+ */
+
+@layer components {
+  .sk-pagination {
+    user-select: none;
+    font-size: var(--sk-fontSize-base);
+    line-height: var(--sk-lineHeight-base);
+  }
+
+  .sk-pagination-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sk-pagination[data-hideprevnextlabel="true"] .sk-pagination-list {
+    width: fit-content;
+  }
+
+  .sk-pagination-list li {
+    min-width: var(--sk-spacing-40);
+    text-align: center;
+  }
+
+  .sk-pagination-list li:first-child {
+    text-align: left;
+  }
+
+  .sk-pagination-list li:last-child {
+    text-align: right;
+  }
+
+  .sk-pagination .form-select-wrapper {
+    width: fit-content;
+  }
+
+  .sk-pagination-pageLabel {
+    line-height: var(--sk-lineHeight-base);
+    cursor: pointer;
+    text-decoration-line: underline;
+    color: var(--sk-colors-vattjom-surface-primary-DEFAULT);
+    border-radius: var(--sk-radius-circular-DEFAULT);
+    height: var(--sk-spacing-32);
+    width: var(--sk-spacing-32);
+  }
+
+  .sk-pagination-pageLabel:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 var(--sk-spacing-2) var(--sk-colors-background-content), 0 0 0 calc(var(--sk-spacing-2) + var(--sk-spacing-3)) var(--sk-colors-ring);
+  }
+
+  .sk-pagination-pageLabel[aria-current="true"] {
+    font-weight: 700;
+    text-decoration-line: none;
+    color: var(--sk-colors-dark-primary);
+  }
+
+  /* Prev/Next button */
+  .sk-pagination-prevNextButton {
+    color: var(--sk-colors-dark-secondary);
+  }
+
+  .sk-pagination-prevNextButton.sk-btn {
+    background-color: transparent;
+    color: var(--sk-colors-dark-secondary);
+    font-weight: 400;
+  }
+
+  .sk-pagination-prevNextButton.sk-btn.sk-btn-disabled:disabled,
+  .sk-pagination-prevNextButton.sk-btn[aria-disabled="true"]:disabled {
+    background-color: transparent !important;
+    color: var(--sk-colors-dark-disabled);
+  }
+
+  .sk-pagination-prevNextButton.sk-btn.sk-btn-disabled:disabled:hover,
+  .sk-pagination-prevNextButton.sk-btn[aria-disabled="true"]:disabled:hover {
+    color: var(--sk-colors-dark-disabled);
+  }
+
+  .sk-pagination-prevNextButton.sk-btn.sk-btn-disabled:disabled .sk-icon,
+  .sk-pagination-prevNextButton.sk-btn[aria-disabled="true"]:disabled .sk-icon {
+    color: var(--sk-colors-dark-disabled);
+  }
+
+  .sk-pagination-prevNextButton.sk-btn.sk-btn-disabled:disabled .sk-icon:hover,
+  .sk-pagination-prevNextButton.sk-btn[aria-disabled="true"]:disabled .sk-icon:hover {
+    color: var(--sk-colors-dark-disabled);
+  }
+
+  .sk-pagination-prevNextButton.sk-btn .sk-icon {
+    background-color: transparent;
+    color: var(--sk-colors-dark-secondary);
+  }
+
+  .sk-pagination-prevNextButton.sk-btn:hover {
+    color: var(--sk-colors-dark-primary);
+    background-color: var(--sk-colors-tertiary-surface-hover);
+  }
+
+  .sk-pagination-prevNextButton.sk-btn:hover .sk-icon {
+    color: var(--sk-colors-dark-primary);
+  }
+
+  .sk-pagination-prevNextButton[disabled] {
+    cursor: default;
+  }
+
+  .sk-pagination-prevNextButton[disabled="false"] .sk-pagination-prevNextButton-label,
+  .sk-pagination-prevNextButton[disabled="false"] .sk-pagination-prevNextButton-icon {
+    cursor: pointer;
+  }
+
+  .sk-pagination-prevNextButton-label {
+    display: none;
+    margin-left: var(--sk-spacing-8);
+    line-height: 1;
+  }
+
+  @media (min-width: 480px) {
+    .sk-pagination-prevNextButton-label {
+      display: inline;
+    }
+  }
+
+  .sk-pagination-prevNextButton-icon {
+    margin: var(--sk-spacing-1);
+    line-height: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Ellipsis */
+  .sk-pagination-ellipsis {
+    display: inline-block;
+    width: var(--sk-spacing-16);
+    text-align: center;
+  }
+
+  /* Fit content variant */
+  .sk-pagination.fit-content {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .sk-pagination.fit-content .sk-pagination-list {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: var(--sk-spacing-0);
+  }
+
+  @media (min-width: 768px) {
+    .sk-pagination.fit-content .sk-pagination-list {
+      gap: var(--sk-spacing-24);
+    }
+  }
+
+  .sk-pagination.fit-content .sk-pagination-list-item {
+    padding-left: var(--sk-spacing-0);
+    padding-right: var(--sk-spacing-0);
+    flex-grow: 0;
+    text-align: center;
+  }
+
+  .sk-pagination.fit-content .sk-pagination-list-item.ellipsis {
+    flex-shrink: 1;
+    flex-grow: 0;
+  }
+
+  .sk-pagination.fit-content .sk-pagination-list-item.prev-next {
+    flex-shrink: 1;
+  }
+
+  .sk-pagination.fit-content .sk-pagination-list-item.prev-next.prev {
+    text-align: left;
+  }
+
+  .sk-pagination.fit-content .sk-pagination-list-item.prev-next.next {
+    text-align: right;
+  }
+
+  .sk-pagination.fit-content .sk-pagination-list-item .sk-pagination-pageLabel {
+    margin-left: var(--sk-spacing-4);
+    margin-right: var(--sk-spacing-4);
+  }
+
+  .sk-pagination.fit-content .form-select-wrapper {
+    width: 100%;
+  }
+}

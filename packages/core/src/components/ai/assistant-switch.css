@@ -1,0 +1,78 @@
+/**
+ * AI Assistant Switch Component - Tailwind CSS 4
+ */
+
+@layer components {
+  .sk-ai-assistant-switch {
+    display: flex;
+    gap: var(--sk-spacing-12);
+    border-radius: var(--sk-radius-button-DEFAULT);
+    justify-content: flex-start;
+    align-items: center;
+    padding-right: var(--sk-spacing-8);
+
+    &:focus-visible {
+      outline: var(--sk-spacing-3) solid var(--sk-colors-ring);
+      outline-offset: var(--sk-spacing-2);
+    }
+
+    &-icon {
+      line-height: 0;
+
+      & > *,
+      .sk-avatar,
+      .sk-icon,
+      svg {
+        height: var(--sk-spacing-32);
+        width: var(--sk-spacing-32);
+      }
+
+      &-switch {
+        .sk-avatar-img {
+          min-width: var(--sk-spacing-18);
+          max-width: var(--sk-spacing-18);
+          width: var(--sk-spacing-18);
+          min-height: var(--sk-spacing-18);
+          max-height: var(--sk-spacing-18);
+          height: var(--sk-spacing-18);
+        }
+      }
+    }
+
+    &-text {
+      font-size: var(--sk-fontSize-label-medium);
+      line-height: var(--sk-lineHeight-label-medium);
+      font-weight: 700;
+      color: var(--sk-colors-dark-primary);
+    }
+
+    &-hover-icon {
+      color: var(--sk-colors-dark-secondary);
+      opacity: 0;
+      line-height: 0;
+
+      .sk-icon,
+      svg {
+        height: var(--sk-spacing-16);
+        width: var(--sk-spacing-16);
+      }
+    }
+
+    &:hover > &-hover-icon,
+    &:focus-visible > &-hover-icon {
+      opacity: 1;
+    }
+
+    &[data-inverted="true"] {
+      .sk-ai-assistant-switch {
+        &-text {
+          color: var(--sk-colors-inverted-dark-primary);
+        }
+
+        &-hover-icon {
+          color: var(--sk-colors-inverted-dark-secondary);
+        }
+      }
+    }
+  }
+}

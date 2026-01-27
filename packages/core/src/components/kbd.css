@@ -1,0 +1,27 @@
+/**
+ * Kbd Component - Pure CSS with CSS Variables
+ * Converted from @apply directives
+ */
+
+@layer components {
+  .sk-kbd {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: capitalize;
+    font-size: var(--sk-fontSize-label-extra-small);
+    line-height: var(--sk-lineHeight-label-extra-small);
+    padding: var(--sk-spacing-4);
+    border-radius: var(--sk-radius-utility-DEFAULT);
+    height: var(--sk-spacing-20);
+    min-width: var(--sk-spacing-20);
+    white-space: nowrap;
+    font-family: var(--sk-fontFamily-DEFAULT);
+    background-color: var(--sk-colors-primitives-overlay-darken-1);
+    color: var(--sk-colors-body);
+  }
+
+  :is(.dark, .dark *) .sk-kbd {
+    background-color: var(--sk-colors-primitives-overlay-lighten-1);
+  }
+}

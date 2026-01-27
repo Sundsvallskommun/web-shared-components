@@ -1,0 +1,61 @@
+/**
+ * AI Feedback Component - Tailwind CSS 4
+ */
+
+@layer components {
+  .sk-ai-feedback {
+    margin-left: var(--sk-spacing-24);
+    display: flex;
+    gap: var(--sk-spacing-24);
+    justify-content: flex-start;
+    margin-bottom: var(--sk-spacing-16);
+    max-width: 100%;
+
+    &-button {
+      &[data-current="true"] {
+        background-color: var(--sk-colors-tertiary-surface-hover);
+
+        &[data-inverted="true"] {
+          background-color: var(--sk-colors-inverted-tertiary-surface-hover);
+        }
+      }
+    }
+
+    &-more {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sk-spacing-8);
+      padding-left: var(--sk-spacing-14);
+      padding-right: var(--sk-spacing-14);
+      padding-top: var(--sk-spacing-8);
+      padding-bottom: var(--sk-spacing-12);
+      border-radius: var(--sk-radius-button-DEFAULT);
+      background-color: var(--sk-colors-background-color-mixin-1);
+      color: var(--sk-colors-dark-primary);
+
+      &[data-inverted="true"] {
+        background-color: var(--sk-colors-inverted-background-color-mixin-1);
+        color: var(--sk-colors-inverted-dark-primary);
+      }
+
+      &-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        font-size: var(--sk-fontSize-label-small);
+        line-height: var(--sk-lineHeight-label-small);
+        font-weight: 700;
+      }
+
+      &-reason {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: var(--sk-spacing-8);
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+    }
+  }
+}

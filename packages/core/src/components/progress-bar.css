@@ -1,0 +1,95 @@
+/**
+ * Progress Bar Component - Tailwind CSS 4
+ * Migrerad från progress-bar.ts
+ */
+
+@layer components {
+  .sk-progress-bar {
+    display: flex;
+    height: var(--sk-spacing-4);
+    border-radius: var(--sk-radius-circular-DEFAULT);
+    background-color: var(--sk-colors-background-color-mixin-2);
+  }
+
+  .sk-progress-bar-fill {
+    border-radius: var(--sk-radius-circular-DEFAULT);
+  }
+
+  /* Sizes */
+  .sk-progress-bar-sm {
+    height: 4px;
+  }
+
+  .sk-progress-bar-md {
+    height: 8px;
+  }
+
+  /* Color: tertiary */
+  .sk-progress-bar[data-color="tertiary"] .sk-progress-bar-fill {
+    background-color: var(--sk-colors-primary-surface-DEFAULT);
+  }
+
+  /* Color: warning */
+  .sk-progress-bar[data-color="warning"] .sk-progress-bar-fill {
+    background-color: var(--sk-colors-warning-surface-primary-DEFAULT);
+  }
+  .sk-progress-bar[data-color="warning"][data-accent="true"] {
+    background-color: var(--sk-colors-inverted-warning-surface-primary-DEFAULT);
+  }
+
+  /* Color: error */
+  .sk-progress-bar[data-color="error"] .sk-progress-bar-fill {
+    background-color: var(--sk-colors-error-surface-primary-DEFAULT);
+  }
+  .sk-progress-bar[data-color="error"][data-accent="true"] {
+    background-color: var(--sk-colors-inverted-error-surface-primary-DEFAULT);
+  }
+
+  /* Color: success */
+  .sk-progress-bar[data-color="success"] .sk-progress-bar-fill {
+    background-color: var(--sk-colors-success-surface-primary-DEFAULT);
+  }
+  .sk-progress-bar[data-color="success"][data-accent="true"] {
+    background-color: var(--sk-colors-inverted-success-surface-primary-DEFAULT);
+  }
+
+  /* Color: info */
+  .sk-progress-bar[data-color="info"] .sk-progress-bar-fill {
+    background-color: var(--sk-colors-info-surface-primary-DEFAULT);
+  }
+  .sk-progress-bar[data-color="info"][data-accent="true"] {
+    background-color: var(--sk-colors-inverted-info-surface-primary-DEFAULT);
+  }
+
+  /* Color: vattjom */
+  .sk-progress-bar[data-color="vattjom"] .sk-progress-bar-fill {
+    background-color: var(--sk-colors-vattjom-surface-primary-DEFAULT);
+  }
+  .sk-progress-bar[data-color="vattjom"][data-accent="true"] {
+    background-color: var(--sk-colors-inverted-vattjom-surface-primary-DEFAULT);
+  }
+
+  /* Color: juniskar */
+  .sk-progress-bar[data-color="juniskar"] .sk-progress-bar-fill {
+    background-color: var(--sk-colors-juniskar-surface-primary-DEFAULT);
+  }
+  .sk-progress-bar[data-color="juniskar"][data-accent="true"] {
+    background-color: var(--sk-colors-inverted-juniskar-surface-primary-DEFAULT);
+  }
+
+  /* Color: bjornstigen */
+  .sk-progress-bar[data-color="bjornstigen"] .sk-progress-bar-fill {
+    background-color: var(--sk-colors-bjornstigen-surface-primary-DEFAULT);
+  }
+  .sk-progress-bar[data-color="bjornstigen"][data-accent="true"] {
+    background-color: var(--sk-colors-inverted-bjornstigen-surface-primary-DEFAULT);
+  }
+
+  /* Color: gronsta */
+  .sk-progress-bar[data-color="gronsta"] .sk-progress-bar-fill {
+    background-color: var(--sk-colors-gronsta-surface-primary-DEFAULT);
+  }
+  .sk-progress-bar[data-color="gronsta"][data-accent="true"] {
+    background-color: var(--sk-colors-inverted-gronsta-surface-primary-DEFAULT);
+  }
+}

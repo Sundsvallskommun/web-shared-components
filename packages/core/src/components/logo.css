@@ -1,0 +1,85 @@
+/**
+ * Logo Component - Tailwind CSS 4
+ * Migrerad från logo.ts
+ */
+
+@layer components {
+  .sk-logo {
+    display: flex;
+    width: auto;
+    height: auto;
+    align-items: center;
+    color: var(--sk-colors-dark-primary);
+  }
+
+  .sk-logo[data-inverted="true"] {
+    color: var(--sk-colors-light-primary);
+  }
+
+  .sk-logo[data-inverted="true"] .sk-logo-divider {
+    border-color: var(--sk-colors-inverted-divider);
+  }
+
+  .sk-logo-figure {
+    width: 100%;
+    height: 100%;
+  }
+
+  .sk-logo[data-variant="service"] {
+    flex-direction: row;
+    gap: var(--sk-spacing-6);
+    width: max-content;
+    height: var(--sk-spacing-60);
+    padding-bottom: var(--sk-spacing-4);
+  }
+
+  .sk-logo[data-variant="service"] .sk-logo-figure {
+    width: var(--sk-spacing-34);
+    height: var(--sk-spacing-56);
+  }
+
+  a:focus-within .sk-logo {
+    outline-style: solid;
+    outline-width: 2px;
+    outline-color: var(--sk-colors-ring);
+  }
+
+  a .sk-logo {
+    text-decoration-line: none;
+  }
+
+  a:hover .sk-logo {
+    text-decoration-line: underline;
+  }
+
+  .sk-logo-service-content {
+    height: 100%;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: var(--sk-spacing-2);
+    padding-top: var(--sk-spacing-2);
+    padding-right: var(--sk-spacing-8);
+    padding-bottom: var(--sk-spacing-0);
+  }
+
+  .sk-logo-title {
+    font-family: var(--sk-fontFamily-header);
+    font-size: var(--sk-fontSize-logo-header);
+    line-height: var(--sk-lineHeight-logo-header);
+    font-weight: 700;
+  }
+
+  .sk-logo-subtitle {
+    font-size: var(--sk-fontSize-small);
+    line-height: var(--sk-lineHeight-small);
+    font-weight: 400;
+    display: block;
+  }
+
+  .sk-logo-divider {
+    padding-top: var(--sk-spacing-8);
+    padding-bottom: var(--sk-spacing-4);
+  }
+}

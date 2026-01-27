@@ -2,43 +2,214 @@
   "name": "@sk-web-gui/core",
   "version": "4.1.2",
   "license": "MIT",
-  "type": "module",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "types": "./dist/types/index.d.ts",
-  "typings": "./dist/types/index.d.ts",
   "exports": {
-    ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js",
-      "types": "./dist/types/index.d.ts",
-      "default": "./dist/esm/index.js"
+    "./style.css": {
+      "default": "./src/style.css"
+    },
+    "./theme.css": {
+      "default": "./src/theme.css"
+    },
+    "./base.css": {
+      "default": "./src/base.css"
+    },
+    "./colors.css": {
+      "default": "./src/colors.css"
+    },
+    "./typography.css": {
+      "default": "./src/typography.css"
+    },
+    "./variants.css": {
+      "default": "./src/variants.css"
+    },
+    "./components/accordion.css": {
+      "default": "./src/components/accordion.css"
+    },
+    "./components/avatar.css": {
+      "default": "./src/components/avatar.css"
+    },
+    "./components/badge.css": {
+      "default": "./src/components/badge.css"
+    },
+    "./components/breadcrumb.css": {
+      "default": "./src/components/breadcrumb.css"
+    },
+    "./components/button.css": {
+      "default": "./src/components/button.css"
+    },
+    "./components/button-group.css": {
+      "default": "./src/components/button-group.css"
+    },
+    "./components/callout.css": {
+      "default": "./src/components/callout.css"
+    },
+    "./components/card.css": {
+      "default": "./src/components/card.css"
+    },
+    "./components/checkbox.css": {
+      "default": "./src/components/checkbox.css"
+    },
+    "./components/chip.css": {
+      "default": "./src/components/chip.css"
+    },
+    "./components/code.css": {
+      "default": "./src/components/code.css"
+    },
+    "./components/combobox.css": {
+      "default": "./src/components/combobox.css"
+    },
+    "./components/cookie-consent.css": {
+      "default": "./src/components/cookie-consent.css"
+    },
+    "./components/countrycode.css": {
+      "default": "./src/components/countrycode.css"
+    },
+    "./components/dialog.css": {
+      "default": "./src/components/dialog.css"
+    },
+    "./components/divider.css": {
+      "default": "./src/components/divider.css"
+    },
+    "./components/dot.css": {
+      "default": "./src/components/dot.css"
+    },
+    "./components/file-upload.css": {
+      "default": "./src/components/file-upload.css"
+    },
+    "./components/filter.css": {
+      "default": "./src/components/filter.css"
+    },
+    "./components/footer.css": {
+      "default": "./src/components/footer.css"
+    },
+    "./components/forms.css": {
+      "default": "./src/components/forms.css"
+    },
+    "./components/header.css": {
+      "default": "./src/components/header.css"
+    },
+    "./components/icon.css": {
+      "default": "./src/components/icon.css"
+    },
+    "./components/input.css": {
+      "default": "./src/components/input.css"
+    },
+    "./components/kbd.css": {
+      "default": "./src/components/kbd.css"
+    },
+    "./components/label.css": {
+      "default": "./src/components/label.css"
+    },
+    "./components/link.css": {
+      "default": "./src/components/link.css"
+    },
+    "./components/list.css": {
+      "default": "./src/components/list.css"
+    },
+    "./components/logo.css": {
+      "default": "./src/components/logo.css"
+    },
+    "./components/menu-vertical.css": {
+      "default": "./src/components/menu-vertical.css"
+    },
+    "./components/modal.css": {
+      "default": "./src/components/modal.css"
+    },
+    "./components/navigation-bar.css": {
+      "default": "./src/components/navigation-bar.css"
+    },
+    "./components/pagination.css": {
+      "default": "./src/components/pagination.css"
+    },
+    "./components/popup-menu.css": {
+      "default": "./src/components/popup-menu.css"
+    },
+    "./components/progress-bar.css": {
+      "default": "./src/components/progress-bar.css"
+    },
+    "./components/progress-stepper.css": {
+      "default": "./src/components/progress-stepper.css"
+    },
+    "./components/radio.css": {
+      "default": "./src/components/radio.css"
+    },
+    "./components/search-field.css": {
+      "default": "./src/components/search-field.css"
+    },
+    "./components/select.css": {
+      "default": "./src/components/select.css"
+    },
+    "./components/snackbar.css": {
+      "default": "./src/components/snackbar.css"
+    },
+    "./components/spinner.css": {
+      "default": "./src/components/spinner.css"
+    },
+    "./components/switch.css": {
+      "default": "./src/components/switch.css"
+    },
+    "./components/table.css": {
+      "default": "./src/components/table.css"
+    },
+    "./components/tabs.css": {
+      "default": "./src/components/tabs.css"
+    },
+    "./components/text-editor.css": {
+      "default": "./src/components/text-editor.css"
+    },
+    "./components/tooltip.css": {
+      "default": "./src/components/tooltip.css"
+    },
+    "./components/user-menu.css": {
+      "default": "./src/components/user-menu.css"
+    },
+    "./components/ai/ai-corner-module.css": {
+      "default": "./src/components/ai/ai-corner-module.css"
+    },
+    "./components/ai/ai-feed.css": {
+      "default": "./src/components/ai/ai-feed.css"
+    },
+    "./components/ai/ai-service-module.css": {
+      "default": "./src/components/ai/ai-service-module.css"
+    },
+    "./components/ai/assistant-presentation.css": {
+      "default": "./src/components/ai/assistant-presentation.css"
+    },
+    "./components/ai/assistant-switch.css": {
+      "default": "./src/components/ai/assistant-switch.css"
+    },
+    "./components/ai/bubble.css": {
+      "default": "./src/components/ai/bubble.css"
+    },
+    "./components/ai/feedback.css": {
+      "default": "./src/components/ai/feedback.css"
+    },
+    "./components/ai/input-section.css": {
+      "default": "./src/components/ai/input-section.css"
+    },
+    "./components/ai/markdown-rendered.css": {
+      "default": "./src/components/ai/markdown-rendered.css"
+    },
+    "./components/ai/new-session-button.css": {
+      "default": "./src/components/ai/new-session-button.css"
+    },
+    "./components/ai/typing-bubble.css": {
+      "default": "./src/components/ai/typing-bubble.css"
+    },
+    "./components/ai/typing-sequence.css": {
+      "default": "./src/components/ai/typing-sequence.css"
     }
   },
   "files": [
-    "dist"
+    "src"
   ],
   "publishConfig": {
     "access": "public"
-  },
-  "scripts": {
-    "version": "yarn build",
-    "build": "yarn build:types && yarn build:esm && yarn build:cjs",
-    "build:esm": "swc src -d dist/esm --config-file ../../.swcrc.esm && node ../../fix-esm-extensions.mjs ./dist/esm",
-    "build:cjs": "swc src -d dist/cjs --config-file ../../.swcrc",
-    "build:types": "tsc -p ./tsconfig.production.json --emitDeclarationOnly --declaration --declarationDir dist/types"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.21",
-    "clean-css": "^5.3.3",
-    "postcss": "^8.5.6",
-    "postcss-import": "^16.1.1"
   },
   "dependencies": {
     "@sk-web-gui/theme": "2.6.0",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/forms": "^0.5.10",
     "mini-svg-data-uri": "^1.4.4",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^4.1.4"
   }
 }

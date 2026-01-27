@@ -1,0 +1,28 @@
+/**
+ * Code Component - Tailwind CSS 4
+ * Migrerad till ren CSS med CSS-variabler
+ */
+
+@layer components {
+  .code {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: capitalize;
+    font-size: var(--sk-fontSize-xs, 0.75rem);
+    line-height: var(--sk-lineHeight-xs, 1rem);
+    border-radius: var(--sk-radius-sm, 0.125rem);
+    font-family: var(--sk-fontFamily-mono);
+    word-break: break-all;
+    background-color: var(--sk-colors-primitives-gray-200);
+    border: 1px solid var(--sk-colors-primitives-gray-100);
+    color: var(--sk-colors-body);
+    padding: 2px 3px 1px;
+  }
+
+  :is(.dark, .dark *) .code {
+    background-color: var(--sk-colors-primitives-gray-700);
+    border-color: var(--sk-colors-primitives-gray-600);
+    color: var(--sk-colors-primitives-gray-300);
+  }
+}

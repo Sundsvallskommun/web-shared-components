@@ -1,0 +1,46 @@
+/**
+ * Button Group Component - Tailwind CSS 4
+ * Migrerad from button-group.ts
+ */
+
+@layer components {
+  .sk-btn-group {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .sk-btn-group.sk-btn-group-attached {
+    border-radius: var(--sk-radius-groups-DEFAULT);
+    background-color: var(--sk-colors-tertiary-surface-DEFAULT);
+    padding-top: var(--sk-spacing-6);
+    padding-bottom: var(--sk-spacing-6);
+    padding-left: var(--sk-spacing-12);
+    padding-right: var(--sk-spacing-12);
+  }
+
+  .sk-btn-group.sk-btn-group-attached > * {
+    background-color: transparent;
+  }
+
+  .sk-btn-group.sk-btn-group-attached .sk-btn[data-icon="true"] .sk-icon {
+    background-color: transparent;
+    color: var(--sk-colors-dark-secondary);
+  }
+
+  .sk-btn-group.sk-btn-group-attached .sk-icon {
+    padding: 0;
+    width: fit-content;
+    height: fit-content;
+  }
+
+  .sk-btn-group-divider {
+    flex-grow: 1;
+    background-color: var(--sk-colors-tertiary-surface-DEFAULT);
+    padding-left: var(--sk-spacing-6);
+    padding-right: var(--sk-spacing-6);
+  }
+
+  .sk-btn-group-divider hr {
+    height: var(--sk-spacing-20);
+  }
+}

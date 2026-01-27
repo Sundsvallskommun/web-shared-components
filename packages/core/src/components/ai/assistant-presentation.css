@@ -1,0 +1,112 @@
+/**
+ * AI Assistant Presentation Component - Tailwind CSS 4
+ */
+
+@layer components {
+  .sk-ai-assistant-presentation {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sk-spacing-16);
+    align-items: center;
+    justify-content: center;
+    font-size: var(--sk-fontSize-base);
+    line-height: var(--sk-lineHeight-base);
+    height: 100%;
+    flex-grow: 1;
+
+    &-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+
+      &-title {
+        color: var(--sk-colors-dark-primary);
+        text-align: center;
+        width: 100%;
+      }
+
+      &-descriptions {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: var(--sk-spacing-24);
+      }
+
+      &-description {
+        color: var(--sk-colors-dark-secondary);
+        text-align: center;
+        width: 100%;
+      }
+    }
+
+    &[data-size="lg"] {
+      min-height: 25.5em;
+      margin: var(--sk-spacing-24);
+      max-width: 27em;
+
+      .sk-avatar {
+        width: calc(var(--sk-spacing-90) - var(--sk-spacing-1));
+        height: calc(var(--sk-spacing-90) - var(--sk-spacing-1));
+        max-width: calc(var(--sk-spacing-90) - var(--sk-spacing-1));
+        max-height: calc(var(--sk-spacing-90) - var(--sk-spacing-1));
+      }
+
+      .sk-ai-assistant-presentation-header {
+        gap: var(--sk-spacing-6);
+        padding-bottom: var(--sk-spacing-24);
+
+        &-title {
+          font-size: var(--sk-fontSize-h-3-lg);
+          line-height: var(--sk-lineHeight-h-3-lg);
+          font-weight: 700;
+        }
+
+        &-description {
+          font-size: var(--sk-fontSize-lead);
+          line-height: var(--sk-lineHeight-lead);
+        }
+      }
+    }
+
+    &[data-size="sm"] {
+      .sk-avatar {
+        width: var(--sk-spacing-64);
+        height: var(--sk-spacing-64);
+        max-width: var(--sk-spacing-72);
+        max-height: var(--sk-spacing-72);
+      }
+
+      @media (min-width: 640px) {
+        .sk-avatar {
+          width: var(--sk-spacing-72);
+          height: var(--sk-spacing-72);
+        }
+      }
+
+      .sk-ai-assistant-presentation-header {
+        gap: var(--sk-spacing-4);
+        padding-bottom: var(--sk-spacing-16);
+
+        &-title {
+          font-size: var(--sk-fontSize-h-3-sm);
+          line-height: var(--sk-lineHeight-h-3-sm);
+          font-weight: 700;
+        }
+
+        @media (min-width: 640px) {
+          &-title {
+            font-size: var(--sk-fontSize-h-3-md);
+            line-height: var(--sk-lineHeight-h-3-md);
+            font-weight: 700;
+          }
+        }
+
+        &-description {
+          font-size: var(--sk-fontSize-small);
+          line-height: var(--sk-lineHeight-small);
+        }
+      }
+    }
+  }
+}

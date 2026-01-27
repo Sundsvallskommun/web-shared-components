@@ -1,0 +1,59 @@
+/**
+ * Forms Component - Tailwind CSS 4
+ * Migrerad från forms.ts
+ */
+
+@layer components {
+  .sk-form-control {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sk-spacing-8);
+    width: fit-content;
+  }
+
+  .sk-form-label {
+    font-weight: 700;
+  }
+
+  .sk-form-label-sm {
+    font-size: var(--sk-fontSize-label-small);
+    line-height: var(--sk-lineHeight-label-small);
+    font-weight: 700;
+  }
+
+  .sk-form-label-md {
+    font-size: var(--sk-fontSize-label-medium);
+    line-height: var(--sk-lineHeight-label-medium);
+    font-weight: 700;
+  }
+
+  .sk-form-label-lg {
+    font-size: var(--sk-fontSize-label-large);
+    line-height: var(--sk-lineHeight-label-large);
+    font-weight: 700;
+  }
+
+  legend.sk-form-label {
+    display: contents;
+  }
+
+  .sk-form-helper-text,
+  .sk-form-error-message {
+    font-weight: 400;
+    font-size: var(--sk-fontSize-small);
+    line-height: var(--sk-lineHeight-small);
+  }
+
+  .sk-form-error-message {
+    color: var(--sk-colors-error-DEFAULT);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--sk-spacing-8);
+    align-self: stretch;
+  }
+
+  .sk-form-error-message-icon {
+    flex-shrink: 0;
+    padding-top: var(--sk-spacing-1);
+  }
+}

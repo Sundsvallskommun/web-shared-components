@@ -1,0 +1,66 @@
+/**
+ * Chip Component - Pure CSS with CSS Variables
+ * Converted from @apply directives
+ */
+
+@layer components {
+  .sk-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--sk-colors-secondary-surface-DEFAULT);
+    padding-left: var(--sk-spacing-9);
+    padding-right: var(--sk-spacing-9);
+    gap: var(--sk-spacing-4);
+    height: var(--sk-spacing-34);
+    font-size: var(--sk-fontSize-small);
+    line-height: var(--sk-lineHeight-small);
+    color: var(--sk-colors-dark-secondary);
+    border-width: var(--sk-spacing-1);
+    border-style: solid;
+    border-color: var(--sk-colors-secondary-outline-DEFAULT);
+    border-radius: var(--sk-radius-button-DEFAULT);
+  }
+
+  .sk-chip:hover {
+    background-color: var(--sk-colors-secondary-surface-hover);
+    border-color: var(--sk-colors-secondary-outline-hover);
+  }
+
+  .sk-chip:focus-visible {
+    background-color: var(--sk-colors-secondary-surface-hover);
+    box-shadow: 0 0 0 var(--sk-spacing-3) var(--sk-colors-ring);
+    border-color: transparent;
+    outline: none;
+  }
+
+  .sk-chip[data-strong='true'] {
+    border-width: var(--sk-spacing-2);
+    padding-left: var(--sk-spacing-8);
+    padding-right: var(--sk-spacing-8);
+  }
+
+  .sk-chip[data-rounded='true'] {
+    border-radius: var(--sk-radius-circular-DEFAULT);
+  }
+
+  .sk-chip[data-inverted='true'] {
+    color: var(--sk-colors-inverted-dark-secondary);
+    border-color: var(--sk-colors-inverted-secondary-outline-DEFAULT);
+    background-color: var(--sk-colors-inverted-secondary-surface-DEFAULT);
+  }
+
+  .sk-chip[data-inverted='true']:hover {
+    border-color: var(--sk-colors-inverted-secondary-outline-hover);
+    background-color: var(--sk-colors-inverted-secondary-surface-hover);
+  }
+
+  .sk-chip[data-inverted='true']:focus-visible {
+    background-color: var(--sk-colors-inverted-secondary-surface-hover);
+  }
+
+  .sk-chip .sk-icon {
+    height: var(--sk-spacing-16);
+    width: var(--sk-spacing-16);
+  }
+}

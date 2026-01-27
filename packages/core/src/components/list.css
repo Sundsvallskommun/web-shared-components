@@ -1,0 +1,84 @@
+/**
+ * List Component - Tailwind CSS 4
+ * Migrerad from list.ts
+ */
+
+@layer components {
+  /* General list item pseudo-element */
+  .sk-list li::before {
+    color: var(--sk-colors-vattjom-surface-primary-DEFAULT);
+    font-weight: 700;
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: var(--sk-spacing-24);
+    height: var(--sk-spacing-24);
+  }
+
+  /* Bullet style */
+  .sk-list[data-style="bullet"] li::before {
+    content: '•';
+    margin-top: var(--sk-spacing-5);
+    margin-bottom: var(--sk-spacing-5);
+    font-size: var(--sk-fontSize-lead);
+    line-height: var(--sk-lineHeight-lead);
+  }
+
+  /* Numbered style */
+  .sk-list[data-style="numbered"] li {
+    counter-increment: item;
+  }
+
+  .sk-list[data-style="numbered"] li::before {
+    content: counter(item);
+    font-size: var(--sk-fontSize-small);
+    line-height: 0.8rem;
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--sk-colors-vattjom-surface-primary-DEFAULT);
+    border-radius: var(--sk-radius-circular-DEFAULT);
+    margin-top: var(--sk-spacing-6);
+    margin-bottom: var(--sk-spacing-6);
+    height: var(--sk-spacing-22);
+    width: var(--sk-spacing-22);
+  }
+
+  /* Stroke style */
+  .sk-list[data-style="stroke"] li::before {
+    content: '–';
+    margin-top: var(--sk-spacing-4);
+    margin-bottom: var(--sk-spacing-4);
+    font-size: var(--sk-fontSize-base);
+    line-height: var(--sk-lineHeight-base);
+  }
+
+  /* Link styling inside list */
+  .sk-list .sk-link-tertiary {
+    color: var(--sk-colors-dark-primary);
+  }
+
+  .sk-list .sk-link-tertiary:hover {
+    color: var(--sk-colors-dark-secondary);
+  }
+
+  /* List item */
+  .sk-list-item {
+    padding-top: var(--sk-spacing-20);
+  }
+
+  /* List header */
+  .sk-list-header {
+    font-size: var(--sk-fontSize-large);
+    line-height: var(--sk-lineHeight-large);
+    font-weight: 700;
+    margin-left: var(--sk-spacing-32);
+  }
+
+  /* List text */
+  .sk-list-text {
+    color: var(--sk-colors-dark-secondary);
+    margin-left: var(--sk-spacing-32);
+  }
+}

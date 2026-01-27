@@ -1,0 +1,27 @@
+/**
+ * Filter Component - Tailwind CSS 4
+ * Migrerad from filter.ts
+ */
+
+@layer components {
+  .sk-filter {
+    width: 100%;
+  }
+
+  .sk-filter-label {
+    font-size: var(--sk-fontSize-label-medium);
+    line-height: var(--sk-lineHeight-label-medium);
+    font-weight: 700;
+  }
+
+  .sk-filter .sk-form-checkbox-label {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sk-filter .sk-form-checkbox-label-wrapper {
+    width: 100%;
+  }
+}

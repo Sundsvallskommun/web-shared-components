@@ -1,0 +1,187 @@
+/**
+ * Checkbox Component - Tailwind CSS 4
+ * Migrerad from checkbox.ts
+ */
+
+@layer components {
+  .sk-form-checkbox {
+    background-color: inherit;
+    border-radius: var(--sk-radius-utility-DEFAULT);
+    background-color: transparent;
+    border-color: transparent;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  /* Sizes - checkbox is always 24x24, only label text changes */
+  .sk-form-checkbox-sm,
+  .sk-form-checkbox-md,
+  .sk-form-checkbox-lg {
+    width: var(--sk-spacing-24);
+    height: var(--sk-spacing-24);
+  }
+
+  /* Adjacent icon */
+  .sk-form-checkbox + .sk-icon {
+    position: absolute;
+    inset: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: transparent;
+    border-width: 1px;
+    border-style: solid;
+    padding: var(--sk-spacing-2);
+    border-color: var(--sk-colors-input-field-outline);
+    background-color: var(--sk-colors-input-field-surface);
+    border-radius: var(--sk-radius-utility-DEFAULT);
+    width: var(--sk-spacing-24);
+    height: var(--sk-spacing-24);
+  }
+  .sk-form-checkbox + .sk-icon svg {
+    display: none;
+  }
+
+  /* Checked state */
+  .sk-form-checkbox.sk-form-checkbox:checked {
+    color: var(--sk-colors-light-primary);
+    background-image: none;
+  }
+  .sk-form-checkbox.sk-form-checkbox:checked + .sk-icon {
+    color: var(--sk-colors-light-primary);
+    background-color: var(--sk-colors-dark-primary);
+    border-color: var(--sk-colors-dark-primary);
+  }
+  .sk-form-checkbox.sk-form-checkbox:checked + .sk-icon svg {
+    display: block;
+  }
+
+  .sk-form-checkbox[type="checkbox"]:checked {
+    color: transparent;
+  }
+
+  /* Hover state */
+  .sk-form-checkbox.sk-form-checkbox:hover:not(.sk-form-checkbox-disabled):not([readonly]):not(:checked):not([aria-invalid="true"]) + .sk-icon,
+  .sk-form-checkbox.sk-form-checkbox:hover:focus:not(.sk-form-checkbox-disabled):not([readonly]):not(:checked):not([aria-invalid="true"]) + .sk-icon,
+  .sk-form-checkbox.sk-form-checkbox:hover:not(.sk-form-checkbox-disabled):not([readonly]):not(:checked):not([aria-invalid="true"]):focus + .sk-icon {
+    color: var(--sk-colors-dark-placeholder);
+    border-color: var(--sk-colors-input-field-outline-hover);
+  }
+  .sk-form-checkbox.sk-form-checkbox:hover:not(.sk-form-checkbox-disabled):not([readonly]):not(:checked):not([aria-invalid="true"]) + .sk-icon svg,
+  .sk-form-checkbox.sk-form-checkbox:hover:focus:not(.sk-form-checkbox-disabled):not([readonly]):not(:checked):not([aria-invalid="true"]) + .sk-icon svg {
+    display: block;
+  }
+
+  /* Focus-visible state */
+  .sk-form-checkbox:focus-visible + .sk-icon {
+    outline: none;
+    box-shadow: 0 0 0 var(--sk-spacing-2) var(--sk-colors-background-content),
+                0 0 0 calc(var(--sk-spacing-2) + var(--sk-spacing-3)) var(--sk-colors-ring);
+  }
+
+  /* Invalid state */
+  .sk-form-checkbox.sk-form-checkbox[aria-invalid="true"] + .sk-icon {
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--sk-colors-error-surface-primary-DEFAULT);
+  }
+  .sk-form-checkbox.sk-form-checkbox[aria-invalid="true"].sk-form-checkbox:checked + .sk-icon {
+    padding: var(--sk-spacing-2);
+    background-color: var(--sk-colors-background-content);
+    color: var(--sk-colors-dark-primary);
+  }
+  .sk-form-checkbox.sk-form-checkbox[aria-invalid="true"].sk-form-checkbox:checked + .sk-icon svg {
+    display: block;
+  }
+
+  /* Disabled state */
+  .sk-form-checkbox-disabled + .sk-icon,
+  .sk-form-checkbox-disabled:hover + .sk-icon {
+    background-color: var(--sk-colors-input-field-surface-disabled);
+    border-color: var(--sk-colors-input-field-outline-disabled);
+  }
+  .sk-form-checkbox-disabled:checked + .sk-icon,
+  .sk-form-checkbox-disabled:hover:checked + .sk-icon {
+    background-color: var(--sk-colors-dark-disabled);
+    color: var(--sk-colors-light-primary);
+    border-color: transparent;
+  }
+  .sk-form-checkbox-disabled ~ .sk-form-checkbox-label,
+  .sk-form-checkbox-disabled:hover ~ .sk-form-checkbox-label {
+    color: var(--sk-colors-dark-disabled);
+  }
+
+  /* Readonly state */
+  .sk-form-checkbox[readonly],
+  .sk-form-checkbox[readonly="true"] {
+    border-color: var(--sk-colors-input-field-outline-disabled);
+    background-color: var(--sk-colors-input-field-surface-disabled);
+  }
+  .sk-form-checkbox[readonly]:hover:checked + .sk-icon,
+  .sk-form-checkbox[readonly="true"]:hover:checked + .sk-icon,
+  .sk-form-checkbox[readonly]:checked + .sk-icon,
+  .sk-form-checkbox[readonly="true"]:checked + .sk-icon {
+    background-color: var(--sk-colors-dark-secondary);
+    border-color: var(--sk-colors-dark-secondary);
+    color: var(--sk-colors-light-primary);
+  }
+  .sk-form-checkbox[readonly] ~ .sk-form-checkbox-label,
+  .sk-form-checkbox[readonly="true"] ~ .sk-form-checkbox-label {
+    color: var(--sk-colors-dark-secondary);
+  }
+
+  /* Label positioning */
+  .sk-form-checkbox-label-left .sk-form-checkbox-label {
+    margin-right: var(--sk-spacing-8);
+  }
+  .sk-form-checkbox-label-right .sk-form-checkbox-label {
+    margin-left: var(--sk-spacing-8);
+  }
+
+  .sk-form-checkbox-label-left .sk-icon {
+    left: auto;
+    right: 0;
+  }
+  .sk-form-checkbox-label-right .sk-icon {
+    right: auto;
+    left: 0;
+  }
+
+  /* Label styling */
+  .sk-form-checkbox-label {
+    font-weight: 400;
+    user-select: none;
+  }
+
+  .sk-form-checkbox-label-wrapper {
+    position: relative;
+    display: inline-flex;
+    vertical-align: top;
+    align-items: center;
+    cursor: var(--sk-cursor-base);
+  }
+
+  .sk-form-checkbox-label.sk-form-checkbox-label-sm {
+    font-size: var(--sk-fontSize-small);
+    line-height: var(--sk-lineHeight-small);
+  }
+  .sk-form-checkbox-label.sk-form-checkbox-label-md {
+    font-size: var(--sk-fontSize-base);
+    line-height: var(--sk-lineHeight-base);
+  }
+  .sk-form-checkbox-label.sk-form-checkbox-label-lg {
+    font-size: var(--sk-fontSize-large);
+    line-height: var(--sk-lineHeight-large);
+  }
+
+  /* Checkbox group */
+  .sk-form-checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sk-spacing-16);
+    margin-top: var(--sk-spacing-12);
+    margin-bottom: var(--sk-spacing-12);
+  }
+  .sk-form-checkbox-group[data-direction="row"] {
+    flex-direction: row;
+  }
+}

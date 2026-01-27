@@ -1,0 +1,304 @@
+/**
+ * AI Bubble Component - Tailwind CSS 4
+ * Converted from @apply directives to pure CSS properties
+ */
+
+@layer components {
+  .sk-ai-bubble {
+    display: inline-flex;
+    text-align: left;
+    align-items: center;
+    justify-content: flex-start;
+    width: fit-content;
+    position: relative;
+    border-top-left-radius: var(--sk-radius-button-DEFAULT);
+    border-top-right-radius: var(--sk-radius-button-DEFAULT);
+    border-bottom-right-radius: var(--sk-radius-button-DEFAULT);
+    border-bottom-left-radius: 0;
+    padding-top: var(--sk-spacing-10);
+    padding-right: var(--sk-spacing-12);
+    padding-bottom: var(--sk-spacing-10);
+    padding-left: var(--sk-spacing-14);
+    gap: var(--sk-spacing-16);
+    font-size: var(--sk-fontSize-small);
+    line-height: var(--sk-lineHeight-small);
+    color: var(--sk-colors-dark-secondary);
+  }
+
+  .sk-ai-bubble:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 var(--sk-spacing-3) var(--sk-colors-ring);
+  }
+
+  .sk-ai-bubble[data-inverted="true"] {
+    color: var(--sk-colors-inverted-dark-secondary);
+  }
+
+  /* Vattjom color */
+  .sk-ai-bubble[data-color="vattjom"] {
+    background-color: var(--sk-colors-vattjom-surface-accent-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="vattjom"]:hover {
+    background-color: var(--sk-colors-vattjom-surface-accent-hover);
+  }
+  .sk-ai-bubble[data-color="vattjom"] .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-vattjom-surface-accent-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="vattjom"]:hover .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-vattjom-surface-accent-hover);
+  }
+  .sk-ai-bubble[data-color="vattjom"][data-inverted="true"] {
+    background-color: var(--sk-colors-vattjom-surface-primary-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="vattjom"][data-inverted="true"]:hover {
+    background-color: var(--sk-colors-vattjom-surface-primary-hover);
+  }
+  .sk-ai-bubble[data-color="vattjom"][data-inverted="true"] .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-vattjom-surface-primary-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="vattjom"][data-inverted="true"]:hover .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-vattjom-surface-primary-hover);
+  }
+
+  /* Gronsta color */
+  .sk-ai-bubble[data-color="gronsta"] {
+    background-color: var(--sk-colors-gronsta-surface-accent-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="gronsta"]:hover {
+    background-color: var(--sk-colors-gronsta-surface-accent-hover);
+  }
+  .sk-ai-bubble[data-color="gronsta"] .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-gronsta-surface-accent-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="gronsta"]:hover .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-gronsta-surface-accent-hover);
+  }
+  .sk-ai-bubble[data-color="gronsta"][data-inverted="true"] {
+    background-color: var(--sk-colors-gronsta-surface-primary-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="gronsta"][data-inverted="true"]:hover {
+    background-color: var(--sk-colors-gronsta-surface-primary-hover);
+  }
+  .sk-ai-bubble[data-color="gronsta"][data-inverted="true"] .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-gronsta-surface-primary-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="gronsta"][data-inverted="true"]:hover .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-gronsta-surface-primary-hover);
+  }
+
+  /* Juniskar color */
+  .sk-ai-bubble[data-color="juniskar"] {
+    background-color: var(--sk-colors-juniskar-surface-accent-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="juniskar"]:hover {
+    background-color: var(--sk-colors-juniskar-surface-accent-hover);
+  }
+  .sk-ai-bubble[data-color="juniskar"] .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-juniskar-surface-accent-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="juniskar"]:hover .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-juniskar-surface-accent-hover);
+  }
+  .sk-ai-bubble[data-color="juniskar"][data-inverted="true"] {
+    background-color: var(--sk-colors-juniskar-surface-primary-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="juniskar"][data-inverted="true"]:hover {
+    background-color: var(--sk-colors-juniskar-surface-primary-hover);
+  }
+  .sk-ai-bubble[data-color="juniskar"][data-inverted="true"] .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-juniskar-surface-primary-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="juniskar"][data-inverted="true"]:hover .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-juniskar-surface-primary-hover);
+  }
+
+  /* Bjornstigen color */
+  .sk-ai-bubble[data-color="bjornstigen"] {
+    background-color: var(--sk-colors-bjornstigen-surface-accent-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="bjornstigen"]:hover {
+    background-color: var(--sk-colors-bjornstigen-surface-accent-hover);
+  }
+  .sk-ai-bubble[data-color="bjornstigen"] .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-bjornstigen-surface-accent-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="bjornstigen"]:hover .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-bjornstigen-surface-accent-hover);
+  }
+  .sk-ai-bubble[data-color="bjornstigen"][data-inverted="true"] {
+    background-color: var(--sk-colors-bjornstigen-surface-primary-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="bjornstigen"][data-inverted="true"]:hover {
+    background-color: var(--sk-colors-bjornstigen-surface-primary-hover);
+  }
+  .sk-ai-bubble[data-color="bjornstigen"][data-inverted="true"] .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-bjornstigen-surface-primary-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="bjornstigen"][data-inverted="true"]:hover .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-bjornstigen-surface-primary-hover);
+  }
+
+  /* Warning color */
+  .sk-ai-bubble[data-color="warning"] {
+    background-color: var(--sk-colors-warning-surface-accent-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="warning"]:hover {
+    background-color: var(--sk-colors-warning-surface-accent-hover);
+  }
+  .sk-ai-bubble[data-color="warning"] .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-warning-surface-accent-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="warning"]:hover .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-warning-surface-accent-hover);
+  }
+  .sk-ai-bubble[data-color="warning"][data-inverted="true"] {
+    background-color: var(--sk-colors-warning-surface-primary-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="warning"][data-inverted="true"]:hover {
+    background-color: var(--sk-colors-warning-surface-primary-hover);
+  }
+  .sk-ai-bubble[data-color="warning"][data-inverted="true"] .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-warning-surface-primary-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="warning"][data-inverted="true"]:hover .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-warning-surface-primary-hover);
+  }
+
+  /* Error color */
+  .sk-ai-bubble[data-color="error"] {
+    background-color: var(--sk-colors-error-surface-accent-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="error"]:hover {
+    background-color: var(--sk-colors-error-surface-accent-hover);
+  }
+  .sk-ai-bubble[data-color="error"] .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-error-surface-accent-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="error"]:hover .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-error-surface-accent-hover);
+  }
+  .sk-ai-bubble[data-color="error"][data-inverted="true"] {
+    background-color: var(--sk-colors-error-surface-primary-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="error"][data-inverted="true"]:hover {
+    background-color: var(--sk-colors-error-surface-primary-hover);
+  }
+  .sk-ai-bubble[data-color="error"][data-inverted="true"] .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-error-surface-primary-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="error"][data-inverted="true"]:hover .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-error-surface-primary-hover);
+  }
+
+  /* Info color */
+  .sk-ai-bubble[data-color="info"] {
+    background-color: var(--sk-colors-info-surface-accent-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="info"]:hover {
+    background-color: var(--sk-colors-info-surface-accent-hover);
+  }
+  .sk-ai-bubble[data-color="info"] .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-info-surface-accent-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="info"]:hover .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-info-surface-accent-hover);
+  }
+  .sk-ai-bubble[data-color="info"][data-inverted="true"] {
+    background-color: var(--sk-colors-info-surface-primary-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="info"][data-inverted="true"]:hover {
+    background-color: var(--sk-colors-info-surface-primary-hover);
+  }
+  .sk-ai-bubble[data-color="info"][data-inverted="true"] .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-info-surface-primary-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="info"][data-inverted="true"]:hover .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-info-surface-primary-hover);
+  }
+
+  /* Success color */
+  .sk-ai-bubble[data-color="success"] {
+    background-color: var(--sk-colors-success-surface-accent-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="success"]:hover {
+    background-color: var(--sk-colors-success-surface-accent-hover);
+  }
+  .sk-ai-bubble[data-color="success"] .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-success-surface-accent-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="success"]:hover .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-success-surface-accent-hover);
+  }
+  .sk-ai-bubble[data-color="success"][data-inverted="true"] {
+    background-color: var(--sk-colors-success-surface-primary-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="success"][data-inverted="true"]:hover {
+    background-color: var(--sk-colors-success-surface-primary-hover);
+  }
+  .sk-ai-bubble[data-color="success"][data-inverted="true"] .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-success-surface-primary-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="success"][data-inverted="true"]:hover .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-success-surface-primary-hover);
+  }
+
+  /* Primary color */
+  .sk-ai-bubble[data-color="primary"] {
+    background-color: var(--sk-colors-inverted-primary-surface-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="primary"]:hover {
+    background-color: var(--sk-colors-inverted-primary-surface-hover);
+  }
+  .sk-ai-bubble[data-color="primary"] .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-inverted-primary-surface-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="primary"]:hover .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-inverted-primary-surface-hover);
+  }
+  .sk-ai-bubble[data-color="primary"][data-inverted="true"] {
+    background-color: var(--sk-colors-primary-surface-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="primary"][data-inverted="true"]:hover {
+    background-color: var(--sk-colors-primary-surface-hover);
+  }
+  .sk-ai-bubble[data-color="primary"][data-inverted="true"] .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-primary-surface-DEFAULT);
+  }
+  .sk-ai-bubble[data-color="primary"][data-inverted="true"]:hover .sk-ai-bubble-tail {
+    --tw-shadow-color: var(--sk-colors-primary-surface-hover);
+  }
+
+  /* Tail element */
+  .sk-ai-bubble-tail {
+    font-size: var(--sk-fontSize-base);
+    line-height: var(--sk-lineHeight-base);
+    position: absolute;
+    left: 0;
+    bottom: -1.25em;
+    width: var(--sk-spacing-32);
+    height: var(--sk-spacing-32);
+    border-top-left-radius: var(--sk-spacing-16);
+    border-bottom-left-radius: 0;
+    background-color: transparent;
+    box-shadow: 0 -1em 0 0 var(--tw-shadow-color);
+    transform: scaleY(0.25);
+  }
+
+  /* Shadow variant */
+  .sk-ai-bubble[data-shadow="true"] {
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.2);
+  }
+  .sk-ai-bubble[data-shadow="true"] .sk-ai-bubble-tail::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.15625em;
+    width: var(--sk-spacing-32);
+    height: var(--sk-spacing-32);
+    border-top-left-radius: var(--sk-spacing-16);
+    border-bottom-left-radius: 0;
+    background-color: transparent;
+    box-shadow: 0 -0.15625em 0 0 rgb(0, 0, 0, 0.2);
+    clip-path: polygon(0 0, 0 1em, 0.25em 1em, 0.59375em 0);
+  }
+}

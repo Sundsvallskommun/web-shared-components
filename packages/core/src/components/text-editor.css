@@ -1,0 +1,204 @@
+/**
+ * Text Editor Component - Tailwind CSS 4
+ * Migrerad från text-editor.ts
+ */
+
+@layer components {
+  .sk-texteditor .ql-toolbar.ql-snow {
+    display: flex;
+    align-items: center;
+    background-color: var(--sk-colors-background-200);
+    border-top-left-radius: var(--sk-spacing-12);
+    border-top-right-radius: var(--sk-spacing-12);
+    border-color: var(--sk-colors-input-field-outline-DEFAULT);
+    height: 4rem;
+    padding-left: var(--sk-spacing-16);
+  }
+
+  .sk-texteditor .ql-toolbar.ql-snow .ql-stroke {
+    stroke: var(--sk-colors-dark-primary);
+  }
+
+  .sk-texteditor .ql-toolbar.ql-snow .ql-fill {
+    fill: var(--sk-colors-dark-primary);
+  }
+
+  .sk-texteditor .ql-toolbar.ql-snow .ql-divider {
+    width: 0.1rem;
+    height: 3.2rem;
+    background-color: var(--sk-colors-divider);
+    margin-right: 1.2rem;
+  }
+
+  .sk-texteditor .ql-toolbar.ql-snow .tooltip-container {
+    position: absolute;
+    z-index: 10;
+    top: 100%;
+    margin-top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    visibility: hidden;
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 200ms;
+    transition-timing-function: ease-in-out;
+    white-space: nowrap;
+  }
+
+  .sk-texteditor .ql-toolbar.ql-snow .ql-formats {
+    display: flex;
+    gap: var(--sk-spacing-16);
+    margin-right: 1.2rem;
+  }
+
+  .sk-texteditor .ql-toolbar.ql-snow svg {
+    height: 2.0rem;
+    width: 2.0rem;
+  }
+
+  .sk-texteditor .ql-toolbar.ql-snow button {
+    height: 3.2rem;
+    width: 3.2rem;
+    border-radius: var(--sk-spacing-10);
+    color: var(--sk-colors-dark-primary);
+  }
+
+  .sk-texteditor .ql-toolbar.ql-snow button:hover,
+  .sk-texteditor .ql-toolbar.ql-snow button:hover:focus-visible {
+    background-color: var(--sk-colors-tertiary-surface-hover);
+  }
+
+  .sk-texteditor .ql-toolbar.ql-snow button:focus-visible {
+    box-shadow: 0 0 0 0.2rem var(--sk-colors-ring) inset;
+    outline: 0;
+    background-color: var(--sk-colors-background-content);
+  }
+
+  .sk-texteditor .ql-toolbar.ql-snow button.ql-active {
+    background-color: var(--sk-colors-tertiary-surface-hover);
+  }
+
+  .sk-texteditor .ql-toolbar.ql-snow button.ql-active .ql-fill {
+    fill: var(--sk-colors-dark-primary);
+  }
+
+  .sk-texteditor .ql-toolbar.ql-snow button.ql-active .ql-stroke {
+    stroke: var(--sk-colors-dark-primary);
+  }
+
+  .sk-texteditor .ql-toolbar.ql-snow button:hover .ql-fill,
+  .sk-texteditor .ql-toolbar.ql-snow button:focus-visible .ql-fill {
+    fill: var(--sk-colors-dark-primary);
+  }
+
+  .sk-texteditor .ql-toolbar.ql-snow button:hover .ql-stroke,
+  .sk-texteditor .ql-toolbar.ql-snow button:focus-visible .ql-stroke {
+    stroke: var(--sk-colors-dark-primary);
+  }
+
+  .sk-texteditor .ql-toolbar.ql-snow button:hover .tooltip-container,
+  .sk-texteditor .ql-toolbar.ql-snow button:focus-visible .tooltip-container {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  /* Disabled state */
+  .sk-texteditor .ql-toolbar.ql-snow.ql-disabled {
+    border-color: var(--sk-colors-input-field-outline-disabled);
+  }
+
+  .sk-texteditor .ql-toolbar.ql-snow.ql-disabled .ql-fill {
+    fill: var(--sk-colors-dark-disabled);
+  }
+
+  .sk-texteditor .ql-toolbar.ql-snow.ql-disabled .ql-stroke {
+    stroke: var(--sk-colors-dark-disabled);
+  }
+
+  .sk-texteditor .ql-toolbar.ql-snow.ql-disabled button {
+    background-color: var(--sk-colors-background-200);
+    color: var(--sk-colors-dark-disabled);
+    cursor: default;
+  }
+
+  .sk-texteditor .ql-toolbar.ql-snow.ql-disabled button.ql-active {
+    background-color: var(--sk-colors-background-200);
+    color: var(--sk-colors-dark-disabled);
+  }
+
+  .sk-texteditor .ql-toolbar.ql-snow.ql-disabled button:hover {
+    background-color: var(--sk-colors-background-200);
+    color: var(--sk-colors-dark-disabled);
+  }
+
+  .sk-texteditor .ql-toolbar.ql-snow.ql-disabled button:hover .ql-fill {
+    fill: var(--sk-colors-dark-disabled);
+  }
+
+  .sk-texteditor .ql-toolbar.ql-snow.ql-disabled button:hover .ql-stroke {
+    stroke: var(--sk-colors-dark-disabled);
+  }
+
+  .sk-texteditor .ql-toolbar.ql-snow.ql-disabled button:hover .tooltip-container {
+    display: none;
+    opacity: 0;
+  }
+
+  /* Container */
+  .sk-texteditor .ql-container.ql-snow {
+    border-color: var(--sk-colors-input-field-outline-DEFAULT);
+    border-bottom-left-radius: var(--sk-spacing-12);
+    border-bottom-right-radius: var(--sk-spacing-12);
+  }
+
+  .sk-texteditor .ql-container.ql-snow :focus-visible {
+    box-shadow: 0 0 0 0.2rem var(--sk-colors-ring) inset;
+    outline: 0;
+    border-bottom-left-radius: var(--sk-spacing-12);
+    border-bottom-right-radius: var(--sk-spacing-12);
+  }
+
+  .sk-texteditor .ql-container.ql-snow.disable-toolbar {
+    border-top-left-radius: var(--sk-spacing-12);
+    border-top-right-radius: var(--sk-spacing-12);
+  }
+
+  .sk-texteditor .ql-container.ql-snow.disable-toolbar :focus-visible {
+    border-top-left-radius: var(--sk-spacing-12);
+    border-top-right-radius: var(--sk-spacing-12);
+  }
+
+  .sk-texteditor .ql-container.ql-snow.ql-disabled {
+    background-color: var(--sk-colors-input-field-surface-disabled);
+    border-color: var(--sk-colors-input-field-outline-disabled);
+  }
+
+  /* Tooltip */
+  .sk-texteditor .ql-tooltip.ql-editing input {
+    border-radius: var(--sk-spacing-0);
+  }
+
+  .sk-texteditor .ql-tooltip.ql-editing input:focus-visible {
+    border-radius: var(--sk-spacing-0);
+  }
+
+  .sk-texteditor .ql-snow .ql-tooltip.ql-editing a.ql-action::after {
+    content: "Spara";
+  }
+
+  .sk-texteditor .ql-snow .ql-tooltip[data-mode=link]::before {
+    content: "Ange l\00e4nk:";
+  }
+
+  .sk-texteditor .ql-snow .ql-tooltip::before {
+    content: "Bes\00f6k URL:";
+  }
+
+  .sk-texteditor .ql-snow .ql-tooltip a.ql-action::after {
+    content: "\00c4ndra";
+  }
+
+  .sk-texteditor .ql-snow .ql-tooltip a.ql-remove::before {
+    content: "Ta bort";
+  }
+}

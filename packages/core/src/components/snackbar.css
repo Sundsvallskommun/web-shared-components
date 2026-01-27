@@ -1,0 +1,65 @@
+/**
+ * Snackbar Component - Tailwind CSS 4
+ * Migrerad till ren CSS med CSS-variabler
+ */
+
+@layer components {
+  .sk-snackbar {
+    font-size: var(--sk-fontSize-label-small);
+    line-height: var(--sk-lineHeight-label-small);
+    font-weight: 700;
+    color: var(--sk-colors-vattjom-text-secondary);
+    display: flex;
+    align-items: center;
+    gap: var(--sk-spacing-12);
+    padding-top: var(--sk-spacing-8);
+    padding-bottom: var(--sk-spacing-8);
+    padding-left: var(--sk-spacing-16);
+    padding-right: var(--sk-spacing-8);
+    border-radius: var(--sk-radius-groups-DEFAULT);
+    overflow-wrap: break-word;
+    max-width: 28.6em;
+  }
+
+  .sk-snackbar-text {
+    flex-grow: 1;
+  }
+
+  .sk-snackbar .sk-icon {
+    color: var(--sk-colors-light-primary);
+  }
+
+  .sk-snackbar-content {
+    flex-grow: 1;
+    gap: var(--sk-spacing-12);
+    padding-top: var(--sk-spacing-4);
+    padding-bottom: var(--sk-spacing-4);
+    display: flex;
+    align-items: center;
+  }
+
+  .sk-snackbar-primary {
+    color: var(--sk-colors-light-secondary);
+    background-color: var(--sk-colors-dark-primary);
+  }
+
+  .sk-snackbar-info {
+    color: var(--sk-colors-vattjom-text-secondary);
+    background-color: var(--sk-colors-vattjom-surface-primary-DEFAULT);
+  }
+
+  .sk-snackbar-success {
+    color: var(--sk-colors-gronsta-text-secondary);
+    background-color: var(--sk-colors-gronsta-surface-primary-DEFAULT);
+  }
+
+  .sk-snackbar-warning {
+    color: var(--sk-colors-warning-text-secondary);
+    background-color: var(--sk-colors-warning-surface-primary-DEFAULT);
+  }
+
+  .sk-snackbar-error {
+    color: var(--sk-colors-error-text-secondary);
+    background-color: var(--sk-colors-error-surface-primary-DEFAULT);
+  }
+}

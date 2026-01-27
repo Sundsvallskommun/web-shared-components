@@ -1,0 +1,476 @@
+/**
+ * File Upload Component - Tailwind CSS 4
+ * Migrerad från file-upload.ts
+ */
+
+@layer components {
+  /* List */
+  .sk-form-file-upload-list {
+    display: flex;
+    flex-direction: column;
+    padding-top: var(--sk-spacing-4);
+    padding-bottom: var(--sk-spacing-4);
+    column-gap: var(--sk-spacing-12);
+    align-items: flex-start;
+    border-color: var(--sk-colors-divider);
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+  }
+
+  .sk-form-file-upload-list[data-border="true"] {
+    border-width: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    row-gap: var(--sk-spacing-12);
+  }
+
+  .sk-form-file-upload-list[data-border="true"] .sk-form-file-upload-list-item {
+    border-width: 1px;
+    border-color: var(--sk-colors-divider);
+  }
+
+  .sk-form-file-upload-list li[role="separator"] {
+    height: 1px;
+    margin-top: var(--sk-spacing-3);
+    margin-bottom: var(--sk-spacing-6);
+    padding-top: 0;
+    padding-bottom: 0;
+    width: 100%;
+  }
+
+  /* List item */
+  .sk-form-file-upload-list-item {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: var(--sk-spacing-12);
+    border-radius: var(--sk-radius-button-DEFAULT);
+    row-gap: var(--sk-spacing-12);
+  }
+
+  .sk-form-file-upload-list-item-innerwrapper {
+    width: 100%;
+    align-self: stretch;
+    align-items: center;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    row-gap: var(--sk-spacing-24);
+    column-gap: var(--sk-spacing-12);
+  }
+
+  .sk-form-file-upload-list-item[data-isedit="true"] .sk-form-file-upload-list-item-innerwrapper {
+    flex-direction: column;
+  }
+
+  @media (min-width: 600px) {
+    .sk-form-file-upload-list-item[data-isedit="true"] .sk-form-file-upload-list-item-innerwrapper {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  .sk-form-file-upload-list-item[data-isedit="true"] .sk-form-file-upload-list-item-innerwrapper .sk-form-file-upload-list-item-icon {
+    display: none;
+  }
+
+  @media (min-width: 600px) {
+    .sk-form-file-upload-list-item[data-isedit="true"] .sk-form-file-upload-list-item-innerwrapper .sk-form-file-upload-list-item-icon {
+      display: flex;
+    }
+  }
+
+  .sk-form-file-upload-list-item:hover {
+    background-color: var(--sk-colors-background-200);
+  }
+
+  .sk-form-file-upload-list-item[data-border="true"] {
+    border-width: 1px;
+    border-color: var(--sk-colors-divider);
+  }
+
+  /* List item icon */
+  .sk-form-file-upload-list-item-icon {
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: var(--sk-radius-utility-DEFAULT);
+    overflow: hidden;
+    background-color: var(--sk-colors-vattjom-surface-accent);
+    width: var(--sk-spacing-32);
+    height: var(--sk-spacing-32);
+  }
+
+  .sk-form-file-upload-list-item-icon .sk-icon {
+    width: 100%;
+    height: 100%;
+    padding: 0.64rem;
+  }
+
+  .sk-form-file-upload-list-item-icon[data-size="sm"] {
+    width: var(--sk-spacing-32);
+    height: var(--sk-spacing-32);
+  }
+
+  .sk-form-file-upload-list-item-icon[data-size="sm"] .sk-icon {
+    padding: 0.64rem;
+  }
+
+  .sk-form-file-upload-list-item-icon[data-size="md"] {
+    /* Base is same as default, responsive handled below */
+  }
+
+  @media (min-width: 600px) {
+    .sk-form-file-upload-list-item-icon[data-size="md"] {
+      width: var(--sk-spacing-44);
+      height: var(--sk-spacing-44);
+    }
+
+    .sk-form-file-upload-list-item-icon[data-size="md"] .sk-icon {
+      padding: 0.88rem;
+    }
+  }
+
+  /* List item content */
+  .sk-form-file-upload-list-item-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    row-gap: var(--sk-spacing-24);
+  }
+
+  @media (min-width: 600px) {
+    .sk-form-file-upload-list-item-content {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
+      align-items: center;
+    }
+  }
+
+  .sk-form-file-upload-list-item-content > * {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+  }
+
+  .sk-form-file-upload-list-item-content-name {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sk-spacing-2);
+  }
+
+  .sk-form-file-upload-list-item-content-name[data-size="sm"] .sk-form-file-upload-list-item-content-name-description {
+    display: none;
+  }
+
+  .sk-form-file-upload-list-item-content-name-input-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .sk-form-file-upload-list-item-content-name-input-wrapper .sk-form-input {
+    flex-grow: 1;
+  }
+
+  .sk-form-file-upload-list-item-content-name-ending {
+    margin-left: var(--sk-spacing-8);
+  }
+
+  .sk-form-file-upload-list-item-content-name-heading {
+    font-size: var(--sk-fontSize-base);
+    line-height: var(--sk-lineHeight-base);
+    font-weight: 700;
+  }
+
+  .sk-form-file-upload-list-item-content-name-description {
+    font-size: var(--sk-fontSize-small);
+    line-height: var(--sk-lineHeight-small);
+  }
+
+  /* List item actions */
+  .sk-form-file-upload-list-item-actions {
+    display: flex;
+    gap: var(--sk-spacing-12);
+    align-items: center;
+  }
+
+  .sk-form-file-upload-list-item-actions-more-wrapper {
+    position: relative;
+  }
+
+  .sk-form-file-upload-list-item-actions-remove-tooltip {
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: var(--sk-spacing-6);
+    display: none;
+    z-index: var(--sk-zIndex-20);
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  .group:hover .sk-form-file-upload-list-item-actions-remove-tooltip {
+    display: block;
+  }
+
+  .sk-form-file-upload-list-item .sk-form-error-message {
+    color: var(--sk-colors-error);
+  }
+
+  .sk-form-file-upload-list-item .sk-form-control {
+    width: 100%;
+  }
+
+  @media (min-width: 600px) {
+    .sk-form-file-upload-list-item .sk-form-control {
+      width: fit-content;
+    }
+  }
+
+  .sk-form-file-upload-list-item .sk-form-control .sk-form-select,
+  .sk-form-file-upload-list-item .sk-form-control .sk-form-input {
+    width: 100%;
+  }
+
+  @media (min-width: 600px) {
+    .sk-form-file-upload-list-item .sk-form-control .sk-form-select,
+    .sk-form-file-upload-list-item .sk-form-control .sk-form-input {
+      width: fit-content;
+    }
+  }
+
+  /* List item progress */
+  .sk-form-file-upload-list-item-progress {
+    width: 100%;
+    display: flex;
+    column-gap: var(--sk-spacing-md);
+    align-items: center;
+  }
+
+  .sk-form-file-upload-list-item-progress-bar {
+    width: 100%;
+    height: 0.4rem;
+    background-color: var(--sk-colors-background-color-mixin-2);
+    border-radius: var(--sk-radius-circular-DEFAULT);
+    overflow: hidden;
+  }
+
+  .sk-form-file-upload-list-item-progress-bar-amount {
+    height: 100%;
+    background-color: var(--sk-colors-primary-surface);
+    width: 0;
+    transition: width 0.3s ease;
+  }
+
+  /* Area */
+  .sk-form-file-upload-area[data-relativity="viewport"] .sk-form-file-upload-area-overlay {
+    position: fixed;
+  }
+
+  .sk-form-file-upload-area[data-relativity="component"] {
+    position: relative;
+    display: inline-flex;
+  }
+
+  .sk-form-file-upload-area[data-relativity="component"] .sk-form-file-upload-area-overlay {
+    position: absolute;
+  }
+
+  .sk-form-file-upload-area-overlay {
+    position: fixed;
+    z-index: var(--sk-zIndex-overlay);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--sk-spacing-32);
+    border-radius: var(--sk-radius-groups-DEFAULT);
+    background-color: var(--sk-colors-primitives-overlay-darken-6);
+    border-width: 2px;
+    border-color: var(--sk-colors-gronsta-text-primary);
+    display: none;
+  }
+
+  .sk-form-file-upload-area-overlay[data-isdragging] {
+    display: block;
+  }
+
+  .sk-form-file-upload-area-overlay-content {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--sk-spacing-6);
+    border-style: dashed;
+    border-width: 2px;
+    border-color: var(--sk-colors-gronsta-text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sk-colors-gronsta-text-primary);
+  }
+
+  .sk-form-file-upload-area-overlay-content-icon-wrapper {
+    border-radius: 9999px;
+    background-color: var(--sk-colors-gronsta-surface-accent);
+    padding: var(--sk-spacing-16);
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .sk-form-file-upload-area-overlay-content-icon-wrapper {
+      height: 8rem;
+      width: 8rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .sk-form-file-upload-area-overlay-content-icon-wrapper {
+      height: 12rem;
+      width: 12rem;
+    }
+  }
+
+  .sk-form-file-upload-area-overlay-content-icon-wrapper .sk-icon {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Modal */
+  .sk-form-file-upload-modal {
+    /* Base styles, responsive handled below */
+  }
+
+  @media (min-width: 600px) {
+    .sk-form-file-upload-modal {
+      width: 78rem;
+    }
+  }
+
+  .sk-form-file-upload-modal-labels {
+    display: none;
+    font-size: var(--sk-fontSize-small);
+    line-height: var(--sk-lineHeight-small);
+    font-weight: 700;
+    margin-top: var(--sk-spacing-12);
+    margin-bottom: var(--sk-spacing-8);
+  }
+
+  @media (min-width: 600px) {
+    .sk-form-file-upload-modal-labels {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .sk-form-file-upload-modal-button-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--sk-spacing-8);
+    margin-bottom: var(--sk-spacing-32);
+  }
+
+  /* Field */
+  .sk-form-file-upload-field {
+    width: fit-content;
+  }
+
+  .sk-form-file-upload-field .sk-form-file-upload-area {
+    width: 100%;
+    height: 100%;
+  }
+
+  .sk-form-file-upload-field .sk-form-file-upload-area-children {
+    width: 100%;
+    height: 100%;
+  }
+
+  .sk-form-file-upload-field[data-variant="horizontal"] .sk-form-file-upload-field-button {
+    display: flex;
+    flex-direction: row;
+    padding: var(--sk-spacing-24);
+    justify-content: center;
+    align-items: center;
+    gap: var(--sk-spacing-16);
+  }
+
+  .sk-form-file-upload-field[data-variant="vertical"] .sk-form-file-upload-field-button {
+    display: flex;
+    flex-direction: column;
+    padding: var(--sk-spacing-24);
+    justify-content: center;
+    align-items: center;
+    gap: var(--sk-spacing-18);
+  }
+
+  .sk-form-file-upload-field[data-variant="vertical"] .sk-form-file-upload-field-button-content {
+    align-items: center;
+  }
+
+  .sk-form-file-upload-field[data-variant="vertical"] .sk-form-file-upload-field-button-content-restrictions {
+    align-items: center;
+    text-align: center;
+  }
+
+  .sk-form-file-upload-field[data-variant="vertical"] .sk-form-file-upload-field-button-content-restrictions-mimetypes {
+    text-align: center;
+  }
+
+  .sk-form-file-upload-field:hover .sk-form-file-upload-field-button {
+    background-color: var(--sk-colors-vattjom-background-200);
+    border-style: solid;
+  }
+
+  .sk-form-file-upload-field[data-invalid="true"] .sk-form-file-upload-field-button {
+    background-color: var(--sk-colors-error-background-100);
+    border-style: solid;
+    border-color: var(--sk-colors-error);
+  }
+
+  .sk-form-file-upload-field-button {
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 0;
+    align-self: stretch;
+    border-radius: var(--sk-radius-groups-DEFAULT);
+    border-color: var(--sk-colors-vattjom-surface-primary-DEFAULT);
+    border-style: dashed;
+    border-width: 1px;
+    background-color: var(--sk-colors-vattjom-background-100);
+  }
+
+  .sk-form-file-upload-field-button-icon .sk-icon {
+    width: var(--sk-spacing-32);
+    height: var(--sk-spacing-32);
+  }
+
+  .sk-form-file-upload-field-button-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: var(--sk-spacing-4);
+  }
+
+  .sk-form-file-upload-field-button-content-restrictions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: var(--sk-fontSize-small);
+    line-height: var(--sk-lineHeight-small);
+    color: var(--sk-colors-dark-secondary);
+  }
+
+  .sk-form-file-upload-field-button-content-restrictions-mimetypes {
+    text-align: start;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    max-width: 25rem;
+  }
+}

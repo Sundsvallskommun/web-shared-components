@@ -1,0 +1,283 @@
+/**
+ * Navigation Bar Component - Tailwind CSS 4
+ * Migrerad till ren CSS med CSS-variabler
+ */
+
+@layer components {
+  .sk-navigationbar {
+    display: flex;
+    flex-direction: row;
+    border-radius: var(--sk-radius-cards-DEFAULT);
+  }
+
+  .sk-navigationbar[data-background="true"] {
+    background-color: var(--sk-colors-background-color-mixin-1);
+  }
+
+  /* Sizes */
+  .sk-navigationbar[data-size="md"] {
+    padding: var(--sk-spacing-6);
+    gap: var(--sk-spacing-8);
+    border-radius: var(--sk-radius-groups-DEFAULT);
+  }
+
+  .sk-navigationbar[data-size="lg"] {
+    padding: var(--sk-spacing-8);
+    gap: var(--sk-spacing-16);
+    border-radius: var(--sk-radius-cards-DEFAULT);
+  }
+
+  /* Item */
+  .sk-navigationbar-item {
+    display: inline-block;
+    position: relative;
+  }
+
+  .sk-navigationbar-item[data-size="md"] {
+    height: var(--sk-spacing-34);
+  }
+
+  .sk-navigationbar-item[data-size="md"] > * {
+    font-size: var(--sk-fontSize-small);
+    line-height: 1.8rem;
+  }
+
+  .sk-navigationbar-item[data-size="lg"] {
+    height: var(--sk-spacing-40);
+  }
+
+  .sk-navigationbar-item > *:first-child {
+    border-radius: var(--sk-radius-button-sm);
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--sk-colors-dark-primary);
+    font-weight: 700;
+    gap: var(--sk-spacing-2);
+    padding: var(--sk-spacing-8) var(--sk-spacing-14);
+    height: 100%;
+    min-height: 100%;
+    display: inline-flex;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+    border-width: 0;
+  }
+
+  .sk-navigationbar-item > *:first-child:hover {
+    background-color: var(--sk-colors-tertiary-surface-DEFAULT);
+  }
+
+  .sk-navigationbar-item > *:first-child:focus-visible {
+    background-color: var(--sk-colors-background-content);
+    outline: var(--sk-spacing-3) solid var(--sk-colors-ring);
+    outline-offset: var(--sk-spacing-2);
+  }
+
+  .sk-navigationbar-item > *:first-child[aria-current="page"]:not(:hover),
+  .sk-navigationbar-item > *:first-child[aria-selected="true"]:not(:hover) {
+    background-color: var(--sk-colors-primary-surface-DEFAULT);
+    color: var(--sk-colors-light-primary);
+  }
+
+  .sk-navigationbar-item > *:first-child[aria-current="page"]:not(:hover):focus-visible,
+  .sk-navigationbar-item > *:first-child[aria-selected="true"]:not(:hover):focus-visible {
+    outline: var(--sk-spacing-3) solid var(--sk-colors-ring);
+    outline-offset: var(--sk-spacing-2);
+  }
+
+  /* Responsive border-radius */
+  @media (min-width: 768px) {
+    .sk-navigationbar-item > *:first-child {
+      border-radius: var(--sk-radius-button-md);
+    }
+  }
+
+  @media (min-width: 1366px) {
+    .sk-navigationbar-item > *:first-child {
+      border-radius: var(--sk-radius-button-lg);
+    }
+  }
+
+  /* Color: warning */
+  .sk-navigationbar-item[data-color="warning"] > *:first-child:hover {
+    background-color: var(--sk-colors-warning-surface-accent-DEFAULT);
+    color: var(--sk-colors-warning-text-primary);
+  }
+
+  .sk-navigationbar-item[data-color="warning"] > *:first-child:focus-visible {
+    background-color: var(--sk-colors-background-content);
+    outline: var(--sk-spacing-3) solid var(--sk-colors-ring);
+    outline-offset: var(--sk-spacing-2);
+  }
+
+  .sk-navigationbar-item[data-color="warning"] > *:first-child[aria-current="page"]:not(:hover),
+  .sk-navigationbar-item[data-color="warning"] > *:first-child[aria-selected="true"]:not(:hover) {
+    background-color: var(--sk-colors-warning-surface-primary-DEFAULT);
+  }
+
+  .sk-navigationbar-item[data-color="warning"] > *:first-child[aria-current="page"]:not(:hover):focus-visible,
+  .sk-navigationbar-item[data-color="warning"] > *:first-child[aria-selected="true"]:not(:hover):focus-visible {
+    outline: var(--sk-spacing-3) solid var(--sk-colors-ring);
+    outline-offset: var(--sk-spacing-2);
+  }
+
+  /* Color: error */
+  .sk-navigationbar-item[data-color="error"] > *:first-child:hover {
+    background-color: var(--sk-colors-error-surface-accent-DEFAULT);
+    color: var(--sk-colors-error-text-primary);
+  }
+
+  .sk-navigationbar-item[data-color="error"] > *:first-child:focus-visible {
+    background-color: var(--sk-colors-background-content);
+    outline: var(--sk-spacing-3) solid var(--sk-colors-ring);
+    outline-offset: var(--sk-spacing-2);
+  }
+
+  .sk-navigationbar-item[data-color="error"] > *:first-child[aria-current="page"]:not(:hover),
+  .sk-navigationbar-item[data-color="error"] > *:first-child[aria-selected="true"]:not(:hover) {
+    background-color: var(--sk-colors-error-surface-primary-DEFAULT);
+  }
+
+  .sk-navigationbar-item[data-color="error"] > *:first-child[aria-current="page"]:not(:hover):focus-visible,
+  .sk-navigationbar-item[data-color="error"] > *:first-child[aria-selected="true"]:not(:hover):focus-visible {
+    outline: var(--sk-spacing-3) solid var(--sk-colors-ring);
+    outline-offset: var(--sk-spacing-2);
+  }
+
+  /* Color: success */
+  .sk-navigationbar-item[data-color="success"] > *:first-child:hover {
+    background-color: var(--sk-colors-success-surface-accent-DEFAULT);
+    color: var(--sk-colors-success-text-primary);
+  }
+
+  .sk-navigationbar-item[data-color="success"] > *:first-child:focus-visible {
+    background-color: var(--sk-colors-background-content);
+    outline: var(--sk-spacing-3) solid var(--sk-colors-ring);
+    outline-offset: var(--sk-spacing-2);
+  }
+
+  .sk-navigationbar-item[data-color="success"] > *:first-child[aria-current="page"]:not(:hover),
+  .sk-navigationbar-item[data-color="success"] > *:first-child[aria-selected="true"]:not(:hover) {
+    background-color: var(--sk-colors-success-surface-primary-DEFAULT);
+  }
+
+  .sk-navigationbar-item[data-color="success"] > *:first-child[aria-current="page"]:not(:hover):focus-visible,
+  .sk-navigationbar-item[data-color="success"] > *:first-child[aria-selected="true"]:not(:hover):focus-visible {
+    outline: var(--sk-spacing-3) solid var(--sk-colors-ring);
+    outline-offset: var(--sk-spacing-2);
+  }
+
+  /* Color: info */
+  .sk-navigationbar-item[data-color="info"] > *:first-child:hover {
+    background-color: var(--sk-colors-info-surface-accent-DEFAULT);
+    color: var(--sk-colors-info-text-primary);
+  }
+
+  .sk-navigationbar-item[data-color="info"] > *:first-child:focus-visible {
+    background-color: var(--sk-colors-background-content);
+    outline: var(--sk-spacing-3) solid var(--sk-colors-ring);
+    outline-offset: var(--sk-spacing-2);
+  }
+
+  .sk-navigationbar-item[data-color="info"] > *:first-child[aria-current="page"]:not(:hover),
+  .sk-navigationbar-item[data-color="info"] > *:first-child[aria-selected="true"]:not(:hover) {
+    background-color: var(--sk-colors-info-surface-primary-DEFAULT);
+  }
+
+  .sk-navigationbar-item[data-color="info"] > *:first-child[aria-current="page"]:not(:hover):focus-visible,
+  .sk-navigationbar-item[data-color="info"] > *:first-child[aria-selected="true"]:not(:hover):focus-visible {
+    outline: var(--sk-spacing-3) solid var(--sk-colors-ring);
+    outline-offset: var(--sk-spacing-2);
+  }
+
+  /* Color: vattjom */
+  .sk-navigationbar-item[data-color="vattjom"] > *:first-child:hover {
+    background-color: var(--sk-colors-vattjom-surface-accent-DEFAULT);
+    color: var(--sk-colors-vattjom-text-primary);
+  }
+
+  .sk-navigationbar-item[data-color="vattjom"] > *:first-child:focus-visible {
+    background-color: var(--sk-colors-background-content);
+    outline: var(--sk-spacing-3) solid var(--sk-colors-ring);
+    outline-offset: var(--sk-spacing-2);
+  }
+
+  .sk-navigationbar-item[data-color="vattjom"] > *:first-child[aria-current="page"]:not(:hover),
+  .sk-navigationbar-item[data-color="vattjom"] > *:first-child[aria-selected="true"]:not(:hover) {
+    background-color: var(--sk-colors-vattjom-surface-primary-DEFAULT);
+  }
+
+  .sk-navigationbar-item[data-color="vattjom"] > *:first-child[aria-current="page"]:not(:hover):focus-visible,
+  .sk-navigationbar-item[data-color="vattjom"] > *:first-child[aria-selected="true"]:not(:hover):focus-visible {
+    outline: var(--sk-spacing-3) solid var(--sk-colors-ring);
+    outline-offset: var(--sk-spacing-2);
+  }
+
+  /* Color: juniskar */
+  .sk-navigationbar-item[data-color="juniskar"] > *:first-child:hover {
+    background-color: var(--sk-colors-juniskar-surface-accent-DEFAULT);
+    color: var(--sk-colors-juniskar-text-primary);
+  }
+
+  .sk-navigationbar-item[data-color="juniskar"] > *:first-child:focus-visible {
+    background-color: var(--sk-colors-background-content);
+    outline: var(--sk-spacing-3) solid var(--sk-colors-ring);
+    outline-offset: var(--sk-spacing-2);
+  }
+
+  .sk-navigationbar-item[data-color="juniskar"] > *:first-child[aria-current="page"]:not(:hover),
+  .sk-navigationbar-item[data-color="juniskar"] > *:first-child[aria-selected="true"]:not(:hover) {
+    background-color: var(--sk-colors-juniskar-surface-primary-DEFAULT);
+  }
+
+  .sk-navigationbar-item[data-color="juniskar"] > *:first-child[aria-current="page"]:not(:hover):focus-visible,
+  .sk-navigationbar-item[data-color="juniskar"] > *:first-child[aria-selected="true"]:not(:hover):focus-visible {
+    outline: var(--sk-spacing-3) solid var(--sk-colors-ring);
+    outline-offset: var(--sk-spacing-2);
+  }
+
+  /* Color: bjornstigen */
+  .sk-navigationbar-item[data-color="bjornstigen"] > *:first-child:hover {
+    background-color: var(--sk-colors-bjornstigen-surface-accent-DEFAULT);
+    color: var(--sk-colors-bjornstigen-text-primary);
+  }
+
+  .sk-navigationbar-item[data-color="bjornstigen"] > *:first-child:focus-visible {
+    background-color: var(--sk-colors-background-content);
+    outline: var(--sk-spacing-3) solid var(--sk-colors-ring);
+    outline-offset: var(--sk-spacing-2);
+  }
+
+  .sk-navigationbar-item[data-color="bjornstigen"] > *:first-child[aria-current="page"]:not(:hover),
+  .sk-navigationbar-item[data-color="bjornstigen"] > *:first-child[aria-selected="true"]:not(:hover) {
+    background-color: var(--sk-colors-bjornstigen-surface-primary-DEFAULT);
+  }
+
+  .sk-navigationbar-item[data-color="bjornstigen"] > *:first-child[aria-current="page"]:not(:hover):focus-visible,
+  .sk-navigationbar-item[data-color="bjornstigen"] > *:first-child[aria-selected="true"]:not(:hover):focus-visible {
+    outline: var(--sk-spacing-3) solid var(--sk-colors-ring);
+    outline-offset: var(--sk-spacing-2);
+  }
+
+  /* Color: gronsta */
+  .sk-navigationbar-item[data-color="gronsta"] > *:first-child:hover {
+    background-color: var(--sk-colors-gronsta-surface-accent-DEFAULT);
+    color: var(--sk-colors-gronsta-text-primary);
+  }
+
+  .sk-navigationbar-item[data-color="gronsta"] > *:first-child:focus-visible {
+    background-color: var(--sk-colors-background-content);
+    outline: var(--sk-spacing-3) solid var(--sk-colors-ring);
+    outline-offset: var(--sk-spacing-2);
+  }
+
+  .sk-navigationbar-item[data-color="gronsta"] > *:first-child[aria-current="page"]:not(:hover),
+  .sk-navigationbar-item[data-color="gronsta"] > *:first-child[aria-selected="true"]:not(:hover) {
+    background-color: var(--sk-colors-gronsta-surface-primary-DEFAULT);
+  }
+
+  .sk-navigationbar-item[data-color="gronsta"] > *:first-child[aria-current="page"]:not(:hover):focus-visible,
+  .sk-navigationbar-item[data-color="gronsta"] > *:first-child[aria-selected="true"]:not(:hover):focus-visible {
+    outline: var(--sk-spacing-3) solid var(--sk-colors-ring);
+    outline-offset: var(--sk-spacing-2);
+  }
+}

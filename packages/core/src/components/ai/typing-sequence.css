@@ -1,0 +1,103 @@
+/**
+ * AI Typing Sequence Component - Tailwind CSS 4
+ * Converted to pure CSS with CSS variables
+ */
+
+@layer components {
+  .sk-ai-typing-sequence {
+    background-color: transparent;
+    display: inline-flex;
+    height: var(--sk-spacing-5);
+    width: fit-content;
+    gap: var(--sk-spacing-6);
+  }
+
+  .sk-ai-typing-sequence-dot {
+    border-radius: 9999px;
+    display: block;
+    width: var(--sk-spacing-5);
+    height: var(--sk-spacing-5);
+    background-color: var(--sk-colors-dark-secondary);
+  }
+
+  .sk-ai-typing-sequence-dot[data-inverted="true"] {
+    background-color: var(--sk-colors-inverted-dark-secondary);
+  }
+
+  .sk-ai-typing-sequence-dot[data-order="1"] {
+    animation: typingbounce 1.5s ease-in-out 600ms infinite;
+  }
+
+  .sk-ai-typing-sequence-dot[data-order="2"] {
+    animation: typingbounce 1.5s ease-in-out 800ms infinite;
+  }
+
+  .sk-ai-typing-sequence-dot[data-order="3"] {
+    animation: typingbounce 1.5s ease-in-out 1s infinite;
+  }
+
+  /* Color variants */
+  .sk-ai-typing-sequence-dot[data-color="vattjom"] {
+    background-color: var(--sk-colors-vattjom-surface-primary-DEFAULT);
+  }
+
+  .sk-ai-typing-sequence-dot[data-color="vattjom"][data-inverted="true"] {
+    background-color: var(--sk-colors-inverted-vattjom-surface-primary-DEFAULT);
+  }
+
+  .sk-ai-typing-sequence-dot[data-color="gronsta"] {
+    background-color: var(--sk-colors-gronsta-surface-primary-DEFAULT);
+  }
+
+  .sk-ai-typing-sequence-dot[data-color="gronsta"][data-inverted="true"] {
+    background-color: var(--sk-colors-inverted-gronsta-surface-primary-DEFAULT);
+  }
+
+  .sk-ai-typing-sequence-dot[data-color="juniskar"] {
+    background-color: var(--sk-colors-juniskar-surface-primary-DEFAULT);
+  }
+
+  .sk-ai-typing-sequence-dot[data-color="juniskar"][data-inverted="true"] {
+    background-color: var(--sk-colors-inverted-juniskar-surface-primary-DEFAULT);
+  }
+
+  .sk-ai-typing-sequence-dot[data-color="bjornstigen"] {
+    background-color: var(--sk-colors-bjornstigen-surface-primary-DEFAULT);
+  }
+
+  .sk-ai-typing-sequence-dot[data-color="bjornstigen"][data-inverted="true"] {
+    background-color: var(--sk-colors-inverted-bjornstigen-surface-primary-DEFAULT);
+  }
+
+  .sk-ai-typing-sequence-dot[data-color="warning"] {
+    background-color: var(--sk-colors-warning-surface-primary-DEFAULT);
+  }
+
+  .sk-ai-typing-sequence-dot[data-color="warning"][data-inverted="true"] {
+    background-color: var(--sk-colors-inverted-warning-surface-primary-DEFAULT);
+  }
+
+  .sk-ai-typing-sequence-dot[data-color="error"] {
+    background-color: var(--sk-colors-error-surface-primary-DEFAULT);
+  }
+
+  .sk-ai-typing-sequence-dot[data-color="error"][data-inverted="true"] {
+    background-color: var(--sk-colors-inverted-error-surface-primary-DEFAULT);
+  }
+
+  .sk-ai-typing-sequence-dot[data-color="info"] {
+    background-color: var(--sk-colors-info-surface-primary-DEFAULT);
+  }
+
+  .sk-ai-typing-sequence-dot[data-color="info"][data-inverted="true"] {
+    background-color: var(--sk-colors-inverted-info-surface-primary-DEFAULT);
+  }
+
+  .sk-ai-typing-sequence-dot[data-color="success"] {
+    background-color: var(--sk-colors-success-surface-primary-DEFAULT);
+  }
+
+  .sk-ai-typing-sequence-dot[data-color="success"][data-inverted="true"] {
+    background-color: var(--sk-colors-inverted-success-surface-primary-DEFAULT);
+  }
+}

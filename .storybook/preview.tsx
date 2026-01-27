@@ -1,6 +1,7 @@
 import type { Preview } from '@storybook/react';
 import { WithGuiDecorator } from './components/theme-decorators';
 import { ParametersContainer } from './components/theme-parameters';
+import './tailwind.css';
 import './styles.scss';
 
 const parameters: Preview['parameters'] = {

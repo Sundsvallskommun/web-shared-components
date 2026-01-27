@@ -1,88 +1,37 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Tailwind styles are imported via tailwind.css */
 
-@layer base {
-  html {
-    font-size: 0.625em;
-  }
-  body {
-    @apply text-base;
-    font-family: Arial, Helvetica, sans-serif;
-    a {
-      @apply text-vattjom-text-primary;
-    }
-  }
+/* Storybook-specific overrides */
+html {
+  font-size: 0.625em;
+}
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: raleway, sans-serif;
-  }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-  /* Styling for Show code */
-  pre.prismjs .tag {
-    @apply px-[.05em];
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: raleway, sans-serif;
+}
 
-  .docblock-code-toggle--disabled[disabled=''] {
-    @apply hidden;
-  }
+/* Styling for Show code */
+pre.prismjs .tag {
+  padding-left: 0.05em;
+  padding-right: 0.05em;
+}
 
-  .sb-preparing-story,
-  .sb-preparing-docs,
-  .sb-errordisplay,
-  #storybook-docs > .docs-wrapper > .sbdocs {
-    &.sb-wrapper,
-    &.sbdocs-preview,
-    &.sbdocs-wrapper,
-    &.sbdocs-wrapper .sb-anchor > .sbdocs.sbdocs-preview,
-    &.sbdocs-wrapper > .sbdocs-content p:not(.sb-anchor p),
-    &.sbdocs-wrapper > .sbdocs-content h1:not(.sb-anchor h1),
-    &.sbdocs-wrapper > .sbdocs-content h2:not(.sb-anchor h2),
-    &.sbdocs-wrapper > .sbdocs-content h3:not(.sb-anchor h3),
-    &.sbdocs-wrapper > .sbdocs-content h4:not(.sb-anchor h4),
-    &.sbdocs-wrapper > .sbdocs-content h5:not(.sb-anchor h5),
-    &.sbdocs-wrapper > .sbdocs-content h6:not(.sb-anchor h6),
-    &.sbdocs-wrapper > .sbdocs-content th:not(.sb-anchor th),
-    &.sbdocs-wrapper > .sbdocs-content ul:not(.sb-anchor ul),
-    &.sbdocs-wrapper > .sbdocs-content li:not(.sb-anchor li),
-    .docblock-argstable-body,
-    .docblock-argstable-body > tr:nth-of-type(n):not(.sb-anchor tr) > td,
-    .docblock-argstable-body > tr:nth-of-type(n):not(.sb-anchor tr) > td span,
-    thead.docblock-argstable-head th,
-    .docblock-typeset,
-    .docblock-typeset > * > * {
-      @apply bg-background-content text-body;
-    }
+.docblock-code-toggle--disabled[disabled=''] {
+  display: none;
+}
 
-    .docblock-argstable-body tr:nth-of-type(2n):not(.sb-anchor tr) td,
-    .docblock-argstable-body tr:nth-of-type(2n):not(.sb-anchor tr) td span {
-      @apply bg-background-100;
-    }
-  }
+[type='radio']:checked {
+  background-image: unset;
+}
 
-  .sbdocs.sbdocs-preview {
-    @apply border-divider;
-  }
-
-  .docs-preview {
-    all: initial !important;
-    // @apply bg-background;
-  }
-
-  .docs-preview-canvas {
-    all: unset !important;
-    // @apply bg-background;
-  }
-
-  [type='radio']:checked {
-    background-image: unset;
-  }
-  input {
-    margin: unset;
-  }
+input {
+  margin: unset;
 }

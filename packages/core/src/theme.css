@@ -1,0 +1,808 @@
+/**
+ * SK Web GUI - Tailwind CSS 4 Theme & Components
+ */
+
+/* ============================================
+   Default CSS Variable Values
+   ============================================ */
+:root {
+  /* Font Sizes - Body text */
+  --sk-fontSize-base: 1.6rem;
+  --sk-fontSize-small: 1.4rem;
+  --sk-fontSize-large: 1.8rem;
+  --sk-fontSize-lead: 2rem;
+
+  /* Font Sizes - Display */
+  --sk-fontSize-display-1-DEFAULT: 8rem;
+  --sk-fontSize-display-1-lg: 8rem;
+  --sk-fontSize-display-1-md: 7.2rem;
+  --sk-fontSize-display-1-sm: 5.6rem;
+  --sk-fontSize-display-2-DEFAULT: 6.4rem;
+  --sk-fontSize-display-2-lg: 6.4rem;
+  --sk-fontSize-display-2-md: 5.6rem;
+  --sk-fontSize-display-2-sm: 4.4rem;
+  --sk-fontSize-display-3-DEFAULT: 4.8rem;
+  --sk-fontSize-display-3-lg: 4.8rem;
+  --sk-fontSize-display-3-md: 4rem;
+  --sk-fontSize-display-3-sm: 3.2rem;
+
+  /* Font Sizes - Headings - with hyphen format for typography.css */
+  --sk-fontSize-h-1-DEFAULT: 4rem;
+  --sk-fontSize-h-1-lg: 4rem;
+  --sk-fontSize-h-1-md: 3.4rem;
+  --sk-fontSize-h-1-sm: 3.2rem;
+  --sk-fontSize-h-2-DEFAULT: 3.2rem;
+  --sk-fontSize-h-2-lg: 3.2rem;
+  --sk-fontSize-h-2-md: 2.8rem;
+  --sk-fontSize-h-2-sm: 2.6rem;
+  --sk-fontSize-h-3-DEFAULT: 2.6rem;
+  --sk-fontSize-h-3-lg: 2.6rem;
+  --sk-fontSize-h-3-md: 2.2rem;
+  --sk-fontSize-h-3-sm: 2rem;
+  --sk-fontSize-h-4-DEFAULT: 2.4rem;
+  --sk-fontSize-h-4-lg: 2.4rem;
+  --sk-fontSize-h-4-md: 2rem;
+  --sk-fontSize-h-4-sm: 1.8rem;
+
+  /* Font Sizes - Headings */
+  --sk-fontSize-h1-DEFAULT: 4rem;
+  --sk-fontSize-h1-lg: 4rem;
+  --sk-fontSize-h1-md: 3.4rem;
+  --sk-fontSize-h1-sm: 3.2rem;
+  --sk-fontSize-h2-DEFAULT: 3.2rem;
+  --sk-fontSize-h2-lg: 3.2rem;
+  --sk-fontSize-h2-md: 2.8rem;
+  --sk-fontSize-h2-sm: 2.6rem;
+  --sk-fontSize-h3-DEFAULT: 2.6rem;
+  --sk-fontSize-h3-lg: 2.6rem;
+  --sk-fontSize-h3-md: 2.2rem;
+  --sk-fontSize-h3-sm: 2rem;
+  --sk-fontSize-h4-DEFAULT: 2.4rem;
+  --sk-fontSize-h4-lg: 2.4rem;
+  --sk-fontSize-h4-md: 2rem;
+  --sk-fontSize-h4-sm: 1.8rem;
+
+  /* Font Sizes - Labels */
+  --sk-fontSize-label-large: 1.8rem;
+  --sk-fontSize-label-medium: 1.6rem;
+  --sk-fontSize-label-small: 1.4rem;
+  --sk-fontSize-label-extra-small: 1.2rem;
+
+  /* Font Sizes - Input */
+  --sk-fontSize-input-large: 1.8rem;
+  --sk-fontSize-input-medium: 1.6rem;
+  --sk-fontSize-input-small: 1.4rem;
+
+  /* Font Sizes - Logo */
+  --sk-fontSize-logo-header: 2.2rem;
+
+  /* Line Heights - Body text */
+  --sk-lineHeight-base: 2.4rem;
+  --sk-lineHeight-small: 1.8rem;
+  --sk-lineHeight-large: 2.6rem;
+  --sk-lineHeight-lead: 2.8rem;
+
+  /* Line Heights - Display */
+  --sk-lineHeight-display-1-DEFAULT: 9.6rem;
+  --sk-lineHeight-display-1-lg: 9.6rem;
+  --sk-lineHeight-display-1-md: 8rem;
+  --sk-lineHeight-display-1-sm: 6.4rem;
+  --sk-lineHeight-display-2-DEFAULT: 7.2rem;
+  --sk-lineHeight-display-2-lg: 7.2rem;
+  --sk-lineHeight-display-2-md: 6.4rem;
+  --sk-lineHeight-display-2-sm: 5.6rem;
+  --sk-lineHeight-display-3-DEFAULT: 5.6rem;
+  --sk-lineHeight-display-3-lg: 5.6rem;
+  --sk-lineHeight-display-3-md: 4.8rem;
+  --sk-lineHeight-display-3-sm: 3.6rem;
+
+  /* Line Heights - Headings - with hyphen format for typography.css */
+  --sk-lineHeight-h-1-DEFAULT: 5.6rem;
+  --sk-lineHeight-h-1-lg: 5.6rem;
+  --sk-lineHeight-h-1-md: 4.8rem;
+  --sk-lineHeight-h-1-sm: 4.4rem;
+  --sk-lineHeight-h-2-DEFAULT: 4rem;
+  --sk-lineHeight-h-2-lg: 4rem;
+  --sk-lineHeight-h-2-md: 3.6rem;
+  --sk-lineHeight-h-2-sm: 3.2rem;
+  --sk-lineHeight-h-3-DEFAULT: 3.4rem;
+  --sk-lineHeight-h-3-lg: 3.4rem;
+  --sk-lineHeight-h-3-md: 3rem;
+  --sk-lineHeight-h-3-sm: 2.8rem;
+  --sk-lineHeight-h-4-DEFAULT: 3.2rem;
+  --sk-lineHeight-h-4-lg: 3.2rem;
+  --sk-lineHeight-h-4-md: 2.8rem;
+  --sk-lineHeight-h-4-sm: 2.4rem;
+
+  /* Line Heights - Headings */
+  --sk-lineHeight-h1-DEFAULT: 5.6rem;
+  --sk-lineHeight-h1-lg: 5.6rem;
+  --sk-lineHeight-h1-md: 4.8rem;
+  --sk-lineHeight-h1-sm: 4.4rem;
+  --sk-lineHeight-h2-DEFAULT: 4rem;
+  --sk-lineHeight-h2-lg: 4rem;
+  --sk-lineHeight-h2-md: 3.6rem;
+  --sk-lineHeight-h2-sm: 3.2rem;
+  --sk-lineHeight-h3-DEFAULT: 3.4rem;
+  --sk-lineHeight-h3-lg: 3.4rem;
+  --sk-lineHeight-h3-md: 3rem;
+  --sk-lineHeight-h3-sm: 2.8rem;
+  --sk-lineHeight-h4-DEFAULT: 3.2rem;
+  --sk-lineHeight-h4-lg: 3.2rem;
+  --sk-lineHeight-h4-md: 2.8rem;
+  --sk-lineHeight-h4-sm: 2.4rem;
+
+  /* Line Heights - Labels */
+  --sk-lineHeight-label-large: 3.2rem;
+  --sk-lineHeight-label-medium: 2.4rem;
+  --sk-lineHeight-label-small: 1.6rem;
+  --sk-lineHeight-label-extra-small: 1.8rem;
+
+  /* Line Heights - Input */
+  --sk-lineHeight-input-large: 2.4rem;
+  --sk-lineHeight-input-medium: 2.4rem;
+  --sk-lineHeight-input-small: 2rem;
+
+  /* Line Heights - Logo */
+  --sk-lineHeight-logo-header: 2.8rem;
+
+  /* Common Spacing Values */
+  --sk-spacing-0: 0px;
+  --sk-spacing-1: 0.1rem;
+  --sk-spacing-2: 0.2rem;
+  --sk-spacing-3: 0.3rem;
+  --sk-spacing-4: 0.4rem;
+  --sk-spacing-5: 0.5rem;
+  --sk-spacing-6: 0.6rem;
+  --sk-spacing-7: 0.7rem;
+  --sk-spacing-8: 0.8rem;
+  --sk-spacing-9: 0.9rem;
+  --sk-spacing-10: 1rem;
+  --sk-spacing-11: 1.1rem;
+  --sk-spacing-12: 1.2rem;
+  --sk-spacing-13: 1.3rem;
+  --sk-spacing-14: 1.4rem;
+  --sk-spacing-15: 1.5rem;
+  --sk-spacing-16: 1.6rem;
+  --sk-spacing-17: 1.7rem;
+  --sk-spacing-18: 1.8rem;
+  --sk-spacing-19: 1.9rem;
+  --sk-spacing-20: 2rem;
+  --sk-spacing-22: 2.2rem;
+  --sk-spacing-24: 2.4rem;
+  --sk-spacing-26: 2.6rem;
+  --sk-spacing-28: 2.8rem;
+  --sk-spacing-30: 3rem;
+  --sk-spacing-32: 3.2rem;
+  --sk-spacing-34: 3.4rem;
+  --sk-spacing-36: 3.6rem;
+  --sk-spacing-38: 3.8rem;
+  --sk-spacing-40: 4rem;
+  --sk-spacing-42: 4.2rem;
+  --sk-spacing-44: 4.4rem;
+  --sk-spacing-46: 4.6rem;
+  --sk-spacing-48: 4.8rem;
+  --sk-spacing-50: 5rem;
+  --sk-spacing-52: 5.2rem;
+  --sk-spacing-54: 5.4rem;
+  --sk-spacing-56: 5.6rem;
+  --sk-spacing-58: 5.8rem;
+  --sk-spacing-60: 6rem;
+  --sk-spacing-62: 6.2rem;
+  --sk-spacing-64: 6.4rem;
+  --sk-spacing-68: 6.8rem;
+  --sk-spacing-72: 7.2rem;
+  --sk-spacing-80: 8rem;
+  --sk-spacing-90: 9rem;
+  --sk-spacing-100: 10rem;
+
+  /* Border Radius */
+  --sk-radius-utility-DEFAULT: 0.8rem;
+  --sk-radius-utility-sm: 0.8rem;
+  --sk-radius-utility-md: 0.8rem;
+  --sk-radius-utility-lg: 0.8rem;
+  --sk-radius-button-DEFAULT: 1.2rem;
+  --sk-radius-button-sm: 1rem;
+  --sk-radius-button-md: 1.2rem;
+  --sk-radius-button-lg: 1.2rem;
+  --sk-radius-cards-DEFAULT: 2rem;
+  --sk-radius-groups-DEFAULT: 1.6rem;
+  --sk-radius-circular-DEFAULT: 1000000rem;
+
+  /* Essential Colors */
+  /* Ring (focus) color */
+  --sk-colors-ring: rgb(12, 140, 237);
+
+  /* Gray scale */
+  --sk-colors-primitives-gray-lightest: rgb(255, 255, 255);
+  --sk-colors-primitives-gray-50: rgb(250, 250, 250);
+  --sk-colors-primitives-gray-100: rgb(240, 240, 240);
+  --sk-colors-primitives-gray-200: rgb(229, 229, 229);
+  --sk-colors-primitives-gray-300: rgb(183, 183, 186);
+  --sk-colors-primitives-gray-700: rgb(68, 68, 80);
+  --sk-colors-primitives-gray-900: rgb(31, 31, 37);
+  --sk-colors-primitives-gray-darkest: rgb(28, 28, 40);
+
+  /* Background */
+  --sk-colors-background-content: rgb(255, 255, 255);
+  --sk-colors-background-100: rgb(250, 250, 250);
+  --sk-colors-background-200: rgb(240, 240, 240);
+
+  /* Body text color */
+  --sk-colors-body: rgb(31, 31, 37);
+
+  /* Dark text colors */
+  --sk-colors-dark-primary: rgb(31, 31, 37);
+  --sk-colors-dark-secondary: rgb(68, 68, 80);
+  --sk-colors-dark-disabled: rgba(28, 28, 40, 0.64);
+  --sk-colors-dark-placeholder: rgba(28, 28, 40, 0.64);
+
+  /* Light text colors */
+  --sk-colors-light-primary: rgb(255, 255, 255);
+  --sk-colors-light-secondary: rgba(255, 255, 255, 0.88);
+
+  /* Input field */
+  --sk-colors-input-field-outline-DEFAULT: rgba(28, 28, 40, 0.5);
+  --sk-colors-input-field-outline-hover: rgba(30, 33, 38, 0.8);
+  --sk-colors-input-field-outline-disabled: rgba(28, 28, 40, 0.3);
+  --sk-colors-input-field-surface-DEFAULT: rgba(255, 255, 255, 0.95);
+  --sk-colors-input-field-surface-disabled: rgb(250, 250, 250);
+  --sk-colors-input-field-surface-focus: rgb(255, 255, 255);
+
+  /* Primary surface */
+  --sk-colors-primary-surface-DEFAULT: rgba(28, 28, 40, 0.95);
+  --sk-colors-primary-surface-hover: rgba(28, 28, 40, 0.88);
+
+  /* Tertiary surface */
+  --sk-colors-tertiary-surface-DEFAULT: rgba(28, 28, 40, 0.12);
+  --sk-colors-tertiary-surface-hover: rgba(28, 28, 40, 0.16);
+  --sk-colors-tertiary-surface-disabled: rgba(28, 28, 40, 0.12);
+
+  /* Switch */
+  --sk-colors-switch-surface-DEFAULT: rgba(28, 28, 40, 0.16);
+  --sk-colors-switch-surface-on: rgba(28, 28, 40, 0.18);
+  --sk-colors-switch-surface-disabled: rgba(28, 28, 40, 0.12);
+  --sk-colors-switch-surface-hover: rgba(28, 28, 40, 0.3);
+  --sk-colors-switch-control-DEFAULT: rgba(28, 28, 40, 0.64);
+  --sk-colors-switch-control-disabled: rgba(28, 28, 40, 0.5);
+  --sk-colors-switch-control-on: rgba(28, 28, 40, 0.88);
+
+  /* Primitives - Overlay darken (semi-transparent black) */
+  --sk-colors-primitives-overlay-darken-1: rgba(0, 0, 0, 0.02);
+  --sk-colors-primitives-overlay-darken-2: rgba(0, 0, 0, 0.04);
+  --sk-colors-primitives-overlay-darken-3: rgba(0, 0, 0, 0.06);
+  --sk-colors-primitives-overlay-darken-4: rgba(0, 0, 0, 0.08);
+  --sk-colors-primitives-overlay-darken-5: rgba(0, 0, 0, 0.1);
+  --sk-colors-primitives-overlay-darken-6: rgba(0, 0, 0, 0.12);
+  --sk-colors-primitives-overlay-darken-7: rgba(0, 0, 0, 0.14);
+  --sk-colors-primitives-overlay-darken-8: rgba(0, 0, 0, 0.16);
+  --sk-colors-primitives-overlay-darken-9: rgba(0, 0, 0, 0.18);
+  --sk-colors-primitives-overlay-darken-10: rgba(0, 0, 0, 0.2);
+
+  /* Primitives - Overlay lighten (semi-transparent white) */
+  --sk-colors-primitives-overlay-lighten-1: rgba(255, 255, 255, 0.02);
+  --sk-colors-primitives-overlay-lighten-2: rgba(255, 255, 255, 0.04);
+  --sk-colors-primitives-overlay-lighten-3: rgba(255, 255, 255, 0.06);
+  --sk-colors-primitives-overlay-lighten-4: rgba(255, 255, 255, 0.08);
+  --sk-colors-primitives-overlay-lighten-5: rgba(255, 255, 255, 0.1);
+  --sk-colors-primitives-overlay-lighten-6: rgba(255, 255, 255, 0.12);
+  --sk-colors-primitives-overlay-lighten-7: rgba(255, 255, 255, 0.14);
+  --sk-colors-primitives-overlay-lighten-8: rgba(255, 255, 255, 0.16);
+  --sk-colors-primitives-overlay-lighten-9: rgba(255, 255, 255, 0.18);
+  --sk-colors-primitives-overlay-lighten-10: rgba(255, 255, 255, 0.2);
+
+  /* Status colors - Error */
+  --sk-colors-error-surface-primary-DEFAULT: rgb(214, 46, 46);
+  --sk-colors-error-text-secondary: rgb(251, 193, 193);
+
+  /* Status colors - Warning */
+  --sk-colors-warning-surface-primary-DEFAULT: rgb(194, 120, 3);
+  --sk-colors-warning-text-secondary: rgb(255, 224, 163);
+
+  /* Status colors - Success */
+  --sk-colors-success-surface-primary-DEFAULT: rgb(14, 106, 62);
+  --sk-colors-success-text-secondary: rgb(201, 228, 215);
+
+  /* Status colors - Info */
+  --sk-colors-info-surface-primary-DEFAULT: rgb(0, 85, 149);
+  --sk-colors-info-text-secondary: rgb(207, 224, 236);
+
+  /* Brand colors - Vattjom (blue) */
+  --sk-colors-vattjom-surface-primary-DEFAULT: rgb(0, 85, 149);
+  --sk-colors-vattjom-surface-primary-hover: rgb(0, 64, 112);
+  --sk-colors-vattjom-text-secondary: rgb(225, 236, 244);
+  --sk-colors-vattjom-surface-accent-DEFAULT: rgba(0, 85, 149, 0.12);
+  --sk-colors-vattjom-surface-accent-hover: rgba(0, 85, 149, 0.18);
+
+  /* Brand colors - Gronsta (green) */
+  --sk-colors-gronsta-surface-primary-DEFAULT: rgb(14, 106, 62);
+  --sk-colors-gronsta-surface-primary-hover: rgb(10, 85, 48);
+  --sk-colors-gronsta-text-secondary: rgb(201, 228, 215);
+
+  /* Brand colors - Juniskar (pink) */
+  --sk-colors-juniskar-surface-primary-DEFAULT: rgb(174, 0, 77);
+  --sk-colors-juniskar-text-secondary: rgb(255, 208, 228);
+
+  /* Brand colors - Bjornstigen (purple) */
+  --sk-colors-bjornstigen-surface-primary-DEFAULT: rgb(90, 73, 139);
+  --sk-colors-bjornstigen-text-secondary: rgb(226, 219, 244);
+
+  /* Divider */
+  --sk-colors-divider: rgba(28, 28, 40, 0.3);
+
+  /* Inverted colors (dark mode fallbacks) */
+  --sk-colors-inverted-dark-primary: rgb(255, 255, 255);
+  --sk-colors-inverted-dark-secondary: rgba(255, 255, 255, 0.88);
+  --sk-colors-inverted-dark-disabled: rgba(255, 255, 255, 0.5);
+  --sk-colors-inverted-primary-surface-DEFAULT: rgba(255, 255, 255, 0.95);
+  --sk-colors-inverted-vattjom-surface-primary-DEFAULT: rgb(66, 147, 209);
+  --sk-colors-inverted-vattjom-surface-primary-hover: rgb(181, 207, 227);
+  --sk-colors-inverted-gronsta-surface-primary-DEFAULT: rgb(101, 184, 143);
+  --sk-colors-inverted-juniskar-surface-primary-DEFAULT: rgb(232, 131, 173);
+  --sk-colors-inverted-bjornstigen-surface-primary-DEFAULT: rgb(165, 152, 199);
+  --sk-colors-inverted-warning-surface-primary-DEFAULT: rgb(255, 194, 102);
+  --sk-colors-inverted-warning-text-secondary: rgb(102, 60, 1);
+  --sk-colors-inverted-error-surface-primary-DEFAULT: rgb(247, 130, 130);
+  --sk-colors-inverted-error-text-secondary: rgb(109, 3, 3);
+  --sk-colors-inverted-success-surface-primary-DEFAULT: rgb(101, 184, 143);
+  --sk-colors-inverted-success-text-secondary: rgb(10, 85, 48);
+  --sk-colors-inverted-info-surface-primary-DEFAULT: rgb(115, 172, 214);
+  --sk-colors-inverted-info-text-secondary: rgb(0, 76, 133);
+
+  /* Blue primitives for various uses */
+  --sk-colors-blue-500: rgb(66, 147, 209);
+
+  /* Z-Index */
+  --sk-zIndex-hide: -1;
+  --sk-zIndex-none: 0;
+  --sk-zIndex-base: 1;
+  --sk-zIndex-docked: 10;
+  --sk-zIndex-20: 20;
+  --sk-zIndex-dropdown: 1000;
+  --sk-zIndex-sticky: 1100;
+  --sk-zIndex-banner: 1200;
+  --sk-zIndex-overlay: 1300;
+  --sk-zIndex-modal: 1400;
+  --sk-zIndex-popover: 1500;
+  --sk-zIndex-skipLink: 1600;
+  --sk-zIndex-toast: 1700;
+  --sk-zIndex-tooltip: 1800;
+
+  /* Box Shadows */
+  --sk-boxShadow-50: 0 0 3px 0 rgba(10, 12, 15, 0.08), 0 1px 8px 0 rgba(10, 12, 15, 0.13);
+  --sk-boxShadow-100:
+    0 6px 16px 0 rgba(13, 13, 14, 0.07), 0 1.81px 12px 0 rgba(13, 13, 14, 0.15), 0 0.75px 2px 0 rgba(13, 13, 14, 0.085),
+    0 0.27px 0.72px 0 rgba(13, 13, 14, 0.0583);
+  --sk-boxShadow-200:
+    0 0 2px 0 rgba(13, 13, 14, 0.15), 0 15px 27px 0 rgba(13, 13, 14, 0.1), 0 4.52px 8.14px 0 rgba(13, 13, 14, 0.06),
+    0 1.88px 3.38px 0 rgba(13, 13, 14, 0.03), 0 0.68px 1.22px 0 rgba(13, 13, 14, 0.02);
+
+  /* Font Families */
+  --sk-fontFamily-DEFAULT: Arial, Helvetica, sans-serif;
+  --sk-fontFamily-header: Raleway, Arial, Helvetica, sans-serif;
+  --sk-fontFamily-display: Raleway, Arial, Helvetica, sans-serif;
+  --sk-fontFamily-sans: Arial, Helvetica, sans-serif;
+  --sk-fontFamily-serif: serif;
+  --sk-fontFamily-mono: monospace;
+  --sk-fontFamily-flag: 'Twemoji Country Flags', Arial, Helvetica, sans-serif;
+  --sk-fontFamily-flag-header: 'Twemoji Country Flags', Raleway, Arial, Helvetica, sans-serif;
+  --sk-fontFamily-flag-display: 'Twemoji Country Flags', Raleway, Arial, Helvetica, sans-serif;
+  --sk-fontFamily-flag-sans: 'Twemoji Country Flags', Arial, Helvetica, sans-serif;
+  --sk-fontFamily-flag-serif: 'Twemoji Country Flags', serif;
+  --sk-fontFamily-flag-mono: 'Twemoji Country Flags', monospace;
+
+  /* Tailwind Ring Variables - Required for focus rings to work */
+  --tw-ring-inset: ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: rgb(255, 255, 255);
+  --tw-ring-color: rgb(12, 140, 237);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+}
+
+/* ============================================
+   Base Styles
+   Set default font sizes for body text
+   ============================================ */
+@layer base {
+  body {
+    font-family: var(--sk-fontFamily-DEFAULT);
+    font-size: var(--sk-fontSize-base);
+    line-height: var(--sk-lineHeight-base);
+    color: var(--sk-colors-dark-primary);
+  }
+}
+
+/* ============================================
+   SK Web GUI - Tailwind CSS 4 Configuration
+   ============================================ */
+
+/* Dark mode variant */
+@variant dark (&:where(.dark, .dark *));
+
+/* Custom screen breakpoints */
+@custom-variant phone (@media (min-width: 320px));
+@custom-variant phone-min (@media (min-width: 320px));
+@custom-variant phone-max (@media (max-width: 479px));
+@custom-variant small-device (@media (min-width: 480px));
+@custom-variant small-device-min (@media (min-width: 480px));
+@custom-variant small-device-max (@media (max-width: 767px));
+@custom-variant medium-device (@media (min-width: 768px));
+@custom-variant medium-device-min (@media (min-width: 768px));
+@custom-variant medium-device-max (@media (max-width: 1023px));
+@custom-variant large-device (@media (min-width: 1024px));
+@custom-variant large-device-min (@media (min-width: 1024px));
+@custom-variant large-device-max (@media (max-width: 1365px));
+@custom-variant desktop (@media (min-width: 1366px));
+@custom-variant desktop-min (@media (min-width: 1366px));
+@custom-variant desktop-max (@media (max-width: 1600px));
+
+/* Backwards compatibility - TW3 used max-{screen}: prefix for max-width queries */
+@custom-variant max-phone (@media (max-width: 319px));
+@custom-variant max-phone-max (@media (max-width: 479px));
+@custom-variant max-small-device (@media (max-width: 479px));
+@custom-variant max-small-device-max (@media (max-width: 767px));
+@custom-variant max-medium-device (@media (max-width: 767px));
+@custom-variant max-medium-device-max (@media (max-width: 1023px));
+@custom-variant max-large-device (@media (max-width: 1023px));
+@custom-variant max-large-device-max (@media (max-width: 1365px));
+@custom-variant max-desktop (@media (max-width: 1365px));
+@custom-variant max-desktop-max (@media (max-width: 1600px));
+
+/* ============================================
+   Theme Configuration
+   ============================================ */
+
+@theme {
+  /* ----------------------------------------
+     Spacing 
+     ---------------------------------------- */
+  --spacing-0: var(--sk-spacing-0);
+  --spacing-0_25: var(--sk-spacing-0\.25);
+  --spacing-0_5: var(--sk-spacing-0\.5);
+  --spacing-0_75: var(--sk-spacing-0\.75);
+  --spacing-1: var(--sk-spacing-1);
+  --spacing-2: var(--sk-spacing-2);
+  --spacing-3: var(--sk-spacing-3);
+  --spacing-4: var(--sk-spacing-4);
+  --spacing-5: var(--sk-spacing-5);
+  --spacing-6: var(--sk-spacing-6);
+  --spacing-7: var(--sk-spacing-7);
+  --spacing-8: var(--sk-spacing-8);
+  --spacing-9: var(--sk-spacing-9);
+  --spacing-10: var(--sk-spacing-10);
+  --spacing-11: var(--sk-spacing-11);
+  --spacing-12: var(--sk-spacing-12);
+  --spacing-13: var(--sk-spacing-13);
+  --spacing-14: var(--sk-spacing-14);
+  --spacing-15: var(--sk-spacing-15);
+  --spacing-16: var(--sk-spacing-16);
+  --spacing-17: var(--sk-spacing-17);
+  --spacing-18: var(--sk-spacing-18);
+  --spacing-19: var(--sk-spacing-19);
+  --spacing-20: var(--sk-spacing-20);
+  --spacing-22: var(--sk-spacing-22);
+  --spacing-24: var(--sk-spacing-24);
+  --spacing-26: var(--sk-spacing-26);
+  --spacing-28: var(--sk-spacing-28);
+  --spacing-30: var(--sk-spacing-30);
+  --spacing-32: var(--sk-spacing-32);
+  --spacing-34: var(--sk-spacing-34);
+  --spacing-36: var(--sk-spacing-36);
+  --spacing-38: var(--sk-spacing-38);
+  --spacing-40: var(--sk-spacing-40);
+  --spacing-42: var(--sk-spacing-42);
+  --spacing-44: var(--sk-spacing-44);
+  --spacing-46: var(--sk-spacing-46);
+  --spacing-48: var(--sk-spacing-48);
+  --spacing-50: var(--sk-spacing-50);
+  --spacing-52: var(--sk-spacing-52);
+  --spacing-54: var(--sk-spacing-54);
+  --spacing-56: var(--sk-spacing-56);
+  --spacing-58: var(--sk-spacing-58);
+  --spacing-60: var(--sk-spacing-60);
+  --spacing-62: var(--sk-spacing-62);
+  --spacing-64: var(--sk-spacing-64);
+  --spacing-68: var(--sk-spacing-68);
+  --spacing-72: var(--sk-spacing-72);
+  --spacing-80: var(--sk-spacing-80);
+  --spacing-90: var(--sk-spacing-90);
+  --spacing-100: var(--sk-spacing-100);
+
+  /* Named spacing */
+  --spacing-xs: var(--sk-spacing-4);
+  --spacing-sm: var(--sk-spacing-8);
+  --spacing-md: var(--sk-spacing-16);
+  --spacing-lg: var(--sk-spacing-24);
+  --spacing-xl: var(--sk-spacing-48);
+
+  /* Calc-based spacing (value minus 1 unit) */
+  --spacing-34-1: calc(var(--sk-spacing-34) - var(--sk-spacing-1));
+  --spacing-44-1: calc(var(--sk-spacing-44) - var(--sk-spacing-1));
+  --spacing-48-1: calc(var(--sk-spacing-48) - var(--sk-spacing-1));
+  --spacing-50-1: calc(var(--sk-spacing-50) - var(--sk-spacing-1));
+  --spacing-64-1: calc(var(--sk-spacing-64) - var(--sk-spacing-1));
+  --spacing-90-1: calc(var(--sk-spacing-90) - var(--sk-spacing-1));
+
+  /* ----------------------------------------
+     Border Radius
+     ---------------------------------------- */
+  --radius: var(--sk-radius-utility-DEFAULT);
+  --radius-none: var(--sk-spacing-0);
+  --radius-full: var(--sk-radius-circular-DEFAULT);
+  --radius-circular: var(--sk-radius-circular-DEFAULT);
+  --radius-circular-lg: var(--sk-radius-circular-lg);
+  --radius-circular-md: var(--sk-radius-circular-md);
+  --radius-circular-sm: var(--sk-radius-circular-sm);
+  --radius-button: var(--sk-radius-button-DEFAULT);
+  --radius-button-lg: var(--sk-radius-button-lg);
+  --radius-button-md: var(--sk-radius-button-md);
+  --radius-button-sm: var(--sk-radius-button-sm);
+  --radius-cards: var(--sk-radius-cards-DEFAULT);
+  --radius-cards-lg: var(--sk-radius-cards-lg);
+  --radius-cards-md: var(--sk-radius-cards-md);
+  --radius-cards-sm: var(--sk-radius-cards-sm);
+  --radius-utility: var(--sk-radius-utility-DEFAULT);
+  --radius-utility-lg: var(--sk-radius-utility-lg);
+  --radius-utility-md: var(--sk-radius-utility-md);
+  --radius-utility-sm: var(--sk-radius-utility-sm);
+  --radius-groups: var(--sk-radius-groups-DEFAULT);
+  --radius-groups-lg: var(--sk-radius-groups-lg);
+  --radius-groups-md: var(--sk-radius-groups-md);
+  --radius-groups-sm: var(--sk-radius-groups-sm);
+
+  /* Numeric border radius (from spacing) */
+  --radius-0: var(--sk-spacing-0);
+  --radius-2: var(--sk-spacing-2);
+  --radius-4: var(--sk-spacing-4);
+  --radius-6: var(--sk-spacing-6);
+  --radius-8: var(--sk-spacing-8);
+  --radius-10: var(--sk-spacing-10);
+  --radius-12: var(--sk-spacing-12);
+  --radius-14: var(--sk-spacing-14);
+  --radius-16: var(--sk-spacing-16);
+  --radius-18: var(--sk-spacing-18);
+  --radius-20: var(--sk-spacing-20);
+  --radius-24: var(--sk-spacing-24);
+  --radius-32: var(--sk-spacing-32);
+  --radius-40: var(--sk-spacing-40);
+  --radius-48: var(--sk-spacing-48);
+  --radius-56: var(--sk-spacing-56);
+  --radius-64: var(--sk-spacing-64);
+  --radius-72: var(--sk-spacing-72);
+  --radius-80: var(--sk-spacing-80);
+
+  /* ----------------------------------------
+     Font Sizes - Text Utilities Override
+     Using --text-* namespace to override Tailwind's built-in text-* utilities
+     ---------------------------------------- */
+  --text-small: var(--sk-fontSize-small, 1.4rem);
+  --text-small--line-height: var(--sk-lineHeight-small, 1.8rem);
+  --text-large: var(--sk-fontSize-large, 1.8rem);
+  --text-large--line-height: var(--sk-lineHeight-large, 2.6rem);
+  --text-lead: var(--sk-fontSize-lead, 2rem);
+  --text-lead--line-height: var(--sk-lineHeight-lead, 2.8rem);
+
+  /* Additional font sizes */
+  --font-size-tiny: var(--sk-spacing-10);
+  --font-size-xs: var(--sk-spacing-12);
+
+  /* Display sizes */
+  --font-size-display-1: var(--sk-fontSize-display-1-DEFAULT);
+  --font-size-display-2: var(--sk-fontSize-display-2-DEFAULT);
+  --font-size-display-3: var(--sk-fontSize-display-3-DEFAULT);
+
+  /* Heading sizes */
+  --font-size-h1: var(--sk-fontSize-h-1-DEFAULT);
+  --font-size-h2: var(--sk-fontSize-h-2-DEFAULT);
+  --font-size-h3: var(--sk-fontSize-h-3-DEFAULT);
+  --font-size-h4: var(--sk-fontSize-h-4-DEFAULT);
+
+  /* Label sizes */
+  --font-size-label-large: var(--sk-fontSize-label-large, 1.8rem);
+  --font-size-label-medium: var(--sk-fontSize-label-medium, 1.6rem);
+  --font-size-label-small: var(--sk-fontSize-label-small, 1.4rem);
+  --font-size-label-extra-small: var(--sk-fontSize-label-extra-small, 1.2rem);
+
+  /* Input sizes */
+  --font-size-input-large: var(--sk-fontSize-input-large, 1.8rem);
+  --font-size-input-medium: var(--sk-fontSize-input-medium, 1.6rem);
+  --font-size-input-small: var(--sk-fontSize-input-small, 1.4rem);
+
+  /* ----------------------------------------
+     Line Heights
+     ---------------------------------------- */
+  --leading-base: var(--sk-lineHeight-base, 2.4rem);
+  --leading-small: var(--sk-lineHeight-small, 1.8rem);
+  --leading-large: var(--sk-lineHeight-large, 2.6rem);
+  --leading-lead: var(--sk-lineHeight-lead, 2.8rem);
+  --leading-0: 0;
+  --leading-8: var(--sk-spacing-8);
+  --leading-16: var(--sk-spacing-16);
+  --leading-18: var(--sk-spacing-18);
+  --leading-24: var(--sk-spacing-24);
+  --leading-32: var(--sk-spacing-32);
+
+  /* ----------------------------------------
+     Shadows
+     ---------------------------------------- */
+  --shadow-50: 0 0 3px 0 rgba(10, 12, 15, 0.08), 0 1px 8px 0 rgba(10, 12, 15, 0.13);
+  --shadow-100:
+    0 6px 16px 0 rgba(13, 13, 14, 0.07), 0 1.81px 12px 0 rgba(13, 13, 14, 0.15), 0 0.75px 2px 0 rgba(13, 13, 14, 0.085),
+    0 0.27px 0.72px 0 rgba(13, 13, 14, 0.0583);
+  --shadow-200:
+    0 0 2px 0 rgba(13, 13, 14, 0.15), 0 15px 27px 0 rgba(13, 13, 14, 0.1), 0 4.52px 8.14px 0 rgba(13, 13, 14, 0.06),
+    0 1.88px 3.38px 0 rgba(13, 13, 14, 0.03), 0 0.68px 1.22px 0 rgba(13, 13, 14, 0.02);
+  --shadow-insetring: 0 0 0 0.25rem var(--sk-colors-ring) inset;
+
+  /* ----------------------------------------
+     Z-Index
+     ---------------------------------------- */
+  --z-index-hide: -1;
+  --z-index-none: 0;
+  --z-index-base: 1;
+  --z-index-docked: 10;
+  --z-index-dropdown: 1000;
+  --z-index-sticky: 1100;
+  --z-index-banner: 1200;
+  --z-index-overlay: 1300;
+  --z-index-modal: 1400;
+  --z-index-popover: 1500;
+  --z-index-skipLink: 1600;
+  --z-index-toast: 1700;
+  --z-index-tooltip: 1800;
+
+  /* ----------------------------------------
+     Cursor
+     ---------------------------------------- */
+  --cursor-base: var(--tw-cursor, pointer);
+
+  /* ----------------------------------------
+     Font Family
+     ---------------------------------------- */
+  --font-DEFAULT: var(--sk-fontFamily-DEFAULT);
+  --font-header: var(--sk-fontFamily-header);
+  --font-display: var(--sk-fontFamily-display);
+  --font-sans: var(--sk-fontFamily-sans);
+  --font-serif: var(--sk-fontFamily-serif);
+  --font-mono: var(--sk-fontFamily-mono);
+  --font-flag: var(--sk-fontFamily-flag);
+  --font-flag-header: var(--sk-fontFamily-flag-header);
+  --font-flag-display: var(--sk-fontFamily-flag-display);
+  --font-flag-sans: var(--sk-fontFamily-flag-sans);
+  --font-flag-serif: var(--sk-fontFamily-flag-serif);
+  --font-flag-mono: var(--sk-fontFamily-flag-mono);
+
+  /* ----------------------------------------
+     Max Width
+     ---------------------------------------- */
+  --max-width-content: 1600px;
+  --width-content: 1600px;
+
+  /* ----------------------------------------
+     Screens / Breakpoints
+     ---------------------------------------- */
+  --breakpoint-xs: 320px;
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1366px;
+
+  /* ----------------------------------------
+     Ring
+     ---------------------------------------- */
+  --ring-color: var(--sk-colors-ring);
+  --ring-offset-width: var(--sk-spacing-2);
+  --ring-width: var(--sk-spacing-3);
+
+  /* ----------------------------------------
+     Animations
+     ---------------------------------------- */
+  --animate-reset-overflow: reset-overflow 180ms backwards;
+  --animate-typing-bounce-1: typingbounce 1.5s ease-in-out 600ms infinite;
+  --animate-typing-bounce-2: typingbounce 1.5s ease-in-out 800ms infinite;
+  --animate-typing-bounce-3: typingbounce 1.5s ease-in-out 1s infinite;
+}
+
+/* Keyframes */
+@keyframes reset-overflow {
+  from,
+  to {
+    overflow: hidden;
+  }
+}
+
+@keyframes typingbounce {
+  0% {
+    transform: translateY(0);
+  }
+  10% {
+    transform: translateY(-0.8rem);
+  }
+  20%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   Custom Utilities
+   ============================================ */
+
+/* Background position utilities */
+@utility bg-right-8 {
+  background-position: center right var(--sk-spacing-8);
+}
+@utility bg-right-12 {
+  background-position: center right var(--sk-spacing-12);
+}
+@utility bg-right-16 {
+  background-position: center right var(--sk-spacing-16);
+}
+@utility bg-right-20 {
+  background-position: center right var(--sk-spacing-20);
+}
+
+/* Ring color utilities */
+@utility ring-ring {
+  --tw-ring-color: var(--sk-colors-ring);
+}
+@utility ring-offset-background-content {
+  --tw-ring-offset-color: var(--sk-colors-background-content);
+}
+
+/* Max width content */
+@utility max-w-content {
+  max-width: 1600px;
+}
+
+/* Calc-based spacing utilities (value - 1 unit) */
+@utility h-48-1 {
+  height: calc(var(--sk-spacing-48) - var(--sk-spacing-1));
+}
+@utility h-64-1 {
+  height: calc(var(--sk-spacing-64) - var(--sk-spacing-1));
+}
+@utility h-90-1 {
+  height: calc(var(--sk-spacing-90) - var(--sk-spacing-1));
+}
+@utility min-h-48-1 {
+  min-height: calc(var(--sk-spacing-48) - var(--sk-spacing-1));
+}
+@utility min-h-64-1 {
+  min-height: calc(var(--sk-spacing-64) - var(--sk-spacing-1));
+}
+@utility max-h-90-1 {
+  max-height: calc(var(--sk-spacing-90) - var(--sk-spacing-1));
+}
+@utility w-90-1 {
+  width: calc(var(--sk-spacing-90) - var(--sk-spacing-1));
+}
+@utility max-w-90-1 {
+  max-width: calc(var(--sk-spacing-90) - var(--sk-spacing-1));
+}
+@utility pr-34-1 {
+  padding-right: calc(var(--sk-spacing-34) - var(--sk-spacing-1));
+}
+@utility pr-44-1 {
+  padding-right: calc(var(--sk-spacing-44) - var(--sk-spacing-1));
+}
+@utility pr-50-1 {
+  padding-right: calc(var(--sk-spacing-50) - var(--sk-spacing-1));
+}
+
+/* Background color-mixin utilities */
+@utility bg-background-color-mixin-1 {
+  background-color: var(--sk-colors-background-color-mixin-1);
+}
+@utility bg-background-color-mixin-2 {
+  background-color: var(--sk-colors-background-color-mixin-2);
+}
+@utility bg-inverted-background-color-mixin-1 {
+  background-color: var(--sk-colors-inverted-background-color-mixin-1);
+}
+@utility bg-inverted-background-color-mixin-2 {
+  background-color: var(--sk-colors-inverted-background-color-mixin-2);
+}

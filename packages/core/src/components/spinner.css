@@ -1,0 +1,59 @@
+/**
+ * Spinner Component - Tailwind CSS 4
+ * Migrerad till ren CSS med CSS-variabler
+ */
+
+@layer components {
+  .sk-spinner {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-position: center;
+    overflow: hidden;
+  }
+
+  .sk-spinner svg {
+    stroke: var(--sk-colors-dark-secondary);
+  }
+
+  /* Color: warning */
+  .sk-spinner[data-color="warning"] svg {
+    stroke: var(--sk-colors-warning-surface-primary-DEFAULT);
+  }
+
+  /* Color: error */
+  .sk-spinner[data-color="error"] svg {
+    stroke: var(--sk-colors-error-surface-primary-DEFAULT);
+  }
+
+  /* Color: success */
+  .sk-spinner[data-color="success"] svg {
+    stroke: var(--sk-colors-success-surface-primary-DEFAULT);
+  }
+
+  /* Color: info */
+  .sk-spinner[data-color="info"] svg {
+    stroke: var(--sk-colors-info-surface-primary-DEFAULT);
+  }
+
+  /* Color: vattjom */
+  .sk-spinner[data-color="vattjom"] svg {
+    stroke: var(--sk-colors-vattjom-surface-primary-DEFAULT);
+  }
+
+  /* Color: juniskar */
+  .sk-spinner[data-color="juniskar"] svg {
+    stroke: var(--sk-colors-juniskar-surface-primary-DEFAULT);
+  }
+
+  /* Color: bjornstigen */
+  .sk-spinner[data-color="bjornstigen"] svg {
+    stroke: var(--sk-colors-bjornstigen-surface-primary-DEFAULT);
+  }
+
+  /* Color: gronsta */
+  .sk-spinner[data-color="gronsta"] svg {
+    stroke: var(--sk-colors-gronsta-surface-primary-DEFAULT);
+  }
+}

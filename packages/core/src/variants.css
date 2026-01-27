@@ -1,0 +1,92 @@
+/**
+ * Custom Variants - Tailwind CSS 4
+ *
+ * Note: TW4 @custom-variant doesn't allow "!" in names,
+ * so negation uses "-not-" instead of "-!"
+ */
+
+/* ===== ARIA VARIANTS ===== */
+
+/* Checked */
+@custom-variant aria-checked (&[aria-checked="true"]);
+@custom-variant aria-not-checked (&[aria-checked="false"]);
+@custom-variant aria-checked-mixed (&[aria-checked="mixed"]);
+
+/* Disabled */
+@custom-variant aria-disabled (&[aria-disabled="true"]);
+@custom-variant aria-not-disabled (&[aria-disabled="false"]);
+
+/* Expanded */
+@custom-variant aria-expanded (&[aria-expanded="true"]);
+@custom-variant aria-not-expanded (&[aria-expanded="false"]);
+
+/* Hidden */
+@custom-variant aria-hidden (&[aria-hidden="true"]);
+@custom-variant aria-not-hidden (&[aria-hidden="false"]);
+
+/* Orientation */
+@custom-variant aria-orientation-horizontal (&[aria-orientation="horizontal"]);
+@custom-variant aria-orientation-vertical (&[aria-orientation="vertical"]);
+
+/* Readonly */
+@custom-variant aria-readonly (&[aria-readonly="true"]);
+@custom-variant aria-not-readonly (&[aria-readonly="false"]);
+
+/* Required */
+@custom-variant aria-required (&[aria-required="true"]);
+@custom-variant aria-not-required (&[aria-required="false"]);
+
+/* Selected */
+@custom-variant aria-selected (&[aria-selected="true"]);
+@custom-variant aria-not-selected (&[aria-selected="false"]);
+
+/* Sort */
+@custom-variant aria-sort-none (&[aria-sort="none"]);
+@custom-variant aria-sort-ascending (&[aria-sort="ascending"]);
+@custom-variant aria-sort-descending (&[aria-sort="descending"]);
+@custom-variant aria-sort-other (&[aria-sort="other"]);
+
+/* Has popup */
+@custom-variant aria-haspopup (&[aria-haspopup="menu"], &[aria-haspopup="listbox"], &[aria-haspopup="tree"], &[aria-haspopup="grid"], &[aria-haspopup="dialog"], &[aria-haspopup="true"]);
+@custom-variant aria-not-haspopup (&[aria-haspopup="false"]);
+
+/* Current */
+@custom-variant aria-current (&[aria-current="true"], &[aria-current="page"], &[aria-current="step"], &[aria-current="location"], &[aria-current="date"], &[aria-current="time"]);
+@custom-variant aria-not-current (&[aria-current="false"]);
+
+
+/* ===== DATA VARIANTS ===== */
+
+/* Open */
+@custom-variant data-open (&[data-open="true"]);
+@custom-variant data-not-open (&[data-open="false"]);
+
+/* Rounded */
+@custom-variant data-rounded (&[data-rounded="true"]);
+@custom-variant data-not-rounded (&[data-rounded="false"]);
+
+/* Inverted */
+@custom-variant data-inverted (&[data-inverted="true"]);
+@custom-variant data-not-inverted (&[data-inverted="false"]);
+
+/* Size */
+@custom-variant data-size-xs (&[data-size="xs"]);
+@custom-variant data-size-sm (&[data-size="sm"]);
+@custom-variant data-size-md (&[data-size="md"]);
+@custom-variant data-size-lg (&[data-size="lg"]);
+@custom-variant data-size-xl (&[data-size="xl"]);
+
+/* Variant */
+@custom-variant data-variant-primary (&[data-variant="primary"]);
+@custom-variant data-variant-secondary (&[data-variant="secondary"]);
+@custom-variant data-variant-tertiary (&[data-variant="tertiary"]);
+@custom-variant data-variant-default (&[data-variant="default"]);
+@custom-variant data-variant-alt (&[data-variant="alt"]);
+
+/* Accent */
+@custom-variant data-accent (&[data-accent="true"]);
+@custom-variant data-not-accent (&[data-accent="false"]);
+
+/* Background */
+@custom-variant data-background (&[data-background="true"]);
+@custom-variant data-not-background (&[data-background="false"]);

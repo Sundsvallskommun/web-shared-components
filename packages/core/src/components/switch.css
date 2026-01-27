@@ -1,0 +1,123 @@
+/**
+ * Switch Component - Tailwind CSS 4
+ * Migrerad från switch.ts
+ */
+
+@layer components {
+  .sk-form-switch-label {
+    display: inline-flex;
+    vertical-align: middle;
+    align-items: center;
+    flex-direction: row;
+    gap: var(--sk-spacing-12);
+    font-weight: 400;
+    font-size: var(--sk-fontSize-base);
+    line-height: var(--sk-lineHeight-base);
+  }
+
+  .sk-form-switch-label[type="hidden"] {
+    display: none;
+  }
+
+  .sk-form-switch-label[type="hidden"] .sk-form-switch {
+    display: none;
+  }
+
+  .sk-form-switch {
+    border-radius: var(--sk-radius-circular-DEFAULT);
+    cursor: pointer;
+    background-color: var(--sk-colors-switch-surface-DEFAULT);
+    width: var(--sk-spacing-56);
+    overflow: hidden;
+  }
+
+  .sk-form-switch:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+
+  .sk-form-switch:hover {
+    background-color: var(--sk-colors-switch-surface-hover);
+  }
+
+  /* Focus */
+  input[type="checkbox"]:focus-visible + .sk-form-switch {
+    box-shadow: 0 0 0 3px var(--sk-colors-blue-500);
+  }
+
+  .sk-form-switch-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* Checked */
+  input[type="checkbox"]:checked + .sk-form-switch {
+    background-color: var(--sk-colors-switch-surface-on);
+  }
+
+  input[type="checkbox"]:checked + .sk-form-switch[data-color="gronsta"] .sk-form-switch-box {
+    background-color: var(--sk-colors-gronsta-surface-primary-DEFAULT);
+  }
+
+  input[type="checkbox"]:checked + .sk-form-switch .sk-form-switch-icon {
+    display: flex;
+  }
+
+  input[type="checkbox"]:checked + .sk-form-switch .sk-form-switch-box {
+    transform: translateX(var(--sk-spacing-24));
+    background-color: var(--sk-colors-switch-control-on);
+  }
+
+  /* Checked + Disabled */
+  input[type="checkbox"]:checked + .sk-form-switch[data-disabled="true"] .sk-form-switch-box {
+    background-color: var(--sk-colors-switch-control-disabled);
+  }
+
+  input[type="checkbox"]:checked + .sk-form-switch[data-disabled="true"] .sk-form-switch-box .sk-form-switch-icon {
+    opacity: 0;
+    color: var(--sk-colors-light-primary);
+  }
+
+  /* Disabled not checked */
+  .sk-form-switch[data-disabled="true"] {
+    cursor: default;
+    background-color: var(--sk-colors-switch-surface-disabled);
+  }
+
+  .sk-form-switch[data-disabled="true"] .sk-form-switch-box {
+    background-color: var(--sk-colors-switch-control-disabled);
+  }
+
+  /* Knob */
+  .sk-form-switch-box {
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    transform: translateX(0);
+    border-radius: var(--sk-radius-circular-DEFAULT);
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    margin: var(--sk-spacing-6);
+    background-color: var(--sk-colors-switch-control-DEFAULT);
+    height: var(--sk-spacing-20);
+    width: var(--sk-spacing-20);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-position: center;
+  }
+
+  .sk-form-switch-box .sk-form-switch-icon {
+    background-color: transparent;
+    display: none;
+    width: var(--sk-spacing-20);
+    height: var(--sk-spacing-20);
+    color: var(--sk-colors-light-primary);
+  }
+}

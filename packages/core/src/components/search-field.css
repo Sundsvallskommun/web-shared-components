@@ -1,0 +1,40 @@
+/**
+ * Search Field Component - Tailwind CSS 4
+ * Migrerad från search-field.ts
+ */
+
+@layer components {
+  .sk-search-field-suggestions.sk-form-combobox {
+    height: auto;
+  }
+
+  .sk-search-field-suggestions .sk-form-combobox-list {
+    width: 100%;
+  }
+
+  .sk-search-field-suggestions .sk-form-combobox-list-option .sk-icon {
+    display: none;
+  }
+
+  /* Size: md */
+  .sk-search-field-md .sk-search-field-icon {
+    width: var(--sk-spacing-20);
+    height: var(--sk-spacing-20);
+  }
+
+  .sk-search-field-md .sk-search-field-icon svg {
+    width: var(--sk-spacing-20);
+    height: var(--sk-spacing-20);
+  }
+
+  /* Size: lg */
+  .sk-search-field-lg .sk-search-field-icon {
+    width: var(--sk-spacing-22);
+    height: var(--sk-spacing-22);
+  }
+
+  .sk-search-field-lg .sk-search-field-icon svg {
+    width: var(--sk-spacing-22);
+    height: var(--sk-spacing-22);
+  }
+}

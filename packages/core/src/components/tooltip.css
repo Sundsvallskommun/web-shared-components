@@ -1,0 +1,111 @@
+/**
+ * Tooltip Component - Tailwind CSS 4
+ * Migrerad from tooltip.ts
+ * Converted to pure CSS properties with CSS variables
+ */
+
+@layer components {
+  .sk-tooltip {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+    flex-grow: 0;
+  }
+
+  .sk-tooltip-text {
+    display: inline-flex;
+    background-color: var(--sk-colors-primary-surface-DEFAULT);
+    box-shadow: var(--shadow-100, 0 6px 16px 0 rgba(13, 13, 14, 0.07), 0 1.81px 12px 0 rgba(13, 13, 14, 0.15), 0 0.75px 2px 0 rgba(13, 13, 14, 0.085), 0 0.27px 0.72px 0 rgba(13, 13, 14, 0.0583));
+    padding-left: var(--sk-spacing-16);
+    padding-right: var(--sk-spacing-16);
+    padding-top: var(--sk-spacing-8);
+    padding-bottom: var(--sk-spacing-8);
+    border-radius: var(--sk-radius-utility-DEFAULT);
+    color: var(--sk-colors-light-primary);
+    font-size: var(--sk-fontSize-small);
+    line-height: var(--sk-lineHeight-small);
+    font-weight: 700;
+    width: fit-content;
+    height: fit-content;
+    flex-grow: 0;
+    min-height: var(--sk-spacing-34);
+  }
+
+  /* Arrow base */
+  .sk-tooltip::after,
+  .sk-tooltip::before {
+    height: 0;
+    width: 0;
+    overflow: hidden;
+  }
+
+  /* Above */
+  .sk-tooltip[data-position="above"] {
+    flex-direction: column;
+    padding-bottom: var(--sk-spacing-2);
+  }
+  .sk-tooltip[data-position="above"]::after {
+    content: "";
+    border-style: solid;
+    border-width: var(--sk-spacing-6);
+    border-bottom-width: 0;
+    border-top-color: var(--sk-colors-primary-surface-DEFAULT);
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+
+  /* Below */
+  .sk-tooltip[data-position="below"] {
+    flex-direction: column;
+    padding-top: var(--sk-spacing-2);
+  }
+  .sk-tooltip[data-position="below"]::before {
+    content: "";
+    border-style: solid;
+    border-width: var(--sk-spacing-6);
+    border-top-width: 0;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: var(--sk-colors-primary-surface-DEFAULT);
+    border-left-color: transparent;
+  }
+
+  /* Left */
+  .sk-tooltip[data-position="left"] {
+    flex-direction: row;
+    padding-right: var(--sk-spacing-2);
+    padding-top: var(--sk-spacing-3);
+    padding-bottom: var(--sk-spacing-3);
+  }
+  .sk-tooltip[data-position="left"]::after {
+    content: "";
+    border-style: solid;
+    border-width: var(--sk-spacing-6);
+    border-right-width: 0;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: var(--sk-colors-primary-surface-DEFAULT);
+  }
+
+  /* Right */
+  .sk-tooltip[data-position="right"] {
+    flex-direction: row;
+    padding-left: var(--sk-spacing-2);
+    padding-top: var(--sk-spacing-3);
+    padding-bottom: var(--sk-spacing-3);
+  }
+  .sk-tooltip[data-position="right"]::before {
+    content: "";
+    border-style: solid;
+    border-width: var(--sk-spacing-6);
+    border-left-width: 0;
+    border-top-color: transparent;
+    border-right-color: var(--sk-colors-primary-surface-DEFAULT);
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+}

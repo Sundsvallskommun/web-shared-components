@@ -1,0 +1,96 @@
+/**
+ * Modal Component - Tailwind CSS 4
+ * Migrerad från modal.ts
+ */
+
+@layer components {
+  .sk-modal-wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    overflow-y: auto;
+    background-color: var(--sk-colors-primitives-overlay-darken-6);
+  }
+
+  :is(.dark, [data-theme="dark"]) .sk-modal-wrapper {
+    background-color: var(--sk-colors-primitives-overlay-darken-8);
+  }
+
+  .sk-modal-wrapper-inner {
+    min-height: 100vh;
+    padding-left: var(--sk-spacing-4);
+    padding-right: var(--sk-spacing-4);
+    text-align: center;
+  }
+
+  .sk-modal-overlay {
+    position: fixed;
+    inset: 0;
+  }
+
+  .sk-modal-trixter {
+    display: inline-block;
+    height: 100vh;
+    vertical-align: middle;
+  }
+
+  .sk-modal-dialog {
+    color: var(--sk-colors-dark-secondary);
+    display: inline-flex;
+    flex-direction: column;
+    text-align: left;
+    vertical-align: middle;
+    transition: all;
+    transform: translateZ(0);
+    border-radius: var(--sk-radius-cards-DEFAULT);
+    background-color: var(--sk-colors-background-content);
+    padding-left: var(--sk-spacing-24);
+    padding-right: var(--sk-spacing-24);
+    padding-top: var(--sk-spacing-24);
+    padding-bottom: var(--sk-spacing-40);
+    gap: var(--sk-spacing-16);
+  }
+
+  :is(.dark, [data-theme="dark"]) .sk-modal-dialog {
+    background-color: var(--sk-colors-background-100);
+  }
+
+  .sk-modal-dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .sk-modal-dialog-header-title {
+    flex-grow: 1;
+    font-size: var(--sk-fontSize-label-medium);
+    line-height: var(--sk-lineHeight-label-medium);
+    font-weight: 700;
+  }
+
+  .sk-modal-content {
+    display: flex;
+    flex-direction: column;
+    padding-top: var(--sk-spacing-8);
+    padding-bottom: var(--sk-spacing-16);
+    gap: var(--sk-spacing-12);
+  }
+
+  .sk-modal-content h1,
+  .sk-modal-content h2,
+  .sk-modal-content h3,
+  .sk-modal-content h4,
+  .sk-modal-content h5,
+  .sk-modal-content h6 {
+    color: var(--sk-colors-dark-primary);
+  }
+
+  .sk-modal-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 0;
+    gap: var(--sk-spacing-12);
+  }
+}

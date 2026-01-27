@@ -1,0 +1,56 @@
+/**
+ * Dialog Component - Tailwind CSS 4
+ * Migrerad fran dialog.ts
+ */
+
+@layer components {
+  .sk-dialog {
+    width: fit-content;
+    max-width: 65ch;
+  }
+
+  @media (min-width: 768px) {
+    .sk-dialog {
+      min-width: 25em;
+    }
+  }
+
+  .sk-dialog-confirm-label {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--sk-spacing-4);
+    color: var(--sk-colors-dark-primary);
+  }
+
+  .sk-dialog-confirm-label[data-color="warning"] {
+    color: var(--sk-colors-warning-text-primary);
+  }
+  .sk-dialog-confirm-label[data-color="error"] {
+    color: var(--sk-colors-error-text-primary);
+  }
+  .sk-dialog-confirm-label[data-color="success"] {
+    color: var(--sk-colors-success-text-primary);
+  }
+  .sk-dialog-confirm-label[data-color="info"] {
+    color: var(--sk-colors-info-text-primary);
+  }
+  .sk-dialog-confirm-label[data-color="vattjom"] {
+    color: var(--sk-colors-vattjom-text-primary);
+  }
+  .sk-dialog-confirm-label[data-color="juniskar"] {
+    color: var(--sk-colors-juniskar-text-primary);
+  }
+  .sk-dialog-confirm-label[data-color="bjornstigen"] {
+    color: var(--sk-colors-bjornstigen-text-primary);
+  }
+  .sk-dialog-confirm-label[data-color="gronsta"] {
+    color: var(--sk-colors-gronsta-text-primary);
+  }
+
+  .sk-dialog-confirm-heading {
+    font-size: var(--sk-fontSize-h-3-DEFAULT);
+    line-height: var(--sk-lineHeight-h-3-DEFAULT);
+    font-weight: 700;
+  }
+}

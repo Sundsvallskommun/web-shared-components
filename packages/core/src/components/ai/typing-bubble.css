@@ -1,0 +1,29 @@
+/**
+ * AI Typing Bubble Component - Tailwind CSS 4
+ */
+
+@layer components {
+  .sk-ai-typing-bubble {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--sk-spacing-12);
+    gap: var(--sk-spacing-8);
+    width: min-content;
+    background-color: var(--sk-colors-tertiary-surface-DEFAULT);
+    color: var(--sk-colors-dark-secondary);
+    border-radius: var(--sk-radius-button-DEFAULT);
+
+    &[data-position="left"] {
+      border-bottom-right-radius: var(--sk-spacing-0);
+    }
+
+    &[data-position="right"] {
+      border-bottom-left-radius: var(--sk-spacing-0);
+    }
+
+    &[data-inverted="true"] {
+      background-color: var(--sk-colors-inverted-tertiary-surface-DEFAULT);
+    }
+  }
+}

@@ -1,0 +1,95 @@
+/**
+ * Link Component - Tailwind CSS 4
+ * Migrerad från link.ts
+ */
+
+@layer components {
+  .sk-link {
+    text-decoration-line: underline;
+    outline: none;
+    border-radius: var(--sk-spacing-utility);
+  }
+  .sk-link:hover {
+    text-decoration-line: underline;
+  }
+  .sk-link:focus-visible {
+    box-shadow: var(--sk-ring-offset-shadow), var(--sk-ring-shadow), 0 0 transparent;
+    --sk-ring-offset-width: 6px;
+  }
+
+  /* Sizes */
+  .sk-link-sm {
+    font-size: var(--sk-fontSize-small);
+    line-height: var(--sk-lineHeight-small);
+  }
+  .sk-link-md {
+    font-size: var(--sk-fontSize-base);
+    line-height: var(--sk-lineHeight-base);
+  }
+  .sk-link-lg {
+    font-size: var(--sk-fontSize-large);
+    line-height: var(--sk-lineHeight-large);
+  }
+  .sk-link-xl {
+    font-size: var(--sk-fontSize-lead);
+    line-height: var(--sk-lineHeight-lead);
+  }
+
+  /* Primary variant */
+  .sk-link-primary {
+    color: var(--sk-colors-vattjom-surface-primary-DEFAULT);
+  }
+  .sk-link-primary:hover {
+    color: var(--sk-colors-vattjom-surface-primary-hover);
+  }
+  .sk-link-primary[data-inverted="true"] {
+    color: var(--sk-colors-inverted-vattjom-surface-primary-DEFAULT);
+  }
+  .sk-link-primary[data-inverted="true"]:hover {
+    color: var(--sk-colors-inverted-vattjom-surface-primary-hover);
+  }
+
+  /* Tertiary variant */
+  .sk-link-tertiary {
+    color: var(--sk-colors-dark-secondary);
+  }
+  .sk-link-tertiary:hover {
+    color: var(--sk-colors-dark-primary);
+  }
+  .sk-link-tertiary[data-inverted="true"] {
+    color: var(--sk-colors-inverted-dark-secondary);
+  }
+  .sk-link-tertiary[data-inverted="true"]:hover {
+    color: var(--sk-colors-inverted-dark-primary);
+  }
+
+  /* Active state */
+  .sk-link.active {
+    text-decoration-line: underline;
+  }
+
+  /* External icon */
+  .sk-link .sk-link-external-icon {
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+    margin-left: 0.25em;
+    vertical-align: text-top;
+  }
+
+  /* Button type */
+  .sk-link[type="button"] {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: bottom;
+  }
+
+  /* Disabled state */
+  .sk-link-disabled {
+    color: var(--sk-colors-dark-disabled);
+    cursor: default;
+  }
+  .sk-link-disabled[data-inverted="true"] {
+    color: var(--sk-colors-inverted-dark-disabled);
+  }
+}

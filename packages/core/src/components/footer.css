@@ -1,0 +1,104 @@
+/**
+ * Footer Component - Tailwind CSS 4
+ * Migrerad från footer.ts
+ */
+
+@layer components {
+  .sk-footer {
+    background-color: var(--sk-colors-background-content);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-top: var(--sk-spacing-24);
+    padding-bottom: var(--sk-spacing-24);
+    padding-left: var(--sk-spacing-20);
+    padding-right: var(--sk-spacing-20);
+    color: var(--sk-colors-dark-secondary);
+  }
+
+  @media (min-width: 1024px) {
+    .sk-footer {
+      padding-top: var(--sk-spacing-40);
+      padding-bottom: var(--sk-spacing-40);
+      padding-left: var(--sk-spacing-80);
+      padding-right: var(--sk-spacing-80);
+    }
+  }
+
+  .sk-footer-logo-wrapper {
+    margin-right: var(--sk-spacing-80);
+    margin-bottom: var(--sk-spacing-40);
+    justify-content: flex-start;
+  }
+
+  .sk-footer-logo-wrapper .sk-logo {
+    width: 12.3rem;
+    max-width: 12.3rem;
+    max-height: var(--sk-spacing-56);
+    height: var(--sk-spacing-56);
+  }
+
+  @media (min-width: 1024px) {
+    .sk-footer-logo-wrapper .sk-logo {
+      max-width: 15.3rem;
+      width: 15.3rem;
+      max-height: var(--sk-spacing-72);
+      height: var(--sk-spacing-72);
+    }
+  }
+
+  .sk-footer-content {
+    width: fit-content;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1600px;
+  }
+
+  @media (min-width: 1366px) {
+    .sk-footer-content {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+
+  .sk-footer-list {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    gap: var(--sk-spacing-16);
+  }
+
+  .sk-footer-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex-grow: 1;
+    row-gap: var(--sk-spacing-36);
+    column-gap: var(--sk-spacing-80);
+  }
+
+  @media (min-width: 1366px) {
+    .sk-footer-list-wrapper {
+      flex-direction: row;
+      margin-left: var(--sk-spacing-80);
+    }
+  }
+
+  .sk-footer-list-item {
+    font-size: 1.4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--sk-spacing-8);
+  }
+
+  .sk-footer-list-item label {
+    font-size: var(--sk-fontSize-label-medium);
+    line-height: var(--sk-lineHeight-label-medium);
+    font-weight: 700;
+  }
+}

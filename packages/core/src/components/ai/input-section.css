@@ -1,0 +1,36 @@
+/**
+ * AI Input Section Component - Pure CSS with CSS Variables
+ * Converted from @apply directives
+ */
+
+@layer components {
+  .sk-ai-inputsection {
+    width: 100%;
+  }
+
+  .sk-ai-inputsection-input,
+  .sk-ai-inputsection-group {
+    width: 100%;
+  }
+
+  .sk-ai-inputsection-wrapper {
+    background-color: var(--sk-colors-background-content);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-left: var(--sk-spacing-16);
+    padding-right: var(--sk-spacing-16);
+    padding-top: var(--sk-spacing-12);
+    padding-bottom: var(--sk-spacing-12);
+    gap: var(--sk-spacing-12);
+  }
+
+  .sk-ai-inputsection-wrapper[data-shadow="true"] {
+    box-shadow: var(--shadow-100, 0 6px 16px 0 rgba(13, 13, 14, 0.07), 0 1.81px 12px 0 rgba(13, 13, 14, 0.15), 0 0.75px 2px 0 rgba(13, 13, 14, 0.085), 0 0.27px 0.72px 0 rgba(13, 13, 14, 0.0583));
+  }
+
+  .sk-ai-inputsection-group .sk-form-input-addin-right {
+    padding-right: var(--sk-spacing-4);
+  }
+}

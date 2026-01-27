@@ -1,0 +1,91 @@
+/**
+ * Divider Component - Tailwind CSS 4
+ * Migrerad till ren CSS med CSS-variabler
+ */
+
+@layer components {
+  /* Base divider */
+  .sk-divider {
+    border-top-width: 0;
+    border-color: var(--sk-colors-divider);
+  }
+
+  /* Vertical divider */
+  .sk-divider-vertical {
+    min-height: 1em;
+    border-left-width: var(--sk-spacing-1);
+    border-style: solid;
+    height: auto;
+    margin-left: var(--sk-spacing-4);
+    margin-top: var(--sk-spacing-8);
+    margin-bottom: var(--sk-spacing-4);
+    margin-right: var(--sk-spacing-4);
+    align-self: stretch;
+  }
+
+  .sk-divider-vertical[data-strong="true"] {
+    border-left-width: 2px;
+    border-style: solid;
+    height: auto;
+    margin-left: var(--sk-spacing-2);
+    margin-right: var(--sk-spacing-2);
+  }
+
+  /* Horizontal divider */
+  .sk-divider-horizontal {
+    flex: 1 1 0%;
+    border-bottom-width: var(--sk-spacing-1);
+    border-style: solid;
+    width: auto;
+    margin-top: var(--sk-spacing-2);
+    margin-bottom: var(--sk-spacing-2);
+  }
+
+  .sk-divider-horizontal[data-strong="true"] {
+    border-bottom-width: 2px;
+    border-style: solid;
+    width: auto;
+    margin-top: var(--sk-spacing-2);
+    margin-bottom: var(--sk-spacing-2);
+  }
+
+  /* Root container (for dividers with text) */
+  .sk-divider-root {
+    display: flex;
+    align-items: center;
+    gap: var(--sk-spacing-16);
+  }
+
+  /* Size: Small */
+  .sk-divider-sm.sk-divider-root {
+    gap: var(--sk-spacing-8);
+  }
+
+  .sk-divider-sm .sk-divider-text {
+    font-size: var(--sk-fontSize-h-4-sm);
+    line-height: var(--sk-lineHeight-h-4-sm);
+    font-weight: 700;
+  }
+
+  /* Size: Medium */
+  .sk-divider-md.sk-divider-root {
+    gap: var(--sk-spacing-10);
+  }
+
+  .sk-divider-md .sk-divider-text {
+    font-size: var(--sk-fontSize-h-4-md);
+    line-height: var(--sk-lineHeight-h-4-md);
+    font-weight: 700;
+  }
+
+  /* Size: Large */
+  .sk-divider-lg.sk-divider-root {
+    gap: var(--sk-spacing-12);
+  }
+
+  .sk-divider-lg .sk-divider-text {
+    font-size: var(--sk-fontSize-h-4-lg);
+    line-height: var(--sk-lineHeight-h-4-lg);
+    font-weight: 700;
+  }
+}

@@ -1,0 +1,26 @@
+/**
+ * User Menu Component - Tailwind CSS 4
+ * Migrerad till ren CSS med CSS-variabler
+ */
+
+@layer components {
+  .sk-usermenu {
+    position: relative;
+  }
+
+  .sk-usermenu-button {
+    padding: 0;
+    background-color: transparent;
+    border-width: 0;
+  }
+
+  .sk-usermenu-button:hover {
+    background-color: transparent;
+    border-width: 0;
+  }
+
+  .sk-usermenu-button .sk-avatar {
+    height: inherit;
+    width: inherit;
+  }
+}

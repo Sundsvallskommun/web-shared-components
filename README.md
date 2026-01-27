@@ -1,71 +1,64 @@
-# GUI
+# SK Web GUI
 
 Detta projekt innehåller styling och komponenter som används för att bygga avancerade webbappar för Sundsvalls Kommun.
 
-## För implementation i app
-
-Det finns just nu komponenter endast för React och för att använda stylingen så måste du ha Tailwindcss i projektet.
+## Installation
 
 **NPM**
 
-```
-npm i @sk-web-gui/core @sk-web-gui/react && npm i --save-dev @tailwindcss/forms @tailwindcss/container-queries
+```bash
+npm install @sk-web-gui/core @sk-web-gui/react
 ```
 
 **Yarn**
 
-```
+```bash
 yarn add @sk-web-gui/core @sk-web-gui/react
 ```
 
-Lägg till `sk-web-gui/core`, `tailwindcss/forms` och `tailwindcss/container-queries` i din Tailwindcss-configfil.
+## Användning med Tailwind CSS 4
 
-```TypeScript
-// tailwind.config.js
-module.exports = {
-  content: [
-    //...
-    './node_modules/@sk-web-gui/*/dist/**/*.js',
-  ],
-  theme: {
-    // extend: {
-    // if you want to override max content width
-    // maxWidth: {
-    //   content: screens['desktop-max'], // default in core is based on screens
-    // },
-  },
-  darkMode: 'selector', // or 'media' or 'selector'
-  plugins: [require('@tailwindcss/forms'), require('@sk-web-gui/core')],
-};
+I din CSS-fil (t.ex. `globals.css` eller `app.css`):
+
+```css
+@import "tailwindcss";
+@import "@sk-web-gui/core/style.css";
+@source "@sk-web-gui/core";
 ```
 
-eller använd som preset med valbara inställningar (default inkluderar exempelvis @tailwindcss/forms samt @tailwindcss/container-queries):
+`@import "tailwindcss"` | Laddar Tailwind CSS 4 
+`@import "@sk-web-gui/core/style.css"` | Laddar tema, färger, typografi och komponent-stilar 
+`@source "@sk-web-gui/core"` | Skannar biblioteket för använda Tailwind-klasser 
 
-```Typescript
-// tailwind.config.js
-module.exports = {
-  content: [
-    //...
-    './node_modules/@sk-web-gui/*/dist/**/*.js',
-  ],
-  theme: {
-    // extend: {
-    // if you want to override max content width
-    // maxWidth: {
-    //   content: screens['desktop-max'], // default in core is based on screens
-    // },
-  },
-  darkMode: 'selector', // or 'media' or 'selector'
-  presets: [require('@sk-web-gui/core').preset()],
-};
+### Individuella imports
+
+Om du vill ha mer kontroll över vad som laddas:
+
+```css
+@import "tailwindcss";
+
+/* Bas */
+@import "@sk-web-gui/core/theme.css";
+@import "@sk-web-gui/core/base.css";
+@import "@sk-web-gui/core/colors.css";
+@import "@sk-web-gui/core/typography.css";
+@import "@sk-web-gui/core/variants.css";
+
+/* Endast de komponenter du behöver */
+@import "@sk-web-gui/core/components/button.css";
+@import "@sk-web-gui/core/components/card.css";
+/* ... */
+
+@source "@sk-web-gui/core";
 ```
 
-Wrappa din React-app med `GuiProvider` för att få stylingen.
+### React-komponenter
 
-```TypeScript
-import React from "react";
+Wrappa din React-app med `GuiProvider`:
+
+```tsx
 import { GuiProvider, Button } from "@sk-web-gui/react";
-​
+
 function App() {
   return (
     <GuiProvider>
@@ -73,6 +66,28 @@ function App() {
     </GuiProvider>
   );
 }
+```
+
+## Migrering från Tailwind CSS 3
+
+### Före (TW3)
+
+```js
+// tailwind.config.js
+module.exports = {
+  content: ['./node_modules/@sk-web-gui/*/dist/**/*.js'],
+  darkMode: 'selector',
+  presets: [require('@sk-web-gui/core').preset()],
+};
+```
+
+### Efter (TW4)
+
+```css
+/* globals.css */
+@import "tailwindcss";
+@import "@sk-web-gui/core/style.css";
+@source "@sk-web-gui/core";
 ```
 
 ## För utveckling
@@ -88,29 +103,29 @@ Efter kloning, kör:
 
 ### Styling
 
-Styling för komponenter finns/läggs till i `packages/core`. Skapa en ny komponentfil där stylingen skrivs sedan exportera den i index.
+Styling för komponenter finns i `packages/core/src/components/`. Skapa en ny CSS-fil och importera den i `packages/core/src/style.css`.
 
 ### Komponenter
 
-Skapa ett nytt paket i `packages` där du gör din react-komponent. Exportera den sedan via `packages/react`. Kom ihåg att även lägga till de nya paketen i `packages/react/package.json`. Använd Storybook för att testa och dokumentera komponenten.
+Skapa ett nytt paket i `packages` där du gör din React-komponent. Exportera den sedan via `packages/react`. Kom ihåg att även lägga till de nya paketen i `packages/react/package.json`. Använd Storybook för att testa och dokumentera komponenten.
 
 ## Release av npm-paket
 
 Testa så den bygger riktigt samt kika över så komponentberoenden fungerar som tänkt:
 
-```
+```bash
 npx lerna version --no-git-tag-version --no-push
 ```
 
 Om allt ser bra ut:
 
-```
+```bash
 git restore .
 ```
 
 Sedan publicera release:
 
-```
+```bash
 npx lerna version
 npx lerna publish from-git
 ```

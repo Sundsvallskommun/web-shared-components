@@ -1,0 +1,132 @@
+/**
+ * Base Styles - Tailwind CSS 4
+ * Migrated from base.ts
+ */
+
+@layer base {
+  html {
+    font-size: 0.625em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    touch-action: manipulation;
+  }
+
+  body {
+    font-size: var(--sk-fontSize-base);
+    line-height: var(--sk-lineHeight-base);
+    background-color: var(--sk-colors-background-content);
+    color: var(--sk-colors-body);
+    position: relative;
+    min-height: 100%;
+    font-feature-settings: 'kern';
+  }
+
+  *,
+  ::before,
+  ::after {
+    outline: 0;
+    border-color: var(--sk-colors-primitives-gray-200);
+  }
+
+  small {
+    font-size: var(--sk-fontSize-small);
+    line-height: var(--sk-lineHeight-small);
+  }
+
+  a {
+    border-radius: var(--sk-radius-button-md);
+  }
+
+  h1 {
+    font-size: var(--sk-fontSize-h1-sm);
+    line-height: var(--sk-lineHeight-h1-sm);
+    margin-bottom: var(--sk-spacing-16);
+  }
+
+  @media (min-width: 768px) {
+    h1 {
+      font-size: var(--sk-fontSize-h1-md);
+      line-height: var(--sk-lineHeight-h1-md);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    h1 {
+      font-size: var(--sk-fontSize-h1-lg);
+      line-height: var(--sk-lineHeight-h1-lg);
+    }
+  }
+
+  h2 {
+    font-size: var(--sk-fontSize-h2-sm);
+    line-height: var(--sk-lineHeight-h2-sm);
+  }
+
+  @media (min-width: 768px) {
+    h2 {
+      font-size: var(--sk-fontSize-h2-md);
+      line-height: var(--sk-lineHeight-h2-md);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    h2 {
+      font-size: var(--sk-fontSize-h2-lg);
+      line-height: var(--sk-lineHeight-h2-lg);
+    }
+  }
+
+  h3 {
+    font-size: var(--sk-fontSize-h3-sm);
+    line-height: var(--sk-lineHeight-h3-sm);
+  }
+
+  @media (min-width: 768px) {
+    h3 {
+      font-size: var(--sk-fontSize-h3-md);
+      line-height: var(--sk-lineHeight-h3-md);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    h3 {
+      font-size: var(--sk-fontSize-h3-lg);
+      line-height: var(--sk-lineHeight-h3-lg);
+    }
+  }
+
+  h4, h5, h6 {
+    font-size: var(--sk-fontSize-h4-sm);
+    line-height: var(--sk-lineHeight-h4-sm);
+  }
+
+  @media (min-width: 768px) {
+    h4, h5, h6 {
+      font-size: var(--sk-fontSize-h4-md);
+      line-height: var(--sk-lineHeight-h4-md);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    h4, h5, h6 {
+      font-size: var(--sk-fontSize-h4-lg);
+      line-height: var(--sk-lineHeight-h4-lg);
+    }
+  }
+
+  p {
+    margin-top: var(--sk-spacing-4);
+    margin-bottom: var(--sk-spacing-4);
+  }
+
+  .text-content {
+    max-width: 1600px;
+  }
+
+  .text-content p {
+    margin-top: var(--sk-spacing-8);
+    font-size: var(--sk-fontSize-base);
+    line-height: var(--sk-lineHeight-base);
+  }
+}

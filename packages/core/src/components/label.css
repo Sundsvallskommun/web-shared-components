@@ -1,0 +1,137 @@
+/**
+ * Label Component - Tailwind CSS 4
+ * Migrerad fran label.ts
+ */
+
+@layer components {
+  .sk-label {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: var(--sk-spacing-6);
+    padding-left: var(--sk-spacing-10);
+    padding-right: var(--sk-spacing-10);
+    padding-top: var(--sk-spacing-4);
+    padding-bottom: var(--sk-spacing-4);
+    height: var(--sk-spacing-24);
+    max-height: var(--sk-spacing-24);
+    font-size: var(--sk-fontSize-label-small);
+    line-height: var(--sk-lineHeight-label-small);
+    font-weight: 700;
+    border-radius: var(--sk-radius-utility-sm);
+    background-color: var(--sk-colors-dark-primary);
+    color: var(--sk-colors-light-primary);
+  }
+
+  @media (min-width: 768px) {
+    .sk-label {
+      border-radius: var(--sk-radius-utility-md);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .sk-label {
+      border-radius: var(--sk-radius-utility-lg);
+    }
+  }
+
+  .sk-label[data-rounded="true"] {
+    border-radius: 9999px;
+  }
+
+  .sk-label[data-inverted="true"] {
+    background-color: var(--sk-colors-tertiary-surface-DEFAULT);
+    color: var(--sk-colors-dark-primary);
+  }
+
+  /* Color: warning */
+  .sk-label[data-color="warning"] {
+    background-color: var(--sk-colors-warning-surface-primary-DEFAULT);
+    color: var(--sk-colors-warning-text-secondary);
+  }
+  .sk-label[data-color="warning"][data-inverted="true"] {
+    background-color: var(--sk-colors-warning-surface-accent-DEFAULT);
+    color: var(--sk-colors-warning-text-primary);
+  }
+
+  /* Color: error */
+  .sk-label[data-color="error"] {
+    background-color: var(--sk-colors-error-surface-primary-DEFAULT);
+    color: var(--sk-colors-error-text-secondary);
+  }
+  .sk-label[data-color="error"][data-inverted="true"] {
+    background-color: var(--sk-colors-error-surface-accent-DEFAULT);
+    color: var(--sk-colors-error-text-primary);
+  }
+
+  /* Color: success */
+  .sk-label[data-color="success"] {
+    background-color: var(--sk-colors-success-surface-primary-DEFAULT);
+    color: var(--sk-colors-success-text-secondary);
+  }
+  .sk-label[data-color="success"][data-inverted="true"] {
+    background-color: var(--sk-colors-success-surface-accent-DEFAULT);
+    color: var(--sk-colors-success-text-primary);
+  }
+
+  /* Color: info */
+  .sk-label[data-color="info"] {
+    background-color: var(--sk-colors-info-surface-primary-DEFAULT);
+    color: var(--sk-colors-info-text-secondary);
+  }
+  .sk-label[data-color="info"][data-inverted="true"] {
+    background-color: var(--sk-colors-info-surface-accent-DEFAULT);
+    color: var(--sk-colors-info-text-primary);
+  }
+
+  /* Color: vattjom */
+  .sk-label[data-color="vattjom"] {
+    background-color: var(--sk-colors-vattjom-surface-primary-DEFAULT);
+    color: var(--sk-colors-vattjom-text-secondary);
+  }
+  .sk-label[data-color="vattjom"][data-inverted="true"] {
+    background-color: var(--sk-colors-vattjom-surface-accent-DEFAULT);
+    color: var(--sk-colors-vattjom-text-primary);
+  }
+
+  /* Color: juniskar */
+  .sk-label[data-color="juniskar"] {
+    background-color: var(--sk-colors-juniskar-surface-primary-DEFAULT);
+    color: var(--sk-colors-juniskar-text-secondary);
+  }
+  .sk-label[data-color="juniskar"][data-inverted="true"] {
+    background-color: var(--sk-colors-juniskar-surface-accent-DEFAULT);
+    color: var(--sk-colors-juniskar-text-primary);
+  }
+
+  /* Color: bjornstigen */
+  .sk-label[data-color="bjornstigen"] {
+    background-color: var(--sk-colors-bjornstigen-surface-primary-DEFAULT);
+    color: var(--sk-colors-bjornstigen-text-secondary);
+  }
+  .sk-label[data-color="bjornstigen"][data-inverted="true"] {
+    background-color: var(--sk-colors-bjornstigen-surface-accent-DEFAULT);
+    color: var(--sk-colors-bjornstigen-text-primary);
+  }
+
+  /* Color: gronsta */
+  .sk-label[data-color="gronsta"] {
+    background-color: var(--sk-colors-gronsta-surface-primary-DEFAULT);
+    color: var(--sk-colors-gronsta-text-secondary);
+  }
+  .sk-label[data-color="gronsta"][data-inverted="true"] {
+    background-color: var(--sk-colors-gronsta-surface-accent-DEFAULT);
+    color: var(--sk-colors-gronsta-text-primary);
+  }
+
+  /* Color: tertiary */
+  .sk-label[data-color="tertiary"] {
+    background-color: var(--sk-colors-dark-primary);
+    color: var(--sk-colors-light-primary);
+  }
+  .sk-label[data-color="tertiary"][data-inverted="true"] {
+    background-color: var(--sk-colors-tertiary-surface-DEFAULT);
+    color: var(--sk-colors-dark-primary);
+  }
+}

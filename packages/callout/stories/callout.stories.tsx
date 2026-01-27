@@ -19,7 +19,7 @@ export const OnButtonItem = (args: CalloutProps) => {
     <div>
       <NavigationBar showBackground>
         <NavigationBar.Item>
-          <button>Ett menyval</button>
+          <Button>Ett menyval</Button>
         </NavigationBar.Item>
         <NavigationBar.Item>
           <Button>
@@ -28,10 +28,10 @@ export const OnButtonItem = (args: CalloutProps) => {
           </Button>
         </NavigationBar.Item>
         <NavigationBar.Item>
-          <button>
+          <Button>
             Ett menyval3
             <Callout className="absolute top-2 right-2" {...args} />
-          </button>
+          </Button>
         </NavigationBar.Item>
       </NavigationBar>
     </div>

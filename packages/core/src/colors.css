@@ -1,0 +1,447 @@
+/**
+ * Colors - Tailwind CSS 4
+ * All color definitions for @theme
+ */
+
+@theme {
+  /* ----------------------------------------
+     Colors - Primitives
+     ---------------------------------------- */
+  /* Gray scale */
+  --color-primitives-gray-lightest: var(--sk-colors-primitives-gray-lightest);
+  --color-primitives-gray-50: var(--sk-colors-primitives-gray-50);
+  --color-primitives-gray-100: var(--sk-colors-primitives-gray-100);
+  --color-primitives-gray-200: var(--sk-colors-primitives-gray-200);
+  --color-primitives-gray-300: var(--sk-colors-primitives-gray-300);
+  --color-primitives-gray-400: var(--sk-colors-primitives-gray-400);
+  --color-primitives-gray-500: var(--sk-colors-primitives-gray-500);
+  --color-primitives-gray-600: var(--sk-colors-primitives-gray-600);
+  --color-primitives-gray-700: var(--sk-colors-primitives-gray-700);
+  --color-primitives-gray-800: var(--sk-colors-primitives-gray-800);
+  --color-primitives-gray-900: var(--sk-colors-primitives-gray-900);
+  --color-primitives-gray-darkest: var(--sk-colors-primitives-gray-darkest);
+
+  /* Overlay */
+  --color-primitives-overlay-darken-1: var(--sk-colors-primitives-overlay-darken-1);
+  --color-primitives-overlay-darken-2: var(--sk-colors-primitives-overlay-darken-2);
+  --color-primitives-overlay-darken-3: var(--sk-colors-primitives-overlay-darken-3);
+  --color-primitives-overlay-darken-4: var(--sk-colors-primitives-overlay-darken-4);
+  --color-primitives-overlay-darken-5: var(--sk-colors-primitives-overlay-darken-5);
+  --color-primitives-overlay-darken-6: var(--sk-colors-primitives-overlay-darken-6);
+  --color-primitives-overlay-darken-7: var(--sk-colors-primitives-overlay-darken-7);
+  --color-primitives-overlay-darken-8: var(--sk-colors-primitives-overlay-darken-8);
+  --color-primitives-overlay-darken-9: var(--sk-colors-primitives-overlay-darken-9);
+  --color-primitives-overlay-darken-10: var(--sk-colors-primitives-overlay-darken-10);
+  --color-primitives-overlay-lighten-1: var(--sk-colors-primitives-overlay-lighten-1);
+  --color-primitives-overlay-lighten-2: var(--sk-colors-primitives-overlay-lighten-2);
+  --color-primitives-overlay-lighten-3: var(--sk-colors-primitives-overlay-lighten-3);
+  --color-primitives-overlay-lighten-4: var(--sk-colors-primitives-overlay-lighten-4);
+  --color-primitives-overlay-lighten-5: var(--sk-colors-primitives-overlay-lighten-5);
+  --color-primitives-overlay-lighten-6: var(--sk-colors-primitives-overlay-lighten-6);
+  --color-primitives-overlay-lighten-7: var(--sk-colors-primitives-overlay-lighten-7);
+  --color-primitives-overlay-lighten-8: var(--sk-colors-primitives-overlay-lighten-8);
+  --color-primitives-overlay-lighten-9: var(--sk-colors-primitives-overlay-lighten-9);
+  --color-primitives-overlay-lighten-10: var(--sk-colors-primitives-overlay-lighten-10);
+
+  /* Blue */
+  --color-primitives-blue-50: var(--sk-colors-primitives-blue-50);
+  --color-primitives-blue-100: var(--sk-colors-primitives-blue-100);
+  --color-primitives-blue-200: var(--sk-colors-primitives-blue-200);
+  --color-primitives-blue-300: var(--sk-colors-primitives-blue-300);
+  --color-primitives-blue-400: var(--sk-colors-primitives-blue-400);
+  --color-primitives-blue-500: var(--sk-colors-primitives-blue-500);
+  --color-primitives-blue-600: var(--sk-colors-primitives-blue-600);
+  --color-primitives-blue-700: var(--sk-colors-primitives-blue-700);
+  --color-primitives-blue-800: var(--sk-colors-primitives-blue-800);
+  --color-primitives-blue-900: var(--sk-colors-primitives-blue-900);
+
+  /* Green */
+  --color-primitives-green-50: var(--sk-colors-primitives-green-50);
+  --color-primitives-green-100: var(--sk-colors-primitives-green-100);
+  --color-primitives-green-200: var(--sk-colors-primitives-green-200);
+  --color-primitives-green-300: var(--sk-colors-primitives-green-300);
+  --color-primitives-green-400: var(--sk-colors-primitives-green-400);
+  --color-primitives-green-500: var(--sk-colors-primitives-green-500);
+  --color-primitives-green-600: var(--sk-colors-primitives-green-600);
+  --color-primitives-green-700: var(--sk-colors-primitives-green-700);
+  --color-primitives-green-800: var(--sk-colors-primitives-green-800);
+  --color-primitives-green-900: var(--sk-colors-primitives-green-900);
+
+  /* Purple */
+  --color-primitives-purple-50: var(--sk-colors-primitives-purple-50);
+  --color-primitives-purple-100: var(--sk-colors-primitives-purple-100);
+  --color-primitives-purple-200: var(--sk-colors-primitives-purple-200);
+  --color-primitives-purple-300: var(--sk-colors-primitives-purple-300);
+  --color-primitives-purple-400: var(--sk-colors-primitives-purple-400);
+  --color-primitives-purple-500: var(--sk-colors-primitives-purple-500);
+  --color-primitives-purple-600: var(--sk-colors-primitives-purple-600);
+  --color-primitives-purple-700: var(--sk-colors-primitives-purple-700);
+  --color-primitives-purple-800: var(--sk-colors-primitives-purple-800);
+  --color-primitives-purple-900: var(--sk-colors-primitives-purple-900);
+
+  /* Pink */
+  --color-primitives-pink-50: var(--sk-colors-primitives-pink-50);
+  --color-primitives-pink-100: var(--sk-colors-primitives-pink-100);
+  --color-primitives-pink-200: var(--sk-colors-primitives-pink-200);
+  --color-primitives-pink-300: var(--sk-colors-primitives-pink-300);
+  --color-primitives-pink-400: var(--sk-colors-primitives-pink-400);
+  --color-primitives-pink-500: var(--sk-colors-primitives-pink-500);
+  --color-primitives-pink-600: var(--sk-colors-primitives-pink-600);
+  --color-primitives-pink-700: var(--sk-colors-primitives-pink-700);
+  --color-primitives-pink-800: var(--sk-colors-primitives-pink-800);
+  --color-primitives-pink-900: var(--sk-colors-primitives-pink-900);
+
+  /* Orange */
+  --color-primitives-orange-50: var(--sk-colors-primitives-orange-50);
+  --color-primitives-orange-100: var(--sk-colors-primitives-orange-100);
+  --color-primitives-orange-200: var(--sk-colors-primitives-orange-200);
+  --color-primitives-orange-300: var(--sk-colors-primitives-orange-300);
+  --color-primitives-orange-400: var(--sk-colors-primitives-orange-400);
+  --color-primitives-orange-500: var(--sk-colors-primitives-orange-500);
+  --color-primitives-orange-600: var(--sk-colors-primitives-orange-600);
+  --color-primitives-orange-700: var(--sk-colors-primitives-orange-700);
+  --color-primitives-orange-800: var(--sk-colors-primitives-orange-800);
+  --color-primitives-orange-900: var(--sk-colors-primitives-orange-900);
+
+  /* Red */
+  --color-primitives-red-50: var(--sk-colors-primitives-red-50);
+  --color-primitives-red-100: var(--sk-colors-primitives-red-100);
+  --color-primitives-red-200: var(--sk-colors-primitives-red-200);
+  --color-primitives-red-300: var(--sk-colors-primitives-red-300);
+  --color-primitives-red-400: var(--sk-colors-primitives-red-400);
+  --color-primitives-red-500: var(--sk-colors-primitives-red-500);
+  --color-primitives-red-600: var(--sk-colors-primitives-red-600);
+  --color-primitives-red-700: var(--sk-colors-primitives-red-700);
+  --color-primitives-red-800: var(--sk-colors-primitives-red-800);
+  --color-primitives-red-900: var(--sk-colors-primitives-red-900);
+
+  /* ----------------------------------------
+     Colors - Semantic
+     ---------------------------------------- */
+  /* Base colors */
+  --color-body: var(--sk-colors-body);
+  --color-black: var(--sk-colors-black);
+  --color-white: var(--sk-colors-white);
+  --color-ring: var(--sk-colors-ring);
+  --color-divider: var(--sk-colors-divider);
+
+  /* Primary */
+  --color-primary: var(--sk-colors-primary-DEFAULT);
+  --color-primary-surface: var(--sk-colors-primary-surface-DEFAULT);
+  --color-primary-surface-hover: var(--sk-colors-primary-surface-hover);
+  --color-primary-surface-disabled: var(--sk-colors-primary-surface-disabled);
+  --color-primary-lightest: var(--sk-colors-primary-lightest);
+  --color-primary-50: var(--sk-colors-primary-50);
+  --color-primary-100: var(--sk-colors-primary-100);
+  --color-primary-200: var(--sk-colors-primary-200);
+  --color-primary-300: var(--sk-colors-primary-300);
+  --color-primary-400: var(--sk-colors-primary-400);
+  --color-primary-500: var(--sk-colors-primary-500);
+  --color-primary-600: var(--sk-colors-primary-600);
+  --color-primary-700: var(--sk-colors-primary-700);
+  --color-primary-800: var(--sk-colors-primary-800);
+  --color-primary-900: var(--sk-colors-primary-900);
+  --color-primary-darkest: var(--sk-colors-primary-darkest);
+
+  /* Secondary */
+  --color-secondary: var(--sk-colors-secondary-DEFAULT);
+  --color-secondary-outline: var(--sk-colors-secondary-outline-DEFAULT);
+  --color-secondary-outline-hover: var(--sk-colors-secondary-outline-hover);
+  --color-secondary-surface: var(--sk-colors-secondary-surface-DEFAULT);
+  --color-secondary-surface-hover: var(--sk-colors-secondary-surface-hover);
+  --color-secondary-surface-disabled: var(--sk-colors-secondary-surface-disabled);
+  --color-secondary-lightest: var(--sk-colors-secondary-lightest);
+  --color-secondary-50: var(--sk-colors-secondary-50);
+  --color-secondary-100: var(--sk-colors-secondary-100);
+  --color-secondary-200: var(--sk-colors-secondary-200);
+  --color-secondary-300: var(--sk-colors-secondary-300);
+  --color-secondary-400: var(--sk-colors-secondary-400);
+  --color-secondary-500: var(--sk-colors-secondary-500);
+  --color-secondary-600: var(--sk-colors-secondary-600);
+  --color-secondary-700: var(--sk-colors-secondary-700);
+  --color-secondary-800: var(--sk-colors-secondary-800);
+  --color-secondary-900: var(--sk-colors-secondary-900);
+  --color-secondary-darkest: var(--sk-colors-secondary-darkest);
+
+  /* Tertiary */
+  --color-tertiary-surface: var(--sk-colors-tertiary-surface-DEFAULT);
+  --color-tertiary-surface-hover: var(--sk-colors-tertiary-surface-hover);
+  --color-tertiary-surface-disabled: var(--sk-colors-tertiary-surface-disabled);
+
+  /* Dark text colors */
+  --color-dark: var(--sk-colors-dark-DEFAULT);
+  --color-dark-primary: var(--sk-colors-dark-primary);
+  --color-dark-secondary: var(--sk-colors-dark-secondary);
+  --color-dark-disabled: var(--sk-colors-dark-disabled);
+  --color-dark-placeholder: var(--sk-colors-dark-placeholder);
+  --color-dark-ghost: var(--sk-colors-dark-ghost);
+
+  /* Light text colors */
+  --color-light: var(--sk-colors-light-DEFAULT);
+  --color-light-primary: var(--sk-colors-light-primary);
+  --color-light-secondary: var(--sk-colors-light-secondary);
+  --color-light-disabled: var(--sk-colors-light-disabled);
+  --color-light-placeholder: var(--sk-colors-light-placeholder);
+  --color-light-ghost: var(--sk-colors-light-ghost);
+
+  /* Background */
+  --color-background: var(--sk-colors-background-DEFAULT);
+  --color-background-content: var(--sk-colors-background-content);
+  --color-background-100: var(--sk-colors-background-100);
+  --color-background-200: var(--sk-colors-background-200);
+  --color-background-color-mixin-1: var(--sk-colors-background-color-mixin-1);
+  --color-background-color-mixin-2: var(--sk-colors-background-color-mixin-2);
+
+  /* ----------------------------------------
+     Colors - Regional Themes
+     ---------------------------------------- */
+  /* Vattjom */
+  --color-vattjom-background-100: var(--sk-colors-vattjom-background-100);
+  --color-vattjom-background-200: var(--sk-colors-vattjom-background-200);
+  --color-vattjom-background-300: var(--sk-colors-vattjom-background-300);
+  --color-vattjom-surface-primary: var(--sk-colors-vattjom-surface-primary-DEFAULT);
+  --color-vattjom-surface-primary-hover: var(--sk-colors-vattjom-surface-primary-hover);
+  --color-vattjom-surface-accent: var(--sk-colors-vattjom-surface-accent-DEFAULT);
+  --color-vattjom-surface-accent-hover: var(--sk-colors-vattjom-surface-accent-hover);
+  --color-vattjom-text: var(--sk-colors-vattjom-text-DEFAULT);
+  --color-vattjom-text-primary: var(--sk-colors-vattjom-text-primary);
+  --color-vattjom-text-secondary: var(--sk-colors-vattjom-text-secondary);
+
+  /* Gronsta */
+  --color-gronsta-background-100: var(--sk-colors-gronsta-background-100);
+  --color-gronsta-background-200: var(--sk-colors-gronsta-background-200);
+  --color-gronsta-background-300: var(--sk-colors-gronsta-background-300);
+  --color-gronsta-surface-primary: var(--sk-colors-gronsta-surface-primary-DEFAULT);
+  --color-gronsta-surface-primary-hover: var(--sk-colors-gronsta-surface-primary-hover);
+  --color-gronsta-surface-accent: var(--sk-colors-gronsta-surface-accent-DEFAULT);
+  --color-gronsta-surface-accent-hover: var(--sk-colors-gronsta-surface-accent-hover);
+  --color-gronsta-text: var(--sk-colors-gronsta-text-DEFAULT);
+  --color-gronsta-text-primary: var(--sk-colors-gronsta-text-primary);
+  --color-gronsta-text-secondary: var(--sk-colors-gronsta-text-secondary);
+
+  /* Juniskar */
+  --color-juniskar-background-100: var(--sk-colors-juniskar-background-100);
+  --color-juniskar-background-200: var(--sk-colors-juniskar-background-200);
+  --color-juniskar-background-300: var(--sk-colors-juniskar-background-300);
+  --color-juniskar-surface-primary: var(--sk-colors-juniskar-surface-primary-DEFAULT);
+  --color-juniskar-surface-primary-hover: var(--sk-colors-juniskar-surface-primary-hover);
+  --color-juniskar-surface-accent: var(--sk-colors-juniskar-surface-accent-DEFAULT);
+  --color-juniskar-surface-accent-hover: var(--sk-colors-juniskar-surface-accent-hover);
+  --color-juniskar-text: var(--sk-colors-juniskar-text-DEFAULT);
+  --color-juniskar-text-primary: var(--sk-colors-juniskar-text-primary);
+  --color-juniskar-text-secondary: var(--sk-colors-juniskar-text-secondary);
+
+  /* Bjornstigen */
+  --color-bjornstigen-background-100: var(--sk-colors-bjornstigen-background-100);
+  --color-bjornstigen-background-200: var(--sk-colors-bjornstigen-background-200);
+  --color-bjornstigen-background-300: var(--sk-colors-bjornstigen-background-300);
+  --color-bjornstigen-surface-primary: var(--sk-colors-bjornstigen-surface-primary-DEFAULT);
+  --color-bjornstigen-surface-primary-hover: var(--sk-colors-bjornstigen-surface-primary-hover);
+  --color-bjornstigen-surface-accent: var(--sk-colors-bjornstigen-surface-accent-DEFAULT);
+  --color-bjornstigen-surface-accent-hover: var(--sk-colors-bjornstigen-surface-accent-hover);
+  --color-bjornstigen-text: var(--sk-colors-bjornstigen-text-DEFAULT);
+  --color-bjornstigen-text-primary: var(--sk-colors-bjornstigen-text-primary);
+  --color-bjornstigen-text-secondary: var(--sk-colors-bjornstigen-text-secondary);
+
+  /* ----------------------------------------
+     Colors - Status
+     ---------------------------------------- */
+  /* Error */
+  --color-error: var(--sk-colors-error-DEFAULT);
+  --color-error-background-100: var(--sk-colors-error-background-100);
+  --color-error-background-200: var(--sk-colors-error-background-200);
+  --color-error-background-300: var(--sk-colors-error-background-300);
+  --color-error-surface-primary: var(--sk-colors-error-surface-primary-DEFAULT);
+  --color-error-surface-primary-hover: var(--sk-colors-error-surface-primary-hover);
+  --color-error-surface-accent: var(--sk-colors-error-surface-accent-DEFAULT);
+  --color-error-surface-accent-hover: var(--sk-colors-error-surface-accent-hover);
+  --color-error-text: var(--sk-colors-error-text-DEFAULT);
+  --color-error-text-primary: var(--sk-colors-error-text-primary);
+  --color-error-text-secondary: var(--sk-colors-error-text-secondary);
+
+  /* Warning */
+  --color-warning: var(--sk-colors-warning-DEFAULT);
+  --color-warning-background-100: var(--sk-colors-warning-background-100);
+  --color-warning-background-200: var(--sk-colors-warning-background-200);
+  --color-warning-background-300: var(--sk-colors-warning-background-300);
+  --color-warning-surface-primary: var(--sk-colors-warning-surface-primary-DEFAULT);
+  --color-warning-surface-primary-hover: var(--sk-colors-warning-surface-primary-hover);
+  --color-warning-surface-accent: var(--sk-colors-warning-surface-accent-DEFAULT);
+  --color-warning-surface-accent-hover: var(--sk-colors-warning-surface-accent-hover);
+  --color-warning-text: var(--sk-colors-warning-text-DEFAULT);
+  --color-warning-text-primary: var(--sk-colors-warning-text-primary);
+  --color-warning-text-secondary: var(--sk-colors-warning-text-secondary);
+
+  /* Info */
+  --color-info: var(--sk-colors-info-DEFAULT);
+  --color-info-background-100: var(--sk-colors-info-background-100);
+  --color-info-background-200: var(--sk-colors-info-background-200);
+  --color-info-background-300: var(--sk-colors-info-background-300);
+  --color-info-surface-primary: var(--sk-colors-info-surface-primary-DEFAULT);
+  --color-info-surface-primary-hover: var(--sk-colors-info-surface-primary-hover);
+  --color-info-surface-accent: var(--sk-colors-info-surface-accent-DEFAULT);
+  --color-info-surface-accent-hover: var(--sk-colors-info-surface-accent-hover);
+  --color-info-text: var(--sk-colors-info-text-DEFAULT);
+  --color-info-text-primary: var(--sk-colors-info-text-primary);
+  --color-info-text-secondary: var(--sk-colors-info-text-secondary);
+
+  /* Success */
+  --color-success: var(--sk-colors-success-DEFAULT);
+  --color-success-background-100: var(--sk-colors-success-background-100);
+  --color-success-background-200: var(--sk-colors-success-background-200);
+  --color-success-background-300: var(--sk-colors-success-background-300);
+  --color-success-surface-primary: var(--sk-colors-success-surface-primary-DEFAULT);
+  --color-success-surface-primary-hover: var(--sk-colors-success-surface-primary-hover);
+  --color-success-surface-accent: var(--sk-colors-success-surface-accent-DEFAULT);
+  --color-success-surface-accent-hover: var(--sk-colors-success-surface-accent-hover);
+  --color-success-text: var(--sk-colors-success-text-DEFAULT);
+  --color-success-text-primary: var(--sk-colors-success-text-primary);
+  --color-success-text-secondary: var(--sk-colors-success-text-secondary);
+
+  /* ----------------------------------------
+     Colors - Form Elements
+     ---------------------------------------- */
+  /* Input field */
+  --color-input-field-outline: var(--sk-colors-input-field-outline-DEFAULT);
+  --color-input-field-outline-hover: var(--sk-colors-input-field-outline-hover);
+  --color-input-field-outline-disabled: var(--sk-colors-input-field-outline-disabled);
+  --color-input-field-surface: var(--sk-colors-input-field-surface-DEFAULT);
+  --color-input-field-surface-disabled: var(--sk-colors-input-field-surface-disabled);
+  --color-input-field-surface-focus: var(--sk-colors-input-field-surface-focus);
+
+  /* Switch */
+  --color-switch-surface: var(--sk-colors-switch-surface-DEFAULT);
+  --color-switch-surface-on: var(--sk-colors-switch-surface-on);
+  --color-switch-surface-disabled: var(--sk-colors-switch-surface-disabled);
+  --color-switch-surface-hover: var(--sk-colors-switch-surface-hover);
+  --color-switch-control: var(--sk-colors-switch-control-DEFAULT);
+  --color-switch-control-disabled: var(--sk-colors-switch-control-disabled);
+  --color-switch-control-on: var(--sk-colors-switch-control-on);
+
+  /* Menu item */
+  --color-menu-item-surface-open: var(--sk-colors-menu-item-surface-DEFAULT);
+  --color-menu-item-surface-hover: var(--sk-colors-menu-item-surface-hover);
+  --color-menu-item-surface-active: var(--sk-colors-menu-item-surface-active);
+  --color-menu-item-node-line: var(--sk-colors-menu-item-node-line);
+
+  /* ----------------------------------------
+     Colors - Inverted (for dark backgrounds)
+     ---------------------------------------- */
+  --color-inverted-body: var(--sk-colors-inverted-body);
+  --color-inverted-black: var(--sk-colors-inverted-black);
+  --color-inverted-white: var(--sk-colors-inverted-white);
+  --color-inverted-ring: var(--sk-colors-inverted-ring);
+  --color-inverted-divider: var(--sk-colors-inverted-divider);
+
+  /* Inverted Primary */
+  --color-inverted-primary: var(--sk-colors-inverted-primary-DEFAULT);
+  --color-inverted-primary-surface: var(--sk-colors-inverted-primary-surface-DEFAULT);
+  --color-inverted-primary-surface-hover: var(--sk-colors-inverted-primary-surface-hover);
+  --color-inverted-primary-surface-disabled: var(--sk-colors-inverted-primary-surface-disabled);
+
+  /* Inverted Secondary */
+  --color-inverted-secondary: var(--sk-colors-inverted-secondary-DEFAULT);
+  --color-inverted-secondary-outline: var(--sk-colors-inverted-secondary-outline-DEFAULT);
+  --color-inverted-secondary-outline-hover: var(--sk-colors-inverted-secondary-outline-hover);
+  --color-inverted-secondary-surface: var(--sk-colors-inverted-secondary-surface-DEFAULT);
+  --color-inverted-secondary-surface-hover: var(--sk-colors-inverted-secondary-surface-hover);
+  --color-inverted-secondary-surface-disabled: var(--sk-colors-inverted-secondary-surface-disabled);
+
+  /* Inverted Tertiary */
+  --color-inverted-tertiary-surface: var(--sk-colors-inverted-tertiary-surface-DEFAULT);
+  --color-inverted-tertiary-surface-hover: var(--sk-colors-inverted-tertiary-surface-hover);
+  --color-inverted-tertiary-surface-disabled: var(--sk-colors-inverted-tertiary-surface-disabled);
+
+  /* Inverted text colors */
+  --color-inverted-dark: var(--sk-colors-inverted-dark-DEFAULT);
+  --color-inverted-dark-primary: var(--sk-colors-inverted-dark-primary);
+  --color-inverted-dark-secondary: var(--sk-colors-inverted-dark-secondary);
+  --color-inverted-dark-disabled: var(--sk-colors-inverted-dark-disabled);
+  --color-inverted-light: var(--sk-colors-inverted-light-DEFAULT);
+  --color-inverted-light-primary: var(--sk-colors-inverted-light-primary);
+  --color-inverted-light-secondary: var(--sk-colors-inverted-light-secondary);
+  --color-inverted-light-disabled: var(--sk-colors-inverted-light-disabled);
+
+  /* Inverted background */
+  --color-inverted-background: var(--sk-colors-inverted-background-DEFAULT);
+  --color-inverted-background-content: var(--sk-colors-inverted-background-content);
+  --color-inverted-background-100: var(--sk-colors-inverted-background-100);
+  --color-inverted-background-200: var(--sk-colors-inverted-background-200);
+  --color-inverted-background-color-mixin-1: var(--sk-colors-inverted-background-color-mixin-1);
+  --color-inverted-background-color-mixin-2: var(--sk-colors-inverted-background-color-mixin-2);
+
+  /* Inverted regional themes */
+  --color-inverted-vattjom-surface-primary: var(--sk-colors-inverted-vattjom-surface-primary-DEFAULT);
+  --color-inverted-vattjom-surface-primary-hover: var(--sk-colors-inverted-vattjom-surface-primary-hover);
+  --color-inverted-vattjom-surface-accent: var(--sk-colors-inverted-vattjom-surface-accent-DEFAULT);
+  --color-inverted-vattjom-text-primary: var(--sk-colors-inverted-vattjom-text-primary);
+  --color-inverted-vattjom-text-secondary: var(--sk-colors-inverted-vattjom-text-secondary);
+
+  --color-inverted-gronsta-surface-primary: var(--sk-colors-inverted-gronsta-surface-primary-DEFAULT);
+  --color-inverted-gronsta-surface-primary-hover: var(--sk-colors-inverted-gronsta-surface-primary-hover);
+  --color-inverted-gronsta-surface-accent: var(--sk-colors-inverted-gronsta-surface-accent-DEFAULT);
+  --color-inverted-gronsta-text-primary: var(--sk-colors-inverted-gronsta-text-primary);
+  --color-inverted-gronsta-text-secondary: var(--sk-colors-inverted-gronsta-text-secondary);
+
+  --color-inverted-juniskar-surface-primary: var(--sk-colors-inverted-juniskar-surface-primary-DEFAULT);
+  --color-inverted-juniskar-surface-primary-hover: var(--sk-colors-inverted-juniskar-surface-primary-hover);
+  --color-inverted-juniskar-surface-accent: var(--sk-colors-inverted-juniskar-surface-accent-DEFAULT);
+  --color-inverted-juniskar-text-primary: var(--sk-colors-inverted-juniskar-text-primary);
+  --color-inverted-juniskar-text-secondary: var(--sk-colors-inverted-juniskar-text-secondary);
+
+  --color-inverted-bjornstigen-surface-primary: var(--sk-colors-inverted-bjornstigen-surface-primary-DEFAULT);
+  --color-inverted-bjornstigen-surface-primary-hover: var(--sk-colors-inverted-bjornstigen-surface-primary-hover);
+  --color-inverted-bjornstigen-surface-accent: var(--sk-colors-inverted-bjornstigen-surface-accent-DEFAULT);
+  --color-inverted-bjornstigen-text-primary: var(--sk-colors-inverted-bjornstigen-text-primary);
+  --color-inverted-bjornstigen-text-secondary: var(--sk-colors-inverted-bjornstigen-text-secondary);
+
+  /* Inverted status */
+  --color-inverted-error: var(--sk-colors-inverted-error-DEFAULT);
+  --color-inverted-error-surface-primary: var(--sk-colors-inverted-error-surface-primary-DEFAULT);
+  --color-inverted-error-surface-primary-hover: var(--sk-colors-inverted-error-surface-primary-hover);
+  --color-inverted-error-surface-accent: var(--sk-colors-inverted-error-surface-accent-DEFAULT);
+  --color-inverted-error-text-primary: var(--sk-colors-inverted-error-text-primary);
+  --color-inverted-error-text-secondary: var(--sk-colors-inverted-error-text-secondary);
+
+  --color-inverted-warning: var(--sk-colors-inverted-warning-DEFAULT);
+  --color-inverted-warning-surface-primary: var(--sk-colors-inverted-warning-surface-primary-DEFAULT);
+  --color-inverted-warning-surface-primary-hover: var(--sk-colors-inverted-warning-surface-primary-hover);
+  --color-inverted-warning-surface-accent: var(--sk-colors-inverted-warning-surface-accent-DEFAULT);
+  --color-inverted-warning-text-primary: var(--sk-colors-inverted-warning-text-primary);
+  --color-inverted-warning-text-secondary: var(--sk-colors-inverted-warning-text-secondary);
+
+  --color-inverted-info: var(--sk-colors-inverted-info-DEFAULT);
+  --color-inverted-info-surface-primary: var(--sk-colors-inverted-info-surface-primary-DEFAULT);
+  --color-inverted-info-surface-primary-hover: var(--sk-colors-inverted-info-surface-primary-hover);
+  --color-inverted-info-surface-accent: var(--sk-colors-inverted-info-surface-accent-DEFAULT);
+  --color-inverted-info-text-primary: var(--sk-colors-inverted-info-text-primary);
+  --color-inverted-info-text-secondary: var(--sk-colors-inverted-info-text-secondary);
+
+  --color-inverted-success: var(--sk-colors-inverted-success-DEFAULT);
+  --color-inverted-success-surface-primary: var(--sk-colors-inverted-success-surface-primary-DEFAULT);
+  --color-inverted-success-surface-primary-hover: var(--sk-colors-inverted-success-surface-primary-hover);
+  --color-inverted-success-surface-accent: var(--sk-colors-inverted-success-surface-accent-DEFAULT);
+  --color-inverted-success-text-primary: var(--sk-colors-inverted-success-text-primary);
+  --color-inverted-success-text-secondary: var(--sk-colors-inverted-success-text-secondary);
+
+  /* ----------------------------------------
+     Gray shorthand
+     ---------------------------------------- */
+  --color-gray: var(--sk-colors-primitives-gray-600);
+  --color-gray-stroke: var(--sk-colors-divider);
+  --color-gray-middle: var(--sk-colors-primitives-gray-600);
+  --color-gray-light: var(--sk-colors-primitives-gray-300);
+  --color-gray-lighter: var(--sk-colors-primitives-gray-200);
+  --color-gray-lightest: var(--sk-colors-primitives-gray-lightest);
+  --color-gray-50: var(--sk-colors-primitives-gray-50);
+  --color-gray-100: var(--sk-colors-primitives-gray-100);
+  --color-gray-200: var(--sk-colors-primitives-gray-200);
+  --color-gray-300: var(--sk-colors-primitives-gray-300);
+  --color-gray-400: var(--sk-colors-primitives-gray-400);
+  --color-gray-500: var(--sk-colors-primitives-gray-500);
+  --color-gray-600: var(--sk-colors-primitives-gray-600);
+  --color-gray-700: var(--sk-colors-primitives-gray-700);
+  --color-gray-800: var(--sk-colors-primitives-gray-800);
+  --color-gray-900: var(--sk-colors-primitives-gray-900);
+  --color-gray-darkest: var(--sk-colors-primitives-gray-darkest);
+}

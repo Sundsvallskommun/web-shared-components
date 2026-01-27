@@ -1,0 +1,104 @@
+/**
+ * Cookie Consent Component - Tailwind CSS 4
+ * Converted from @apply directives to pure CSS properties
+ */
+
+@layer components {
+  .sk-cookie-consent {
+    min-width: 100%;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--sk-colors-background-content);
+    padding: var(--sk-spacing-40);
+    padding-top: var(--sk-spacing-24);
+  }
+
+  .sk-cookie-consent-wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    overflow-y: auto;
+    background-color: var(--sk-colors-primitives-overlay-darken-6);
+  }
+
+  :is(.dark, .dark *) .sk-cookie-consent-wrapper {
+    background-color: var(--sk-colors-primitives-overlay-darken-8);
+  }
+
+  .sk-cookie-consent-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sk-spacing-24);
+    max-width: 64em;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--sk-spacing-16);
+    padding-right: var(--sk-spacing-16);
+    position: relative;
+  }
+
+  .sk-cookie-consent-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sk-spacing-8);
+    max-width: 50em;
+  }
+
+  .sk-cookie-consent-title {
+    font-size: var(--sk-fontSize-h-2-sm);
+    line-height: var(--sk-lineHeight-h-2-sm);
+    font-weight: 700;
+  }
+
+  @media (min-width: 768px) {
+    .sk-cookie-consent-title {
+      font-size: var(--sk-fontSize-h-2-md);
+      line-height: var(--sk-lineHeight-h-2-md);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .sk-cookie-consent-title {
+      font-size: var(--sk-fontSize-h-2-lg);
+      line-height: var(--sk-lineHeight-h-2-lg);
+    }
+  }
+
+  .sk-cookie-consent-custom-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sk-spacing-24);
+  }
+
+  .sk-cookie-consent-custom-wrapper-legend {
+    font-size: var(--sk-fontSize-label-medium);
+    line-height: var(--sk-lineHeight-label-medium);
+    font-weight: 700;
+  }
+
+  .sk-cookie-consent-description {
+    font-size: var(--sk-fontSize-base);
+    line-height: var(--sk-lineHeight-base);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sk-spacing-8);
+  }
+
+  .sk-cookie-consent-btn-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sk-spacing-12);
+    flex-wrap: wrap;
+  }
+
+  @media (min-width: 768px) {
+    .sk-cookie-consent-btn-wrapper {
+      flex-direction: row;
+    }
+  }
+}

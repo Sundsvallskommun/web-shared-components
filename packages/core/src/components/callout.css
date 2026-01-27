@@ -1,0 +1,109 @@
+/**
+ * Callout Component - Tailwind CSS 4
+ * Migrerad från callout.ts
+ */
+
+@layer components {
+  .sk-callout {
+    display: inline-flex;
+    padding: var(--sk-spacing-4);
+  }
+
+  .sk-callout-content {
+    border-radius: var(--sk-radius-circular-DEFAULT);
+    height: var(--sk-spacing-8);
+    width: var(--sk-spacing-8);
+  }
+
+  /* Color: warning */
+  .sk-callout[data-color="warning"] .sk-callout-content {
+    background-color: var(--sk-colors-warning-surface-primary-DEFAULT);
+    color: var(--sk-colors-warning-text-secondary);
+  }
+  .sk-callout[data-color="warning"][data-inverted="true"] .sk-callout-content {
+    background-color: var(--sk-colors-inverted-warning-surface-primary-DEFAULT);
+    color: var(--sk-colors-inverted-warning-text-secondary);
+  }
+
+  /* Color: error */
+  .sk-callout[data-color="error"] .sk-callout-content {
+    background-color: var(--sk-colors-error-surface-primary-DEFAULT);
+    color: var(--sk-colors-error-text-secondary);
+  }
+  .sk-callout[data-color="error"][data-inverted="true"] .sk-callout-content {
+    background-color: var(--sk-colors-inverted-error-surface-primary-DEFAULT);
+    color: var(--sk-colors-inverted-error-text-secondary);
+  }
+
+  /* Color: success */
+  .sk-callout[data-color="success"] .sk-callout-content {
+    background-color: var(--sk-colors-success-surface-primary-DEFAULT);
+    color: var(--sk-colors-success-text-secondary);
+  }
+  .sk-callout[data-color="success"][data-inverted="true"] .sk-callout-content {
+    background-color: var(--sk-colors-inverted-success-surface-primary-DEFAULT);
+    color: var(--sk-colors-inverted-success-text-secondary);
+  }
+
+  /* Color: info */
+  .sk-callout[data-color="info"] .sk-callout-content {
+    background-color: var(--sk-colors-info-surface-primary-DEFAULT);
+    color: var(--sk-colors-info-text-secondary);
+  }
+  .sk-callout[data-color="info"][data-inverted="true"] .sk-callout-content {
+    background-color: var(--sk-colors-inverted-info-surface-primary-DEFAULT);
+    color: var(--sk-colors-inverted-info-text-secondary);
+  }
+
+  /* Color: vattjom */
+  .sk-callout[data-color="vattjom"] .sk-callout-content {
+    background-color: var(--sk-colors-vattjom-surface-primary-DEFAULT);
+    color: var(--sk-colors-vattjom-text-secondary);
+  }
+  .sk-callout[data-color="vattjom"][data-inverted="true"] .sk-callout-content {
+    background-color: var(--sk-colors-inverted-vattjom-surface-primary-DEFAULT);
+    color: var(--sk-colors-inverted-vattjom-text-secondary);
+  }
+
+  /* Color: juniskar */
+  .sk-callout[data-color="juniskar"] .sk-callout-content {
+    background-color: var(--sk-colors-juniskar-surface-primary-DEFAULT);
+    color: var(--sk-colors-juniskar-text-secondary);
+  }
+  .sk-callout[data-color="juniskar"][data-inverted="true"] .sk-callout-content {
+    background-color: var(--sk-colors-inverted-juniskar-surface-primary-DEFAULT);
+    color: var(--sk-colors-inverted-juniskar-text-secondary);
+  }
+
+  /* Color: bjornstigen */
+  .sk-callout[data-color="bjornstigen"] .sk-callout-content {
+    background-color: var(--sk-colors-bjornstigen-surface-primary-DEFAULT);
+    color: var(--sk-colors-bjornstigen-text-secondary);
+  }
+  .sk-callout[data-color="bjornstigen"][data-inverted="true"] .sk-callout-content {
+    background-color: var(--sk-colors-inverted-bjornstigen-surface-primary-DEFAULT);
+    color: var(--sk-colors-inverted-bjornstigen-text-secondary);
+  }
+
+  /* Color: gronsta */
+  .sk-callout[data-color="gronsta"] .sk-callout-content {
+    background-color: var(--sk-colors-gronsta-surface-primary-DEFAULT);
+    color: var(--sk-colors-gronsta-text-secondary);
+  }
+  .sk-callout[data-color="gronsta"][data-inverted="true"] .sk-callout-content {
+    background-color: var(--sk-colors-inverted-gronsta-surface-primary-DEFAULT);
+    color: var(--sk-colors-inverted-gronsta-text-secondary);
+  }
+
+  /* Color: tertiary (default) */
+  .sk-callout[data-color="tertiary"] .sk-callout-content {
+    background-color: var(--sk-colors-primary-surface-DEFAULT);
+  }
+  .sk-callout[data-color="tertiary"][data-inverted="true"] .sk-callout-content {
+    background-color: var(--sk-colors-tertiary-surface-DEFAULT);
+  }
+
+  :is(.dark, .dark *) .sk-callout[data-color="tertiary"][data-inverted="true"] .sk-callout-content {
+    background-color: var(--sk-colors-inverted-primary-surface-DEFAULT);
+  }
+}

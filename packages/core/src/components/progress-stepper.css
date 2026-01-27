@@ -1,0 +1,148 @@
+/**
+ * Progress Stepper Component - Tailwind CSS 4
+ * Migrerad från progress-stepper.ts
+ */
+
+@layer components {
+  .sk-progress-stepper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sk-progress-stepper.horizontal {
+    flex-direction: row;
+    gap: var(--sk-spacing-16);
+  }
+
+  .sk-progress-stepper.vertical {
+    flex-direction: column;
+    gap: var(--sk-spacing-4);
+    height: 100%;
+  }
+
+  /* Step */
+  .sk-progress-stepper-step {
+    display: flex;
+    align-items: center;
+    font-size: var(--sk-fontSize-base);
+    line-height: var(--sk-lineHeight-base);
+    color: var(--sk-colors-dark-primary);
+    font-weight: 400;
+  }
+
+  .sk-progress-stepper-step.sk-progress-stepper-step-vertical {
+    flex-direction: column;
+  }
+
+  .sk-progress-stepper-step.sk-progress-stepper-step-horizontal {
+    flex-direction: row;
+    gap: var(--sk-spacing-16);
+  }
+
+  .sk-progress-stepper-step.sk-progress-stepper-step-grow {
+    flex-grow: 1;
+  }
+
+  .sk-progress-stepper-step.sk-progress-stepper-step-grow-0 {
+    flex-grow: 0;
+  }
+
+  /* Step wrapper */
+  .sk-progress-stepper-step-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--sk-spacing-8);
+  }
+
+  .sk-progress-stepper-step-wrapper.sk-progress-stepper-step-wrapper-top {
+    flex-direction: column-reverse;
+  }
+
+  .sk-progress-stepper-step-wrapper.sk-progress-stepper-step-wrapper-right {
+    flex-direction: row;
+  }
+
+  .sk-progress-stepper-step-wrapper.sk-progress-stepper-step-wrapper-bottom {
+    flex-direction: column;
+  }
+
+  .sk-progress-stepper-step-wrapper.sk-progress-stepper-step-wrapper-left {
+    flex-direction: row-reverse;
+  }
+
+  /* Step box */
+  .sk-progress-stepper-step-box {
+    flex-shrink: 0;
+    border-radius: var(--sk-spacing-8);
+    height: var(--sk-spacing-32);
+    width: var(--sk-spacing-32);
+    background-color: var(--sk-colors-tertiary-surface);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sk-progress-stepper-step-box[data-rounded="true"] {
+    border-radius: 9999px;
+  }
+
+  .sk-progress-stepper-step-box.sm {
+    height: var(--sk-spacing-24);
+    width: var(--sk-spacing-24);
+    font-size: var(--sk-fontSize-label-small);
+    line-height: var(--sk-lineHeight-label-small);
+  }
+
+  .sk-progress-stepper-step-box.md {
+    height: var(--sk-spacing-32);
+    width: var(--sk-spacing-32);
+  }
+
+  /* Step box icon */
+  .sk-progress-stepper-step-box-icon.sm svg {
+    width: var(--sk-spacing-16);
+    height: var(--sk-spacing-16);
+  }
+
+  .sk-progress-stepper-step-box-icon.md svg {
+    width: var(--sk-spacing-20);
+    height: var(--sk-spacing-20);
+  }
+
+  /* Step divider */
+  .sk-progress-stepper-step-divider.horizontal {
+    display: flex;
+    width: 100%;
+  }
+
+  .sk-progress-stepper-step-divider.vertical {
+    display: flex;
+    width: auto;
+    height: 100%;
+  }
+
+  /* Progress states */
+  .sk-progress-stepper-step[data-progress="current"] {
+    font-weight: 700;
+  }
+
+  .sk-progress-stepper-step[data-progress="current"] .sk-progress-stepper-step-box {
+    background-color: var(--sk-colors-primary-surface);
+    color: var(--sk-colors-light-primary);
+  }
+
+  .sk-progress-stepper-step[data-progress="done"] .sk-progress-stepper-step-box {
+    background-color: var(--sk-colors-gronsta-surface-accent);
+    color: var(--sk-colors-gronsta-text-primary);
+  }
+
+  /* Whitespace control */
+  .sk-progress-stepper-step[data-white-space="no-wrap"] .sk-progress-stepper-step-wrapper p {
+    white-space: nowrap;
+  }
+
+  .sk-progress-stepper-step[data-white-space="normal"] .sk-progress-stepper-step-wrapper p {
+    white-space: normal;
+  }
+}

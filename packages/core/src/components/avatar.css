@@ -1,0 +1,182 @@
+/**
+ * Avatar Component - Tailwind CSS 4
+ * Migrerad från avatar.ts
+ */
+
+@layer components {
+  .sk-avatar {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  /* Size: xs */
+  .sk-avatar.sk-avatar-xs {
+    height: var(--sk-spacing-24);
+    width: var(--sk-spacing-24);
+    min-height: var(--sk-spacing-24);
+    max-height: var(--sk-spacing-24);
+    min-width: var(--sk-spacing-24);
+    max-width: var(--sk-spacing-24);
+    font-size: var(--sk-fontSize-label-extra-small);
+    line-height: var(--sk-lineHeight-label-extra-small);
+    font-weight: 700;
+    border-radius: var(--sk-radius-utility-DEFAULT);
+  }
+  .sk-avatar.sk-avatar-xs[data-rounded="true"] {
+    border-radius: var(--sk-radius-circular-DEFAULT);
+  }
+
+  /* Size: sm */
+  .sk-avatar.sk-avatar-sm {
+    height: var(--sk-spacing-32);
+    width: var(--sk-spacing-32);
+    min-height: var(--sk-spacing-24);
+    max-height: var(--sk-spacing-32);
+    min-width: var(--sk-spacing-24);
+    max-width: var(--sk-spacing-32);
+    font-size: var(--sk-fontSize-label-small);
+    line-height: var(--sk-lineHeight-label-small);
+    font-weight: 700;
+    border-radius: var(--sk-radius-button-DEFAULT);
+  }
+  .sk-avatar.sk-avatar-sm[data-rounded="true"] {
+    border-radius: var(--sk-radius-circular-DEFAULT);
+  }
+
+  /* Size: md */
+  .sk-avatar.sk-avatar-md {
+    height: var(--sk-spacing-40);
+    width: var(--sk-spacing-40);
+    min-height: var(--sk-spacing-32);
+    max-height: var(--sk-spacing-40);
+    min-width: var(--sk-spacing-32);
+    max-width: var(--sk-spacing-40);
+    font-size: var(--sk-fontSize-label-medium);
+    line-height: var(--sk-lineHeight-label-medium);
+    font-weight: 700;
+    border-radius: var(--sk-radius-button-DEFAULT);
+  }
+  .sk-avatar.sk-avatar-md[data-rounded="true"] {
+    border-radius: var(--sk-radius-circular-DEFAULT);
+  }
+
+  /* Size: lg */
+  .sk-avatar.sk-avatar-lg {
+    height: var(--sk-spacing-64);
+    width: var(--sk-spacing-64);
+    min-height: var(--sk-spacing-40);
+    max-height: var(--sk-spacing-64);
+    min-width: var(--sk-spacing-40);
+    max-width: var(--sk-spacing-64);
+    font-size: var(--sk-fontSize-label-large);
+    line-height: var(--sk-lineHeight-label-large);
+    font-weight: 700;
+    border-radius: var(--sk-radius-button-DEFAULT);
+  }
+  .sk-avatar.sk-avatar-lg[data-rounded="true"] {
+    border-radius: var(--sk-radius-circular-DEFAULT);
+  }
+
+  /* Color: warning */
+  .sk-avatar[data-color="warning"] {
+    background-color: var(--sk-colors-warning-surface-primary-DEFAULT);
+    color: var(--sk-colors-warning-text-secondary);
+  }
+  .sk-avatar[data-color="warning"][data-accent="true"] {
+    background-color: var(--sk-colors-warning-surface-accent-DEFAULT);
+    color: var(--sk-colors-warning-text-primary);
+  }
+
+  /* Color: error */
+  .sk-avatar[data-color="error"] {
+    background-color: var(--sk-colors-error-surface-primary-DEFAULT);
+    color: var(--sk-colors-error-text-secondary);
+  }
+  .sk-avatar[data-color="error"][data-accent="true"] {
+    background-color: var(--sk-colors-error-surface-accent-DEFAULT);
+    color: var(--sk-colors-error-text-primary);
+  }
+
+  /* Color: success */
+  .sk-avatar[data-color="success"] {
+    background-color: var(--sk-colors-success-surface-primary-DEFAULT);
+    color: var(--sk-colors-success-text-secondary);
+  }
+  .sk-avatar[data-color="success"][data-accent="true"] {
+    background-color: var(--sk-colors-success-surface-accent-DEFAULT);
+    color: var(--sk-colors-success-text-primary);
+  }
+
+  /* Color: info */
+  .sk-avatar[data-color="info"] {
+    background-color: var(--sk-colors-info-surface-primary-DEFAULT);
+    color: var(--sk-colors-info-text-secondary);
+  }
+  .sk-avatar[data-color="info"][data-accent="true"] {
+    background-color: var(--sk-colors-info-surface-accent-DEFAULT);
+    color: var(--sk-colors-info-text-primary);
+  }
+
+  /* Color: vattjom */
+  .sk-avatar[data-color="vattjom"] {
+    background-color: var(--sk-colors-vattjom-surface-primary-DEFAULT);
+    color: var(--sk-colors-vattjom-text-secondary);
+  }
+  .sk-avatar[data-color="vattjom"][data-accent="true"] {
+    background-color: var(--sk-colors-vattjom-surface-accent-DEFAULT);
+    color: var(--sk-colors-vattjom-text-primary);
+  }
+
+  /* Color: juniskar */
+  .sk-avatar[data-color="juniskar"] {
+    background-color: var(--sk-colors-juniskar-surface-primary-DEFAULT);
+    color: var(--sk-colors-juniskar-text-secondary);
+  }
+  .sk-avatar[data-color="juniskar"][data-accent="true"] {
+    background-color: var(--sk-colors-juniskar-surface-accent-DEFAULT);
+    color: var(--sk-colors-juniskar-text-primary);
+  }
+
+  /* Color: bjornstigen */
+  .sk-avatar[data-color="bjornstigen"] {
+    background-color: var(--sk-colors-bjornstigen-surface-primary-DEFAULT);
+    color: var(--sk-colors-bjornstigen-text-secondary);
+  }
+  .sk-avatar[data-color="bjornstigen"][data-accent="true"] {
+    background-color: var(--sk-colors-bjornstigen-surface-accent-DEFAULT);
+    color: var(--sk-colors-bjornstigen-text-primary);
+  }
+
+  /* Color: gronsta */
+  .sk-avatar[data-color="gronsta"] {
+    background-color: var(--sk-colors-gronsta-surface-primary-DEFAULT);
+    color: var(--sk-colors-gronsta-text-secondary);
+  }
+  .sk-avatar[data-color="gronsta"][data-accent="true"] {
+    background-color: var(--sk-colors-gronsta-surface-accent-DEFAULT);
+    color: var(--sk-colors-gronsta-text-primary);
+  }
+
+  /* Color: primary */
+  .sk-avatar[data-color="primary"] {
+    background-color: var(--sk-colors-primary-surface-DEFAULT);
+    color: var(--sk-colors-light-primary);
+  }
+  .sk-avatar[data-color="primary"][data-accent="true"] {
+    background-color: var(--sk-colors-inverted-primary-surface-DEFAULT);
+    color: var(--sk-colors-inverted-light-primary);
+  }
+
+  /* Image */
+  .sk-avatar-img {
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+  }
+
+  .sk-avatar[data-hasimage="true"] {
+    background-color: transparent;
+  }
+}

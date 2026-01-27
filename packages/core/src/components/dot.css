@@ -1,0 +1,150 @@
+/**
+ * Dot Component - Tailwind CSS 4
+ * Migrerad till ren CSS med CSS-variabler
+ */
+
+@layer components {
+  .dot {
+    position: relative;
+    display: inline-flex;
+    border-radius: 9999px;
+  }
+
+  /* Solid variant */
+  .dot-solid {
+    background-color: var(--sk-colors-primitives-gray-500);
+  }
+
+  .dot-solid.dot-bordered {
+    border: 2px solid white;
+  }
+
+  :is(.dark, .dark *) .dot-solid.dot-bordered {
+    border-color: var(--sk-colors-primitives-gray-800);
+  }
+
+  /* Solid colors */
+  .dot-solid[data-color="warning"] {
+    background-color: var(--sk-colors-warning-surface-primary-DEFAULT);
+  }
+  .dot-solid[data-color="error"] {
+    background-color: var(--sk-colors-error-surface-primary-DEFAULT);
+  }
+  .dot-solid[data-color="success"] {
+    background-color: var(--sk-colors-success-surface-primary-DEFAULT);
+  }
+  .dot-solid[data-color="info"] {
+    background-color: var(--sk-colors-info-surface-primary-DEFAULT);
+  }
+  .dot-solid[data-color="vattjom"] {
+    background-color: var(--sk-colors-vattjom-surface-primary-DEFAULT);
+  }
+  .dot-solid[data-color="juniskar"] {
+    background-color: var(--sk-colors-juniskar-surface-primary-DEFAULT);
+  }
+  .dot-solid[data-color="bjornstigen"] {
+    background-color: var(--sk-colors-bjornstigen-surface-primary-DEFAULT);
+  }
+  .dot-solid[data-color="gronsta"] {
+    background-color: var(--sk-colors-gronsta-surface-primary-DEFAULT);
+  }
+
+  /* Solid bordered colors */
+  .dot-solid.dot-bordered[data-color="warning"] {
+    border-color: var(--sk-colors-warning-background-200);
+  }
+  .dot-solid.dot-bordered[data-color="error"] {
+    border-color: var(--sk-colors-error-background-200);
+  }
+  .dot-solid.dot-bordered[data-color="success"] {
+    border-color: var(--sk-colors-success-background-200);
+  }
+  .dot-solid.dot-bordered[data-color="info"] {
+    border-color: var(--sk-colors-info-background-200);
+  }
+  .dot-solid.dot-bordered[data-color="vattjom"] {
+    border-color: var(--sk-colors-vattjom-background-200);
+  }
+  .dot-solid.dot-bordered[data-color="juniskar"] {
+    border-color: var(--sk-colors-juniskar-background-200);
+  }
+  .dot-solid.dot-bordered[data-color="bjornstigen"] {
+    border-color: var(--sk-colors-bjornstigen-background-200);
+  }
+  .dot-solid.dot-bordered[data-color="gronsta"] {
+    border-color: var(--sk-colors-gronsta-background-200);
+  }
+
+  /* Outline variant */
+  .dot-outline {
+    background-color: white;
+    border: 2px solid var(--sk-colors-primitives-gray-500);
+  }
+
+  :is(.dark, .dark *) .dot-outline {
+    background-color: var(--sk-colors-primitives-gray-800);
+  }
+
+  .dot-outline[data-color="warning"] {
+    border-color: var(--sk-colors-warning-surface-primary-DEFAULT);
+  }
+  .dot-outline[data-color="error"] {
+    border-color: var(--sk-colors-error-surface-primary-DEFAULT);
+  }
+  .dot-outline[data-color="success"] {
+    border-color: var(--sk-colors-success-surface-primary-DEFAULT);
+  }
+  .dot-outline[data-color="info"] {
+    border-color: var(--sk-colors-info-surface-primary-DEFAULT);
+  }
+  .dot-outline[data-color="vattjom"] {
+    border-color: var(--sk-colors-vattjom-surface-primary-DEFAULT);
+  }
+  .dot-outline[data-color="juniskar"] {
+    border-color: var(--sk-colors-juniskar-surface-primary-DEFAULT);
+  }
+  .dot-outline[data-color="bjornstigen"] {
+    border-color: var(--sk-colors-bjornstigen-surface-primary-DEFAULT);
+  }
+  .dot-outline[data-color="gronsta"] {
+    border-color: var(--sk-colors-gronsta-surface-primary-DEFAULT);
+  }
+
+  /* Sizes */
+  .dot-3xs {
+    width: 0.375rem;
+    height: 0.375rem;
+  }
+  .dot-2xs {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+  .dot-xs {
+    width: 0.625rem;
+    height: 0.625rem;
+  }
+  .dot-sm {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+  .dot-md {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+  .dot-lg {
+    width: 1rem;
+    height: 1rem;
+  }
+  .dot-xl {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  .dot-2xl {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .dot-3xl {
+    width: 2rem;
+    height: 2rem;
+  }
+}

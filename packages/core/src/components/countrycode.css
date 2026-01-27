@@ -1,0 +1,39 @@
+/**
+ * Country Code Component - Tailwind CSS 4
+ * Migrerad from countrycode.ts
+ */
+
+@layer components {
+  .sk-country-code {
+    font-family: var(--sk-fontFamily-flag);
+  }
+
+  .sk-country-code-combobox {
+    width: fit-content;
+  }
+
+  .sk-country-code-combobox.sk-form-combobox-sm {
+    width: 12rem;
+  }
+
+  .sk-country-code-combobox.sk-form-combobox-md {
+    width: 13.2rem;
+  }
+
+  .sk-country-code-combobox.sk-form-combobox-lg {
+    width: 13.8rem;
+  }
+
+  .sk-country-code-combobox .sk-form-combobox-select {
+    width: auto;
+    max-width: 100%;
+  }
+
+  .sk-country-code-combobox .sk-form-combobox-list {
+    width: auto;
+  }
+
+  .sk-country-code-combobox .sk-form-combobox-list-option-tick {
+    width: 0;
+  }
+}

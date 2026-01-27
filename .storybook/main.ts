@@ -1,4 +1,5 @@
 import type { StorybookConfig } from '@storybook/react-vite';
+import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import fs from 'fs';
 import path from 'path';
@@ -31,6 +32,7 @@ const config: StorybookConfig = {
   async viteFinal(config, { configType }) {
     if (configType === 'PRODUCTION') {
       return mergeConfig(config, {
+        plugins: [tailwindcss()],
         build: {
           rollupOptions: {
             //onwarn: https://github.com/TanStack/query/issues/5175#issuecomment-1482196558
@@ -59,6 +61,7 @@ const config: StorybookConfig = {
           },
         },
         plugins: [
+          tailwindcss(),
           react(),
           tsconfigPaths(),
           reloadStylesOnFolderChange(

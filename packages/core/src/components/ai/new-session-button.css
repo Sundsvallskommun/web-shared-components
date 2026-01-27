@@ -1,0 +1,28 @@
+/**
+ * AI New Session Button Component - Tailwind CSS 4
+ */
+
+@layer components {
+  .sk-ai-newsession {
+    font-size: var(--sk-fontSize-base);
+    line-height: var(--sk-lineHeight-base);
+    max-width: 15.25em;
+    display: flex;
+    flex-direction: column;
+    padding-top: var(--sk-spacing-16);
+    padding-bottom: var(--sk-spacing-16);
+    gap: var(--sk-spacing-8);
+    align-items: center;
+
+    &-button {
+      flex-grow: 0;
+    }
+
+    &-helpertext {
+      color: var(--sk-colors-dark-secondary);
+      font-size: var(--sk-fontSize-small);
+      line-height: var(--sk-lineHeight-small);
+      text-align: center;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+/**
+ * Breadcrumb Component - Tailwind CSS 4
+ * Migrerad från breadcrumb.ts
+ */
+
+@layer components {
+  .sk-breadcrumb {
+    position: relative;
+    color: var(--sk-colors-body);
+    font-size: var(--sk-fontSize-base);
+    line-height: var(--sk-lineHeight-base);
+  }
+
+  .sk-breadcrumb-item {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  .sk-breadcrumb-separator {
+    margin-left: var(--sk-spacing-6);
+    margin-right: var(--sk-spacing-6);
+  }
+
+  .sk-breadcrumb-item span[aria-current="page"] {
+    font-weight: 700;
+  }
+
+  .sk-breadcrumb-item[data-color="primary"] a.sk-link {
+    color: var(--sk-colors-secondary-DEFAULT);
+  }
+
+  .sk-breadcrumb-item[data-color="vattjom"] a.sk-link {
+    color: var(--sk-colors-vattjom-text-primary);
+  }
+}
