@@ -12,6 +12,7 @@ export interface ChatInputToolbarButtonProps extends React.ComponentPropsWithRef
 
 export const ChatInputToolbarButton = React.forwardRef<HTMLButtonElement, ChatInputToolbarButtonProps>((props, ref) => {
   const [hover, setHover] = React.useState<boolean>(false);
+  const [mounted, setMounted] = React.useState<boolean>(false);
   const {
     className,
     onKeyDown,
@@ -41,14 +42,25 @@ export const ChatInputToolbarButton = React.forwardRef<HTMLButtonElement, ChatIn
       case 'Enter':
         setActive?.(index);
         break;
+      case 'Space':
+        setActive?.(index);
+        break;
     }
   };
 
   useEffect(() => {
-    if (active === index) {
+    if (active === index && mounted) {
       internalRef?.current?.focus();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active, index]);
+
+  useEffect(() => {
+    // NOTE: Dont focus on first button on render
+    if (!mounted) {
+      setMounted(true);
+    }
+  }, [mounted]);
 
   const handleMouseEnter = (event: React.MouseEvent<HTMLButtonElement>) => {
     onMouseEnter?.(event);
