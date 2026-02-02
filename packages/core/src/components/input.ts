@@ -295,7 +295,6 @@ function textareaGroup() {
         '@apply h-auto': {},
         '@apply flex-wrap': {},
         '.sk-form-input-textarea': {
-          '@apply -mb-6': {},
           '@apply w-full': {},
         },
         '.sk-form-textarea-counter': {

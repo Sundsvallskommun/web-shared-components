@@ -134,7 +134,7 @@ export const AIServiceModuleAssistantExpanded = React.forwardRef<HTMLDivElement,
         >
           <Icon icon={<X />} />
         </Button>
-        <InputSection sessionId={sessionId} variant="inset" autoFocus />
+        <InputSection sessionId={sessionId} variant="multiline" autoFocus />
       </div>
     );
   }
