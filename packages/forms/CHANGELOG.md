@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.7.1...@sk-web-gui/forms@2.8.0) (2026-02-02)
+
+### Features
+
+- **textarea:** Textarea group ([b418733](https://github.com/Sundsvallskommun/web-shared-components/commit/b4187333748e248edeba714a7ce47e18de62af28))
+
 ## [2.7.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.7.0...@sk-web-gui/forms@2.7.1) (2025-11-27)
 
 ### Bug Fixes

@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/cookie-consent",
-  "version": "2.1.11",
+  "version": "2.1.12",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -41,7 +41,7 @@
   "dependencies": {
     "@headlessui/react": "^2.2.7",
     "@sk-web-gui/button": "2.1.8",
-    "@sk-web-gui/forms": "2.7.1",
+    "@sk-web-gui/forms": "2.8.0",
     "@sk-web-gui/utils": "2.2.2",
     "universal-cookie": "^8.0.1"
   },

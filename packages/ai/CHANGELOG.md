@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@3.1.0...@sk-web-gui/ai@4.0.0) (2026-02-02)
+
+### Bug Fixes
+
+- stop autofocus on first render ([e42b89b](https://github.com/Sundsvallskommun/web-shared-components/commit/e42b89bb4982794b843dd527068a2dd3b70e9011))
+- updated input section with new variants ([ca8fbe8](https://github.com/Sundsvallskommun/web-shared-components/commit/ca8fbe880d19510a2fbd1d8201df80371df6265a))
+
+### Features
+
+- added multiline variant and toolbar ([382fde7](https://github.com/Sundsvallskommun/web-shared-components/commit/382fde7f4d8065b85d67ed41be32d758542a211f))
+- **ai:** Chat Input ([f4bba29](https://github.com/Sundsvallskommun/web-shared-components/commit/f4bba298983a6c40866bcef06c6e55c8404f80ab))
+
+### BREAKING CHANGES
+
+- inset and default are no longer valid variants. New variants are called "singleline" (input) and "multiline" (textarea)
+
 # [3.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@3.0.3...@sk-web-gui/ai@3.1.0) (2025-12-10)
 
 ### Features
