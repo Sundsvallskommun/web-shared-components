@@ -37,6 +37,7 @@ import { ProgressBar } from './components/progress-bar';
 import { ProgressStepper } from './components/progress-stepper';
 import { Radio } from './components/radio';
 import { SearchField } from './components/search-field';
+import { SegmentedControl } from './components/segmented-control';
 import { Select } from './components/select';
 import { Snackbar } from './components/snackbar';
 import { Spinner } from './components/spinner';
@@ -103,6 +104,7 @@ export const components: ComponentWithDeps[] = [
   { comp: ProgressBar },
   { comp: ProgressStepper, deps: [Divider, Icon] },
   { comp: SearchField, deps: [Button, Forms, Icon] },
+  { comp: SegmentedControl },
   { comp: Select },
   { comp: Snackbar, deps: [Button, Icon] },
   { comp: Spinner },
