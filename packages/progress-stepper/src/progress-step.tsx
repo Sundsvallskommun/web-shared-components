@@ -4,39 +4,19 @@ import { Divider } from '@sk-web-gui/divider';
 import Icon from '@sk-web-gui/icon';
 import { Check } from 'lucide-react';
 import { StepLabelPosition } from './progress-stepper';
+import { useProgressStepper } from './context';
 
-interface ProgressStepProps {
-  number: number;
-  numberOfSteps: number;
-  label: string;
-  current?: boolean;
-  done?: boolean;
-  rounded?: boolean;
-  size?: 'sm' | 'md';
-  ellipsisLength?: number;
-  vertical?: boolean;
-  noWrap?: boolean;
-  labelPosition: StepLabelPosition;
+export interface ProgressStepProps {
+  children: React.ReactNode;
+  index: number;
 }
 
-export const ProgressStep: React.FC<ProgressStepProps> = (props) => {
-  const {
-    number,
-    numberOfSteps,
-    current,
-    done,
-    label,
-    rounded,
-    size,
-    ellipsisLength = 0,
-    vertical = false,
-    noWrap = true,
-    labelPosition = 'right',
-  } = props;
-
+export const ProgressStepComponent = React.forwardRef<HTMLDivElement, ProgressStepProps>((props, ref) => {
+  const { children, index } = props;
+  const { numberOfSteps, labelPosition, vertical, current, rounded } = useProgressStepper();
   const defaultClass = 'sk-progress-stepper-step';
-  const showEllipsis = ellipsisLength > 0 && label.length >= ellipsisLength;
-  const renderedLabel = showEllipsis ? `${label.slice(0, ellipsisLength).trim()}...` : label;
+  const done = current > index;
+  const stepIndex = index + 1;
 
   const labelPositionMap: Record<StepLabelPosition, string> = {
     top: `${defaultClass}-wrapper-top`,
@@ -49,31 +29,34 @@ export const ProgressStep: React.FC<ProgressStepProps> = (props) => {
 
   return (
     <div
+      ref={ref}
       className={cx(
         defaultClass,
         vertical ? `${defaultClass}-vertical` : `${defaultClass}-horizontal`,
-        numberOfSteps !== number ? `${defaultClass}-grow` : `${defaultClass}-grow-0`
+        stepIndex < numberOfSteps ? `${defaultClass}-grow` : `${defaultClass}-grow-0`
       )}
-      data-progress={done ? 'done' : current ? 'current' : undefined}
-      data-white-space={noWrap ? 'no-wrap' : 'normal'}
+      data-progress={done ? 'done' : index === current ? 'current' : undefined}
     >
       <div className={cx(`${defaultClass}-wrapper`, getLabelPositionValue(labelPosition))}>
-        <div className={cx(`${defaultClass}-box`, size)} data-rounded={rounded}>
-          {done ? <Icon className={cx(`${defaultClass}-box-icon`, `${size}`)} icon={<Check />} /> : number}
+        <div className={cx(`${defaultClass}-box`)} data-rounded={rounded}>
+          {done ? <Icon className={cx(`${defaultClass}-box-icon`)} icon={<Check />} /> : stepIndex}
         </div>
-        <p>{renderedLabel}</p>
+        <div className={cx(`${defaultClass}-text-wrapper ${labelPosition}`, vertical ? 'vertical' : 'horizontal')}>
+          {children}
+        </div>
       </div>
-      {numberOfSteps !== number && (
-        <div className={cx(`${defaultClass}-divider`, vertical ? 'vertical' : 'horizontal')}>
+
+      {stepIndex < numberOfSteps && (
+        <div className={cx(`${defaultClass}-divider ${labelPosition}`, vertical ? 'vertical' : 'horizontal')}>
           <Divider orientation={vertical ? 'vertical' : 'horizontal'} />
         </div>
       )}
     </div>
   );
-};
+});
 
 if (__DEV__) {
-  ProgressStep.displayName = 'ProgressStep';
+  ProgressStepComponent.displayName = 'ProgressStep';
 }
 
-export default ProgressStep;
+export default ProgressStepComponent;
