@@ -26,7 +26,7 @@ export const Template = (args: SegmentedControlComponentProps) => {
           <button>Segment 3</button>
         </SegmentedControl.Item>
         <SegmentedControl.Item>
-          <Button iconButton leftIcon={<Home/>}/>
+          <Button iconButton leftIcon={<Home/>} aria-label="Hem"/>
         </SegmentedControl.Item>
       </SegmentedControl>
     </div>

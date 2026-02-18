@@ -125,7 +125,6 @@ export const SegmentedControlItem = React.forwardRef<HTMLLIElement, SegmentedCon
   return (
     <li
       data-size={size}
-      aria-disabled={disabled ?? undefined}
       ref={useForkRef(ref, menuRef)}
       className={cx('sk-segmentedcontrol-item', className)}
       role="none"

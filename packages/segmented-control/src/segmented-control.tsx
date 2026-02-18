@@ -76,7 +76,7 @@ export const SegmentedControlComponent = React.forwardRef<HTMLUListElement, Segm
 
     return (
       <SegmentedControlContext.Provider value={context}>
-        <ul id={id} role="group" ref={ref} className={cx('sk-segmentedcontrol', className)} data-size={size} {...rest}>
+        <ul id={id} role="toolbar" ref={ref} className={cx('sk-segmentedcontrol', className)} data-size={size} {...rest}>
           {menuItems}
         </ul>
       </SegmentedControlContext.Provider>
