@@ -21,11 +21,12 @@ export const useChat = (options?: useChatOptions) => {
   const _incomingSettings = React.useMemo(() => options?.settings, [options?.settings]);
 
   const [currentSession, setCurrentSession] = React.useState<string>(sessionId || '');
-  const [_settings, _stream, _apiBaseUrl, apikey] = useAssistantStore((state) => [
+  const [_settings, _stream, _apiBaseUrl, apikey, apiServiceConfig] = useAssistantStore((state) => [
     state.settings,
     state.stream,
     state.apiBaseUrl,
     state.apikey,
+    state.apiServiceConfig,
   ]);
   const settings = _incomingSettings || _settings;
   const { assistantId, user: _user, hash, app } = settings;
@@ -144,9 +145,11 @@ export const useChat = (options?: useChatOptions) => {
     fetchEventSource(url, {
       method: 'POST',
       body: JSON.stringify(body),
+      ...apiServiceConfig,
       headers: {
         Accept: 'text/event-stream',
         ...skHeaders,
+        ...((apiServiceConfig?.headers ?? {}) as Record<string, string>),
       },
       onopen(res: Response) {
         if (res.status >= 400 && res.status < 500 && res.status !== 429) {
