@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.0.0...@sk-web-gui/ai@4.1.0) (2026-02-19)
+
+### Features
+
+- **services:** custom api service config ([57d81d7](https://github.com/Sundsvallskommun/web-shared-components/commit/57d81d7b2f8b45adbc45e329c842afaf10aa1572))
+
 # [4.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@3.1.0...@sk-web-gui/ai@4.0.0) (2026-02-02)
 
 ### Bug Fixes

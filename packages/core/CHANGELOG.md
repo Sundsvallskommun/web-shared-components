@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.3.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.2.0...@sk-web-gui/core@4.3.0) (2026-02-19)
+
+### Features
+
+- Alert ([00e564c](https://github.com/Sundsvallskommun/web-shared-components/commit/00e564ca7951dceec6746197ad3a0429cdd75a7d))
+
 # [4.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.1.2...@sk-web-gui/core@4.2.0) (2026-02-02)
 
 ### Bug Fixes

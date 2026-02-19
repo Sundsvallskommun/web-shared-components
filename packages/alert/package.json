@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/alert",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -39,9 +39,9 @@
     "react": "^19.0.0"
   },
   "dependencies": {
-    "@sk-web-gui/utils": "2.2.2",
     "@sk-web-gui/button": "2.1.8",
     "@sk-web-gui/icon": "3.1.2",
+    "@sk-web-gui/utils": "2.2.2",
     "lucide-react": "0.537.0"
   },
   "peerDependencies": {
