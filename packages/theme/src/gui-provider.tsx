@@ -23,6 +23,11 @@ export interface GuiProviderProps {
    * @default 10
    */
   htmlFontSize?: number;
+
+  /**
+   * Reference to element to add your variables to. Defaults to document.documentElement
+   */
+  ref?: React.RefObject<HTMLElement | null>;
 }
 
 export function GuiProvider({
@@ -31,10 +36,13 @@ export function GuiProvider({
   baseFontSize = 10,
   htmlFontSize = 10,
   children,
+  ref,
 }: GuiProviderProps) {
   const [preferredColorScheme, setPreferredColorScheme] =
     React.useState<Exclude<ColorSchemeMode, ColorSchemeMode.System>>(getPreferredColorScheme());
-  const [pickedColorScheme, setPickedColorScheme] = React.useState<ColorSchemeMode>(_colorScheme || ColorSchemeMode.System);
+  const [pickedColorScheme, setPickedColorScheme] = React.useState<ColorSchemeMode>(
+    _colorScheme || ColorSchemeMode.System
+  );
 
   React.useEffect(() => {
     setPickedColorScheme(_colorScheme || ColorSchemeMode.System);
@@ -47,6 +55,7 @@ export function GuiProvider({
   }, [pickedColorScheme]);
 
   const colorScheme = pickedColorScheme === ColorSchemeMode.System ? preferredColorScheme : pickedColorScheme;
+  const element = ref ? ref?.current : document.documentElement;
 
   const units = React.useMemo(() => {
     let fontSize = theme.fontSize;
@@ -65,14 +74,15 @@ export function GuiProvider({
     }
 
     return { fontSize, lineHeight, spacing, screens, radius };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [baseFontSize, htmlFontSize]);
 
   const computedTheme = React.useMemo(() => {
     const omittedTheme = omit(theme, ['colorSchemes']);
     const { colors, type } = theme.colorSchemes[colorScheme] || {};
-    if (isBrowser) {
-      if (type === 'dark') document.documentElement.classList.add('dark');
-      else document.documentElement.classList.remove('dark');
+    if (isBrowser && element) {
+      if (type === 'dark') element.classList.add('dark');
+      else element.classList.remove('dark');
     }
 
     const normalizedTheme = {
@@ -92,11 +102,12 @@ export function GuiProvider({
     }
 
     return toCSSVar(normalizedTheme);
-  }, [theme, colorScheme, pickedColorScheme, units]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [theme, colorScheme, pickedColorScheme, units, element]);
 
   useSafeEffect(() => {
-    if (isBrowser) updateThemeVariables(computedTheme.__cssVars);
-  }, [computedTheme]);
+    if (isBrowser && element) updateThemeVariables(computedTheme.__cssVars, element);
+  }, [computedTheme, element]);
 
   const value = React.useMemo(
     () => ({
@@ -106,6 +117,7 @@ export function GuiProvider({
       setColorScheme: setPickedColorScheme,
       units: { base: baseFontSize, htmlBase: htmlFontSize },
     }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [computedTheme, preferredColorScheme]
   );
 
@@ -127,18 +139,19 @@ function crawlSizes(options: ThemeOption, diff: number): ThemeOption {
     return { ...newOptions, [optionKey]: newValue };
   }, {});
 }
-function setStyleVariable(name: string, value: string) {
-  const rootStyle = document.documentElement.style;
+
+function setStyleVariable(name: string, value: string, element: HTMLElement) {
+  const rootStyle = element.style;
   rootStyle.setProperty(name, value);
 }
 
-function updateStyleHelper(_themeKey: string, style: string) {
+function updateStyleHelper(_themeKey: string, style: string, element: HTMLElement) {
   const themeKey = _themeKey.startsWith('--') ? _themeKey : `--${_themeKey}`;
-  setStyleVariable(themeKey, style);
+  setStyleVariable(themeKey, style, element);
 }
 
-function updateThemeVariables(vars: Record<string, string>) {
+function updateThemeVariables(vars: Record<string, string>, element: HTMLElement) {
   Object.entries(vars).forEach(([key, val]) => {
-    updateStyleHelper(key, val);
+    updateStyleHelper(key, val, element);
   });
 }
