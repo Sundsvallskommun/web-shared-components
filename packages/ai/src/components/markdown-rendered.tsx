@@ -2,6 +2,7 @@ import { Link } from '@sk-web-gui/link';
 import { cx } from '@sk-web-gui/utils';
 import React from 'react';
 import Markdown, { Options } from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface MarkdownRenderedProps extends Options, Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   text: string;
@@ -68,6 +69,7 @@ export const MarkdownRendered: React.FC<MarkdownRenderedProps> = (props) => {
   return (
     <div className={cx('sk-ai-markdown', className)}>
       <Markdown
+        remarkPlugins={[remarkGfm]}
         disallowedElements={['script', 'iframe']}
         components={{
           p: ParagraphComponent,
