@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/snackbar@2.2.7...@sk-web-gui/snackbar@2.3.0) (2026-02-23)
+
+### Features
+
+- added custom toolbar option for texteditor ([0990ad7](https://github.com/Sundsvallskommun/web-shared-components/commit/0990ad7ac891e48dd30630c7dc4d58b6e02a5c9e))
+
 ## [2.2.7](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/snackbar@2.2.6...@sk-web-gui/snackbar@2.2.7) (2025-09-15)
 
 **Note:** Version bump only for package @sk-web-gui/snackbar

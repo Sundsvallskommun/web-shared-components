@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/next-link",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -40,7 +40,7 @@
     "react": "^19.0.0"
   },
   "dependencies": {
-    "@sk-web-gui/link": "1.2.7",
+    "@sk-web-gui/link": "1.2.8",
     "@sk-web-gui/utils": "2.2.2"
   },
   "peerDependencies": {

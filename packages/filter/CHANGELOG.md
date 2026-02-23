@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.13](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/filter@1.2.12...@sk-web-gui/filter@1.2.13) (2026-02-23)
+
+**Note:** Version bump only for package @sk-web-gui/filter
+
 ## [1.2.12](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/filter@1.2.11...@sk-web-gui/filter@1.2.12) (2026-02-02)
 
 **Note:** Version bump only for package @sk-web-gui/filter

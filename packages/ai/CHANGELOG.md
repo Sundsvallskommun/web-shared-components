@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.1.0...@sk-web-gui/ai@4.2.0) (2026-02-23)
+
+### Bug Fixes
+
+- don't require history to load sessionid ([6d02c8e](https://github.com/Sundsvallskommun/web-shared-components/commit/6d02c8ed0114d2912ab555f5edcfd3be3c6f6d42))
+
+### Features
+
+- hide new session button ([1a017d3](https://github.com/Sundsvallskommun/web-shared-components/commit/1a017d3a1f83f333cb3c7d13f6b5ee82008eddf3))
+
 # [4.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.0.0...@sk-web-gui/ai@4.1.0) (2026-02-19)
 
 ### Features

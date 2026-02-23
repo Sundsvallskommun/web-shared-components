@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.7](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/divider@1.1.6...@sk-web-gui/divider@1.1.7) (2026-02-23)
+
+**Note:** Version bump only for package @sk-web-gui/divider
+
 ## [1.1.6](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/divider@1.1.5...@sk-web-gui/divider@1.1.6) (2025-09-15)
 
 **Note:** Version bump only for package @sk-web-gui/divider

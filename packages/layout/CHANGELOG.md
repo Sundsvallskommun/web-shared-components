@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/layout@2.0.1...@sk-web-gui/layout@3.0.0) (2026-02-23)
+
+### Bug Fixes
+
+- bad navigation bar import ([3b2b191](https://github.com/Sundsvallskommun/web-shared-components/commit/3b2b191dbd27bf354e8e90da0636d3f886f14dee))
+
+### chore
+
+- changing menu bar to navigation bar ([cd64a72](https://github.com/Sundsvallskommun/web-shared-components/commit/cd64a72ad99b7107315539aafc14e33ad919409b))
+
+### BREAKING CHANGES
+
+- MenuBar is now called NavigationBar
+
 ## [2.0.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/layout@2.0.0...@sk-web-gui/layout@2.0.1) (2025-09-15)
 
 **Note:** Version bump only for package @sk-web-gui/layout

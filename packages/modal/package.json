@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/modal",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^2.2.7",
-    "@sk-web-gui/button": "2.1.8",
+    "@sk-web-gui/button": "2.1.9",
     "@sk-web-gui/icon": "3.1.2",
     "@sk-web-gui/utils": "2.2.2",
     "lucide-react": "^0.537.0"
