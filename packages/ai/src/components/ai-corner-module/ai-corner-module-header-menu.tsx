@@ -142,14 +142,14 @@ export const AICornerModuleHeaderMenu = React.forwardRef<HTMLUListElement, AICor
           children
         ) : (
           <>
-            {!docked && !fullscreen && (
+            {!docked && !fullscreen && onNewSession && (
               <AICornerModuleHeaderMenuItem
                 icon={<Pencil />}
                 tabIndex={0}
                 onKeyDown={handleKeyboardNavigation}
                 label="Ny fråga"
                 buttonProps={{ inverted: !fullscreen }}
-                onClick={() => onNewSession && onNewSession()}
+                onClick={() => onNewSession()}
               />
             )}
             {!disableFullscreen && !docked && !isMobile && (
