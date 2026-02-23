@@ -35,17 +35,14 @@ export const useChat = (options?: useChatOptions) => {
   const apiBaseUrl = options?.apiBaseUrl || _apiBaseUrl;
   const isGroupChat = options?.settings?.is_group_chat ?? _settings.is_group_chat ?? false;
 
-  const [session, getSession, newSession, updateHistory, updateSession, setDone, changeSessionId] = useSessions(
-    (state) => [
-      state.sessions[currentSession],
-      state.getSession,
-      state.newSession,
-      state.updateHistory,
-      state.updateSession,
-      state.setDone,
-      state.changeSessionId,
-    ]
-  );
+  const [session, newSession, updateHistory, updateSession, setDone, changeSessionId] = useSessions((state) => [
+    state.sessions[currentSession],
+    state.newSession,
+    state.updateHistory,
+    state.updateSession,
+    state.setDone,
+    state.changeSessionId,
+  ]);
 
   const history = session?.history || [];
   const done = session?.done;
@@ -69,14 +66,7 @@ export const useChat = (options?: useChatOptions) => {
 
   React.useEffect(() => {
     if (sessionId) {
-      if (sessionId !== currentSession)
-        getSession(sessionId).then((session) => {
-          if (!session) {
-            createNewSession();
-          } else {
-            setCurrentSession(sessionId);
-          }
-        });
+      if (sessionId !== currentSession) setCurrentSession(sessionId);
     } else {
       createNewSession();
     }
