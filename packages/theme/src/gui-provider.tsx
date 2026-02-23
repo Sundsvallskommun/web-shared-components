@@ -55,7 +55,7 @@ export function GuiProvider({
   }, [pickedColorScheme]);
 
   const colorScheme = pickedColorScheme === ColorSchemeMode.System ? preferredColorScheme : pickedColorScheme;
-  const element = ref ? ref?.current : document.documentElement;
+  const _element = ref ? ref?.current : undefined;
 
   const units = React.useMemo(() => {
     let fontSize = theme.fontSize;
@@ -80,7 +80,8 @@ export function GuiProvider({
   const computedTheme = React.useMemo(() => {
     const omittedTheme = omit(theme, ['colorSchemes']);
     const { colors, type } = theme.colorSchemes[colorScheme] || {};
-    if (isBrowser && element) {
+    if (isBrowser) {
+      const element = _element ?? document.documentElement;
       if (type === 'dark') element.classList.add('dark');
       else element.classList.remove('dark');
     }
@@ -103,11 +104,14 @@ export function GuiProvider({
 
     return toCSSVar(normalizedTheme);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [theme, colorScheme, pickedColorScheme, units, element]);
+  }, [theme, colorScheme, pickedColorScheme, units, _element]);
 
   useSafeEffect(() => {
-    if (isBrowser && element) updateThemeVariables(computedTheme.__cssVars, element);
-  }, [computedTheme, element]);
+    if (isBrowser) {
+      const element = _element ?? document.documentElement;
+      updateThemeVariables(computedTheme.__cssVars, element);
+    }
+  }, [computedTheme, _element]);
 
   const value = React.useMemo(
     () => ({
