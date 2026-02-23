@@ -41,7 +41,7 @@ const history: ChatHistory = [
   },
   {
     origin: 'assistant',
-    text: `Jag kan hjälpa dig med att list saker i en tabell:\n\n### Tabell\n| Id         | Namn                                      | Typ     |\n|---------------------------|---------------------------------------------|-------------------|\n| 12345        | Sven Svensson            | Anställd                 |\n| 23456        | Karin Andersson | Chef                 |\n| 54321                | Jeppe Jeppsson            | Kund         |\n\n`,
+    text: `Jag kan hjälpa dig med att lista saker i en tabell:\n\n### Tabell\n| Id         | Namn                                      | Typ     |\n|---------------------------|---------------------------------------------|-------------------|\n| 12345        | Sven Svensson            | Anställd                 |\n| 23456        | Karin Andersson | Chef                 |\n| 54321                | Jeppe Jeppsson            | Kund         |\n\n`,
     id: '4',
     references: [
       {
