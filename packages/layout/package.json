@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/layout",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -39,10 +39,10 @@
     "react": "^19.0.0"
   },
   "dependencies": {
-    "@sk-web-gui/divider": "1.1.7",
-    "@sk-web-gui/link": "1.2.8",
-    "@sk-web-gui/logo": "1.2.5",
-    "@sk-web-gui/theme": "2.7.0",
+    "@sk-web-gui/divider": "1.1.8",
+    "@sk-web-gui/link": "1.2.9",
+    "@sk-web-gui/logo": "1.2.6",
+    "@sk-web-gui/theme": "2.7.1",
     "@sk-web-gui/utils": "2.2.2"
   },
   "peerDependencies": {

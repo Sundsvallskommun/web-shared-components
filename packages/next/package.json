@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/next",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -41,8 +41,8 @@
     "react-dom": "^19.0.0"
   },
   "dependencies": {
-    "@sk-web-gui/next-card": "1.1.1",
-    "@sk-web-gui/next-link": "1.1.1"
+    "@sk-web-gui/next-card": "1.1.2",
+    "@sk-web-gui/next-link": "1.1.2"
   },
   "peerDependencies": {
     "next": ">=15.0.0",

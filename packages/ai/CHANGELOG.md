@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.3.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.2.0...@sk-web-gui/ai@4.3.0) (2026-02-24)
+
+### Features
+
+- **ai:** Tables and other GitHub Flavored Markdown ([a9cc578](https://github.com/Sundsvallskommun/web-shared-components/commit/a9cc578fa7f5d1a42e49fe9e8cc837ce25916c31))
+
 # [4.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.1.0...@sk-web-gui/ai@4.2.0) (2026-02-23)
 
 ### Bug Fixes

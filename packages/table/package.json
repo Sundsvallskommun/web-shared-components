@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/table",
-  "version": "3.2.14",
+  "version": "3.2.15",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -39,10 +39,10 @@
     "react": "^19.0.0"
   },
   "dependencies": {
-    "@sk-web-gui/forms": "2.8.1",
+    "@sk-web-gui/forms": "2.8.2",
     "@sk-web-gui/icon": "3.1.2",
-    "@sk-web-gui/pagination": "1.1.13",
-    "@sk-web-gui/theme": "2.7.0",
+    "@sk-web-gui/pagination": "1.1.14",
+    "@sk-web-gui/theme": "2.7.1",
     "@sk-web-gui/utils": "2.2.2",
     "lodash": "^4.17.21",
     "lucide-react": "^0.537.0",

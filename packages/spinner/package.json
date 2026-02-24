@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/spinner",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -39,7 +39,7 @@
     "react": "^19.0.0"
   },
   "dependencies": {
-    "@sk-web-gui/theme": "2.7.0",
+    "@sk-web-gui/theme": "2.7.1",
     "@sk-web-gui/utils": "2.2.2"
   },
   "peerDependencies": {

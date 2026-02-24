@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/avatar@1.2.3...@sk-web-gui/avatar@1.2.4) (2026-02-24)
+
+**Note:** Version bump only for package @sk-web-gui/avatar
+
 ## [1.2.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/avatar@1.2.2...@sk-web-gui/avatar@1.2.3) (2026-02-23)
 
 **Note:** Version bump only for package @sk-web-gui/avatar

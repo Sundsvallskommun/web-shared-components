@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/next-card",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -40,7 +40,7 @@
     "react": "^19.0.0"
   },
   "dependencies": {
-    "@sk-web-gui/card": "2.0.1",
+    "@sk-web-gui/card": "2.0.2",
     "@sk-web-gui/icon": "3.1.2",
     "@sk-web-gui/utils": "2.2.2",
     "lucide-react": "0.544.0"

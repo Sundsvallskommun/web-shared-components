@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/button",
-  "version": "2.1.9",
+  "version": "2.1.10",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -39,9 +39,9 @@
     "react": "^19.0.0"
   },
   "dependencies": {
-    "@sk-web-gui/link": "1.2.8",
-    "@sk-web-gui/spinner": "1.1.8",
-    "@sk-web-gui/theme": "2.7.0",
+    "@sk-web-gui/link": "1.2.9",
+    "@sk-web-gui/spinner": "1.1.9",
+    "@sk-web-gui/theme": "2.7.1",
     "@sk-web-gui/utils": "2.2.2"
   },
   "peerDependencies": {
