@@ -338,6 +338,7 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
             historyOpen={showMobileHistory}
             isMobile={isMobile}
             disableFullscreen={disableFullscreen}
+            showSessionHistory={showSessionHistory}
             title={title}
             subtitle={subtitle}
             avatar={avatars?.assistant}
