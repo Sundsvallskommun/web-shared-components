@@ -25,7 +25,7 @@ export const AICornerModuleHeaderMenu = React.forwardRef<HTMLUListElement, AICor
       onCloseFullScreen,
       onFullScreen,
       historyOpen,
-      showSessionHistory = true,
+      showSessionHistory: _showSessionHistory = true,
       onCloseHistory,
       onOpenHistory,
       className,
@@ -136,13 +136,16 @@ export const AICornerModuleHeaderMenu = React.forwardRef<HTMLUListElement, AICor
       }
     };
 
+    const showNewSession = !docked && !fullscreen && !!onNewSession;
+    const showFullscreenToggle = !disableFullscreen && !docked && !isMobile;
+    const showSessionHistory = !docked && isMobile && _showSessionHistory;
     return (
       <ul ref={ref} className={cx('sk-ai-corner-module-header-menu', className)} role="menubar" {...rest}>
         {children ? (
           children
         ) : (
           <>
-            {!docked && !fullscreen && onNewSession && (
+            {showNewSession && (
               <AICornerModuleHeaderMenuItem
                 icon={<Pencil />}
                 tabIndex={0}
@@ -152,7 +155,7 @@ export const AICornerModuleHeaderMenu = React.forwardRef<HTMLUListElement, AICor
                 onClick={() => onNewSession()}
               />
             )}
-            {!disableFullscreen && !docked && !isMobile && (
+            {showFullscreenToggle && (
               <AICornerModuleHeaderMenuItem
                 icon={fullscreen ? <ArrowDownRight /> : <ArrowUpLeft />}
                 tabIndex={!isMobile && fullscreen ? 0 : -1}
@@ -162,10 +165,10 @@ export const AICornerModuleHeaderMenu = React.forwardRef<HTMLUListElement, AICor
                 onClick={() => handleToggleFullscreen()}
               />
             )}
-            {!docked && isMobile && showSessionHistory && (
+            {showSessionHistory && (
               <AICornerModuleHeaderMenuItem
                 icon={<History />}
-                tabIndex={-1}
+                tabIndex={showNewSession || showFullscreenToggle ? -1 : 0}
                 onKeyDown={handleKeyboardNavigation}
                 label="Tidigare frågor"
                 buttonProps={{
@@ -179,7 +182,7 @@ export const AICornerModuleHeaderMenu = React.forwardRef<HTMLUListElement, AICor
             )}
             <AICornerModuleHeaderMenuItem
               icon={docked ? <ChevronsUp /> : <ChevronsDown />}
-              tabIndex={docked ? 0 : -1}
+              tabIndex={docked || (!showNewSession && !showSessionHistory && !showFullscreenToggle) ? 0 : -1}
               onKeyDown={handleKeyboardNavigation}
               label={docked ? 'Öppna assistent' : 'Minimera'}
               buttonProps={{ inverted: !fullscreen }}
