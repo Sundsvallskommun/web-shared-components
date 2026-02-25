@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.3.0...@sk-web-gui/ai@4.3.1) (2026-02-25)
+
+### Bug Fixes
+
+- **corner-module:** header menu issues ([2b8226d](https://github.com/Sundsvallskommun/web-shared-components/commit/2b8226d920d6bd7b899794aa1466828a5d8f6fc0))
+
 # [4.3.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.2.0...@sk-web-gui/ai@4.3.0) (2026-02-24)
 
 ### Features
