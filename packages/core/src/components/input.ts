@@ -245,18 +245,18 @@ function timeAndDatePicker() {
       '@apply m-0': {},
       '@apply bg-none': {},
       '@apply bg-dark-secondary': {},
-      '&.sk-form-input-sm': {
-        '@apply w-16 h-16': {},
-        '@apply -mr-2': {},
-      },
-      '&.sk-form-input-md': {
-        '@apply -mr-4': {},
-        '@apply w-18 h-18': {},
-      },
-      '&.sk-form-input-lg': {
-        '@apply -mr-6': {},
-        '@apply w-20 h-20': {},
-      },
+    },
+    '&.sk-form-input-sm::-webkit-inner-spin-button, &.sk-form-input-sm::-webkit-calendar-picker-indicator': {
+      '@apply w-16 h-16': {},
+      '@apply -mr-2': {},
+    },
+    '&.sk-form-input-md::-webkit-inner-spin-button, &.sk-form-input-md::-webkit-calendar-picker-indicator': {
+      '@apply -mr-4': {},
+      '@apply w-18 h-18': {},
+    },
+    '&.sk-form-input-lg::-webkit-inner-spin-button, &.sk-form-input-lg::-webkit-calendar-picker-indicator': {
+      '@apply -mr-6': {},
+      '@apply w-20 h-20': {},
     },
 
     '&[type="date"]::-webkit-inner-spin-button, &[type="date"]::-webkit-calendar-picker-indicator': {
