@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.3.2...@sk-web-gui/core@4.3.3) (2026-02-26)
+
+### Bug Fixes
+
+- turbopack issues ([b53dd62](https://github.com/Sundsvallskommun/web-shared-components/commit/b53dd62a79d258bea8ed5db409b4a3938c5ff567))
+
+## [4.3.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.3.1...@sk-web-gui/core@4.3.2) (2026-02-24)
+
+**Note:** Version bump only for package @sk-web-gui/core
+
+## [4.3.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.3.0...@sk-web-gui/core@4.3.1) (2026-02-23)
+
+**Note:** Version bump only for package @sk-web-gui/core
+
+# [4.3.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.2.0...@sk-web-gui/core@4.3.0) (2026-02-19)
+
+### Features
+
+- Alert ([00e564c](https://github.com/Sundsvallskommun/web-shared-components/commit/00e564ca7951dceec6746197ad3a0429cdd75a7d))
+
+# [4.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.1.2...@sk-web-gui/core@4.2.0) (2026-02-02)
+
+### Bug Fixes
+
+- **input:** styling for textarea group ([71c6223](https://github.com/Sundsvallskommun/web-shared-components/commit/71c62230ec1115d80c67160624354fba9f6eb68d))
+
+### Features
+
+- **ai:** Chat Input ([f4bba29](https://github.com/Sundsvallskommun/web-shared-components/commit/f4bba298983a6c40866bcef06c6e55c8404f80ab))
+
 ## [4.1.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.1.1...@sk-web-gui/core@4.1.2) (2025-11-27)
 
 ### Bug Fixes

@@ -2,6 +2,7 @@ import { CSSRuleObject, PluginAPI } from 'tailwindcss/types/config';
 
 // components
 import { Accordion } from './components/accordion';
+import { Alert } from './components/alert';
 import { Avatar } from './components/avatar';
 import { Badge } from './components/badge';
 import { Breadcrumb } from './components/breadcrumb';
@@ -53,6 +54,7 @@ import { AIServiceModule } from './components/ai/ai-service-module';
 import { AssistantPresentation } from './components/ai/assistant-presentation';
 import { AssistantSwitch } from './components/ai/assistant-switch';
 import { Bubble } from './components/ai/bubble';
+import { ChatInput } from './components/ai/chat-input';
 import { Feedback } from './components/ai/feedback';
 import { InputSection } from './components/ai/input-section';
 import { MarkdownRendered } from './components/ai/markdown-rendered';
@@ -68,6 +70,7 @@ interface ComponentWithDeps {
 
 export const components: ComponentWithDeps[] = [
   { comp: Accordion, deps: [Button, Divider, Icon, Label] },
+  { comp: Alert, deps: [Button, Icon] },
   { comp: Avatar },
   { comp: Badge },
   { comp: Breadcrumb, deps: [Link] },
@@ -136,8 +139,9 @@ export const components: ComponentWithDeps[] = [
   { comp: AssistantPresentation, deps: [Avatar] },
   { comp: AssistantSwitch, deps: [Avatar, Icon] },
   { comp: Bubble, deps: [Icon] },
+  { comp: ChatInput, deps: [Forms, Icon, Button, Divider] },
   { comp: Feedback, deps: [Button, Icon] },
-  { comp: InputSection, deps: [Forms, Button, Icon] },
+  { comp: InputSection, deps: [Forms, Button, Icon, ChatInput] },
   { comp: MarkdownRendered, deps: [Link] },
   { comp: NewSessionButton, deps: [Button, Icon] },
   { comp: TypingBubble, deps: [TypingSequence] },

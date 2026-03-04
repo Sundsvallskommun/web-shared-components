@@ -82,6 +82,10 @@ export interface AICornerModuleProps
   avatars?: AIFeedAvatarMap;
   originTitles?: OriginTitleMap;
   onChangeAssistant?: (assistantId: string) => void;
+  /**
+   * @default true
+   */
+  showNewSession?: boolean;
 }
 
 export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModuleProps>((props, ref) => {
@@ -116,6 +120,7 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
     originTitles,
     onChangeAssistant,
     getAssistantInfoFromHistory: _getAssistantInfoFromHistory,
+    showNewSession = true,
     ...rest
   } = props;
 
@@ -326,13 +331,14 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
             onClose={handleOnClose}
             onFullScreen={handleOnFullscreen}
             onCloseFullScreen={handleOnCloseFullscreen}
-            onNewSession={handleNewSession}
+            onNewSession={showNewSession ? handleNewSession : undefined}
             onClick={docked ? handleOnOpen : undefined}
             onOpenHistory={() => setShowMobileHistory(true)}
             onCloseHistory={() => setShowMobileHistory(false)}
             historyOpen={showMobileHistory}
             isMobile={isMobile}
             disableFullscreen={disableFullscreen}
+            showSessionHistory={showSessionHistory}
             title={title}
             subtitle={subtitle}
             avatar={avatars?.assistant}

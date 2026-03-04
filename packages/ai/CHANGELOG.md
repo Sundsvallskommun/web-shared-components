@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.3.0...@sk-web-gui/ai@4.3.1) (2026-02-25)
+
+### Bug Fixes
+
+- **corner-module:** header menu issues ([2b8226d](https://github.com/Sundsvallskommun/web-shared-components/commit/2b8226d920d6bd7b899794aa1466828a5d8f6fc0))
+
+# [4.3.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.2.0...@sk-web-gui/ai@4.3.0) (2026-02-24)
+
+### Features
+
+- **ai:** Tables and other GitHub Flavored Markdown ([a9cc578](https://github.com/Sundsvallskommun/web-shared-components/commit/a9cc578fa7f5d1a42e49fe9e8cc837ce25916c31))
+
+# [4.2.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.1.0...@sk-web-gui/ai@4.2.0) (2026-02-23)
+
+### Bug Fixes
+
+- don't require history to load sessionid ([6d02c8e](https://github.com/Sundsvallskommun/web-shared-components/commit/6d02c8ed0114d2912ab555f5edcfd3be3c6f6d42))
+
+### Features
+
+- hide new session button ([1a017d3](https://github.com/Sundsvallskommun/web-shared-components/commit/1a017d3a1f83f333cb3c7d13f6b5ee82008eddf3))
+
+# [4.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.0.0...@sk-web-gui/ai@4.1.0) (2026-02-19)
+
+### Features
+
+- **services:** custom api service config ([57d81d7](https://github.com/Sundsvallskommun/web-shared-components/commit/57d81d7b2f8b45adbc45e329c842afaf10aa1572))
+
+# [4.0.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@3.1.0...@sk-web-gui/ai@4.0.0) (2026-02-02)
+
+### Bug Fixes
+
+- stop autofocus on first render ([e42b89b](https://github.com/Sundsvallskommun/web-shared-components/commit/e42b89bb4982794b843dd527068a2dd3b70e9011))
+- updated input section with new variants ([ca8fbe8](https://github.com/Sundsvallskommun/web-shared-components/commit/ca8fbe880d19510a2fbd1d8201df80371df6265a))
+
+### Features
+
+- added multiline variant and toolbar ([382fde7](https://github.com/Sundsvallskommun/web-shared-components/commit/382fde7f4d8065b85d67ed41be32d758542a211f))
+- **ai:** Chat Input ([f4bba29](https://github.com/Sundsvallskommun/web-shared-components/commit/f4bba298983a6c40866bcef06c6e55c8404f80ab))
+
+### BREAKING CHANGES
+
+- inset and default are no longer valid variants. New variants are called "singleline" (input) and "multiline" (textarea)
+
 # [3.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@3.0.3...@sk-web-gui/ai@3.1.0) (2025-12-10)
 
 ### Features

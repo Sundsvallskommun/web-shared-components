@@ -37,7 +37,7 @@ export const getSkHeaders = (options?: AssistantSettings, settings?: AssistantSe
 export const getAssistants: (options?: AssistantSettings) => Promise<PaginatedResponseAssistantPublic> = async (
   options
 ) => {
-  const { settings, apiBaseUrl } = useAssistantStore.getState();
+  const { settings, apiBaseUrl, apiServiceConfig } = useAssistantStore.getState();
   if (!apiBaseUrl) {
     throw new Error('No api url provided');
   }
@@ -46,7 +46,8 @@ export const getAssistants: (options?: AssistantSettings) => Promise<PaginatedRe
 
   return fetch(url, {
     method: 'GET',
-    headers: { Accept: 'application/json', ...skHeaders },
+    ...apiServiceConfig,
+    headers: { Accept: 'application/json', ...skHeaders, ...apiServiceConfig?.headers },
   })
     .then((res) => res.json())
     .catch(() => {
@@ -55,7 +56,7 @@ export const getAssistants: (options?: AssistantSettings) => Promise<PaginatedRe
 };
 
 export const getAssistantById = async (options?: AssistantSettings) => {
-  const { settings, apiBaseUrl } = useAssistantStore.getState();
+  const { settings, apiBaseUrl, apiServiceConfig } = useAssistantStore.getState();
   const skHeaders = getSkHeaders(options, settings);
   if (!apiBaseUrl) {
     throw new Error('No api url provided');
@@ -65,9 +66,11 @@ export const getAssistantById = async (options?: AssistantSettings) => {
 
   return fetch(url, {
     method: 'GET',
+    ...apiServiceConfig,
     headers: {
       Accept: 'application/json',
       ...skHeaders,
+      ...apiServiceConfig?.headers,
     },
   })
     .then((res) => res.json())
@@ -79,7 +82,7 @@ export const getAssistantById = async (options?: AssistantSettings) => {
 export const getAssistantSessions = async (
   options?: AssistantSettings
 ): Promise<CursorPaginatedResponseSessionMetadataPublic> => {
-  const { settings, apiBaseUrl } = useAssistantStore.getState();
+  const { settings, apiBaseUrl, apiServiceConfig } = useAssistantStore.getState();
   const skHeaders = getSkHeaders(options, settings);
 
   const is_group_chat = options?.is_group_chat ?? settings?.is_group_chat ?? false;
@@ -103,9 +106,11 @@ export const getAssistantSessions = async (
 
   return fetch(url.toString(), {
     method: 'GET',
+    ...apiServiceConfig,
     headers: {
       Accept: 'application/json',
       ...skHeaders,
+      ...apiServiceConfig?.headers,
     },
   })
     .then((res) => res.json())
@@ -115,7 +120,7 @@ export const getAssistantSessions = async (
 };
 
 export const getAssistantSessionById = async (sessionId: string, options?: AssistantSettings) => {
-  const { settings, apiBaseUrl } = useAssistantStore.getState();
+  const { settings, apiBaseUrl, apiServiceConfig } = useAssistantStore.getState();
   const skHeaders = getSkHeaders(options, settings);
   if (!apiBaseUrl) {
     throw new Error('No api url provided');
@@ -125,9 +130,11 @@ export const getAssistantSessionById = async (sessionId: string, options?: Assis
 
   return fetch(url, {
     method: 'GET',
+    ...apiServiceConfig,
     headers: {
       Accept: 'application/json',
       ...skHeaders,
+      ...apiServiceConfig?.headers,
     },
   })
     .then((res) => res.json())
@@ -137,7 +144,7 @@ export const getAssistantSessionById = async (sessionId: string, options?: Assis
 };
 
 export const batchQuery = async (query: string, sessionId?: string, options?: AssistantSettings, files?: ModelId[]) => {
-  const { apiBaseUrl, settings } = useAssistantStore.getState();
+  const { apiBaseUrl, settings, apiServiceConfig } = useAssistantStore.getState();
   const skHeaders = getSkHeaders(options, settings);
 
   const is_group_chat = options?.is_group_chat ?? settings?.is_group_chat ?? false;
@@ -159,9 +166,11 @@ export const batchQuery = async (query: string, sessionId?: string, options?: As
   return fetch(url, {
     method: 'POST',
     body: JSON.stringify(body),
+    ...apiServiceConfig,
     headers: {
       Accept: 'application/json',
       ...skHeaders,
+      ...apiServiceConfig?.headers,
     },
   }).then((res) => {
     if (res.status === 401) {
@@ -172,7 +181,7 @@ export const batchQuery = async (query: string, sessionId?: string, options?: As
 };
 
 export const giveFeedback = async (feedback: SessionFeedback, sessionId: string, options?: AssistantSettings) => {
-  const { settings, apiBaseUrl } = useAssistantStore.getState();
+  const { settings, apiBaseUrl, apiServiceConfig } = useAssistantStore.getState();
   const skHeaders = getSkHeaders(options, settings);
   if (!apiBaseUrl) {
     throw new Error('No api url provided');
@@ -183,9 +192,11 @@ export const giveFeedback = async (feedback: SessionFeedback, sessionId: string,
   return fetch(url, {
     method: 'POST',
     body: JSON.stringify(feedback),
+    ...apiServiceConfig,
     headers: {
       Accept: 'application/json',
       ...skHeaders,
+      ...apiServiceConfig?.headers,
     },
   }).then((res) => {
     if (res.status === 401) {

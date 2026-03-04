@@ -21,11 +21,12 @@ export const useChat = (options?: useChatOptions) => {
   const _incomingSettings = React.useMemo(() => options?.settings, [options?.settings]);
 
   const [currentSession, setCurrentSession] = React.useState<string>(sessionId || '');
-  const [_settings, _stream, _apiBaseUrl, apikey] = useAssistantStore((state) => [
+  const [_settings, _stream, _apiBaseUrl, apikey, apiServiceConfig] = useAssistantStore((state) => [
     state.settings,
     state.stream,
     state.apiBaseUrl,
     state.apikey,
+    state.apiServiceConfig,
   ]);
   const settings = _incomingSettings || _settings;
   const { assistantId, user: _user, hash, app } = settings;
@@ -34,17 +35,14 @@ export const useChat = (options?: useChatOptions) => {
   const apiBaseUrl = options?.apiBaseUrl || _apiBaseUrl;
   const isGroupChat = options?.settings?.is_group_chat ?? _settings.is_group_chat ?? false;
 
-  const [session, getSession, newSession, updateHistory, updateSession, setDone, changeSessionId] = useSessions(
-    (state) => [
-      state.sessions[currentSession],
-      state.getSession,
-      state.newSession,
-      state.updateHistory,
-      state.updateSession,
-      state.setDone,
-      state.changeSessionId,
-    ]
-  );
+  const [session, newSession, updateHistory, updateSession, setDone, changeSessionId] = useSessions((state) => [
+    state.sessions[currentSession],
+    state.newSession,
+    state.updateHistory,
+    state.updateSession,
+    state.setDone,
+    state.changeSessionId,
+  ]);
 
   const history = session?.history || [];
   const done = session?.done;
@@ -68,14 +66,7 @@ export const useChat = (options?: useChatOptions) => {
 
   React.useEffect(() => {
     if (sessionId) {
-      if (sessionId !== currentSession)
-        getSession(sessionId).then((session) => {
-          if (!session) {
-            createNewSession();
-          } else {
-            setCurrentSession(sessionId);
-          }
-        });
+      if (sessionId !== currentSession) setCurrentSession(sessionId);
     } else {
       createNewSession();
     }
@@ -144,9 +135,11 @@ export const useChat = (options?: useChatOptions) => {
     fetchEventSource(url, {
       method: 'POST',
       body: JSON.stringify(body),
+      ...apiServiceConfig,
       headers: {
         Accept: 'text/event-stream',
         ...skHeaders,
+        ...((apiServiceConfig?.headers ?? {}) as Record<string, string>),
       },
       onopen(res: Response) {
         if (res.status >= 400 && res.status < 500 && res.status !== 429) {

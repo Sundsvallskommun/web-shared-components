@@ -74,9 +74,6 @@ export const Bubble = (colors: string[]) => ({
       '@apply bg-transparent': {},
       '@apply shadow-[0_-1em_0_0_var(--tw-shadow-color)]': {},
       '@apply scale-y-[25%]': {},
-      '&:before': {
-        '&[data-shadow="true"]': {},
-      },
     },
 
     '&[data-shadow="true"]': {

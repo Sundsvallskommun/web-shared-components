@@ -141,7 +141,7 @@ export const AIServiceModuleAssistant = React.forwardRef<HTMLDivElement, AIServi
             </div>
           ) : (
             <form className="sk-ai-service-module-form-input-wrapper" onSubmit={handleSubmit}>
-              <Input.Group
+              <Input.InnerGroup
                 className="sk-ai-service-module-form-input-group sk-ai-inputsection-group"
                 size="lg"
                 invalid={!!error}
@@ -150,13 +150,12 @@ export const AIServiceModuleAssistant = React.forwardRef<HTMLDivElement, AIServi
                   value={value ?? query}
                   onChange={handleChange}
                   className="sk-ai-service-module-form-input"
-                  variant="inset"
                   size="lg"
                 ></InputSectionInput>
                 <Input.RightAddin>
                   <InputSectionButton size="sm"></InputSectionButton>
                 </Input.RightAddin>
-              </Input.Group>
+              </Input.InnerGroup>
             </form>
           )}
           {error && <FormErrorMessage className="sk-ai-service-module-form-error">{error}</FormErrorMessage>}

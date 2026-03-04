@@ -61,14 +61,11 @@ export const AICornerModuleHeader = React.forwardRef<HTMLDivElement, AICornerMod
     >
       {!disableFullscreen && fullscreen && variant === 'default' ? (
         <>
-          <Button
-            size="sm"
-            color="vattjom"
-            rightIcon={<Icon icon={<Plus />} />}
-            onClick={() => onNewSession && onNewSession()}
-          >
-            Ny fråga
-          </Button>
+          {onNewSession && (
+            <Button size="sm" color="vattjom" rightIcon={<Icon icon={<Plus />} />} onClick={() => onNewSession()}>
+              Ny fråga
+            </Button>
+          )}
           <div className="sk-ai-corner-module-header-title">
             <Icon icon={<MessageCircle />} />
             <span className="sk-ai-corner-module-header-heading-name">
