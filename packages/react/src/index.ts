@@ -1,5 +1,7 @@
 export * from '@sk-web-gui/accordion';
 export type * from '@sk-web-gui/accordion';
+export * from '@sk-web-gui/alert';
+export type * from '@sk-web-gui/alert';
 export * from '@sk-web-gui/avatar';
 export type * from '@sk-web-gui/avatar';
 export * from '@sk-web-gui/badge';
