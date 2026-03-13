@@ -2,10 +2,17 @@ import Tooltip from '@sk-web-gui/tooltip';
 import { CustomOnChangeEvent, cx, DefaultProps } from '@sk-web-gui/utils';
 import Quill, { Delta, Range } from 'quill';
 import 'quill/dist/quill.snow.css';
-import { forwardRef, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { forwardRef, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { Minus, Plus } from 'lucide-react';
 import { defaultToolbarTokens, ToolbarConfig } from './toolbar';
 import { getTokenFromElement, getTokenLabel } from './tooltip-text';
+
+const TEXT_SCALE_MIN = 50;
+const TEXT_SCALE_MAX = 200;
+const TEXT_SCALE_STEP = 10;
+const TEXT_SCALE_DEFAULT = 100;
+const TEXT_BASE_FONT_SIZE = 16;
 
 export interface TextEditorValue {
   plainText?: string;
@@ -19,6 +26,8 @@ export interface TextEditorProps extends DefaultProps {
   disableToolbar?: boolean;
   className?: string;
   toolbar?: ToolbarConfig;
+  /** Show visual zoom controls (+/-) in the toolbar. Does not affect exported content. */
+  visualZoom?: boolean;
   onTextChange?: (delta: Delta, oldDelta: Delta, source: string) => void;
   onSelectionChange?: (range: Range, oldRange: Range, source: string) => void;
   onChange?: (event: CustomOnChangeEvent<TextEditorValue, HTMLInputElement>) => void;
@@ -63,6 +72,7 @@ export const TextEditor = forwardRef<Quill | null, TextEditorProps>((props, ref)
     disableToolbar,
     className,
     toolbar,
+    visualZoom,
     onTextChange,
     onSelectionChange,
     onChange,
@@ -74,6 +84,15 @@ export const TextEditor = forwardRef<Quill | null, TextEditorProps>((props, ref)
   const onSelectionChangeRef = useRef<TextEditorProps['onSelectionChange']>(onSelectionChange);
   const onChangeRef = useRef<TextEditorProps['onChange']>(onChange);
   const [controls, setControls] = useState<Element[]>([]);
+  const [textScale, setTextScale] = useState(TEXT_SCALE_DEFAULT);
+
+  const decreaseScale = useCallback(() => {
+    setTextScale((prev) => Math.max(TEXT_SCALE_MIN, prev - TEXT_SCALE_STEP));
+  }, []);
+
+  const increaseScale = useCallback(() => {
+    setTextScale((prev) => Math.min(TEXT_SCALE_MAX, prev + TEXT_SCALE_STEP));
+  }, []);
 
   useLayoutEffect(() => {
     onTextChangeRef.current = onTextChange;
@@ -164,6 +183,13 @@ export const TextEditor = forwardRef<Quill | null, TextEditorProps>((props, ref)
   }, [ref, disableToolbar, JSON.stringify(toolbar)]);
 
   useEffect(() => {
+    const editor = containerRef.current?.querySelector<HTMLElement>('.ql-editor');
+    if (editor) {
+      editor.style.fontSize = `${(TEXT_BASE_FONT_SIZE * textScale) / 100}px`;
+    }
+  }, [textScale]);
+
+  useEffect(() => {
     const quill = quillRef.current;
     const container = containerRef.current;
     const usedToolbar = container?.querySelector('.ql-toolbar');
@@ -188,6 +214,37 @@ export const TextEditor = forwardRef<Quill | null, TextEditorProps>((props, ref)
   return (
     <div className={cx(className, 'sk-texteditor')} ref={containerRef}>
       {controls.length > 0 && <TooltipManager controls={controls} />}
+      {!disableToolbar && visualZoom && (
+        <div className="sk-texteditor-scale pr-3" data-scale-controls>
+          <button
+            type="button"
+            className="sk-texteditor-scale-button relative"
+            aria-label="Zooma ut"
+            disabled={!!readOnly || textScale <= TEXT_SCALE_MIN}
+            onClick={decreaseScale}
+          >
+            <Minus size={20} />
+            <span className="tooltip-container">
+              <Tooltip position="below">Zooma ut</Tooltip>
+            </span>
+          </button>
+          <span className="sk-texteditor-scale-label" aria-live="polite">
+            {textScale}%
+          </span>
+          <button
+            type="button"
+            className="sk-texteditor-scale-button relative"
+            aria-label="Zooma in"
+            disabled={!!readOnly || textScale >= TEXT_SCALE_MAX}
+            onClick={increaseScale}
+          >
+            <Plus size={20} />
+            <span className="tooltip-container">
+              <Tooltip position="below">Zooma in</Tooltip>
+            </span>
+          </button>
+        </div>
+      )}
     </div>
   );
 });
