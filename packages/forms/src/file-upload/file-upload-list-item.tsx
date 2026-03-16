@@ -7,6 +7,9 @@ import { FileUploadListItemContentName } from './file-upload-list-item-content-n
 import { FileUploadListItemIcon } from './file-upload-list-item-icon';
 import { useFormContext } from 'react-hook-form';
 import { FileUploadListContext, FileUploadListItemContext, FileUploadListItemContextProps } from './context';
+import Icon from '@sk-web-gui/icon';
+import { ArrowDown, ArrowUp } from 'lucide-react';
+import Button from '@sk-web-gui/button';
 
 export interface FileUploadListItemProps
   extends DefaultProps,
@@ -48,6 +51,7 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
   const showBorder = _showBorder ?? listContext?.showBorder;
   const showIcon = _showIcon ?? listContext?.showIcon;
   const showLabels = _showLabels ?? listContext?.showLabels;
+  const sortable = listContext?.sortable;
 
   const nameProps = { ...listContext?.nameProps, ..._nameProps };
   const iconProps = { ...listContext?.iconProps, ..._iconProps };
@@ -73,12 +77,24 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
     file,
     showIcon,
     showLabels,
+    sortable,
     uploadProgress,
     iconProps,
     nameProps,
     actionsProps,
     categoryProps,
   };
+
+  const sortableHandler = sortable ? (
+    <div className="sk-form-file-upload-list-item-sort">
+      <Button iconButton variant="secondary" rounded={true}>
+        <Icon icon={<ArrowUp />} />
+      </Button>
+      <Button iconButton variant="secondary" rounded={true}>
+        <Icon icon={<ArrowDown />} />
+      </Button>
+    </div>
+  ) : null;
 
   return (
     <FileUploadListItemContext.Provider value={itemContext}>
@@ -92,7 +108,10 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
       >
         <div className="sk-form-file-upload-list-item-innerwrapper">
           {children ? (
-            children
+            <>
+              {children}
+              {sortableHandler}
+            </>
           ) : (
             <>
               <FileUploadListItemIcon {...iconProps} />
@@ -101,6 +120,7 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
                 {categoryProps?.categories ? <FileUploadListItemContentCategory {...categoryProps} /> : null}
               </FileUploadListItemContent>
               <FileUploadListItemActions {...actionsProps} />
+              {sortableHandler}
             </>
           )}
         </div>

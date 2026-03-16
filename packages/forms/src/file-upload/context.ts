@@ -31,6 +31,8 @@ export interface FileUploadListContextProps {
   isEdit?: boolean;
   /** @default false */
   showLabels?: boolean;
+  /** @default false */
+  sortable?: boolean;
   /** @default true */
   showIcon?: boolean;
   iconProps?: React.ComponentProps<typeof FileUploadListItemIcon>;

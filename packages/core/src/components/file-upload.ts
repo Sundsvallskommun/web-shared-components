@@ -25,6 +25,10 @@ export const FileUpload = () => ({
           '@apply self-stretch items-center list-none flex flex-row gap-y-24 gap-x-12': {},
         },
 
+        '.sk-form-file-upload-list-item-sort': {
+          '@apply flex  gap-x-8 items-start': {},
+        },
+
         '&[data-isedit="true"]': {
           '.sk-form-file-upload-list-item-innerwrapper': {
             '@apply flex-col': {},

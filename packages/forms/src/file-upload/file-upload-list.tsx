@@ -27,6 +27,7 @@ export const FileUploadList = React.forwardRef<HTMLUListElement, FileUploadListP
     placeholder = 'Inga filer valda',
     isEdit = false,
     showLabels,
+    sortable,
     showIcon,
     iconProps,
     nameProps,
@@ -45,6 +46,7 @@ export const FileUploadList = React.forwardRef<HTMLUListElement, FileUploadListP
     isEdit,
     showBorder,
     showLabels,
+    sortable,
     showIcon,
     iconProps,
     nameProps,
@@ -63,6 +65,7 @@ export const FileUploadList = React.forwardRef<HTMLUListElement, FileUploadListP
       data-border={showBorder ? showBorder : undefined}
       data-size={size}
       data-isempty={isEmpty === true || undefined}
+      data-sortable={sortable}
       {...rest}
     >
       {isEmpty ? <li>{placeholder}</li> : null}
@@ -84,7 +87,11 @@ export const FileUploadList = React.forwardRef<HTMLUListElement, FileUploadListP
               })}
             </>
           ) : (
-            <>{listItems?.map((item, i) => <FileUploadListItem file={item} index={i} {...itemProps} />)}</>
+            <>
+              {listItems?.map((item, i) => (
+                <FileUploadListItem file={item} index={i} {...itemProps} />
+              ))}
+            </>
           )}
         </FileUploadListContext.Provider>
       ) : (
