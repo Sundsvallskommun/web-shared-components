@@ -35,6 +35,8 @@ export interface FileUploadListContextProps {
   sortable?: boolean;
   /** @default true */
   showIcon?: boolean;
+  onMoveUp?: (index: number) => void;
+  onMoveDown?: (index: number) => void;
   iconProps?: React.ComponentProps<typeof FileUploadListItemIcon>;
   nameProps?: React.ComponentProps<typeof FileUploadListItemContentName>;
   actionsProps?: React.ComponentProps<typeof FileUploadListItemActions>;

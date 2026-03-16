@@ -1,5 +1,5 @@
 import { DefaultProps, cx } from '@sk-web-gui/utils';
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import { FileUploadListItemActions } from './file-upload-list-item-actions';
 import { FileUploadListItemContent } from './file-upload-list-item-content';
 import { FileUploadListItemContentCategory } from './file-upload-list-item-content-category';
@@ -17,6 +17,8 @@ export interface FileUploadListItemProps
     FileUploadListItemContextProps {
   /** @default false */
   showBorder?: boolean;
+  onMoveUp?: (index: number) => void;
+  onMoveDown?: (index: number) => void;
   children?: React.JSX.Element | React.JSX.Element[] | string;
 }
 
@@ -30,6 +32,8 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
     isEdit: _isEdit,
     uploadProgress,
     showBorder: _showBorder,
+    onMoveUp: _onMoveUp,
+    onMouseDown: _onMoveDown,
     showLabels: _showLabels,
     showIcon: _showIcon,
     // Name
@@ -49,6 +53,10 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
   const isEdit = (uploadProgress !== undefined ? false : undefined) ?? _isEdit ?? listContext?.isEdit;
   const size = listContext?.size;
   const showBorder = _showBorder ?? listContext?.showBorder;
+
+  const onMoveUp = _onMoveUp ?? listContext?.onMoveUp;
+  const onMoveDown = _onMoveDown ?? listContext?.onMoveDown;
+
   const showIcon = _showIcon ?? listContext?.showIcon;
   const showLabels = _showLabels ?? listContext?.showLabels;
   const sortable = listContext?.sortable;
@@ -83,14 +91,26 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
     nameProps,
     actionsProps,
     categoryProps,
+    onMoveUp,
+    onMoveDown,
+  };
+
+  const handleClickUp = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    listContext?.onMoveUp?.(index);
+  };
+
+  const handleClickDown = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    listContext?.onMoveDown?.(index);
   };
 
   const sortableHandler = sortable ? (
     <div className="sk-form-file-upload-list-item-sort">
-      <Button iconButton variant="secondary" rounded={true}>
+      <Button iconButton variant="secondary" rounded={true} onClick={handleClickUp}>
         <Icon icon={<ArrowUp />} />
       </Button>
-      <Button iconButton variant="secondary" rounded={true}>
+      <Button iconButton variant="secondary" rounded={true} onClick={handleClickDown}>
         <Icon icon={<ArrowDown />} />
       </Button>
     </div>

@@ -11,8 +11,9 @@ export interface FileUploadListProps
     Omit<React.HTMLAttributes<HTMLUListElement>, 'color' | 'children'>,
     FileUploadListContextProps {
   files?: UploadFile[];
+  onMoveUp?: (index: number) => void;
+  onMoveDown?: (index: number) => void;
   placeholder?: React.ReactNode;
-
   children?: React.JSX.Element | React.JSX.Element[] | string;
 }
 
@@ -33,12 +34,25 @@ export const FileUploadList = React.forwardRef<HTMLUListElement, FileUploadListP
     nameProps,
     categoryProps,
     actionsProps,
+    onMoveUp,
+    onMoveDown,
     ...rest
   } = props;
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const context = useFormContext ? useFormContext() : null;
   const listItems: FileUploadListProps['files'] = files ? files : context && name ? context.watch(name) : null;
+
+  const isEmpty =
+    (!listItems || listItems.length === 0) && (!children || (Array.isArray(children) && children?.length === 0));
+
+  const handleMoveUp = (index: number) => {
+    console.log('Move up:', index);
+  };
+
+  const handleMoveDown = (index: number) => {
+    console.log('Move down:', index);
+  };
 
   const itemProps = {
     size,
@@ -53,10 +67,9 @@ export const FileUploadList = React.forwardRef<HTMLUListElement, FileUploadListP
     actionsProps,
     categoryProps,
     files: listItems,
+    onMoveUp: onMoveUp ?? handleMoveUp,
+    onMoveDown: onMoveDown ?? handleMoveDown,
   };
-
-  const isEmpty =
-    (!listItems || listItems.length === 0) && (!children || (Array.isArray(children) && children?.length === 0));
 
   return (
     <ul
