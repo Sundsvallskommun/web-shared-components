@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.10](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@3.0.9...@sk-web-gui/react@3.0.10) (2026-03-17)
+
+### Bug Fixes
+
+- export alert ([3bc2305](https://github.com/Sundsvallskommun/web-shared-components/commit/3bc2305c38176afb8b3c91266997ee57e5b84bb1))
+
 ## [3.0.9](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@3.0.8...@sk-web-gui/react@3.0.9) (2026-02-24)
 
 **Note:** Version bump only for package @sk-web-gui/react

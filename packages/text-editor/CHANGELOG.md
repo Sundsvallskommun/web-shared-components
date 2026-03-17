@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/text-editor@2.0.2...@sk-web-gui/text-editor@2.1.0) (2026-03-17)
+
+### Bug Fixes
+
+- **texteditor:** convert Quill list markup to standard HTML on import and export ([1dc7092](https://github.com/Sundsvallskommun/web-shared-components/commit/1dc7092fb9136dd96744fd10988b863d2c69d109))
+
+### Features
+
+- **texteditor:** Visual zoom for text in texteditor ([485623b](https://github.com/Sundsvallskommun/web-shared-components/commit/485623b2246bf132ab77deb5c034ac5b2d1417a1))
+
 ## [2.0.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/text-editor@2.0.1...@sk-web-gui/text-editor@2.0.2) (2025-10-03)
 
 ### Bug Fixes
