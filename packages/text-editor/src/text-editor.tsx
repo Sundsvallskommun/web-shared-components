@@ -64,6 +64,78 @@ function TooltipManager({ controls }: { controls: Element[] }) {
   );
 }
 
+/**
+ * Convert Quill's internal list format to standard HTML lists.
+ * Quill renders: <ol><li data-list="bullet"><span class="ql-ui"></span>text</li></ol>
+ * Standard:      <ul><li>text</li></ul>
+ */
+function quillListToHtml(html: string): string {
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+
+  doc.querySelectorAll('ol').forEach((ol) => {
+    const items = Array.from(ol.querySelectorAll(':scope > li[data-list]'));
+    if (items.length === 0) return;
+
+    // Group consecutive items by list type
+    const groups: { type: string; items: Element[] }[] = [];
+    items.forEach((item) => {
+      const type = item.getAttribute('data-list') || 'ordered';
+      const last = groups[groups.length - 1];
+      if (last && last.type === type) {
+        last.items.push(item);
+      } else {
+        groups.push({ type, items: [item] });
+      }
+    });
+
+    const fragment = doc.createDocumentFragment();
+    groups.forEach((group) => {
+      const list = doc.createElement(group.type === 'bullet' ? 'ul' : 'ol');
+      group.items.forEach((item) => {
+        const li = doc.createElement('li');
+        const clone = item.cloneNode(true) as Element;
+        clone.querySelectorAll('span.ql-ui').forEach((s) => s.remove());
+        clone.removeAttribute('data-list');
+        li.innerHTML = clone.innerHTML;
+        list.appendChild(li);
+      });
+      fragment.appendChild(list);
+    });
+
+    ol.parentNode?.replaceChild(fragment, ol);
+  });
+
+  return doc.body.innerHTML;
+}
+
+/**
+ * Convert standard HTML lists (and Quill's format) to Quill-compatible format for import.
+ * Ensures <ul> becomes <ol> with data-list="bullet" so Quill's clipboard.convert handles it.
+ */
+function htmlToQuillList(html: string): string {
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+
+  // Convert <ul> to <ol data-list="bullet">
+  doc.querySelectorAll('ul').forEach((ul) => {
+    const ol = doc.createElement('ol');
+    while (ul.firstChild) {
+      const child = ul.firstChild;
+      if (child instanceof Element && child.tagName === 'LI') {
+        child.setAttribute('data-list', 'bullet');
+      }
+      ol.appendChild(child);
+    }
+    ul.parentNode?.replaceChild(ol, ul);
+  });
+
+  // Ensure <ol> > <li> without data-list get data-list="ordered"
+  doc.querySelectorAll('ol > li:not([data-list])').forEach((li) => {
+    li.setAttribute('data-list', 'ordered');
+  });
+
+  return doc.body.innerHTML;
+}
+
 export const TextEditor = forwardRef<Quill | null, TextEditorProps>((props, ref) => {
   const {
     name = '',
@@ -103,11 +175,12 @@ export const TextEditor = forwardRef<Quill | null, TextEditorProps>((props, ref)
     const quill = quillRef?.current;
     if (!quill) return;
 
-    const quillMarkup = quill.root.innerHTML;
+    const quillMarkup = quillListToHtml(quill.root.innerHTML);
     const quillplainText = quill.getText();
 
     if (value?.markup !== undefined && value?.markup !== quillMarkup) {
-      const delta = quill.clipboard.convert({ html: value.markup });
+      const normalizedHtml = htmlToQuillList(value.markup);
+      const delta = quill.clipboard.convert({ html: normalizedHtml });
       quill.setContents(delta);
     }
     if (value?.markup === undefined && value?.plainText !== undefined && value.plainText !== quillplainText) {
@@ -150,7 +223,8 @@ export const TextEditor = forwardRef<Quill | null, TextEditorProps>((props, ref)
 
       quill.on(Quill.events.TEXT_CHANGE, (...args) => {
         const plainText = quillRef.current?.getText();
-        const markup = quillRef.current?.root.innerHTML;
+        const rawMarkup = quillRef.current?.root.innerHTML;
+        const markup = rawMarkup ? quillListToHtml(rawMarkup) : rawMarkup;
 
         const event = {
           target: { name: name, value: { plainText, markup } },
