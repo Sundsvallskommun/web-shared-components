@@ -1,5 +1,6 @@
 export const TextEditor = () => ({
   '.sk-texteditor': {
+    '@apply relative': {},
     '.ql-toolbar.ql-snow': {
       '@apply flex items-center bg-background-200 rounded-t-xl border-input-field-outline h-[4rem] pl-4': {},
       '.ql-stroke': {
@@ -95,6 +96,39 @@ export const TextEditor = () => ({
       '&.ql-disabled': {
         '@apply bg-input-field-surface-disabled border-input-field-outline-disabled': {},
       },
+    },
+
+    // Scale controls
+    '.sk-texteditor-scale': {
+      '@apply absolute right-2 top-0 h-[4rem] flex items-center gap-2 z-10': {},
+    },
+    '.sk-texteditor-scale-button': {
+      '@apply h-[3.2rem] w-[3.2rem] rounded-10 text-dark-primary flex items-center justify-center': {},
+      '&:hover': {
+        '@apply bg-tertiary-surface-hover': {},
+      },
+      '&:focus-visible': {
+        '@apply ring-[.2rem] ring-ring ring-offset-0 outline-0 bg-background-content': {},
+      },
+      '&:disabled': {
+        '@apply text-dark-disabled cursor-default': {},
+        '&:hover': {
+          '@apply bg-transparent': {},
+        },
+        '&:hover .tooltip-container': {
+          '@apply hidden opacity-0': {},
+        },
+      },
+      '.tooltip-container': {
+        '@apply absolute z-10 top-full mt-0 left-1/2 -translate-x-1/2 invisible opacity-0 transition-opacity duration-200 ease-in-out whitespace-nowrap':
+          {},
+      },
+      '&:hover .tooltip-container': {
+        '@apply visible opacity-100': {},
+      },
+    },
+    '.sk-texteditor-scale-label': {
+      '@apply text-label-small font-thin text-dark-secondary select-none min-w-[3.6rem] text-center': {},
     },
 
     // Tooltip-text
