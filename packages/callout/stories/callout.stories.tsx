@@ -1,8 +1,8 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import { Callout, CalloutProps } from '../src';
-import NavigationBar from '@sk-web-gui/navigationbar';
 import Button from '@sk-web-gui/button';
+import NavigationBar from '@sk-web-gui/navigation-bar';
 
 export default {
   title: 'Komponenter/Callout',
