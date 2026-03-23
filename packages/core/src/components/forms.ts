@@ -25,7 +25,7 @@ export const Forms = () => ({
     '@apply text-small': {},
   },
   '.sk-form-error-message': {
-    '@apply text-error': {},
+    '@apply text-error-text-primary': {},
     '@apply flex items-start gap-8': {},
     '@apply self-stretch': {},
   },

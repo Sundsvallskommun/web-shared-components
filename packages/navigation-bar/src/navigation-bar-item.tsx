@@ -1,3 +1,4 @@
+import type { DefaultColor } from '@sk-web-gui/utils';
 import { DefaultProps, cx, getValidChildren, useForkRef } from '@sk-web-gui/utils';
 import { PopupMenu } from '@sk-web-gui/popup-menu';
 import React from 'react';
@@ -7,7 +8,7 @@ export interface NavigationBarItemProps
   extends DefaultProps,
     Omit<React.ComponentPropsWithRef<'li'>, 'color' | 'children' | 'onClick'> {
   /** Color for menuoption. Is inherited from MenuBar */
-  color?: 'tertiary' | 'juniskar' | 'bjornstigen' | 'gronsta' | 'vattjom' | string;
+  color?: DefaultColor | 'tertiary';
   /** Set true if this is the current menuoption. Can be handled by MenuBar */
   current?: boolean;
   /** Set automatic */

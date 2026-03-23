@@ -16,7 +16,7 @@ export default {
       table: {
         defaultValue: { summary: 'primary' },
       },
-      options: [undefined, 'tertiary', 'gronsta', 'vattjom', 'juniskar', 'bjornstigen'],
+      options: [undefined, 'tertiary', 'action', 'info', 'warning', 'error', 'success', 'alert', 'brand', 'accent'],
       control: 'select',
     },
     accent: {
@@ -42,3 +42,4 @@ export default {
 export const Template = (args: ProgressBarProps) => <ProgressBar {...args}></ProgressBar>;
 
 Template.storyName = 'ProgressBar';
+

@@ -123,7 +123,7 @@ export const FileUpload = () => ({
         },
 
         '.sk-form-error-message': {
-          '@apply text-error': {},
+          '@apply text-error-text-primary': {},
         },
 
         '.sk-form-control': {
@@ -244,7 +244,7 @@ export const FileUpload = () => ({
       },
 
       '&[data-invalid="true"] &-button': {
-        '@apply bg-error-background-100 border-solid border-error': {},
+        '@apply bg-error-background-100 border-solid border-error-surface-primary': {},
       },
 
       '&-button': {
@@ -271,3 +271,4 @@ export const FileUpload = () => ({
     },
   },
 });
+

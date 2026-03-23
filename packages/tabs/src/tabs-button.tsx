@@ -1,5 +1,6 @@
 import Button from '@sk-web-gui/button';
 import Divider from '@sk-web-gui/divider';
+import type { DefaultColor } from '@sk-web-gui/utils';
 import { DefaultProps, cx, useForkRef } from '@sk-web-gui/utils';
 import React from 'react';
 import { defaultTabsContext } from './context';
@@ -7,7 +8,7 @@ import { useTabs } from './use-tabs';
 
 export interface TabsButtonProps extends DefaultProps, Omit<React.ComponentPropsWithoutRef<typeof Button>, 'color'> {
   /** Color for menuoption. Is inherited from MenuBar */
-  color?: 'tertiary' | 'juniskar' | 'bjornstigen' | 'gronsta' | 'vattjom' | string;
+  color?: DefaultColor | 'tertiary';
   /** Set true if this is the current menuoption. Can be handled by MenuBar */
   current?: boolean;
   /** Set automatic */
