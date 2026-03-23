@@ -7,7 +7,7 @@ import { Pencil, ArrowDownRight, ArrowUpLeft, History, ChevronsDown, ChevronsUp 
 
 export interface AICornerModuleHeaderMenuProps
   extends Omit<AICornerModuleDefaultProps, 'title' | 'subtitle'>,
-    React.ComponentPropsWithoutRef<'ul'> {
+    Omit<React.ComponentPropsWithoutRef<'ul'>, 'color'> {
   historyOpen?: AICornerModuleHeaderProps['historyOpen'];
   onOpenHistory?: AICornerModuleHeaderProps['onOpenHistory'];
   onCloseHistory?: AICornerModuleHeaderProps['onCloseHistory'];
@@ -194,3 +194,4 @@ export const AICornerModuleHeaderMenu = React.forwardRef<HTMLUListElement, AICor
     );
   }
 );
+
