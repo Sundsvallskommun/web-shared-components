@@ -3,9 +3,9 @@ import { DefaultProps, cx } from '@sk-web-gui/utils';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import { FileUploadListContext, FileUploadListContextProps } from './context';
-import { FileUploadListItem } from './file-upload-list-item';
+import { FileUploadListItem, FileUploadListItemProps } from './file-upload-list-item';
 import { UploadFile } from './types';
-
+import { hooks } from './hooks';
 export interface FileUploadListProps
   extends DefaultProps,
     Omit<React.HTMLAttributes<HTMLUListElement>, 'color' | 'children'>,
@@ -39,6 +39,8 @@ export const FileUploadList = React.forwardRef<HTMLUListElement, FileUploadListP
     ...rest
   } = props;
 
+  const { useSortableList } = hooks;
+
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const context = useFormContext ? useFormContext() : null;
   const listItems: FileUploadListProps['files'] = files ? files : context && name ? context.watch(name) : null;
@@ -46,12 +48,25 @@ export const FileUploadList = React.forwardRef<HTMLUListElement, FileUploadListP
   const isEmpty =
     (!listItems || listItems.length === 0) && (!children || (Array.isArray(children) && children?.length === 0));
 
-  const handleMoveUp = (index: number) => {
-    console.log('Move up:', index);
-  };
+  const {
+    files: listItemsState,
+    dragItemIndex,
+    setDragItemIndex,
+    dragOverIndex,
+    setDragOverIndex,
+    grabbedIndex,
+    setGrabbedIndex,
+    focusedIndex,
+    setFocusedIndex,
+    reorder: moveItem,
+  } = useSortableList(listItems ?? []);
 
-  const handleMoveDown = (index: number) => {
-    console.log('Move down:', index);
+  const injectItemProps = (child: React.ReactNode, index: number): React.ReactNode => {
+    if (!React.isValidElement<FileUploadListItemProps>(child)) return child;
+
+    return React.cloneElement(child, {
+      index: child.props.index ?? index,
+    });
   };
 
   const itemProps = {
@@ -66,9 +81,18 @@ export const FileUploadList = React.forwardRef<HTMLUListElement, FileUploadListP
     nameProps,
     actionsProps,
     categoryProps,
-    files: listItems,
-    onMoveUp: onMoveUp ?? handleMoveUp,
-    onMoveDown: onMoveDown ?? handleMoveDown,
+    files: listItemsState,
+    onMoveUp: onMoveUp ?? ((index) => moveItem(index, index - 1)),
+    onMoveDown: onMoveDown ?? ((index) => moveItem(index, index + 1)),
+    dragItemIndex,
+    setDragItemIndex,
+    dragOverIndex,
+    setDragOverIndex,
+    grabbedIndex,
+    setGrabbedIndex,
+    focusedIndex,
+    setFocusedIndex,
+    moveItem,
   };
 
   return (
@@ -86,22 +110,20 @@ export const FileUploadList = React.forwardRef<HTMLUListElement, FileUploadListP
         <FileUploadListContext.Provider value={itemProps}>
           {!showBorder && Array.isArray(listItems) ? (
             <>
-              {listItems?.map((item, i) => {
-                return (
-                  <React.Fragment key={`${i}`}>
-                    <FileUploadListItem file={item} index={i} {...itemProps} />
-                    {i < listItems.length - 1 ? (
-                      <li role="separator">
-                        <Divider />
-                      </li>
-                    ) : null}
-                  </React.Fragment>
-                );
-              })}
+              {listItemsState.map((item, i) => (
+                <React.Fragment key={`${i}`}>
+                  <FileUploadListItem file={item} index={i} {...itemProps} />
+                  {i < listItemsState.length - 1 && (
+                    <li role="separator">
+                      <Divider />
+                    </li>
+                  )}
+                </React.Fragment>
+              ))}
             </>
           ) : (
             <>
-              {listItems?.map((item, i) => (
+              {listItemsState?.map((item, i) => (
                 <FileUploadListItem file={item} index={i} {...itemProps} />
               ))}
             </>
@@ -109,22 +131,18 @@ export const FileUploadList = React.forwardRef<HTMLUListElement, FileUploadListP
         </FileUploadListContext.Provider>
       ) : (
         <FileUploadListContext.Provider value={itemProps}>
-          {!showBorder && Array.isArray(children) ? (
-            children.map((child, i) => {
-              return (
-                <React.Fragment key={`${i}`}>
-                  {child}
-                  {i < children.length - 1 ? (
+          {!showBorder && Array.isArray(children)
+            ? children.map((child, i) => (
+                <React.Fragment key={i}>
+                  {injectItemProps(child, i)}
+                  {i < children.length - 1 && (
                     <li role="separator">
                       <Divider />
                     </li>
-                  ) : null}
+                  )}
                 </React.Fragment>
-              );
-            })
-          ) : (
-            <>{children}</>
-          )}
+              ))
+            : React.Children.map(children, injectItemProps)}
         </FileUploadListContext.Provider>
       )}
     </ul>

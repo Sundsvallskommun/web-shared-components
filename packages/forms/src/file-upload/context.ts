@@ -37,6 +37,15 @@ export interface FileUploadListContextProps {
   showIcon?: boolean;
   onMoveUp?: (index: number) => void;
   onMoveDown?: (index: number) => void;
+  dragItemIndex?: number | null;
+  dragOverIndex?: number | null;
+  setDragItemIndex?: (index: number | null) => void;
+  setDragOverIndex?: (index: number | null) => void;
+  grabbedIndex?: number | null;
+  setGrabbedIndex?: (index: number | null) => void;
+  focusedIndex?: number | null;
+  setFocusedIndex?: (index: number | null) => void;
+  moveItem?: (from: number, to: number) => void;
   iconProps?: React.ComponentProps<typeof FileUploadListItemIcon>;
   nameProps?: React.ComponentProps<typeof FileUploadListItemContentName>;
   actionsProps?: React.ComponentProps<typeof FileUploadListItemActions>;
