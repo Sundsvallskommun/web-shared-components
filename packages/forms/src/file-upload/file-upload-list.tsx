@@ -111,7 +111,7 @@ export const FileUploadList = React.forwardRef<HTMLUListElement, FileUploadListP
           {!showBorder && Array.isArray(listItems) ? (
             <>
               {listItemsState.map((item, i) => (
-                <React.Fragment key={`${i}`}>
+                <React.Fragment key={item.id ?? `${i}`}>
                   <FileUploadListItem file={item} index={i} {...itemProps} />
                   {i < listItemsState.length - 1 && (
                     <li role="separator">
@@ -124,7 +124,7 @@ export const FileUploadList = React.forwardRef<HTMLUListElement, FileUploadListP
           ) : (
             <>
               {listItemsState?.map((item, i) => (
-                <FileUploadListItem file={item} index={i} {...itemProps} />
+                <FileUploadListItem key={item.id ?? `${i}`} file={item} index={i} {...itemProps} />
               ))}
             </>
           )}

@@ -47,8 +47,6 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
     dragOverIndex: _dragOverIndex,
     setDragItemIndex: _setDragItemIndex,
     setDragOverIndex: _setDragOverIndex,
-    grabbedIndex: _grabbedIndex,
-    setGrabbedIndex: _setGrabbedIndex,
     setFocusedIndex: _setFocusedIndex,
     moveItem: _moveItem,
     showLabels: _showLabels,
@@ -76,8 +74,6 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
   const dragOverIndex = _dragOverIndex ?? listContext?.dragOverIndex;
   const setDragItemIndex = _setDragItemIndex ?? listContext?.setDragItemIndex;
   const setDragOverIndex = _setDragOverIndex ?? listContext?.setDragOverIndex;
-  const grabbedIndex = _grabbedIndex ?? listContext?.grabbedIndex;
-  const setGrabbedIndex = _setGrabbedIndex ?? listContext?.setGrabbedIndex;
   const setFocusedIndex = _setFocusedIndex ?? listContext?.setFocusedIndex;
   const moveItem = _moveItem ?? listContext?.moveItem;
   const showIcon = _showIcon ?? listContext?.showIcon;
@@ -115,12 +111,48 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
     dragItemIndex,
   };
 
+  const moveUpRef = React.useRef<HTMLButtonElement>(null);
+  const moveDownRef = React.useRef<HTMLButtonElement>(null);
+
+  const handleMoveUp = () => {
+    if (index <= 0) return;
+    onMoveUp?.(index);
+    // After reorder, focus the up-button at the new position
+    setTimeout(() => moveUpRef.current?.focus(), 0);
+  };
+
+  const handleMoveDown = () => {
+    if (index >= (listContext?.files?.length ?? 0) - 1) return;
+    onMoveDown?.(index);
+    // After reorder, focus the down-button at the new position
+    setTimeout(() => moveDownRef.current?.focus(), 0);
+  };
+
+  const itemName = file?.meta?.name ?? `${index + 1}`;
+  const totalItems = listContext?.files?.length ?? 0;
+
   const sortableHandler = sortable ? (
     <div className="sk-form-file-upload-list-item-sort">
-      <Button iconButton variant="secondary" rounded={true} onClick={() => onMoveUp?.(index)}>
+      <Button
+        ref={moveUpRef}
+        iconButton
+        variant="secondary"
+        rounded={true}
+        onClick={handleMoveUp}
+        disabled={index <= 0}
+        aria-label={`Flytta ${itemName} uppåt, position ${index + 1} av ${totalItems}`}
+      >
         <Icon icon={<ArrowUp />} />
       </Button>
-      <Button iconButton variant="secondary" rounded={true} onClick={() => onMoveDown?.(index)}>
+      <Button
+        ref={moveDownRef}
+        iconButton
+        variant="secondary"
+        rounded={true}
+        onClick={handleMoveDown}
+        disabled={index >= totalItems - 1}
+        aria-label={`Flytta ${itemName} nedåt, position ${index + 1} av ${totalItems}`}
+      >
         <Icon icon={<ArrowDown />} />
       </Button>
     </div>
@@ -135,29 +167,6 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
     setDragOverIndex?.(null);
   };
 
-  const handleOnKeyDown = (e: React.KeyboardEvent<HTMLLIElement>) => {
-    if (!sortable) return;
-
-    if (e.key === ' ' || e.key === 'Enter') {
-      e.preventDefault();
-      setGrabbedIndex?.(grabbedIndex === index ? null : index);
-    }
-
-    if (grabbedIndex == null) return;
-
-    if (e.key === 'ArrowUp' && grabbedIndex > 0) {
-      e.preventDefault();
-      moveItem?.(grabbedIndex, grabbedIndex - 1);
-      setGrabbedIndex?.(grabbedIndex - 1);
-    }
-
-    if (e.key === 'ArrowDown' && grabbedIndex < (listContext?.files?.length ?? 0) - 1) {
-      e.preventDefault();
-      moveItem?.(grabbedIndex, grabbedIndex + 1);
-      setGrabbedIndex?.(grabbedIndex + 1);
-    }
-  };
-
   return (
     <FileUploadListItemContext.Provider value={itemContext}>
       <li
@@ -166,14 +175,16 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
         data-border={showBorder ? showBorder : undefined}
         data-size={size}
         data-isedit={isEdit}
+        data-dragging={sortable && dragItemIndex === index ? true : undefined}
+        data-drag-over={
+          sortable && dragOverIndex === index && dragItemIndex !== null && dragItemIndex !== index ? true : undefined
+        }
         draggable={sortable}
-        tabIndex={0}
         onFocus={() => setFocusedIndex?.(index)}
         onBlur={() => setFocusedIndex?.(null)}
         onDragStart={() => setDragItemIndex?.(index)}
         onDragEnter={() => setDragOverIndex?.(index)}
         onDragEnd={handleOnDragEnd}
-        onKeyDown={(e) => handleOnKeyDown(e)}
         onDragOver={(e) => e.preventDefault()}
         {...rest}
       >

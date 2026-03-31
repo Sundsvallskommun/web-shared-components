@@ -19,6 +19,16 @@ export const FileUpload = () => ({
       '&-item': {
         '@apply self-stretch flex flex-row flex-wrap p-12 rounded-button': {},
         '@apply gap-y-12': {},
+        '@apply transition-transform duration-200 ease-in-out': {},
+
+        '&[data-dragging="true"]': {
+          '@apply opacity-50': {},
+        },
+
+        '&[data-drag-over="true"]': {
+          '@apply translate-x-4': {},
+        },
+
 
         '&-innerwrapper': {
           '@apply w-full': {},
