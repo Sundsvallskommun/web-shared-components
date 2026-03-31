@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.3.3...@sk-web-gui/core@4.4.0) (2026-03-17)
+
+### Features
+
+- **texteditor:** Visual zoom for text in texteditor ([485623b](https://github.com/Sundsvallskommun/web-shared-components/commit/485623b2246bf132ab77deb5c034ac5b2d1417a1))
+
 ## [4.3.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.3.2...@sk-web-gui/core@4.3.3) (2026-02-26)
 
 ### Bug Fixes
