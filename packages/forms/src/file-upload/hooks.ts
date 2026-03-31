@@ -106,7 +106,6 @@ const useSortableList = (initialFiles?: UploadFile[], onChange?: (files: UploadF
   const [files, setFiles] = useState<UploadFile[]>(initialFiles || []);
   const [dragItemIndex, setDragItemIndex] = useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
-  const [grabbedIndex, setGrabbedIndex] = useState<number | null>(null);
   const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
 
   const reorder = useCallback(
@@ -128,8 +127,6 @@ const useSortableList = (initialFiles?: UploadFile[], onChange?: (files: UploadF
     setDragItemIndex,
     dragOverIndex,
     setDragOverIndex,
-    grabbedIndex,
-    setGrabbedIndex,
     focusedIndex,
     setFocusedIndex,
     reorder,

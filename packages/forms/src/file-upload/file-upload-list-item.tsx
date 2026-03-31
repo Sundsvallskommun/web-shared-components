@@ -23,8 +23,6 @@ export interface FileUploadListItemProps
   dragOverIndex?: number | null;
   setDragItemIndex?: (index: number | null) => void;
   setDragOverIndex?: (index: number | null) => void;
-  grabbedIndex?: number | null;
-  setGrabbedIndex?: (index: number | null) => void;
   focusedIndex?: number | null;
   setFocusedIndex?: (index: number | null) => void;
   moveItem?: (from: number, to: number) => void;
@@ -68,14 +66,6 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
   const isEdit = (uploadProgress !== undefined ? false : undefined) ?? _isEdit ?? listContext?.isEdit;
   const size = listContext?.size;
   const showBorder = _showBorder ?? listContext?.showBorder;
-  const onMoveUp = _onMoveUp ?? listContext?.onMoveUp;
-  const onMoveDown = _onMoveDown ?? listContext?.onMoveDown;
-  const dragItemIndex = _dragItemIndex ?? listContext?.dragItemIndex;
-  const dragOverIndex = _dragOverIndex ?? listContext?.dragOverIndex;
-  const setDragItemIndex = _setDragItemIndex ?? listContext?.setDragItemIndex;
-  const setDragOverIndex = _setDragOverIndex ?? listContext?.setDragOverIndex;
-  const setFocusedIndex = _setFocusedIndex ?? listContext?.setFocusedIndex;
-  const moveItem = _moveItem ?? listContext?.moveItem;
   const showIcon = _showIcon ?? listContext?.showIcon;
   const showLabels = _showLabels ?? listContext?.showLabels;
   const sortable = listContext?.sortable;
@@ -85,6 +75,17 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
   const categoryProps = { ...listContext?.categoryProps, ..._categoryProps };
   const fullName = `${name}.${index}`;
   const file = _file ?? listContext?.files?.[index] ?? (formContext ? formContext?.watch(`${fullName}`) : undefined);
+
+  const sort = {
+    onMoveUp: _onMoveUp ?? listContext?.onMoveUp,
+    onMoveDown: _onMoveDown ?? listContext?.onMoveDown,
+    dragItemIndex: _dragItemIndex ?? listContext?.dragItemIndex,
+    dragOverIndex: _dragOverIndex ?? listContext?.dragOverIndex,
+    setDragItemIndex: _setDragItemIndex ?? listContext?.setDragItemIndex,
+    setDragOverIndex: _setDragOverIndex ?? listContext?.setDragOverIndex,
+    setFocusedIndex: _setFocusedIndex ?? listContext?.setFocusedIndex,
+    moveItem: _moveItem ?? listContext?.moveItem,
+  };
 
   React.useEffect(() => {
     if (formContext) {
@@ -108,24 +109,17 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
     nameProps,
     actionsProps,
     categoryProps,
-    dragItemIndex,
+    dragItemIndex: sort.dragItemIndex,
   };
-
-  const moveUpRef = React.useRef<HTMLButtonElement>(null);
-  const moveDownRef = React.useRef<HTMLButtonElement>(null);
 
   const handleMoveUp = () => {
     if (index <= 0) return;
-    onMoveUp?.(index);
-    // After reorder, focus the up-button at the new position
-    setTimeout(() => moveUpRef.current?.focus(), 0);
+    sort.onMoveUp?.(index);
   };
 
   const handleMoveDown = () => {
     if (index >= (listContext?.files?.length ?? 0) - 1) return;
-    onMoveDown?.(index);
-    // After reorder, focus the down-button at the new position
-    setTimeout(() => moveDownRef.current?.focus(), 0);
+    sort.onMoveDown?.(index);
   };
 
   const itemName = file?.meta?.name ?? `${index + 1}`;
@@ -134,7 +128,6 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
   const sortableHandler = sortable ? (
     <div className="sk-form-file-upload-list-item-sort">
       <Button
-        ref={moveUpRef}
         iconButton
         variant="secondary"
         rounded={true}
@@ -145,7 +138,6 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
         <Icon icon={<ArrowUp />} />
       </Button>
       <Button
-        ref={moveDownRef}
         iconButton
         variant="secondary"
         rounded={true}
@@ -158,14 +150,27 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
     </div>
   ) : null;
 
-  const handleOnDragEnd = () => {
-    if (dragItemIndex != null && dragOverIndex != null) {
-      moveItem?.(dragItemIndex, dragOverIndex);
-    }
+  const isDragging = sortable && sort.dragItemIndex === index;
+  const isDragOver =
+    sortable && sort.dragOverIndex === index && sort.dragItemIndex !== null && sort.dragItemIndex !== index;
 
-    setDragItemIndex?.(null);
-    setDragOverIndex?.(null);
-  };
+  const dragHandlers = sortable
+    ? {
+        draggable: true,
+        'data-dragging': isDragging || undefined,
+        'data-drag-over': isDragOver || undefined,
+        onDragStart: () => sort.setDragItemIndex?.(index),
+        onDragEnter: () => sort.setDragOverIndex?.(index),
+        onDragEnd: () => {
+          if (sort.dragItemIndex != null && sort.dragOverIndex != null) {
+            sort.moveItem?.(sort.dragItemIndex, sort.dragOverIndex);
+          }
+          sort.setDragItemIndex?.(null);
+          sort.setDragOverIndex?.(null);
+        },
+        onDragOver: (e: React.DragEvent) => e.preventDefault(),
+      }
+    : {};
 
   return (
     <FileUploadListItemContext.Provider value={itemContext}>
@@ -175,17 +180,9 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
         data-border={showBorder ? showBorder : undefined}
         data-size={size}
         data-isedit={isEdit}
-        data-dragging={sortable && dragItemIndex === index ? true : undefined}
-        data-drag-over={
-          sortable && dragOverIndex === index && dragItemIndex !== null && dragItemIndex !== index ? true : undefined
-        }
-        draggable={sortable}
-        onFocus={() => setFocusedIndex?.(index)}
-        onBlur={() => setFocusedIndex?.(null)}
-        onDragStart={() => setDragItemIndex?.(index)}
-        onDragEnter={() => setDragOverIndex?.(index)}
-        onDragEnd={handleOnDragEnd}
-        onDragOver={(e) => e.preventDefault()}
+        onFocus={() => sort.setFocusedIndex?.(index)}
+        onBlur={() => sort.setFocusedIndex?.(null)}
+        {...dragHandlers}
         {...rest}
       >
         <div className="sk-form-file-upload-list-item-innerwrapper">

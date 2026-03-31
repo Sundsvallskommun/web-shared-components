@@ -54,8 +54,6 @@ export const FileUploadList = React.forwardRef<HTMLUListElement, FileUploadListP
     setDragItemIndex,
     dragOverIndex,
     setDragOverIndex,
-    grabbedIndex,
-    setGrabbedIndex,
     focusedIndex,
     setFocusedIndex,
     reorder: moveItem,
@@ -67,6 +65,18 @@ export const FileUploadList = React.forwardRef<HTMLUListElement, FileUploadListP
     return React.cloneElement(child, {
       index: child.props.index ?? index,
     });
+  };
+
+  const dragProps = {
+    dragItemIndex,
+    setDragItemIndex,
+    dragOverIndex,
+    setDragOverIndex,
+    focusedIndex,
+    setFocusedIndex,
+    moveItem,
+    onMoveUp: onMoveUp ?? ((index: number) => moveItem(index, index - 1)),
+    onMoveDown: onMoveDown ?? ((index: number) => moveItem(index, index + 1)),
   };
 
   const itemProps = {
@@ -82,17 +92,7 @@ export const FileUploadList = React.forwardRef<HTMLUListElement, FileUploadListP
     actionsProps,
     categoryProps,
     files: listItemsState,
-    onMoveUp: onMoveUp ?? ((index) => moveItem(index, index - 1)),
-    onMoveDown: onMoveDown ?? ((index) => moveItem(index, index + 1)),
-    dragItemIndex,
-    setDragItemIndex,
-    dragOverIndex,
-    setDragOverIndex,
-    grabbedIndex,
-    setGrabbedIndex,
-    focusedIndex,
-    setFocusedIndex,
-    moveItem,
+    ...dragProps,
   };
 
   return (

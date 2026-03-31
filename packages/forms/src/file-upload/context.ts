@@ -41,8 +41,6 @@ export interface FileUploadListContextProps {
   dragOverIndex?: number | null;
   setDragItemIndex?: (index: number | null) => void;
   setDragOverIndex?: (index: number | null) => void;
-  grabbedIndex?: number | null;
-  setGrabbedIndex?: (index: number | null) => void;
   focusedIndex?: number | null;
   setFocusedIndex?: (index: number | null) => void;
   moveItem?: (from: number, to: number) => void;
