@@ -1,0 +1,4 @@
+interface:
+  display_name: "Development Branch Workflow"
+  short_description: "Create Jira-based feature or fix branches"
+  default_prompt: "Use $development-branch-workflow to start work on a new feature or fix branch."
