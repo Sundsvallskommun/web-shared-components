@@ -40,6 +40,7 @@
     "react-dom": "^19.0.0"
   },
   "dependencies": {
+    "@sk-web-gui/alert": "1.1.2",
     "@sk-web-gui/accordion": "3.0.3",
     "@sk-web-gui/avatar": "1.2.4",
     "@sk-web-gui/badge": "1.2.0",
