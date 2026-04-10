@@ -1,0 +1,4 @@
+interface:
+  display_name: "Conventional Commit Workflow"
+  short_description: "Ask before committing; use split conventional commits"
+  default_prompt: "Use $conventional-commit-workflow to prepare repo-safe conventional commits."
