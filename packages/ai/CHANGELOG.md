@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.3.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.3.1...@sk-web-gui/ai@4.3.2) (2026-04-14)
+
+### Bug Fixes
+
+- **usechat:** Check for answer in response ([af8db98](https://github.com/Sundsvallskommun/web-shared-components/commit/af8db987a07ff63c0556fc6c9367e8786cf579db))
+
 ## [4.3.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.3.0...@sk-web-gui/ai@4.3.1) (2026-02-25)
 
 ### Bug Fixes
