@@ -19,10 +19,24 @@ export const FileUpload = () => ({
       '&-item': {
         '@apply self-stretch flex flex-row flex-wrap p-12 rounded-button': {},
         '@apply gap-y-12': {},
+        '@apply transition-transform duration-200 ease-in-out': {},
+
+        '&[data-dragging="true"]': {
+          '@apply opacity-50': {},
+        },
+
+        '&[data-drag-over="true"]': {
+          '@apply translate-x-4': {},
+        },
+
 
         '&-innerwrapper': {
           '@apply w-full': {},
           '@apply self-stretch items-center list-none flex flex-row gap-y-24 gap-x-12': {},
+        },
+
+        '.sk-form-file-upload-list-item-sort': {
+          '@apply flex  gap-x-8 items-start': {},
         },
 
         '&[data-isedit="true"]': {
