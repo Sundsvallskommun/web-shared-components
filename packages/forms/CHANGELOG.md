@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.8.2...@sk-web-gui/forms@2.9.0) (2026-04-16)
+
+### Bug Fixes
+
+- refactors ([6a5a45c](https://github.com/Sundsvallskommun/web-shared-components/commit/6a5a45ce568640d38d35cdf1636a323b21fc1f99))
+- sperates internal/public props ([ed0cdc7](https://github.com/Sundsvallskommun/web-shared-components/commit/ed0cdc7873f133b230a82762d287c57af88b2b17))
+
+### Features
+
+- adds bool for sortable | adds sort buttons ([da31a9d](https://github.com/Sundsvallskommun/web-shared-components/commit/da31a9d04c91da93fb6d597e4b1a8c4e07e3085e))
+- adds hook for sorting list ([faa5b5b](https://github.com/Sundsvallskommun/web-shared-components/commit/faa5b5b5c7909485398c8c1387604b5cd00e8324))
+- adds reusable button ([7a11f9b](https://github.com/Sundsvallskommun/web-shared-components/commit/7a11f9b4e6608b86b9609a669c6af553ae228f06))
+- catch index from children ([23dba44](https://github.com/Sundsvallskommun/web-shared-components/commit/23dba44fed868243d4c8d7e3f22531e5302bb4fc))
+- changes sorting by keyboard ([84b070d](https://github.com/Sundsvallskommun/web-shared-components/commit/84b070da913ce922632f6f57d4cabf15972a0427))
+
 ## [2.8.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.8.1...@sk-web-gui/forms@2.8.2) (2026-02-24)
 
 **Note:** Version bump only for package @sk-web-gui/forms

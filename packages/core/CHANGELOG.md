@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.4.0...@sk-web-gui/core@4.5.0) (2026-04-16)
+
+### Features
+
+- adds bool for sortable | adds sort buttons ([da31a9d](https://github.com/Sundsvallskommun/web-shared-components/commit/da31a9d04c91da93fb6d597e4b1a8c4e07e3085e))
+- changes sorting by keyboard ([84b070d](https://github.com/Sundsvallskommun/web-shared-components/commit/84b070da913ce922632f6f57d4cabf15972a0427))
+
 # [4.4.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.3.3...@sk-web-gui/core@4.4.0) (2026-03-17)
 
 ### Features
