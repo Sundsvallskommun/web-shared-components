@@ -108,6 +108,12 @@ Om allt ser bra ut:
 git restore .
 ```
 
+Se till så att du är inloggad på npm:
+
+```
+npm login
+```
+
 Sedan publicera release:
 
 ```
