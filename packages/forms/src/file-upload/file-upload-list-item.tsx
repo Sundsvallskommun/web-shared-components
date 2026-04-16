@@ -108,30 +108,26 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
   const itemName = file?.meta?.name ?? `${index + 1}`;
   const totalItems = listContext?.files?.length ?? 0;
 
+  const sortButton = (handleMove: () => void, disabled: boolean, direction: 'nedåt' | 'uppåt') => {
+    return (
+      <Button
+        iconButton
+        variant="tertiary"
+        rounded={true}
+        onClick={handleMove}
+        showBackground={false}
+        disabled={disabled}
+        aria-label={`Flytta ${itemName} ${direction}, position ${index + 1} av ${totalItems}`}
+      >
+        <Icon icon={direction === 'uppåt' ? <ArrowUp /> : <ArrowDown />} />
+      </Button>
+    );
+  };
+
   const sortableHandler = sortable ? (
     <div className="sk-form-file-upload-list-item-sort">
-      <Button
-        iconButton
-        variant="tertiary"
-        rounded={true}
-        onClick={handleMoveUp}
-        showBackground={false}
-        disabled={index <= 0}
-        aria-label={`Flytta ${itemName} uppåt, position ${index + 1} av ${totalItems}`}
-      >
-        <Icon icon={<ArrowUp />} />
-      </Button>
-      <Button
-        iconButton
-        variant="tertiary"
-        rounded={true}
-        onClick={handleMoveDown}
-        showBackground={false}
-        disabled={index >= totalItems - 1}
-        aria-label={`Flytta ${itemName} nedåt, position ${index + 1} av ${totalItems}`}
-      >
-        <Icon icon={<ArrowDown />} />
-      </Button>
+      {sortButton(handleMoveUp, index <= 0, 'uppåt')}
+      {sortButton(handleMoveDown, index >= totalItems - 1, 'nedåt')}
     </div>
   ) : null;
 
