@@ -2,7 +2,7 @@ import { Divider } from '@sk-web-gui/divider';
 import { DefaultProps, cx } from '@sk-web-gui/utils';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { FileUploadListContext, FileUploadListContextProps } from './context';
+import { FileUploadListContext, FileUploadListContextProps, FileUploadListContextValue } from './context';
 import { FileUploadListItem, FileUploadListItemProps } from './file-upload-list-item';
 import { UploadFile } from './types';
 import { hooks } from './hooks';
@@ -11,8 +11,6 @@ export interface FileUploadListProps
     Omit<React.HTMLAttributes<HTMLUListElement>, 'color' | 'children'>,
     FileUploadListContextProps {
   files?: UploadFile[];
-  onMoveUp?: (index: number) => void;
-  onMoveDown?: (index: number) => void;
   placeholder?: React.ReactNode;
   children?: React.JSX.Element | React.JSX.Element[] | string;
 }
@@ -34,8 +32,6 @@ export const FileUploadList = React.forwardRef<HTMLUListElement, FileUploadListP
     nameProps,
     categoryProps,
     actionsProps,
-    onMoveUp,
-    onMoveDown,
     ...rest
   } = props;
 
@@ -75,11 +71,11 @@ export const FileUploadList = React.forwardRef<HTMLUListElement, FileUploadListP
     focusedIndex,
     setFocusedIndex,
     moveItem,
-    onMoveUp: onMoveUp ?? ((index: number) => moveItem(index, index - 1)),
-    onMoveDown: onMoveDown ?? ((index: number) => moveItem(index, index + 1)),
+    onMoveUp: (index: number) => moveItem(index, index - 1),
+    onMoveDown: (index: number) => moveItem(index, index + 1),
   };
 
-  const itemProps = {
+  const itemProps: FileUploadListContextValue = {
     size,
     name,
     isEdit,
@@ -112,7 +108,7 @@ export const FileUploadList = React.forwardRef<HTMLUListElement, FileUploadListP
             <>
               {listItemsState.map((item, i) => (
                 <React.Fragment key={item.id ?? `${i}`}>
-                  <FileUploadListItem file={item} index={i} {...itemProps} />
+                  <FileUploadListItem file={item} index={i} />
                   {i < listItemsState.length - 1 && (
                     <li role="separator">
                       <Divider />

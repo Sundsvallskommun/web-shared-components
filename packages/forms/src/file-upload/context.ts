@@ -35,6 +35,14 @@ export interface FileUploadListContextProps {
   sortable?: boolean;
   /** @default true */
   showIcon?: boolean;
+  iconProps?: React.ComponentProps<typeof FileUploadListItemIcon>;
+  nameProps?: React.ComponentProps<typeof FileUploadListItemContentName>;
+  actionsProps?: React.ComponentProps<typeof FileUploadListItemActions>;
+  categoryProps?: React.ComponentProps<typeof FileUploadListItemContentCategory>;
+  files?: UploadFile[];
+}
+
+export interface FileUploadListContextValue extends FileUploadListContextProps {
   onMoveUp?: (index: number) => void;
   onMoveDown?: (index: number) => void;
   dragItemIndex?: number | null;
@@ -44,13 +52,8 @@ export interface FileUploadListContextProps {
   focusedIndex?: number | null;
   setFocusedIndex?: (index: number | null) => void;
   moveItem?: (from: number, to: number) => void;
-  iconProps?: React.ComponentProps<typeof FileUploadListItemIcon>;
-  nameProps?: React.ComponentProps<typeof FileUploadListItemContentName>;
-  actionsProps?: React.ComponentProps<typeof FileUploadListItemActions>;
-  categoryProps?: React.ComponentProps<typeof FileUploadListItemContentCategory>;
-  files?: UploadFile[];
 }
-export const FileUploadListContext = React.createContext<FileUploadListContextProps>({
+export const FileUploadListContext = React.createContext<FileUploadListContextValue>({
   name: 'files',
   size: 'md',
   isEdit: false,

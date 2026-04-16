@@ -17,15 +17,6 @@ export interface FileUploadListItemProps
     FileUploadListItemContextProps {
   /** @default false */
   showBorder?: boolean;
-  onMoveUp?: (index: number) => void;
-  onMoveDown?: (index: number) => void;
-  dragItemIndex?: number | null;
-  dragOverIndex?: number | null;
-  setDragItemIndex?: (index: number | null) => void;
-  setDragOverIndex?: (index: number | null) => void;
-  focusedIndex?: number | null;
-  setFocusedIndex?: (index: number | null) => void;
-  moveItem?: (from: number, to: number) => void;
   children?: React.JSX.Element | React.JSX.Element[] | string;
 }
 
@@ -39,14 +30,6 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
     isEdit: _isEdit,
     uploadProgress,
     showBorder: _showBorder,
-    onMoveUp: _onMoveUp,
-    onMoveDown: _onMoveDown,
-    dragItemIndex: _dragItemIndex,
-    dragOverIndex: _dragOverIndex,
-    setDragItemIndex: _setDragItemIndex,
-    setDragOverIndex: _setDragOverIndex,
-    setFocusedIndex: _setFocusedIndex,
-    moveItem: _moveItem,
     showLabels: _showLabels,
     showIcon: _showIcon,
     // Name
@@ -77,14 +60,14 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
   const file = _file ?? listContext?.files?.[index] ?? (formContext ? formContext?.watch(`${fullName}`) : undefined);
 
   const sort = {
-    onMoveUp: _onMoveUp ?? listContext?.onMoveUp,
-    onMoveDown: _onMoveDown ?? listContext?.onMoveDown,
-    dragItemIndex: _dragItemIndex ?? listContext?.dragItemIndex,
-    dragOverIndex: _dragOverIndex ?? listContext?.dragOverIndex,
-    setDragItemIndex: _setDragItemIndex ?? listContext?.setDragItemIndex,
-    setDragOverIndex: _setDragOverIndex ?? listContext?.setDragOverIndex,
-    setFocusedIndex: _setFocusedIndex ?? listContext?.setFocusedIndex,
-    moveItem: _moveItem ?? listContext?.moveItem,
+    onMoveUp: listContext?.onMoveUp,
+    onMoveDown: listContext?.onMoveDown,
+    dragItemIndex: listContext?.dragItemIndex,
+    dragOverIndex: listContext?.dragOverIndex,
+    setDragItemIndex: listContext?.setDragItemIndex,
+    setDragOverIndex: listContext?.setDragOverIndex,
+    setFocusedIndex: listContext?.setFocusedIndex,
+    moveItem: listContext?.moveItem,
   };
 
   React.useEffect(() => {
@@ -129,9 +112,10 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
     <div className="sk-form-file-upload-list-item-sort">
       <Button
         iconButton
-        variant="secondary"
+        variant="tertiary"
         rounded={true}
         onClick={handleMoveUp}
+        showBackground={false}
         disabled={index <= 0}
         aria-label={`Flytta ${itemName} uppåt, position ${index + 1} av ${totalItems}`}
       >
@@ -139,9 +123,10 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
       </Button>
       <Button
         iconButton
-        variant="secondary"
+        variant="tertiary"
         rounded={true}
         onClick={handleMoveDown}
+        showBackground={false}
         disabled={index >= totalItems - 1}
         aria-label={`Flytta ${itemName} nedåt, position ${index + 1} av ${totalItems}`}
       >
