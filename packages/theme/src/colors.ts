@@ -613,6 +613,25 @@ const darkmode = {
   },
 };
 
+const semanticColors = {
+  lightmode: {
+    action: { ...lightmode.vattjom },
+    info: { ...lightmode.vattjom },
+    success: { ...lightmode.gronsta },
+    alert: { ...lightmode.juniskar },
+    brand: { ...lightmode.vattjom },
+    accent: { ...lightmode.juniskar },
+  },
+  darkmode: {
+    action: { ...darkmode.vattjom },
+    info: { ...darkmode.vattjom },
+    success: { ...darkmode.gronsta },
+    alert: { ...darkmode.juniskar },
+    brand: { ...darkmode.vattjom },
+    accent: { ...darkmode.juniskar },
+  },
+};
+
 const utility = {
   lightmode: {
     'input-field': {
@@ -640,6 +659,7 @@ const utility = {
         on: lightmode.primary.surface.hover,
       },
     },
+
     'menu-item': {
       surface: {
         open: lightmode.vattjom.surface.accent.DEFAULT,
@@ -648,6 +668,16 @@ const utility = {
       },
       node: {
         line: primitives.gray[300],
+      },
+    },
+    link: {
+      text: {
+        DEFAULT: lightmode.vattjom.surface.primary.DEFAULT,
+        hover: lightmode.vattjom.surface.primary.hover,
+        visited: {
+          DEFAULT: lightmode.vattjom.surface.primary.DEFAULT,
+          hover: lightmode.vattjom.surface.primary.hover,
+        },
       },
     },
   },
@@ -678,6 +708,7 @@ const utility = {
         on: darkmode.primary.surface.hover,
       },
     },
+
     'menu-item': {
       surface: {
         open: darkmode.vattjom.surface.accent.DEFAULT,
@@ -686,6 +717,16 @@ const utility = {
       },
       node: {
         line: primitives.gray[600],
+      },
+    },
+    link: {
+      text: {
+        DEFAULT: darkmode.vattjom.surface.primary.DEFAULT,
+        hover: darkmode.vattjom.surface.primary.hover,
+        visited: {
+          DEFAULT: darkmode.vattjom.surface.primary.DEFAULT,
+          hover: darkmode.vattjom.surface.primary.hover,
+        },
       },
     },
   },
@@ -697,12 +738,15 @@ export const colors = {
     primitives,
     ...lightmode,
     ...utility.lightmode,
-    inverted: { ...darkmode, ...utility.darkmode },
+    ...semanticColors.lightmode,
+    inverted: { ...darkmode, ...utility.darkmode, ...semanticColors.darkmode },
   },
   darkmode: {
     primitives,
     ...darkmode,
     ...utility.darkmode,
-    inverted: { ...lightmode, ...utility.lightmode },
+    ...semanticColors.darkmode,
+    inverted: { ...lightmode, ...utility.lightmode, ...semanticColors.lightmode },
   },
 };
+

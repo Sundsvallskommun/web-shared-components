@@ -1,5 +1,6 @@
 import { Link } from '@sk-web-gui/link';
 import { Spinner } from '@sk-web-gui/spinner';
+import type { DefaultColor } from '@sk-web-gui/utils';
 import { DefaultProps, PolymorphicComponentPropsWithRef, PolymorphicRef, __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
 import { useButtonClass } from './styles';
@@ -20,7 +21,7 @@ export interface ButtonProps extends DefaultProps, React.ComponentPropsWithRef<'
   /** Adds icon after button label */
   rightIcon?: React.ReactElement;
   /** Set the button color */
-  color?: 'info' | 'success' | 'primary' | 'warning' | 'error' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
+  color?: DefaultColor | 'primary';
   /** Size of the button */
   size?: 'sm' | 'md' | 'lg';
   /** Controls button appearance */

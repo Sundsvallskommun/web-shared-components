@@ -9,7 +9,7 @@ import { AssistantSwitch, AssistantSwitchProps } from '../assistant-switch';
 import { AICornerModuleDefaultProps } from './ai-corner-module';
 import { AICornerModuleHeaderMenu } from './ai-corner-module-header-menu';
 
-export interface AICornerModuleHeaderProps extends AICornerModuleDefaultProps, React.ComponentPropsWithoutRef<'div'> {
+export interface AICornerModuleHeaderProps extends AICornerModuleDefaultProps, Omit<React.ComponentPropsWithoutRef<'div'>, 'color'> {
   variant?: 'default' | 'alt';
   assistant: AssistantInfo;
   assistants?: Assistant[];
@@ -110,3 +110,4 @@ export const AICornerModuleHeader = React.forwardRef<HTMLDivElement, AICornerMod
     </div>
   );
 });
+

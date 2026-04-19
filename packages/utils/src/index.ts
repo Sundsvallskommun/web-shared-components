@@ -2,6 +2,8 @@ import cx from 'clsx';
 
 export * from './types';
 export type * from './types';
+export * from './default-colors';
+export type * from './default-colors';
 export * from './color';
 export type * from './color';
 export * from './assertion';
