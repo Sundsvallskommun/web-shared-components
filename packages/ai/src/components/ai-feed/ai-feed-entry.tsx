@@ -6,7 +6,10 @@ import { useAssistantStore } from '../../assistant-store';
 import { ChatHistoryEntry, SessionFeedbackValueEnum } from '../../types';
 import { Feedback } from '../feedback';
 import { MarkdownRendered } from '../markdown-rendered';
+import { getUsedInlineReferences } from '../inline-reference-utils';
 import { TypingBubble } from '../typing-bubble';
+
+const MAX_DISCLOSURE_REFERENCE_COUNT = 3;
 
 interface AIFeedEntryProps extends React.ComponentPropsWithoutRef<'li'> {
   avatar?: React.ReactNode;
@@ -58,6 +61,14 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
   const title = _title ?? (entry.origin === 'user' ? 'Du' : (info?.name ?? ''));
   const entryName = getNameFromHistory ? (entry?.assistantInfo?.name ?? title) : title;
   const timeout = React.useRef(setTimeout(() => {}));
+  const usedInlineReferences = showReferences ? getUsedInlineReferences(entry.text, entry.references || []) : [];
+  const isInlineReferenceMode = usedInlineReferences.length > 0;
+  const disclosureReferences = isInlineReferenceMode
+    ? usedInlineReferences
+    : (entry.references || []).slice(0, MAX_DISCLOSURE_REFERENCE_COUNT).map((reference, index) => ({
+        number: index + 1,
+        reference,
+      }));
 
   React.useEffect(() => {
     if (!done) {
@@ -89,30 +100,40 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
                   text={entry.text}
                   messageId={entry.id}
                   hideElements={!entry.done}
+                  references={entry.references}
+                  showReferences={showReferences}
                   tabbable={tabbable}
                 />
               </>
             )}
           </div>
-          {showReferences && entry?.references && entry.references?.length > 0 ? (
+          {showReferences && done && disclosureReferences.length > 0 ? (
             <Disclosure size="sm" className="sk-ai-feed-entry-references" inverted={inverted}>
               <Disclosure.Header>
                 <Disclosure.Title>
                   <span className="sk-ai-feed-entry-references-header" data-inverted={inverted}>
-                    {referenceTitle} ({entry.references?.length || 0})
+                    {referenceTitle} ({disclosureReferences.length})
                   </span>
                 </Disclosure.Title>
                 <Disclosure.Button />
               </Disclosure.Header>
               <Disclosure.Content>
                 <ul aria-label={referenceTitle} className="sk-ai-feed-entry-references-list">
-                  {entry.references?.map((reference, refIndex) => (
+                  {disclosureReferences.map(({ number, reference }, refIndex) => (
                     <li className="sk-ai-feed-entry-references-list-item" key={`ref-${refIndex}`}>
-                      <small>
-                        <Link external href={reference.url} inverted={inverted}>
+                      {reference.url ? (
+                        <small>
+                          {isInlineReferenceMode ? `${number}. ` : null}
+                          <Link external href={reference.url} inverted={inverted}>
+                            {reference.title}
+                          </Link>
+                        </small>
+                      ) : (
+                        <small>
+                          {isInlineReferenceMode ? `${number}. ` : null}
                           {reference.title}
-                        </Link>
-                      </small>
+                        </small>
+                      )}
                     </li>
                   ))}
                 </ul>
