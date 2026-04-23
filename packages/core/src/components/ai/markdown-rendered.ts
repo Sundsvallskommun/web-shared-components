@@ -25,5 +25,11 @@ export const MarkdownRendered = () => ({
         '@apply bg-transparent p-0': {},
       },
     },
+    '&-inline-reference': {
+      '@apply relative py-0 px-2': {},
+      '&-button': {
+        '@apply h-22 min-h-22 min-w-22 p-4 text-label-extra-small': {},
+      },
+    },
   },
 });
