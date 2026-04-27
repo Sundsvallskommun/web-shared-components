@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.4.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.3.3...@sk-web-gui/ai@4.4.0) (2026-04-27)
+
+### Features
+
+- **useChat:** allow conversation version 2 and inline references ([6601c6c](https://github.com/Sundsvallskommun/web-shared-components/commit/6601c6c378f6eea0bdb2db6f75380f835ba32d4f))
+
 ## [4.3.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.3.2...@sk-web-gui/ai@4.3.3) (2026-04-16)
 
 **Note:** Version bump only for package @sk-web-gui/ai

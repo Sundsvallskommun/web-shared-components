@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.5.0...@sk-web-gui/core@4.5.1) (2026-04-27)
+
+### Bug Fixes
+
+- **ai:** inline references ([6257e39](https://github.com/Sundsvallskommun/web-shared-components/commit/6257e39b01dee2fe1027f2a5c85efa5c930958d1))
+
 # [4.5.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.4.0...@sk-web-gui/core@4.5.0) (2026-04-16)
 
 ### Features
