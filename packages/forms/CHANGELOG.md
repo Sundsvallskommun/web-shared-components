@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.9.0...@sk-web-gui/forms@2.9.1) (2026-04-29)
+
+### Bug Fixes
+
+- **combobox:** prevent infinite render loop when value is set via props ([#485](https://github.com/Sundsvallskommun/web-shared-components/issues/485)) ([5c11756](https://github.com/Sundsvallskommun/web-shared-components/commit/5c11756c755344a7fae1fff19cc6a721a6519c31))
+
 # [2.9.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.8.2...@sk-web-gui/forms@2.9.0) (2026-04-16)
 
 ### Bug Fixes
