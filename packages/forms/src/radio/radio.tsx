@@ -1,3 +1,4 @@
+import type { DefaultColor } from '@sk-web-gui/utils';
 import { cx, __DEV__, omit } from '@sk-web-gui/utils';
 import { DefaultProps } from '@sk-web-gui/utils';
 import React from 'react';
@@ -26,6 +27,7 @@ export interface RadioButtonProps<T = HTMLInputElement>
    * You'll need to pass `onChange` to update it's value (since it's now controlled)
    */
   checked?: boolean;
+  color?: DefaultColor;
   /**
    * The callback invoked when the checked state of the `radio` changes..
    */

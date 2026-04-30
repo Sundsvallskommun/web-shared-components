@@ -1,3 +1,4 @@
+import type { DefaultColor } from '@sk-web-gui/utils';
 import { useFormControl } from '../form-control';
 import { cx, useForkRef, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 import React from 'react';
@@ -31,7 +32,7 @@ export interface CheckboxItemProps<T = HTMLInputElement>
   /** Set the checkbox color
    * @default primary
    */
-  color?: string;
+  color?: DefaultColor;
   /** Size of the checkbox
    * @default md
    */

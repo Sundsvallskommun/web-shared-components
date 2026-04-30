@@ -1,3 +1,4 @@
+import type { DefaultColor } from '@sk-web-gui/utils';
 import { __DEV__, cx, DefaultProps } from '@sk-web-gui/utils';
 import React from 'react';
 
@@ -10,7 +11,7 @@ export interface SpinnerProps extends DefaultProps, Omit<React.ComponentPropsWit
   /** Set color of the spinner
    * @default tertiary
    */
-  color?: 'tertiary' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar' | 'warning' | 'info' | 'success' | 'error';
+  color?: DefaultColor | 'tertiary';
 }
 
 export const Spinner = React.forwardRef<HTMLDivElement, SpinnerProps>((props, ref) => {
