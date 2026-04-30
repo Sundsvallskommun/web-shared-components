@@ -1,4 +1,4 @@
-import { Dialog, DialogBackdrop, DialogTitle, Transition, TransitionChild } from '@headlessui/react';
+import { Dialog, DialogBackdrop, DialogPanel, DialogTitle, Transition, TransitionChild } from '@headlessui/react';
 import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
@@ -51,12 +51,45 @@ export const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentPro
   } = props;
 
   const modalRef = React.useRef<HTMLDivElement>(null);
+  const closeFromEscapeRef = React.useRef(false);
 
   const onCloseHandler = () => {
     if (onClose) {
       onClose();
     }
   };
+
+  const onDialogCloseHandler = () => {
+    if (disableCloseOutside && !closeFromEscapeRef.current) {
+      return;
+    }
+
+    closeFromEscapeRef.current = false;
+    onCloseHandler();
+  };
+
+  React.useEffect(() => {
+    if (!show || typeof window === 'undefined') {
+      return;
+    }
+
+    const onWindowKeyDownCapture = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closeFromEscapeRef.current = true;
+
+        // Reset the marker after this event loop to avoid stale escape state.
+        window.setTimeout(() => {
+          closeFromEscapeRef.current = false;
+        }, 0);
+      }
+    };
+
+    window.addEventListener('keydown', onWindowKeyDownCapture, true);
+
+    return () => {
+      window.removeEventListener('keydown', onWindowKeyDownCapture, true);
+    };
+  }, [show]);
 
   React.useEffect(() => {
     if (show && props['aria-label']) {
@@ -69,7 +102,7 @@ export const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentPro
   return (
     <div className="sk-modal" ref={ref}>
       <Transition appear show={show} as={React.Fragment}>
-        <Dialog as="div" className="sk-modal-wrapper" onClose={onCloseHandler} {...rest} ref={modalRef}>
+        <Dialog as="div" className="sk-modal-wrapper" onClose={onDialogCloseHandler} {...rest} ref={modalRef}>
           <div className="sk-modal-wrapper-inner">
             <TransitionChild
               as={React.Fragment}
@@ -81,10 +114,7 @@ export const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentPro
               leaveTo="opacity-0"
               {...(typeof overlayTransitionProps === 'object' ? overlayTransitionProps : {})}
             >
-              <DialogBackdrop
-                className="sk-modal-overlay"
-                style={{ pointerEvents: disableCloseOutside ? 'none' : undefined }}
-              />
+              <DialogBackdrop className="sk-modal-overlay" />
             </TransitionChild>
 
             {/* This element is to trick the browser into centering the modal contents. */}
@@ -101,7 +131,7 @@ export const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentPro
               leaveTo="opacity-0 scale-95"
               {...(typeof contentTransitionProps === 'object' ? contentTransitionProps : {})}
             >
-              <Content className={cx('sk-modal-dialog', className)}>
+              <DialogPanel as={Content} className={cx('sk-modal-dialog', className)}>
                 {(!hideLabel || !hideClosebutton) && (
                   <div className="sk-modal-dialog-header">
                     {!hideLabel ? (
@@ -131,7 +161,7 @@ export const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentPro
                   </div>
                 )}
                 <>{children}</>
-              </Content>
+              </DialogPanel>
             </TransitionChild>
           </div>
         </Dialog>
