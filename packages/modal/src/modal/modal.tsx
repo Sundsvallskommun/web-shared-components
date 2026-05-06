@@ -60,11 +60,12 @@ export const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentPro
   };
 
   const onDialogCloseHandler = () => {
-    if (disableCloseOutside && !closeFromEscapeRef.current) {
+    const fromEscape = closeFromEscapeRef.current;
+    closeFromEscapeRef.current = false;
+    if (disableCloseOutside && !fromEscape) {
       return;
     }
 
-    closeFromEscapeRef.current = false;
     onCloseHandler();
   };
 
@@ -76,11 +77,6 @@ export const ModalComponent = React.forwardRef<HTMLDivElement, ModalComponentPro
     const onWindowKeyDownCapture = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         closeFromEscapeRef.current = true;
-
-        // Reset the marker after this event loop to avoid stale escape state.
-        window.setTimeout(() => {
-          closeFromEscapeRef.current = false;
-        }, 0);
       }
     };
 
