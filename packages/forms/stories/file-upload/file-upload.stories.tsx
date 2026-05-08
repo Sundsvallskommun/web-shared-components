@@ -157,8 +157,6 @@ export const FileUploadWithUseFormProvider = (args: React.ComponentProps<FileUpl
     console.log('FileUploadWithUseFormProvider attachments', files);
   }, [files]);
 
-  console.log('context.formState.errors', context.formState.errors);
-
   return (
     <div className="flex flex-col gap-lg">
       <Switch value={isEdit.toString()} checked={isEdit} onChange={() => setIsEdit((value) => !value)}>

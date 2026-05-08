@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/forms",
-  "version": "2.8.2",
+  "version": "2.9.2",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
@@ -43,7 +43,7 @@
     "@sk-web-gui/divider": "1.1.8",
     "@sk-web-gui/icon": "3.1.2",
     "@sk-web-gui/link": "1.2.9",
-    "@sk-web-gui/modal": "2.3.3",
+    "@sk-web-gui/modal": "2.3.4",
     "@sk-web-gui/popup-menu": "3.1.10",
     "@sk-web-gui/theme": "2.7.1",
     "@sk-web-gui/utils": "2.2.2",

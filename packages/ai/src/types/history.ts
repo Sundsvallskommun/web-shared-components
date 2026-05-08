@@ -3,8 +3,9 @@ import { AssistantInfo, AssistantSession } from './assistant';
 export type Origin = 'user' | 'assistant' | 'system';
 
 export interface ChatEntryReference {
+  id: string;
   title: string;
-  url: string;
+  url?: string;
 }
 export interface ChatHistoryEntry {
   origin: Origin;

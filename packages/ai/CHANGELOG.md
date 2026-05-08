@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.4.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.4.1...@sk-web-gui/ai@4.4.2) (2026-05-06)
+
+**Note:** Version bump only for package @sk-web-gui/ai
+
+## [4.4.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.4.0...@sk-web-gui/ai@4.4.1) (2026-04-29)
+
+**Note:** Version bump only for package @sk-web-gui/ai
+
+# [4.4.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.3.3...@sk-web-gui/ai@4.4.0) (2026-04-27)
+
+### Features
+
+- **useChat:** allow conversation version 2 and inline references ([6601c6c](https://github.com/Sundsvallskommun/web-shared-components/commit/6601c6c378f6eea0bdb2db6f75380f835ba32d4f))
+
+## [4.3.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.3.2...@sk-web-gui/ai@4.3.3) (2026-04-16)
+
+**Note:** Version bump only for package @sk-web-gui/ai
+
+## [4.3.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.3.1...@sk-web-gui/ai@4.3.2) (2026-04-14)
+
+### Bug Fixes
+
+- **usechat:** Check for answer in response ([af8db98](https://github.com/Sundsvallskommun/web-shared-components/commit/af8db987a07ff63c0556fc6c9367e8786cf579db))
+
 ## [4.3.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.3.0...@sk-web-gui/ai@4.3.1) (2026-02-25)
 
 ### Bug Fixes

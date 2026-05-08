@@ -1,6 +1,7 @@
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { defaults } from './defaults';
 import { CustomOnChangeEventUploadFile, UploadFile } from './types';
+import { useState, useCallback } from 'react';
 import { utils } from './utils';
 
 export interface UseAddFilesProps {
@@ -101,6 +102,38 @@ const useAddFiles = (props: UseAddFilesProps) => {
   return { addFiles, triggerChange };
 };
 
+const useSortableList = (initialFiles?: UploadFile[], onChange?: (files: UploadFile[]) => void) => {
+  const [files, setFiles] = useState<UploadFile[]>(initialFiles || []);
+  const [dragItemIndex, setDragItemIndex] = useState<number | null>(null);
+  const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
+  const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
+
+  const reorder = useCallback(
+    (from: number, to: number) => {
+      if (to < 0 || to >= files.length) return;
+      const updated = [...files];
+      const item = updated.splice(from, 1)[0];
+      updated.splice(to, 0, item);
+      setFiles(updated);
+      if (onChange) onChange(updated);
+    },
+    [files, onChange]
+  );
+
+  return {
+    files,
+    setFiles,
+    dragItemIndex,
+    setDragItemIndex,
+    dragOverIndex,
+    setDragOverIndex,
+    focusedIndex,
+    setFocusedIndex,
+    reorder,
+  };
+};
+
 export const hooks = {
   useAddFiles,
+  useSortableList,
 };

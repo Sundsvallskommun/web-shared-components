@@ -1,10 +1,16 @@
 import type { StorybookConfig } from '@storybook/react-vite';
 import react from '@vitejs/plugin-react';
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
+import { createRequire } from 'node:module';
+import { fileURLToPath } from 'node:url';
 import { mergeConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { reloadStylesOnFolderChange } from './utils';
+import { reloadStylesOnFolderChange } from './utils.ts';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const require = createRequire(import.meta.url);
 
 function getPackages() {
   const packagesPath = path.resolve(__dirname, '../packages');
