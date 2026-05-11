@@ -25,12 +25,14 @@ ENV NX_DAEMON=false
 ENV CI=true
 
 # Re-install with the full workspace present (the deps stage only had the root package.json),
-# then build every package (types + esm + cjs) before the Storybook build:
+# then build esm + cjs for every package before the Storybook build:
 #   - Storybook's production build uses packages/*/dist/esm as rollup inputs
 #   - tailwind.config.ts -> packages/core/src/preset -> imports @sk-web-gui/utils, which
 #     resolves via its package.json "main" to dist/cjs/index.js
-# (`boot:storybook` only runs build:esm, which is why dist/cjs was missing.)
-RUN yarn install && yarn build && yarn build:storybook
+# We skip `build:types` on purpose: Storybook doesn't need dist/types (it reads source for
+# prop docs), and the tsc-based build:types has a cross-package ordering issue in a clean
+# env. esm/cjs are SWC transpile-only, so no type errors and no ordering problems.
+RUN yarn install && yarn build:esm && yarn build:cjs && yarn build:storybook
 
 # Production image, copy all the files and run next
 FROM node:23.10.0-alpine AS runner
