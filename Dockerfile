@@ -24,7 +24,13 @@ ENV NODE_OPTIONS=--max-old-space-size=4096
 ENV NX_DAEMON=false
 ENV CI=true
 
-RUN yarn run boot:storybook
+# Re-install with the full workspace present (the deps stage only had the root package.json),
+# then build every package (types + esm + cjs) before the Storybook build:
+#   - Storybook's production build uses packages/*/dist/esm as rollup inputs
+#   - tailwind.config.ts -> packages/core/src/preset -> imports @sk-web-gui/utils, which
+#     resolves via its package.json "main" to dist/cjs/index.js
+# (`boot:storybook` only runs build:esm, which is why dist/cjs was missing.)
+RUN yarn install && yarn build && yarn build:storybook
 
 # Production image, copy all the files and run next
 FROM node:23.10.0-alpine AS runner
