@@ -1,5 +1,5 @@
 # Install dependencies only when needed
-FROM node:22.14.0-alpine AS deps
+FROM node:23.10.0-alpine AS deps
 
 WORKDIR /app
 COPY package.json yarn.lock ./
@@ -14,7 +14,7 @@ RUN yarn install
 # RUN npm ci
 
 # Rebuild the source code only when needed
-FROM node:22.14.0-alpine AS builder
+FROM node:23.10.0-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -27,7 +27,7 @@ ENV CI=true
 RUN yarn run boot:storybook
 
 # Production image, copy all the files and run next
-FROM node:22.14.0-alpine AS runner
+FROM node:23.10.0-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
