@@ -1,8 +1,9 @@
 import { omit } from '@sk-web-gui/utils';
 import React from 'react';
+import { buildBrandThemeColors, buildSemanticColors } from './colors';
 import { toCSSVar } from './create-theme-vars';
 import { defaultTheme } from './default-theme';
-import { ColorSchemeMode, GuiTheme, ThemeOption } from './types';
+import { BrandTheme, ColorSchemeMode, GuiTheme, Palette, ThemeOption } from './types';
 import { useSafeEffect } from './use-safe-effect';
 import { getPreferredColorScheme, GuiContext, isBrowser } from './utils';
 
@@ -13,6 +14,19 @@ export interface GuiProviderProps {
    * @default system
    */
   colorScheme?: ColorSchemeMode;
+  /**
+   * The active palette. Controls theme-following roles (action / brand / accent / alert)
+   * when `brandTheme` is 'sundsvall'. Feedback colors are unaffected by this choice.
+   * @default 'blue'
+   */
+  palette?: Palette;
+  /**
+   * The active brand theme (organisation colour set). Selecting one other than 'sundsvall'
+   * replaces the neutral roles (background / surface / text / border / …) and the
+   * brand-following roles. Feedback colors stay shared across brand themes.
+   * @default 'sundsvall'
+   */
+  brandTheme?: BrandTheme;
   /**
    * Font size in px that the theme variables are based on
    * @default 10
@@ -33,6 +47,8 @@ export interface GuiProviderProps {
 export function GuiProvider({
   theme = defaultTheme,
   colorScheme: _colorScheme,
+  palette: _palette,
+  brandTheme: _brandTheme,
   baseFontSize = 10,
   htmlFontSize = 10,
   children,
@@ -43,10 +59,20 @@ export function GuiProvider({
   const [pickedColorScheme, setPickedColorScheme] = React.useState<ColorSchemeMode>(
     _colorScheme || ColorSchemeMode.System
   );
+  const [palette, setPalette] = React.useState<Palette>(_palette || 'blue');
+  const [brandTheme, setBrandTheme] = React.useState<BrandTheme>(_brandTheme || 'sundsvall');
 
   React.useEffect(() => {
     setPickedColorScheme(_colorScheme || ColorSchemeMode.System);
   }, [_colorScheme]);
+
+  React.useEffect(() => {
+    if (_palette) setPalette(_palette);
+  }, [_palette]);
+
+  React.useEffect(() => {
+    if (_brandTheme) setBrandTheme(_brandTheme);
+  }, [_brandTheme]);
 
   useSafeEffect(() => {
     if (pickedColorScheme === ColorSchemeMode.System) {
@@ -79,12 +105,45 @@ export function GuiProvider({
 
   const computedTheme = React.useMemo(() => {
     const omittedTheme = omit(theme, ['colorSchemes']);
-    const { colors, type } = theme.colorSchemes[colorScheme] || {};
+    const baseScheme = theme.colorSchemes[colorScheme] || ({} as (typeof theme.colorSchemes)[string]);
+    const { type } = baseScheme;
     if (isBrowser) {
       const element = _element ?? document.documentElement;
       if (type === 'dark') element.classList.add('dark');
       else element.classList.remove('dark');
     }
+
+    // Overlay palette-aware semantic tokens (action / brand / accent / alert) on top of
+    // the base color scheme. Feedback colors (info / success / warning / error) and
+    // primitives stay untouched.
+    const semantic = buildSemanticColors(palette);
+    const activeSemantic = type === 'dark' ? semantic.darkmode : semantic.lightmode;
+    const invertedSemantic = type === 'dark' ? semantic.lightmode : semantic.darkmode;
+
+    // When a non-default brand theme is active, overlay its neutral + brand-following roles
+    // on top (this wins over the palette-mode semantic roles). Feedback colors are never
+    // part of the overlay, so they remain shared across brand themes.
+    const brandOverlay = buildBrandThemeColors(brandTheme);
+    const activeBrandOverlay = brandOverlay ? (type === 'dark' ? brandOverlay.darkmode : brandOverlay.lightmode) : null;
+    const invertedBrandOverlay = brandOverlay
+      ? type === 'dark'
+        ? brandOverlay.lightmode
+        : brandOverlay.darkmode
+      : null;
+
+    const baseColors = (baseScheme.colors ?? {}) as Record<string, unknown>;
+    const baseInverted = (baseColors.inverted ?? {}) as Record<string, unknown>;
+
+    const colors = {
+      ...baseColors,
+      ...activeSemantic,
+      ...(activeBrandOverlay ?? {}),
+      inverted: {
+        ...baseInverted,
+        ...invertedSemantic,
+        ...(invertedBrandOverlay ?? {}),
+      },
+    };
 
     const normalizedTheme = {
       ...omittedTheme,
@@ -104,7 +163,7 @@ export function GuiProvider({
 
     return toCSSVar(normalizedTheme);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [theme, colorScheme, pickedColorScheme, units, _element]);
+  }, [theme, colorScheme, pickedColorScheme, palette, brandTheme, units, _element]);
 
   useSafeEffect(() => {
     if (isBrowser) {
@@ -119,10 +178,14 @@ export function GuiProvider({
       preferredColorScheme,
       colorScheme: pickedColorScheme,
       setColorScheme: setPickedColorScheme,
+      palette,
+      setPalette,
+      brandTheme,
+      setBrandTheme,
       units: { base: baseFontSize, htmlBase: htmlFontSize },
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [computedTheme, preferredColorScheme]
+    [computedTheme, preferredColorScheme, palette, brandTheme]
   );
 
   return <GuiContext.Provider value={value}>{children}</GuiContext.Provider>;

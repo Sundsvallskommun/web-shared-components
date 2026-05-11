@@ -1,6 +1,7 @@
 // https://github.com/tailwindlabs/tailwindcss/blob/master/colors.js
 
 import { toRGB } from '@sk-web-gui/utils';
+import { BrandTheme, Palette } from './types';
 
 // /* Base colors */
 export const primitives = {
@@ -613,24 +614,43 @@ const darkmode = {
   },
 };
 
-const semanticColors = {
-  lightmode: {
-    action: { ...lightmode.vattjom },
-    info: { ...lightmode.vattjom },
-    success: { ...lightmode.gronsta },
-    alert: { ...lightmode.juniskar },
-    brand: { ...lightmode.vattjom },
-    accent: { ...lightmode.juniskar },
-  },
-  darkmode: {
-    action: { ...darkmode.vattjom },
-    info: { ...darkmode.vattjom },
-    success: { ...darkmode.gronsta },
-    alert: { ...darkmode.juniskar },
-    brand: { ...darkmode.vattjom },
-    accent: { ...darkmode.juniskar },
-  },
+// Maps a palette mode to the underlying place-named palette that holds the hex values.
+// Hex values are not duplicated — palettes alias to the existing lightmode/darkmode entries.
+const paletteToPlace = {
+  blue: 'vattjom',
+  green: 'gronsta',
+  pink: 'juniskar',
+  purple: 'bjornstigen',
+} as const satisfies Record<Palette, keyof typeof lightmode>;
+
+// Builds the brand-following role tokens. `action` / `brand` follow the active palette;
+// `accent` and `alert` are distinct highlight roles with their own identity (provisional
+// mappings — UX has not finalised what `accent` / `alert` mean, so they are parked here as
+// bjornstigen / juniskar rather than aliased onto the primary brand colour). Feedback
+// colors (info / success / warning / error) are palette-independent and live in
+// lightmode / darkmode directly.
+export const buildSemanticColors = (palette: Palette = 'blue') => {
+  const lightPlace = lightmode[paletteToPlace[palette]];
+  const darkPlace = darkmode[paletteToPlace[palette]];
+
+  return {
+    lightmode: {
+      action: { ...lightPlace },
+      brand: { ...lightPlace },
+      accent: { ...lightmode.bjornstigen },
+      alert: { ...lightmode.juniskar },
+    },
+    darkmode: {
+      action: { ...darkPlace },
+      brand: { ...darkPlace },
+      accent: { ...darkmode.bjornstigen },
+      alert: { ...darkmode.juniskar },
+    },
+  };
 };
+
+// Default palette: 'blue' (matches the existing Sundsvall behaviour).
+const semanticColors = buildSemanticColors('blue');
 
 const utility = {
   lightmode: {
@@ -732,21 +752,273 @@ const utility = {
   },
 };
 
-// App setup
-export const colors = {
-  lightmode: {
-    primitives,
-    ...lightmode,
-    ...utility.lightmode,
-    ...semanticColors.lightmode,
-    inverted: { ...darkmode, ...utility.darkmode, ...semanticColors.darkmode },
+// App setup — builds the full color tree for a given palette.
+// Theme-following roles (action / brand / accent / alert) resolve to the chosen palette;
+// feedback roles (info / success / warning / error) are palette-independent.
+export const buildColors = (palette: Palette = 'blue') => {
+  const semantic = buildSemanticColors(palette);
+  return {
+    lightmode: {
+      primitives,
+      ...lightmode,
+      ...utility.lightmode,
+      ...semantic.lightmode,
+      inverted: { ...darkmode, ...utility.darkmode, ...semantic.darkmode },
+    },
+    darkmode: {
+      primitives,
+      ...darkmode,
+      ...utility.darkmode,
+      ...semantic.darkmode,
+      inverted: { ...lightmode, ...utility.lightmode, ...semantic.lightmode },
+    },
+  };
+};
+
+// Default colors export (palette = 'blue') for backward compatibility.
+export const colors = buildColors('blue');
+
+// ---------------------------------------------------------------------------
+// Brand themes (multi-tenant POC)
+// ---------------------------------------------------------------------------
+// A brand theme is a named colour set for an organisation. Picking one replaces the
+// neutral roles (background / surface / text / border / primary / secondary / …) and the
+// brand-following roles (action / brand / accent / alert). Feedback colours
+// (info / success / warning / error) are intentionally NOT redefined here — they stay
+// shared with the base Sundsvall theme.
+
+// Example partner-org primitives — deliberately distinct from Sundsvall (cool slate
+// neutrals + a teal brand ramp) so the org switch is visually obvious in the POC.
+const aldeeranPrimitives = {
+  neutral: {
+    lightest: `rgb(${toRGB('#FFFFFF')?.join(',')})`,
+    50: `rgb(${toRGB('#F6F8FB')?.join(',')})`,
+    100: `rgb(${toRGB('#ECEFF5')?.join(',')})`,
+    200: `rgb(${toRGB('#DAE1EC')?.join(',')})`,
+    300: `rgb(${toRGB('#B3BFD0')?.join(',')})`,
+    400: `rgb(${toRGB('#94A3B8')?.join(',')})`,
+    500: `rgb(${toRGB('#5C6B82')?.join(',')})`,
+    600: `rgb(${toRGB('#45526A')?.join(',')})`,
+    700: `rgb(${toRGB('#37435A')?.join(',')})`,
+    800: `rgb(${toRGB('#242D3D')?.join(',')})`,
+    900: `rgb(${toRGB('#161D29')?.join(',')})`,
+    darkest: `rgb(${toRGB('#11161F')?.join(',')})`,
   },
-  darkmode: {
-    primitives,
-    ...darkmode,
-    ...utility.darkmode,
-    ...semanticColors.darkmode,
-    inverted: { ...lightmode, ...utility.lightmode, ...semanticColors.lightmode },
+  brand: {
+    50: `rgb(${toRGB('#ECFBF8')?.join(',')})`,
+    100: `rgb(${toRGB('#CFF3EC')?.join(',')})`,
+    200: `rgb(${toRGB('#A2E7DA')?.join(',')})`,
+    300: `rgb(${toRGB('#69D2C0')?.join(',')})`,
+    400: `rgb(${toRGB('#2FB5A0')?.join(',')})`,
+    500: `rgb(${toRGB('#0F9685')?.join(',')})`,
+    600: `rgb(${toRGB('#0B786A')?.join(',')})`,
+    700: `rgb(${toRGB('#085E53')?.join(',')})`,
+    800: `rgb(${toRGB('#064A41')?.join(',')})`,
+    900: `rgb(${toRGB('#04372F')?.join(',')})`,
+  },
+  // A separate accent hue (amber) — unlike Sundsvall (where action/brand/accent all map to
+  // the same palette), this example org deliberately gives `accent` its own colour, to show
+  // that the role abstraction lets each org choose how much the roles diverge.
+  accent: {
+    50: `rgb(${toRGB('#FFF7EB')?.join(',')})`,
+    100: `rgb(${toRGB('#FCE9C8')?.join(',')})`,
+    200: `rgb(${toRGB('#F7D597')?.join(',')})`,
+    300: `rgb(${toRGB('#F0BC5E')?.join(',')})`,
+    400: `rgb(${toRGB('#E0992A')?.join(',')})`,
+    500: `rgb(${toRGB('#C27C12')?.join(',')})`,
+    600: `rgb(${toRGB('#9C620C')?.join(',')})`,
+    700: `rgb(${toRGB('#7D4E0A')?.join(',')})`,
+    800: `rgb(${toRGB('#5F3B0B')?.join(',')})`,
+    900: `rgb(${toRGB('#422809')?.join(',')})`,
   },
 };
+
+type ColorRamp = typeof primitives.blue;
+type NeutralRamp = typeof primitives.gray;
+type BrandRoles = typeof lightmode.vattjom;
+
+// Builds the `{ background, surface, text }` shape used by the brand-following roles
+// (action / brand / accent / alert) from a 50..900 colour ramp — same shape that
+// buildSemanticColors produces from the legacy place-named palettes.
+const buildRoleShape = (ramp: ColorRamp, mode: 'light' | 'dark'): BrandRoles =>
+  mode === 'light'
+    ? {
+        background: { 100: ramp[50], 200: ramp[100], 300: ramp[300] },
+        surface: {
+          primary: { DEFAULT: ramp[700], hover: ramp[900] },
+          accent: { DEFAULT: ramp[200], hover: ramp[100] },
+        },
+        text: { DEFAULT: ramp[800], primary: ramp[800], secondary: ramp[100] },
+      }
+    : {
+        background: { 100: ramp[900], 200: ramp[700], 300: ramp[600] },
+        surface: {
+          primary: { DEFAULT: ramp[200], hover: ramp[300] },
+          accent: { DEFAULT: ramp[700], hover: ramp[600] },
+        },
+        text: { DEFAULT: ramp[100], primary: ramp[100], secondary: ramp[800] },
+      };
+
+// Builds the neutral + brand-following role overrides for a partner-org theme. Structure
+// mirrors the relevant slice of `lightmode` / `darkmode`. `brand` drives action / brand /
+// alert; `accent` drives the accent role (pass the same ramp to keep them in sync).
+// Anything not returned here (notably the feedback colours and the legacy place-named
+// palettes) falls back to base.
+const buildBrandRoles = (neutral: NeutralRamp, brand: ColorRamp, accent: ColorRamp, mode: 'light' | 'dark') => {
+  const brandRole = buildRoleShape(brand, mode);
+  const accentRole = buildRoleShape(accent, mode);
+  if (mode === 'light') {
+    return {
+      body: neutral[900],
+      black: neutral[900],
+      white: neutral.lightest,
+      ring: primitives.ring,
+      primary: {
+        DEFAULT: neutral[900],
+        active: neutral[900],
+        surface: {
+          DEFAULT: primitives.overlay.darken[10],
+          hover: primitives.overlay.darken[9],
+          disabled: primitives.overlay.darken[3],
+        },
+        ...neutral,
+      },
+      secondary: {
+        DEFAULT: neutral[700],
+        active: neutral[700],
+        outline: { DEFAULT: primitives.overlay.darken[5], hover: primitives.overlay.darken[7] },
+        surface: {
+          DEFAULT: 'transparent',
+          hover: primitives.overlay.lighten[3],
+          disabled: primitives.overlay.darken[2],
+        },
+        ...neutral,
+      },
+      tertiary: {
+        surface: {
+          DEFAULT: primitives.overlay.darken[2],
+          hover: primitives.overlay.darken[3],
+          disabled: primitives.overlay.darken[2],
+        },
+      },
+      dark: {
+        DEFAULT: neutral[900],
+        primary: neutral[900],
+        secondary: neutral[700],
+        disabled: primitives.overlay.darken[7],
+        placeholder: primitives.overlay.darken[7],
+        ghost: primitives.overlay.darken[4],
+      },
+      light: {
+        DEFAULT: neutral.lightest,
+        primary: neutral.lightest,
+        secondary: primitives.overlay.lighten[9],
+        disabled: primitives.overlay.lighten[6],
+        placeholder: primitives.overlay.lighten[6],
+        ghost: primitives.overlay.lighten[4],
+      },
+      divider: primitives.overlay.darken[5],
+      background: {
+        DEFAULT: neutral.lightest,
+        content: neutral.lightest,
+        100: neutral[50],
+        200: neutral[100],
+        'color-mixin': { 1: primitives.overlay.darken[1], 2: primitives.overlay.darken[3] },
+      },
+      action: { ...brandRole },
+      brand: { ...brandRole },
+      accent: { ...accentRole },
+      alert: { ...brandRole },
+      // Links follow the org's primary brand colour (mirrors utility.link in the base theme).
+      link: {
+        text: {
+          DEFAULT: brandRole.surface.primary.DEFAULT,
+          hover: brandRole.surface.primary.hover,
+          visited: { DEFAULT: brandRole.surface.primary.DEFAULT, hover: brandRole.surface.primary.hover },
+        },
+      },
+    };
+  }
+  return {
+    body: neutral.lightest,
+    black: neutral[900],
+    white: neutral.lightest,
+    ring: primitives.ring,
+    primary: {
+      DEFAULT: neutral.lightest,
+      surface: {
+        DEFAULT: primitives.overlay.lighten[9],
+        hover: neutral.lightest,
+        disabled: primitives.overlay.lighten[3],
+      },
+      ...neutral,
+    },
+    secondary: {
+      DEFAULT: neutral[200],
+      outline: { DEFAULT: primitives.overlay.lighten[5], hover: primitives.overlay.lighten[7] },
+      surface: {
+        DEFAULT: 'transparent',
+        hover: primitives.overlay.darken[3],
+        disabled: primitives.overlay.lighten[2],
+      },
+      ...neutral,
+    },
+    tertiary: {
+      surface: {
+        DEFAULT: primitives.overlay.lighten[4],
+        hover: primitives.overlay.lighten[5],
+        disabled: primitives.overlay.lighten[2],
+      },
+    },
+    dark: {
+      DEFAULT: neutral.lightest,
+      primary: neutral.lightest,
+      secondary: neutral[200],
+      disabled: primitives.overlay.lighten[6],
+      placeholder: primitives.overlay.lighten[6],
+      ghost: primitives.overlay.lighten[4],
+    },
+    light: {
+      DEFAULT: neutral[900],
+      primary: neutral[900],
+      secondary: primitives.overlay.darken[9],
+      disabled: primitives.overlay.darken[7],
+      placeholder: primitives.overlay.darken[7],
+      ghost: primitives.overlay.darken[4],
+    },
+    divider: primitives.overlay.lighten[5],
+    background: {
+      DEFAULT: neutral[800],
+      content: neutral[800],
+      100: neutral[700],
+      200: neutral[900],
+      'color-mixin': { 1: primitives.overlay.lighten[3], 2: primitives.overlay.lighten[4] },
+    },
+    action: { ...brandRole },
+    brand: { ...brandRole },
+    accent: { ...accentRole },
+    alert: { ...brandRole },
+    // Links follow the org's primary brand colour (mirrors utility.link in the base theme).
+    link: {
+      text: {
+        DEFAULT: brandRole.surface.primary.DEFAULT,
+        hover: brandRole.surface.primary.hover,
+        visited: { DEFAULT: brandRole.surface.primary.DEFAULT, hover: brandRole.surface.primary.hover },
+      },
+    },
+  };
+};
+
+const brandThemes: Record<BrandTheme, { lightmode: ReturnType<typeof buildBrandRoles>; darkmode: ReturnType<typeof buildBrandRoles> } | null> = {
+  // 'sundsvall' uses the base colour set as-is (palette-mode driven); no overlay.
+  sundsvall: null,
+  aldeeran: {
+    lightmode: buildBrandRoles(aldeeranPrimitives.neutral, aldeeranPrimitives.brand, aldeeranPrimitives.accent, 'light'),
+    darkmode: buildBrandRoles(aldeeranPrimitives.neutral, aldeeranPrimitives.brand, aldeeranPrimitives.accent, 'dark'),
+  },
+};
+
+// Returns the colour overlay for a brand theme, or null for the base ('sundsvall') theme.
+// Consumed by GuiProvider, which overlays it on top of the active colour scheme.
+export const buildBrandThemeColors = (brandTheme: BrandTheme = 'sundsvall') => brandThemes[brandTheme] ?? null;
 

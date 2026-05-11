@@ -63,3 +63,31 @@ export enum ColorSchemeMode {
   Light = 'light',
   System = 'system',
 }
+
+/**
+ * Palette mode — selects which organisation palette is active for theme-following
+ * roles (action / brand / accent). Feedback colors (info / success / warning / error)
+ * are palette-independent.
+ *
+ * POC scope: Blue / Green / Pink / Purple. Black to be added when UX provides hex values.
+ *
+ * Mapping to existing place-named palettes:
+ *   - 'blue'   → vattjom
+ *   - 'green'  → gronsta
+ *   - 'pink'   → juniskar
+ *   - 'purple' → bjornstigen
+ */
+export type Palette = 'blue' | 'green' | 'pink' | 'purple';
+
+/**
+ * Brand theme — selects which organisation's colour set is active. Picking a brand theme
+ * replaces both the brand-following roles (action / brand / accent / alert) and the
+ * neutral roles (background / surface / text / border). Feedback colours
+ * (info / success / warning / error) stay shared across all brand themes.
+ *
+ * POC scope:
+ *   - 'sundsvall' → the existing Sundsvall colours (default)
+ *   - 'aldeeran'  → an example partner-org palette (distinct neutrals + teal brand)
+ */
+export type BrandTheme = 'sundsvall' | 'aldeeran';
+
