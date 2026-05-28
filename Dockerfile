@@ -1,5 +1,5 @@
 # Install dependencies only when needed
-FROM node:23.10.0-alpine AS deps
+FROM node:20.19.0-alpine AS deps
 
 WORKDIR /app
 COPY package.json yarn.lock ./
@@ -14,7 +14,7 @@ RUN yarn install
 # RUN npm ci
 
 # Rebuild the source code only when needed
-FROM node:23.10.0-alpine AS builder
+FROM node:20.19.0-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .

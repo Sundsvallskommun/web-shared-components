@@ -43,11 +43,10 @@ export const PaletteDemo: React.FC = () => (
   <div style={{ padding: '2.4rem' }}>
     <h1 style={{ fontSize: '3.2rem', marginBottom: '0.8rem' }}>Org-teman</h1>
     <p style={{ marginBottom: '2.4rem', maxWidth: '64rem' }}>
-      Använd <strong>Org-tema</strong>-väljaren i Storybook-headern för att växla mellan{' '}
-      <strong>Sundsvall</strong> (standard) och <strong>Aldeeran</strong> (exempel-organisation). Brand-rollerna
-      och neutralerna byter färg — feedback-färgerna ska stå still. Komponenter som fortfarande använder
-      plats-namnen (vattjom m.fl.) följer <em>inte</em> org-temat; det är därför de behöver migreras till
-      roll-tokens.
+      Använd <strong>Org-tema</strong>-väljaren i Storybook-headern för att växla mellan <strong>Sundsvall</strong>{' '}
+      (standard) och <strong>Aldeeran</strong> (exempel-organisationen). Brand-rollerna och neutralerna byter färg —
+      feedback-färgerna ska stå still. Komponenter som fortfarande använder plats-namnen (vattjom m.fl.) följer{' '}
+      <em>inte</em> org-temat; det är därför de behöver migreras till roll-tokens.
     </p>
 
     <Section
