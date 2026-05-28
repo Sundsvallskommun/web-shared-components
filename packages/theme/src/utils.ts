@@ -1,7 +1,7 @@
 import { deepmerge, Dict, WithCSSVar } from '@sk-web-gui/utils';
 import React from 'react';
 import { defaultTheme } from './default-theme';
-import { BrandTheme, ColorSchemeMode, GuiTheme, GuiThemeOverride, Palette } from './types';
+import { BrandTheme, ColorSchemeMode, GuiTheme, GuiThemeOverride } from './types';
 
 export const isBrowser = typeof document !== 'undefined';
 
@@ -21,17 +21,8 @@ export const GuiContext = React.createContext<
        */
       preferredColorScheme: Exclude<ColorSchemeMode, ColorSchemeMode.System>;
       /**
-       * The active palette (controls theme-following roles: action / brand / accent / alert)
-       * when the brand theme is 'sundsvall'. Feedback colors are unaffected.
-       */
-      palette: Palette;
-      /**
-       * Switch the active palette at runtime.
-       */
-      setPalette: (palette: Palette) => void;
-      /**
-       * The active brand theme (organisation colour set). Replaces neutral + brand-following
-       * roles; feedback colors stay shared across brand themes.
+       * The active brand theme — the organisation's colour set (name + mode hexes +
+       * optional feedback overrides). Defaults to `sundsvallTheme`.
        */
       brandTheme: BrandTheme;
       /**

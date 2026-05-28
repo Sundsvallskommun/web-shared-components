@@ -1,4 +1,4 @@
-import { BrandTheme } from '@sk-web-gui/theme';
+import { BrandTheme, sundsvallTheme } from '@sk-web-gui/theme';
 import { addons } from '@storybook/preview-api';
 import React from 'react';
 
@@ -11,18 +11,33 @@ const channel = addons.getChannel();
 const SET_GLOBALS = 'setGlobals';
 const GLOBALS_UPDATED = 'globalsUpdated';
 
-const readBrandTheme = (globals: unknown): BrandTheme | undefined => {
-  const value = (globals as { brandTheme?: unknown } | undefined)?.brandTheme;
-  return typeof value === 'string' ? (value as BrandTheme) : undefined;
+// Maps the toolbar-global string key to a concrete BrandTheme object. Adding a new entry
+// here automatically lights up that option in the preview.tsx toolbar items list.
+const brandThemes: Record<string, BrandTheme> = {
+  sundsvall: sundsvallTheme,
+  // Example alternative org so the toolbar exercises the BrandTheme override path.
+  aldeeran: {
+    name: 'Aldeeran (exempel-org)',
+    mode: {
+      primary: '#0F9685',
+      secondary: '#C27C12',
+      tertiary: '#5B1F78',
+    },
+  },
 };
 
-export function useBrandTheme(seed?: BrandTheme): BrandTheme {
-  const [brandTheme, setBrandTheme] = React.useState<BrandTheme>(seed ?? 'sundsvall');
+const readBrandThemeKey = (globals: unknown): string | undefined => {
+  const value = (globals as { brandTheme?: unknown } | undefined)?.brandTheme;
+  return typeof value === 'string' ? value : undefined;
+};
+
+export function useBrandTheme(seedKey?: string): BrandTheme {
+  const [key, setKey] = React.useState<string>(seedKey ?? 'sundsvall');
 
   React.useEffect(() => {
     const handler = ({ globals }: { globals?: unknown }) => {
-      const next = readBrandTheme(globals);
-      if (next) setBrandTheme(next);
+      const next = readBrandThemeKey(globals);
+      if (next) setKey(next);
     };
     channel.on(SET_GLOBALS, handler);
     channel.on(GLOBALS_UPDATED, handler);
@@ -32,5 +47,5 @@ export function useBrandTheme(seed?: BrandTheme): BrandTheme {
     };
   }, []);
 
-  return brandTheme;
+  return brandThemes[key] ?? sundsvallTheme;
 }

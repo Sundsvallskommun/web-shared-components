@@ -65,29 +65,50 @@ export enum ColorSchemeMode {
 }
 
 /**
- * Palette mode — selects which organisation palette is active for theme-following
- * roles (action / brand / accent). Feedback colors (info / success / warning / error)
- * are palette-independent.
- *
- * POC scope: Blue / Green / Pink / Purple. Black to be added when UX provides hex values.
- *
- * Mapping to existing place-named palettes:
- *   - 'blue'   → vattjom
- *   - 'green'  → gronsta
- *   - 'pink'   → juniskar
- *   - 'purple' → bjornstigen
+ * Feedback colours an organisation can override. Each entry is a single hex value (e.g.
+ * `'#AA4A44'`) that is expanded internally into a full ramp + surface/text/border tree.
+ * Omitting a field falls back to {@link sundsvallTheme}'s value for that feedback type.
  */
-export type Palette = 'blue' | 'green' | 'pink' | 'purple';
+export interface BrandThemeFeedback {
+  warning?: string;
+  error?: string;
+  success?: string;
+  alert?: string;
+  info?: string;
+}
 
 /**
- * Brand theme — selects which organisation's colour set is active. Picking a brand theme
- * replaces both the brand-following roles (action / brand / accent / alert) and the
- * neutral roles (background / surface / text / border). Feedback colours
- * (info / success / warning / error) stay shared across all brand themes.
+ * The three brand-driven colour roles. Each is a single hex value that GuiProvider
+ * expands into a 50–900 ramp plus surface/text/border tokens with hover/disabled states.
  *
- * POC scope:
- *   - 'sundsvall' → the existing Sundsvall colours (default)
- *   - 'aldeeran'  → an example partner-org palette (distinct neutrals + teal brand)
+ * - `primary` drives the main CTA tokens (`action.*`)
+ * - `secondary` and `tertiary` are two additional brand slots available for accent/highlight
+ *   roles (consumers decide where to use them via Tailwind classes / CSS variables)
  */
-export type BrandTheme = 'sundsvall' | 'aldeeran';
+export interface BrandThemeMode {
+  primary: string;
+  secondary: string;
+  tertiary: string;
+}
+
+/**
+ * A consumer-supplied brand theme. Pass to `<GuiProvider brandTheme={...}>` to override
+ * Sundsvall's defaults with another organisation's colours.
+ *
+ * @example
+ * ```ts
+ * const hudiksvallsTheme: BrandTheme = {
+ *   name: 'Hudiksvalls kommun',
+ *   mode: { primary: '#0578EB', secondary: '#8C42AE', tertiary: '#00733B' },
+ * };
+ * ```
+ */
+export interface BrandTheme {
+  /** Organisation name, used for documentation / debugging. */
+  name: string;
+  /** Optional feedback colour overrides. Missing fields inherit from {@link sundsvallTheme}. */
+  feedback?: BrandThemeFeedback;
+  /** Required brand colour slots. */
+  mode: BrandThemeMode;
+}
 

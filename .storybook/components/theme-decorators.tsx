@@ -1,10 +1,11 @@
-import { BrandTheme, ColorSchemeMode, defaultTheme } from '@sk-web-gui/theme';
+import { ColorSchemeMode, defaultTheme } from '@sk-web-gui/theme';
 import { MemoizedGuiProvider } from './theme-helpers';
+import { useBrandTheme } from './use-brand-theme';
 import { useDarkMode } from './use-darkmode';
 
 export const WithGuiDecorator = (StoryFn: any, context: any) => {
   const isDark = useDarkMode();
-  const brandTheme = (context.globals?.brandTheme as BrandTheme) || 'sundsvall';
+  const brandTheme = useBrandTheme(context.globals?.brandTheme as string | undefined);
 
   return (
     <MemoizedGuiProvider

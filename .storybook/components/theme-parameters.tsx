@@ -13,7 +13,7 @@ export const ParametersContainer: React.FC<ParametersContainerProps> = ({ childr
   const isDark = useDarkMode();
   // Docs pages render here instead of through WithGuiDecorator, so the org-theme
   // toolbar global is picked up via the channel and forwarded to the provider.
-  const brandTheme = useBrandTheme(context?.globals?.brandTheme);
+  const brandTheme = useBrandTheme(context?.globals?.brandTheme as string | undefined);
 
   const theme = React.useMemo(
     () => ({
