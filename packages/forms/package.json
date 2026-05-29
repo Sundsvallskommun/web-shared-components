@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/forms",
-  "version": "2.9.2",
+  "version": "2.9.3",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
