@@ -1,7 +1,7 @@
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { defaults } from './defaults';
 import { CustomOnChangeEventUploadFile, UploadFile } from './types';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { utils } from './utils';
 
 export interface UseAddFilesProps {
@@ -102,8 +102,11 @@ const useAddFiles = (props: UseAddFilesProps) => {
   return { addFiles, triggerChange };
 };
 
-const useSortableList = (initialFiles?: UploadFile[], onChange?: (files: UploadFile[]) => void) => {
-  const [files, setFiles] = useState<UploadFile[]>(initialFiles || []);
+const useSortableList = (uploadedFiles?: UploadFile[], onChange?: (files: UploadFile[]) => void) => {
+  const [files, setFiles] = useState<UploadFile[]>(uploadedFiles || []);
+  useEffect(() => {
+    setFiles(uploadedFiles ?? []);
+  }, [uploadedFiles]);
   const [dragItemIndex, setDragItemIndex] = useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
   const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
