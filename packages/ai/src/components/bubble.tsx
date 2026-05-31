@@ -1,4 +1,5 @@
 import { Icon } from '@sk-web-gui/icon';
+import type { DefaultColor } from '@sk-web-gui/utils';
 import { cx } from '@sk-web-gui/utils';
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
@@ -7,7 +8,7 @@ export interface BubbleProps extends React.ComponentPropsWithoutRef<'button'> {
   /**
    * @default vattjom
    */
-  color?: string;
+  color?: DefaultColor;
   /**
    * @default false
    */

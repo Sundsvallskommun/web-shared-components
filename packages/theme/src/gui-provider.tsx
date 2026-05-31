@@ -1,8 +1,9 @@
 import { omit } from '@sk-web-gui/utils';
 import React from 'react';
+import { buildBrandColors, sundsvallTheme } from './colors';
 import { toCSSVar } from './create-theme-vars';
 import { defaultTheme } from './default-theme';
-import { ColorSchemeMode, GuiTheme, ThemeOption } from './types';
+import { BrandTheme, ColorSchemeMode, GuiTheme, ThemeOption } from './types';
 import { useSafeEffect } from './use-safe-effect';
 import { getPreferredColorScheme, GuiContext, isBrowser } from './utils';
 
@@ -13,6 +14,13 @@ export interface GuiProviderProps {
    * @default system
    */
   colorScheme?: ColorSchemeMode;
+  /**
+   * The active brand theme — describes the organisation's colour set. Pass an object with
+   * `name`, `mode.{primary,secondary,tertiary}` hex values and optional
+   * `feedback.{warning,error,success,alert,info}` overrides. Defaults to
+   * `sundsvallTheme`.
+   */
+  brandTheme?: BrandTheme;
   /**
    * Font size in px that the theme variables are based on
    * @default 10
@@ -33,6 +41,7 @@ export interface GuiProviderProps {
 export function GuiProvider({
   theme = defaultTheme,
   colorScheme: _colorScheme,
+  brandTheme: _brandTheme,
   baseFontSize = 10,
   htmlFontSize = 10,
   children,
@@ -43,10 +52,15 @@ export function GuiProvider({
   const [pickedColorScheme, setPickedColorScheme] = React.useState<ColorSchemeMode>(
     _colorScheme || ColorSchemeMode.System
   );
+  const [brandTheme, setBrandTheme] = React.useState<BrandTheme>(_brandTheme || sundsvallTheme);
 
   React.useEffect(() => {
     setPickedColorScheme(_colorScheme || ColorSchemeMode.System);
   }, [_colorScheme]);
+
+  React.useEffect(() => {
+    if (_brandTheme) setBrandTheme(_brandTheme);
+  }, [_brandTheme]);
 
   useSafeEffect(() => {
     if (pickedColorScheme === ColorSchemeMode.System) {
@@ -79,12 +93,26 @@ export function GuiProvider({
 
   const computedTheme = React.useMemo(() => {
     const omittedTheme = omit(theme, ['colorSchemes']);
-    const { colors, type } = theme.colorSchemes[colorScheme] || {};
+    const baseScheme = theme.colorSchemes[colorScheme] || ({} as (typeof theme.colorSchemes)[string]);
+    const { type } = baseScheme;
     if (isBrowser) {
       const element = _element ?? document.documentElement;
       if (type === 'dark') element.classList.add('dark');
       else element.classList.remove('dark');
     }
+
+    // Build the full colour tree from the active brand theme. The result already includes
+    // primitives, neutral roles, brand-driven roles (action/brand/accent/tertiary-brand),
+    // feedback roles, deprecated identity aliases, and an `inverted` sub-tree.
+    const brandColors = buildBrandColors(brandTheme);
+    const activeColors = type === 'dark' ? brandColors.darkmode : brandColors.lightmode;
+
+    const baseColors = (baseScheme.colors ?? {}) as Record<string, unknown>;
+
+    const colors = {
+      ...baseColors,
+      ...activeColors,
+    };
 
     const normalizedTheme = {
       ...omittedTheme,
@@ -104,7 +132,7 @@ export function GuiProvider({
 
     return toCSSVar(normalizedTheme);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [theme, colorScheme, pickedColorScheme, units, _element]);
+  }, [theme, colorScheme, pickedColorScheme, brandTheme, units, _element]);
 
   useSafeEffect(() => {
     if (isBrowser) {
@@ -119,10 +147,12 @@ export function GuiProvider({
       preferredColorScheme,
       colorScheme: pickedColorScheme,
       setColorScheme: setPickedColorScheme,
+      brandTheme,
+      setBrandTheme,
       units: { base: baseFontSize, htmlBase: htmlFontSize },
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [computedTheme, preferredColorScheme]
+    [computedTheme, preferredColorScheme, brandTheme]
   );
 
   return <GuiContext.Provider value={value}>{children}</GuiContext.Provider>;

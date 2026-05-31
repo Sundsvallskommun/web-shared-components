@@ -1,4 +1,4 @@
-export const Switch = () => ({
+export const Switch = (colors: string[]) => ({
   '.sk-form-switch-label': {
     '@apply inline-flex align-middle items-center': {},
     '@apply flex-row gap-12': {},
@@ -30,11 +30,17 @@ export const Switch = () => ({
 
     // Checked
     'input[type=checkbox]:checked + &': {
-      [`&[data-color="gronsta"]`]: {
-        '.sk-form-switch-box': {
-          '@apply bg-gronsta-surface-primary': {},
-        },
-      },
+      ...colors.reduce(
+        (styles, color) => ({
+          ...styles,
+          [`&[data-color="${color}"]`]: {
+            '.sk-form-switch-box': {
+              [`@apply bg-${color}-surface-primary`]: {},
+            },
+          },
+        }),
+        {}
+      ),
 
       '.sk-form-switch-icon': {
         '@apply flex': {},

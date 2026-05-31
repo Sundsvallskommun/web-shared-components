@@ -3,7 +3,7 @@ import React from 'react';
 import { AIServiceModuleDefaultProps } from './ai-service-module';
 
 interface AIServiceModuleHeaderProps
-  extends React.ComponentPropsWithoutRef<'header'>,
+  extends Omit<React.ComponentPropsWithoutRef<'header'>, 'color'>,
     Pick<AIServiceModuleDefaultProps, 'variant' | 'color' | 'inverted'> {
   /**
    * Icon before title
@@ -25,3 +25,4 @@ export const AIServiceModuleHeader = React.forwardRef<HTMLDivElement, AIServiceM
     </header>
   );
 });
+

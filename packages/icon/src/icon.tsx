@@ -1,19 +1,11 @@
+import type { DefaultColor } from '@sk-web-gui/utils';
 import { __DEV__, cx, DefaultProps } from '@sk-web-gui/utils';
 import React from 'react';
 
 export interface IconProps extends DefaultProps, React.ComponentPropsWithRef<'span'> {
   /** @default primary */
-  color?:
-    | 'tertiary'
-    | 'info'
-    | 'success'
-    | 'primary'
-    | 'warning'
-    | 'error'
-    | 'vattjom'
-    | 'gronsta'
-    | 'bjornstigen'
-    | 'juniskar';
+  color?: DefaultColor | 'primary' | 'tertiary';
+
   icon?: React.ReactElement;
   /** @default false */
   rounded?: boolean;

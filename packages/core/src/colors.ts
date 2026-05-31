@@ -1,3 +1,32 @@
+import { defaultColors } from '@sk-web-gui/utils';
+
+const createDefaultColorReferences = (name: string, inverted = false) => {
+  const prefix = inverted ? `inverted-${name}` : name;
+
+  return {
+    background: {
+      100: `var(--sk-colors-${prefix}-background-100)`,
+      200: `var(--sk-colors-${prefix}-background-200)`,
+      300: `var(--sk-colors-${prefix}-background-300)`,
+    },
+    surface: {
+      primary: {
+        DEFAULT: `var(--sk-colors-${prefix}-surface-primary-DEFAULT)`,
+        hover: `var(--sk-colors-${prefix}-surface-primary-hover)`,
+      },
+      accent: {
+        DEFAULT: `var(--sk-colors-${prefix}-surface-accent-DEFAULT)`,
+        hover: `var(--sk-colors-${prefix}-surface-accent-hover)`,
+      },
+    },
+    text: {
+      DEFAULT: `var(--sk-colors-${prefix}-text-DEFAULT)`,
+      primary: `var(--sk-colors-${prefix}-text-primary)`,
+      secondary: `var(--sk-colors-${prefix}-text-secondary)`,
+    },
+  };
+};
+
 const colors = {
   primitives: {
     gray: {
@@ -198,186 +227,7 @@ const colors = {
       2: `var(--sk-colors-background-color-mixin-2)`,
     },
   },
-  vattjom: {
-    background: {
-      100: `var(--sk-colors-vattjom-background-100)`,
-      200: `var(--sk-colors-vattjom-background-200)`,
-      300: `var(--sk-colors-vattjom-background-300)`,
-    },
-    surface: {
-      primary: {
-        DEFAULT: `var(--sk-colors-vattjom-surface-primary-DEFAULT)`,
-        hover: `var(--sk-colors-vattjom-surface-primary-hover)`,
-      },
-      accent: {
-        DEFAULT: `var(--sk-colors-vattjom-surface-accent-DEFAULT)`,
-        hover: `var(--sk-colors-vattjom-surface-accent-hover)`,
-      },
-    },
-    text: {
-      DEFAULT: `var(--sk-colors-vattjom-text-DEFAULT)`,
-      primary: `var(--sk-colors-vattjom-text-primary)`,
-      secondary: `var(--sk-colors-vattjom-text-secondary)`,
-    },
-  },
-  gronsta: {
-    background: {
-      100: `var(--sk-colors-gronsta-background-100)`,
-      200: `var(--sk-colors-gronsta-background-200)`,
-      300: `var(--sk-colors-gronsta-background-300)`,
-    },
-    surface: {
-      primary: {
-        DEFAULT: `var(--sk-colors-gronsta-surface-primary-DEFAULT)`,
-        hover: `var(--sk-colors-gronsta-surface-primary-hover)`,
-      },
-      accent: {
-        DEFAULT: `var(--sk-colors-gronsta-surface-accent-DEFAULT)`,
-        hover: `var(--sk-colors-gronsta-surface-accent-hover)`,
-      },
-    },
-    text: {
-      DEFAULT: `var(--sk-colors-gronsta-text-DEFAULT)`,
-      primary: `var(--sk-colors-gronsta-text-primary)`,
-      secondary: `var(--sk-colors-gronsta-text-secondary)`,
-    },
-  },
-  juniskar: {
-    background: {
-      100: `var(--sk-colors-juniskar-background-100)`,
-      200: `var(--sk-colors-juniskar-background-200)`,
-      300: `var(--sk-colors-juniskar-background-300)`,
-    },
-    surface: {
-      primary: {
-        DEFAULT: `var(--sk-colors-juniskar-surface-primary-DEFAULT)`,
-        hover: `var(--sk-colors-juniskar-surface-primary-hover)`,
-      },
-      accent: {
-        DEFAULT: `var(--sk-colors-juniskar-surface-accent-DEFAULT)`,
-        hover: `var(--sk-colors-juniskar-surface-accent-hover)`,
-      },
-    },
-    text: {
-      DEFAULT: `var(--sk-colors-juniskar-text-DEFAULT)`,
-      primary: `var(--sk-colors-juniskar-text-primary)`,
-      secondary: `var(--sk-colors-juniskar-text-secondary)`,
-    },
-  },
-  bjornstigen: {
-    background: {
-      100: `var(--sk-colors-bjornstigen-background-100)`,
-      200: `var(--sk-colors-bjornstigen-background-200)`,
-      300: `var(--sk-colors-bjornstigen-background-300)`,
-    },
-    surface: {
-      primary: {
-        DEFAULT: `var(--sk-colors-bjornstigen-surface-primary-DEFAULT)`,
-        hover: `var(--sk-colors-bjornstigen-surface-primary-hover)`,
-      },
-      accent: {
-        DEFAULT: `var(--sk-colors-bjornstigen-surface-accent-DEFAULT)`,
-        hover: `var(--sk-colors-bjornstigen-surface-accent-hover)`,
-      },
-    },
-    text: {
-      DEFAULT: `var(--sk-colors-bjornstigen-text-DEFAULT)`,
-      primary: `var(--sk-colors-bjornstigen-text-primary)`,
-      secondary: `var(--sk-colors-bjornstigen-text-secondary)`,
-    },
-  },
-  error: {
-    DEFAULT: `var(--sk-colors-error-DEFAULT)`,
-    background: {
-      100: `var(--sk-colors-error-background-100)`,
-      200: `var(--sk-colors-error-background-200)`,
-      300: `var(--sk-colors-error-background-300)`,
-    },
-    surface: {
-      primary: {
-        DEFAULT: `var(--sk-colors-error-surface-primary-DEFAULT)`,
-        hover: `var(--sk-colors-error-surface-primary-hover)`,
-      },
-      accent: {
-        DEFAULT: `var(--sk-colors-error-surface-accent-DEFAULT)`,
-        hover: `var(--sk-colors-error-surface-accent-hover)`,
-      },
-    },
-    text: {
-      DEFAULT: `var(--sk-colors-error-text-DEFAULT)`,
-      primary: `var(--sk-colors-error-text-primary)`,
-      secondary: `var(--sk-colors-error-text-secondary)`,
-    },
-  },
-  warning: {
-    DEFAULT: `var(--sk-colors-warning-DEFAULT)`,
-    background: {
-      100: `var(--sk-colors-warning-background-100)`,
-      200: `var(--sk-colors-warning-background-200)`,
-      300: `var(--sk-colors-warning-background-300)`,
-    },
-    surface: {
-      primary: {
-        DEFAULT: `var(--sk-colors-warning-surface-primary-DEFAULT)`,
-        hover: `var(--sk-colors-warning-surface-primary-hover)`,
-      },
-      accent: {
-        DEFAULT: `var(--sk-colors-warning-surface-accent-DEFAULT)`,
-        hover: `var(--sk-colors-warning-surface-accent-hover)`,
-      },
-    },
-    text: {
-      DEFAULT: `var(--sk-colors-warning-text-DEFAULT)`,
-      primary: `var(--sk-colors-warning-text-primary)`,
-      secondary: `var(--sk-colors-warning-text-secondary)`,
-    },
-  },
-  info: {
-    DEFAULT: `var(--sk-colors-info-DEFAULT)`,
-    background: {
-      100: `var(--sk-colors-info-background-100)`,
-      200: `var(--sk-colors-info-background-200)`,
-      300: `var(--sk-colors-info-background-300)`,
-    },
-    surface: {
-      primary: {
-        DEFAULT: `var(--sk-colors-info-surface-primary-DEFAULT)`,
-        hover: `var(--sk-colors-info-surface-primary-hover)`,
-      },
-      accent: {
-        DEFAULT: `var(--sk-colors-info-surface-accent-DEFAULT)`,
-        hover: `var(--sk-colors-info-surface-accent-hover)`,
-      },
-    },
-    text: {
-      DEFAULT: `var(--sk-colors-info-text-DEFAULT)`,
-      primary: `var(--sk-colors-info-text-primary)`,
-      secondary: `var(--sk-colors-info-text-secondary)`,
-    },
-  },
-  success: {
-    DEFAULT: `var(--sk-colors-success-DEFAULT)`,
-    background: {
-      100: `var(--sk-colors-success-background-100)`,
-      200: `var(--sk-colors-success-background-200)`,
-      300: `var(--sk-colors-success-background-300)`,
-    },
-    surface: {
-      primary: {
-        DEFAULT: `var(--sk-colors-success-surface-primary-DEFAULT)`,
-        hover: `var(--sk-colors-success-surface-primary-hover)`,
-      },
-      accent: {
-        DEFAULT: `var(--sk-colors-success-surface-accent-DEFAULT)`,
-        hover: `var(--sk-colors-success-surface-accent-hover)`,
-      },
-    },
-    text: {
-      DEFAULT: `var(--sk-colors-success-text-DEFAULT)`,
-      primary: `var(--sk-colors-success-text-primary)`,
-      secondary: `var(--sk-colors-success-text-secondary)`,
-    },
-  },
+  ...defaultColors.reduce((colors, color) => ({ ...colors, [color]: createDefaultColorReferences(color, false) }), {}),
   'input-field': {
     outline: {
       DEFAULT: `var(--sk-colors-input-field-outline-DEFAULT)`,
@@ -411,6 +261,16 @@ const colors = {
     },
     node: {
       line: `var(--sk-colors-menu-item-node-line)`,
+    },
+  },
+  link: {
+    text: {
+      DEFAULT: `var(--sk-colors-link-text-DEFAULT)`,
+      hover: `var(--sk-colors-link-text-hover)`,
+      visited: {
+        DEFAULT: `var(--sk-colors-link-text-visited-DEFAULT)`,
+        hover: `var(--sk-colors-link-text-visited-hover)`,
+      },
     },
   },
   inverted: {
@@ -496,186 +356,7 @@ const colors = {
         2: `var(--sk-colors-inverted-background-color-mixin-2)`,
       },
     },
-    vattjom: {
-      background: {
-        100: `var(--sk-colors-inverted-vattjom-background-100)`,
-        200: `var(--sk-colors-inverted-vattjom-background-200)`,
-        300: `var(--sk-colors-inverted-vattjom-background-300)`,
-      },
-      surface: {
-        primary: {
-          DEFAULT: `var(--sk-colors-inverted-vattjom-surface-primary-DEFAULT)`,
-          hover: `var(--sk-colors-inverted-vattjom-surface-primary-hover)`,
-        },
-        accent: {
-          DEFAULT: `var(--sk-colors-inverted-vattjom-surface-accent-DEFAULT)`,
-          hover: `var(--sk-colors-inverted-vattjom-surface-accent-hover)`,
-        },
-      },
-      text: {
-        DEFAULT: `var(--sk-colors-inverted-vattjom-text-DEFAULT)`,
-        primary: `var(--sk-colors-inverted-vattjom-text-primary)`,
-        secondary: `var(--sk-colors-inverted-vattjom-text-secondary)`,
-      },
-    },
-    gronsta: {
-      background: {
-        100: `var(--sk-colors-inverted-gronsta-background-100)`,
-        200: `var(--sk-colors-inverted-gronsta-background-200)`,
-        300: `var(--sk-colors-inverted-gronsta-background-300)`,
-      },
-      surface: {
-        primary: {
-          DEFAULT: `var(--sk-colors-inverted-gronsta-surface-primary-DEFAULT)`,
-          hover: `var(--sk-colors-inverted-gronsta-surface-primary-hover)`,
-        },
-        accent: {
-          DEFAULT: `var(--sk-colors-inverted-gronsta-surface-accent-DEFAULT)`,
-          hover: `var(--sk-colors-inverted-gronsta-surface-accent-hover)`,
-        },
-      },
-      text: {
-        DEFAULT: `var(--sk-colors-inverted-gronsta-text-DEFAULT)`,
-        primary: `var(--sk-colors-inverted-gronsta-text-primary)`,
-        secondary: `var(--sk-colors-inverted-gronsta-text-secondary)`,
-      },
-    },
-    juniskar: {
-      background: {
-        100: `var(--sk-colors-inverted-juniskar-background-100)`,
-        200: `var(--sk-colors-inverted-juniskar-background-200)`,
-        300: `var(--sk-colors-inverted-juniskar-background-300)`,
-      },
-      surface: {
-        primary: {
-          DEFAULT: `var(--sk-colors-inverted-juniskar-surface-primary-DEFAULT)`,
-          hover: `var(--sk-colors-inverted-juniskar-surface-primary-hover)`,
-        },
-        accent: {
-          DEFAULT: `var(--sk-colors-inverted-juniskar-surface-accent-DEFAULT)`,
-          hover: `var(--sk-colors-inverted-juniskar-surface-accent-hover)`,
-        },
-      },
-      text: {
-        DEFAULT: `var(--sk-colors-inverted-juniskar-text-DEFAULT)`,
-        primary: `var(--sk-colors-inverted-juniskar-text-primary)`,
-        secondary: `var(--sk-colors-inverted-juniskar-text-secondary)`,
-      },
-    },
-    bjornstigen: {
-      background: {
-        100: `var(--sk-colors-inverted-bjornstigen-background-100)`,
-        200: `var(--sk-colors-inverted-bjornstigen-background-200)`,
-        300: `var(--sk-colors-inverted-bjornstigen-background-300)`,
-      },
-      surface: {
-        primary: {
-          DEFAULT: `var(--sk-colors-inverted-bjornstigen-surface-primary-DEFAULT)`,
-          hover: `var(--sk-colors-inverted-bjornstigen-surface-primary-hover)`,
-        },
-        accent: {
-          DEFAULT: `var(--sk-colors-inverted-bjornstigen-surface-accent-DEFAULT)`,
-          hover: `var(--sk-colors-inverted-bjornstigen-surface-accent-hover)`,
-        },
-      },
-      text: {
-        DEFAULT: `var(--sk-colors-inverted-bjornstigen-text-DEFAULT)`,
-        primary: `var(--sk-colors-inverted-bjornstigen-text-primary)`,
-        secondary: `var(--sk-colors-inverted-bjornstigen-text-secondary)`,
-      },
-    },
-    error: {
-      DEFAULT: `var(--sk-colors-inverted-error-DEFAULT)`,
-      background: {
-        100: `var(--sk-colors-inverted-error-background-100)`,
-        200: `var(--sk-colors-inverted-error-background-200)`,
-        300: `var(--sk-colors-inverted-error-background-300)`,
-      },
-      surface: {
-        primary: {
-          DEFAULT: `var(--sk-colors-inverted-error-surface-primary-DEFAULT)`,
-          hover: `var(--sk-colors-inverted-error-surface-primary-hover)`,
-        },
-        accent: {
-          DEFAULT: `var(--sk-colors-inverted-error-surface-accent-DEFAULT)`,
-          hover: `var(--sk-colors-inverted-error-surface-accent-hover)`,
-        },
-      },
-      text: {
-        DEFAULT: `var(--sk-colors-inverted-error-text-DEFAULT)`,
-        primary: `var(--sk-colors-inverted-error-text-primary)`,
-        secondary: `var(--sk-colors-inverted-error-text-secondary)`,
-      },
-    },
-    warning: {
-      DEFAULT: `var(--sk-colors-inverted-warning-DEFAULT)`,
-      background: {
-        100: `var(--sk-colors-inverted-warning-background-100)`,
-        200: `var(--sk-colors-inverted-warning-background-200)`,
-        300: `var(--sk-colors-inverted-warning-background-300)`,
-      },
-      surface: {
-        primary: {
-          DEFAULT: `var(--sk-colors-inverted-warning-surface-primary-DEFAULT)`,
-          hover: `var(--sk-colors-inverted-warning-surface-primary-hover)`,
-        },
-        accent: {
-          DEFAULT: `var(--sk-colors-inverted-warning-surface-accent-DEFAULT)`,
-          hover: `var(--sk-colors-inverted-warning-surface-accent-hover)`,
-        },
-      },
-      text: {
-        DEFAULT: `var(--sk-colors-inverted-warning-text-DEFAULT)`,
-        primary: `var(--sk-colors-inverted-warning-text-primary)`,
-        secondary: `var(--sk-colors-inverted-warning-text-secondary)`,
-      },
-    },
-    info: {
-      DEFAULT: `var(--sk-colors-inverted-info-DEFAULT)`,
-      background: {
-        100: `var(--sk-colors-inverted-info-background-100)`,
-        200: `var(--sk-colors-inverted-info-background-200)`,
-        300: `var(--sk-colors-inverted-info-background-300)`,
-      },
-      surface: {
-        primary: {
-          DEFAULT: `var(--sk-colors-inverted-info-surface-primary-DEFAULT)`,
-          hover: `var(--sk-colors-inverted-info-surface-primary-hover)`,
-        },
-        accent: {
-          DEFAULT: `var(--sk-colors-inverted-info-surface-accent-DEFAULT)`,
-          hover: `var(--sk-colors-inverted-info-surface-accent-hover)`,
-        },
-      },
-      text: {
-        DEFAULT: `var(--sk-colors-inverted-info-text-DEFAULT)`,
-        primary: `var(--sk-colors-inverted-info-text-primary)`,
-        secondary: `var(--sk-colors-inverted-info-text-secondary)`,
-      },
-    },
-    success: {
-      DEFAULT: `var(--sk-colors-inverted-success-DEFAULT)`,
-      background: {
-        100: `var(--sk-colors-inverted-success-background-100)`,
-        200: `var(--sk-colors-inverted-success-background-200)`,
-        300: `var(--sk-colors-inverted-success-background-300)`,
-      },
-      surface: {
-        primary: {
-          DEFAULT: `var(--sk-colors-inverted-success-surface-primary-DEFAULT)`,
-          hover: `var(--sk-colors-inverted-success-surface-primary-hover)`,
-        },
-        accent: {
-          DEFAULT: `var(--sk-colors-inverted-success-surface-accent-DEFAULT)`,
-          hover: `var(--sk-colors-inverted-success-surface-accent-hover)`,
-        },
-      },
-      text: {
-        DEFAULT: `var(--sk-colors-inverted-success-text-DEFAULT)`,
-        primary: `var(--sk-colors-inverted-success-text-primary)`,
-        secondary: `var(--sk-colors-inverted-success-text-secondary)`,
-      },
-    },
+    ...defaultColors.reduce((colors, color) => ({ ...colors, [color]: createDefaultColorReferences(color, true) }), {}),
     'input-field': {
       outline: {
         DEFAULT: `var(--sk-colors-inverted-input-field-outline-DEFAULT)`,
@@ -711,6 +392,20 @@ const colors = {
         line: `var(--sk-colors-inverted-menu-item-node-line)`,
       },
     },
+    link: {
+      text: {
+        DEFAULT: `var(--sk-colors-inverted-link-text-DEFAULT)`,
+        hover: `var(--sk-colors-inverted-link-text-hover)`,
+        visited: {
+          DEFAULT: `var(--sk-colors-inverted-link-text-visited-DEFAULT)`,
+          hover: `var(--sk-colors-inverted-link-text-visited-hover)`,
+        },
+      },
+    },
   },
 };
+
 export { colors };
+
+
+

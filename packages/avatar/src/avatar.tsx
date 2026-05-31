@@ -1,3 +1,4 @@
+import type { DefaultColor } from '@sk-web-gui/utils';
 import { __DEV__, cx, DefaultProps } from '@sk-web-gui/utils';
 import React from 'react';
 
@@ -8,7 +9,7 @@ interface IAvatarProps extends DefaultProps {
   imageUrl?: string;
   initials?: string;
   size?: 'xs'| 'sm' | 'md' | 'lg';
-  color?: 'juniskar' | 'bjornstigen' | 'gronsta' | 'vattjom' | string;
+  color?: DefaultColor;
   accent?: boolean;
   rounded?: boolean;
 }

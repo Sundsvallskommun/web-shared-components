@@ -24,7 +24,7 @@ export interface AIServiceModuleQuestionsEssentialProps {
 interface AIServiceModuleQuestionsProps
   extends AIServiceModuleQuestionsEssentialProps,
     AIServiceModuleDefaultProps,
-    React.ComponentPropsWithoutRef<'div'> {}
+    Omit<React.ComponentPropsWithoutRef<'div'>, 'color'> {}
 
 export const AIServiceModuleQuestions = React.forwardRef<HTMLDivElement, AIServiceModuleQuestionsProps>(
   (props, ref) => {
@@ -75,3 +75,4 @@ export const AIServiceModuleQuestions = React.forwardRef<HTMLDivElement, AIServi
     );
   }
 );
+

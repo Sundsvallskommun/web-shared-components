@@ -84,7 +84,7 @@ export default {
       table: {
         defaultValue: { summary: 'primary' },
       },
-      options: [undefined, 'primary', 'gronsta', 'vattjom', 'juniskar', 'bjornstigen', 'error', 'warning', 'success'],
+      options: [undefined, 'primary', 'action', 'info', 'warning', 'error', 'success', 'alert', 'brand', 'accent'],
       control: 'select',
       defaultValue: 'primary',
     },

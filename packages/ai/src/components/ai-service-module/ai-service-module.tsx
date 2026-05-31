@@ -1,3 +1,4 @@
+import type { DefaultColor } from '@sk-web-gui/utils';
 import React from 'react';
 import { useAssistantStore } from '../../assistant-store';
 import { useChat } from '../../hooks';
@@ -14,7 +15,7 @@ export interface AIServiceModuleDefaultProps {
   /**
    * @default vattjom
    */
-  color?: string;
+  color?: DefaultColor;
   /**
    * @default false
    */
@@ -131,7 +132,7 @@ export const AIServiceModule = React.forwardRef<HTMLDivElement, AIServiceModuleP
       <AIServiceModuleRow color={color} inverted={inverted} variant={variant}>
         <AIServiceModuleContent variant={variant}>
           <AIServiceModuleHeader icon={headerIcon} variant={variant} color={color}>
-            {typeof header === 'string' ? <h2>{header}</h2> : header || <h2>Hej, vad vill du ha hjälp med?</h2>}
+            {typeof header === 'string' ? <h2>{header}</h2> : header || <h2>Hej, vad vill du ha hjÃƒÂ¤lp med?</h2>}
           </AIServiceModuleHeader>
           {children}
           <AIServiceModuleAssistant

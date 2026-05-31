@@ -1,3 +1,4 @@
+import type { DefaultColor } from '@sk-web-gui/utils';
 import { cx, __DEV__, DefaultProps, omit } from '@sk-web-gui/utils';
 import React from 'react';
 import { IInputProps } from '../input/input';
@@ -8,6 +9,7 @@ export interface TextareaProps
   extends DefaultProps,
     IInputProps<HTMLTextAreaElement>,
     React.ComponentPropsWithRef<'textarea'> {
+  color?: DefaultColor;
   showCount?: boolean;
   maxLength?: number;
   maxLengthWarningText?: string;

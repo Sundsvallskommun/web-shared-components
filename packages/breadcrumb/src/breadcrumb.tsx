@@ -1,4 +1,5 @@
 import { Link, LinkProps } from '@sk-web-gui/link';
+import type { DefaultColor } from '@sk-web-gui/utils';
 import { cx, getValidChildren, __DEV__, PolymorphicComponentPropsWithRef, PolymorphicRef } from '@sk-web-gui/utils';
 import { DefaultProps } from '@sk-web-gui/utils';
 import React from 'react';
@@ -55,7 +56,7 @@ interface IBreadcrumbProps extends DefaultProps {
   addSeparator?: boolean;
 
   /** @default primary */
-  color?: 'primary' | 'vattjom';
+  color?: DefaultColor | 'primary';
 
   /** React Node */
   children?: React.ReactNode;

@@ -1,4 +1,4 @@
-export const Breadcrumb = () => ({
+export const Breadcrumb = (colors: string[]) => ({
   '.sk-breadcrumb': {
     '@apply text-body text-base relative': {},
 
@@ -24,10 +24,16 @@ export const Breadcrumb = () => ({
       },
     },
 
-    [`&[data-color="vattjom"]`]: {
-      'a.sk-link': {
-        [`@apply text-vattjom-text-primary`]: {},
-      },
-    },
+    ...colors.reduce(
+      (styles, color) => ({
+        ...styles,
+        [`&[data-color="${color}"]`]: {
+          'a.sk-link': {
+            [`@apply text-${color}-text-primary`]: {},
+          },
+        },
+      }),
+      {}
+    ),
   },
 });

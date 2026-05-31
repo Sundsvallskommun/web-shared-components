@@ -63,3 +63,52 @@ export enum ColorSchemeMode {
   Light = 'light',
   System = 'system',
 }
+
+/**
+ * Feedback colours an organisation can override. Each entry is a single hex value (e.g.
+ * `'#AA4A44'`) that is expanded internally into a full ramp + surface/text/border tree.
+ * Omitting a field falls back to {@link sundsvallTheme}'s value for that feedback type.
+ */
+export interface BrandThemeFeedback {
+  warning?: string;
+  error?: string;
+  success?: string;
+  alert?: string;
+  info?: string;
+}
+
+/**
+ * The three brand-driven colour roles. Each is a single hex value that GuiProvider
+ * expands into a 50–900 ramp plus surface/text/border tokens with hover/disabled states.
+ *
+ * - `primary` drives the main CTA tokens (`action.*`)
+ * - `secondary` and `tertiary` are two additional brand slots available for accent/highlight
+ *   roles (consumers decide where to use them via Tailwind classes / CSS variables)
+ */
+export interface BrandThemeMode {
+  primary: string;
+  secondary: string;
+  tertiary: string;
+}
+
+/**
+ * A consumer-supplied brand theme. Pass to `<GuiProvider brandTheme={...}>` to override
+ * Sundsvall's defaults with another organisation's colours.
+ *
+ * @example
+ * ```ts
+ * const hudiksvallsTheme: BrandTheme = {
+ *   name: 'Hudiksvalls kommun',
+ *   mode: { primary: '#0578EB', secondary: '#8C42AE', tertiary: '#00733B' },
+ * };
+ * ```
+ */
+export interface BrandTheme {
+  /** Organisation name, used for documentation / debugging. */
+  name: string;
+  /** Optional feedback colour overrides. Missing fields inherit from {@link sundsvallTheme}. */
+  feedback?: BrandThemeFeedback;
+  /** Required brand colour slots. */
+  mode: BrandThemeMode;
+}
+
