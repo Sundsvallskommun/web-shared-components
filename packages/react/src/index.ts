@@ -50,6 +50,8 @@ export * from '@sk-web-gui/progress-stepper';
 export type * from '@sk-web-gui/progress-stepper';
 export * from '@sk-web-gui/searchfield';
 export type * from '@sk-web-gui/searchfield';
+export * from '@sk-web-gui/segmentedcontrol';
+export type * from '@sk-web-gui/segmentedcontrol';
 export * from '@sk-web-gui/snackbar';
 export type * from '@sk-web-gui/snackbar';
 export * from '@sk-web-gui/spinner';
