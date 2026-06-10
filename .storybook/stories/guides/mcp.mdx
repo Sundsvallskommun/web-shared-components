@@ -1,0 +1,60 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Link } from '@sk-web-gui/link';
+
+<Meta title="Guider/AI och MCP" />
+
+# AI och MCP
+
+Storybook har en inbyggd **MCP-server** (Model Context Protocol). Den låter AI-agenter – t.ex. Claude Code, Cursor eller Copilot – läsa det här designsystemet direkt: vilka komponenter som finns, deras props, dokumentation och exempel. På så sätt kan agenten skriva och granska kod mot våra faktiska komponenter istället för att gissa.
+
+## Förutsättningar
+
+- Storybook måste **köras lokalt**. MCP-servern exponeras bara medan dev-servern är igång.
+- Stödet gäller för närvarande **React-projekt** (vilket detta bibliotek är). Funktionen är i preview hos Storybook, så API:t kan ändras.
+
+## Kom igång
+
+**1. Starta Storybook:**
+
+<pre>{`yarn dev`}</pre>
+
+**2. MCP-servern blir tillgänglig på:**
+
+<pre>{`http://localhost:6006/mcp`}</pre>
+
+(porten är samma som Storybook kör på – byt om du startar på en annan port)
+
+**3. Koppla in din AI-klient mot endpointen.**
+
+### Claude Code
+
+<pre>{`claude mcp add --transport http storybook http://localhost:6006/mcp`}</pre>
+
+### Cursor / VS Code (mcp.json)
+
+<pre>{`{
+  "mcpServers": {
+    "storybook": {
+      "url": "http://localhost:6006/mcp"
+    }
+  }
+}`}</pre>
+
+När klienten är ansluten upptäcker den verktygen automatiskt. Be sedan agenten t.ex. _"Bygg en sida med våra komponenter"_ eller _"Skapa en story för den här komponenten"_ – den hämtar då dokumentationen via MCP.
+
+## Vad agenten kan göra
+
+MCP-servern exponerar följande verktyg:
+
+- **list-all-documentation** – listar alla komponenter och docs-sidor som finns
+- **get-documentation** – hämtar full dokumentation, props och exempel för en komponent
+- **get-documentation-for-story** – hämtar docs för en specifik story-variant
+- **get-storybook-story-instructions** – ger agenten våra mönster för imports och hur en story skrivs
+- **preview-stories** – returnerar förhandsvisnings-URL:er så du kan se resultatet visuellt
+
+## Bra att veta
+
+- Verktyget **run-story-tests** (kör stories som tester via MCP) kräver tillägget `@storybook/addon-vitest`, som inte är installerat i dagsläget.
+- Eftersom servern bara körs lokalt skickas ingenting externt – agenten pratar med din egen dev-server.
+
+Läs mer i Storybooks dokumentation: <Link external href='https://storybook.js.org/docs/ai/mcp/overview'>storybook.js.org/docs/ai/mcp/overview</Link>
