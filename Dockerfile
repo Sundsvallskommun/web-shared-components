@@ -3,7 +3,11 @@ FROM node:22.14.0-alpine AS deps
 
 WORKDIR /app
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+# NOTE: not --frozen-lockfile. The repo pins **/react to ^18.3.1 via "resolutions"
+# while devDependencies declare react ^19.1.1, which makes yarn consider the
+# lockfile permanently out of date under --frozen-lockfile. Fix that react/
+# resolutions mismatch to restore reproducible (frozen) installs.
+RUN yarn install
 
 # If using npm with a `package-lock.json` comment out above and use below instead
 # COPY package.json package-lock.json ./
