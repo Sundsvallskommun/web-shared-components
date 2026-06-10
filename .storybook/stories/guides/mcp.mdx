@@ -24,17 +24,16 @@ Storybook har en inbyggd **MCP-server** (Model Context Protocol). Den låter AI-
 
 (porten är samma som Storybook kör på – byt om du startar på en annan port)
 
-**3. Koppla in din AI-klient mot endpointen.**
+**3. Koppla in din AI-klient.**
 
-### Claude Code
+Repot innehåller redan färdig MCP-config för **Claude Code** (`.mcp.json`) och **Codex** (`.codex/config.toml`). Öppnar du projektet i någon av dem upptäcks servern automatiskt – du behöver bara godkänna den när klienten frågar. Ingen manuell konfiguration krävs.
 
-<pre>{`claude mcp add --transport http storybook http://localhost:6006/mcp`}</pre>
-
-### Cursor / VS Code (mcp.json)
+För andra klienter (t.ex. Cursor/VS Code) pekar du mot endpointen manuellt:
 
 <pre>{`{
   "mcpServers": {
     "storybook": {
+      "type": "http",
       "url": "http://localhost:6006/mcp"
     }
   }
