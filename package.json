@@ -35,6 +35,8 @@
     "storybook": "storybook dev -p 6006",
     "storybook:prod": "http-server storybook-static",
     "dev-storybook": "cross-env NODE_ENV=development storybook dev -p 6006 --no-open",
+    "mcp:manifest": "node mcp-server/generate-manifest.mjs",
+    "mcp:serve": "yarn mcp:manifest && node mcp-server/server.mjs",
     "release": "changeset publish",
     "link-all": "yarn unlink-all && lerna exec --parallel yarn link",
     "unlink-all": "lerna exec --parallel --bail=false yarn unlink",
@@ -92,7 +94,9 @@
     "vite-tsconfig-paths": "^5.1.4"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
     "dotenv": "^17.2.1",
+    "express": "^5.2.1",
     "http-server": "^14.1.1",
     "react-hook-form": "^7.62.0"
   },
