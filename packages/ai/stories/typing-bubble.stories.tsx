@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { TypingBubble } from '../src';
 import { TypingBubbleProps } from '../src/components';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Divider, DividerProps } from '../src/divider';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 
 export default {
   title: 'Komponenter/Divider',

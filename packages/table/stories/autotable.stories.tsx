@@ -1,6 +1,6 @@
 import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { AutoTable, AutoTableHeader, AutoTableProps } from '../src/auto-table';
 import { Ellipsis } from 'lucide-react';
 

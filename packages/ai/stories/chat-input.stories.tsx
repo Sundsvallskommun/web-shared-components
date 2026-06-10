@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { ChatInput } from '../src/components/chat-input';
 import type { ChatInputProps } from '../src/components/chat-input/chat-input';
 import Icon from '@sk-web-gui/icon';

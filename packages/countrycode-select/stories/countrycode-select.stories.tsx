@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { CountryCodeCombobox, CountryCodeSelect } from '../src';
 import type { CountryCodeSelectProps, CountryCodeComboboxProps } from '../src';
 import { Input } from '@sk-web-gui/forms';

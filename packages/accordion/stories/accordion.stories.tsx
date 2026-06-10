@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import React from 'react';
 import { Accordion, AccordionProps } from '../src';
 import Label from '@sk-web-gui/label';
