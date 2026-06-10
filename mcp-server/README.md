@@ -31,13 +31,21 @@ It also serves the static styleguide for every non-`/mcp` route, and a
    - one entry per Storybook story (name, category, import path, tags),
    - props read from each component's `*Props` type via the TypeScript compiler
      (handles the forwardRef/polymorphic components react-docgen misses),
-   - curated Swedish/English keywords for better use-case matching,
+   - curated keywords from **`keywords.json`** (bilingual sv + en),
    - design tokens read from the built `@sk-web-gui/theme`.
 2. **`server.mjs`** loads `manifest.json` and serves it over MCP + the static
    styleguide on one port.
 
 `manifest.json` is generated (git-ignored) — regenerate it whenever components
 change.
+
+### Improving search
+
+`find-component` folds diacritics (`datumvaljare` matches `datumväljare`),
+indexes both Swedish and English keywords, and tolerates a single typo
+(`buton` → Button) — so queries in either language, with or without accents,
+still hit. To tune matching, edit `mcp-server/keywords.json` (one entry per
+component with `sv` and `en` synonym arrays) and regenerate the manifest.
 
 ## Local development
 

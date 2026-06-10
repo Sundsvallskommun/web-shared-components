@@ -20,52 +20,17 @@ const PACKAGES_DIR = path.join(ROOT, 'packages');
 // Storybook top-level sections we treat as real, discoverable components.
 const COMPONENT_CATEGORIES = ['Komponenter', 'AI', 'Layout'];
 
-// Hand-curated synonyms (mostly Swedish use-case words) to make find-component
-// match how developers actually phrase intent. Keyed by component name (lowercase).
-const KEYWORDS = {
-  alert: ['varning', 'fel', 'error', 'meddelande', 'notis', 'banner', 'feedback'],
-  callout: ['informationsruta', 'highlight', 'uppmärksamma', 'notis', 'tips'],
-  snackbar: ['toast', 'notis', 'temporärt meddelande', 'feedback', 'bekräftelse'],
-  button: ['knapp', 'cta', 'åtgärd', 'submit', 'skicka'],
-  modal: ['dialog', 'popup', 'overlay', 'ruta', 'fönster'],
-  tabs: ['flikar', 'tab', 'sektioner', 'navigering'],
-  table: ['tabell', 'data', 'rader', 'kolumner', 'lista'],
-  select: ['dropdown', 'rullgardin', 'val', 'lista', 'meny'],
-  combobox: ['autocomplete', 'sök och välj', 'dropdown med sök'],
-  input: ['textfält', 'inmatning', 'fält', 'formulär'],
-  'text-field': ['textfält', 'inmatning', 'formulär'],
-  textarea: ['flerradigt textfält', 'fritext', 'kommentar'],
-  checkbox: ['kryssruta', 'flerval', 'formulär'],
-  radio: ['alternativknapp', 'enkelval', 'formulär'],
-  switch: ['växel', 'toggle', 'på av', 'inställning'],
-  'date-picker': ['datumväljare', 'kalender', 'datum'],
-  searchfield: ['sök', 'sökruta', 'sökfält'],
-  pagination: ['sidnumrering', 'sidor', 'bläddra'],
-  breadcrumb: ['brödsmulor', 'sökväg', 'navigering'],
-  accordion: ['dragspel', 'expanderbar', 'fäll ut', 'collapse'],
-  chip: ['tagg', 'etikett', 'filter', 'badge'],
-  badge: ['märke', 'räknare', 'notifiering', 'antal'],
-  avatar: ['profilbild', 'användarbild', 'initialer'],
-  tooltip: ['hjälptext', 'verktygstips', 'hover'],
-  spinner: ['laddar', 'loading', 'väntar'],
-  'progress-bar': ['förlopp', 'laddning', 'procent'],
-  'progress-stepper': ['steg', 'flersteg', 'wizard', 'förlopp'],
-  link: ['länk', 'hyperlänk', 'navigering'],
-  divider: ['avdelare', 'linje', 'separator'],
-  'cookie-consent': ['kakor', 'samtycke', 'gdpr', 'cookies'],
-  'user-menu': ['användarmeny', 'profilmeny', 'konto'],
-  'popup-menu': ['kontextmeny', 'dropdownmeny', 'åtgärder'],
-  'menu-vertical': ['sidomeny', 'navigation', 'meny'],
-  filter: ['filtrering', 'urval', 'sortera'],
-  label: ['etikett', 'fältnamn'],
-  'file-upload': ['filuppladdning', 'ladda upp', 'bifoga', 'fil'],
-};
-
 const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 
-// Re-key the curated keywords by normalized name so kebab keys ("date-picker")
-// match normalized component names ("datepicker").
-const KEYWORDS_BY_NORM = Object.fromEntries(Object.entries(KEYWORDS).map(([k, v]) => [norm(k), v]));
+// Bilingual (sv + en) synonyms live in keywords.json so translations are easy to
+// maintain. Re-key by normalized name and flatten sv + en into one list — both
+// languages are indexed, so queries in either language match.
+const KEYWORDS_RAW = JSON.parse(fs.readFileSync(path.join(__dirname, 'keywords.json'), 'utf8'));
+const KEYWORDS_BY_NORM = Object.fromEntries(
+  Object.entries(KEYWORDS_RAW)
+    .filter(([k]) => !k.startsWith('_'))
+    .map(([k, v]) => [norm(k), [...(v.sv || []), ...(v.en || [])]])
+);
 
 function walk(dir, predicate, out = []) {
   if (!fs.existsSync(dir)) return out;

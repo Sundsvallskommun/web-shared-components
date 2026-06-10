@@ -35,28 +35,61 @@ const REACT_NOTE = manifest.note;
 // substring hits (e.g. "med" inside "meddelande").
 const STOP_WORDS = new Set([
   'och', 'att', 'som', 'med', 'för', 'ett', 'en', 'det', 'den', 'till', 'av', 'på', 'är', 'kan',
-  'vill', 'ha', 'jag', 'vi', 'min', 'mitt', 'eller', 'samt',
-  'the', 'a', 'an', 'and', 'or', 'to', 'of', 'for', 'with', 'show', 'need', 'want', 'how', 'use',
+  'vill', 'ha', 'jag', 'vi', 'min', 'mitt', 'eller', 'samt', 'der', 'sa',
+  'the', 'a', 'an', 'and', 'or', 'to', 'of', 'for', 'with', 'show', 'need', 'want', 'how', 'use', 'that', 'this',
 ]);
 
-// Two words "match" if either contains the other (so "felmeddelande" hits the
-// keyword "meddelande"), but only when both are long enough to be meaningful.
+// Lowercase + strip diacritics so ascii queries ("datumvaljare", "forlopp")
+// match accented terms ("datumväljare", "förlopp") and EN/SV input both work.
+function fold(s) {
+  return s
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '');
+}
+
+// Bounded Levenshtein: returns true if a and b are within `max` edits. Used for
+// light typo tolerance ("buton" -> "button"). Cheap over our small word lists.
+function withinEdits(a, b, max) {
+  if (Math.abs(a.length - b.length) > max) return false;
+  const prev = Array.from({ length: b.length + 1 }, (_, i) => i);
+  for (let i = 1; i <= a.length; i++) {
+    let diag = prev[0];
+    prev[0] = i;
+    let rowMin = prev[0];
+    for (let j = 1; j <= b.length; j++) {
+      const tmp = prev[j];
+      prev[j] = a[i - 1] === b[j - 1] ? diag : 1 + Math.min(diag, prev[j], prev[j - 1]);
+      diag = tmp;
+      if (prev[j] < rowMin) rowMin = prev[j];
+    }
+    if (rowMin > max) return false; // whole row already exceeds budget
+  }
+  return prev[b.length] <= max;
+}
+
+// Two words "match" if equal, one contains the other (>=3 chars, so
+// "felmeddelande" hits "meddelande"), or within one edit (>=5 chars, typos).
 function wordMatch(a, b) {
   if (a === b) return true;
-  if (a.length < 3 || b.length < 3) return false;
-  return a.includes(b) || b.includes(a);
+  if (a.length >= 3 && b.length >= 3 && (a.includes(b) || b.includes(a))) return true;
+  if (a.length >= 5 && b.length >= 5 && withinEdits(a, b, 1)) return true;
+  return false;
 }
 
-function haystack(c) {
-  return [c.name, c.category, c.package, ...(c.keywords || []), ...(c.tags || []), ...c.props.map((p) => p.name)]
-    .join(' ')
-    .toLowerCase();
-}
+// Precompute a folded search index per component once at startup.
+const INDEX = manifest.components.map((c) => ({
+  c,
+  name: fold(c.name),
+  keywords: (c.keywords || []).map(fold),
+  description: fold(c.description || ''),
+  hay: fold(
+    [c.name, c.category, c.package, ...(c.keywords || []), ...(c.tags || []), ...c.props.map((p) => p.name)].join(' ')
+  ),
+}));
 
-function scoreComponent(c, tokens, rawQuery) {
-  const name = c.name.toLowerCase();
-  const keywords = (c.keywords || []).map((k) => k.toLowerCase());
-  const hay = haystack(c);
+function scoreEntry(entry, tokens, rawQuery) {
+  const { name, keywords, description, hay } = entry;
   const matched = new Set();
   let score = 0;
   for (const t of tokens) {
@@ -65,7 +98,7 @@ function scoreComponent(c, tokens, rawQuery) {
     else if (t.length >= 4 && name.includes(t)) (score += 5), matched.add(t);
     const kw = keywords.find((k) => wordMatch(k, t));
     if (kw) (score += 6), matched.add(kw);
-    if (t.length >= 4 && (c.description || '').toLowerCase().includes(t)) (score += 3), matched.add(t);
+    if (t.length >= 4 && description.includes(t)) (score += 3), matched.add(t);
     else if (t.length >= 4 && hay.includes(t)) (score += 2), matched.add(t);
   }
   if (rawQuery.length >= 5 && hay.includes(rawQuery)) score += 3;
@@ -73,10 +106,9 @@ function scoreComponent(c, tokens, rawQuery) {
 }
 
 function findComponents(query, limit) {
-  const raw = query.trim().toLowerCase();
+  const raw = fold(query.trim());
   const tokens = raw.split(/\s+/).filter((t) => t.length >= 3 && !STOP_WORDS.has(t));
-  return manifest.components
-    .map((c) => ({ c, ...scoreComponent(c, tokens, raw) }))
+  return INDEX.map((entry) => ({ c: entry.c, ...scoreEntry(entry, tokens, raw) }))
     .filter((x) => x.score > 0)
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)
