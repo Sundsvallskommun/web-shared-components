@@ -1,11 +1,12 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Source } from '@storybook/addon-docs/blocks';
+import { Tabs } from '@sk-web-gui/tabs';
 import { Link } from '@sk-web-gui/link';
 
 <Meta title="Guider/AI och MCP" />
 
 # AI och MCP
 
-Storybook har en inbyggd **MCP-server** (Model Context Protocol). Den låter AI-agenter – t.ex. Claude Code, Cursor eller Copilot – läsa det här designsystemet direkt: vilka komponenter som finns, deras props, dokumentation och exempel. På så sätt kan agenten skriva och granska kod mot våra faktiska komponenter istället för att gissa.
+Storybook har en inbyggd **MCP-server** (Model Context Protocol). Den låter AI-agenter – t.ex. Claude Code, Cursor eller Codex – läsa det här designsystemet direkt: vilka komponenter som finns, deras props, dokumentation och exempel. På så sätt kan agenten skriva och granska kod mot våra faktiska komponenter istället för att gissa.
 
 ## Förutsättningar
 
@@ -16,28 +17,76 @@ Storybook har en inbyggd **MCP-server** (Model Context Protocol). Den låter AI-
 
 **1. Starta Storybook:**
 
-<pre>{`yarn dev`}</pre>
+<Source language="bash" code={`yarn dev`} />
 
-**2. MCP-servern blir tillgänglig på:**
+**2. MCP-servern blir då tillgänglig på:**
 
-<pre>{`http://localhost:6006/mcp`}</pre>
+<Source language="bash" code={`http://localhost:6006/mcp`} />
 
-(porten är samma som Storybook kör på – byt om du startar på en annan port)
+Porten är samma som Storybook kör på – byt om du startar på en annan port.
 
-**3. Koppla in din AI-klient.**
+**3. Koppla in din AI-klient.** Repot innehåller redan färdig config för Claude Code och Codex, så i de flesta fall behöver du inte göra något manuellt.
 
-Repot innehåller redan färdig MCP-config för **Claude Code** (`.mcp.json`) och **Codex** (`.codex/config.toml`). Öppnar du projektet i någon av dem upptäcks servern automatiskt – du behöver bara godkänna den när klienten frågar. Ingen manuell konfiguration krävs.
-
-För andra klienter (t.ex. Cursor/VS Code) pekar du mot endpointen manuellt:
-
-<pre>{`{
+<Tabs>
+  <Tabs.Item>
+    <Tabs.Button>Claude Code</Tabs.Button>
+    <Tabs.Content>
+      <p>
+        Repot innehåller en committad <code>.mcp.json</code> i projektroten. Öppnar du projektet i Claude Code upptäcks
+        servern automatiskt – godkänn den när du blir tillfrågad, så är du klar.
+      </p>
+      <Source
+        language="json"
+        code={`{
   "mcpServers": {
     "storybook": {
       "type": "http",
       "url": "http://localhost:6006/mcp"
     }
   }
-}`}</pre>
+}`}
+      />
+      <p>Vill du lägga till den manuellt i en annan kontext:</p>
+      <Source language="bash" code={`claude mcp add --transport http storybook http://localhost:6006/mcp`} />
+    </Tabs.Content>
+  </Tabs.Item>
+
+  <Tabs.Item>
+    <Tabs.Button>Codex</Tabs.Button>
+    <Tabs.Content>
+      <p>
+        Repot innehåller en committad <code>.codex/config.toml</code>. Codex upptäcker den automatiskt när du kör i
+        projektet. Konfigurationen ser ut så här:
+      </p>
+      <Source
+        language="toml"
+        code={`[mcp_servers.storybook]
+url = "http://localhost:6006/mcp"`}
+      />
+      <p>
+        För global config lägger du samma block i <code>~/.codex/config.toml</code>.
+      </p>
+    </Tabs.Content>
+  </Tabs.Item>
+
+  <Tabs.Item>
+    <Tabs.Button>Cursor / VS Code</Tabs.Button>
+    <Tabs.Content>
+      <p>Peka mot endpointen manuellt i klientens MCP-config:</p>
+      <Source
+        language="json"
+        code={`{
+  "mcpServers": {
+    "storybook": {
+      "type": "http",
+      "url": "http://localhost:6006/mcp"
+    }
+  }
+}`}
+      />
+    </Tabs.Content>
+  </Tabs.Item>
+</Tabs>
 
 När klienten är ansluten upptäcker den verktygen automatiskt. Be sedan agenten t.ex. _"Bygg en sida med våra komponenter"_ eller _"Skapa en story för den här komponenten"_ – den hämtar då dokumentationen via MCP.
 
@@ -55,5 +104,6 @@ MCP-servern exponerar följande verktyg:
 
 - Verktyget **run-story-tests** (kör stories som tester via MCP) kräver tillägget `@storybook/addon-vitest`, som inte är installerat i dagsläget.
 - Eftersom servern bara körs lokalt skickas ingenting externt – agenten pratar med din egen dev-server.
+- Om Storybook inte körs visas servern som frånkopplad i klienten – starta `yarn dev` så ansluter den vid nästa försök.
 
 Läs mer i Storybooks dokumentation: <Link external href='https://storybook.js.org/docs/ai/mcp/overview'>storybook.js.org/docs/ai/mcp/overview</Link>
