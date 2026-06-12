@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.5.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.4.3...@sk-web-gui/ai@4.5.0) (2026-06-12)
+
+### Features
+
+- **typing-bubble:** allow children in typing bubble ([3066c1b](https://github.com/Sundsvallskommun/web-shared-components/commit/3066c1b4c50527cd5903099380b50c2b26e143e0))
+
 ## [4.4.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.4.2...@sk-web-gui/ai@4.4.3) (2026-05-29)
 
 **Note:** Version bump only for package @sk-web-gui/ai

@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.6.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.5.1...@sk-web-gui/core@4.6.0) (2026-06-12)
+
+### Bug Fixes
+
+- **ai:** allow children in typing bubble ([9f65183](https://github.com/Sundsvallskommun/web-shared-components/commit/9f6518305ce87ea3b4280d5ad64b8c81f28cc977))
+
+### Features
+
+- **core:** add segmented control styles ([61d3c55](https://github.com/Sundsvallskommun/web-shared-components/commit/61d3c55246dbad5a8326f524bedf875487f408e5))
+
 ## [4.5.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.5.0...@sk-web-gui/core@4.5.1) (2026-04-27)
 
 ### Bug Fixes
