@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import React from 'react';
 import { SortMode, Table, TableProps } from '../src';
 import { Icon } from '@sk-web-gui/icon';

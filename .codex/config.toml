@@ -1,0 +1,6 @@
+# Project-scoped Codex config.
+# Connects Codex to Storybook's built-in MCP server so the agent can read
+# this design system's components and docs. Requires Storybook to be running
+# locally (`yarn dev`), which serves the MCP endpoint at localhost:6006/mcp.
+[mcp_servers.storybook]
+url = "http://localhost:6006/mcp"

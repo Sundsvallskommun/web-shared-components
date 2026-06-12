@@ -1,5 +1,5 @@
 import Icon from '@sk-web-gui/icon';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Disclosure, DisclosureProps } from '../src';
 

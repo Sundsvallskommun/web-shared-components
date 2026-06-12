@@ -3,7 +3,7 @@ import { Checkbox, DatePicker, FormControl, FormLabel } from '@sk-web-gui/forms'
 import { Icon } from '@sk-web-gui/icon';
 import { Link } from '@sk-web-gui/link';
 import { SearchField } from '@sk-web-gui/searchfield';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import React from 'react';
 import { PopupMenu, PopupMenuProps } from '../src';
 import { useForm } from 'react-hook-form';

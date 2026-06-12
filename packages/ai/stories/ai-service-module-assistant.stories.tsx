@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { AssistantInfo, ChatHistory } from '../src';
 import { AIServiceModule } from '../src/components';
 import { type AIServiceModuleAssistantProps } from '../src/components/ai-service-module/ai-service-module-assistant';

@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { AssistantInfo, AssistantSwitch } from '../src';
 import { type AssistantSwitchProps } from '../src/components';
 import avatarSrc from './images/qwerty-avatar.png';

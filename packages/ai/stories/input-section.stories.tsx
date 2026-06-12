@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { InputSection } from '../src';
 import { InputSectionComponentProps } from '../src/components';
 

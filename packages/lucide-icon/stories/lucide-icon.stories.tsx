@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import LucideIcon, { LucideIconProps } from '../src/lucide-icon';
 
 export default {

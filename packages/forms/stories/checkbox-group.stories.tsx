@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import React, { useEffect } from 'react';
 import { Checkbox } from '../src/checkbox';
 import { FormControl, FormLabel } from '../src';

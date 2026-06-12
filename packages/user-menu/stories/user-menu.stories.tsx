@@ -1,7 +1,7 @@
 import { LucideIcon } from '@sk-web-gui/lucide-icon';
 import { Link, MenuItemGroup, UserMenu, UserMenuProps } from '@sk-web-gui/react';
 import { cx } from '@sk-web-gui/utils';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 
 export default {
   title: 'Komponenter/UserMenu',

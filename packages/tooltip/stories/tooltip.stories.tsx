@@ -1,5 +1,5 @@
 import { Tooltip, TooltipProps } from '../src';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
 import React from 'react';
