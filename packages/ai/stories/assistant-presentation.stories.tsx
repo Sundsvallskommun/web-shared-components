@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { AssistantPresentation } from '../src';
 import { AssistantPresentationProps } from '../src/components';
 import avatarSrc from './images/qwerty-avatar.png';

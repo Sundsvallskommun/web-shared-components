@@ -1,9 +1,9 @@
 import Button from '@sk-web-gui/button';
 import Divider from '@sk-web-gui/divider';
 import Icon from '@sk-web-gui/icon';
-import { Meta } from '@storybook/react';
 import { Brain, ChevronDown, ChevronUp } from 'lucide-react';
 import { useState } from 'react';
+import { Meta } from '@storybook/react-vite';
 import { TypingBubble } from '../src';
 import { MarkdownRendered, TypingBubbleProps } from '../src/components';
 

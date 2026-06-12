@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Pagination, PaginationProps } from '../src';
 import React from 'react';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 
 export default {
   title: 'Komponenter/Pagination',

@@ -1,6 +1,6 @@
 import { Icon } from '@sk-web-gui/icon';
 import { Pagination } from '@sk-web-gui/pagination';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { Home } from 'lucide-react';
 import React, { useState } from 'react';
 import { Tabs, TabsProps } from '../src';

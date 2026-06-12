@@ -1,4 +1,4 @@
-import type { Preview } from '@storybook/react';
+import type { Preview } from '@storybook/react-vite';
 import { WithGuiDecorator } from './components/theme-decorators';
 import { ParametersContainer } from './components/theme-parameters';
 import './styles.scss';
