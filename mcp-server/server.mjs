@@ -137,50 +137,51 @@ function text(obj) {
   return { content: [{ type: 'text', text: JSON.stringify(obj, null, 2) }] };
 }
 
-function buildMcpServer() {
-  const server = new McpServer({ name: '@sk-web-gui/mcp', version: '0.1.0' });
-
-  server.registerTool(
-    'find-component',
-    {
-      title: 'Hitta komponent',
-      description:
-        'Hitta vilka @sk-web-gui-komponenter som passar ett behov. Sök på funktion/use-case ' +
-        '(t.ex. "visa ett felmeddelande", "datumväljare", "dropdown med sök"). Returnerar en ' +
-        'rankad lista. Anropa get-component för fullständiga props.',
-      inputSchema: { query: z.string().describe('Behov/use-case eller komponentnamn'), limit: z.number().int().min(1).max(25).optional() },
+// Single source of truth for the tools: this list both registers them on the
+// MCP server and renders the human-readable /docs page, so the two can't drift.
+// `example` is the argument object shown in the /docs example call.
+const TOOLS = [
+  {
+    name: 'find-component',
+    title: 'Hitta komponent',
+    description:
+      'Hitta vilka @sk-web-gui-komponenter som passar ett behov. Sök på funktion/use-case ' +
+      '(t.ex. "visa ett felmeddelande", "datumväljare", "dropdown med sök"). Returnerar en ' +
+      'rankad lista. Anropa get-component för fullständiga props.',
+    inputSchema: {
+      query: z.string().describe('Behov/use-case eller komponentnamn'),
+      limit: z.number().int().min(1).max(25).optional().describe('Max antal träffar (1–25, default 8)'),
     },
-    async ({ query, limit }) => {
+    example: { query: 'datumväljare' },
+    handler: async ({ query, limit }) => {
       const results = findComponents(query, limit ?? 8);
       return text({ query, count: results.length, results, note: REACT_NOTE });
-    }
-  );
-
-  server.registerTool(
-    'list-components',
-    {
-      title: 'Lista komponenter',
-      description: 'Lista alla tillgängliga komponenter, valfritt filtrerat på kategori.',
-      inputSchema: { category: z.string().optional().describe('Filtrera på kategori, t.ex. "Komponenter" eller "AI"') },
     },
-    async ({ category }) => {
+  },
+  {
+    name: 'list-components',
+    title: 'Lista komponenter',
+    description: 'Lista alla tillgängliga komponenter, valfritt filtrerat på kategori.',
+    inputSchema: {
+      category: z.string().optional().describe('Filtrera på kategori, t.ex. "Komponenter" eller "AI"'),
+    },
+    example: { category: 'AI' },
+    handler: async ({ category }) => {
       const list = manifest.components
         .filter((c) => !category || c.category.toLowerCase().includes(category.toLowerCase()))
         .map((c) => ({ name: c.name, category: c.category, importPath: c.importPath }));
       return text({ count: list.length, components: list, note: REACT_NOTE });
-    }
-  );
-
-  server.registerTool(
-    'get-component',
-    {
-      title: 'Hämta komponent',
-      description:
-        'Hämta fullständig information om en komponent: import-väg, beskrivning, alla props ' +
-        '(typ, om de krävs, beskrivning) och tags.',
-      inputSchema: { name: z.string().describe('Komponentnamn, t.ex. "Button"') },
     },
-    async ({ name }) => {
+  },
+  {
+    name: 'get-component',
+    title: 'Hämta komponent',
+    description:
+      'Hämta fullständig information om en komponent: import-väg, beskrivning, alla props ' +
+      '(typ, om de krävs, beskrivning) och tags.',
+    inputSchema: { name: z.string().describe('Komponentnamn, t.ex. "Button"') },
+    example: { name: 'Button' },
+    handler: async ({ name }) => {
       const matches = getComponents(name);
       if (!matches.length) {
         const suggestions = findComponents(name, 5).map((r) => r.name);
@@ -197,22 +198,23 @@ function buildMcpServer() {
           props: c.props,
         })),
       });
-    }
-  );
-
-  server.registerTool(
-    'get-design-tokens',
-    {
-      title: 'Hämta design-tokens',
-      description:
-        'Hämta designsystemets tokens (colors, spacing, radius, fontSizes, lineHeights, fonts, screens). ' +
-        'Använd dessa istället för hårdkodade värden.',
-      inputSchema: {
-        group: z.enum(['colors', 'spacing', 'radius', 'fontSizes', 'lineHeights', 'fonts', 'screens', 'all']).optional(),
-        filter: z.string().optional().describe('Filtrera token-namn, t.ex. "blue" eller "primary"'),
-      },
     },
-    async ({ group, filter }) => {
+  },
+  {
+    name: 'get-design-tokens',
+    title: 'Hämta design-tokens',
+    description:
+      'Hämta designsystemets tokens (colors, spacing, radius, fontSizes, lineHeights, fonts, screens). ' +
+      'Använd dessa istället för hårdkodade värden.',
+    inputSchema: {
+      group: z
+        .enum(['colors', 'spacing', 'radius', 'fontSizes', 'lineHeights', 'fonts', 'screens', 'all'])
+        .optional()
+        .describe('Token-grupp att hämta (default: alla)'),
+      filter: z.string().optional().describe('Filtrera token-namn, t.ex. "blue" eller "primary"'),
+    },
+    example: { group: 'colors', filter: 'primary' },
+    handler: async ({ group, filter }) => {
       const tokens = manifest.tokens || {};
       if (!group || group === 'all') {
         if (!filter) return text(tokens);
@@ -229,15 +231,160 @@ function buildMcpServer() {
         ? Object.fromEntries(Object.entries(entries).filter(([k]) => k.toLowerCase().includes(filter.toLowerCase())))
         : entries;
       return text({ group, tokens: filtered });
-    }
-  );
+    },
+  },
+];
 
+function buildMcpServer() {
+  const server = new McpServer({ name: '@sk-web-gui/mcp', version: '0.1.0' });
+  for (const t of TOOLS) {
+    server.registerTool(t.name, { title: t.title, description: t.description, inputSchema: t.inputSchema }, t.handler);
+  }
   return server;
+}
+
+// --- human-readable docs page ---------------------------------------------
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+// Describe a tool's zod input shape as plain rows for the docs table, derived
+// from the same schema MCP validates against (via zod's JSON Schema export).
+function paramsOf(inputSchema) {
+  const js = z.toJSONSchema(z.object(inputSchema));
+  const required = new Set(js.required || []);
+  return Object.entries(js.properties || {}).map(([name, p]) => ({
+    name,
+    type: Array.isArray(p.enum) ? p.enum.join(' | ') : p.type || 'any',
+    required: required.has(name),
+    description: p.description || '',
+  }));
+}
+
+const DOCS_CSS = `
+  :root { --fg:#1a1d23; --muted:#5b6573; --line:#e3e7ec; --bg:#fff; --code-bg:#f5f7fa; --accent:#0a5ad4; --req:#b4232c; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; color:var(--fg); background:var(--bg); }
+  main { max-width: 820px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; }
+  h1 { font-size: 2rem; margin: 0 0 .25rem; }
+  h2 { font-size: 1.25rem; margin: 2.5rem 0 .75rem; padding-bottom:.3rem; border-bottom:1px solid var(--line); }
+  h3 { font-size: 1.05rem; margin: 0 0 .4rem; }
+  a { color: var(--accent); }
+  .muted { color: var(--muted); }
+  .lead { font-size: 1.1rem; color: var(--muted); }
+  code { font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size: .9em; background: var(--code-bg); padding: .1em .35em; border-radius: 4px; }
+  pre { background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; }
+  pre code { background: none; padding: 0; }
+  .tool { border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.25rem; margin: 1rem 0; }
+  .tool h3 code { background: none; padding: 0; color: var(--accent); font-size: 1.05rem; }
+  .tool .title { color: var(--muted); font-weight: 400; font-size: .9rem; margin-left:.4rem; }
+  table { width: 100%; border-collapse: collapse; margin: .5rem 0 .25rem; font-size: .92rem; }
+  th, td { text-align: left; padding: .4rem .5rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; font-size: .82rem; text-transform: uppercase; letter-spacing: .02em; }
+  .req { color: var(--req); font-size: .82rem; font-weight:600; }
+  .opt { color: var(--muted); font-size: .82rem; }
+  details summary { cursor: pointer; color: var(--accent); font-size: .9rem; margin-top:.5rem; }
+  .badges { color: var(--muted); }
+`;
+
+function renderDocsHtml(base) {
+  const endpoint = `${base}/mcp`;
+  // The page is served from both the hosted instance and a local `yarn mcp:serve`.
+  // Show the hosted *and* local ways to connect regardless of which one you're on.
+  const isLocal = /\/\/(localhost|127\.0\.0\.1|\[?::1\]?)/i.test(base);
+  const publicUrl = process.env.MCP_PUBLIC_URL ? process.env.MCP_PUBLIC_URL.replace(/\/+$/, '') : null;
+  const hostedEndpoint = isLocal ? (publicUrl ? `${publicUrl}/mcp` : null) : endpoint;
+  const localEndpoint = isLocal ? endpoint : `http://localhost:${PORT}/mcp`;
+
+  const connectBlock = (url) =>
+    `<pre><code>${escapeHtml(`claude mcp add --transport http sk-web-gui ${url}`)}</code></pre>` +
+    `<p class="muted">…eller i <code>mcp.json</code>:</p>` +
+    `<pre><code>${escapeHtml(JSON.stringify({ mcpServers: { 'sk-web-gui': { url, transport: 'http' } } }, null, 2))}</code></pre>`;
+
+  const hostedBlock = hostedEndpoint
+    ? `<p>Anslut din agent till den alltid-på-servern — inget att installera, alltid senaste komponenterna:</p>${connectBlock(hostedEndpoint)}`
+    : `<p>I drift nås servern på sin publika adress med <code>/mcp</code> på slutet (samma mönster som den här sidan). Sätt miljövariabeln <code>MCP_PUBLIC_URL</code> så visas den exakta adressen här.</p>`;
+
+  const localBlock =
+    `<p>Kör servern i det här repot — användbart offline eller när du jobbar mot en egen branch av komponenterna:</p>` +
+    `<pre><code>yarn            # installera beroenden
+yarn mcp:serve  # genererar manifestet och startar servern på :${PORT}</code></pre>` +
+    `<p class="muted">Anslut sedan till <code>${escapeHtml(localEndpoint)}</code>:</p>` +
+    connectBlock(localEndpoint);
+
+  const toolCards = TOOLS.map((t) => {
+    const params = paramsOf(t.inputSchema);
+    const rows = params.length
+      ? params
+          .map(
+            (p) =>
+              `<tr><td><code>${escapeHtml(p.name)}</code></td><td><code>${escapeHtml(p.type)}</code></td>` +
+              `<td>${p.required ? '<span class="req">krävs</span>' : '<span class="opt">valfri</span>'}</td>` +
+              `<td>${escapeHtml(p.description)}</td></tr>`
+          )
+          .join('')
+      : '<tr><td colspan="4"><em>Inga parametrar.</em></td></tr>';
+    const reqBody = JSON.stringify({
+      jsonrpc: '2.0',
+      id: 1,
+      method: 'tools/call',
+      params: { name: t.name, arguments: t.example },
+    });
+    const curl = [
+      `curl -X POST ${endpoint} \\`,
+      `  -H 'Content-Type: application/json' \\`,
+      `  -H 'Accept: application/json, text/event-stream' \\`,
+      `  -d '${reqBody}'`,
+    ].join('\n');
+    return (
+      `<section class="tool">` +
+      `<h3><code>${escapeHtml(t.name)}</code><span class="title">${escapeHtml(t.title)}</span></h3>` +
+      `<p>${escapeHtml(t.description)}</p>` +
+      `<table><thead><tr><th>Parameter</th><th>Typ</th><th></th><th>Beskrivning</th></tr></thead>` +
+      `<tbody>${rows}</tbody></table>` +
+      `<details><summary>Exempelanrop</summary><pre><code>${escapeHtml(curl)}</code></pre></details>` +
+      `</section>`
+    );
+  }).join('');
+
+  return `<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>@sk-web-gui · MCP-server</title>
+<style>${DOCS_CSS}</style>
+</head>
+<body>
+<main>
+  <h1>@sk-web-gui <span class="muted">MCP-server</span></h1>
+  <p class="lead">Ett API för AI-agenter (Claude Code, Cursor m.fl.) att utforska designsystemet @sk-web-gui — hitta komponenter, läsa deras props och slå upp design-tokens.</p>
+  <p class="badges"><strong>${manifest.componentCount}</strong> komponenter · <a href="/">Styleguide</a> · <a href="/healthz">Hälsokoll</a></p>
+
+  <h2>Vad används det till?</h2>
+  <p>Använd servern när du <strong>bygger andra appar med @sk-web-gui</strong>. Din AI-agent kan fråga vilka komponenter som finns, läsa deras props och hämta design-tokens — och därmed skriva kod som följer designsystemet istället för att gissa.</p>
+  <p class="muted">Agenter pratar med servern via <code>POST ${escapeHtml(endpoint)}</code> (MCP över streamable HTTP). Öppnar du samma adress i en webbläsare får du den här sidan.</p>
+
+  <h2>Anslut</h2>
+  <h3>Hostad <span class="muted">· rekommenderas</span></h3>
+  ${hostedBlock}
+  <h3>Lokalt</h3>
+  ${localBlock}
+
+  <h2>Verktyg</h2>
+  ${toolCards}
+
+  ${REACT_NOTE ? `<h2>Att tänka på</h2><p class="muted">${escapeHtml(REACT_NOTE)}</p>` : ''}
+</main>
+</body>
+</html>`;
 }
 
 // --- HTTP ------------------------------------------------------------------
 
 const app = express();
+app.set('trust proxy', true); // behind Traefik — honour X-Forwarded-Proto for absolute URLs
 app.use(express.json({ limit: '4mb' }));
 
 app.get('/healthz', (_req, res) => res.json({ ok: true, components: manifest.componentCount }));
@@ -259,10 +406,18 @@ app.post('/mcp', async (req, res) => {
   }
 });
 
-// Stateless mode has no server-initiated streams, so GET/DELETE are not supported.
+// Stateless mode has no server-initiated streams, so GET/DELETE aren't supported
+// by the protocol. But a person opening /mcp in a browser should see what the
+// server offers, so serve the human-readable docs to HTML-preferring requests
+// (browsers) and return the protocol's 405 to MCP clients (event-stream/json).
 const methodNotAllowed = (_req, res) =>
   res.status(405).json({ jsonrpc: '2.0', error: { code: -32000, message: 'Method not allowed.' }, id: null });
-app.get('/mcp', methodNotAllowed);
+app.get('/mcp', (req, res) => {
+  if (req.accepts(['text/event-stream', 'application/json', 'html']) === 'html') {
+    return res.type('html').send(renderDocsHtml(`${req.protocol}://${req.get('host')}`));
+  }
+  return methodNotAllowed(req, res);
+});
 app.delete('/mcp', methodNotAllowed);
 
 // Serve the static styleguide for everything else (same host as /mcp).
@@ -274,7 +429,7 @@ if (fs.existsSync(STATIC_DIR)) {
 
 app.listen(PORT, () => {
   console.log(`@sk-web-gui MCP server on :${PORT}`);
-  console.log(`  MCP endpoint:  http://localhost:${PORT}/mcp`);
+  console.log(`  MCP endpoint:  http://localhost:${PORT}/mcp  (POST: protocol · GET in browser: docs)`);
   console.log(`  Styleguide:    http://localhost:${PORT}/`);
   console.log(`  Components:     ${manifest.componentCount}`);
 });
