@@ -10,7 +10,7 @@ services:
       target: runner
     restart: unless-stopped
     healthcheck:
-      test: ['CMD', 'http', 'localhost:${PORT}']
+      test: ['CMD', 'wget', '-qO-', 'http://localhost:${CONTAINER_PORT:-8080}/healthz']
       interval: 10s
       timeout: 5s
       retries: 12
