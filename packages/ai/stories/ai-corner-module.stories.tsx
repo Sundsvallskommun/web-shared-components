@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { AICornerModule, type Assistant, ChatHistory, SessionHistory } from '../src';
 import { AICornerModuleProps } from '../src/components';
 import qwertySrc from './images/qwerty-avatar.png';

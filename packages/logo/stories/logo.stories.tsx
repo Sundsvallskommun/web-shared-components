@@ -1,5 +1,5 @@
 import { Logo, LogoProps } from '../src';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import React from 'react';
 
 export default {

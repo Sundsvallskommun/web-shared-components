@@ -1,6 +1,6 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbProps } from '../src';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 
 export default {
   title: 'Komponenter/Breadcrumbs',

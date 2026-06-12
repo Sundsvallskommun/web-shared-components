@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import React from 'react';
 import { CustomOnChangeEventUploadFile, FileUpload, FileUploadProps, UploadFile } from '../../src';
 import { FieldValues, FormProvider, useForm } from 'react-hook-form';

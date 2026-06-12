@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { AIServiceModule } from '../src/components';
 import { type AIServiceModuleQuestionsEssentialProps } from '../src/components/ai-service-module/ai-service-module-questions';
 

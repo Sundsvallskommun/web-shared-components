@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { Check } from 'lucide-react';
 import { Icon, IconProps } from '../src/icon';
 

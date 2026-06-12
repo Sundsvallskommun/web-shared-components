@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { NavigationBar, NavigationBarProps } from '../src';
 import { Button } from '@sk-web-gui/button';
 import { PopupMenu } from '@sk-web-gui/popup-menu';

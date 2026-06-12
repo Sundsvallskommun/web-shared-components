@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import React from 'react';
 import { Input } from '../src';
 import { TextField, TextFieldProps } from '../src/text-field/text-field';

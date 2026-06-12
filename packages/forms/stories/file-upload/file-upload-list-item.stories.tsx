@@ -1,6 +1,6 @@
 import { Button } from '@sk-web-gui/button';
 import { PopupMenu } from '@sk-web-gui/popup-menu';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { FileIcon, Trash } from 'lucide-react';
 import React from 'react';
 import { FileUpload, FileUploadProps, Switch } from '../../src';

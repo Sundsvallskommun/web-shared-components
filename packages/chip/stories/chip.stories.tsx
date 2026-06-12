@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { Chip, ChipProps } from '../src';
 import { FormControl, FormLabel, Input } from '@sk-web-gui/forms';
 import { Button } from '@sk-web-gui/button';

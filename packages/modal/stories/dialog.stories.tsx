@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@sk-web-gui/button';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { useEffect, useState } from 'react';
 import { Dialog } from '../src/dialog';
 
