@@ -15,7 +15,7 @@
     "clean:dist": "yarn lerna exec rimraf dist",
     "boot": "yarn && yarn build:nocache",
     "boot:esm": "yarn && yarn build:esm:nocache",
-    "boot:storybook": "yarn && lerna run build:esm --no-private --stream --skip-nx-cache && yarn build:storybook",
+    "boot:storybook": "yarn && lerna run build:esm --no-private --stream --skip-nx-cache && lerna run build:cjs --no-private --stream --skip-nx-cache && yarn build:storybook",
     "reboot": "yarn clean:dist | yarn cache clean && yarn boot",
     "dev": "yarn dev-storybook",
     "dev:test": "yarn dev-storybook --test",
