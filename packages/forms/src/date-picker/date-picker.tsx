@@ -3,6 +3,13 @@ import { Input, InputProps } from '../input/input';
 
 export interface DatePickerProps extends Omit<InputProps, 'type' | 'as'> {
   type?: 'date' | 'time' | 'datetime-local';
+  /**
+   * Latest selectable value. Defaults to a four-digit year cap
+   * (`9999-12-31`, or `9999-12-31T23:59` for `datetime-local`) so the native
+   * year field stops at four digits instead of overflowing to e.g. `20000`.
+   * @default '9999-12-31'
+   */
+  max?: InputProps['max'];
 }
 
 /**

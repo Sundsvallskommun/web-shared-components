@@ -16,6 +16,25 @@ export const Template = (args: DatePickerProps) => {
 
 Template.storyName = 'DatePicker';
 
+Template.argTypes = {
+  type: {
+    description: 'Input type',
+    table: {
+      defaultValue: { summary: 'date' },
+    },
+    options: ['date', 'time', 'datetime-local'],
+    control: 'select',
+  },
+  max: {
+    description:
+      'Latest selectable value. Defaults to a four-digit year cap so the native year field stops at four digits instead of overflowing to e.g. 20000.',
+    table: {
+      defaultValue: { summary: '9999-12-31' },
+    },
+    control: 'text',
+  },
+};
+
 export const Disabled = () => (
   <div>
     <DatePicker disabled aria-label="Välj datum" />
