@@ -10,7 +10,6 @@ import { TableBody } from './table-body';
 import { TableRow } from './table-row';
 import { TableRowColumn } from './table-row-column';
 import { TableFooter } from './table-footer';
-import _ from 'lodash';
 import Table, { TableComponentProps } from './table';
 import { SortMode } from './types';
 
@@ -135,14 +134,14 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
     switch (typeof header) {
       case 'string':
         headerparts = header.split('.');
-        return _.upperFirst(_.lowerCase(headerparts[headerparts.length - 1]));
+        return headerparts[headerparts.length - 1];
 
       default:
         if (header.label) {
           return header.label;
         }
         headerparts = header.property ? header.property.split('.') : [];
-        return headerparts.length ? _.upperFirst(_.lowerCase(headerparts[headerparts.length - 1])) : '';
+        return headerparts.length ? headerparts[headerparts.length - 1] : '';
     }
   };
 
