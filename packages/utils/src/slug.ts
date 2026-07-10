@@ -1,5 +1,5 @@
 export const toSlug = (str: string) => {
-  str = str.replace(/^\s+|\s+$/g, ''); // trim
+  str = str.trim();
   str = str.toLowerCase();
 
   // remove accents, swap ñ for n, etc
