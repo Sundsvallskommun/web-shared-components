@@ -14,9 +14,6 @@ export type ToolbarTokenSimple =
   | 'blockquote'
   | 'code-block'
   | 'link'
-  | 'image'
-  | 'video'
-  | 'formula'
   | 'clean';
 
 type ToolbarRecordSingle =
@@ -48,3 +45,10 @@ export const defaultToolbarTokens: ToolbarConfig = [
   [{ list: 'bullet' }, { list: 'ordered' }],
   ['link'],
 ];
+
+export function getToolbarGroups(toolbar?: ToolbarConfig): ToolbarTokenNested[] {
+  const configuredToolbar = toolbar && toolbar.length > 0 ? toolbar : defaultToolbarTokens;
+  return configuredToolbar.every(Array.isArray)
+    ? (configuredToolbar as ToolbarTokenNested[])
+    : [configuredToolbar as ToolbarTokenRecord[]];
+}

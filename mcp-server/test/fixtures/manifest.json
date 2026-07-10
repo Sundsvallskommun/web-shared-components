@@ -1,0 +1,36 @@
+{
+  "generatedAt": "2026-01-01T00:00:00.000Z",
+  "componentCount": 1,
+  "note": "Fixture manifest for MCP contract tests.",
+  "components": [
+    {
+      "name": "Button",
+      "category": "Komponenter",
+      "package": "@sk-web-gui/button",
+      "importPath": "@sk-web-gui/button",
+      "description": "A test button.",
+      "tags": ["autodocs"],
+      "keywords": ["button", "knapp"],
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "description": "Disables the button."
+        }
+      ],
+      "storyFile": "packages/button/stories/button.stories.tsx"
+    }
+  ],
+  "tokens": {
+    "colors": {
+      "primary": "#005595"
+    },
+    "spacing": {},
+    "radius": {},
+    "fontSizes": {},
+    "lineHeights": {},
+    "fonts": {},
+    "screens": {}
+  }
+}

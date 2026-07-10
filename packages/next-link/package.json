@@ -29,14 +29,14 @@
     "test": "node ../../scripts/test-package-tests.mjs",
     "lint": "concurrently yarn:lint:*",
     "version": "yarn build",
-    "build:esm": "swc src -d dist/esm --config-file ../../.swcrc.esm && node ../../fix-esm-extensions.mjs ./dist/esm",
-    "build:cjs": "swc src -d dist/cjs --config-file ../../.swcrc",
+    "build:esm": "node ../../scripts/build-package.mjs esm",
+    "build:cjs": "node ../../scripts/build-package.mjs cjs",
     "build:types": "tsc -p ./tsconfig.production.json --emitDeclarationOnly --declaration --declarationDir dist/types",
     "test:cov": "node ../../scripts/test-package-tests.mjs --coverage",
     "lint:src": "eslint src"
   },
   "devDependencies": {
-    "next": "^15.0.4",
+    "next": "^15.5.20",
     "react": "^19.0.0"
   },
   "dependencies": {
@@ -44,7 +44,7 @@
     "@sk-web-gui/utils": "2.2.2"
   },
   "peerDependencies": {
-    "next": ">=15.0.4",
+    "next": ">=15.5.20",
     "react": ">=18.3.1"
   }
 }

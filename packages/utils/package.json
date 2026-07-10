@@ -29,17 +29,17 @@
     "test": "node ../../scripts/test-package-tests.mjs",
     "lint": "concurrently yarn:lint:*",
     "version": "yarn build",
-    "build:esm": "swc src -d dist/esm --config-file ../../.swcrc.esm && node ../../fix-esm-extensions.mjs ./dist/esm",
-    "build:cjs": "swc src -d dist/cjs --config-file ../../.swcrc",
+    "build:esm": "node ../../scripts/build-package.mjs esm",
+    "build:cjs": "node ../../scripts/build-package.mjs cjs",
     "build:types": "tsc -p ./tsconfig.production.json --emitDeclarationOnly --declaration --declarationDir dist/types",
     "test:cov": "node ../../scripts/test-package-tests.mjs --coverage",
     "lint:src": "eslint src"
   },
   "devDependencies": {
-    "@types/color-string": "^1.5.5",
     "react": "^19.0.0"
   },
   "dependencies": {
+    "@types/color-string": "^1.5.5",
     "clsx": "^2.1.1",
     "color-string": "^1.9.1",
     "usehooks-ts": "^3.1.1"

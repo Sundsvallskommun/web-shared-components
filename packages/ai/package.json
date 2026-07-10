@@ -10,9 +10,9 @@
   "typings": "./dist/types/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js",
-      "types": "./dist/types/index.d.ts",
       "default": "./dist/esm/index.js"
     }
   },
@@ -29,13 +29,15 @@
     "test": "node ../../scripts/test-package-tests.mjs",
     "lint": "concurrently yarn:lint:*",
     "version": "yarn build",
-    "build:esm": "swc src -d dist/esm --config-file ../../.swcrc.esm && node ../../fix-esm-extensions.mjs ./dist/esm",
-    "build:cjs": "swc src -d dist/cjs --config-file ../../.swcrc",
+    "build:esm": "node ../../scripts/build-package.mjs esm && node ../../scripts/bundle-ai-speech-sdk.mjs esm",
+    "build:cjs": "node ../../scripts/build-package.mjs cjs && node ../../scripts/bundle-ai-speech-sdk.mjs cjs",
     "build:types": "tsc -p ./tsconfig.production.json --emitDeclarationOnly --declaration --declarationDir dist/types",
     "test:cov": "node ../../scripts/test-package-tests.mjs --coverage",
     "lint:src": "eslint src"
   },
   "devDependencies": {
+    "microsoft-cognitiveservices-speech-sdk": "1.50.0",
+    "uuid": "11.1.1",
     "react": "^19.0.0"
   },
   "dependencies": {
@@ -55,7 +57,6 @@
     "@types/sanitize-html": "^2.16.0",
     "date-fns": "^4.1.0",
     "lucide-react": "^0.575.0",
-    "microsoft-cognitiveservices-speech-sdk": "^1.48.0",
     "react-markdown": "^10.1.0",
     "regenerator-runtime": "^0.14.1",
     "remark-gfm": "^4.0.1",

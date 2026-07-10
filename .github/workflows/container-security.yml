@@ -1,0 +1,145 @@
+name: Container security
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '43 4 * * 1'
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+    paths:
+      - .github/scripts/**
+      - .github/workflows/container-security.yml
+      - .dockerignore
+      - .npmrc
+      - .node-version
+      - .swcrc*
+      - .trivyignore.yaml
+      - Dockerfile
+      - docker-compose.yml
+      - fix-esm-extensions.mjs
+      - lerna.json
+      - nx.json
+      - package.json
+      - postcss.config.*
+      - tailwind.config.*
+      - tsconfig*.json
+      - vite.config.*
+      - yarn.lock
+      - mcp-server/**
+      - packages/**
+      - scripts/**
+      - .storybook/**
+
+concurrency:
+  group: container-security-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  IMAGE_NAME: web-shared-components:security-check
+
+jobs:
+  container:
+    name: Build, smoke test, and scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: .node-version
+          cache: npm
+          cache-dependency-path: mcp-server/package-lock.json
+
+      - name: Install locked MCP smoke-test dependencies
+        run: npm ci --prefix mcp-server --ignore-scripts
+
+      - name: Validate deployment configuration
+        run: docker compose config --quiet
+
+      - name: Validate temporary vulnerability exceptions
+        run: |
+          node --test .github/scripts/validate-trivy-ignore.test.mjs
+          node .github/scripts/validate-trivy-ignore.mjs .trivyignore.yaml
+
+      - name: Build image from locked dependencies
+        run: docker build --pull --tag "$IMAGE_NAME" .
+
+      - name: Verify runtime contract
+        run: |
+          test "$(docker image inspect --format '{{.Config.User}}' "$IMAGE_NAME")" = containeruser
+          docker run \
+            --detach \
+            --rm \
+            --name security-check \
+            --read-only \
+            --tmpfs /tmp:rw,noexec,nosuid,size=16m \
+            --cap-drop ALL \
+            --security-opt no-new-privileges \
+            --publish 127.0.0.1:8080:8080 \
+            "$IMAGE_NAME"
+          node mcp-server/smoke-test.mjs http://127.0.0.1:8080
+          docker exec security-check sh -c \
+            'test "$(id -u)" = 1001 && test ! -w /app && command -v node >/dev/null && ! command -v npm >/dev/null && ! command -v yarn >/dev/null && ! command -v corepack >/dev/null && test ! -e /app/.git && test ! -e /app/.claude && test ! -e /app/.codex && test ! -e /app/.mcp.json'
+
+      - name: Capture container logs
+        if: always()
+        run: docker logs security-check 2>&1 || true
+
+      - name: Stop test container
+        if: always()
+        run: docker stop security-check 2>/dev/null || true
+
+      - name: Generate image SBOM
+        uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610 # v0.24.0
+        with:
+          image: ${{ env.IMAGE_NAME }}
+          format: cyclonedx-json
+          output-file: image-sbom.cdx.json
+          syft-version: v1.46.0
+          upload-artifact: false
+          upload-release-assets: false
+
+      - name: Record all image vulnerabilities
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          image-ref: ${{ env.IMAGE_NAME }}
+          format: json
+          output: image-vulnerabilities.json
+          exit-code: '0'
+          ignore-unfixed: false
+          severity: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
+          version: v0.72.0
+
+      - name: Upload security evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: container-security-evidence
+          path: |
+            image-sbom.cdx.json
+            image-vulnerabilities.json
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Reject every unapproved image vulnerability
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          image-ref: ${{ env.IMAGE_NAME }}
+          format: table
+          exit-code: '1'
+          ignore-unfixed: false
+          severity: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
+          skip-setup-trivy: true
+          trivyignores: .trivyignore.yaml

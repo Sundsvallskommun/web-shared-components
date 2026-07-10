@@ -24,8 +24,8 @@
   "scripts": {
     "version": "yarn build",
     "build": "yarn build:types && yarn build:esm && yarn build:cjs",
-    "build:esm": "swc src -d dist/esm --config-file ../../.swcrc.esm && node ../../fix-esm-extensions.mjs ./dist/esm",
-    "build:cjs": "swc src -d dist/cjs --config-file ../../.swcrc",
+    "build:esm": "node ../../scripts/build-package.mjs esm",
+    "build:cjs": "node ../../scripts/build-package.mjs cjs",
     "build:types": "tsc -p ./tsconfig.production.json --emitDeclarationOnly --declaration --declarationDir dist/types",
     "test": "node ../../scripts/test-package-tests.mjs",
     "test:cov": "node ../../scripts/test-package-tests.mjs --coverage"
@@ -33,7 +33,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.21",
     "clean-css": "^5.3.3",
-    "postcss": "^8.5.6",
+    "postcss": "^8.5.16",
     "postcss-import": "^16.1.1"
   },
   "dependencies": {
@@ -41,6 +41,6 @@
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/forms": "^0.5.10",
     "mini-svg-data-uri": "^1.4.4",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^3.4.19"
   }
 }

@@ -1,7 +1,61 @@
-Dockerfile
-.dockerignore
-node_modules
-npm-debug.log
-README.md
-.next
+# Version control and repository-only automation
 .git
+.github
+.agents
+.dockerignore
+Dockerfile
+docker-compose.yml
+.claude
+.codex
+.cursor
+.continue
+.windsurf
+.aider*
+.mcp.json
+.mcp.*.json
+.trivyignore.yaml
+
+# Credentials and local configuration must never enter the build context
+.env*
+*.pem
+*.key
+.npmrc
+.yarnrc
+.yarnrc.yml
+
+# Installed dependencies and package-manager state
+**/node_modules
+.npm
+.pnp
+.pnp.*
+.yarn/cache
+.yarn/unplugged
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Generated outputs and caches
+**/coverage
+**/dist
+storybook-static
+.next
+.nx
+.turbo
+*.tsbuildinfo
+mcp-server/manifest.json
+playwright-report
+test-fixtures
+test-results
+
+# Local tools and operating-system files
+.DS_Store
+.idea
+.vscode
+*.swp
+*.swo
+
+# Files that are not needed to compile the runtime image
+.changelog
+docs
+README.md
+SECURITY.md

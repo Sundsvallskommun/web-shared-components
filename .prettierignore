@@ -1,2 +1,5 @@
 .swcrc
 .swcrc.esm
+
+# Kept as JSON-compatible YAML for dependency-free security policy validation.
+/.trivyignore.yaml

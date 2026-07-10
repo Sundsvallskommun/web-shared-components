@@ -6,9 +6,6 @@ export const TokenLabels: Record<string, string> = {
   blockquote: 'Citat',
   'code-block': 'Kodblock',
   link: 'Länk',
-  image: 'Infoga bild',
-  video: 'Infoga video',
-  formula: 'Infoga formel',
   color: 'Textfärg',
   background: 'Bakgrundsfärg',
   font: 'Typsnitt',
@@ -38,19 +35,6 @@ export const TokenLabels: Record<string, string> = {
   'size-large': 'Stor text',
   'size-huge': 'Mycket stor text',
 };
-
-export function getTokenFromElement(el: Element): string | null {
-  const qlClass = Array.from(el.classList).find((c) => c.startsWith('ql-'));
-  if (!qlClass) return null;
-
-  const base = qlClass.replace('ql-', '');
-  const value = (el as HTMLButtonElement | HTMLSelectElement).value;
-
-  if (value) {
-    return `${base}-${value}`;
-  }
-  return base;
-}
 
 export function getTokenLabel(token: string, fallback = 'Button'): string {
   return TokenLabels[token] ?? fallback;

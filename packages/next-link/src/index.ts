@@ -1,3 +1,5 @@
+'use client';
+
 import { NextLink, NextLinkProps } from './next-link';
 
 export { NextLink };
