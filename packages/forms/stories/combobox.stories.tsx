@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import _ from 'lodash';
 import { Combobox, ComboboxProps, FormControl, FormErrorMessage, FormHelperText, FormLabel } from '../src';
 import { Button } from '@sk-web-gui/button';
 export default {
@@ -299,7 +298,7 @@ class FormLikeWrapper extends React.Component<{
   state = { formData: this.props.formData };
 
   componentDidUpdate(prevProps: typeof this.props) {
-    if (!_.isEqual(prevProps.formData, this.props.formData)) {
+    if (JSON.stringify(prevProps.formData) !== JSON.stringify(this.props.formData)) {
       const newFormData = { ...this.props.formData };
       this.setState({ formData: newFormData }, () => {
         this.props.onChange({ formData: { ...this.state.formData } });
