@@ -3,7 +3,10 @@ import React from 'react';
 import { useFormControl } from '../form-control';
 import { UseComboboxProps, useCombobox } from './combobox-context';
 import { useComboboxStyles } from './styles';
-import _ from 'lodash';
+
+const isEqualStringArray = (first: readonly string[], second: readonly string[] | null): boolean =>
+  second !== null && first.length === second.length && first.every((value, index) => value === second[index]);
+
 export interface ComboboxInputProps
   extends Omit<UseComboboxProps, 'autofilter' | 'sortSelectedFirst'>,
     Omit<React.ComponentPropsWithRef<'input'>, 'size' | 'onChange' | 'onSelect' | 'value' | 'defaultValue'> {
@@ -113,7 +116,7 @@ export const ComboboxInput = React.forwardRef<HTMLInputElement, ComboboxInputPro
   React.useEffect(() => {
     const _value = value.map((opt) => labels[opt]);
 
-    if (_.isEqual(_value, valueMemo) === false) {
+    if (!isEqualStringArray(_value, valueMemo)) {
       setValueMemo(_value);
       const event = {
         target: {
