@@ -1,99 +1,139 @@
 import React from 'react';
-import { Input } from '../src';
-import { Meta } from '@storybook/react-vite';
-import { DatePicker, DatePickerProps } from '../src/date-picker/date-picker';
+import { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, within } from 'storybook/test';
 import { useForm } from 'react-hook-form';
+import { DatePicker, DatePickerProps } from '../src/date-picker/date-picker';
 
-export default {
+const DEFAULT_MAX_SUMMARY =
+  'date → 9999-12-31 | datetime-local → 9999-12-31T23:59 | time → none';
+
+const meta = {
   title: 'Komponenter/DatePicker',
   component: DatePicker,
   tags: ['autodocs'],
-} as Meta<typeof DatePicker>;
+  args: {
+    type: 'date',
+    'aria-label': 'Välj datum',
+  },
+  argTypes: {
+    type: {
+      description: 'Input type',
+      table: {
+        defaultValue: { summary: 'date' },
+      },
+      options: ['date', 'time', 'datetime-local'],
+      control: 'select',
+    },
+    max: {
+      description:
+        'Latest selectable value. When omitted, DatePicker applies a type-specific four-digit year cap for date and datetime-local, and no default for time.',
+      table: {
+        defaultValue: { summary: DEFAULT_MAX_SUMMARY },
+      },
+      control: 'text',
+    },
+  },
+} satisfies Meta<typeof DatePicker>;
 
-export const Template = (args: DatePickerProps) => {
-  return <DatePicker aria-label="Välj datum" {...args} />;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+const sizes = ['sm', 'md', 'lg'] as const;
+
+const DatePickerSizes = ({
+  label,
+  type = 'date',
+  max,
+}: {
+  label: string;
+  type?: DatePickerProps['type'];
+  max?: DatePickerProps['max'];
+}) => (
+  <div className="flex flex-col gap-16">
+    <div className="flex gap-16">
+      {sizes.map((size) => (
+        <DatePicker key={size} size={size} type={type} max={max} aria-label={label} />
+      ))}
+    </div>
+  </div>
+);
+
+const expectRenderedMax = async (
+  canvasElement: HTMLElement,
+  label: string,
+  expectedMax: string | undefined,
+  expectedCount = sizes.length
+) => {
+  const inputs = within(canvasElement).getAllByLabelText(label);
+
+  await expect(inputs).toHaveLength(expectedCount);
+
+  for (const input of inputs) {
+    if (expectedMax) {
+      await expect(input).toHaveAttribute('max', expectedMax);
+    } else {
+      await expect(input).not.toHaveAttribute('max');
+    }
+  }
 };
 
-Template.storyName = 'DatePicker';
+export const Template: Story = {
+  name: 'DatePicker',
+};
 
-Template.argTypes = {
-  type: {
-    description: 'Input type',
-    table: {
-      defaultValue: { summary: 'date' },
-    },
-    options: ['date', 'time', 'datetime-local'],
-    control: 'select',
-  },
-  max: {
-    description:
-      'Latest selectable value. Defaults to a four-digit year cap so the native year field stops at four digits instead of overflowing to e.g. 20000.',
-    table: {
-      defaultValue: { summary: '9999-12-31' },
-    },
-    control: 'text',
+export const Disabled: Story = {
+  name: 'Inaktiverad',
+  args: {
+    disabled: true,
   },
 };
 
-export const Disabled = () => (
-  <div>
-    <DatePicker disabled aria-label="Välj datum" />
-  </div>
-);
-Disabled.storyName = 'Inaktiverad';
+export const Invalid: Story = {
+  name: 'Invaliderad',
+  args: {
+    invalid: true,
+  },
+};
 
-export const Invalid = () => (
-  <div>
-    <div className="flex gap-16">
-      <DatePicker invalid aria-label="Välj datum" />
-    </div>
-  </div>
-);
-Invalid.storyName = 'Invaliderad';
+export const Storlekar: Story = {
+  render: () => <DatePickerSizes label="Välj datum" />,
+};
 
-export const Storlekar = () => (
-  <div className="flex flex-col gap-16">
-    <div className="flex gap-16">
-      <DatePicker size="sm" aria-label="Välj datum" />
-      <DatePicker size="md" aria-label="Välj datum" />
-      <DatePicker size="lg" aria-label="Välj datum" />
-    </div>
-  </div>
-);
+export const Datum: Story = {
+  render: () => <DatePickerSizes label="Välj datum" type="date" />,
+  play: async ({ canvasElement }) => {
+    await expectRenderedMax(canvasElement, 'Välj datum', '9999-12-31');
+  },
+};
 
-export const Datum = () => (
-  <div className="flex flex-col gap-16">
-    <div className="flex gap-16">
-      <Input size="sm" type="date" aria-label="Välj datum" />
-      <Input size="md" type="date" aria-label="Välj datum" />
-      <Input size="lg" type="date" aria-label="Välj datum" />
-    </div>
-  </div>
-);
+export const Tid: Story = {
+  render: () => <DatePickerSizes label="Välj tid" type="time" />,
+  play: async ({ canvasElement }) => {
+    await expectRenderedMax(canvasElement, 'Välj tid', undefined);
+  },
+};
 
-export const Tid = () => (
-  <div className="flex flex-col gap-16">
-    <div className="flex gap-16">
-      <Input size="sm" type="time" aria-label="Välj tid" />
-      <Input size="md" type="time" aria-label="Välj tid" />
-      <Input size="lg" type="time" aria-label="Välj tid" />
-    </div>
-  </div>
-);
+export const DatumTid: Story = {
+  render: () => <DatePickerSizes label="Välj datum och tid" type="datetime-local" />,
+  play: async ({ canvasElement }) => {
+    await expectRenderedMax(canvasElement, 'Välj datum och tid', '9999-12-31T23:59');
+  },
+};
 
-export const DatumTid = () => (
-  <div className="flex flex-col gap-16">
-    <div className="flex gap-16">
-      <Input size="sm" type="datetime-local" aria-label="Välj datum och tid" />
-      <Input size="md" type="datetime-local" aria-label="Välj datum och tid" />
-      <Input size="lg" type="datetime-local" aria-label="Välj datum och tid" />
-    </div>
-  </div>
-);
+export const AnpassadMaxgrans: Story = {
+  name: 'Anpassad maxgräns',
+  args: {
+    max: '2026-12-31',
+    'aria-label': 'Välj datum med anpassad maxgräns',
+  },
+  play: async ({ canvasElement }) => {
+    await expectRenderedMax(canvasElement, 'Välj datum med anpassad maxgräns', '2026-12-31', 1);
+  },
+};
 
-export const WithForms = () => {
+const DatePickerWithForm = () => {
   const { register, watch } = useForm<{ date: string }>();
-
   const date = watch('date');
 
   React.useEffect(() => {
@@ -101,4 +141,8 @@ export const WithForms = () => {
   }, [date]);
 
   return <DatePicker aria-label="Välj datum" {...register('date')} />;
+};
+
+export const WithForms: Story = {
+  render: () => <DatePickerWithForm />,
 };
