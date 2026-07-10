@@ -24,6 +24,8 @@
     "baseUrl": ".",
     "paths": {
       "@public/*": [".storybook/public/*"],
+      "@sk-web-gui/navigationbar": ["packages/navigation-bar/src"],
+      "@sk-web-gui/segmentedcontrol": ["packages/segmented-control/src"],
       "@sk-web-gui/*": ["packages/*/src"],
       "@stories/*": [".storybook/stories/*"]
     }

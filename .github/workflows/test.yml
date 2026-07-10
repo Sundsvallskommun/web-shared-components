@@ -37,11 +37,11 @@ jobs:
       - name: Run unit tests with coverage
         run: yarn test:coverage
 
-      - name: Run Storybook browser tests
-        run: yarn test:storybook
-
       - name: Verify package builds
         run: yarn build
+
+      - name: Run Storybook browser tests
+        run: yarn test:storybook
 
       - name: Verify production Storybook build
         run: yarn build:storybook

@@ -41,6 +41,7 @@
   "dependencies": {
     "@sk-web-gui/button": "2.1.10",
     "@sk-web-gui/icon": "3.1.2",
+    "@sk-web-gui/popup-menu": "3.1.10",
     "@sk-web-gui/utils": "2.2.2",
     "lucide-react": "^1.18.0"
   },

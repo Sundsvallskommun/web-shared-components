@@ -34,7 +34,7 @@
     "test:storybook": "vitest run --project=storybook",
     "test:watch": "vitest",
     "test:coverage": "vitest run --project=unit --coverage",
-    "test:ci": "yarn test:coverage && yarn test:storybook",
+    "test:ci": "yarn test:coverage && yarn build && yarn test:storybook",
     "start": "yarn storybook",
     "storybook": "storybook dev -p 6006",
     "storybook:prod": "http-server storybook-static",
