@@ -190,16 +190,16 @@ describe('Tabs', () => {
     expect(content).toHaveAttribute('aria-labelledby', trigger.id);
   });
 
-  it('inherits visual variants from the root', () => {
-    const { container } = renderTabs({ color: 'vattjom', size: 'sm', underline: true });
+  it('inherits visual variants without exposing a palette selector', () => {
+    const { container } = renderTabs({ size: 'sm', underline: true });
     const list = screen.getByRole('tablist');
     const item = container.querySelector('.sk-tabs-list-item');
     const trigger = screen.getByRole('tab', { name: 'Tab 1' });
 
-    expect(list).toHaveAttribute('data-color', 'vattjom');
+    expect(list).not.toHaveAttribute('data-color');
     expect(list).toHaveAttribute('data-size', 'sm');
     expect(list).toHaveAttribute('data-underline', 'true');
-    expect(item).toHaveAttribute('data-color', 'vattjom');
+    expect(item).not.toHaveAttribute('data-color');
     expect(trigger).toHaveClass('sk-btn-sm');
   });
 

@@ -16,7 +16,6 @@ export const TabsList = React.forwardRef<HTMLUListElement, TabsListProps>((props
       <ul
         ref={ref}
         className={cx('sk-tabs-list', className)}
-        data-color={style.color}
         data-size={style.size}
         data-underline={style.underline}
       >

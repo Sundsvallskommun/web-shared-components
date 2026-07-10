@@ -12,7 +12,7 @@ uncontrolled selection while SK Web GUI owns the visual variants.
 ```tsx
 import { Tabs } from '@sk-web-gui/tabs';
 
-<Tabs defaultValue="overview" color="vattjom" size="md" underline>
+<Tabs defaultValue="overview" size="md" underline>
   <Tabs.List aria-label="Project sections">
     <Tabs.Trigger value="overview">Overview</Tabs.Trigger>
     <Tabs.Trigger value="history">History</Tabs.Trigger>

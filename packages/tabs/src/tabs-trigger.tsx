@@ -19,16 +19,11 @@ export const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>
     'aria-disabled': ariaDisabled = false,
     ...rest
   } = props;
-  const { color, size } = useTabsStyle();
+  const { size } = useTabsStyle();
   const disabled = disabledProp || ariaDisabled === true || ariaDisabled === 'true';
 
   return (
-    <li
-      data-color={color}
-      data-size={size}
-      className="sk-tabs-list-item"
-      role="presentation"
-    >
+    <li data-size={size} className="sk-tabs-list-item" role="presentation">
       <RadixTabs.Trigger value={value} disabled={disabled} asChild>
         <Button
           ref={ref}

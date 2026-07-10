@@ -68,7 +68,7 @@ export const StateControlled = () => {
 
   return (
     <div>
-      <Tabs value={current} onValueChange={setCurrent} color="vattjom">
+      <Tabs value={current} onValueChange={setCurrent}>
         <Tabs.List>
           <Tabs.Trigger value="first">Tab 1</Tabs.Trigger>
           <Tabs.Trigger value="second">Tab 2</Tabs.Trigger>
@@ -107,11 +107,7 @@ export const ControlOthers = () => {
   return (
     <div className="flex gap-32">
       <div className="w-2/3">
-        <Tabs
-          defaultValue="london"
-          onValueChange={(value) => setImageSrc(images[value] ?? londonSrc)}
-          color="juniskar"
-        >
+        <Tabs defaultValue="london" onValueChange={(value) => setImageSrc(images[value] ?? londonSrc)}>
           <Tabs.List>
             <Tabs.Trigger value="london">London</Tabs.Trigger>
             <Tabs.Trigger value="paris">Paris</Tabs.Trigger>
@@ -141,7 +137,7 @@ export const SeparatedListAndContent = () => {
   const [current, setCurrent] = React.useState('london');
 
   return (
-    <Tabs value={current} onValueChange={setCurrent} color="juniskar" className="flex gap-32">
+    <Tabs value={current} onValueChange={setCurrent} className="flex gap-32">
       <div className="w-2/3">
         <Tabs.List>
           <Tabs.Trigger value="london">London</Tabs.Trigger>
