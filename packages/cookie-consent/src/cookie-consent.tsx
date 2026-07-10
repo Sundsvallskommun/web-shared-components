@@ -26,6 +26,7 @@ export interface CookieConsentProps extends DefaultProps, Omit<React.ComponentPr
 }
 
 export const CookieConsent: React.FC<CookieConsentProps> = ({
+  isOpen: controlledIsOpen,
   title,
   body,
   onConsent,
@@ -39,18 +40,21 @@ export const CookieConsent: React.FC<CookieConsentProps> = ({
     path: basePath + defaultCookieConsentPath,
   },
 }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [internalIsOpen, setInternalIsOpen] = React.useState(false);
   const [isHandlingOptions, setIsHandlingOptions] = React.useState(false);
-
-  if (resetConsentOnInit) {
-    resetConsent();
-  }
 
   const initialFocus = React.useRef<HTMLDivElement>(null);
   const approveFocus = React.useRef<HTMLButtonElement>(null);
   const settingsFocus = React.useRef<HTMLButtonElement>(null);
 
-  const [checkableCookies, setCheckableCookies] = React.useState(getCheckableCookies(cookies));
+  const [checkableCookies, setCheckableCookies] = React.useState(() => {
+    if (resetConsentOnInit) {
+      resetConsent();
+    }
+    return getCheckableCookies(cookies);
+  });
+
+  const isOpen = controlledIsOpen ?? internalIsOpen;
 
   const setSettingsFocus = () => {
     setTimeout(() => {
@@ -105,13 +109,14 @@ export const CookieConsent: React.FC<CookieConsentProps> = ({
           break;
       }
     }
-    setIsOpen(false);
+    setInternalIsOpen(false);
   };
 
   React.useEffect(() => {
-    const isOpen = !getConsent().length;
-    setIsOpen(isOpen);
-  }, [setIsOpen]);
+    if (controlledIsOpen === undefined) {
+      setInternalIsOpen(!getConsent().length);
+    }
+  }, [controlledIsOpen]);
 
   return (
     <Transition show={isOpen}>

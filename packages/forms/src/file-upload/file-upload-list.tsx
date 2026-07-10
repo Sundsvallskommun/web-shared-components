@@ -6,6 +6,9 @@ import { FileUploadListContext, FileUploadListContextProps, FileUploadListContex
 import { FileUploadListItem, FileUploadListItemProps } from './file-upload-list-item';
 import { UploadFile } from './types';
 import { hooks } from './hooks';
+
+const EMPTY_FILES: UploadFile[] = [];
+
 export interface FileUploadListProps
   extends DefaultProps,
     Omit<React.HTMLAttributes<HTMLUListElement>, 'color' | 'children'>,
@@ -53,7 +56,7 @@ export const FileUploadList = React.forwardRef<HTMLUListElement, FileUploadListP
     focusedIndex,
     setFocusedIndex,
     reorder: moveItem,
-  } = useSortableList(listItems ?? [], (next) => {
+  } = useSortableList(listItems ?? EMPTY_FILES, (next) => {
     if (context && name) {
       context.setValue(name, next);
     }

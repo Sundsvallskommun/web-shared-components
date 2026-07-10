@@ -143,6 +143,10 @@ export const Message = ({
   }
 
   function MessageWithoutButton({ elements }: { elements?: React.ReactNode }): React.ReactNode | null {
+    if (elements === undefined && typeof message === 'string') {
+      return message;
+    }
+
     const allElements = elements ?? RenderMessage();
 
     return allElements

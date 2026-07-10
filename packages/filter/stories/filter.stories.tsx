@@ -10,25 +10,25 @@ export default {
 } as Meta;
 
 export const Template = (props: FilterProps) => (
-  <Filter {...props}>
+  <Filter {...props} defaultValue={['content', 'articles']}>
     <Filter.Label>Filteralternativ</Filter.Label>
-    <Filter.Item defaultChecked={true}>
+    <Filter.Item value="content">
       <span>Innehåll</span>
       <Badge color="tertiary" inverted counter={13} />
     </Filter.Item>
-    <Filter.Item>
+    <Filter.Item value="images">
       <span>Bilder</span>
       <Badge color="tertiary" inverted counter={8} />
     </Filter.Item>
-    <Filter.Item defaultChecked={true}>
+    <Filter.Item value="articles">
       <span>Artiklar</span>
       <Badge color="tertiary" inverted counter={2} />
     </Filter.Item>
-    <Filter.Item>
+    <Filter.Item value="guides">
       <span>Guider</span>
       <Badge color="tertiary" inverted counter={1} />
     </Filter.Item>
-    <Filter.Item aria-disabled="true">
+    <Filter.Item value="services" aria-disabled="true">
       <span>E-tjänster</span>
       <Badge color="tertiary" inverted counter={0} />
     </Filter.Item>
