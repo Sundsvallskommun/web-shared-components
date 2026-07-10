@@ -31,7 +31,7 @@ export const ChatInputTextarea = React.forwardRef<HTMLTextAreaElement, ChatInput
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleInput = (event: React.FormEvent<HTMLTextAreaElement>) => {
+  const handleInput = (event: React.InputEvent<HTMLTextAreaElement>) => {
     if (props?.value === undefined) {
       onInput?.(event);
       if (event.currentTarget.scrollHeight > height && !scrolled) {

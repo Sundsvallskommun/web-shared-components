@@ -1,6 +1,6 @@
 import Cookie from 'universal-cookie';
 import { useAssistantStore } from '../assistant-store';
-import * as sdk from 'microsoft-cognitiveservices-speech-sdk';
+import * as sdk from './speech-sdk';
 import { AzureToken } from '../types/azure';
 
 const azureLogin = (baseUrl?: string) => {

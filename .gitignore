@@ -35,3 +35,6 @@ yarn-error.log
 
 # Test coverage
 coverage/
+
+# Integration fixture outputs
+test-fixtures/**/.next/

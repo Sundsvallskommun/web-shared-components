@@ -77,7 +77,7 @@ function App() {
 
 ## För utveckling
 
-**Prerequisites**: Node.js v20+, Yarn v1.22+
+**Prerequisites**: Node.js v22.14+ (se `.node-version`), Yarn v1.22.22
 
 Efter kloning, kör:
 
@@ -99,7 +99,7 @@ Skapa ett nytt paket i `packages` där du gör din react-komponent. Exportera de
 Testa så den bygger riktigt samt kika över så komponentberoenden fungerar som tänkt:
 
 ```
-npx lerna version --no-git-tag-version --no-push
+yarn lerna version --no-git-tag-version --no-push
 ```
 
 Om allt ser bra ut:
@@ -117,6 +117,6 @@ npm login
 Sedan publicera release:
 
 ```
-npx lerna version
-npx lerna publish from-git
+yarn lerna version
+yarn release
 ```

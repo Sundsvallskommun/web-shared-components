@@ -1,7 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
-import Quill, { Delta } from 'quill';
 import { useRef, useState } from 'react';
-import { TextEditor, TextEditorProps } from '../src';
+import { TextEditor, TextEditorHandle, TextEditorProps, TextEditorTextChange } from '../src';
 import Button from '@sk-web-gui/button';
 
 export default {
@@ -11,16 +10,13 @@ export default {
 } as Meta<typeof TextEditor>;
 
 export const Template: StoryObj<typeof TextEditor> = (args: TextEditorProps) => {
-  const editorRef = useRef<Quill | null>(null);
+  const editorRef = useRef<TextEditorHandle | null>(null);
 
-  const handleTextChange = (delta: Delta) => {
-    console.log('Text changed:', delta);
+  const handleTextChange = (change: TextEditorTextChange) => {
+    console.log('Text changed:', change);
 
     if (editorRef.current) {
-      const content = editorRef.current.getText();
-      const htmlContent = editorRef.current.root.innerHTML;
-      console.log('Editor content: ', content);
-      console.log('Editor HTML content: ', htmlContent);
+      console.log('Editor value:', editorRef.current.getValue());
     }
   };
 
@@ -54,3 +50,15 @@ export const InsertText = () => {
 };
 
 InsertText.storyName = 'Insert text into editor';
+
+export const ReadOnly = () => (
+  <TextEditor
+    readOnly
+    value={{
+      markup:
+        '<h2>Publicerad information</h2><p>Det här innehållet kan läsas men inte ändras.</p><ul><li>En punkt</li><li>En annan punkt</li></ul>',
+    }}
+  />
+);
+
+ReadOnly.storyName = 'Read only';

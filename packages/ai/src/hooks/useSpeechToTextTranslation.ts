@@ -1,5 +1,5 @@
-import * as speechsdk from 'microsoft-cognitiveservices-speech-sdk';
-import { ResultReason, TranslationRecognizer } from 'microsoft-cognitiveservices-speech-sdk';
+import * as speechsdk from '../services/speech-sdk';
+import { ResultReason, TranslationRecognizer } from '../services/speech-sdk';
 import React from 'react';
 import 'regenerator-runtime/runtime';
 import { getAzureToken } from '../services/azure-service';

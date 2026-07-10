@@ -41,7 +41,9 @@
     "packages/*/src/**/*.ts",
     "packages/*/src/**/*.tsx",
     "packages/*/stories/**/*.ts",
-    "packages/*/stories/**/*.tsx"
+    "packages/*/stories/**/*.tsx",
+    "test-fixtures/**/*.ts",
+    "test-fixtures/**/*.tsx"
   ],
   "exclude": ["node_modules", "**/dist/**", "**/*.test.*", "**/*.spec.*"],
   "ts-node": {
