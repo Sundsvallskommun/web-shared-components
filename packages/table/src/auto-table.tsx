@@ -13,6 +13,19 @@ import { TableFooter } from './table-footer';
 import Table, { TableComponentProps } from './table';
 import { SortMode } from './types';
 
+// Formats a property segment as a human-readable header, e.g. 'caseType' -> 'Case type'.
+const humanizeLabel = (label: string): string => {
+  const words = label
+    .replace(/[_-]+/g, ' ')
+    .replace(/([a-z\d])([A-Z])/g, '$1 $2')
+    .replace(/([A-Z]+)([A-Z][a-z])/g, '$1 $2')
+    .replace(/([a-zA-Z])(\d)/g, '$1 $2')
+    .replace(/(\d)([a-zA-Z])/g, '$1 $2')
+    .toLowerCase()
+    .trim();
+  return words.charAt(0).toUpperCase() + words.slice(1);
+};
+
 //eslint-disable-next-line
 type TableValue = any;
 type TableItem = Record<string | number, TableValue>;
@@ -134,14 +147,14 @@ export const AutoTable = React.forwardRef<HTMLTableElement, AutoTableProps>((pro
     switch (typeof header) {
       case 'string':
         headerparts = header.split('.');
-        return headerparts[headerparts.length - 1];
+        return humanizeLabel(headerparts[headerparts.length - 1]);
 
       default:
         if (header.label) {
           return header.label;
         }
         headerparts = header.property ? header.property.split('.') : [];
-        return headerparts.length ? headerparts[headerparts.length - 1] : '';
+        return headerparts.length ? humanizeLabel(headerparts[headerparts.length - 1]) : '';
     }
   };
 
