@@ -1,23 +1,19 @@
 import { TabsComponent, TabsComponentProps } from './tabs';
-import { TabsButton } from './tabs-button';
-import { TabsContent } from './tabs-content';
-import { TabsItem } from './tabs-item';
+import { TabsContent, TabsContentProps } from './tabs-content';
+import { TabsList, TabsListProps } from './tabs-list';
+import { TabsTrigger, TabsTriggerProps } from './tabs-trigger';
 
-interface TabsProps extends React.ForwardRefExoticComponent<TabsComponentProps>, TabsComponentProps {
-  Component: typeof TabsComponent;
-  Item: typeof TabsItem;
-  Button: typeof TabsButton;
-  Content: typeof TabsContent;
-}
-
-const Tabs = {
-  ...TabsComponent,
-  Component: TabsComponent,
-  Item: TabsItem,
-  Button: TabsButton,
+const Tabs = Object.assign(TabsComponent, {
+  List: TabsList,
+  Trigger: TabsTrigger,
   Content: TabsContent,
-} as TabsProps;
+});
 
 export { Tabs };
-export type { TabsProps };
+export type {
+  TabsComponentProps as TabsProps,
+  TabsContentProps,
+  TabsListProps,
+  TabsTriggerProps,
+};
 export default Tabs;

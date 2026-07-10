@@ -1,14 +1,15 @@
+import { Badge } from '@sk-web-gui/badge';
+import { Callout } from '@sk-web-gui/callout';
 import { Icon } from '@sk-web-gui/icon';
 import { Pagination } from '@sk-web-gui/pagination';
-import { Meta } from '@storybook/react-vite';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { Home } from 'lucide-react';
 import React, { useState } from 'react';
+import { expect, userEvent, within } from 'storybook/test';
 import { Tabs, TabsProps } from '../src';
 import londonSrc from './images/london.jpg';
 import parisSrc from './images/paris.jpg';
 import tokyoSrc from './images/tokyo.jpg';
-import { Badge } from '@sk-web-gui/badge';
-import { Callout } from '@sk-web-gui/callout';
 
 export default {
   title: 'Komponenter/Tabs',
@@ -17,40 +18,45 @@ export default {
 } as Meta<typeof Tabs>;
 
 export const Template = (args: TabsProps) => {
+  const { defaultValue = 'item', ...rest } = args;
+
   return (
-    <Tabs {...args} onTabChange={(panel) => console.log('Showing panel', panel)} className="w-fit">
-      <Tabs.Item>
-        <Tabs.Button>Item</Tabs.Button>
-        <Tabs.Content>
-          <p>London is the capital city of England.</p>
-        </Tabs.Content>
-      </Tabs.Item>
-      <Tabs.Item>
-        <Tabs.Button aria-disabled="true" title="För tillfället oåtkomlig">
+    <Tabs
+      defaultValue={defaultValue}
+      {...rest}
+      onValueChange={(value) => console.log('Showing panel', value)}
+      className="w-fit"
+    >
+      <Tabs.List>
+        <Tabs.Trigger value="item">Item</Tabs.Trigger>
+        <Tabs.Trigger value="disabled" aria-disabled="true" title="För tillfället oåtkomlig">
           <span>Span-wrapped and disabled</span>
-        </Tabs.Button>
-        <Tabs.Content>
-          <p>Paris is the capital of France.</p>
-        </Tabs.Content>
-      </Tabs.Item>
-      <Tabs.Item>
-        <Tabs.Button leftIcon={<Icon icon={<Home />} />}>Icon</Tabs.Button>
-        <Tabs.Content>
-          <p>Oslo is the capital of Norway.</p>
-        </Tabs.Content>
-      </Tabs.Item>
-      <Tabs.Item>
-        <Tabs.Button rightIcon={<Badge counter={12} />}>Badge</Tabs.Button>
-        <Tabs.Content>
-          <p>Stockholm is the capital of Sweden.</p>
-        </Tabs.Content>
-      </Tabs.Item>
-      <Tabs.Item>
-        <Tabs.Button rightIcon={<Callout color="warning" />}>Callout</Tabs.Button>
-        <Tabs.Content>
-          <p>Tokyo is the capital of Japan.</p>
-        </Tabs.Content>
-      </Tabs.Item>
+        </Tabs.Trigger>
+        <Tabs.Trigger value="icon" leftIcon={<Icon icon={<Home />} />}>
+          Icon
+        </Tabs.Trigger>
+        <Tabs.Trigger value="badge" rightIcon={<Badge counter={12} />}>
+          Badge
+        </Tabs.Trigger>
+        <Tabs.Trigger value="callout" rightIcon={<Callout color="warning" />}>
+          Callout
+        </Tabs.Trigger>
+      </Tabs.List>
+      <Tabs.Content value="item">
+        <p>London is the capital city of England.</p>
+      </Tabs.Content>
+      <Tabs.Content value="disabled">
+        <p>Paris is the capital of France.</p>
+      </Tabs.Content>
+      <Tabs.Content value="icon">
+        <p>Oslo is the capital of Norway.</p>
+      </Tabs.Content>
+      <Tabs.Content value="badge">
+        <p>Stockholm is the capital of Sweden.</p>
+      </Tabs.Content>
+      <Tabs.Content value="callout">
+        <p>Tokyo is the capital of Japan.</p>
+      </Tabs.Content>
     </Tabs>
   );
 };
@@ -58,61 +64,68 @@ export const Template = (args: TabsProps) => {
 Template.storyName = 'Tabs';
 
 export const StateControlled = () => {
-  const [current, setCurrent] = React.useState<number>(0);
+  const [current, setCurrent] = React.useState('first');
+
   return (
     <div>
-      <Tabs current={current} color="vattjom">
-        <Tabs.Item>
-          <Tabs.Button onClick={() => setCurrent(0)}>Tab 1</Tabs.Button>
-          <Tabs.Content>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse commodo lorem ac leo vehicula, in
-              convallis nisl dapibus. Maecenas et arcu a dui commodo molestie. Etiam id ipsum cursus, gravida velit in,
-              feugiat tellus.
-            </p>
-          </Tabs.Content>
-        </Tabs.Item>
-        <Tabs.Item>
-          <Tabs.Button onClick={() => setCurrent(1)}>Tab 2</Tabs.Button>
-          <Tabs.Content>
-            <p>
-              Aenean sagittis commodo metus. Integer ac velit cursus, volutpat arcu nec, vulputate lacus. Donec eu magna
-              hendrerit, feugiat lacus sed, euismod ex. Integer ligula nulla, pharetra a felis non, finibus cursus odio.
-            </p>
-          </Tabs.Content>
-        </Tabs.Item>
+      <Tabs value={current} onValueChange={setCurrent} color="vattjom">
+        <Tabs.List>
+          <Tabs.Trigger value="first">Tab 1</Tabs.Trigger>
+          <Tabs.Trigger value="second">Tab 2</Tabs.Trigger>
+        </Tabs.List>
+        <Tabs.Content value="first">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse commodo lorem ac leo vehicula, in
+            convallis nisl dapibus. Maecenas et arcu a dui commodo molestie. Etiam id ipsum cursus, gravida velit in,
+            feugiat tellus.
+          </p>
+        </Tabs.Content>
+        <Tabs.Content value="second">
+          <p>
+            Aenean sagittis commodo metus. Integer ac velit cursus, volutpat arcu nec, vulputate lacus. Donec eu magna
+            hendrerit, feugiat lacus sed, euismod ex. Integer ligula nulla, pharetra a felis non, finibus cursus odio.
+          </p>
+        </Tabs.Content>
       </Tabs>
-      <Pagination pages={2} activePage={current + 1} changePage={(page) => setCurrent(page - 1)} />
+      <Pagination
+        pages={2}
+        activePage={current === 'first' ? 1 : 2}
+        changePage={(page) => setCurrent(page === 1 ? 'first' : 'second')}
+      />
     </div>
   );
 };
 
 export const ControlOthers = () => {
-  const images = [londonSrc, parisSrc, tokyoSrc];
-  const [imageSrc, setImageSrc] = useState<string>(images[0]);
+  const images: Record<string, string> = {
+    london: londonSrc,
+    paris: parisSrc,
+    tokyo: tokyoSrc,
+  };
+  const [imageSrc, setImageSrc] = useState(londonSrc);
 
   return (
     <div className="flex gap-32">
       <div className="w-2/3">
-        <Tabs onTabChange={(panel) => setImageSrc(images[panel])} color="juniskar">
-          <Tabs.Item>
-            <Tabs.Button>London</Tabs.Button>
-            <Tabs.Content>
-              <p>London is the capital city of England.</p>
-            </Tabs.Content>
-          </Tabs.Item>
-          <Tabs.Item>
-            <Tabs.Button>Paris</Tabs.Button>
-            <Tabs.Content>
-              <p>Paris is the capital of France.</p>
-            </Tabs.Content>
-          </Tabs.Item>
-          <Tabs.Item>
-            <Tabs.Button>Tokyo</Tabs.Button>
-            <Tabs.Content>
-              <p>Tokyo is the capital of Japan.</p>
-            </Tabs.Content>
-          </Tabs.Item>
+        <Tabs
+          defaultValue="london"
+          onValueChange={(value) => setImageSrc(images[value] ?? londonSrc)}
+          color="juniskar"
+        >
+          <Tabs.List>
+            <Tabs.Trigger value="london">London</Tabs.Trigger>
+            <Tabs.Trigger value="paris">Paris</Tabs.Trigger>
+            <Tabs.Trigger value="tokyo">Tokyo</Tabs.Trigger>
+          </Tabs.List>
+          <Tabs.Content value="london">
+            <p>London is the capital city of England.</p>
+          </Tabs.Content>
+          <Tabs.Content value="paris">
+            <p>Paris is the capital of France.</p>
+          </Tabs.Content>
+          <Tabs.Content value="tokyo">
+            <p>Tokyo is the capital of Japan.</p>
+          </Tabs.Content>
         </Tabs>
       </div>
       <div className="w-1/3 max-h-[30rem] overflow-hidden">
@@ -124,35 +137,74 @@ export const ControlOthers = () => {
 
 ControlOthers.storyName = 'Control external elements';
 
-export const SeparatedButtonsAndContent = () => {
-  const [current, setCurrent] = React.useState<number>(0);
+export const SeparatedListAndContent = () => {
+  const [current, setCurrent] = React.useState('london');
 
   return (
-    <div className="flex gap-32">
+    <Tabs value={current} onValueChange={setCurrent} color="juniskar" className="flex gap-32">
       <div className="w-2/3">
-        <Tabs onTabChange={setCurrent} current={current} color="juniskar">
-          <Tabs.Item>
-            <Tabs.Button aria-controls="tabs-content-0">London</Tabs.Button>
-          </Tabs.Item>
-          <Tabs.Item>
-            <Tabs.Button aria-controls="tabs-content-1">Paris</Tabs.Button>
-          </Tabs.Item>
-          <Tabs.Item>
-            <Tabs.Button aria-controls="tabs-content-2">Tokyo</Tabs.Button>
-          </Tabs.Item>
-        </Tabs>
+        <Tabs.List>
+          <Tabs.Trigger value="london">London</Tabs.Trigger>
+          <Tabs.Trigger value="paris">Paris</Tabs.Trigger>
+          <Tabs.Trigger value="tokyo">Tokyo</Tabs.Trigger>
+        </Tabs.List>
       </div>
       <div>
-        <Tabs.Content selected={current === 0} id="tabs-content-0">
+        <Tabs.Content value="london">
           <p>London is the capital city of England.</p>
         </Tabs.Content>
-        <Tabs.Content selected={current === 1} id="tabs-content-1">
+        <Tabs.Content value="paris">
           <p>Paris is the capital of France.</p>
         </Tabs.Content>
-        <Tabs.Content selected={current === 2} id="tabs-content-2">
+        <Tabs.Content value="tokyo">
           <p>Tokyo is the capital of Japan.</p>
         </Tabs.Content>
       </div>
-    </div>
+    </Tabs>
   );
+};
+
+type Story = StoryObj<typeof Tabs>;
+
+export const KeyboardNavigationTest: Story = {
+  name: 'Test: Keyboard navigation',
+  tags: ['!autodocs'],
+  render: () => (
+    <>
+      <button>Before tabs</button>
+      <Tabs defaultValue="first">
+        <Tabs.List>
+          <Tabs.Trigger value="first">First tab</Tabs.Trigger>
+          <Tabs.Trigger value="disabled" aria-disabled="true">
+            Disabled tab
+          </Tabs.Trigger>
+          <Tabs.Trigger value="last">Last tab</Tabs.Trigger>
+        </Tabs.List>
+        <Tabs.Content value="first">First panel</Tabs.Content>
+        <Tabs.Content value="disabled">Disabled panel</Tabs.Content>
+        <Tabs.Content value="last">Last panel</Tabs.Content>
+      </Tabs>
+    </>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const beforeTabs = canvas.getByRole('button', { name: 'Before tabs' });
+    const firstTab = canvas.getByRole('tab', { name: 'First tab' });
+    const disabledTab = canvas.getByRole('tab', { name: 'Disabled tab' });
+    const lastTab = canvas.getByRole('tab', { name: 'Last tab' });
+
+    beforeTabs.focus();
+    await userEvent.tab();
+    await expect(firstTab).toHaveFocus();
+
+    await userEvent.keyboard('{ArrowRight}');
+
+    await expect(lastTab).toHaveFocus();
+    await expect(lastTab).toHaveAttribute('tabindex', '0');
+    await expect(firstTab).toHaveAttribute('aria-selected', 'true');
+    await expect(disabledTab).toBeDisabled();
+
+    await userEvent.keyboard('{Enter}');
+    await expect(lastTab).toHaveAttribute('aria-selected', 'true');
+  },
 };

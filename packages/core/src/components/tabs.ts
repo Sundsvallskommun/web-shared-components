@@ -51,10 +51,8 @@ export const Tabs = (colors: string[]) => ({
           '@apply m-0 min-h-2 h-2 opacity-0': {},
         },
 
-        '&[data-current="true"]': {
-          '.sk-tabs-list-item-divider': {
-            '@apply opacity-100': {},
-          },
+        '.sk-tabs-list-item-button[data-state="active"] + .sk-tabs-list-item-divider': {
+          '@apply opacity-100': {},
         },
 
         ...colors.reduce(
@@ -76,12 +74,10 @@ export const Tabs = (colors: string[]) => ({
       },
     },
 
-    '&-panels': {
-      '@apply mt-20': {},
-    },
-
     '&-content': {
-      '&:not([data-selected="true"])': {
+      '@apply mt-20': {},
+
+      '&[data-state="inactive"]': {
         '@apply hidden': {},
       },
     },

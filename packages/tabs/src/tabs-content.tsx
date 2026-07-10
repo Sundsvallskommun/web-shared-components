@@ -1,26 +1,23 @@
+import * as RadixTabs from '@radix-ui/react-tabs';
 import { __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
 
-export interface TabsContentProps extends React.ComponentPropsWithRef<'div'> {
-  selected?: boolean;
-}
+type RadixTabsContentProps = React.ComponentPropsWithoutRef<typeof RadixTabs.Content>;
+
+export type TabsContentProps = Omit<RadixTabsContentProps, 'asChild'>;
 
 export const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>((props, ref) => {
-  const { className, children, selected, ...rest } = props;
+  const { className, ...rest } = props;
 
   return (
-    <div
-      role="tabpanel"
+    <RadixTabs.Content
       ref={ref}
       className={cx('sk-tabs-content', className)}
-      data-selected={selected ? 'true' : undefined}
       {...rest}
-    >
-      {children}
-    </div>
+    />
   );
 });
 
 if (__DEV__) {
-  TabsContent.displayName = 'TabsContent';
+  TabsContent.displayName = 'Tabs.Content';
 }
