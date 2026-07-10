@@ -1,8 +1,8 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { Button, ButtonProps } from '../src';
 import { Icon } from '@sk-web-gui/icon';
 import { CandyCane } from 'lucide-react';
-import { expect, fn, userEvent, within } from '@storybook/test';
+import { expect, fn, userEvent, within } from 'storybook/test';
 
 export default {
   title: 'Komponenter/Button',

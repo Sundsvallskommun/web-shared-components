@@ -2,6 +2,7 @@ import { ChatHistory } from './history';
 import { SessionFeedback } from './intric-backend';
 
 export type AdditionalAssistantOptions = Record<string, unknown>;
+export type ConversationVersion = 1 | 2;
 
 export interface AssistantSettings {
   user?: string;

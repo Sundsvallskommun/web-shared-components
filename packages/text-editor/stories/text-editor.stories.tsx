@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import Quill, { Delta } from 'quill';
 import { useRef, useState } from 'react';
 import { TextEditor, TextEditorProps } from '../src';

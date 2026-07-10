@@ -1,8 +1,8 @@
 import { Button } from '@sk-web-gui/button';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { Modal, ModalProps } from '../src/modal';
-import { expect, fn, userEvent, within, waitFor } from '@storybook/test';
+import { expect, fn, userEvent, within, waitFor } from 'storybook/test';
 
 export default {
   title: 'Komponenter/Modal',

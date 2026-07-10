@@ -1,6 +1,6 @@
 import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { Text, TextProps } from '../src';
 import { X } from 'lucide-react';
 

@@ -7,6 +7,9 @@ import { FileUploadListItemContentName } from './file-upload-list-item-content-n
 import { FileUploadListItemIcon } from './file-upload-list-item-icon';
 import { useFormContext } from 'react-hook-form';
 import { FileUploadListContext, FileUploadListItemContext, FileUploadListItemContextProps } from './context';
+import Icon from '@sk-web-gui/icon';
+import { ArrowDown, ArrowUp } from 'lucide-react';
+import Button from '@sk-web-gui/button';
 
 export interface FileUploadListItemProps
   extends DefaultProps,
@@ -48,14 +51,24 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
   const showBorder = _showBorder ?? listContext?.showBorder;
   const showIcon = _showIcon ?? listContext?.showIcon;
   const showLabels = _showLabels ?? listContext?.showLabels;
-
+  const sortable = listContext?.sortable;
   const nameProps = { ...listContext?.nameProps, ..._nameProps };
   const iconProps = { ...listContext?.iconProps, ..._iconProps };
   const actionsProps = { ...listContext?.actionsProps, ..._actionsProps };
   const categoryProps = { ...listContext?.categoryProps, ..._categoryProps };
-
   const fullName = `${name}.${index}`;
   const file = _file ?? listContext?.files?.[index] ?? (formContext ? formContext?.watch(`${fullName}`) : undefined);
+
+  const sort = {
+    onMoveUp: listContext?.onMoveUp,
+    onMoveDown: listContext?.onMoveDown,
+    dragItemIndex: listContext?.dragItemIndex,
+    dragOverIndex: listContext?.dragOverIndex,
+    setDragItemIndex: listContext?.setDragItemIndex,
+    setDragOverIndex: listContext?.setDragOverIndex,
+    setFocusedIndex: listContext?.setFocusedIndex,
+    moveItem: listContext?.moveItem,
+  };
 
   React.useEffect(() => {
     if (formContext) {
@@ -73,12 +86,72 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
     file,
     showIcon,
     showLabels,
+    sortable,
     uploadProgress,
     iconProps,
     nameProps,
     actionsProps,
     categoryProps,
+    dragItemIndex: sort.dragItemIndex,
   };
+
+  const handleMoveUp = () => {
+    if (index <= 0) return;
+    sort.onMoveUp?.(index);
+  };
+
+  const handleMoveDown = () => {
+    if (index >= (listContext?.files?.length ?? 0) - 1) return;
+    sort.onMoveDown?.(index);
+  };
+
+  const itemName = file?.meta?.name ?? `${index + 1}`;
+  const totalItems = listContext?.files?.length ?? 0;
+
+  const sortButton = (handleMove: () => void, disabled: boolean, direction: 'nedåt' | 'uppåt') => {
+    return (
+      <Button
+        iconButton
+        variant="tertiary"
+        rounded={true}
+        onClick={handleMove}
+        showBackground={false}
+        disabled={disabled}
+        aria-label={`Flytta ${itemName} ${direction}, position ${index + 1} av ${totalItems}`}
+      >
+        <Icon icon={direction === 'uppåt' ? <ArrowUp /> : <ArrowDown />} />
+      </Button>
+    );
+  };
+
+  const sortableHandler = sortable ? (
+    <div className="sk-form-file-upload-list-item-sort">
+      {sortButton(handleMoveUp, index <= 0, 'uppåt')}
+      {sortButton(handleMoveDown, index >= totalItems - 1, 'nedåt')}
+    </div>
+  ) : null;
+
+  const isDragging = sortable && sort.dragItemIndex === index;
+  const isDragOver =
+    sortable && sort.dragOverIndex === index && sort.dragItemIndex !== null && sort.dragItemIndex !== index;
+
+  const dragHandlers = sortable
+    ? {
+        draggable: true,
+        'data-dragging': isDragging || undefined,
+        'data-drag-over': isDragOver || undefined,
+        onDragStart: () => sort.setDragItemIndex?.(index),
+        onDragEnter: () => sort.setDragOverIndex?.(index),
+        onDragEnd: () => {
+          if (sort.dragItemIndex != null && sort.dragOverIndex != null) {
+            sort.moveItem?.(sort.dragItemIndex, sort.dragOverIndex);
+          }
+          sort.setDragItemIndex?.(null);
+          sort.setDragOverIndex?.(null);
+        },
+        onDragOver: (e: React.DragEvent) => e.preventDefault(),
+      }
+    : {};
 
   return (
     <FileUploadListItemContext.Provider value={itemContext}>
@@ -88,11 +161,17 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
         data-border={showBorder ? showBorder : undefined}
         data-size={size}
         data-isedit={isEdit}
+        onFocus={() => sort.setFocusedIndex?.(index)}
+        onBlur={() => sort.setFocusedIndex?.(null)}
+        {...dragHandlers}
         {...rest}
       >
         <div className="sk-form-file-upload-list-item-innerwrapper">
           {children ? (
-            children
+            <>
+              {children}
+              {sortableHandler}
+            </>
           ) : (
             <>
               <FileUploadListItemIcon {...iconProps} />
@@ -101,6 +180,7 @@ export const FileUploadListItem = React.forwardRef<HTMLLIElement, FileUploadList
                 {categoryProps?.categories ? <FileUploadListItemContentCategory {...categoryProps} /> : null}
               </FileUploadListItemContent>
               <FileUploadListItemActions {...actionsProps} />
+              {sortableHandler}
             </>
           )}
         </div>

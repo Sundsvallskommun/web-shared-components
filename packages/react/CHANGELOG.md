@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@3.1.0...@sk-web-gui/react@3.1.1) (2026-06-25)
+
+### Bug Fixes
+
+- **segmented-control:** dependency issues ([f6e4616](https://github.com/Sundsvallskommun/web-shared-components/commit/f6e461649f4c8051c6e1a33443209d28acf19e84))
+
+# [3.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@3.0.15...@sk-web-gui/react@3.1.0) (2026-06-12)
+
+### Features
+
+- **react:** export segmented control ([c1e7722](https://github.com/Sundsvallskommun/web-shared-components/commit/c1e772298414ca4382e5d842bb6d3593613473dc))
+
+## [3.0.15](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@3.0.14...@sk-web-gui/react@3.0.15) (2026-05-29)
+
+**Note:** Version bump only for package @sk-web-gui/react
+
+## [3.0.14](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@3.0.13...@sk-web-gui/react@3.0.14) (2026-05-06)
+
+**Note:** Version bump only for package @sk-web-gui/react
+
+## [3.0.13](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@3.0.12...@sk-web-gui/react@3.0.13) (2026-04-29)
+
+**Note:** Version bump only for package @sk-web-gui/react
+
+## [3.0.12](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@3.0.11...@sk-web-gui/react@3.0.12) (2026-04-16)
+
+**Note:** Version bump only for package @sk-web-gui/react
+
+## [3.0.11](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@3.0.10...@sk-web-gui/react@3.0.11) (2026-04-09)
+
+### Bug Fixes
+
+- missing dependency ([7fc0047](https://github.com/Sundsvallskommun/web-shared-components/commit/7fc00479610a586794ea474ed762e8914da2c835))
+
+## [3.0.10](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@3.0.9...@sk-web-gui/react@3.0.10) (2026-03-17)
+
+### Bug Fixes
+
+- export alert ([3bc2305](https://github.com/Sundsvallskommun/web-shared-components/commit/3bc2305c38176afb8b3c91266997ee57e5b84bb1))
+
 ## [3.0.9](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@3.0.8...@sk-web-gui/react@3.0.9) (2026-02-24)
 
 **Note:** Version bump only for package @sk-web-gui/react

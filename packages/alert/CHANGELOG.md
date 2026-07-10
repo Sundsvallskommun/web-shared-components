@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/alert@1.1.2...@sk-web-gui/alert@1.1.3) (2026-06-12)
+
+### Bug Fixes
+
+- **alert:** forward ref in AlertIcon render function ([3cea1a1](https://github.com/Sundsvallskommun/web-shared-components/commit/3cea1a1eadac77a861b4c6697da96de8fdf1429c))
+
 ## [1.1.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/alert@1.1.1...@sk-web-gui/alert@1.1.2) (2026-02-24)
 
 **Note:** Version bump only for package @sk-web-gui/alert

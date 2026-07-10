@@ -4,7 +4,7 @@ import { NavigationBar } from '@sk-web-gui/navigationbar';
 import { Icon } from '@sk-web-gui/icon';
 import { PopupMenu } from '@sk-web-gui/popup-menu';
 import { UserMenu, MenuItemGroup } from '@sk-web-gui/user-menu';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { Link } from '@sk-web-gui/link';
 import { Header, HeaderProps } from '../src';
 import { User, Wallet, Settings2, LogOut, Menu, ChevronDown } from 'lucide-react';

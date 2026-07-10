@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/modal@2.3.3...@sk-web-gui/modal@2.3.4) (2026-05-06)
+
+### Bug Fixes
+
+- avoid timeout ([1f83395](https://github.com/Sundsvallskommun/web-shared-components/commit/1f833959e85e1efe1018e7b427138e6f2def1448))
+- **modal:** honor disableCloseOutside behavior ([ebe0cfa](https://github.com/Sundsvallskommun/web-shared-components/commit/ebe0cfa825f045a369e37f8163f235207ef0de38))
+
 ## [2.3.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/modal@2.3.2...@sk-web-gui/modal@2.3.3) (2026-02-24)
 
 **Note:** Version bump only for package @sk-web-gui/modal

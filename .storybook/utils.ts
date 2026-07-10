@@ -1,5 +1,5 @@
-import { Plugin } from 'vite';
-import path from 'path';
+import type { Plugin } from 'vite';
+import path from 'node:path';
 
 export function reloadStylesOnFolderChange(folderPath: string, stylePath: string): Plugin {
   return {

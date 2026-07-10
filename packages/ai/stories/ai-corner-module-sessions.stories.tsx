@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { SessionHistory } from '../src';
 import { AICornerModuleSessions } from '../src/components';
 import { AICornerModuleSessionsProps } from '../src/components/ai-corner-module/ai-corner-module-sessions';

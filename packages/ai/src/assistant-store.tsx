@@ -1,6 +1,6 @@
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { createWithEqualityFn } from 'zustand/traditional';
-import { AdditionalAssistantOptions, AssistantInfo, AssistantSettings } from './types/assistant';
+import { AdditionalAssistantOptions, AssistantInfo, AssistantSettings, ConversationVersion } from './types/assistant';
 import { AssistantPublic } from './types';
 
 export interface AssistantStoreInterface {
@@ -12,6 +12,8 @@ export interface AssistantStoreInterface {
   setAssistant: (assistant: AssistantPublic) => void;
   stream?: boolean;
   setStream: (stream: boolean) => void;
+  conversationVersion: ConversationVersion;
+  setConversationVersion: (conversationVersion: ConversationVersion) => void;
   options?: AdditionalAssistantOptions;
   setOptions: (options: AdditionalAssistantOptions) => void;
   apiBaseUrl?: string;
@@ -35,6 +37,8 @@ export const useAssistantStore = createWithEqualityFn(
         stream: false,
         setStream: (stream) =>
           set(() => ({ stream: typeof stream === 'boolean' ? stream : stream === 'true' ? true : false })),
+        conversationVersion: 1,
+        setConversationVersion: (conversationVersion) => set(() => ({ conversationVersion })),
         options: undefined,
         setOptions: (options) => set(() => ({ options })),
         apiBaseUrl: undefined,

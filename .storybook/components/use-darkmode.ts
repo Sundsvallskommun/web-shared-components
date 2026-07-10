@@ -1,5 +1,5 @@
 import { ColorSchemeMode, getPreferredColorScheme } from '@sk-web-gui/theme';
-import { addons } from '@storybook/preview-api';
+import { addons } from 'storybook/preview-api';
 import React from 'react';
 import { DARK_MODE_EVENT_NAME } from 'storybook-dark-mode';
 

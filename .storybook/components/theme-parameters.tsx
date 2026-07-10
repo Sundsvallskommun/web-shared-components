@@ -1,6 +1,6 @@
 import { ColorSchemeMode, defaultTheme } from '@sk-web-gui/theme';
-import { addons } from '@storybook/preview-api';
-import { themes } from '@storybook/theming';
+import { addons } from 'storybook/preview-api';
+import { themes } from 'storybook/theming';
 import React from 'react';
 import { DARK_MODE_EVENT_NAME } from 'storybook-dark-mode';
 import { MemoizedDocsContainer, MemoizedGuiProvider } from './theme-helpers';

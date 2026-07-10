@@ -1,7 +1,7 @@
 import { Icon } from '@sk-web-gui/icon';
 import { Link } from '@sk-web-gui/link';
 import { Logo } from '@sk-web-gui/logo';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { Footer, FooterProps } from '../src';
 import { Star } from 'lucide-react';
 

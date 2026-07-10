@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { AIServiceModule, AIServiceModuleProps } from '../src/components';
 import { AssistantInfo, AssistantSession, ChatHistory } from '../src';
 import { Avatar } from '@sk-web-gui/avatar';

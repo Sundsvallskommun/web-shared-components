@@ -1,5 +1,5 @@
 import { Switch } from '@sk-web-gui/forms';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import React from 'react';
 import { FieldValues, FormProvider, useForm } from 'react-hook-form';
 import { CustomOnChangeEventUploadFile, FileUpload, FileUploadProps, UploadFile } from '../../src';
@@ -156,8 +156,6 @@ export const FileUploadWithUseFormProvider = (args: React.ComponentProps<FileUpl
   React.useEffect(() => {
     console.log('FileUploadWithUseFormProvider attachments', files);
   }, [files]);
-
-  console.log('context.formState.errors', context.formState.errors);
 
   return (
     <div className="flex flex-col gap-lg">

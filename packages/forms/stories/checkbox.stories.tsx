@@ -1,9 +1,9 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import React from 'react';
 import { Checkbox, CheckboxProps } from '../src/checkbox';
 import { FormControl, FormLabel } from '../src';
 import { useForm } from 'react-hook-form';
-import { expect, fn, userEvent, within } from '@storybook/test';
+import { expect, fn, userEvent, within } from 'storybook/test';
 
 export default {
   title: 'Komponenter/Checkbox',

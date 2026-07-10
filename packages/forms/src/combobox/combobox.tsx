@@ -41,6 +41,8 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
 
   const internalRef = React.useRef<HTMLInputElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
+  const isPropSyncRef = React.useRef(false);
+  const isInitialMountRef = React.useRef(true);
 
   const { id: fcId, size: fcSize, name: fcName } = useFormControl(props);
 
@@ -63,6 +65,14 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
   }, [searchValue]);
 
   React.useEffect(() => {
+    if (isInitialMountRef.current) {
+      isInitialMountRef.current = false;
+      return;
+    }
+    if (isPropSyncRef.current) {
+      isPropSyncRef.current = false;
+      return;
+    }
     const event = {
       target: {
         value: multiple ? internalValue : internalValue.length ? internalValue.join('') : '',
@@ -155,6 +165,7 @@ export const ComboboxBase = React.forwardRef<HTMLInputElement, ComboboxBaseProps
 
   React.useEffect(() => {
     if (value?.toString() !== internalValue.toString()) {
+      isPropSyncRef.current = true;
       if (typeof value === 'string') {
         setInternalValue([value]);
       }

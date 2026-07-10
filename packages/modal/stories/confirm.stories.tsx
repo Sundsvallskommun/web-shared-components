@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@sk-web-gui/button';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { useConfirm } from '../src/confirm';
 import { ConfirmationDialogContextProvider } from '../src/confirm';
 

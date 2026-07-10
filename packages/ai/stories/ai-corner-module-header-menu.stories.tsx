@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { InternalAICornerModuleHeaderMenuProps } from '../src/components';
 import { AICornerModuleHeaderMenu } from '../src/components/ai-corner-module/ai-corner-module-header-menu';
 

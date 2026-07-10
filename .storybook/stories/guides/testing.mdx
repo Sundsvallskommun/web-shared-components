@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/addon-docs';
+import { Meta } from '@storybook/addon-docs/blocks';
 
 <Meta title="Guider/Testning" />
 
@@ -68,8 +68,8 @@ Play functions finns i story-filer och körs i en riktig browser via Playwright.
 ### Exempel
 
 ```tsx
-import { Meta, StoryObj } from '@storybook/react';
-import { expect, fn, userEvent, within } from '@storybook/test';
+import { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, fn, userEvent, within } from 'storybook/test';
 import { Button } from '../src';
 
 export default {
@@ -137,7 +137,7 @@ Använd `screen.debug()` eller `canvas.debug()` för att se DOM:en.
 Modal och dialog kan behöva `waitFor()`:
 
 ```tsx
-import { waitFor } from '@storybook/test';
+import { waitFor } from 'storybook/test';
 
 await waitFor(() => {
   expect(document.querySelector('[role="dialog"]')).toBeInTheDocument();
@@ -146,8 +146,8 @@ await waitFor(() => {
 
 ### TypeScript-fel i testfiler
 
-Se till att `vitest.setup.ts` importerar `@testing-library/jest-dom`:
+Se till att `vitest.setup.ts` importerar `@testing-library/jest-dom/vitest`:
 
 ```tsx
-import '@testing-library/jest-dom';
+import '@testing-library/jest-dom/vitest';
 ```

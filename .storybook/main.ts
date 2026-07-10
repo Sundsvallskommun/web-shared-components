@@ -1,10 +1,17 @@
+// This file has been automatically migrated to valid ESM format by Storybook.
+import { fileURLToPath } from "node:url";
+import { createRequire } from "node:module";
 import type { StorybookConfig } from '@storybook/react-vite';
 import react from '@vitejs/plugin-react';
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path, { dirname } from 'node:path';
 import { mergeConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { reloadStylesOnFolderChange } from './utils';
+import { reloadStylesOnFolderChange } from './utils.ts';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const require = createRequire(import.meta.url);
 
 function getPackages() {
   const packagesPath = path.resolve(__dirname, '../packages');
@@ -18,10 +25,11 @@ const config: StorybookConfig = {
     '../packages/*/stories/**/*.stories.tsx',
   ],
   addons: [
-    getAbsolutePath('@storybook/addon-essentials'),
     getAbsolutePath('@storybook/addon-a11y'),
     getAbsolutePath('storybook-dark-mode'),
-    getAbsolutePath('@storybook/experimental-addon-test'),
+    getAbsolutePath("@storybook/addon-docs"),
+    getAbsolutePath('@storybook/addon-mcp'),
+    getAbsolutePath('@storybook/addon-vitest'),
   ],
   features: {
     developmentModeForBuild: true,

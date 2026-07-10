@@ -1,9 +1,10 @@
 import { useAssistantStore } from '../assistant-store';
 import { ChatEntryReference, ChatHistory, ChatHistoryEntry } from '../types';
-import { AssistantSettings, SkHeaders } from '../types/assistant';
+import { AssistantSettings, ConversationVersion, SkHeaders } from '../types/assistant';
 import {
   ConversationRequestDto,
   CursorPaginatedResponseSessionMetadataPublic,
+  InfoBlobAskAssistantPublic,
   InfoBlobPublicNoText,
   Message,
   ModelId,
@@ -32,6 +33,12 @@ export const getSkHeaders = (options?: AssistantSettings, settings?: AssistantSe
     _skhash: hash,
     _skapp: app,
   };
+};
+
+export const createConversationUrl = (apiBaseUrl: string, conversationVersion: ConversationVersion = 1) => {
+  const url = new URL(`${apiBaseUrl}/conversations`);
+  url.searchParams.set('version', `${conversationVersion}`);
+  return url.toString();
 };
 
 export const getAssistants: (options?: AssistantSettings) => Promise<PaginatedResponseAssistantPublic> = async (
@@ -143,7 +150,13 @@ export const getAssistantSessionById = async (sessionId: string, options?: Assis
     });
 };
 
-export const batchQuery = async (query: string, sessionId?: string, options?: AssistantSettings, files?: ModelId[]) => {
+export const batchQuery = async (
+  query: string,
+  sessionId?: string,
+  options?: AssistantSettings,
+  files?: ModelId[],
+  conversationVersion: ConversationVersion = 1
+) => {
   const { apiBaseUrl, settings, apiServiceConfig } = useAssistantStore.getState();
   const skHeaders = getSkHeaders(options, settings);
 
@@ -162,7 +175,7 @@ export const batchQuery = async (query: string, sessionId?: string, options?: As
     files: files || undefined,
   };
 
-  const url = `${apiBaseUrl}/conversations`;
+  const url = createConversationUrl(apiBaseUrl, conversationVersion);
   return fetch(url, {
     method: 'POST',
     body: JSON.stringify(body),
@@ -206,8 +219,20 @@ export const giveFeedback = async (feedback: SessionFeedback, sessionId: string,
   });
 };
 
-export const mapReferencesToChatEntryReferences = (references: InfoBlobPublicNoText[]): ChatEntryReference[] => {
-  return references?.map((reference) => ({ title: reference.metadata.title || '', url: reference.metadata.url || '' }));
+const mapReferenceToChatEntryReference = (
+  reference: Pick<InfoBlobPublicNoText | InfoBlobAskAssistantPublic, 'id' | 'metadata'>
+): ChatEntryReference => {
+  return {
+    id: reference.id,
+    title: reference.metadata.title || reference.metadata.url || reference.id,
+    url: reference.metadata.url || undefined,
+  };
+};
+
+export const mapReferencesToChatEntryReferences = (
+  references: Array<Pick<InfoBlobPublicNoText | InfoBlobAskAssistantPublic, 'id' | 'metadata'>>
+): ChatEntryReference[] => {
+  return references?.map(mapReferenceToChatEntryReference);
 };
 export const mapSessionMessagesToChatHistory = (messages: Message[]): ChatHistory => {
   return messages?.reduce((history: ChatHistory, message) => {

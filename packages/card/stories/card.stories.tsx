@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import React from 'react';
 import PlaceholderImage from '../../../.storybook/public/placeholder_2.png';
 import { Card, CardProps } from '../src';

@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.6.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.5.1...@sk-web-gui/core@4.6.0) (2026-06-12)
+
+### Bug Fixes
+
+- **ai:** allow children in typing bubble ([9f65183](https://github.com/Sundsvallskommun/web-shared-components/commit/9f6518305ce87ea3b4280d5ad64b8c81f28cc977))
+
+### Features
+
+- **core:** add segmented control styles ([61d3c55](https://github.com/Sundsvallskommun/web-shared-components/commit/61d3c55246dbad5a8326f524bedf875487f408e5))
+
+## [4.5.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.5.0...@sk-web-gui/core@4.5.1) (2026-04-27)
+
+### Bug Fixes
+
+- **ai:** inline references ([6257e39](https://github.com/Sundsvallskommun/web-shared-components/commit/6257e39b01dee2fe1027f2a5c85efa5c930958d1))
+
+# [4.5.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.4.0...@sk-web-gui/core@4.5.0) (2026-04-16)
+
+### Features
+
+- adds bool for sortable | adds sort buttons ([da31a9d](https://github.com/Sundsvallskommun/web-shared-components/commit/da31a9d04c91da93fb6d597e4b1a8c4e07e3085e))
+- changes sorting by keyboard ([84b070d](https://github.com/Sundsvallskommun/web-shared-components/commit/84b070da913ce922632f6f57d4cabf15972a0427))
+
+# [4.4.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.3.3...@sk-web-gui/core@4.4.0) (2026-03-17)
+
+### Features
+
+- **texteditor:** Visual zoom for text in texteditor ([485623b](https://github.com/Sundsvallskommun/web-shared-components/commit/485623b2246bf132ab77deb5c034ac5b2d1417a1))
+
 ## [4.3.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.3.2...@sk-web-gui/core@4.3.3) (2026-02-26)
 
 ### Bug Fixes

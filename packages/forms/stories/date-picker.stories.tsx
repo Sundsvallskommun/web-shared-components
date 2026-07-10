@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input } from '../src';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { DatePicker, DatePickerProps } from '../src/date-picker/date-picker';
 import { useForm } from 'react-hook-form';
 

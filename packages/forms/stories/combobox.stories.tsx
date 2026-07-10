@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import _ from 'lodash';
 import { Combobox, ComboboxProps, FormControl, FormErrorMessage, FormHelperText, FormLabel } from '../src';
 import { Button } from '@sk-web-gui/button';
 export default {
@@ -284,39 +285,64 @@ export const SingleChoiceWithForm = (args: ComboboxProps) => {
   );
 };
 
-export const MultipleChoicesWithForm = (args: ComboboxProps) => {
-  const {
-    register,
-    setError,
-    clearErrors,
-    watch,
-    formState: { errors },
-  } = useForm<{ fruits: string[] }>();
-  const myfruits = watch().fruits;
-  React.useEffect(() => {
-    console.log('myfruits', myfruits);
-    if (myfruits && myfruits.length < 1) {
-      setError('fruits', { message: 'Välj minst en frukt' });
-    } else {
-      clearErrors('fruits');
+/**
+ * Simulates RJSF Form behavior: a class component that fires onChange
+ * from a setState callback whenever it receives new formData via props.
+ * This mirrors how @rjsf/core Form calls props.onChange from
+ * commitClassCallbacks during the React commit phase.
+ */
+class FormLikeWrapper extends React.Component<{
+  formData: Record<string, any>;
+  onChange: (e: { formData: Record<string, any> }) => void;
+  children: (formData: Record<string, any>) => React.ReactNode;
+}> {
+  state = { formData: this.props.formData };
+
+  componentDidUpdate(prevProps: typeof this.props) {
+    if (!_.isEqual(prevProps.formData, this.props.formData)) {
+      const newFormData = { ...this.props.formData };
+      this.setState({ formData: newFormData }, () => {
+        this.props.onChange({ formData: { ...this.state.formData } });
+      });
     }
-  }, [myfruits]);
+  }
+
+  render() {
+    return this.props.children(this.state.formData);
+  }
+}
+
+export const MultipleChoicesWithForm = (args: ComboboxProps) => {
+  const [formData, setFormData] = React.useState<Record<string, any>>({ fruits: ['banana', 'cherry'] });
+
+  const handleFormChange = React.useCallback((e: { formData: Record<string, any> }) => {
+    setFormData({ ...e.formData });
+  }, []);
 
   return (
     <div className="h-[40rem]">
-      <FormControl required invalid={!!errors.fruits}>
+      <FormControl required>
         <FormLabel>Favoritfrukt</FormLabel>
-        <Combobox multiple {...args} {...register('fruits')} placeholder="Välj en frukt">
-          <Combobox.Input />
-          <Combobox.List>
-            {fruits.map((fruit) => (
-              <Combobox.Option key={`multifruit-${fruit}`} value={fruit}>
-                {fruit}
-              </Combobox.Option>
-            ))}
-          </Combobox.List>
-        </Combobox>
-        {errors.fruits && <FormErrorMessage>Välj minst en frukt</FormErrorMessage>}
+        <FormLikeWrapper formData={formData} onChange={handleFormChange}>
+          {(fd) => (
+            <Combobox
+              multiple
+              {...args}
+              value={fd.fruits}
+              onChange={(e) => setFormData((prev) => ({ ...prev, fruits: e.target.value }))}
+              placeholder="Välj en frukt"
+            >
+              <Combobox.Input />
+              <Combobox.List>
+                {fruits.map((fruit) => (
+                  <Combobox.Option key={`multifruit-${fruit}`} value={fruit}>
+                    {fruit}
+                  </Combobox.Option>
+                ))}
+              </Combobox.List>
+            </Combobox>
+          )}
+        </FormLikeWrapper>
       </FormControl>
     </div>
   );

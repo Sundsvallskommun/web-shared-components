@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input, InputProps, Select } from '../src';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { Icon } from '@sk-web-gui/icon';
 import { Eye, EyeOff, CreditCard } from 'lucide-react';
 
