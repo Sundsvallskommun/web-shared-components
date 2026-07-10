@@ -1,11 +1,17 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { Text } from './text';
+import { Text } from './index';
 
 describe('Text', () => {
   it('renders children', () => {
     render(<Text>Hello world</Text>);
     expect(screen.getByText('Hello world')).toBeInTheDocument();
+  });
+
+  it('renders multiple paragraphs without React key warnings', () => {
+    render(<Text>{'First paragraph\n\nSecond paragraph'}</Text>);
+
+    expect(screen.getAllByRole('paragraph')).toHaveLength(2);
   });
 
   it('applies custom className', () => {
