@@ -1,4 +1,4 @@
-export const Tabs = (colors: string[]) => ({
+export const Tabs = () => ({
   '.sk-tabs': {
     '@apply w-full': {},
 
@@ -48,40 +48,19 @@ export const Tabs = (colors: string[]) => ({
         },
 
         '.sk-tabs-list-item-divider': {
-          '@apply m-0 min-h-2 h-2 opacity-0': {},
+          '@apply m-0 min-h-2 h-2 opacity-0 bg-primary-surface': {},
         },
 
-        '&[data-current="true"]': {
-          '.sk-tabs-list-item-divider': {
-            '@apply opacity-100': {},
-          },
-        },
-
-        ...colors.reduce(
-          (styles, color) => ({
-            ...styles,
-            [`&[data-color="${color}"]`]: {
-              '.sk-tabs-list-item-divider': {
-                [`@apply bg-${color}-surface-primary`]: {},
-              },
-            },
-          }),
-          {}
-        ),
-        "&[data-color='tertiary']": {
-          '.sk-tabs-list-item-divider': {
-            '@apply bg-primary-surface': {},
-          },
+        '.sk-tabs-list-item-button[data-state="active"] + .sk-tabs-list-item-divider': {
+          '@apply opacity-100': {},
         },
       },
     },
 
-    '&-panels': {
-      '@apply mt-20': {},
-    },
-
     '&-content': {
-      '&:not([data-selected="true"])': {
+      '@apply mt-20': {},
+
+      '&[data-state="inactive"]': {
         '@apply hidden': {},
       },
     },
