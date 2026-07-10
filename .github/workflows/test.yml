@@ -14,22 +14,75 @@ permissions:
   contents: read
 
 jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: .node-version
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile --non-interactive
+
+      - name: Run lint
+        run: yarn lint
+
+  mcp:
+    name: MCP contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: .node-version
+          cache: npm
+          cache-dependency-path: mcp-server/package-lock.json
+
+      - name: Install locked MCP dependencies
+        run: npm ci --prefix mcp-server --ignore-scripts
+
+      - name: Check MCP source
+        run: npm run lint --prefix mcp-server
+
+      - name: Run MCP contract tests
+        run: npm test --prefix mcp-server
+
   test:
+    name: Test and build
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
-          node-version: 22
+          node-version-file: .node-version
           cache: yarn
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile --non-interactive
 
       - name: Install Chromium
         run: yarn playwright install --with-deps chromium
@@ -39,6 +92,20 @@ jobs:
 
       - name: Verify package builds
         run: yarn build
+
+      - name: Verify published package contents
+        run: yarn test:package-contents
+
+      - name: Verify the packed AI consumer contract
+        run: yarn test:ai-consumer
+
+      - name: Verify secured Next.js dependency graph
+        run: yarn test:next
+
+      - name: Generate and validate MCP manifest
+        run: |
+          node mcp-server/generate-manifest.mjs
+          node mcp-server/validate-manifest.mjs
 
       - name: Run Storybook browser tests
         timeout-minutes: 15

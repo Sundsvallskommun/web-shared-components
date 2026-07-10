@@ -1,0 +1,68 @@
+name: Security audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 4 * * 1'
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+    paths:
+      - .github/dependabot.yml
+      - .github/workflows/security-audit.yml
+      - .npmrc
+      - .node-version
+      - .swcrc*
+      - .yarnrc
+      - .yarnrc.yml
+      - fix-esm-extensions.mjs
+      - lerna.json
+      - nx.json
+      - package.json
+      - scripts/**
+      - tsconfig*.json
+      - yarn.lock
+      - packages/*/package.json
+      - mcp-server/.npmrc
+      - mcp-server/package.json
+      - mcp-server/package-lock.json
+
+concurrency:
+  group: security-audit-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: Audit dependency lockfiles
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: .node-version
+          cache: yarn
+
+      - name: Verify root lockfile installation
+        run: HUSKY=0 yarn install --frozen-lockfile --ignore-scripts --non-interactive
+
+      - name: Verify MCP lockfile installation
+        run: npm ci --prefix mcp-server --ignore-scripts
+
+      - name: Audit root Yarn lockfile
+        run: yarn audit --level low
+
+      - name: Audit MCP npm lockfile
+        run: npm audit --prefix mcp-server --audit-level=low

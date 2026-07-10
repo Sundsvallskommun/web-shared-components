@@ -3,9 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "packageManager": "npm@10.9.8",
   "description": "Standalone MCP server exposing the @sk-web-gui design system to AI agents.",
   "scripts": {
-    "start": "node server.mjs"
+    "audit": "npm audit --audit-level=low",
+    "lint": "node --check generate-manifest.mjs && node --check server.mjs && node --check smoke-test.mjs && node --check validate-manifest.mjs && node --check test/server.test.mjs",
+    "start": "node server.mjs",
+    "test": "node validate-manifest.mjs test/fixtures/manifest.json && node --test test/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=22.14.0 <23"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",

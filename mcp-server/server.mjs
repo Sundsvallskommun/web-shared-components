@@ -18,7 +18,17 @@ import { z } from 'zod';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
 
-const MANIFEST_PATH = path.join(__dirname, 'manifest.json');
+function integerEnvironmentSetting(name, fallback, min, max) {
+  const raw = process.env[name];
+  const value = raw === undefined ? fallback : Number(raw);
+  if (!Number.isInteger(value) || value < min || value > max) {
+    console.error(`Invalid ${name}: ${raw}`);
+    process.exit(1);
+  }
+  return value;
+}
+
+const MANIFEST_PATH = path.resolve(process.env.MCP_MANIFEST_PATH || path.join(__dirname, 'manifest.json'));
 if (!fs.existsSync(MANIFEST_PATH)) {
   console.error(`Manifest not found at ${MANIFEST_PATH}. Run: node mcp-server/generate-manifest.mjs`);
   process.exit(1);
@@ -26,10 +36,29 @@ if (!fs.existsSync(MANIFEST_PATH)) {
 const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8'));
 const STATIC_DIR = path.join(ROOT, 'storybook-static');
 
-const PORT = process.env.PORT || 8080;
+const PORT = integerEnvironmentSetting('PORT', 8080, 0, 65_535);
+const HOST = process.env.HOST?.trim() || '0.0.0.0';
+const MCP_MAX_IN_FLIGHT = integerEnvironmentSetting('MCP_MAX_IN_FLIGHT', 32, 1, 256);
+const MCP_HEADERS_TIMEOUT_MS = integerEnvironmentSetting('MCP_HEADERS_TIMEOUT_MS', 10_000, 1_000, 60_000);
+const MCP_REQUEST_TIMEOUT_MS = integerEnvironmentSetting('MCP_REQUEST_TIMEOUT_MS', 15_000, 1_000, 60_000);
+const MCP_KEEP_ALIVE_TIMEOUT_MS = integerEnvironmentSetting('MCP_KEEP_ALIVE_TIMEOUT_MS', 5_000, 500, 30_000);
+if (MCP_HEADERS_TIMEOUT_MS > MCP_REQUEST_TIMEOUT_MS || MCP_KEEP_ALIVE_TIMEOUT_MS >= MCP_HEADERS_TIMEOUT_MS) {
+  console.error('MCP timeout settings must satisfy keep-alive < headers <= request.');
+  process.exit(1);
+}
+const DEFAULT_ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]', 'stilguide.sundsvall.se'];
+const ALLOWED_HOSTS = new Set(
+  (process.env.MCP_ALLOWED_HOSTS || DEFAULT_ALLOWED_HOSTS.join(','))
+    .split(',')
+    .map((host) => host.trim().toLowerCase())
+    .filter(Boolean)
+);
 const REACT_NOTE = manifest.note;
 
 // --- search ---------------------------------------------------------------
+
+const MAX_QUERY_LENGTH = 200;
+const MAX_QUERY_TOKENS = 20;
 
 // Common Swedish/English filler words that would otherwise cause spurious
 // substring hits (e.g. "med" inside "meddelande").
@@ -107,7 +136,10 @@ function scoreEntry(entry, tokens, rawQuery) {
 
 function findComponents(query, limit) {
   const raw = fold(query.trim());
-  const tokens = raw.split(/\s+/).filter((t) => t.length >= 3 && !STOP_WORDS.has(t));
+  const tokens = raw
+    .split(/\s+/)
+    .filter((t) => t.length >= 3 && !STOP_WORDS.has(t))
+    .slice(0, MAX_QUERY_TOKENS);
   return INDEX.map((entry) => ({ c: entry.c, ...scoreEntry(entry, tokens, raw) }))
     .filter((x) => x.score > 0)
     .sort((a, b) => b.score - a.score)
@@ -137,6 +169,15 @@ function text(obj) {
   return { content: [{ type: 'text', text: JSON.stringify(obj, null, 2) }] };
 }
 
+const querySchema = z
+  .string()
+  .trim()
+  .min(1)
+  .max(MAX_QUERY_LENGTH)
+  .refine((query) => query.split(/\s+/).length <= MAX_QUERY_TOKENS, {
+    message: `Query must contain at most ${MAX_QUERY_TOKENS} tokens.`,
+  });
+
 // Single source of truth for the tools: this list both registers them on the
 // MCP server and renders the human-readable /docs page, so the two can't drift.
 // `example` is the argument object shown in the /docs example call.
@@ -149,7 +190,7 @@ const TOOLS = [
       '(t.ex. "visa ett felmeddelande", "datumväljare", "dropdown med sök"). Returnerar en ' +
       'rankad lista. Anropa get-component för fullständiga props.',
     inputSchema: {
-      query: z.string().describe('Behov/use-case eller komponentnamn'),
+      query: querySchema.describe('Behov/use-case eller komponentnamn'),
       limit: z.number().int().min(1).max(25).optional().describe('Max antal träffar (1–25, default 8)'),
     },
     example: { query: 'datumväljare' },
@@ -163,7 +204,13 @@ const TOOLS = [
     title: 'Lista komponenter',
     description: 'Lista alla tillgängliga komponenter, valfritt filtrerat på kategori.',
     inputSchema: {
-      category: z.string().optional().describe('Filtrera på kategori, t.ex. "Komponenter" eller "AI"'),
+      category: z
+        .string()
+        .trim()
+        .min(1)
+        .max(100)
+        .optional()
+        .describe('Filtrera på kategori, t.ex. "Komponenter" eller "AI"'),
     },
     example: { category: 'AI' },
     handler: async ({ category }) => {
@@ -179,7 +226,7 @@ const TOOLS = [
     description:
       'Hämta fullständig information om en komponent: import-väg, beskrivning, alla props ' +
       '(typ, om de krävs, beskrivning) och tags.',
-    inputSchema: { name: z.string().describe('Komponentnamn, t.ex. "Button"') },
+    inputSchema: { name: z.string().trim().min(1).max(100).describe('Komponentnamn, t.ex. "Button"') },
     example: { name: 'Button' },
     handler: async ({ name }) => {
       const matches = getComponents(name);
@@ -211,7 +258,13 @@ const TOOLS = [
         .enum(['colors', 'spacing', 'radius', 'fontSizes', 'lineHeights', 'fonts', 'screens', 'all'])
         .optional()
         .describe('Token-grupp att hämta (default: alla)'),
-      filter: z.string().optional().describe('Filtrera token-namn, t.ex. "blue" eller "primary"'),
+      filter: z
+        .string()
+        .trim()
+        .min(1)
+        .max(100)
+        .optional()
+        .describe('Filtrera token-namn, t.ex. "blue" eller "primary"'),
     },
     example: { group: 'colors', filter: 'primary' },
     handler: async ({ group, filter }) => {
@@ -384,19 +437,76 @@ yarn mcp:serve  # genererar manifestet och startar servern på :${PORT}</code></
 // --- HTTP ------------------------------------------------------------------
 
 const app = express();
-app.set('trust proxy', true); // behind Traefik — honour X-Forwarded-Proto for absolute URLs
-app.use(express.json({ limit: '4mb' }));
+app.disable('x-powered-by');
+app.set('trust proxy', 1); // one Traefik hop; used only to render absolute documentation URLs
 
-app.get('/healthz', (_req, res) => res.json({ ok: true, components: manifest.componentCount }));
+// The MCP SDK recommends Host validation for network-accessible HTTP servers to
+// prevent DNS rebinding. MCP_ALLOWED_HOSTS can replace the deployment allowlist.
+app.use('/mcp', (req, res, next) => {
+  res.set({
+    'Cache-Control': 'no-store',
+    'Content-Security-Policy':
+      "default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'",
+    'Cross-Origin-Resource-Policy': 'same-origin',
+    'Referrer-Policy': 'no-referrer',
+    'X-Content-Type-Options': 'nosniff',
+    'X-Frame-Options': 'DENY',
+  });
+
+  const hostHeader = req.headers.host;
+  let hostname;
+  try {
+    hostname = hostHeader ? new URL(`http://${hostHeader}`).hostname.toLowerCase() : undefined;
+  } catch {
+    hostname = undefined;
+  }
+  if (!hostname || !ALLOWED_HOSTS.has(hostname)) {
+    return res.status(403).json({
+      jsonrpc: '2.0',
+      error: { code: -32000, message: 'Host is not allowed.' },
+      id: null,
+    });
+  }
+  return next();
+});
+
+let inFlightMcpRequests = 0;
+app.use('/mcp', (_req, res, next) => {
+  if (inFlightMcpRequests >= MCP_MAX_IN_FLIGHT) {
+    res.set('Retry-After', '1');
+    return res.status(503).json({
+      jsonrpc: '2.0',
+      error: { code: -32000, message: 'MCP server is busy.' },
+      id: null,
+    });
+  }
+
+  inFlightMcpRequests += 1;
+  let released = false;
+  const release = () => {
+    if (released) return;
+    released = true;
+    inFlightMcpRequests -= 1;
+  };
+  res.once('finish', release);
+  res.once('close', release);
+  return next();
+});
+
+app.use(express.json({ limit: '256kb', type: ['application/json', 'application/*+json'] }));
+
+app.get('/healthz', (_req, res) => {
+  res.set({ 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' });
+  return res.json({ ok: true, components: manifest.componentCount });
+});
 
 // Stateless MCP: a fresh server + transport per request.
 app.post('/mcp', async (req, res) => {
   try {
     const server = buildMcpServer();
     const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
-    res.on('close', () => {
-      transport.close();
-      server.close();
+    res.once('close', () => {
+      void server.close().catch((closeError) => console.error('MCP close error:', closeError));
     });
     await server.connect(transport);
     await transport.handleRequest(req, res, req.body);
@@ -427,9 +537,43 @@ if (fs.existsSync(STATIC_DIR)) {
   console.warn(`! ${path.relative(ROOT, STATIC_DIR)} not found — styleguide will 404 until you run "yarn build:storybook".`);
 }
 
-app.listen(PORT, () => {
-  console.log(`@sk-web-gui MCP server on :${PORT}`);
-  console.log(`  MCP endpoint:  http://localhost:${PORT}/mcp  (POST: protocol · GET in browser: docs)`);
-  console.log(`  Styleguide:    http://localhost:${PORT}/`);
+app.use((err, _req, res, next) => {
+  if (res.headersSent) return next(err);
+  if (err?.type === 'entity.too.large') {
+    return res
+      .status(413)
+      .json({ jsonrpc: '2.0', error: { code: -32000, message: 'Request body is too large.' }, id: null });
+  }
+  if (err?.type === 'entity.parse.failed') {
+    return res.status(400).json({ jsonrpc: '2.0', error: { code: -32700, message: 'Invalid JSON.' }, id: null });
+  }
+  console.error('HTTP request error:', err);
+  return res.status(500).json({ jsonrpc: '2.0', error: { code: -32603, message: 'Internal error.' }, id: null });
+});
+
+const httpServer = app.listen(PORT, HOST, () => {
+  const address = httpServer.address();
+  const actualPort = typeof address === 'object' && address ? address.port : PORT;
+  console.log(`@sk-web-gui MCP server on ${HOST}:${actualPort}`);
+  console.log(`  MCP endpoint:  http://localhost:${actualPort}/mcp  (POST: protocol · GET in browser: docs)`);
+  console.log(`  Styleguide:    http://localhost:${actualPort}/`);
   console.log(`  Components:     ${manifest.componentCount}`);
 });
+httpServer.headersTimeout = MCP_HEADERS_TIMEOUT_MS;
+httpServer.requestTimeout = MCP_REQUEST_TIMEOUT_MS;
+httpServer.keepAliveTimeout = MCP_KEEP_ALIVE_TIMEOUT_MS;
+httpServer.maxHeadersCount = 100;
+httpServer.maxRequestsPerSocket = 100;
+httpServer.maxConnections = 256;
+httpServer.setTimeout(MCP_REQUEST_TIMEOUT_MS);
+
+for (const signal of ['SIGINT', 'SIGTERM']) {
+  process.once(signal, () => {
+    const forceClose = setTimeout(() => httpServer.closeAllConnections(), 5_000);
+    forceClose.unref();
+    httpServer.close(() => {
+      clearTimeout(forceClose);
+      process.exit(0);
+    });
+  });
+}

@@ -1,16 +1,29 @@
 services:
   stilguide:
-    container_name: ${CONTAINER_NAME}
+    container_name: ${CONTAINER_NAME:-web-shared-components}
     network_mode: bridge
     ports:
-      - '${PORT:-overwrite_dockerfile_expose_port}:${CONTAINER_PORT:-8080}' # Container port must be same as exposed in Dockerfile
+      - '${PORT:-8080}:8080'
     build:
       context: .
       dockerfile: Dockerfile
       target: runner
     restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=64m
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
     healthcheck:
-      test: ['CMD', 'wget', '-qO-', 'http://localhost:${CONTAINER_PORT:-8080}/healthz']
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://127.0.0.1:8080/healthz').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))",
+        ]
       interval: 10s
       timeout: 5s
       retries: 12
