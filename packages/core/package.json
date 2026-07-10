@@ -26,7 +26,9 @@
     "build": "yarn build:types && yarn build:esm && yarn build:cjs",
     "build:esm": "swc src -d dist/esm --config-file ../../.swcrc.esm && node ../../fix-esm-extensions.mjs ./dist/esm",
     "build:cjs": "swc src -d dist/cjs --config-file ../../.swcrc",
-    "build:types": "tsc -p ./tsconfig.production.json --emitDeclarationOnly --declaration --declarationDir dist/types"
+    "build:types": "tsc -p ./tsconfig.production.json --emitDeclarationOnly --declaration --declarationDir dist/types",
+    "test": "node ../../scripts/test-package-tests.mjs",
+    "test:cov": "node ../../scripts/test-package-tests.mjs --coverage"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",

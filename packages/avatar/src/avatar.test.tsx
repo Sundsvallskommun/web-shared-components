@@ -15,8 +15,7 @@ describe('Avatar', () => {
 
   it('renders image when imageUrl is provided', () => {
     render(<Avatar imageUrl="https://example.com/avatar.jpg" imageAlt="User avatar" />);
-    const img = screen.getByAlt ? screen.getByRole('img') : document.querySelector('img');
-    expect(img).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'User avatar' })).toBeInTheDocument();
   });
 
   it('applies size class', () => {
@@ -43,5 +42,6 @@ describe('Avatar', () => {
     const ref = vi.fn();
     render(<Avatar ref={ref} />);
     expect(ref).toHaveBeenCalled();
+    expect(ref.mock.calls[0][0]).toBeInstanceOf(HTMLDivElement);
   });
 });

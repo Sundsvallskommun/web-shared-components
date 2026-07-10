@@ -135,7 +135,7 @@ type Story = StoryObj<typeof Button>;
 
 export const ClickTest: Story = {
   name: 'Test: Click',
-  tags: ['dev-only', '!autodocs'],
+  tags: ['!autodocs'],
   args: {
     children: 'Click me',
     onClick: fn(),
@@ -151,7 +151,7 @@ export const ClickTest: Story = {
 
 export const DisabledTest: Story = {
   name: 'Test: Disabled',
-  tags: ['dev-only', '!autodocs'],
+  tags: ['!autodocs'],
   args: {
     children: 'Disabled button',
     disabled: true,
@@ -169,7 +169,7 @@ export const DisabledTest: Story = {
 
 export const LoadingTest: Story = {
   name: 'Test: Loading',
-  tags: ['dev-only', '!autodocs'],
+  tags: ['!autodocs'],
   args: {
     children: 'Loading',
     loading: true,
@@ -188,7 +188,7 @@ export const LoadingTest: Story = {
 
 export const VariantsTest: Story = {
   name: 'Test: Variants',
-  tags: ['dev-only', '!autodocs'],
+  tags: ['!autodocs'],
   render: () => (
     <div className="flex gap-2">
       <Button variant="primary">Primary</Button>

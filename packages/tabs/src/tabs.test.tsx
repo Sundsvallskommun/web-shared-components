@@ -63,6 +63,22 @@ describe('Tabs', () => {
     expect(handleTabChange).toHaveBeenCalledWith(1);
   });
 
+  it('moves focus and activates tabs with the keyboard', async () => {
+    const user = userEvent.setup();
+    renderTabs();
+    const tabs = screen.getAllByRole('tab');
+
+    tabs[0].focus();
+    await user.keyboard('{ArrowRight}');
+
+    expect(tabs[1]).toHaveFocus();
+    expect(tabs[0]).toHaveAttribute('aria-selected', 'true');
+
+    await user.keyboard('{Enter}');
+
+    expect(tabs[1]).toHaveAttribute('aria-selected', 'true');
+  });
+
   it('renders tab panels', () => {
     renderTabs();
     const panels = screen.getAllByRole('tabpanel', { hidden: true });

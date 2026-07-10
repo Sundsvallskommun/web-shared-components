@@ -37,16 +37,14 @@ describe('Modal', () => {
     const user = userEvent.setup();
 
     render(
-      <ModalComponent show={true} label="Modal" onClose={handleClose}>
+      <ModalComponent show={true} label="Modal" closeLabel="Stäng dialogen" onClose={handleClose}>
         <ModalContent>Content</ModalContent>
       </ModalComponent>
     );
 
-    const closeButton = document.querySelector('.sk-modal-dialog-close');
-    if (closeButton) {
-      await user.click(closeButton);
-      expect(handleClose).toHaveBeenCalled();
-    }
+    await user.click(screen.getByRole('button', { name: 'Stäng dialogen' }));
+
+    expect(handleClose).toHaveBeenCalledTimes(1);
   });
 
   it('hides close button when hideClosebutton is true', () => {

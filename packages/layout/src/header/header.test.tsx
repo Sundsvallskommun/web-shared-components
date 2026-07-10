@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { HeaderComponent } from './header';
 
 describe('Header', () => {
@@ -35,12 +36,12 @@ describe('Header', () => {
 
   it('calls logoLinkOnClick when logo is clicked', async () => {
     const handleClick = vi.fn();
-    const { container } = render(<HeaderComponent title="App" logoLinkOnClick={handleClick} />);
-    const logoLink = container.querySelector('.sk-header-top-content a');
-    if (logoLink) {
-      logoLink.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-      expect(handleClick).toHaveBeenCalled();
-    }
+    const user = userEvent.setup();
+    render(<HeaderComponent title="App" logoLinkOnClick={handleClick} />);
+
+    await user.click(screen.getByRole('link', { name: 'App. Gå till startsidan.' }));
+
+    expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
   it('applies sk-header class', () => {

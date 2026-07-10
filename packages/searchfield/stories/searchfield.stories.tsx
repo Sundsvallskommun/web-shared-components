@@ -48,7 +48,7 @@ type Story = StoryObj<typeof SearchField.Component>;
 
 export const SearchFlowTest: Story = {
   name: 'Test: Search Flow',
-  tags: ['dev-only', '!autodocs'],
+  tags: ['!autodocs'],
   args: {
     placeholder: 'Search...',
     onChange: fn(),
@@ -72,7 +72,7 @@ export const SearchFlowTest: Story = {
 
 export const ResetTest: Story = {
   name: 'Test: Reset',
-  tags: ['dev-only', '!autodocs'],
+  tags: ['!autodocs'],
   args: {
     placeholder: 'Search...',
     value: 'existing text',
@@ -91,7 +91,7 @@ export const ResetTest: Story = {
 
 export const SearchButtonTest: Story = {
   name: 'Test: Search Button',
-  tags: ['dev-only', '!autodocs'],
+  tags: ['!autodocs'],
   args: {
     placeholder: 'Search...',
     showSearchButton: true,

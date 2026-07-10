@@ -55,7 +55,9 @@ describe('Combobox', () => {
     await user.click(screen.getByRole('combobox'));
     await user.click(screen.getByText('Banana'));
 
-    expect(handleChange).toHaveBeenCalled();
+    expect(handleChange).toHaveBeenCalledWith(
+      expect.objectContaining({ target: expect.objectContaining({ value: 'banana' }) })
+    );
   });
 
   it('opens dropdown and shows options when interacted', async () => {
@@ -116,13 +118,18 @@ describe('Combobox', () => {
     const user = userEvent.setup();
     renderCombobox();
 
-    await user.click(screen.getByRole('combobox'));
+    await user.click(screen.getByRole('textbox'));
     await user.keyboard('{ArrowDown}');
     await user.keyboard('{ArrowDown}');
 
-    // Second option should be active
-    const options = document.querySelectorAll('.sk-form-combobox-list-option');
-    expect(options.length).toBeGreaterThan(0);
+    const banana = screen.getAllByRole('option', { hidden: true })[1];
+    expect(banana).toHaveFocus();
+    expect(banana).toHaveAttribute('value', 'banana');
+
+    await user.keyboard('{Enter}');
+
+    expect(screen.getByRole('combobox')).toHaveAttribute('aria-expanded', 'false');
+    expect(screen.getByDisplayValue('Banana')).toBeInTheDocument();
   });
 
   it('forwards ref', () => {
@@ -136,5 +143,6 @@ describe('Combobox', () => {
       </Combobox.Component>
     );
     expect(ref).toHaveBeenCalled();
+    expect(ref.mock.calls[0][0]).toBeInstanceOf(HTMLDivElement);
   });
 });

@@ -1,12 +1,14 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from './breadcrumb';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from './breadcrumb';
 
 describe('Breadcrumb', () => {
   it('renders a nav element', () => {
     const { container } = render(
       <Breadcrumb>
-        <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
       </Breadcrumb>
     );
     expect(container.querySelector('nav')).toBeInTheDocument();
@@ -15,8 +17,12 @@ describe('Breadcrumb', () => {
   it('renders breadcrumb items', () => {
     render(
       <Breadcrumb>
-        <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>
-        <BreadcrumbItem><BreadcrumbLink href="/about">About</BreadcrumbLink></BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/about">About</BreadcrumbLink>
+        </BreadcrumbItem>
       </Breadcrumb>
     );
     expect(screen.getByText('Home')).toBeInTheDocument();
@@ -26,8 +32,12 @@ describe('Breadcrumb', () => {
   it('renders default separator', () => {
     const { container } = render(
       <Breadcrumb>
-        <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>
-        <BreadcrumbItem><BreadcrumbLink href="/about">About</BreadcrumbLink></BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/about">About</BreadcrumbLink>
+        </BreadcrumbItem>
       </Breadcrumb>
     );
     const separators = container.querySelectorAll('.sk-breadcrumb-separator');
@@ -37,8 +47,12 @@ describe('Breadcrumb', () => {
   it('renders custom separator', () => {
     render(
       <Breadcrumb separator=">">
-        <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>
-        <BreadcrumbItem><BreadcrumbLink href="/about">About</BreadcrumbLink></BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/about">About</BreadcrumbLink>
+        </BreadcrumbItem>
       </Breadcrumb>
     );
     expect(screen.getByText('>')).toBeInTheDocument();
@@ -47,8 +61,12 @@ describe('Breadcrumb', () => {
   it('marks current page with aria-current', () => {
     render(
       <Breadcrumb>
-        <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>
-        <BreadcrumbItem currentPage><BreadcrumbLink href="/about">About</BreadcrumbLink></BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem currentPage>
+          <BreadcrumbLink href="/about">About</BreadcrumbLink>
+        </BreadcrumbItem>
       </Breadcrumb>
     );
     expect(screen.getByText('About').closest('[aria-current]')).toHaveAttribute('aria-current', 'page');
@@ -57,7 +75,9 @@ describe('Breadcrumb', () => {
   it('renders current page as span instead of link', () => {
     render(
       <Breadcrumb>
-        <BreadcrumbItem currentPage><BreadcrumbLink href="/about">Current</BreadcrumbLink></BreadcrumbItem>
+        <BreadcrumbItem currentPage>
+          <BreadcrumbLink href="/about">Current</BreadcrumbLink>
+        </BreadcrumbItem>
       </Breadcrumb>
     );
     const current = screen.getByText('Current');
@@ -67,7 +87,9 @@ describe('Breadcrumb', () => {
   it('applies sk-breadcrumb class', () => {
     const { container } = render(
       <Breadcrumb>
-        <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
       </Breadcrumb>
     );
     expect(container.querySelector('.sk-breadcrumb')).toBeInTheDocument();
@@ -77,7 +99,9 @@ describe('Breadcrumb', () => {
     const ref = vi.fn();
     render(
       <Breadcrumb ref={ref}>
-        <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
       </Breadcrumb>
     );
     expect(ref).toHaveBeenCalled();

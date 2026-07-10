@@ -1,5 +1,4 @@
 import Button from '@sk-web-gui/button';
-import Divider from '@sk-web-gui/divider';
 import { DefaultProps, cx, useForkRef } from '@sk-web-gui/utils';
 import React from 'react';
 import { defaultTabsContext } from './context';
@@ -131,10 +130,8 @@ export const TabsButton = React.forwardRef<HTMLLIElement, TabsButtonProps>((prop
         variant="ghost"
       >
         <span>{children}</span>
-        
       </Button>
       <div className="sk-tabs-list-item-divider" />
     </li>
-    
   );
 });

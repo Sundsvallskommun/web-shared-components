@@ -103,9 +103,12 @@ describe('Accordion', () => {
     renderAccordion();
 
     const buttons = screen.getAllByRole('button');
+    const regions = screen.getAllByRole('region', { hidden: true });
+    expect(regions[0]).toHaveAttribute('aria-hidden', 'true');
+
     await user.click(buttons[0]);
 
-    expect(screen.getByText('Content 1')).toBeInTheDocument();
+    expect(regions[0]).toHaveAttribute('aria-hidden', 'false');
   });
 
   it('forwards ref', () => {
@@ -122,5 +125,6 @@ describe('Accordion', () => {
       </AccordionComponent>
     );
     expect(ref).toHaveBeenCalled();
+    expect(ref.mock.calls[0][0]).toBeInstanceOf(HTMLUListElement);
   });
 });

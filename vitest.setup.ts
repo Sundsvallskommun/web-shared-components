@@ -1,9 +1,21 @@
 import '@testing-library/jest-dom/vitest';
 import { cleanup } from '@testing-library/react';
-import { afterEach, vi } from 'vitest';
+import { afterEach, beforeEach, expect, vi, type MockInstance } from 'vitest';
+
+let consoleError: MockInstance;
+let consoleWarn: MockInstance;
+
+beforeEach(() => {
+  consoleError = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+  consoleWarn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+});
 
 afterEach(() => {
   cleanup();
+  vi.useRealTimers();
+
+  expect(consoleError.mock.calls, 'Unexpected console.error during test').toEqual([]);
+  expect(consoleWarn.mock.calls, 'Unexpected console.warn during test').toEqual([]);
 });
 
 // Mock matchMedia

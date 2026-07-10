@@ -17,11 +17,12 @@ export default defineConfig({
         extends: true,
         test: {
           name: 'unit',
-          globals: true,
           environment: 'jsdom',
           setupFiles: ['./vitest.setup.ts'],
           include: ['packages/*/src/**/*.{test,spec}.{ts,tsx}'],
           exclude: ['**/node_modules/**', '**/dist/**', '**/*.stories.tsx'],
+          clearMocks: true,
+          restoreMocks: true,
         },
       },
       // Storybook tests (browser via Playwright)
@@ -30,7 +31,7 @@ export default defineConfig({
         plugins: [
           storybookTest({
             configDir: path.join(dirname, '.storybook'),
-            tags: { include: ['dev-only'] },
+            tags: { include: ['test'] },
           }),
         ],
         test: {
@@ -47,7 +48,14 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'html', 'lcov'],
+      include: ['packages/*/src/**/*.{ts,tsx}'],
       exclude: ['**/node_modules/**', '**/dist/**', '**/*.stories.tsx', '**/*.d.ts'],
+      thresholds: {
+        statements: 51,
+        branches: 36,
+        functions: 40,
+        lines: 52,
+      },
     },
   },
 });

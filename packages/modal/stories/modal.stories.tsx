@@ -86,7 +86,7 @@ const ModalTestWrapper = ({ onClose, ...args }: ModalProps & { onClose?: () => v
 
 export const OpenCloseTest: Story = {
   name: 'Test: Open/Close',
-  tags: ['dev-only', '!autodocs'],
+  tags: ['!autodocs'],
   args: {
     label: 'Test Modal',
   },
@@ -122,7 +122,7 @@ export const OpenCloseTest: Story = {
 
 export const EscapeCloseTest: Story = {
   name: 'Test: Close with Escape',
-  tags: ['dev-only', '!autodocs'],
+  tags: ['!autodocs'],
   args: {
     label: 'Test Modal',
   },

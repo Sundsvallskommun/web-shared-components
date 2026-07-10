@@ -52,18 +52,21 @@ export const ExampleWithForm = () => {
 };
 
 export const Inaktiverad = () => {
-  const { register, watch} = useForm<{ toppings: string[] }>({ defaultValues: { toppings: [] } });
+  const { register, watch } = useForm<{ toppings: string[] }>({ defaultValues: { toppings: [] } });
   const allToppings = ['Skinka', 'Ost', 'Tomat'];
   const pickToppings = watch('toppings');
 
-
   return (
-      <div className="flex space-x-12">
-        <Checkbox disabled>First</Checkbox>
-        <Checkbox defaultChecked disabled>Second</Checkbox>
-        <Checkbox readOnly>First</Checkbox>
-        <Checkbox defaultChecked readOnly>Second</Checkbox>
-      </div>
+    <div className="flex space-x-12">
+      <Checkbox disabled>First</Checkbox>
+      <Checkbox defaultChecked disabled>
+        Second
+      </Checkbox>
+      <Checkbox readOnly>First</Checkbox>
+      <Checkbox defaultChecked readOnly>
+        Second
+      </Checkbox>
+    </div>
   );
 };
 
@@ -71,7 +74,7 @@ type Story = StoryObj<typeof Checkbox>;
 
 export const ToggleTest: Story = {
   name: 'Test: Toggle',
-  tags: ['dev-only', '!autodocs'],
+  tags: ['!autodocs'],
   args: {
     children: 'Accept terms',
     onChange: fn(),
@@ -100,7 +103,7 @@ export const ToggleTest: Story = {
 
 export const DisabledTest: Story = {
   name: 'Test: Disabled',
-  tags: ['dev-only', '!autodocs'],
+  tags: ['!autodocs'],
   args: {
     children: 'Disabled checkbox',
     disabled: true,
@@ -118,7 +121,7 @@ export const DisabledTest: Story = {
 
 export const KeyboardTest: Story = {
   name: 'Test: Keyboard',
-  tags: ['dev-only', '!autodocs'],
+  tags: ['!autodocs'],
   args: {
     children: 'Keyboard checkbox',
     onChange: fn(),
@@ -147,7 +150,7 @@ export const KeyboardTest: Story = {
 
 export const SizesTest: Story = {
   name: 'Test: Sizes',
-  tags: ['dev-only', '!autodocs'],
+  tags: ['!autodocs'],
   render: () => (
     <div className="flex gap-4 items-center">
       <Checkbox size="sm">Small</Checkbox>
