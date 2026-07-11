@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { NewSessionButton, NewSessionButtonProps } from '../src/components';
 import React from 'react';
 export default {

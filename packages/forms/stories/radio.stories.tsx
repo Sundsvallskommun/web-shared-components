@@ -1,5 +1,5 @@
 import { FormControl, FormHelperText, FormLabel } from '@sk-web-gui/forms';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { RadioButton, RadioButtonProps } from '../src';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';

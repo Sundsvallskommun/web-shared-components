@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import React, { useEffect } from 'react';
 import { FormControl, FormLabel, Textarea, TextareaProps } from '../src';
 import { useForm } from 'react-hook-form';

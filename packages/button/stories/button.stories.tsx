@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { Button, ButtonProps } from '../src';
 import { Icon } from '@sk-web-gui/icon';
 import { CandyCane } from 'lucide-react';

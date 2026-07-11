@@ -1,5 +1,5 @@
 import { Link } from '@sk-web-gui/link';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { CookieConsent, CookieConsentProps, CookieConsentUtils } from '../src';
 import React from 'react';
 import { Button } from '@sk-web-gui/button';

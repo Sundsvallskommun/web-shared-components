@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.9.2...@sk-web-gui/forms@2.9.3) (2026-05-29)
+
+### Bug Fixes
+
+- adds useEffect to handle new uploads ([483ec5a](https://github.com/Sundsvallskommun/web-shared-components/commit/483ec5a2d26504e85b75acf03c984f4901bea84e))
+- syncs item reorder to form state ([da0cea2](https://github.com/Sundsvallskommun/web-shared-components/commit/da0cea29ec11180fcae93a85bd97b7c662714939))
+
 ## [2.9.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.9.1...@sk-web-gui/forms@2.9.2) (2026-05-06)
 
 **Note:** Version bump only for package @sk-web-gui/forms

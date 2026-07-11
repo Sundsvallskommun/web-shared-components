@@ -1,5 +1,5 @@
 import { Switch } from '@sk-web-gui/forms';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import React from 'react';
 import { FieldValues, FormProvider, useForm } from 'react-hook-form';
 import { CustomOnChangeEventUploadFile, FileUpload, FileUploadProps, UploadFile } from '../../src';

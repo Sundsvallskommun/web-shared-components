@@ -18,9 +18,11 @@ const translateIconSize = (size: string) => {
   }
 };
 
-export const AlertIcon = React.forwardRef<HTMLSpanElement, AlertIconProps>((props) => {
+export const AlertIcon = React.forwardRef<HTMLSpanElement, AlertIconProps>((props, ref) => {
   const { size: iconSize, icon, iconColor } = useAlert();
   const { className, size = translateIconSize(iconSize), ...rest } = props;
 
-  return <Icon icon={icon} color={iconColor} size={size} className={cx('sk-alert-icon', className)} {...rest} />;
+  return (
+    <Icon ref={ref} icon={icon} color={iconColor} size={size} className={cx('sk-alert-icon', className)} {...rest} />
+  );
 });

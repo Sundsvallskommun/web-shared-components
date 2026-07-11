@@ -1,5 +1,5 @@
 import { BrandTheme, sundsvallTheme } from '@sk-web-gui/theme';
-import { addons } from '@storybook/preview-api';
+import { addons } from 'storybook/preview-api';
 import React from 'react';
 
 const channel = addons.getChannel();

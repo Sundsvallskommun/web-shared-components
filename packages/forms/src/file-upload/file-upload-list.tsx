@@ -53,7 +53,11 @@ export const FileUploadList = React.forwardRef<HTMLUListElement, FileUploadListP
     focusedIndex,
     setFocusedIndex,
     reorder: moveItem,
-  } = useSortableList(listItems ?? []);
+  } = useSortableList(listItems ?? [], (next) => {
+    if (context && name) {
+      context.setValue(name, next);
+    }
+  });
 
   const injectItemProps = (child: React.ReactNode, index: number): React.ReactNode => {
     if (!React.isValidElement<FileUploadListItemProps>(child)) return child;

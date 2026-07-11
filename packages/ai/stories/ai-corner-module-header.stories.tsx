@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { AICornerModuleHeader, Assistant } from '../src';
 import { AICornerModuleHeaderProps } from '../src/components';
 import paragrafSrc from './images/paragrafryttaren.png';

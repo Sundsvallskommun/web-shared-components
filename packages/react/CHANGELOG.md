@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@3.1.0...@sk-web-gui/react@3.1.1) (2026-06-25)
+
+### Bug Fixes
+
+- **segmented-control:** dependency issues ([f6e4616](https://github.com/Sundsvallskommun/web-shared-components/commit/f6e461649f4c8051c6e1a33443209d28acf19e84))
+
+# [3.1.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@3.0.15...@sk-web-gui/react@3.1.0) (2026-06-12)
+
+### Features
+
+- **react:** export segmented control ([c1e7722](https://github.com/Sundsvallskommun/web-shared-components/commit/c1e772298414ca4382e5d842bb6d3593613473dc))
+
+## [3.0.15](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@3.0.14...@sk-web-gui/react@3.0.15) (2026-05-29)
+
+**Note:** Version bump only for package @sk-web-gui/react
+
 ## [3.0.14](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/react@3.0.13...@sk-web-gui/react@3.0.14) (2026-05-06)
 
 **Note:** Version bump only for package @sk-web-gui/react

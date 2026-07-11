@@ -1,5 +1,5 @@
 import { Button } from '@sk-web-gui/button';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import React, { useState } from 'react';
 import { Modal, ModalProps } from '../src/modal';
 

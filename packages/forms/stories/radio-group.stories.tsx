@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormControl, FormLabel, RadioButton } from '../src';

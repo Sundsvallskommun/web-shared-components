@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { Alert, AlertProps } from '../src';
 import { X } from 'lucide-react';
 

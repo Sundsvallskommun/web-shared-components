@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import React from 'react';
 import { AIFeed, ChatHistory } from '../src';
 import { OriginTitleMap } from '../src/types/titles';

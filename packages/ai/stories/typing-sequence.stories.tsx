@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { TypingSequence } from '../src';
 import { TypingSequenceProps } from '../src/components';
 

@@ -7,6 +7,9 @@ node_modules/
 packages/*/dist
 storybook-static
 
+# generated MCP manifest (built from packages; regenerated on build)
+mcp-server/manifest.json
+
 docs/.next
 
 # Optional npm cache directory

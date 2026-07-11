@@ -2,7 +2,7 @@ import { cx } from '@sk-web-gui/utils';
 import React from 'react';
 import { TypingSequence } from './typing-sequence';
 
-export interface TypingBubbleProps extends Omit<React.ComponentPropsWithoutRef<'span'>, 'children'> {
+export interface TypingBubbleProps extends React.ComponentPropsWithoutRef<'span'> {
   /**
    * position of the bubble
    * @default right
@@ -15,7 +15,7 @@ export interface TypingBubbleProps extends Omit<React.ComponentPropsWithoutRef<'
 }
 
 export const TypingBubble = React.forwardRef<HTMLSpanElement, TypingBubbleProps>((props, ref) => {
-  const { position = 'right', className, inverted, ...rest } = props;
+  const { position = 'right', className, inverted, children, ...rest } = props;
 
   return (
     <span
@@ -25,7 +25,7 @@ export const TypingBubble = React.forwardRef<HTMLSpanElement, TypingBubbleProps>
       ref={ref}
       {...rest}
     >
-      <TypingSequence inverted={inverted} />
+      {children ?? <TypingSequence inverted={inverted} />}
     </span>
   );
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Filter, FilterProps } from '../src';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { Badge } from '@sk-web-gui/badge';
 
 export default {
