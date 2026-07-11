@@ -1,8 +1,9 @@
+import type { DefaultColor } from '@sk-web-gui/utils';
 import { DefaultProps, cx } from '@sk-web-gui/utils';
 import React from 'react';
 
 export interface LabelProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
-  color?: string;
+  color?: DefaultColor;
   rounded?: boolean;
   inverted?: boolean;
 }

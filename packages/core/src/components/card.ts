@@ -248,16 +248,25 @@ export const Card = (colors: string[]) => ({
    */
   '.sk-meta-card': {
     '@apply no-underline hover:no-underline': {},
-    '@apply flex bg-vattjom-surface-accent': {},
+    '@apply flex': {},
     '@apply p-14 rounded-groups': {},
 
     '&.sk-meta-card-use-hover-effect:hover': {
       '@apply cursor-pointer': {},
     },
 
-    '&.sk-meta-card-use-hover-effect[data-color="vattjom"]:hover': {
-      '@apply bg-vattjom-background-300': {},
-    },
+    ...colors.reduce(
+      (styles, color) => ({
+        ...styles,
+        [`&.sk-meta-card-use-hover-effect[data-color="${color}"]:hover`]: {
+          [`@apply bg-${color}-background-300`]: {},
+        },
+        [`&[data-color="${color}"]`]: {
+          [`@apply bg-${color}-background-200`]: {},
+        },
+      }),
+      {}
+    ),
 
     '&.sk-meta-card-use-hover-effect[data-color="mono"]:hover': {
       '@apply bg-primitives-overlay-darken-2 dark:bg-primitives-overlay-lighten-2': {},
@@ -265,10 +274,6 @@ export const Card = (colors: string[]) => ({
 
     '&[data-color="mono"]': {
       '@apply bg-primitives-overlay-darken-1 dark:bg-primitives-overlay-lighten-1': {},
-    },
-
-    '&[data-color="vattjom"]': {
-      '@apply bg-vattjom-background-200': {},
     },
 
     '&-text-icon': {

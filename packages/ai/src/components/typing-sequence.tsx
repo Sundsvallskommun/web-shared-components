@@ -1,8 +1,9 @@
+import type { DefaultColor } from '@sk-web-gui/utils';
 import { cx } from '@sk-web-gui/utils';
 import React from 'react';
 
 export interface TypingSequenceProps extends Omit<React.ComponentPropsWithoutRef<'span'>, 'children'> {
-  color?: string;
+  color?: DefaultColor;
   inverted?: boolean;
 }
 

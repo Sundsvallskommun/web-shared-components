@@ -22,10 +22,21 @@ export const Link = () => ({
 
     // variants
     '&-primary': {
-      '@apply text-vattjom-surface-primary hover:text-vattjom-surface-primary-hover': {},
-  
-      '&[data-inverted="true"]':{
-        '@apply text-inverted-vattjom-surface-primary  hover:text-inverted-vattjom-surface-primary-hover': {},
+      '@apply text-link-text hover:text-link-text-hover': {},
+      '&:visited': {
+        '@apply text-link-text-visited': {},
+        '&:hover': {
+          '@apply text-link-text-visited-hover': {},
+        },
+      },
+      '&[data-inverted="true"]': {
+        '@apply text-inverted-link-text hover:text-inverted-link-text-hover': {},
+        '&:visited': {
+          '@apply text-inverted-link-text-visited': {},
+          '&:hover': {
+            '@apply text-inverted-link-text-visited-hover': {},
+          },
+        },
       },
     },
     '&-tertiary': {
@@ -55,3 +66,4 @@ export const Link = () => ({
     },
   },
 });
+

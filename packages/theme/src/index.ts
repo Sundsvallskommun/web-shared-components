@@ -8,6 +8,8 @@ export * from './default-theme';
 export type * from './default-theme';
 export * from './colors';
 export type * from './colors';
+export * from './ramp';
+export type * from './ramp';
 export * from './types';
 export type * from './types';
 export * from './units';

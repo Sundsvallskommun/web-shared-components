@@ -1,6 +1,7 @@
 import { Button } from '@sk-web-gui/button';
 import { Icon } from '@sk-web-gui/icon';
 import { Link } from '@sk-web-gui/link';
+import type { DefaultColor } from '@sk-web-gui/utils';
 import { __DEV__, cx, DefaultProps, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
 import { ArrowRight, Calendar, Clock4 } from 'lucide-react';
@@ -15,7 +16,7 @@ export interface CardPropsCommon extends DefaultProps, Omit<React.ComponentProps
   /** Set background color to card
    * @default mono
    */
-  color?: 'mono' | 'tertiary' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
+  color?: DefaultColor | 'mono' | 'tertiary';
   /** Make the card inverted
    * @default false
    */

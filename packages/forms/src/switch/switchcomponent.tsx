@@ -1,5 +1,6 @@
 import { useFormControl } from '../form-control';
 import { Icon } from '@sk-web-gui/icon';
+import type { DefaultColor } from '@sk-web-gui/utils';
 import { __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
 import { Check } from 'lucide-react';
@@ -7,7 +8,7 @@ export interface SwitchProps extends Omit<React.ComponentPropsWithRef<'input'>, 
   /** Set the switch color
    * @default tertiary
    */
-  color?: 'tertiary' | 'gronsta';
+  color?: DefaultColor;
 }
 
 export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>((props, ref) => {

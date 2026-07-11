@@ -1,3 +1,4 @@
+import type { DefaultColor } from '@sk-web-gui/utils';
 import { Avatar } from '@sk-web-gui/avatar';
 import React from 'react';
 import { useAssistantStore } from '../../assistant-store';
@@ -25,7 +26,7 @@ import { AICornerModuleAssistantLibrary } from './ai-corner-module-assistant-lib
 
 export interface AICornerModuleDefaultProps {
   docked?: boolean;
-  color?: string;
+  color?: DefaultColor;
   fullscreen?: boolean;
   session?: AssistantSession;
   /**
@@ -58,7 +59,7 @@ type InfoLink = { url: string; description: string };
 export interface AICornerModuleProps
   extends AICornerModuleDefaultProps,
     Pick<AIFeedProps, 'getAssistantInfoFromHistory'>,
-    Omit<React.ComponentPropsWithoutRef<'div'>, 'children'> {
+    Omit<React.ComponentPropsWithoutRef<'div'>, 'children' | 'color'> {
   sessionId?: string;
   /**
    * Current assistant
@@ -440,3 +441,4 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
     </AICornerModuleWrapper>
   );
 });
+

@@ -9,7 +9,7 @@ const useAlertContext = () => React.useContext(AlertContext);
 interface UseAlertData extends UseAlertProps {
   size: 'sm' | 'md' | 'lg';
   icon?: React.ComponentProps<IconProps['Component']>['icon'];
-  iconColor?: 'warning' | 'error' | 'vattjom' | 'tertiary' | 'gronsta';
+  iconColor?: React.ComponentProps<IconProps['Component']>['color'];
 }
 
 export const useAlert = (): UseAlertData => {

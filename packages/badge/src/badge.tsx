@@ -1,8 +1,9 @@
 import React from 'react';
+import type { DefaultColor } from '@sk-web-gui/utils';
 import { cx, __DEV__, DefaultProps } from '@sk-web-gui/utils';
 
 interface IBadgeProps extends DefaultProps {
-  color?: 'tertiary' | 'warning' | 'error' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
+  color?: DefaultColor | 'tertiary';
   counter?: string | number;
   inverted?: boolean;
   rounded?: boolean;

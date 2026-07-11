@@ -8,7 +8,7 @@ import { AlertContext } from './context';
 interface AlertType {
   [key: string]: {
     icon: React.ComponentProps<IconProps['Component']>['icon'];
-    iconColor: 'warning' | 'error' | 'vattjom' | 'tertiary' | 'gronsta';
+    iconColor: React.ComponentProps<IconProps['Component']>['color'];
     styling: string;
   };
 }
@@ -22,7 +22,7 @@ export interface AlertComponentProps extends DefaultProps {
 export interface UseAlertProps extends AlertComponentProps {
   size: 'sm' | 'md' | 'lg';
   icon?: React.ComponentProps<IconProps['Component']>['icon'];
-  iconColor?: 'warning' | 'error' | 'vattjom' | 'tertiary' | 'gronsta';
+  iconColor?: React.ComponentProps<IconProps['Component']>['color'];
 }
 
 const types: AlertType = {

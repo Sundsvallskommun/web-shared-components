@@ -1,7 +1,7 @@
 import { deepmerge, Dict, WithCSSVar } from '@sk-web-gui/utils';
 import React from 'react';
 import { defaultTheme } from './default-theme';
-import { ColorSchemeMode, GuiTheme, GuiThemeOverride } from './types';
+import { BrandTheme, ColorSchemeMode, GuiTheme, GuiThemeOverride } from './types';
 
 export const isBrowser = typeof document !== 'undefined';
 
@@ -20,6 +20,15 @@ export const GuiContext = React.createContext<
        * Scheme that is used when set to "system"
        */
       preferredColorScheme: Exclude<ColorSchemeMode, ColorSchemeMode.System>;
+      /**
+       * The active brand theme — the organisation's colour set (name + mode hexes +
+       * optional feedback overrides). Defaults to `sundsvallTheme`.
+       */
+      brandTheme: BrandTheme;
+      /**
+       * Switch the active brand theme at runtime.
+       */
+      setBrandTheme: (brandTheme: BrandTheme) => void;
       units: { base: number; htmlBase: number };
     }
   | undefined

@@ -1,6 +1,8 @@
 // https://github.com/tailwindlabs/tailwindcss/blob/master/colors.js
 
 import { toRGB } from '@sk-web-gui/utils';
+import { hexToRamp, ColorRamp } from './ramp';
+import { BrandTheme } from './types';
 
 // /* Base colors */
 export const primitives = {
@@ -124,7 +126,115 @@ export const primitives = {
   shadow: `${toRGB('#0D0D0E')?.join(',')}`,
 };
 
-const lightmode = {
+// ---------------------------------------------------------------------------
+// Default brand theme (Sundsvalls kommun)
+// ---------------------------------------------------------------------------
+// Hex values mirror the existing curated primitives used by Sundsvall's identity:
+//   - mode.primary   = vattjom blue 700 (the main CTA colour)
+//   - mode.secondary = juniskar pink 700
+//   - mode.tertiary  = bjornstigen purple 700
+//   - feedback.*     = the 700/800 step of each feedback primitive ramp
+//
+// Consumers can pass a custom `BrandTheme` to <GuiProvider brandTheme={...}>; any
+// feedback field they omit falls back to these defaults.
+
+export const sundsvallTheme: BrandTheme = {
+  name: 'Sundsvalls kommun',
+  feedback: {
+    warning: '#B94E18',
+    error: '#971A1A',
+    success: '#00733B',
+    alert: '#A90074',
+    info: '#005595',
+  },
+  mode: {
+    primary: '#005595',
+    secondary: '#A90074',
+    tertiary: '#5B1F78',
+  },
+};
+
+// ---------------------------------------------------------------------------
+// Role shape builders
+// ---------------------------------------------------------------------------
+// `buildRoleShape` mirrors the {background, surface, text} shape of a brand-driven role
+// (e.g. action / brand / accent) — same shape that defaultColors expects so a single shape
+// flows through the Tailwind preset.
+
+type RoleShape = {
+  background: { 100: string; 200: string; 300: string };
+  surface: {
+    primary: { DEFAULT: string; hover: string };
+    accent: { DEFAULT: string; hover: string };
+  };
+  text: { DEFAULT: string; primary: string; secondary: string };
+};
+
+const buildRoleShape = (ramp: ColorRamp, mode: 'light' | 'dark'): RoleShape =>
+  mode === 'light'
+    ? {
+        background: { 100: ramp[50], 200: ramp[100], 300: ramp[300] },
+        surface: {
+          primary: { DEFAULT: ramp[700], hover: ramp[900] },
+          accent: { DEFAULT: ramp[200], hover: ramp[100] },
+        },
+        text: { DEFAULT: ramp[800], primary: ramp[800], secondary: ramp[100] },
+      }
+    : {
+        background: { 100: ramp[900], 200: ramp[700], 300: ramp[600] },
+        surface: {
+          primary: { DEFAULT: ramp[200], hover: ramp[300] },
+          accent: { DEFAULT: ramp[700], hover: ramp[600] },
+        },
+        text: { DEFAULT: ramp[100], primary: ramp[100], secondary: ramp[800] },
+      };
+
+// Builds a 50–900 ramp from a curated primitive (with the curated hex values intact at
+// each step). Used to feed the identity.* / vattjom / gronsta / juniskar / bjornstigen
+// role shapes from the static primitives without going through ramp generation.
+const primitiveRamp = (p: typeof primitives.blue): ColorRamp => ({
+  lightest: primitives.gray.lightest,
+  50: p[50],
+  100: p[100],
+  200: p[200],
+  300: p[300],
+  400: p[400],
+  500: p[500],
+  600: p[600],
+  700: p[700],
+  800: p[800],
+  900: p[900],
+  darkest: primitives.gray.darkest,
+});
+
+// ---------------------------------------------------------------------------
+// Brand-theme resolution + colour-tree builder
+// ---------------------------------------------------------------------------
+
+interface ResolvedBrandTheme {
+  name: string;
+  feedback: Required<NonNullable<BrandTheme['feedback']>>;
+  mode: BrandTheme['mode'];
+}
+
+const resolveBrandTheme = (brandTheme: BrandTheme): ResolvedBrandTheme => ({
+  name: brandTheme.name,
+  mode: brandTheme.mode,
+  feedback: {
+    warning: brandTheme.feedback?.warning ?? sundsvallTheme.feedback!.warning!,
+    error: brandTheme.feedback?.error ?? sundsvallTheme.feedback!.error!,
+    success: brandTheme.feedback?.success ?? sundsvallTheme.feedback!.success!,
+    alert: brandTheme.feedback?.alert ?? sundsvallTheme.feedback!.alert!,
+    info: brandTheme.feedback?.info ?? sundsvallTheme.feedback!.info!,
+  },
+});
+
+const buildLightmode = (
+  primaryRamp: ColorRamp,
+  secondaryRamp: ColorRamp,
+  tertiaryRamp: ColorRamp,
+  feedbackRamps: { warning: ColorRamp; error: ColorRamp; success: ColorRamp; alert: ColorRamp; info: ColorRamp }
+) => ({
   body: primitives.gray[900],
   black: primitives.gray[900],
   white: primitives.gray.lightest,
@@ -187,189 +297,36 @@ const lightmode = {
       2: primitives.overlay.darken[3],
     },
   },
-  vattjom: {
-    background: {
-      100: primitives.blue[50],
-      200: primitives.blue[100],
-      300: primitives.blue[300],
-    },
-    surface: {
-      primary: {
-        DEFAULT: primitives.blue[700],
-        hover: primitives.blue[900],
-      },
-      accent: {
-        DEFAULT: primitives.blue[200],
-        hover: primitives.blue[100],
-      },
-    },
-    text: {
-      DEFAULT: primitives.blue[800],
-      primary: primitives.blue[800],
-      secondary: primitives.blue[100],
-    },
-  },
-  gronsta: {
-    background: {
-      100: primitives.green[50],
-      200: primitives.green[200],
-      300: primitives.green[300],
-    },
-    surface: {
-      primary: {
-        DEFAULT: primitives.green[700],
-        hover: primitives.green[800],
-      },
-      accent: {
-        DEFAULT: primitives.green[200],
-        hover: primitives.green[100],
-      },
-    },
-    text: {
-      DEFAULT: primitives.green[800],
-      primary: primitives.green[800],
-      secondary: primitives.green[100],
-    },
-  },
-  juniskar: {
-    background: {
-      100: primitives.pink[50],
-      200: primitives.pink[100],
-      300: primitives.pink[300],
-    },
-    surface: {
-      primary: {
-        DEFAULT: primitives.pink[700],
-        hover: primitives.pink[800],
-      },
-      accent: {
-        DEFAULT: primitives.pink[200],
-        hover: primitives.pink[100],
-      },
-    },
-    text: {
-      DEFAULT: primitives.pink[800],
-      primary: primitives.pink[800],
-      secondary: primitives.pink[100],
-    },
-  },
-  bjornstigen: {
-    background: {
-      100: primitives.purple[50],
-      200: primitives.purple[100],
-      300: primitives.purple[300],
-    },
-    surface: {
-      primary: {
-        DEFAULT: primitives.purple[700],
-        hover: primitives.purple[800],
-      },
-      accent: {
-        DEFAULT: primitives.purple[200],
-        hover: primitives.purple[100],
-      },
-    },
-    text: {
-      DEFAULT: primitives.purple[800],
-      primary: primitives.purple[800],
-      secondary: primitives.purple[100],
-    },
-  },
-  error: {
-    DEFAULT: primitives.red[800],
-    background: {
-      100: primitives.red[50],
-      200: primitives.red[100],
-      300: primitives.red[300],
-    },
-    surface: {
-      primary: {
-        DEFAULT: primitives.red[600],
-        hover: primitives.red[700],
-      },
-      accent: {
-        DEFAULT: primitives.red[300],
-        hover: primitives.red[200],
-      },
-    },
-    text: {
-      DEFAULT: primitives.red[800],
-      primary: primitives.red[800],
-      secondary: primitives.gray.lightest,
-    },
-  },
-  warning: {
-    DEFAULT: primitives.orange[800],
-    background: {
-      100: primitives.orange[50],
-      200: primitives.orange[100],
-      300: primitives.orange[300],
-    },
-    surface: {
-      primary: {
-        DEFAULT: primitives.orange[600],
-        hover: primitives.orange[700],
-      },
-      accent: {
-        DEFAULT: primitives.orange[200],
-        hover: primitives.orange[100],
-      },
-    },
-    text: {
-      DEFAULT: primitives.orange[800],
-      primary: primitives.orange[800],
-      secondary: primitives.gray.lightest,
-    },
-  },
-  info: {
-    DEFAULT: primitives.blue[800],
-    background: {
-      100: primitives.blue[50],
-      200: primitives.blue[100],
-      300: primitives.blue[300],
-    },
-    surface: {
-      primary: {
-        DEFAULT: primitives.blue[600],
-        hover: primitives.blue[700],
-      },
-      accent: {
-        DEFAULT: primitives.blue[200],
-        hover: primitives.blue[100],
-      },
-    },
-    text: {
-      DEFAULT: primitives.blue[800],
-      primary: primitives.blue[800],
-      secondary: primitives.blue[100],
-    },
-  },
-  success: {
-    DEFAULT: primitives.green[800],
-    background: {
-      100: primitives.green[50],
-      200: primitives.green[100],
-      300: primitives.green[300],
-    },
-    surface: {
-      primary: {
-        DEFAULT: primitives.green[600],
-        hover: primitives.green[700],
-      },
-      accent: {
-        DEFAULT: primitives.green[200],
-        hover: primitives.green[100],
-      },
-    },
-    text: {
-      DEFAULT: primitives.green[800],
-      primary: primitives.green[800],
-      secondary: primitives.green[100],
-    },
-  },
-};
 
-const darkmode = {
+  // Brand-driven roles (consumer's mode.* hexes expanded into role shapes).
+  action: buildRoleShape(primaryRamp, 'light'),
+  brand: buildRoleShape(primaryRamp, 'light'),
+  accent: buildRoleShape(secondaryRamp, 'light'),
+  'tertiary-brand': buildRoleShape(tertiaryRamp, 'light'),
+
+  // Feedback roles (5 types, each from a consumer-overridable hex).
+  info: buildRoleShape(feedbackRamps.info, 'light'),
+  success: buildRoleShape(feedbackRamps.success, 'light'),
+  warning: buildRoleShape(feedbackRamps.warning, 'light'),
+  error: buildRoleShape(feedbackRamps.error, 'light'),
+  alert: buildRoleShape(feedbackRamps.alert, 'light'),
+
+  // Deprecated identity aliases — keep emitting the same CSS variables (vattjom-*,
+  // gronsta-*, juniskar-*, bjornstigen-*) backed by the fixed primitive ramps so
+  // existing consumer Tailwind classes (e.g. `bg-vattjom-surface-accent`) keep working.
+  // Prefer `action-*` / `accent-*` / `identity-*` in new code.
+  vattjom: buildRoleShape(primitiveRamp(primitives.blue), 'light'),
+  gronsta: buildRoleShape(primitiveRamp(primitives.green), 'light'),
+  juniskar: buildRoleShape(primitiveRamp(primitives.pink), 'light'),
+  bjornstigen: buildRoleShape(primitiveRamp(primitives.purple), 'light'),
+});
+
+const buildDarkmode = (
+  primaryRamp: ColorRamp,
+  secondaryRamp: ColorRamp,
+  tertiaryRamp: ColorRamp,
+  feedbackRamps: { warning: ColorRamp; error: ColorRamp; success: ColorRamp; alert: ColorRamp; info: ColorRamp }
+) => ({
   body: primitives.gray.lightest,
   black: primitives.gray[900],
   white: primitives.gray.lightest,
@@ -411,7 +368,6 @@ const darkmode = {
     placeholder: primitives.overlay.lighten[6],
     ghost: primitives.overlay.lighten[4],
   },
-
   light: {
     DEFAULT: primitives.gray[900],
     primary: primitives.gray[900],
@@ -431,187 +387,23 @@ const darkmode = {
       2: primitives.overlay.lighten[4],
     },
   },
-  vattjom: {
-    background: {
-      100: primitives.blue[900],
-      200: primitives.blue[700],
-      300: primitives.blue[600],
-    },
-    surface: {
-      primary: {
-        DEFAULT: primitives.blue[200],
-        hover: primitives.blue[300],
-      },
-      accent: {
-        DEFAULT: primitives.blue[700],
-        hover: primitives.blue[600],
-      },
-    },
-    text: {
-      DEFAULT: primitives.blue[100],
-      primary: primitives.blue[100],
-      secondary: primitives.blue[800],
-    },
-  },
-  gronsta: {
-    background: {
-      100: primitives.green[900],
-      200: primitives.green[800],
-      300: primitives.green[700],
-    },
-    surface: {
-      primary: {
-        DEFAULT: primitives.green[300],
-        hover: primitives.green[200],
-      },
-      accent: {
-        DEFAULT: primitives.green[700],
-        hover: primitives.green[600],
-      },
-    },
-    text: {
-      DEFAULT: primitives.green[100],
-      primary: primitives.green[100],
-      secondary: primitives.green[800],
-    },
-  },
-  juniskar: {
-    background: {
-      100: primitives.pink[900],
-      200: primitives.pink[800],
-      300: primitives.pink[700],
-    },
-    surface: {
-      primary: {
-        DEFAULT: primitives.pink[300],
-        hover: primitives.pink[200],
-      },
-      accent: {
-        DEFAULT: primitives.pink[700],
-        hover: primitives.pink[600],
-      },
-    },
-    text: {
-      DEFAULT: primitives.pink[100],
-      primary: primitives.pink[100],
-      secondary: primitives.pink[800],
-    },
-  },
-  bjornstigen: {
-    background: {
-      100: primitives.purple[900],
-      200: primitives.purple[800],
-      300: primitives.purple[700],
-    },
-    surface: {
-      primary: {
-        DEFAULT: primitives.purple[300],
-        hover: primitives.purple[200],
-      },
-      accent: {
-        DEFAULT: primitives.purple[700],
-        hover: primitives.purple[600],
-      },
-    },
-    text: {
-      DEFAULT: primitives.purple[100],
-      primary: primitives.purple[100],
-      secondary: primitives.purple[800],
-    },
-  },
-  error: {
-    DEFAULT: primitives.red[100],
-    background: {
-      100: primitives.red[900],
-      200: primitives.red[800],
-      300: primitives.red[700],
-    },
-    surface: {
-      primary: {
-        DEFAULT: primitives.red[300],
-        hover: primitives.red[200],
-      },
-      accent: {
-        DEFAULT: primitives.red[700],
-        hover: primitives.red[600],
-      },
-    },
-    text: {
-      DEFAULT: primitives.gray.lightest,
-      primary: primitives.gray.lightest,
-      secondary: primitives.red[800],
-    },
-  },
-  warning: {
-    DEFAULT: primitives.orange[100],
-    background: {
-      100: primitives.orange[900],
-      200: primitives.orange[800],
-      300: primitives.orange[700],
-    },
-    surface: {
-      primary: {
-        DEFAULT: primitives.orange[400],
-        hover: primitives.orange[300],
-      },
-      accent: {
-        DEFAULT: primitives.orange[700],
-        hover: primitives.orange[600],
-      },
-    },
-    text: {
-      DEFAULT: primitives.gray.lightest,
-      primary: primitives.gray.lightest,
-      secondary: primitives.orange[800],
-    },
-  },
-  info: {
-    DEFAULT: primitives.blue[100],
-    background: {
-      100: primitives.blue[900],
-      200: primitives.blue[800],
-      300: primitives.blue[700],
-    },
-    surface: {
-      primary: {
-        DEFAULT: primitives.blue[400],
-        hover: primitives.blue[300],
-      },
-      accent: {
-        DEFAULT: primitives.blue[700],
-        hover: primitives.blue[600],
-      },
-    },
-    text: {
-      DEFAULT: primitives.blue[100],
-      primary: primitives.blue[100],
-      secondary: primitives.blue[800],
-    },
-  },
-  success: {
-    DEFAULT: primitives.green[100],
-    background: {
-      100: primitives.green[900],
-      200: primitives.green[800],
-      300: primitives.green[700],
-    },
-    surface: {
-      primary: {
-        DEFAULT: primitives.green[400],
-        hover: primitives.green[300],
-      },
-      accent: {
-        DEFAULT: primitives.green[700],
-        hover: primitives.green[600],
-      },
-    },
-    text: {
-      DEFAULT: primitives.green[100],
-      primary: primitives.green[100],
-      secondary: primitives.green[800],
-    },
-  },
-};
+
+  action: buildRoleShape(primaryRamp, 'dark'),
+  brand: buildRoleShape(primaryRamp, 'dark'),
+  accent: buildRoleShape(secondaryRamp, 'dark'),
+  'tertiary-brand': buildRoleShape(tertiaryRamp, 'dark'),
+
+  info: buildRoleShape(feedbackRamps.info, 'dark'),
+  success: buildRoleShape(feedbackRamps.success, 'dark'),
+  warning: buildRoleShape(feedbackRamps.warning, 'dark'),
+  error: buildRoleShape(feedbackRamps.error, 'dark'),
+  alert: buildRoleShape(feedbackRamps.alert, 'dark'),
+
+  vattjom: buildRoleShape(primitiveRamp(primitives.blue), 'dark'),
+  gronsta: buildRoleShape(primitiveRamp(primitives.green), 'dark'),
+  juniskar: buildRoleShape(primitiveRamp(primitives.pink), 'dark'),
+  bjornstigen: buildRoleShape(primitiveRamp(primitives.purple), 'dark'),
+});
 
 const utility = {
   lightmode: {
@@ -637,17 +429,28 @@ const utility = {
       control: {
         DEFAULT: primitives.overlay.darken[7],
         disabled: primitives.overlay.darken[6],
-        on: lightmode.primary.surface.hover,
+        on: primitives.overlay.darken[9],
       },
     },
+
     'menu-item': {
       surface: {
-        open: lightmode.vattjom.surface.accent.DEFAULT,
+        open: primitives.blue[200],
         hover: primitives.overlay.darken[3],
-        active: lightmode.primary.surface.DEFAULT,
+        active: primitives.overlay.darken[10],
       },
       node: {
         line: primitives.gray[300],
+      },
+    },
+    link: {
+      text: {
+        DEFAULT: primitives.blue[700],
+        hover: primitives.blue[900],
+        visited: {
+          DEFAULT: primitives.blue[700],
+          hover: primitives.blue[900],
+        },
       },
     },
   },
@@ -675,34 +478,75 @@ const utility = {
       control: {
         DEFAULT: primitives.overlay.lighten[7],
         disabled: primitives.overlay.lighten[6],
-        on: darkmode.primary.surface.hover,
+        on: primitives.gray.lightest,
       },
     },
+
     'menu-item': {
       surface: {
-        open: darkmode.vattjom.surface.accent.DEFAULT,
+        open: primitives.blue[700],
         hover: primitives.overlay.lighten[5],
-        active: darkmode.primary.surface.DEFAULT,
+        active: primitives.overlay.lighten[9],
       },
       node: {
         line: primitives.gray[600],
       },
     },
+    link: {
+      text: {
+        DEFAULT: primitives.blue[200],
+        hover: primitives.blue[300],
+        visited: {
+          DEFAULT: primitives.blue[200],
+          hover: primitives.blue[300],
+        },
+      },
+    },
   },
 };
 
-// App setup
-export const colors = {
-  lightmode: {
+/**
+ * Builds the full light + dark colour trees from a {@link BrandTheme}. Each tree contains
+ * primitives, neutral roles, brand-driven roles (action/brand/accent/tertiary-brand),
+ * feedback roles (info/success/warning/error/alert) and deprecated identity aliases
+ * (vattjom/gronsta/juniskar/bjornstigen).
+ *
+ * The light tree's `inverted` field is the dark tree (and vice versa) — components that
+ * need to swap modes for sub-regions (e.g. inverted toolbars) read from `inverted.*`.
+ */
+export const buildBrandColors = (brandTheme: BrandTheme) => {
+  const resolved = resolveBrandTheme(brandTheme);
+  const primaryRamp = hexToRamp(resolved.mode.primary);
+  const secondaryRamp = hexToRamp(resolved.mode.secondary);
+  const tertiaryRamp = hexToRamp(resolved.mode.tertiary);
+  const feedbackRamps = {
+    warning: hexToRamp(resolved.feedback.warning),
+    error: hexToRamp(resolved.feedback.error),
+    success: hexToRamp(resolved.feedback.success),
+    alert: hexToRamp(resolved.feedback.alert),
+    info: hexToRamp(resolved.feedback.info),
+  };
+
+  const lightmode = {
     primitives,
-    ...lightmode,
+    ...buildLightmode(primaryRamp, secondaryRamp, tertiaryRamp, feedbackRamps),
     ...utility.lightmode,
-    inverted: { ...darkmode, ...utility.darkmode },
-  },
-  darkmode: {
+  };
+  const darkmode = {
     primitives,
-    ...darkmode,
+    ...buildDarkmode(primaryRamp, secondaryRamp, tertiaryRamp, feedbackRamps),
     ...utility.darkmode,
-    inverted: { ...lightmode, ...utility.lightmode },
-  },
+  };
+
+  return {
+    lightmode: { ...lightmode, inverted: darkmode },
+    darkmode: { ...darkmode, inverted: lightmode },
+  };
 };
+
+/**
+ * Default colour tree (built from {@link sundsvallTheme}). Re-exported for backwards
+ * compatibility — consumers should generally let GuiProvider build the tree from a
+ * {@link BrandTheme} instead.
+ */
+export const colors = buildBrandColors(sundsvallTheme);

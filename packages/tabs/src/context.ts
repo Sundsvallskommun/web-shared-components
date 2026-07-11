@@ -1,3 +1,4 @@
+import type { DefaultColor } from '@sk-web-gui/utils';
 import React from 'react';
 
 export interface TabsContextProps {
@@ -6,7 +7,7 @@ export interface TabsContextProps {
   active: number;
   setCurrent: (index: number) => void;
   /** Color for taboption. Is inherited from Tabs */
-  color: 'tertiary' | 'juniskar' | 'bjornstigen' | 'gronsta' | 'vattjom' | string;
+  color: DefaultColor | 'tertiary';
   /** Set true if this is the current taboption. Can be handled by Tabs */
   current: number;
 }

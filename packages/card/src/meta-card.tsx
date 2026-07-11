@@ -1,5 +1,6 @@
 import { Icon } from '@sk-web-gui/icon';
 import { Link } from '@sk-web-gui/link';
+import type { DefaultColor } from '@sk-web-gui/utils';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 import { ExternalLink, Text } from 'lucide-react';
 import React from 'react';
@@ -12,7 +13,7 @@ interface IMetaCardProps extends DefaultProps {
   /** Set background color to card
    * @default vattjom
    */
-  color?: 'mono' | 'vattjom';
+  color?: DefaultColor | 'mono';
   /** If the card should be clickable, will apply hover style
    * @default false
    */

@@ -1,4 +1,5 @@
 import TailwindPlugin from 'tailwindcss/plugin';
+import { defaultColors } from '@sk-web-gui/utils';
 import { base } from './base';
 import { theme } from './theme';
 import { Component, components } from './components';
@@ -12,7 +13,7 @@ export interface PluginOptions {
 
 export const pluginDefaults = { cssBase: true, colors: [] };
 
-const defaultColors = ['warning', 'error', 'success', 'info', 'vattjom', 'juniskar', 'bjornstigen', 'gronsta'];
+
 
 const getComponentWithDependencies = (compName: string): Component[] => {
   const compWithDeps = components.find((comp) => comp.comp.name === compName);
@@ -67,3 +68,4 @@ const plugin = TailwindPlugin.withOptions<PluginOptions>(
 );
 
 export default plugin;
+

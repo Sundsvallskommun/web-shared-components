@@ -26,6 +26,8 @@ COPY . .
 # which makes it look unrelated. The app-level NODE_OPTIONS env does NOT reach these
 # RUN steps, so it must be set here. The host still needs ~5 GB free (RAM + swap).
 ENV NODE_OPTIONS="--max-old-space-size=4096"
+ENV NX_DAEMON=false
+ENV CI=true
 
 # Build the styleguide, then generate the component manifest the MCP server reads.
 RUN yarn run boot:storybook
@@ -36,7 +38,7 @@ RUN node mcp-server/generate-manifest.mjs
 FROM node:22.14.0-alpine AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 containeruser
@@ -55,6 +57,6 @@ USER containeruser
 
 # Container port
 EXPOSE 8080
-ENV PORT 8080
+ENV PORT=8080
 
 CMD ["node", "mcp-server/server.mjs"]

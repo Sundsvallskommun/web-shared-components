@@ -1,3 +1,4 @@
+import type { DefaultColor } from '@sk-web-gui/utils';
 import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
 import React from 'react';
 import { useProgressBarClass } from './styles';
@@ -12,7 +13,7 @@ export interface ProgressBarProps extends DefaultProps, Omit<React.ComponentProp
   /** Set the bar color
    * @default tertiary
    */
-  color?: 'tertiary' | 'vattjom' | 'gronsta' | 'bjornstigen' | 'juniskar';
+  color?: DefaultColor | 'tertiary';
   /** @default false */
   accent?: boolean;
   /** @default sm */

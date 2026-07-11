@@ -3,7 +3,7 @@ import React from 'react';
 import { AIServiceModuleDefaultProps } from './ai-service-module';
 
 export interface AIServiceModuleWrapperProps
-  extends React.ComponentPropsWithoutRef<'section'>,
+  extends Omit<React.ComponentPropsWithoutRef<'section'>, 'color'>,
     Pick<AIServiceModuleDefaultProps, 'inverted' | 'variant'> {}
 
 export const AIServiceModuleWrapper = React.forwardRef<HTMLDivElement, AIServiceModuleWrapperProps>((props, ref) => {
@@ -19,3 +19,4 @@ export const AIServiceModuleWrapper = React.forwardRef<HTMLDivElement, AIService
     />
   );
 });
+
