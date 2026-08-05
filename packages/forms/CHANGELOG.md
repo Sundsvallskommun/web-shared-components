@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.9.3...@sk-web-gui/forms@2.9.4) (2026-08-05)
+
+### Bug Fixes
+
+- **forms:** cap DatePicker year to four digits via default max ([#502](https://github.com/Sundsvallskommun/web-shared-components/issues/502)) ([2aac5a6](https://github.com/Sundsvallskommun/web-shared-components/commit/2aac5a6f819fe8468fd82c1a54e737555c937597))
+- remove vulnerable transitive dependencies ([#503](https://github.com/Sundsvallskommun/web-shared-components/issues/503)) ([c09ddac](https://github.com/Sundsvallskommun/web-shared-components/commit/c09ddac0079c7b8434a15ee5a9b039b8882fa19e))
+
 ## [2.9.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.9.2...@sk-web-gui/forms@2.9.3) (2026-05-29)
 
 ### Bug Fixes

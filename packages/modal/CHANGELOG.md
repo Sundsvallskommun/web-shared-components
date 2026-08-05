@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.5](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/modal@2.3.4...@sk-web-gui/modal@2.3.5) (2026-08-05)
+
+**Note:** Version bump only for package @sk-web-gui/modal
+
 ## [2.3.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/modal@2.3.3...@sk-web-gui/modal@2.3.4) (2026-05-06)
 
 ### Bug Fixes

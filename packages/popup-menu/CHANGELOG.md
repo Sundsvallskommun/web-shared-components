@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.11](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/popup-menu@3.1.10...@sk-web-gui/popup-menu@3.1.11) (2026-08-05)
+
+**Note:** Version bump only for package @sk-web-gui/popup-menu
+
 ## [3.1.10](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/popup-menu@3.1.9...@sk-web-gui/popup-menu@3.1.10) (2026-02-24)
 
 **Note:** Version bump only for package @sk-web-gui/popup-menu

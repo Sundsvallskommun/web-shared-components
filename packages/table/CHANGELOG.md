@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.20](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@3.2.19...@sk-web-gui/table@3.2.20) (2026-08-05)
+
+### Bug Fixes
+
+- remove vulnerable transitive dependencies ([#503](https://github.com/Sundsvallskommun/web-shared-components/issues/503)) ([c09ddac](https://github.com/Sundsvallskommun/web-shared-components/commit/c09ddac0079c7b8434a15ee5a9b039b8882fa19e))
+
 ## [3.2.19](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/table@3.2.18...@sk-web-gui/table@3.2.19) (2026-05-29)
 
 **Note:** Version bump only for package @sk-web-gui/table

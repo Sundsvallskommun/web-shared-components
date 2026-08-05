@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@2.7.1...@sk-web-gui/theme@2.7.2) (2026-08-05)
+
+### Bug Fixes
+
+- remove vulnerable transitive dependencies ([#503](https://github.com/Sundsvallskommun/web-shared-components/issues/503)) ([c09ddac](https://github.com/Sundsvallskommun/web-shared-components/commit/c09ddac0079c7b8434a15ee5a9b039b8882fa19e))
+
 ## [2.7.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/theme@2.7.0...@sk-web-gui/theme@2.7.1) (2026-02-24)
 
 ### Bug Fixes

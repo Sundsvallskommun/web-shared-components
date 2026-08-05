@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.5.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.5.0...@sk-web-gui/ai@4.5.1) (2026-08-05)
+
+**Note:** Version bump only for package @sk-web-gui/ai
+
 # [4.5.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.4.3...@sk-web-gui/ai@4.5.0) (2026-06-12)
 
 ### Features
