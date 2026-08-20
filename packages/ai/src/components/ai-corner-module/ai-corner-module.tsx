@@ -43,6 +43,11 @@ export interface AICornerModuleDefaultProps {
   onCloseFullScreen?: () => void;
   onNewSession?: () => void;
   /**
+   * Show references in feed
+   * @default true
+   */
+  showReferences?: boolean;
+  /**
    * Title shown in header
    * @default assistant.name
    */
@@ -121,6 +126,7 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
     onChangeAssistant,
     getAssistantInfoFromHistory: _getAssistantInfoFromHistory,
     showNewSession = true,
+    showReferences = true,
     ...rest
   } = props;
 
@@ -396,6 +402,7 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
                   </>
                 ) : (
                   <AIFeed
+                    showReferences={showReferences}
                     history={history}
                     showFeedback={showFeedback}
                     onGiveFeedback={handleAutoScroll}

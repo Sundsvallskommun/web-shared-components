@@ -49,6 +49,11 @@ export interface AIServiceModuleProps
    * Header-icon shown in secondary variant
    */
   headerIcon?: React.JSX.Element;
+  /**
+   * Show references in feed
+   * @default true
+   */
+  showReferences?: boolean;
 }
 
 export const AIServiceModule = React.forwardRef<HTMLDivElement, AIServiceModuleProps>((props, ref) => {
@@ -77,6 +82,7 @@ export const AIServiceModule = React.forwardRef<HTMLDivElement, AIServiceModuleP
     variant = 'primary',
     headerIcon,
     getAssistantInfoFromHistory: _getAssistantInfoFromHistory,
+    showReferences = true,
     ...rest
   } = props;
 
@@ -135,6 +141,7 @@ export const AIServiceModule = React.forwardRef<HTMLDivElement, AIServiceModuleP
           </AIServiceModuleHeader>
           {children}
           <AIServiceModuleAssistant
+            showReferences={showReferences}
             assistant={assistant}
             avatars={avatars}
             label={label}
