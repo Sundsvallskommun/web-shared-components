@@ -1,6 +1,6 @@
 {
   "name": "@sk-web-gui/ai",
-  "version": "4.5.1",
+  "version": "4.6.0",
   "sideEffects": false,
   "license": "MIT",
   "type": "module",
