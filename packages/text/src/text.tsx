@@ -79,10 +79,10 @@ export const Text = React.forwardRef<HTMLDivElement, TextProps>((props, ref) => 
       .replace(/(\n\n)/g, '<p>')
       .split('<p>');
 
-    const paragraphs = textArray.map((text) => {
+    const paragraphs = textArray.map((text, paragraphIndex) => {
       const sections = text.split('\n');
       return (
-        <p>
+        <p key={paragraphIndex}>
           {sections.map((section, index) => {
             if (index < sections.length - 1) {
               return (

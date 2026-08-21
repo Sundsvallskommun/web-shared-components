@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 import { SegmentedControl, SegmentedControlComponentProps } from '../src';
 import { Button } from '@sk-web-gui/button';
 import { Home } from 'lucide-react';

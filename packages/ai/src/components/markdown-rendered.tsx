@@ -21,7 +21,7 @@ interface MarkdownRenderedProps extends Options, Omit<React.HTMLAttributes<HTMLD
 }
 
 const ParagraphComponent = (props: React.ComponentPropsWithoutRef<'p'>) => {
-  return <p className="sk-ai-markdown-p">{props.children}</p>;
+  return <div className="sk-ai-markdown-p">{props.children}</div>;
 };
 
 interface InlineReferenceButtonProps {

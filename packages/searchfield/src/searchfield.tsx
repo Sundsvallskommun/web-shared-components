@@ -51,7 +51,7 @@ export const SearchFieldBase = React.forwardRef<HTMLInputElement, SearchFieldBas
     ...rest
   } = props;
 
-  const [query, setQuery] = React.useState(value);
+  const [query, setQuery] = React.useState(value ?? '');
   const internalRef = React.useRef<HTMLInputElement | null>(null);
   React.useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(ref, () => internalRef.current);
 
@@ -88,7 +88,7 @@ export const SearchFieldBase = React.forwardRef<HTMLInputElement, SearchFieldBas
   };
 
   React.useEffect(() => {
-    if (value !== null || value !== undefined) {
+    if (value !== null && value !== undefined) {
       setQuery(value);
     }
   }, [value]);

@@ -6,7 +6,6 @@ import react from '@vitejs/plugin-react';
 import fs from 'node:fs';
 import path, { dirname } from 'node:path';
 import { mergeConfig } from 'vite';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import { reloadStylesOnFolderChange } from './utils.ts';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -29,6 +28,7 @@ const config: StorybookConfig = {
     getAbsolutePath('storybook-dark-mode'),
     getAbsolutePath("@storybook/addon-docs"),
     getAbsolutePath('@storybook/addon-mcp'),
+    getAbsolutePath('@storybook/addon-vitest'),
   ],
   features: {
     developmentModeForBuild: true,
@@ -68,7 +68,6 @@ const config: StorybookConfig = {
         },
         plugins: [
           react(),
-          tsconfigPaths(),
           reloadStylesOnFolderChange(
             path.resolve(__dirname, '../packages/core/src/components'),
             path.resolve(__dirname, 'styles.scss')
@@ -93,6 +92,7 @@ const config: StorybookConfig = {
           },
         },
         resolve: {
+          tsconfigPaths: true,
           alias: getPackages().reduce((entries: Array<unknown>, packageName) => {
             entries.push({
               find: `@sk-web-gui/${packageName}`,

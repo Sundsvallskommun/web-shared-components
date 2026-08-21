@@ -1,11 +1,9 @@
 import { DefaultProps, cx } from '@sk-web-gui/utils';
 import React from 'react';
-import { MenuVerticalContext, UseMenuVerticalPropsStates } from './context';
-import MenuVertical from '.';
+import { MenuVerticalContext } from './context';
 
 interface IMenuVerticalNavProps extends DefaultProps {
   children: React.ReactElement | React.ReactElement[] | string;
-  
 }
 
 export interface MenuVerticalNavProps

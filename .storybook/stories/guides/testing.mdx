@@ -1,0 +1,150 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Guider/Testning" />
+
+# Testning
+
+Projektet använder Vitest för unit-tester i jsdom och Storybook play functions i Chromium via Playwright. Root-konfigurationen i `vitest.config.ts` är den gemensamma källan för testpolicy.
+
+## Köra tester
+
+```bash
+# Alla unit- och browser-tester
+yarn test
+
+# Snabba unit-tester
+yarn test:unit
+
+# Unit-tester med coverage och obligatoriska gränsvärden
+yarn test:coverage
+
+# Alla stabila Storybook-stories i Chromium
+yarn test:storybook
+
+# Samma testflöde som CI
+yarn test:ci
+
+# Endast ett paket
+yarn workspace @sk-web-gui/button test
+```
+
+CI kör även typdeklarationsbygget och ett produktionsbygge av Storybook. Oväntade `console.error` och `console.warn`, inklusive React-varningar, gör unit-tester röda.
+
+---
+
+## Vad tester ska skydda
+
+Testa det som en konsument eller användare kan observera:
+
+- publika exporter och props;
+- tillgängliga roller, namn och tillstånd;
+- tangentbord, fokus och kontrollerat/okontrollerat beteende;
+- callback-anrop med rätt antal anrop och rätt payload;
+- disabled, read-only, tomma värden och andra relevanta gränsfall.
+
+Importera från paketets `src/index.ts` när testet beskriver ett publikt komponentkontrakt. Interna moduler får importeras när en avgränsad, icke-publik algoritm har ett eget kontrakt.
+
+Undvik villkor runt obligatoriska assertions. Följande test kan bli grönt när knappen saknas och ska inte användas:
+
+```tsx
+const button = container.querySelector('button');
+if (button) {
+  expect(button).toBeEnabled();
+}
+```
+
+Använd i stället en obligatorisk semantisk query:
+
+```tsx
+expect(screen.getByRole('button', { name: 'Spara' })).toBeEnabled();
+```
+
+CSS-klasser och data-attribut testas bara när de utgör ett avsiktligt publikt kontrakt. Visuell styling ägs av `packages/core` och verifieras i första hand genom Storybook och den verkliga browsern. Snapshot-tester och bred mockning ska inte vara standardlösningen.
+
+---
+
+## Unit-tester
+
+Unit-tester ligger under `packages/*/src/**/*.{test,spec}.{ts,tsx}`.
+
+```tsx
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { describe, expect, it, vi } from 'vitest';
+import { Button } from './index';
+
+describe('Button public contract', () => {
+  it('calls onClick once when activated', async () => {
+    const onClick = vi.fn();
+    const user = userEvent.setup();
+    render(<Button onClick={onClick}>Spara</Button>);
+
+    await user.click(screen.getByRole('button', { name: 'Spara' }));
+
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+});
+```
+
+Använd `userEvent` för användarinteraktioner. Verifiera callback-payloaden med `toHaveBeenCalledWith` när payloaden är en del av kontraktet. Kontrollera att callback-refs får rätt HTML-element, inte bara att de anropas.
+
+---
+
+## Storybook play functions
+
+Alla stories har Storybooks inbyggda `test`-tagg som standard och körs därför som renderings- och tillgänglighetstester i Chromium. Lägg play-funktionen på en representativ befintlig story när ett flöde behöver interaktion.
+
+```tsx
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { expect, fn, userEvent, within } from 'storybook/test';
+import { Button } from '../src';
+
+const meta = {
+  title: 'Komponenter/Button',
+  component: Button,
+} satisfies Meta<typeof Button>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Primary: Story = {
+  args: {
+    children: 'Spara',
+    onClick: fn(),
+  },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    await userEvent.click(canvas.getByRole('button', { name: 'Spara' }));
+    await expect(args.onClick).toHaveBeenCalledTimes(1);
+  },
+};
+```
+
+Använd `tags: ['!test']` endast för en dokumenterad story som inte kan köras stabilt i testmiljön. Den taggen är ett undantag som ska tas bort när orsaken är löst. `!autodocs` påverkar bara dokumentationssidan. Egna taggar som `dev-only` har ingen inbyggd betydelse och döljer inte en story från ett produktionsbygge.
+
+Play functions är särskilt lämpliga för:
+
+- fokus och tangentbordsnavigation;
+- portaler, dialoger och popup-menyer;
+- browser-API:er och layoutberoende beteende;
+- automatisk tillgänglighetskontroll i den renderade storyn.
+
+---
+
+## Coverage
+
+Coverage omfattar alla källfiler under `packages/*/src`, även filer som inget test importerar. Globala gränsvärden i `vitest.config.ts` fungerar som en spärr mot försämring. Höj dem stegvis när beteenden täcks; sänk dem inte för att få en ändring grön.
+
+Prioritera låg täckning i komplexa eller användarnära moduler framför att lägga triviala renderingstester på aggregatorpaket. TypeScript-bygget och publika API-kontrakt skyddar paket som enbart återexporterar andra paket.
+
+---
+
+## Checklista för nya tester
+
+1. Beskriv användarens eller konsumentens observerbara kontrakt i testnamnet.
+2. Importera det publika API:t när kontraktet är publikt.
+3. Använd roller och tillgängliga namn före CSS-selektorer.
+4. Verifiera tillstånd före och efter interaktionen.
+5. Verifiera callback-antal och payload.
+6. Lägg browserberoende beteende i en representativ Storybook-story.
+7. Kör pakettestet, `yarn test:coverage` och vid behov `yarn test:storybook`.

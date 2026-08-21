@@ -1,0 +1,48 @@
+name: Test
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: test-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Install Chromium
+        run: yarn playwright install --with-deps chromium
+
+      - name: Run unit tests with coverage
+        run: yarn test:coverage
+
+      - name: Verify package builds
+        run: yarn build
+
+      - name: Run Storybook browser tests
+        timeout-minutes: 15
+        run: yarn test:storybook
+
+      - name: Verify production Storybook build
+        run: yarn build:storybook

@@ -1,5 +1,5 @@
 import { useFormControl } from '../form-control';
-import { cx, useForkRef, __DEV__, DefaultProps } from '@sk-web-gui/utils';
+import { cx, useForkRef, __DEV__, DefaultProps, omit } from '@sk-web-gui/utils';
 import React from 'react';
 import { useEffect, useRef } from 'react';
 import { Icon } from '@sk-web-gui/icon';
@@ -148,7 +148,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxItemProps>((p
         aria-checked={indeterminate ? 'mixed' : checked}
         data-color={color ? color : undefined}
         className={cx(checkboxClasses)}
-        {...rest}
+        {...omit(rest, ['disabled', 'invalid', 'readOnly'])}
       />
       <Icon.Padded variant="ghost" icon={indeterminate ? <Minus /> : <Check />} />
       {children && labelPosition === 'right' && <span className={cx(checkboxLabelClasses)}>{children}</span>}
