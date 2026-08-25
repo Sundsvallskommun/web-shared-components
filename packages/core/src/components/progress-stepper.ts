@@ -1,52 +1,59 @@
 export const ProgressStepper = () => ({
   '.sk-progress-stepper': {
-    '@apply flex justify-between items-center': {},
-    '&.horizontal': { '@apply flex-row gap-16': {} },
-    '&.vertical': { '@apply flex-col gap-4 h-full': {} },
+    '@apply flex justify-between': {},
+    '&.horizontal': { '@apply flex-row': {} },
+    '&.vertical': { '@apply flex-col gap-4 h-full items-start': {} },
     '&-step': {
-      '@apply flex items-center': {},
-      '@apply text-base leading-base text-dark-primary font-normal': {},
+      '@apply flex': {},
       '&-wrapper': {
-        '@apply flex items-center gap-8': {},
+        '@apply flex gap-8': {},
+        '@apply focus-visible:outline-none': {},
+        '@apply focus-visible:ring rounded': {},
         '&&-top': {
-          '@apply flex-col-reverse': {},
+          '@apply flex-col-reverse items-center': {},
+          '.sk-progress-stepper-step-text-wrapper': {
+            '@apply mt-0 text-center': {},
+          },
         },
         '&&-right': {
           '@apply flex-row': {},
         },
         '&&-bottom': {
-          '@apply flex-col': {},
+          '@apply flex-col items-center': {},
+          '.sk-progress-stepper-step-text-wrapper': {
+            '@apply mt-0 text-center': {},
+          },
         },
         '&&-left': {
           '@apply flex-row-reverse': {},
         },
       },
       '&-box': {
-        '@apply shrink-0 rounded-lg h-32 w-32 bg-tertiary-surface': {},
+        '@apply shrink-0 rounded-xl h-32 w-32 bg-tertiary-surface': {},
+        '@apply text-small font-bold': {},
         '@apply flex justify-center items-center': {},
         '&[data-rounded="true"]': {
           '@apply rounded-full': {},
         },
-        '&.sm': {
-          '@apply h-24 w-24 text-label-small': {},
+        '@apply h-24 w-24': {},
+        '.sk-icon svg': {
+          '@apply w-16 h-16': {},
         },
-        '&.md': {
-          '@apply h-32 w-32': {},
-        },
-        '&-icon': {
-          '&.sm svg': {
-            '@apply w-16 h-16': {},
-          },
-          '&.md svg': {
-            '@apply w-20 h-20': {},
-          },
-        },
+      },
+      '&-text-wrapper': {
+        '@apply flex-auto items-center': {},
+      },
+      '&-label': {
+        '@apply text-base mt-2 mb-0': {},
+      },
+      '&-description': {
+        '@apply text-small text-secondary': {},
       },
       '&&-vertical': {
         '@apply flex-col': {},
       },
       '&&-horizontal': {
-        '@apply flex-row gap-16': {},
+        '@apply flex-row': {},
       },
       '&&-grow': {
         '@apply grow': {},
@@ -56,14 +63,25 @@ export const ProgressStepper = () => ({
       },
       '&-divider': {
         '&.horizontal': {
-          '@apply flex w-full': {},
+          '@apply flex flex-auto mt-10 mx-8': {},
         },
         '&.vertical': {
-          '@apply flex w-auto h-full': {},
+          '@apply flex grow w-auto h-full ml-6': {},
+          '&.left': {
+            '@apply self-center ml-0': {},
+          },
+          '&.top': {
+            '@apply self-center ml-0': {},
+          },
+          '&.bottom': {
+            '@apply self-center ml-0': {},
+          },
         },
       },
       '&[data-progress="current"]': {
-        '@apply font-bold': {},
+        '.sk-progress-stepper-step-label': {
+          '@apply font-bold': {},
+        },
         '.sk-progress-stepper-step-box': {
           '@apply bg-primary-surface text-light-primary': {},
         },
@@ -73,15 +91,8 @@ export const ProgressStepper = () => ({
           '@apply bg-gronsta-surface-accent text-gronsta-text-primary': {},
         },
       },
-      '&[data-white-space="no-wrap"]': {
-        '.sk-progress-stepper-step-wrapper p': {
-          '@apply whitespace-nowrap': {},
-        },
-      },
-      '&[data-white-space="normal"]': {
-        '.sk-progress-stepper-step-wrapper p': {
-          '@apply whitespace-normal': {},
-        },
+      '.sk-progress-stepper-step-wrapper': {
+        '@apply whitespace-normal': {},
       },
     },
   },
