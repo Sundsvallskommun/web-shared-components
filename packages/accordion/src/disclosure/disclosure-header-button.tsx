@@ -57,7 +57,7 @@ export const DisclosureHeaderButton = React.forwardRef<HTMLButtonElement, Disclo
       ref={ref}
       onClick={toggleOpen}
       aria-controls={contextId ? `${contextId}-content` : undefined}
-      aria-labelledby={headerContextId ? `${headerContextId}-label` : undefined}
+      aria-labelledby={headerContextId ? `${headerContextId}-title` : undefined}
       aria-expanded={open}
       {...rest}
     >
