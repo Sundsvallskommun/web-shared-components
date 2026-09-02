@@ -51,6 +51,7 @@ export interface AIServiceModuleAssistantProps
       | 'titles'
       | 'onGiveFeedback'
       | 'showReferences'
+      | 'inlineReferenceMode'
       | 'showFeedback'
       | 'showTitles'
     >,
@@ -77,6 +78,7 @@ export const AIServiceModuleAssistant = React.forwardRef<HTMLDivElement, AIServi
       onSendQuery,
       onGiveFeedback,
       showReferences,
+      inlineReferenceMode,
       showFeedback,
       showTitles,
       inverted,
@@ -133,6 +135,7 @@ export const AIServiceModuleAssistant = React.forwardRef<HTMLDivElement, AIServi
                 avatars={avatars}
                 titles={titles}
                 showReferences={showReferences}
+                inlineReferenceMode={inlineReferenceMode}
                 showFeedback={showFeedback}
                 showTitles={showTitles}
                 assistant={assistant}

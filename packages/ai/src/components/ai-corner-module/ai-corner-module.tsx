@@ -48,6 +48,11 @@ export interface AICornerModuleDefaultProps {
    */
   showReferences?: boolean;
   /**
+   * How inline references are revealed.
+   * @default 'popup'
+   */
+  inlineReferenceMode?: 'popup' | 'inline';
+  /**
    * Title shown in header
    * @default assistant.name
    */
@@ -127,6 +132,7 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
     getAssistantInfoFromHistory: _getAssistantInfoFromHistory,
     showNewSession = true,
     showReferences = true,
+    inlineReferenceMode = 'popup',
     ...rest
   } = props;
 
@@ -403,6 +409,7 @@ export const AICornerModule = React.forwardRef<HTMLDivElement, AICornerModulePro
                 ) : (
                   <AIFeed
                     showReferences={showReferences}
+                    inlineReferenceMode={inlineReferenceMode}
                     history={history}
                     showFeedback={showFeedback}
                     onGiveFeedback={handleAutoScroll}
