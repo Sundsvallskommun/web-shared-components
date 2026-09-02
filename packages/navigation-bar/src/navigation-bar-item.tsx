@@ -125,7 +125,7 @@ export const NavigationBarItem = React.forwardRef<HTMLLIElement, NavigationBarIt
     } else {
       return React.cloneElement(child, {
         onKeyDown: handleKeyboard,
-        role: 'navigationitem',
+        role: 'menuitem',
         'aria-current': current === menuIndex ? 'page' : undefined,
         tabIndex: active === menuIndex ? 0 : -1,
         ...child.props,

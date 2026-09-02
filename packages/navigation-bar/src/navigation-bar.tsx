@@ -90,7 +90,7 @@ export const NavigationBarComponent = React.forwardRef<HTMLUListElement, Navigat
     <NavigationBarContext.Provider value={context}>
       <ul
         id={id}
-        role="navigationbar"
+        role="menubar"
         ref={ref}
         className={cx('sk-navigationbar', className)}
         data-color={color}
