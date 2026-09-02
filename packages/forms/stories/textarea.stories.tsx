@@ -108,7 +108,7 @@ export const TextareaGroup = () => (
       <Textarea.Group>
         <Textarea placeholder="Beskriv ditt ärende..." />
         <div className="w-full flex justify-end py-7 px-11">
-          <Button iconButton size="sm">
+          <Button iconButton size="sm" aria-label="send">
             <Icon icon={<Send />} />
           </Button>
         </div>
