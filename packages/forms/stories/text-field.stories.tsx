@@ -33,11 +33,11 @@ export const Disabled = () => (
       <TextField placeholder="example@mail.com" type="email" disabled />
     </div>
     <div className="flex mt-md gap-16">
-      <Input.Group disabled>
+      <Input.InnerGroup disabled>
         <Input.LeftAddin children="https://" />
         <TextField placeholder="mysite" type="url" />
         <Input.RightAddin children=".com" />
-      </Input.Group>
+      </Input.InnerGroup>
     </div>
   </div>
 );
@@ -49,15 +49,14 @@ export const Readonly = () => (
       <TextField placeholder="example@mail.com" type="email" readOnly />
     </div>
     <div className="flex mt-md gap-16">
-      <Input.Group readOnly>
+      <Input.InnerGroup readOnly>
         <Input.LeftAddin children="https://" />
         <TextField placeholder="mysite" type="url" />
         <Input.RightAddin children=".com" />
-      </Input.Group>
+      </Input.InnerGroup>
     </div>
   </div>
 );
-Readonly.storyName = 'Readonly';
 
 export const Invalid = () => (
   <div>
@@ -65,11 +64,11 @@ export const Invalid = () => (
       <TextField placeholder="example@mail.com" type="email" invalid />
     </div>
     <div className="flex mt-md gap-16">
-      <Input.Group invalid>
+      <Input.InnerGroup invalid>
         <Input.LeftAddin children="https://" />
         <TextField placeholder="mysite" type="url" />
         <Input.RightAddin children=".com" />
-      </Input.Group>
+      </Input.InnerGroup>
     </div>
   </div>
 );
@@ -91,29 +90,33 @@ export const Addin = () => {
   return (
     <div className="flex flex-col gap-16">
       <div className="flex flex-wrap items-center w-full gap-16">
-        <Input.Group>
+        <Input.InnerGroup>
           <Input.LeftAddin children="https://" />
           <TextField placeholder="mysite" type="url" />
           <Input.RightAddin children=".com" />
-        </Input.Group>
+        </Input.InnerGroup>
       </div>
       <div className="flex flex-wrap items-center w-full gap-16">
-        <Input.Group size="md">
+        <Input.InnerGroup size="md">
           <Input.LeftAddin icon>
             <Icon icon={<User />} />
           </Input.LeftAddin>
           <TextField placeholder="Användarnamn" />
-        </Input.Group>
+        </Input.InnerGroup>
       </div>
       <div className="flex flex-wrap items-center w-full gap-16">
-        <Input.Group size="md">
+        <Input.InnerGroup size="md">
           <TextField placeholder="Lösenord" type={showPass ? 'text' : 'password'} />
           <Input.RightAddin icon>
-            <span aria-label={showPass ? 'Dölj lösenord' : 'Visa lösenord'} role="button" onClick={() => setShowPass(!showPass)}>
+            <button
+              aria-label={showPass ? 'Dölj lösenord' : 'Visa lösenord'}
+              className="flex justify-center items-center"
+              onClick={() => setShowPass(!showPass)}
+            >
               {showPass ? <Icon icon={<EyeOff />} /> : <Icon icon={<Eye />} />}
-            </span>
+            </button>
           </Input.RightAddin>
-        </Input.Group>
+        </Input.InnerGroup>
       </div>
     </div>
   );

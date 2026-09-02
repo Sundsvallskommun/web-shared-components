@@ -5,6 +5,7 @@ import { InputAddinProps, InputLeftAddin, InputRightAddin } from '../input-addin
 import { InputAddonProps, InputLeftAddon, InputRightAddon } from '../input-addon';
 import { Input, InputProps } from '../input/input';
 import { useInputGroupClass } from './styles';
+import { TextField } from '../text-field';
 
 export interface InputGroupInnerProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   /* Size of all wrapped input */
@@ -34,14 +35,13 @@ export const InputGroupInner = React.forwardRef<HTMLDivElement, InputGroupInnerP
       role="group"
       aria-invalid={invalid}
       aria-disabled={disabled}
-      aria-readonly={readOnly}
       data-hasleftaddon={hasLeftAddon}
       data-hasrightaddon={hasRightAddon}
       className={cx(classes, className)}
       {...rest}
     >
       {validChildren.map((child) => {
-        if (React.isValidElement<InputProps>(child) && child.type === Input) {
+        if (React.isValidElement<InputProps>(child) && (child.type === Input || child.type === TextField)) {
           return React.cloneElement(child, {
             size,
             disabled,
