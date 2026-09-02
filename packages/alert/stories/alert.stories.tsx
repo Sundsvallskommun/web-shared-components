@@ -26,7 +26,7 @@ export const Template = (args: AlertProps) => {
           <Alert.Content.Title>Titel</Alert.Content.Title>
           <Alert.Content.Description>Beskrivning</Alert.Content.Description>
         </Alert.Content>
-        <Alert.Button leftIcon={<X />} iconButton size="sm" />
+        <Alert.Button leftIcon={<X />} iconButton size="sm" aria-label="Stäng" />
       </Alert>
     </div>
   );
