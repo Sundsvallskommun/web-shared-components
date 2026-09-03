@@ -72,6 +72,8 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
         reference,
       }));
 
+  const feedback = showFeedback && sessionId && entry.origin === 'assistant' && done;
+
   React.useEffect(() => {
     if (!done) {
       timeout.current = setTimeout(() => {
@@ -84,73 +86,69 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
   }, [done]);
 
   return (
-    <>
-      <li ref={ref} className={cx('sk-ai-feed-entry', className)} data-origin={entry.origin} data-size={size} {...rest}>
-        <div className="sk-ai-feed-entry-avatar" aria-hidden="true">
-          {avatar}
-        </div>
-        <div className="sk-ai-feed-entry-container">
-          <div className="sk-ai-feed-entry-content">
-            {!done && !entry.text ? (
-              <>{loadingComponent}</>
-            ) : (
-              <>
-                <span className={cx('sk-ai-feed-entry-heading')} data-showtitle={showTitle}>
-                  {entryName}
-                </span>
-                <MarkdownRendered
-                  text={entry.text}
-                  messageId={entry.id}
-                  hideElements={!entry.done}
-                  references={entry.references}
-                  showReferences={showReferences}
-                  inlineReferenceMode={inlineReferenceMode}
-                  tabbable={tabbable}
-                />
-              </>
-            )}
-          </div>
-          {showReferences && done && disclosureReferences.length > 0 ? (
-            <Disclosure size="sm" className="sk-ai-feed-entry-references" inverted={inverted}>
-              <Disclosure.Header>
-                <Disclosure.Title>
-                  <span className="sk-ai-feed-entry-references-header" data-inverted={inverted}>
-                    {referenceTitle} ({disclosureReferences.length})
-                  </span>
-                </Disclosure.Title>
-                <Disclosure.Button />
-              </Disclosure.Header>
-              <Disclosure.Content>
-                <ul aria-label={referenceTitle} className="sk-ai-feed-entry-references-list">
-                  {disclosureReferences.map(({ number, reference }, refIndex) => (
-                    <li className="sk-ai-feed-entry-references-list-item" key={`ref-${refIndex}`}>
-                      {reference.url ? (
-                        <small>
-                          {isInlineReferenceMode ? `${number}. ` : null}
-                          <Link external href={reference.url} inverted={inverted}>
-                            {reference.title}
-                          </Link>
-                        </small>
-                      ) : (
-                        <small>
-                          {isInlineReferenceMode ? `${number}. ` : null}
-                          {reference.title}
-                        </small>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </Disclosure.Content>
-            </Disclosure>
-          ) : null}
-          {showFeedback && sessionId && entry.origin === 'assistant' && done && (
-            <Feedback sessionId={sessionId} onGiveFeedback={onGiveFeedback} inverted={inverted} />
+    <li ref={ref} className={cx('sk-ai-feed-entry', className)} data-origin={entry.origin} data-size={size} {...rest}>
+      <div className="sk-ai-feed-entry-avatar" aria-hidden="true">
+        {avatar}
+      </div>
+      <div className="sk-ai-feed-entry-container">
+        <div className="sk-ai-feed-entry-content">
+          {!done && !entry.text ? (
+            loadingComponent
+          ) : (
+            <>
+              <span className={cx('sk-ai-feed-entry-heading')} data-showtitle={showTitle}>
+                {entryName}
+              </span>
+              <MarkdownRendered
+                text={entry.text}
+                messageId={entry.id}
+                hideElements={!entry.done}
+                references={entry.references}
+                showReferences={showReferences}
+                inlineReferenceMode={inlineReferenceMode}
+                tabbable={tabbable}
+              />
+            </>
           )}
         </div>
-      </li>
+        {showReferences && done && disclosureReferences.length > 0 ? (
+          <Disclosure size="sm" className="sk-ai-feed-entry-references" inverted={inverted}>
+            <Disclosure.Header>
+              <Disclosure.Title>
+                <span className="sk-ai-feed-entry-references-header" data-inverted={inverted}>
+                  {referenceTitle} ({disclosureReferences.length})
+                </span>
+              </Disclosure.Title>
+              <Disclosure.Button />
+            </Disclosure.Header>
+            <Disclosure.Content>
+              <ul aria-label={referenceTitle} className="sk-ai-feed-entry-references-list">
+                {disclosureReferences.map(({ number, reference }, refIndex) => (
+                  <li className="sk-ai-feed-entry-references-list-item" key={`ref-${refIndex}`}>
+                    {reference.url ? (
+                      <small>
+                        {isInlineReferenceMode ? `${number}. ` : null}
+                        <Link external href={reference.url} inverted={inverted}>
+                          {reference.title}
+                        </Link>
+                      </small>
+                    ) : (
+                      <small>
+                        {isInlineReferenceMode ? `${number}. ` : null}
+                        {reference.title}
+                      </small>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </Disclosure.Content>
+          </Disclosure>
+        ) : null}
+        {feedback && <Feedback sessionId={sessionId} onGiveFeedback={onGiveFeedback} inverted={inverted} />}
+      </div>
       <span className="sk-ai-feed-live-wrapper" aria-live="polite">
         {loading && !done && loadingMessage}
       </span>
-    </>
+    </li>
   );
 });
