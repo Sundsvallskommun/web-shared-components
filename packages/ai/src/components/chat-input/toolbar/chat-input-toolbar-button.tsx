@@ -6,6 +6,12 @@ import Tooltip from '@sk-web-gui/tooltip';
 
 export interface ChatInputToolbarButtonProps extends React.ComponentPropsWithRef<typeof Button> {
   index?: number;
+  /**
+   * If the button should have a pressed on/off state.
+   * If a boolean is provided to `pressed` it defaults to `true`,
+   * else defaults to `false`
+   */
+  togglable?: boolean;
   pressed?: boolean;
   label?: string;
 }
@@ -23,12 +29,14 @@ export const ChatInputToolbarButton = React.forwardRef<HTMLButtonElement, ChatIn
     onMouseLeave,
     onFocus,
     onBlur,
+    togglable: _togglable,
     ...rest
   } = props;
   const { active, setActive, prev, next, delayedHover, setDelayedHover, ...context } = useChatInputToolbar();
   const size = context.size === 'lg' ? 'md' : 'sm';
   const disabled = context.disabled;
   const internalRef = React.useRef<HTMLButtonElement>(null);
+  const togglable = _togglable ?? Boolean(pressed);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     onKeyDown?.(event);
@@ -94,9 +102,9 @@ export const ChatInputToolbarButton = React.forwardRef<HTMLButtonElement, ChatIn
         </Tooltip>
       )}
       <Button
-        role="menuitem"
+        role={togglable ? 'menuitemcheckbox' : 'menuitem'}
         tabIndex={active === index ? 0 : -1}
-        aria-pressed={pressed}
+        aria-checked={togglable ? pressed : undefined}
         aria-label={label}
         onFocus={handleFocus}
         onBlur={handleBlur}

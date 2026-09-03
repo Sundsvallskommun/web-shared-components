@@ -31,11 +31,22 @@ export interface ChatInputProps extends React.ComponentPropsWithRef<'div'> {
   placeholder?: ChatInputTextareaProps['placeholder'];
   size?: 'sm' | 'md' | 'lg';
   textareaRef?: React.RefObject<HTMLTextAreaElement | null>;
+  textareaProps?: ChatInputTextareaProps;
 }
 
 export const ChatInput = React.forwardRef<HTMLDivElement, ChatInputProps>((props, ref) => {
   const [_value, setValue] = React.useState<string>('');
-  const { onSend, value: propsValue, onChangeValue, toolbar, size, placeholder, textareaRef, ...rest } = props;
+  const {
+    onSend,
+    value: propsValue,
+    onChangeValue,
+    toolbar,
+    size,
+    placeholder,
+    textareaRef,
+    textareaProps,
+    ...rest
+  } = props;
   const value = propsValue ?? _value;
   const { sendQuery } = useChat();
 
@@ -70,6 +81,7 @@ export const ChatInput = React.forwardRef<HTMLDivElement, ChatInputProps>((props
         onChange={handleChangeValue}
         onKeyDown={handleEnter}
         ref={textareaRef}
+        {...textareaProps}
       ></ChatInputTextarea>
       {toolbar ? (
         <ChatInputToolbar>
