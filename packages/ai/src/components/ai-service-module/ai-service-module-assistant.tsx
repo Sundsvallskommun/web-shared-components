@@ -124,26 +124,31 @@ export const AIServiceModuleAssistant = React.forwardRef<HTMLDivElement, AIServi
               {typeof helperText === 'string' ? helperText : helperText.text}
             </FormHelperText>
           )}
-          <FormLabel className="sk-ai-service-module-form-label">{label}</FormLabel>
+
           {history && history.length > 0 ? (
-            <div className="sk-ai-service-module-form-input-wrapper">
-              <AIServiceModuleAssistantExpanded
-                history={history}
-                sessionId={sessionId}
-                onClose={onNewSession}
-                onGiveFeedback={onGiveFeedback}
-                avatars={avatars}
-                titles={titles}
-                showReferences={showReferences}
-                inlineReferenceMode={inlineReferenceMode}
-                showFeedback={showFeedback}
-                showTitles={showTitles}
-                assistant={assistant}
-                getAssistantInfoFromHistory={getAssistantInfoFromHistory}
-              />
-            </div>
+            <>
+              <span className="sk-ai-service-module-form-label">{label}</span>
+              <div className="sk-ai-service-module-form-input-wrapper">
+                <AIServiceModuleAssistantExpanded
+                  label={label}
+                  history={history}
+                  sessionId={sessionId}
+                  onClose={onNewSession}
+                  onGiveFeedback={onGiveFeedback}
+                  avatars={avatars}
+                  titles={titles}
+                  showReferences={showReferences}
+                  inlineReferenceMode={inlineReferenceMode}
+                  showFeedback={showFeedback}
+                  showTitles={showTitles}
+                  assistant={assistant}
+                  getAssistantInfoFromHistory={getAssistantInfoFromHistory}
+                />
+              </div>
+            </>
           ) : (
             <form className="sk-ai-service-module-form-input-wrapper" onSubmit={handleSubmit}>
+              <FormLabel className="sk-ai-service-module-form-label">{label}</FormLabel>
               <Input.InnerGroup
                 className="sk-ai-service-module-form-input-group sk-ai-inputsection-group"
                 size="lg"

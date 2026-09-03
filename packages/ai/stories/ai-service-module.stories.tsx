@@ -5,6 +5,7 @@ import { Avatar } from '@sk-web-gui/avatar';
 import { Icon } from '@sk-web-gui/icon';
 import { Sparkles } from 'lucide-react';
 import avatarSrc from './images/qwerty-avatar.png';
+import { useState } from 'react';
 
 export default {
   title: 'AI/Komponenter/AIServiceModule',
@@ -40,14 +41,17 @@ const history: ChatHistory = [
     id: '2',
     references: [
       {
+        id: '1',
         title: 'Källa 1',
         url: '#',
       },
       {
+        id: '2',
         title: 'Källa 2',
         url: '#',
       },
       {
+        id: '3',
         title: 'Källa 3',
         url: '#',
       },
@@ -64,14 +68,17 @@ const history: ChatHistory = [
     id: '4',
     references: [
       {
+        id: '1',
         title: 'Källa 1',
         url: '#',
       },
       {
+        id: '2',
         title: 'Källa 2',
         url: '#',
       },
       {
+        id: '3',
         title: 'Källa 3',
         url: '#',
       },
@@ -94,28 +101,23 @@ const history: ChatHistory = [
     done: true,
     references: [
       {
+        id: '1',
         title: 'Källa 1',
         url: '#',
       },
       {
+        id: '2',
         title: 'Källa 2',
         url: '#',
       },
       {
+        id: '3',
         title: 'Källa 3',
         url: '#',
       },
     ],
   },
 ];
-
-const session: AssistantSession = {
-  id: '1',
-  name: 'Vem är min chef?',
-  updated_at: new Date(),
-  created_at: new Date(),
-  history,
-};
 
 const inlineReferenceSession: AssistantSession = {
   id: 'inline-references',
@@ -157,20 +159,29 @@ export const SecondaryStyle = (args: AIServiceModuleProps) => {
   );
 };
 
-export const ManualWithHistory = () => (
-  <div className="h-[65rem]">
-    <AIServiceModule.Wrapper>
-      <AIServiceModule.Row color="bjornstigen">
-        <AIServiceModule.Content>
-          <AIServiceModule.Header>
-            <h2>Kan jag hjälpa dig med något?</h2>
-          </AIServiceModule.Header>
-          <AIServiceModule.Assistant history={history} avatars={avatars} assistant={assistant} />
-        </AIServiceModule.Content>
-      </AIServiceModule.Row>
-    </AIServiceModule.Wrapper>
-  </div>
-);
+export const ManualWithHistory = () => {
+  const [activeHistory, setActiveHistory] = useState(history);
+  return (
+    <div className="h-[65rem]">
+      <AIServiceModule.Wrapper>
+        <AIServiceModule.Row color="bjornstigen">
+          <AIServiceModule.Content>
+            <AIServiceModule.Header>
+              <h2>Kan jag hjälpa dig med något?</h2>
+            </AIServiceModule.Header>
+            <AIServiceModule.Assistant
+              history={activeHistory}
+              onFocus={() => setActiveHistory(history)}
+              onNewSession={() => setActiveHistory([])}
+              avatars={avatars}
+              assistant={assistant}
+            />
+          </AIServiceModule.Content>
+        </AIServiceModule.Row>
+      </AIServiceModule.Wrapper>
+    </div>
+  );
+};
 
 export const InlineReferences = (args: AIServiceModuleProps) => (
   <AIServiceModule {...args} assistant={assistant} session={inlineReferenceSession} inlineReferenceMode="inline" />
