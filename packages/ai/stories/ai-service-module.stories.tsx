@@ -29,6 +29,24 @@ const assistant: AssistantInfo = {
     'Din personliga AI-guide på intranätet. Svarar med glädje på frågor som rör din anställning på Sundsvalls Kommun.',
 };
 
+const references = [
+  {
+    id: '4',
+    title: 'Källa 1',
+    url: '#',
+  },
+  {
+    id: '5',
+    title: 'Källa 2',
+    url: '#',
+  },
+  {
+    id: '6',
+    title: 'Källa 3',
+    url: '#',
+  },
+];
+
 const history: ChatHistory = [
   {
     origin: 'user',
@@ -39,23 +57,7 @@ const history: ChatHistory = [
     origin: 'assistant',
     text: 'Jag är Qwerty, en AI-assistent här för att hjälpa medarbetare på Sundsvalls Kommun med information och kommunikation. Jag pratar enkelt och vänligt, och kan hjälpa till med frågor om HR och vårt intranät. \r\rMitt mål är att göra ditt jobb lite lättare och roligare. Hur kan jag hjälpa dig idag?',
     id: '2',
-    references: [
-      {
-        id: '1',
-        title: 'Källa 1',
-        url: '#',
-      },
-      {
-        id: '2',
-        title: 'Källa 2',
-        url: '#',
-      },
-      {
-        id: '3',
-        title: 'Källa 3',
-        url: '#',
-      },
-    ],
+    references,
   },
   {
     origin: 'user',
@@ -66,23 +68,7 @@ const history: ChatHistory = [
     origin: 'assistant',
     text: 'Jag är Qwerty, en AI-assistent här för att hjälpa medarbetare på Sundsvalls Kommun med information och kommunikation. Jag pratar enkelt och vänligt, och kan hjälpa till med frågor om HR och vårt intranät. \r\rMitt mål är att göra ditt jobb lite lättare och roligare. Hur kan jag hjälpa dig idag?',
     id: '4',
-    references: [
-      {
-        id: '1',
-        title: 'Källa 1',
-        url: '#',
-      },
-      {
-        id: '2',
-        title: 'Källa 2',
-        url: '#',
-      },
-      {
-        id: '3',
-        title: 'Källa 3',
-        url: '#',
-      },
-    ],
+    references,
   },
   {
     origin: 'system',
@@ -99,23 +85,7 @@ const history: ChatHistory = [
     text: 'Jag är Qwerty, en AI-assistent här för att hjälpa medarbetare på Sundsvalls Kommun med information och kommunikation. Jag pratar enkelt och vänligt, och kan hjälpa till med frågor om HR och vårt intranät. \r\rMitt mål är att göra ditt jobb lite lättare och roligare. Hur kan jag hjälpa dig idag?',
     id: '7',
     done: true,
-    references: [
-      {
-        id: '1',
-        title: 'Källa 1',
-        url: '#',
-      },
-      {
-        id: '2',
-        title: 'Källa 2',
-        url: '#',
-      },
-      {
-        id: '3',
-        title: 'Källa 3',
-        url: '#',
-      },
-    ],
+    references,
   },
 ];
 

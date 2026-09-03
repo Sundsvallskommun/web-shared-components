@@ -116,8 +116,8 @@ export const AIServiceModule = (colors: string[]) => ({
           },
         },
         '&-wrapper': {
-          '@apply relative': {},
-          '@apply w-full h-48': {},
+          '@apply relative flex flex-col': {},
+          '@apply w-full min-h-48 gap-8': {},
         },
       },
 
