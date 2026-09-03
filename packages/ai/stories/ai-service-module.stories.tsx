@@ -117,6 +117,22 @@ const session: AssistantSession = {
   history,
 };
 
+const inlineReferenceSession: AssistantSession = {
+  id: 'inline-references',
+  name: 'Inline-referenser',
+  updated_at: new Date(),
+  created_at: new Date(),
+  history: [
+    {
+      origin: 'assistant',
+      text: 'En inline-referens visas bredvid knappen <inref id="source"/>.',
+      id: 'inline-answer',
+      done: true,
+      references: [{ id: 'source-123', title: 'Källa för inline-referens', url: 'https://sundsvall.se' }],
+    },
+  ],
+};
+
 const avatars = {
   assistant: <Avatar size="lg" initials="AI" color="vattjom" />,
   user: <Avatar size="lg" initials="DU" color="bjornstigen" />,
@@ -154,4 +170,8 @@ export const ManualWithHistory = () => (
       </AIServiceModule.Row>
     </AIServiceModule.Wrapper>
   </div>
+);
+
+export const InlineReferences = (args: AIServiceModuleProps) => (
+  <AIServiceModule {...args} assistant={assistant} session={inlineReferenceSession} inlineReferenceMode="inline" />
 );

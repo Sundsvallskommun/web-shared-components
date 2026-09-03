@@ -30,7 +30,13 @@ export interface AIServiceModuleProps
     AIServiceModuleDefaultProps,
     Pick<
       AIFeedProps,
-      'avatars' | 'onGiveFeedback' | 'showReferences' | 'showFeedback' | 'showTitles' | 'getAssistantInfoFromHistory'
+      | 'avatars'
+      | 'onGiveFeedback'
+      | 'showReferences'
+      | 'inlineReferenceMode'
+      | 'showFeedback'
+      | 'showTitles'
+      | 'getAssistantInfoFromHistory'
     >,
     AIServiceModuleAssistantEssentialProps {
   /**
@@ -83,6 +89,7 @@ export const AIServiceModule = React.forwardRef<HTMLDivElement, AIServiceModuleP
     headerIcon,
     getAssistantInfoFromHistory: _getAssistantInfoFromHistory,
     showReferences = true,
+    inlineReferenceMode = 'popup',
     ...rest
   } = props;
 
@@ -142,6 +149,7 @@ export const AIServiceModule = React.forwardRef<HTMLDivElement, AIServiceModuleP
           {children}
           <AIServiceModuleAssistant
             showReferences={showReferences}
+            inlineReferenceMode={inlineReferenceMode}
             assistant={assistant}
             avatars={avatars}
             label={label}

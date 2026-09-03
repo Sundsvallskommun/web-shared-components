@@ -1,3 +1,4 @@
+import { Button } from '@sk-web-gui/button';
 import { Link } from '@sk-web-gui/link';
 import { PopupMenu } from '@sk-web-gui/popup-menu';
 import { cx } from '@sk-web-gui/utils';
@@ -13,6 +14,11 @@ interface MarkdownRenderedProps extends Options, Omit<React.HTMLAttributes<HTMLD
   hideElements: boolean;
   references?: ChatEntryReference[];
   showReferences?: boolean;
+  /**
+   * How inline references are revealed.
+   * @default 'popup'
+   */
+  inlineReferenceMode?: 'popup' | 'inline';
   /**
    * If links should be tabbable
    * @default true
@@ -32,7 +38,19 @@ interface InlineReferenceButtonProps {
   children: React.ReactNode;
 }
 
-const InlineReferenceButton: React.FC<InlineReferenceButtonProps> = ({
+const InlineReferenceContent: React.FC<{ reference: ChatEntryReference }> = ({ reference }) => (
+  <small>
+    {reference.url ? (
+      <Link external href={reference.url}>
+        {reference.title}
+      </Link>
+    ) : (
+      reference.title
+    )}
+  </small>
+);
+
+const InlineReferencePopupButton: React.FC<InlineReferenceButtonProps> = ({
   hidden,
   href,
   references,
@@ -63,17 +81,52 @@ const InlineReferenceButton: React.FC<InlineReferenceButtonProps> = ({
           {number}
         </PopupMenu.Button>
         <PopupMenu.Panel className="sk-ai-markdown-inline-reference-popup">
-          <small>
-            {reference.url ? (
-              <Link external href={reference.url}>
-                {reference.title}
-              </Link>
-            ) : (
-              reference.title
-            )}
-          </small>
+          <InlineReferenceContent reference={reference} />
         </PopupMenu.Panel>
       </PopupMenu>
+    </span>
+  );
+};
+
+const InlineReferenceInlineButton: React.FC<InlineReferenceButtonProps> = ({
+  hidden,
+  href,
+  references,
+  tabbable,
+  children,
+}) => {
+  const [open, setOpen] = React.useState(false);
+  const panelId = React.useId();
+  const referenceId = decodeURIComponent(href.replace(INLINE_REFERENCE_LINK_PREFIX, ''));
+  const reference = references.find((item) => item.id === referenceId);
+  const number = React.Children.toArray(children).join('');
+
+  if (!reference) {
+    return null;
+  }
+
+  return (
+    <span className="sk-ai-markdown-inline-reference sk-ai-markdown-inline-reference-inline">
+      <Button
+        type="button"
+        size="sm"
+        variant="tertiary"
+        rounded
+        className="sk-ai-markdown-inline-reference-button"
+        aria-hidden={hidden ? 'true' : 'false'}
+        aria-label={`Källa ${number}: ${reference.title}`}
+        aria-haspopup="true"
+        aria-expanded={open}
+        tabIndex={hidden || !tabbable ? -1 : 0}
+        onClick={() => setOpen((isOpen) => !isOpen)}
+      >
+        {number}
+      </Button>
+      {open && (
+        <span id={panelId} className="sk-ai-markdown-inline-reference-panel">
+          <InlineReferenceContent reference={reference} />
+        </span>
+      )}
     </span>
   );
 };
@@ -83,18 +136,27 @@ interface LinkComponentProps {
   id: string;
   references: ChatEntryReference[];
   tabbable: boolean;
+  inlineReferenceMode: 'popup' | 'inline';
 }
 
 const LinkComponent =
-  ({ hidden, id, references, tabbable }: LinkComponentProps) =>
+  ({ hidden, id, references, tabbable, inlineReferenceMode }: LinkComponentProps) =>
   (props: React.ComponentPropsWithoutRef<'a'>) => {
     const { href, children } = props;
 
     if (href?.startsWith(INLINE_REFERENCE_LINK_PREFIX)) {
       return (
-        <InlineReferenceButton hidden={hidden} href={href} references={references} tabbable={tabbable}>
-          {children}
-        </InlineReferenceButton>
+        <>
+          {inlineReferenceMode === 'inline' ? (
+            <InlineReferenceInlineButton hidden={hidden} href={href} references={references} tabbable={tabbable}>
+              {children}
+            </InlineReferenceInlineButton>
+          ) : (
+            <InlineReferencePopupButton hidden={hidden} href={href} references={references} tabbable={tabbable}>
+              {children}
+            </InlineReferencePopupButton>
+          )}
+        </>
       );
     }
 
@@ -141,6 +203,7 @@ export const MarkdownRendered: React.FC<MarkdownRenderedProps> = (props) => {
     hideElements,
     references = [],
     showReferences = true,
+    inlineReferenceMode = 'popup',
     tabbable = true,
     ...rest
   } = props;
@@ -153,7 +216,7 @@ export const MarkdownRendered: React.FC<MarkdownRenderedProps> = (props) => {
         disallowedElements={['script', 'iframe']}
         components={{
           p: ParagraphComponent,
-          a: LinkComponent({ hidden: hideElements, id: messageId, references, tabbable }),
+          a: LinkComponent({ hidden: hideElements, id: messageId, references, tabbable, inlineReferenceMode }),
           ol: OlComponent,
           ul: UlComponent,
           li: LiComponent,

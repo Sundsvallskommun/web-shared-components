@@ -155,6 +155,22 @@ const avatars = {
   system: <Avatar initials="!" color="juniskar" />,
 };
 
+const inlineReferenceSession: AssistantSession = {
+  id: 'inline-references',
+  name: 'Inline-referenser',
+  updated_at: new Date(),
+  created_at: new Date(),
+  history: [
+    {
+      origin: 'assistant',
+      text: 'En inline-referens visas bredvid knappen <inref id="source"/>.',
+      id: 'inline-answer',
+      done: true,
+      references: [{ id: 'source-123', title: 'Källa för inline-referens', url: 'https://sundsvall.se' }],
+    },
+  ],
+};
+
 export const Template = (args: AICornerModuleProps) => {
   return (
     <div className="w-full h-[60em] relative">
@@ -188,3 +204,7 @@ export const WithHistory = (args: AICornerModuleProps) => {
     </div>
   );
 };
+
+export const InlineReferences = (args: AICornerModuleProps) => (
+  <Template {...args} session={inlineReferenceSession} inlineReferenceMode="inline" />
+);

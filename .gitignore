@@ -11,6 +11,7 @@ storybook-static
 mcp-server/manifest.json
 
 docs/.next
+.playwright-mcp
 
 # Optional npm cache directory
 .npm

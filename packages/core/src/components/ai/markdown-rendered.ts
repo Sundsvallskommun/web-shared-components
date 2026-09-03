@@ -30,6 +30,13 @@ export const MarkdownRendered = () => ({
       '&-button': {
         '@apply h-22 min-h-22 min-w-22 p-4 text-label-extra-small': {},
       },
+      '&-inline': {
+        '@apply inline-flex items-center gap-4 align-middle flex-wrap': {},
+      },
+      '&-panel': {
+        '@apply inline-flex min-w-0 max-w-full break-words rounded-utility bg-background-100 p-8 -mt-8 -mb-8 shadow-100 z-10':
+          {},
+      },
     },
   },
 });

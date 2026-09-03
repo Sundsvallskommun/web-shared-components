@@ -23,8 +23,7 @@ const defaultHistory: ChatHistory = [
   },
   {
     origin: 'assistant',
-    text:
-      '## Jag är Qwerty.\r\r **En AI-assistent** här för att hjälpa medarbetare på Sundsvalls Kommun med information och kommunikation. Jag pratar enkelt och vänligt, och kan hjälpa till med frågor om HR och vårt intranät. \r\rMitt mål är att göra ditt jobb lite lättare och roligare. Hur kan jag hjälpa dig idag? \r\r## Jag kan skapa listor\r- En punkt\r- Två punkter\r\rDetta är `<p>inline code</p>`\n```\nDetta är ett \r<p>code block</p>\n```',
+    text: '## Jag är Qwerty.\r\r **En AI-assistent** här för att hjälpa medarbetare på Sundsvalls Kommun med information och kommunikation. Jag pratar enkelt och vänligt, och kan hjälpa till med frågor om HR och vårt intranät. \r\rMitt mål är att göra ditt jobb lite lättare och roligare. Hur kan jag hjälpa dig idag? \r\r## Jag kan skapa listor\r- En punkt\r- Två punkter\r\rDetta är `<p>inline code</p>`\n```\nDetta är ett \r<p>code block</p>\n```',
     id: '2',
     references: [
       {
@@ -59,8 +58,7 @@ const inlineReferenceHistory: ChatHistory = [
   },
   {
     origin: 'assistant',
-    text:
-      'En bra accordion bör följa ARIA-mönstret <inref id="810177c2"/> och använda tydliga knappetiketter. Om du vill jämföra med disclosure-beteende kan du också kika på exemplet här <inref id="69c42b47"/>. När samma källa används igen ska numret återanvändas <inref id="810177c2"/>.',
+    text: 'En bra accordion bör följa ARIA-mönstret <inref id="810177c2"/> och använda tydliga knappetiketter. Om du vill jämföra med disclosure-beteende kan du också kika på exemplet här <inref id="69c42b47"/>. När samma källa används igen ska numret återanvändas <inref id="810177c2"/>.',
     id: 'inline-answer',
     done: true,
     references: [
@@ -124,6 +122,14 @@ export const InlineReferencesWithoutUrl = {
   render: renderFeed,
   args: {
     history: missingUrlInlineReferenceHistory,
+  },
+};
+
+export const InlineReferencesInline = {
+  render: renderFeed,
+  args: {
+    history: inlineReferenceHistory,
+    inlineReferenceMode: 'inline',
   },
 };
 

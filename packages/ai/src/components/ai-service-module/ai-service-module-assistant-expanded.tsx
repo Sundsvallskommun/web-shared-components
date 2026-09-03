@@ -19,6 +19,7 @@ export interface AIServiceModuleAssistantExpandedProps
       | 'showFeedback'
       | 'showTitles'
       | 'showReferences'
+      | 'inlineReferenceMode'
       | 'onGiveFeedback'
       | 'inverted'
       | 'titles'
@@ -40,6 +41,7 @@ export const AIServiceModuleAssistantExpanded = React.forwardRef<HTMLDivElement,
       showFeedback,
       showTitles,
       showReferences,
+      inlineReferenceMode,
       onGiveFeedback,
       inverted,
       titles,
@@ -119,6 +121,7 @@ export const AIServiceModuleAssistantExpanded = React.forwardRef<HTMLDivElement,
             inverted={inverted}
             titles={titles}
             showReferences={showReferences}
+            inlineReferenceMode={inlineReferenceMode}
             size="sm"
           />
         </div>

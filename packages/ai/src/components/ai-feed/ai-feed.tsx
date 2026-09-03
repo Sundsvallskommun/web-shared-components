@@ -9,6 +9,11 @@ import { OriginTitleMap } from '../../types/titles';
 export interface AIFeedProps extends React.ComponentPropsWithoutRef<'ul'> {
   history: ChatHistory;
   showReferences?: boolean;
+  /**
+   * How inline references are revealed.
+   * @default 'popup'
+   */
+  inlineReferenceMode?: 'popup' | 'inline';
   sessionId?: string;
   avatars?: AIFeedAvatarMap;
   showFeedback?: boolean;
@@ -31,6 +36,7 @@ export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, re
     history,
     onGiveFeedback,
     showReferences = true,
+    inlineReferenceMode = 'popup',
     avatars,
     className,
     showFeedback = true,
@@ -82,6 +88,7 @@ export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, re
             <AIFeedEntry
               key={`${index}-${entry.id}`}
               showReferences={showReferences}
+              inlineReferenceMode={inlineReferenceMode}
               entry={entry}
               avatar={avatar}
               showFeedback={showFeedback && entry.done && entry.id === lastMessage?.id}
@@ -100,6 +107,7 @@ export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, re
         {lastMessage && (
           <AIFeedEntry
             showReferences={false}
+            inlineReferenceMode={inlineReferenceMode}
             entry={lastMessage}
             showFeedback={false}
             showTitle={true}
@@ -113,6 +121,7 @@ export const AIFeed = React.forwardRef<HTMLUListElement, AIFeedProps>((props, re
         {lastOwnMessage && (
           <AIFeedEntry
             showReferences={false}
+            inlineReferenceMode={inlineReferenceMode}
             entry={lastOwnMessage}
             showFeedback={false}
             title={titles?.[lastOwnMessage.origin]?.title}

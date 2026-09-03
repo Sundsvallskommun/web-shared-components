@@ -16,6 +16,7 @@ interface AIFeedEntryProps extends React.ComponentPropsWithoutRef<'li'> {
   title?: string;
   showTitle?: boolean;
   showReferences?: boolean;
+  inlineReferenceMode?: 'popup' | 'inline';
   /**
    * Get name from history, if existing.
    */
@@ -44,6 +45,7 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
     showTitle,
     loadingMessage = 'Inväntar svar',
     showReferences,
+    inlineReferenceMode,
     referenceTitle = 'Kunskapskällor',
     showFeedback = false,
     sessionId,
@@ -102,6 +104,7 @@ export const AIFeedEntry = React.forwardRef<HTMLLIElement, AIFeedEntryProps>((pr
                   hideElements={!entry.done}
                   references={entry.references}
                   showReferences={showReferences}
+                  inlineReferenceMode={inlineReferenceMode}
                   tabbable={tabbable}
                 />
               </>
