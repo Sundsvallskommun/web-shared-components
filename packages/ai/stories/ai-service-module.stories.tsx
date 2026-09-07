@@ -5,6 +5,7 @@ import { Avatar } from '@sk-web-gui/avatar';
 import { Icon } from '@sk-web-gui/icon';
 import { Sparkles } from 'lucide-react';
 import avatarSrc from './images/qwerty-avatar.png';
+import { useState } from 'react';
 
 export default {
   title: 'AI/Komponenter/AIServiceModule',
@@ -28,6 +29,24 @@ const assistant: AssistantInfo = {
     'Din personliga AI-guide på intranätet. Svarar med glädje på frågor som rör din anställning på Sundsvalls Kommun.',
 };
 
+const references = [
+  {
+    id: '4',
+    title: 'Källa 1',
+    url: '#',
+  },
+  {
+    id: '5',
+    title: 'Källa 2',
+    url: '#',
+  },
+  {
+    id: '6',
+    title: 'Källa 3',
+    url: '#',
+  },
+];
+
 const history: ChatHistory = [
   {
     origin: 'user',
@@ -38,20 +57,7 @@ const history: ChatHistory = [
     origin: 'assistant',
     text: 'Jag är Qwerty, en AI-assistent här för att hjälpa medarbetare på Sundsvalls Kommun med information och kommunikation. Jag pratar enkelt och vänligt, och kan hjälpa till med frågor om HR och vårt intranät. \r\rMitt mål är att göra ditt jobb lite lättare och roligare. Hur kan jag hjälpa dig idag?',
     id: '2',
-    references: [
-      {
-        title: 'Källa 1',
-        url: '#',
-      },
-      {
-        title: 'Källa 2',
-        url: '#',
-      },
-      {
-        title: 'Källa 3',
-        url: '#',
-      },
-    ],
+    references,
   },
   {
     origin: 'user',
@@ -62,20 +68,7 @@ const history: ChatHistory = [
     origin: 'assistant',
     text: 'Jag är Qwerty, en AI-assistent här för att hjälpa medarbetare på Sundsvalls Kommun med information och kommunikation. Jag pratar enkelt och vänligt, och kan hjälpa till med frågor om HR och vårt intranät. \r\rMitt mål är att göra ditt jobb lite lättare och roligare. Hur kan jag hjälpa dig idag?',
     id: '4',
-    references: [
-      {
-        title: 'Källa 1',
-        url: '#',
-      },
-      {
-        title: 'Källa 2',
-        url: '#',
-      },
-      {
-        title: 'Källa 3',
-        url: '#',
-      },
-    ],
+    references,
   },
   {
     origin: 'system',
@@ -92,30 +85,9 @@ const history: ChatHistory = [
     text: 'Jag är Qwerty, en AI-assistent här för att hjälpa medarbetare på Sundsvalls Kommun med information och kommunikation. Jag pratar enkelt och vänligt, och kan hjälpa till med frågor om HR och vårt intranät. \r\rMitt mål är att göra ditt jobb lite lättare och roligare. Hur kan jag hjälpa dig idag?',
     id: '7',
     done: true,
-    references: [
-      {
-        title: 'Källa 1',
-        url: '#',
-      },
-      {
-        title: 'Källa 2',
-        url: '#',
-      },
-      {
-        title: 'Källa 3',
-        url: '#',
-      },
-    ],
+    references,
   },
 ];
-
-const session: AssistantSession = {
-  id: '1',
-  name: 'Vem är min chef?',
-  updated_at: new Date(),
-  created_at: new Date(),
-  history,
-};
 
 const inlineReferenceSession: AssistantSession = {
   id: 'inline-references',
@@ -157,20 +129,29 @@ export const SecondaryStyle = (args: AIServiceModuleProps) => {
   );
 };
 
-export const ManualWithHistory = () => (
-  <div className="h-[65rem]">
-    <AIServiceModule.Wrapper>
-      <AIServiceModule.Row color="bjornstigen">
-        <AIServiceModule.Content>
-          <AIServiceModule.Header>
-            <h2>Kan jag hjälpa dig med något?</h2>
-          </AIServiceModule.Header>
-          <AIServiceModule.Assistant history={history} avatars={avatars} assistant={assistant} />
-        </AIServiceModule.Content>
-      </AIServiceModule.Row>
-    </AIServiceModule.Wrapper>
-  </div>
-);
+export const ManualWithHistory = () => {
+  const [activeHistory, setActiveHistory] = useState(history);
+  return (
+    <div className="h-[65rem]">
+      <AIServiceModule.Wrapper>
+        <AIServiceModule.Row color="bjornstigen">
+          <AIServiceModule.Content>
+            <AIServiceModule.Header>
+              <h2>Kan jag hjälpa dig med något?</h2>
+            </AIServiceModule.Header>
+            <AIServiceModule.Assistant
+              history={activeHistory}
+              onFocus={() => setActiveHistory(history)}
+              onNewSession={() => setActiveHistory([])}
+              avatars={avatars}
+              assistant={assistant}
+            />
+          </AIServiceModule.Content>
+        </AIServiceModule.Row>
+      </AIServiceModule.Wrapper>
+    </div>
+  );
+};
 
 export const InlineReferences = (args: AIServiceModuleProps) => (
   <AIServiceModule {...args} assistant={assistant} session={inlineReferenceSession} inlineReferenceMode="inline" />

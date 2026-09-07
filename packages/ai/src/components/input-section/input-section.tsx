@@ -36,6 +36,10 @@ export interface InputSectionProps extends React.ComponentPropsWithoutRef<'form'
    * Toolbar - only available with variant "multiline"
    */
   toolbar?: ChatInputProps['toolbar'];
+  /**
+   * Label for input
+   */
+  label?: string;
 }
 
 export const InputSection = React.forwardRef<HTMLFormElement, InputSectionProps>((props, ref) => {
@@ -52,6 +56,7 @@ export const InputSection = React.forwardRef<HTMLFormElement, InputSectionProps>
     button = <InputSectionButton isMobile={isMobile} variant={variant} />,
     autoFocus,
     toolbar,
+    label,
     ...rest
   } = props;
   const [query, setQuery] = React.useState<string>('');
@@ -120,6 +125,7 @@ export const InputSection = React.forwardRef<HTMLFormElement, InputSectionProps>
               onChange={handleOnChange}
               value={value ?? query}
               onKeyDown={handleEnter}
+              aria-label={label}
             ></ChatInput.Textarea>
             {toolbar ? (
               <ChatInput.Toolbar>

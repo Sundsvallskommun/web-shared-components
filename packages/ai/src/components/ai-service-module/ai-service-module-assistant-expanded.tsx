@@ -28,6 +28,7 @@ export interface AIServiceModuleAssistantExpandedProps
   sessionId?: string;
   onClose?: () => void;
   assistant: AssistantInfo;
+  label?: string;
 }
 
 export const AIServiceModuleAssistantExpanded = React.forwardRef<HTMLDivElement, AIServiceModuleAssistantExpandedProps>(
@@ -47,6 +48,7 @@ export const AIServiceModuleAssistantExpanded = React.forwardRef<HTMLDivElement,
       titles,
       assistant,
       getAssistantInfoFromHistory,
+      label,
       ...rest
     } = props;
 
@@ -137,7 +139,7 @@ export const AIServiceModuleAssistantExpanded = React.forwardRef<HTMLDivElement,
         >
           <Icon icon={<X />} />
         </Button>
-        <InputSection sessionId={sessionId} variant="multiline" autoFocus />
+        <InputSection label={label} sessionId={sessionId} variant="multiline" autoFocus />
       </div>
     );
   }
