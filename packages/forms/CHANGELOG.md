@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.5](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.9.4...@sk-web-gui/forms@2.9.5) (2026-09-08)
+
+### Bug Fixes
+
+- **input-group:** wcag issues and textfield compatibility ([3f88da8](https://github.com/Sundsvallskommun/web-shared-components/commit/3f88da8ad052d0612007c34fa2da702e97433df1))
+
 ## [2.9.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/forms@2.9.3...@sk-web-gui/forms@2.9.4) (2026-08-05)
 
 ### Bug Fixes

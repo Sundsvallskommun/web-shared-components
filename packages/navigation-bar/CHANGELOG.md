@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/navigationbar@3.0.3...@sk-web-gui/navigationbar@3.0.4) (2026-09-08)
+
+### Bug Fixes
+
+- correct aria roles ([62a0bd1](https://github.com/Sundsvallskommun/web-shared-components/commit/62a0bd17d9eb5ccc17990a4f3593b744641f83f9))
+
 ## [3.0.3](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/navigationbar@3.0.2...@sk-web-gui/navigationbar@3.0.3) (2026-08-05)
 
 **Note:** Version bump only for package @sk-web-gui/navigationbar

@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.6.2](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.6.1...@sk-web-gui/core@4.6.2) (2026-09-08)
+
+### Bug Fixes
+
+- **ai:** minor service module styling fixes ([b03b8e2](https://github.com/Sundsvallskommun/web-shared-components/commit/b03b8e2e7eee82e6cd9c95d7f3b28b7e582b26a2))
+- **ai:** show inline references as inline elements ([291c593](https://github.com/Sundsvallskommun/web-shared-components/commit/291c59357e69372ef2acef928bf7b7bbae3d47b0))
+
 ## [4.6.1](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/core@4.6.0...@sk-web-gui/core@4.6.1) (2026-08-05)
 
 **Note:** Version bump only for package @sk-web-gui/core

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.20](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/pagination@1.1.19...@sk-web-gui/pagination@1.1.20) (2026-09-08)
+
+**Note:** Version bump only for package @sk-web-gui/pagination
+
 ## [1.1.19](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/pagination@1.1.18...@sk-web-gui/pagination@1.1.19) (2026-08-05)
 
 **Note:** Version bump only for package @sk-web-gui/pagination

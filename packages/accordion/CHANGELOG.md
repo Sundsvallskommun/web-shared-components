@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.5](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@3.0.4...@sk-web-gui/accordion@3.0.5) (2026-09-08)
+
+### Bug Fixes
+
+- bad button aria label ([04b9abc](https://github.com/Sundsvallskommun/web-shared-components/commit/04b9abca094343c87dd6258f5954a250e32872ff))
+
 ## [3.0.4](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/accordion@3.0.3...@sk-web-gui/accordion@3.0.4) (2026-08-05)
 
 **Note:** Version bump only for package @sk-web-gui/accordion

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.7.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.6.0...@sk-web-gui/ai@4.7.0) (2026-09-08)
+
+### Bug Fixes
+
+- **ai-feed:** wcag warnings ([b96d270](https://github.com/Sundsvallskommun/web-shared-components/commit/b96d2709af638e9905cc7d4b3d708b93aea29d17))
+- **ai:** minor service module styling fixes ([b03b8e2](https://github.com/Sundsvallskommun/web-shared-components/commit/b03b8e2e7eee82e6cd9c95d7f3b28b7e582b26a2))
+- **chatinput:** wcag issues ([ea0b8f2](https://github.com/Sundsvallskommun/web-shared-components/commit/ea0b8f29c74b2f82785ac4fb240661bb4ce97c8c))
+- **servicemodule:** honor sv wcag control ([d9619f4](https://github.com/Sundsvallskommun/web-shared-components/commit/d9619f45895172bf1fcbced86ac5e9b082ac5b59))
+
+### Features
+
+- show inline references as inline elements ([d5701f6](https://github.com/Sundsvallskommun/web-shared-components/commit/d5701f6ac68e6e0148a2f95aebb2e8c30f67ac65))
+
 # [4.6.0](https://github.com/Sundsvallskommun/web-shared-components/compare/@sk-web-gui/ai@4.5.1...@sk-web-gui/ai@4.6.0) (2026-08-20)
 
 ### Features
