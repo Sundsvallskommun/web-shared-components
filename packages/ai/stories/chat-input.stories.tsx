@@ -48,6 +48,7 @@ export const WithToolbar = () => {
       </p>
 
       <ChatInput
+        textareaProps={{ 'aria-label': 'aria-label="Skriv till assistenten"' }}
         toolbar={[
           [
             <ChatInput.Toolbar.Button onClick={() => setDictating(!dicating)} pressed={dicating} label="Diktera">
