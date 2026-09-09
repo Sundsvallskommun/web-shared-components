@@ -1,64 +1,57 @@
-import { DefaultProps, __DEV__, cx } from '@sk-web-gui/utils';
+import { __DEV__, cx, DefaultProps, getValidChildren } from '@sk-web-gui/utils';
 import React from 'react';
-import { ProgressStep } from './progress-step';
+import { ProgressStepperContext } from './context';
 
 export type StepLabelPosition = 'top' | 'right' | 'bottom' | 'left';
 
-export interface ProgressStepperProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
-  /** Array of labels */
-  steps: string[];
+export interface ProgressStepperComponentProps extends DefaultProps, React.ComponentPropsWithRef<'div'> {
   /** Index of current step */
   current?: number;
   rounded?: boolean;
-  size?: 'sm' | 'md';
   /** If true, the stepper is displayed vertically */
   vertical?: boolean;
-  /** If greater than 0, the given number will set the length of each label */
-  ellipsisLength?: number;
-  /** True by default. Displays the label on a single row */
-  noWrap?: boolean;
   /** Position of the label in relation to the icon (or number box) */
-  labelPosition: StepLabelPosition;
+  labelPosition?: StepLabelPosition;
 }
 
-export const ProgressStepper = React.forwardRef<HTMLDivElement, ProgressStepperProps>((props, ref) => {
-  const {
-    steps,
-    current = 0,
-    className,
-    rounded = false,
-    size = 'md',
-    vertical = false,
-    ellipsisLength = 0,
-    noWrap = true,
-    labelPosition = 'right',
-    ...rest
-  } = props;
-  return (
-    <div ref={ref} className={cx('sk-progress-stepper', vertical ? 'vertical' : 'horizontal', className)} {...rest}>
-      {steps.map((step, index) => (
-        <React.Fragment key={`sk-step-${index}`}>
-          <ProgressStep
-            label={step}
-            number={index + 1}
-            numberOfSteps={steps.length}
-            current={index === current}
-            done={index < current}
-            rounded={rounded}
-            size={size}
-            ellipsisLength={ellipsisLength}
-            noWrap={noWrap}
-            vertical={vertical}
-            labelPosition={labelPosition}
-          />
-        </React.Fragment>
-      ))}
-    </div>
-  );
-});
+export interface UseProgressStepperProps extends ProgressStepperComponentProps {
+  labelPosition?: StepLabelPosition;
+  numberOfSteps: number;
+  current: number;
+  vertical?: boolean;
+}
+
+export const ProgressStepperComponent = React.forwardRef<HTMLDivElement, ProgressStepperComponentProps>(
+  (props, ref) => {
+    const { children, current = 0, className, rounded = false, vertical = false, labelPosition, ...rest } = props;
+    const numberOfSteps: number = React.Children.toArray(children).length;
+    const context = { labelPosition, numberOfSteps, vertical, current, rounded };
+    const autoId = React.useId();
+
+    const getChildren = (): React.ReactNode => {
+      return getValidChildren(children).map((child, index) => {
+        const childProps = { index: index, rounded, current };
+        return React.cloneElement(child, childProps);
+      });
+    };
+
+    return (
+      <ProgressStepperContext.Provider value={context}>
+        <div
+          ref={ref}
+          id={autoId}
+          className={cx('sk-progress-stepper', vertical ? 'vertical' : 'horizontal', className)}
+          {...rest}
+        >
+          {getChildren()}
+        </div>
+      </ProgressStepperContext.Provider>
+    );
+  }
+);
 
 if (__DEV__) {
-  ProgressStepper.displayName = 'ProgressStepper';
+  ProgressStepperComponent.displayName = 'ProgressStepper';
 }
 
-export default ProgressStepper;
+export default ProgressStepperComponent;
