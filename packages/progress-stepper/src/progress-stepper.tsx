@@ -19,6 +19,8 @@ export interface ProgressStepperProps extends DefaultProps, React.ComponentProps
   noWrap?: boolean;
   /** Position of the label in relation to the icon (or number box) */
   labelPosition: StepLabelPosition;
+  /** Called with the index of the clicked step. When set, every step except the current one is clickable */
+  onStepChange?: (index: number) => void;
 }
 
 export const ProgressStepper = React.forwardRef<HTMLDivElement, ProgressStepperProps>((props, ref) => {
@@ -32,6 +34,7 @@ export const ProgressStepper = React.forwardRef<HTMLDivElement, ProgressStepperP
     ellipsisLength = 0,
     noWrap = true,
     labelPosition = 'right',
+    onStepChange,
     ...rest
   } = props;
   return (
@@ -50,6 +53,7 @@ export const ProgressStepper = React.forwardRef<HTMLDivElement, ProgressStepperP
             noWrap={noWrap}
             vertical={vertical}
             labelPosition={labelPosition}
+            onClick={onStepChange && index !== current ? () => onStepChange(index) : undefined}
           />
         </React.Fragment>
       ))}

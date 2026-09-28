@@ -20,6 +20,18 @@ export const ProgressStepper = () => ({
         '&&-left': {
           '@apply flex-row-reverse': {},
         },
+        '&&-clickable': {
+          '@apply cursor-pointer text-left rounded-utility': {},
+          '@apply focus-visible:outline-none focus-visible:ring ring-ring ring-offset': {},
+          '&:hover': {
+            '.sk-progress-stepper-step-label': {
+              '@apply underline': {},
+            },
+            '.sk-progress-stepper-step-box': {
+              '@apply bg-tertiary-surface-hover': {},
+            },
+          },
+        },
       },
       '&-box': {
         '@apply shrink-0 rounded-lg h-32 w-32 bg-tertiary-surface': {},
@@ -72,14 +84,17 @@ export const ProgressStepper = () => ({
         '.sk-progress-stepper-step-box': {
           '@apply bg-gronsta-surface-accent text-gronsta-text-primary': {},
         },
+        '.sk-progress-stepper-step-wrapper-clickable:hover .sk-progress-stepper-step-box': {
+          '@apply bg-gronsta-surface-accent-hover': {},
+        },
       },
       '&[data-white-space="no-wrap"]': {
-        '.sk-progress-stepper-step-wrapper p': {
+        '.sk-progress-stepper-step-wrapper .sk-progress-stepper-step-label': {
           '@apply whitespace-nowrap': {},
         },
       },
       '&[data-white-space="normal"]': {
-        '.sk-progress-stepper-step-wrapper p': {
+        '.sk-progress-stepper-step-wrapper .sk-progress-stepper-step-label': {
           '@apply whitespace-normal': {},
         },
       },
