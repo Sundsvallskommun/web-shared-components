@@ -23,3 +23,15 @@ export const Template = (args: ProgressStepperProps) => (
 );
 
 Template.storyName = 'ProgressStepper';
+
+export const Clickable = (args: ProgressStepperProps) => {
+  const [current, setCurrent] = React.useState<number>(args.current ?? 0);
+
+  return <ProgressStepper {...args} current={current} onStepChange={setCurrent} />;
+};
+
+Clickable.storyName = 'Klickbara steg';
+Clickable.args = {
+  steps: ['Första steget', 'Andra steget', 'Tredje steget', 'Sista steget'],
+  current: 1,
+};
